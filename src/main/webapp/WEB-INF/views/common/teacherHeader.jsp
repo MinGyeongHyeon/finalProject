@@ -68,7 +68,10 @@
 	</div>
 	
 	<script>
-		function logout(){}
+		function logout(){
+			
+			
+		}
 	</script>
 	
 </body>
