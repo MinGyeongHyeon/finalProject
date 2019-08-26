@@ -5,52 +5,7 @@
 <title>Home</title>
 </head>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
-<style>
-	.contentsArea{
-		margin-top:100px;
-		height:100%;
-	}
-	
-	.albumListArea{
-		margin:0 auto;
-		width:65%;
-	}
-	
-	#contentsWrite{
-		border-radius: 5px;
-		border:1px solid #f40;
-		background:#f40;
-		color:#fff;
-		height:30px;
-	}
-	
-	.dateSearchArea{
-		text-align:right;
-	}
-	
-	.smallAlbum{
-		background:#fff;
-		width:20%;
-		display: inline-block;
-		margin-top: 1%;
-		margin-right: 2%;
-		margin-bottom: 3%;
-		margin-left: 2%;
-		
-	}
-	
-	#albumTitle{
-		font-weight: bold;
-	}
-	
-	#thumbnailImg{
-		border:2px solid #ddd;
-		margin:0 auto;
-		margin-top:5px;
-		width:90%;
-		height:80px;
-	}
-</style>
+<link rel="stylesheet" href="${ contextPath }/resources/css/albumCss.css">
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<jsp:include page="../common/teacherHeader.jsp"/>
@@ -97,12 +52,10 @@
 					<table style="width:90%; margin:0 auto;">
 						<tr>
 							<td colspan="2" rowspan="2">
-								<label for="" id="albumTitle">물총놀이</label><br /><p> </p>
-								
+								<label for="" id="albumTitle">물총놀이</label><br /><p> </p>	
 							</td>
 						</tr>
 						<tr>
-						
 						</tr>
 						<tr>
 							<td style="text-align:left; font-size: 0.7em;">
@@ -113,20 +66,11 @@
 							</td>
 						</tr>
 					</table>
-					
 				</div>
-					
-					
 				<%} %>
 			</div>
 			
 		</div>
-		
-		
-		
-		
-		
-		
 	</div>
 	</div>
 	

@@ -2,8 +2,6 @@
 body {
 	background: #eee;
 	margin:0;
-	padding:0;
-	height:100%;
 }
 
 a {
@@ -136,7 +134,8 @@ a:hover {
 	align:center;
 	text-align:center;
 	margin-bottom: 0px;
-	
+	position : relative;
+	bottom : 0;
 }
 .footerTable{
 	padding-left: 20%;
@@ -151,5 +150,6 @@ a:hover {
 
 .footerTable label{
 	font-size: 0.4em;
-	
 }
+
+

@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+.contentsArea {
+	margin-top: 60px;
+	min-height: 660px;
+}
+
+.mainArea {
+	margin: 0 auto;
+	width: 65%;
+}
+
+.diaryArea {
+	margin: 0 auto;
+}
+
+.diary {
+	width: 30%;
+	display: inline-block;
+	background: #fff;
+}
+
+.diary table {
+	width: 90%;
+	margin-left: 8%;
+	word-wrap: break-word;
+}
+
+.diary tr:first-child td {
+	text-align: right;
+	font-size: 0.8em;
+}
+
+.diary tr:nth-child(2) td {
+	vertical-align: top;
+	height: 40px;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.diary tr:nth-child(3) td {
+	font-size: 0.8em;
+	height: 100px;
+	vertical-align: top;
+}
+
+.diary tr:last-child td {
+	font-size: 0.7em;
+}
+
+.noticeArea {
+	margin: 0 auto;
+}
+
+.notice {
+	width: 30%;
+	display: inline-block;
+	background: #fff;
+}
+
+.notice table {
+	width: 90%;
+	margin-left: 8%;
+	word-wrap: break-word;
+}
+
+.notice tr:first-child td {
+	text-align: right;
+	font-size: 0.8em;
+}
+
+.notice tr:nth-child(2) td {
+	vertical-align: top;
+	height: 40px;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.notice tr:nth-child(3) td {
+	font-size: 0.8em;
+	height: 100px;
+	vertical-align: top;
+}
+
+.notice tr:last-child td {
+	font-size: 0.7em;
+}
+
+.underBtnArea {
+	width: 100%;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+
+.underBtnArea div {
+	width: 30%;
+	height: 40px;
+	vertical-align: bottom;
+	display: inline-block;
+	background: #fff;
+	font-size: 1.3em;
+	padding-top: 10px;
+}
+
+.firstTr div {
+	width: 98%;
+	background: white;
+}
+
+.managementTitle {
+	margin: 0 auto;
+	text-align: right;
+	align: right;
+	width: 100%;
+	background: #ddd;
+}
+
+.mmanagementTable th {
+	height: 40px;
+}
+
+.managementContentsTable {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.managementContentsTable tr td:last-child {
+	text-align: right;
+}
