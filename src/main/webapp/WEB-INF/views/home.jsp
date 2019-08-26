@@ -8,7 +8,9 @@
 
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
-	<%-- <jsp:include page="album/albumWrite.jsp"/> --%>
-	<h1>home</h1>
+	<jsp:include page="main/introduceService.jsp"/>
+	<%-- <jsp:include page="main/introduceService.jsp"/> --%>
+	<%-- <jsp:include page="join/searchGarden.jsp"/> --%>
+	<%-- <jsp:include page="join/kinrandEnrollment.jsp"/> --%>
 </body>
 </html>
