@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="footerArea">
 			<table class="footerTable">
 				<tr>
