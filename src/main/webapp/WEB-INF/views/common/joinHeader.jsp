@@ -28,14 +28,11 @@
 
 </head>
 
-<link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
-
 <body>
-	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div id="header">
 		<a class="logo">키즈랜드</a>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a>회원가입</a></li>
+			<li><a href="join1.ac">회원가입</a></li>
 			<li><a>로그인</a></li>			
 		</ul>
 	</div>

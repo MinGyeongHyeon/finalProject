@@ -24,6 +24,7 @@ margin-right:2%;
 <c:set var="contextPath"
 			value="${ pageContext.servletContext.contextPath }"
 			scope="application" />
+			
 	<jsp:include page="main-include.jsp"/>
 	<form>
 	<%-- <div id="content" style="background-image: URL(${ contextPath }/resources/images/introduce.PNG); background-size:100% 100%;">
