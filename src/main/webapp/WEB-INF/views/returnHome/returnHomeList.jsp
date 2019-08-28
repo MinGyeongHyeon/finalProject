@@ -6,19 +6,99 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequestCss.css">
 </head>
+<style>
+	.contentsArea{
+		margin-top:60px;
+		min-height: 660px;
+	}
+	
+	.returnHomeArea{
+		width:65%;
+		min-height: 560px;
+		margin:0 auto;
+	}
+	
+	
+	.returnHomeList{
+		margin: 0 auto;
+	}
+	
+	.returnHomeSummary{
+		width:30%;
+		margin-top:10px;
+		margin-bottom:20px;
+		margin-right:2%;
+		display: inline-block;
+		background:#fff;
+		height:200px;
+	}
+	.returnHomeSummary img{
+		width:20px;
+		height:20px;
+	}
+	.returnHomeSummary table{
+		width:90%;
+		margin:0 auto;
+		font-size: 0.8em;
+	}
+	
+	.returnHomeSummary:nth-child(3n-2){
+		margin-left: 2%;
+	}
+	.returnHomeSummary table tr:first-child {
+		text-align: right;
+	}
+	.returnHomeSummary table tr:nth-child(2) {
+		font-weight: bold;
+		font-size: 1.3em;
+	}
+	.returnHomeSummary table tr:nth-child(3) {
+		height:30px;
+		vertical-align: bottom;
+		
+	}
+	.returnHomeSummary table tr:nth-child(4) {
+		height:30px;
+		vertical-align: bottom;
+	}
+	.returnHomeSummary table tr:nth-child(5) {
+		height:30px;
+		vertical-align: bottom;
+	}
+	.returnHomeSummary table tr:last-child{
+		height:40px;
+		vertical-align: bottom;
+	}
+	
+	.printBtnArea{
+		width:100%;
+		text-align: right;
+	}
+	
+	.printBtnArea button{
+		border-radius: 5px;
+		background:#555;
+		color:#fff;
+		height:40px;
+		width:120px;
+		
+	}
+
+	
+	
+</style>
 <body>
 	<jsp:include page="../common/teacherHeader.jsp"/>
 	<jsp:include page="../common/teacherSideMenu.jsp"/>
 	
 	<div class="contentsArea">
-	<div class="drugRequestArea">
+	<div class="returnHomeArea">
 		<div class="pageName">
 			<table width=100%;>
 				<tr>
 					<td>
-						<label style="font-weight:bold;">투약의뢰서</label>
+						<label style="font-weight:bold;">귀가동의서</label>
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
@@ -31,7 +111,7 @@
 		</div>
 		<hr />
 		
-		<div class="drugSearchArea">
+		<div class="returnHomeSearchArea">
 			<table style="width:100%">
 				<tr>
 					<td>
@@ -51,24 +131,24 @@
 			</table>
 		</div>
 		<br />
-		<div class="drugRequestList">
-			<%int num = 5;
+		<div class="returnHomeList">
+			<%int num = 4;
 			for(int i = 0; i < num; i++){%>
-			<div class="drugRequestSummary">
+			<div class="returnHomeSummary">
 				<table>
 					<tr>
 						<td colspan="2">kidsName<p></p></td>
 					</tr><tr>
 						<td colspan="2"> 2019년 8월 14일</td>
 					</tr><tr>
-						<td width="40%">증상</td>
-						<td>기침</td>
+						<td width="50%"><img src="${ contextPath }/resources/images/car.png" alt="" />귀가방법</td>
+						<td>버스</td>
 					</tr><tr>
-						<td>투약시간</td>
-						<td>식후 30분</td>
+						<td><img src="${ contextPath }/resources/images/alarm-clock.png" alt="" />시간</td>
+						<td>오후 6:30</td>
 					</tr><tr>	
-						<td>의뢰자</td>
-						<td>박찬민</td>
+						<td><img src="${ contextPath }/resources/images/family.png" alt="" />보호자</td>
+						<td>엄마</td>
 					</tr><tr>
 						<td colspan="2">별님반</td>
 					</tr>
