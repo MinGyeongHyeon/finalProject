@@ -24,17 +24,35 @@ font-weight:5px;
 table {
 background:white;
 }
+.searchkinder{
+background:#8080ff;
+padding:6px;
+margin-left:260px;
+margin-right:260px;
+color:white;
+}
+
+input,select{
+	border-radius: 4px;
+}
+
+.searchresult{
+	width:250px;
+	height:250px;
+	color:pink;
+}
 </style>
 </head>
 <body>
-<div id="topbar">
-키즈랜드
-<button onclick="#" id="loginBtn">로그인</button>
+<div id="topbar" style='height:60px'>
+유치원 검색
 </div>
 <br><br><br>
 <div id="content">
+	<div align="center" class="searchkinder">
+		<h5>원검색</h5>
+	</div>	
 	<table align="center">
-		<tr><th>원검색</th></tr>
 		<tr><td colspan="3">
 		지역을 먼저 선택 후 원 명을 입력해 주세요.
 		</td></tr>
@@ -61,8 +79,9 @@ background:white;
 		<td><button>검색</button></td>
 		</tr>
 		<tr>
-		<td>검색 결과 리스트</td>
+		<td colspan="8" text-align="center">검색 결과 리스트</td>
 		</tr>
+		
 	</table>
 <!-- 	<table>
 	<tr><td>원 검색</td></tr>
