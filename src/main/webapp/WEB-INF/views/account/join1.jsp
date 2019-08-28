@@ -3,12 +3,11 @@
 <html>
 <head>
 <title>회원가입</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
 <style type="text/css">
 .mainArea {
@@ -37,11 +36,10 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 </style>
 
 </head>
-<link rel="stylesheet"
-	href="${ contextPath }/resources/css/includeCss.css">
+<link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 
 <body>
-	<jsp:include page="${ contextPath }/WEB-INF/views/common/joinHeader.jsp"/>
+	<jsp:include page="../common/joinHeader.jsp"/>
 	<br>
 	<div class="mainArea">
 		<h3 style="padding: 20px;">
@@ -54,8 +52,6 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 		<h5 align="center">서비스 약관 및 개인정보 수집, 이용에 동의해 주세요.</h5>
 
 		<br>
-
-		<form action="" id="joinForm">
 			<ul class="join_box">
 				<li class="checkBox check01">
 					<ul class="clearfix">
@@ -323,11 +319,11 @@ MailChimp®	이메일 발송
 				</li>
 
 			</ul>
-			<ul class="footBtwrap clearfix">
-				<li><button class="fpmgBt1">이전</button></li>
-				<li><button class="fpmgBt2">동의하기</button></li>
-			</ul>
-		</form>
+			
+			<div id="buttonArea" align="center">
+			<button class="huge ui button">이전</button>
+			<button class="huge ui secondary button" id="nextBtn" style="width:200px" onclick="location.href='join1.ac'">다음</button>
+		</div>
 
 	</div>
 
