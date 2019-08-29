@@ -13,7 +13,6 @@
 		width:80%;
 		margin:0 auto;
 	}
-	
 	.topArea table{
 		text-align:center;
 		width:100%;
@@ -23,9 +22,7 @@
 		width:30%;
 		padding-left: 10px;
 		padding-right: 10px;
-		 
 	}
-	
 	.topArea table tr:first-child td:nth-child(2n-1){
 		width:100px;
 		height:100px;
@@ -37,66 +34,41 @@
 		font-weight: bold;
 		border:1px solid black;
 		border-radius: 100px;
-		
 	}
 	.topArea table tr:last-child td{
 		width:100px;
 		font-size: 1em;
 		font-weight: bold;
-		
-	}
-	.kidsSelectArea{
-		background:#fff;
-		padding-bottom: 20px;
 	}
 	
-	.kidsSelectArea label:first-child{
+	
+	.modifyArea{
+		background:#fff;
+		padding-bottom: 20px;
+		border: 2px solid #000;
+		text-align: center;
+		margin:0 auto;
+		
+	}
+	.modifyArea img{
+		width:40px;
+		heigth:40px;
+		border-radius: 20px;
+	}
+	.modifyArea label:first-child{
 		font-weight: bold;
 		font-size: 1.5em;
 	}
 	
-	.kidsSelectArea input{
-		width:20px;
-		height:20px;
-	}
-	.kidsSelectArea label:nth-child(2){
-		font-size: 1.2em;
-		
-	}
-	.homeworkContents{
-		background:#fff;
-		padding:20px;
-		text-align: center;
-	}
-	
-	.homeworkContents textarea{
+	.modifyContents{
 		width:100%;
 		margin:0 auto;
 		border: 1px solid #ccc;
 		resize: none;
 		font-size: 1.2em;
-	}
-	.homeworkContents table{
-		margin:0 auto;
-	}
-	.classroom{
-		width:35%;
-		height:50px;
-		vertical-align:middle;
-		border-radius:5px;
-		display: inline-block;
-		margin-left: 5%;
-		margin-right: 5%;
-		background:#f55;
+		text-align: left;
 	}
 	
-	.classroom table{
-		width:100%;
-		text-align: center;
-		vertical-align:middle;
-		color:#fff;
-		
-	}
 	.btnArea{
 		width:100%;
 		text-align: right;
@@ -119,9 +91,9 @@
 	<div class="topArea">
 		<table>
 			<tr>
-				<td style="background:#ffcc00">1</td>
+				<td>1</td>
 				<td><hr /></td>
-				<td>2</td>
+				<td style="background:#ffcc00">2</td>
 				<td><hr /></td>
 				<td>3</td>
 			</tr>
@@ -136,43 +108,26 @@
 	</div>
 	<hr />
 	<form action="">
-	<div class="kidsSelectArea">
-		<label for=""><img src="" alt="" />원아선택</label>
+	<%int num = 3;
+	for(int i = 0; i < num; i++){%>
+	<div class="modifyArea" style="text-align: center;">
+	<table style="width:95%">
+		<tr><td>
+		<img src="${contextPath }/resources/images/woman.png" alt="" /><label for="">원아명</label><br />
 		<br />
-		<br />
-		<input type="checkbox" name="selectAll" id="selectAll"/>
-		<label for="selectAll">전체선택</label>
-		<br />
-		<br />
-		<div class="classroom">
-			<table>
-				<tr>
-					<td>별님반</td>
-					<td>0/15</td>
-				</tr>
-			</table>
-		</div>
-		<div class="classroom">
-			<table>
-				<tr>
-					<td>달님반</td>
-					<td>0/17</td>
-				</tr>
-			</table>
-		</div>
+		</td></tr>
+		<tr><td>
+		<textarea name="modifyContents" class="modifyContents" cols="30" rows="10" style="text-align:left;">
+공통내용
+--------------------------
+개별내용
+		</textarea>
+		</td></tr>
+	</table>
 		<br />
 	</div>
 	<br />
-	<div class="homeworkContents">
-		<table style="width:95%;">
-		<tr><td>
-			<label for="">내용작성</label><br />
-		</td></tr>
-		<tr><td>
-			<textarea rows="8" cols="" placeholder="내용을 입력해주세요"></textarea>
-		</td></tr>
-		</table>
-	</div>
+	<%} %>
 	<div class="btnArea">
 		<button>다음</button>
 	</div>
