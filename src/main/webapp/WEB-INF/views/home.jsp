@@ -578,10 +578,18 @@
 	<!-- Google Maps Plugin -->
 	<script src="assets/js/plugin/gmaps/gmaps.js"></script>
 
+
 	<!-- Sweet Alert -->
 	<script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 	<!-- Azzara JS -->
 	<script src="assets/js/ready.min.js"></script>
+
+	<%-- <jsp:include page="main/introduceService.jsp"/> --%>
+	<%-- <jsp:include page="join/searchGarden.jsp"/> --%>
+	<%-- <jsp:include page="join/kinrandEnrollment.jsp"/> --%>
+	<%-- <jsp:include page="admin/companyList.jsp"/> --%>
+	<jsp:include page="meal/meal2.jsp"/>
+
 </body>
 </html>
