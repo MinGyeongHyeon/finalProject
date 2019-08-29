@@ -13,7 +13,6 @@
 	<%-- <jsp:include page="join/searchGarden.jsp"/> --%>
 	<%-- <jsp:include page="join/kinrandEnrollment.jsp"/> --%>
 	<%-- <jsp:include page="admin/companyList.jsp"/> --%>
-	<jsp:include page="kingteacher/banplus.jsp"/>
-
+	<jsp:include page="meal/meal2.jsp"/>
 </body>
 </html>

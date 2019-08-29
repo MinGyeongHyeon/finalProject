@@ -41,7 +41,9 @@ padding:5px;
 width:90%;
 margin:0 auto;
 }
+label{
 
+}
 h3{
 margin-left:5%;
 }
@@ -61,24 +63,24 @@ margin-left:5%;
 	</div>
 	<h3>알림장</h3>
 	<div class="radioArea">
-	켜기<input type="radio" name="alrimjang">
-	끄기<input type="radio" name="alrimjang">
+	<label>켜기<input type="radio" name="alrimjang"></label>
+	<label>끄기<input type="radio" name="alrimjang"></label>
 	</div>
 	<h3>식단표</h3>
 	<div class="radioArea">
-	점심&간식<input type="radio" name="meal">
-	점심만보여주기<input type="radio" name="meal">
-	끄기<input type="radio" name="meal">
+	<label>점심&간식<input type="radio" name="meal"></label>
+	<label>점심만보여주기<input type="radio" name="meal"></label>
+	<label>끄기<input type="radio" name="meal"></label>
 	</div>
 	<h3>투약의뢰서</h3>
 	<div class="radioArea">
-	켜기<input type="radio" name="drug">
-	끄기<input type="radio" name="drug">
+	<label>켜기<input type="radio" name="drug"></label>
+	<label>끄기<input type="radio" name="drug"></label>
 	</div>
 	<h3>귀가동의서</h3>
 	<div class="radioArea">
-	켜기<input type="radio" name="gohome">
-	끄기<input type="radio" name="gohome">
+	<label>켜기<input type="radio" name="gohome"></label>
+	<label>끄기<input type="radio" name="gohome"></label>
 	</div>
 	<br><br>
 	<button id="saveBtn">저장</button><br><br><br>
