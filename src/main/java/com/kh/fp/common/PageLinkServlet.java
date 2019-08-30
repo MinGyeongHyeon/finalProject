@@ -1,3 +1,4 @@
+
 package com.kh.fp.common;
 
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,27 @@ public class PageLinkServlet {
 		
 		return "schedule/writeSchedule";
 	}
+  
+  
+	@RequestMapping(value="drugMainView.pl")
+	public String drugMainView() {
+		
+		return "drugRequest/drugRequestList";
+	}
+
+	@RequestMapping(value="main.pl")
+	public String mainView() {
+		
+		return "main/main";
+	}
+	
+	@RequestMapping(value="drugDetailList.pl")
+	public String drugDetailView() {
+		
+		return "drugRequest/drugRequestDetail";
+	}
 
 
 
 }
+

@@ -37,6 +37,7 @@
 	.sidebar .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar .nav>.nav-item.active:hover>a:before, .sidebar .nav>.nav-item.active>a:before {
 		background:#ff6666;
 	}
+	
 </style>
 
 </head>
@@ -231,7 +232,6 @@
 
 		<!-- Sidebar -->
 		<div class="sidebar">
-
 			<div class="sidebar-background"></div>
 			<div class="sidebar-wrapper scrollbar-inner">
 				<div class="sidebar-content">
@@ -263,8 +263,8 @@
 						</div>
 					</div>
 					<ul class="nav">
-						<li class="nav-item active">
-							<a href="#">
+						<li class="nav-item">
+							<a href="main.pl">
 								<i class="fas fa-home"></i>
 								<p>HOME</p>
 							</a>
@@ -315,7 +315,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="widgets.html"> 
+							<a href="drugMainView.pl"> 
 								<i class="fas fa-notes-medical"></i>
 								<p>투약의뢰서</p>
 							</a>

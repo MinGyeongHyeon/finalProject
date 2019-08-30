@@ -4,12 +4,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequestCss.css">
+<title>투약의뢰서</title>
+<style>
+.main-panel {
+    position: relative;
+    width: calc(100% - 240px);
+    height: 100vh;
+    min-height: 100%;
+    float: right;
+    transition: all .3s;
+}
+</style>
+
 </head>
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/teacherSideMenu.jsp"/>
+	<jsp:include page="../common/menubar.jsp"/>
+	
+	<div class="main-panel">
+         <div class="content">
+            <div class="page-inner">
+               <div class="page-header">
+               		<i class="fas fa-notes-medical" style="font-size:20px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
+               </div>
+               <hr>
+               <div class="page-category">
+               		<div id="mainArea">
+               			<div></div>
+               		</div>
+               
+               
+               </div>
+            </div>
+         </div>
+      </div>
 	
 	<div class="contentsArea">
 	<div class="drugRequestArea">
