@@ -61,6 +61,7 @@ background:yellowgreen;
 			function start() {
 			}
 			function login() {
+				location.href='loginPage.pl';
 			}
 		</script>
 		
