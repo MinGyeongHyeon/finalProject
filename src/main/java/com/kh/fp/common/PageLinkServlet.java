@@ -14,6 +14,11 @@ public class PageLinkServlet {
 		return "account/join5";
 	}
 	
+	@RequestMapping(value="writeSchedule.pl")
+	public String writeSchedule() {
+		
+		return "schedule/writeSchedule";
+	}
 
 
 }
