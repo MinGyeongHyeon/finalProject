@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.contentsArea{
-		margin-top:60px;
-		min-height: 660px;
-	}
-	
-	.returnHomeArea{
-		width:65%;
-		min-height: 560px;
-		margin:0 auto;
-		align:right;
+	.main-panel {
+	    position: relative;
+	    width: calc(100% - 240px);
+	    height: 100vh;
+	    min-height: 100%;
+	    float: right;
+	    transition: all .3s;
+	    padding-top:100px;
+	    padding-left: 3%;
+	    padding-right: 3%;
 	}
 	
 	.returnHomeContents{
@@ -126,10 +126,8 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/teacherSideMenu.jsp"/>
-	<div class="contentsArea">
-	<div class="returnHomeArea">
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
 			<table width=100%;>
 				<tr>
@@ -161,10 +159,10 @@
 					<tr>
 						<td>
 							<div class="selectDateDiv">
-							<label for="today">오늘(8월14일)</label>
+								<label for="today">오늘(8월14일)</label>
 							</div>
 							<div class="selectDateDiv">
-							<label for="tomorrow">내일(8월15일)</label>
+								<label for="tomorrow">내일(8월15일)</label>
 							</div>
 							<input type="radio" name="selectDate" id="today"  class="selectDate" hidden/>
 							<input type="radio" name="selectDate" id="tomorrow" class="selectDate" hidden/>
@@ -260,7 +258,7 @@
 			</table>
 		</div>
 		
-		<div class="DetailBtnArea">
+		<div class="detailBtnArea">
 			<button class="checkBtn">수신확인</button>
 			<table>
 				<tr>
@@ -272,8 +270,6 @@
 		
 		
 	</div>
-	</div>
-	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

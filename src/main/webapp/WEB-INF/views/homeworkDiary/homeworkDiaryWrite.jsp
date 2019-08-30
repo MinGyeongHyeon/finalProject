@@ -5,17 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
-	
-	.contentsArea{
-		margin-top:60px;
-		min-height: 660px;
+	.main-panel {
+	    position: relative;
+	    width: calc(100% - 240px);
+	    height: 100vh;
+	    min-height: 100%;
+	    float: right;
+	    transition: all .3s;
+	    padding-top:100px;
+	    padding-left: 3%;
+	    padding-right: 3%;
 	}
-	
 	.drugRequestArea{
-		width:65%;
-		min-height: 560px;
-		margin:0 auto;
+		
 	}
 	
 	.pageName table{
@@ -23,8 +27,9 @@
 		font-size: 1.5em;
 	}
 	
+	
 	.pageName tr td:first-child{
-		width:70%;
+		width:60%;
 	}
 	
 	.pageName img{
@@ -40,17 +45,135 @@
 		padding-top:5px;
 		padding-bottom: 5px;
 	}
-</style>
+	
+	.homeworkDiaryForm{
+		background:#fff;
+		padding:30px;
+		
+	}
+	
+	.homeworkDiaryForm table{
+		width:100%;
+		
+	}
+	.homeworkDiaryForm th{
+		font-size: 1.5em;
+		text-align: left;
+		padding-left: 10px;
+		height:50px;
+		vertical-align: bottom;
+	}
+	
+	.homeworkDiaryForm td{
+		font-size: 1.2em;
+	} 
 
+	.homeworkDiaryForm tr:nth-child(2) input{
+		width:300px;
+		height:40px;
+	}
+	
+	.homeworkDiaryForm tr:nth-child(4) input{
+		width:20px;
+		heigth:20px;
+	}
+	
+	
+	.homeworkDiaryForm input{
+		border:1px solid #bbb;
+	}
+	
+	.homeworkDiaryForm textarea{
+		border:1px solid #bbb;
+	}
+	
+	.classroom{
+		width:35%;
+		height:40px;
+		vertical-align:middle;
+		border-radius:5px;
+		display: inline-block;
+		padding-top:5px;
+		margin-top:20px;
+		margin-left: 5%;
+		margin-right: 5%;
+		background:#f55;
+		
+	}
+	
+	.classroom table{
+		width:100%;
+		text-align: center;
+		vertical-align:middle;
+		color:#fff;
+		
+	}
+	
+.albumImgArea {
+	width: 100px;
+	height: 70px;
+	border: 1px solid #779;
+	text-align: center;
+	margin-top: 5px;
+	margin-right: 3%;
+}
+	
+	.fileList input{
+		background:#f55;
+		width:70px;
+		height:30px;
+		color:#fff;
+		border:none;
+		border-radius: 5px;
+	}
+
+	.homeworkBtnArea{
+		width:100%;
+		text-align: center;
+	}
+	
+	.homeworkBtnArea table{
+		width:100%;
+	}
+	
+	.homeworkBtnArea td{
+		width:50%;
+		text-align: center;
+	}
+	
+	.homeworkBtnArea input{
+		background:#fa5;
+		border:none;
+		border-radius: 5px;
+		width:200px;
+		height:40px;
+		color:#fff;
+		
+	
+	}
+	
+</style>
+<script>
+	function addFile(){
+		$("<div class='albumImgArea' style='display: inline-block;'><img class='albumImg'/><input type=file name='imageList' class='imageList' hidden/>").appendTo($('.fileList:first-child'));
+		
+	}
+	
+	$(".albumImgArea").click(){
+		console.log(this);
+	}
+
+</script>
 </head>
 <body>
-	<div class="contentsArea">
-	<div class="homeworkDiaryWriteArea">
+
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
-			<table width=100%;>
+			<table style="width:100%;">
 				<tr>
-					<td>
-						<label style="font-weight:bold;">알림장 작성</label>
+  					<td style="vertical-align: middle;">
+						<p style="font-weight:bold;">알림장 작성</p>
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
@@ -62,8 +185,8 @@
 			</table>
 		</div>
 		<hr />
-		<div class="homeworkDiaryForm">
-			<form action="">
+		<form action="">
+			<div class="homeworkDiaryForm">
 				<table>
 					<tr>
 						<th>날짜</th>
@@ -78,22 +201,64 @@
 						<td><input type="checkbox" id="selectAll"/><label for="selectAll">전체선택</label></td>
 					</tr>
 					<tr>
-						<td><button>별님반</button></td>
-						<td><button>달님반</button></td>
+						<td>
+							<div class="classroom">
+								<table>
+									<tr>
+										<td>별님반</td>
+										<td>0/15</td>
+									</tr>
+								</table>
+							</div>
+							<div class="classroom">
+								<table>
+									<tr>
+										<td>별님반</td>
+										<td>0/15</td>
+									</tr>
+								</table>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
+					</tr>
+					<tr>
 						<td><textarea name="contents" id="contents" cols="" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;"></textarea></td>
 					</tr>
 					<tr>
 						<th>파일첨부</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="fileList" style="width:100%;">
+								<input type="button" value="추가" onclick="addFile();" />
+								<input type="button" value="삭제" onclick="delFile();" /><br />
+								
+							</div>
+							
 						
+						</td>
 					</tr>
 				</table>
-			</form>
-		</div>
+			</div>
+			<hr />
+			<div class="homeworkBtnArea">
+				<table>
+					<tr>
+						<td>
+							<input type="reset" value="취소"/>
+						</td>
+						<td>
+							<input type="submit" value="완료"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
 	</div>
-	</div>	
+	
+	
 </body>
 </html>
 
