@@ -5,18 +5,18 @@
   
 <mapper namespace="Member">
 	<resultMap type="com.kh.fp.member.model.vo.Member" id="memberResultSet">
-		<id property="mid" column="MID"/>
+		<id property="userNo" column="USER_NO"/>
 		<result property="userId" column="USER_ID"/>
 		<result property="userPwd" column="USER_PWD"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="email" column="EMAIL"/>
-		<result property="birthDay" column="BIRTHDAY"/>
-		<result property="gender" column="GENDER"/>
 		<result property="phone" column="PHONE"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="enrolldate" column="ENROLL_DATE"/>
+		<result property="deletedate" column="DELETE_DATE"/>
+		<result property="deleteReason" column="DELETE_REASON"/>
 		<result property="status" column="STATUS"/>
+		<result property="classifcation" column="CLASSIFICATION"/>
+		
 	</resultMap>
 	
 	<!-- 로그인 정보 조회용 쿼리문 -->
@@ -31,7 +31,7 @@
 	<!-- 회원 가입용 쿼리문 -->
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO USERS
-		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{userName}, #{email}, #{birthDay}, #{gender}, #{phone}, #{address}, SYSDATE, SYSDATE, DEFAULT)
+		VALUES(1, #{userId}, #{userPwd}, #{userName}, #{email}, #{phone}, sysdate, null, #{classification}, null, 'n')
 	</insert>
 	
 	<!-- 암호화된 비밀번호 조회용 쿼리문 -->

@@ -2,6 +2,7 @@ package com.kh.fp.member.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ public class MemberController {
 	
 	  @Autowired
 	  private MemberService ms;
+	  
+		@Autowired
+		private BCryptPasswordEncoder passwordEncoder;
 	 
 	
 	@RequestMapping(value="loginPage.me")
@@ -46,11 +50,28 @@ public class MemberController {
 		}
 		
 		
-		
-	
-		
-		
 	}
+	
+	
+	@RequestMapping(value="joinPage5.me")
+	public String joinPage5(Member m , Model model){
+		
+		System.out.println("M 이무슨 값인지 확인 : " +  m);
+		
+		String encPassword = passwordEncoder.encode(m.getUserPwd());
+		
+		m.setUserPwd(encPassword);
+		
+		int result = ms.insertUser(m);
+		
+		
+		
+		return "";
+	}
+	
+	
+	
+
 	
 	
 

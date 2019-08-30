@@ -49,6 +49,13 @@ public class MemberServiceImpl implements MemberService{
 	  return loginUser; 
 	  
 	  }
+
+	@Override
+	public int insertUser(Member m) {
+
+		
+		return md.insertUser(sqlSession, m);
+	}
 	 
 	
 

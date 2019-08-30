@@ -322,7 +322,7 @@ MailChimp®	이메일 발송
 			
 			<div id="buttonArea" align="center">
 			<button class="huge ui button">이전</button>
-			<button class="huge ui secondary button" id="nextBtn" style="width:200px" onclick="location.href='join1.ac'">다음</button>
+			<button class="huge ui secondary button" id="nextBtn" style="width:200px" onclick="location.href='joinPage2.pl'">다음</button>
 		</div>
 
 	</div>
