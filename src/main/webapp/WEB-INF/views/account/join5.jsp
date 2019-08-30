@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <title>로그인</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 	.mainArea {
 		width:37%;
@@ -51,10 +52,13 @@
 		<br><br>
 		<h1 align="center"><b>로그인</b></h1>
 		<br><br>
+		
+		<form action="login.me" method="post">
+		
 		<div class="inputArea">
-			<input type="text" class="form-control" id="userId" placeholder="아이디">
+			<input type="text" class="form-control" name="userId" placeholder="아이디">
 			<br>
-			<input type="password" class="form-control" id="userPwd" placeholder="비밀번호">
+			<input type="password" class="form-control" name="userPwd" placeholder="비밀번호">
 			<br>		
 		</div>
 		<div style="padding-left:50px">		
@@ -62,14 +66,28 @@
 		</div>
 		<br><br>
 		<div id="btnDiv" align="center">
-			<button class="ui button" id="loginBtn">로그인</button>
+			<button class="ui button" id="loginBtn" type="submit">로그인</button>
 		</div>
 		<br>
 		<div class="linkArea">
 			<span><a id="joinLink">회원가입</a></span>
 			<span style="float:right"><a id="findIdLink">아이디찾기</a> | <a id="findPwdLink">비밀번호 찾기</a></span>
 		</div>
+		
+		</form>
 	</div>
 	
+	<script>
+		
+	$('#joinlink').click(function(){
+		
+		location.href="joinHome.pl"
+		
+	})
+	
+	</script>
+	
+	
+
 </body>
 </html>
