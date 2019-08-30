@@ -32,7 +32,7 @@ table tr {
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 
 <body>
-	<jsp:include page="${ contextPath }/WEB-INF/views/common/joinHeader.jsp"/>
+	<%-- <jsp:include page="${ contextPath }/WEB-INF/views/common/joinHeader.jsp"/> --%>
 	<br><br>
 	<div class="mainArea">
 		<h3 style="padding-top: 50px; padding-left: 50px;"><b>회원가입</b></h3>
@@ -40,14 +40,20 @@ table tr {
 		<br>
 		<h4 align="center"><b>아이디 비밀번호 입력</b></h4>
 		<h5 align="center">키즈랜드에서 로그인 시 사용할 아이디와 비밀번호를 입력해 주세요.</h5><br>
+		<form action="joinPage4.pl" method="post">
+		<input type="hidden" name="userName" value="${ m.userName }">
+		<input type="hidden" name="email" value="${ m.email }"/>
+		<input type="hidden" name="phone" value="${ m.phone }"/>
+		
 		<table align="center" id="inputArea">
 			<tr>
+				
 				<td width="200px">아이디</td>
-				<td width="350px" height="50px"><input type="text" class="form-control" id="userId" placeholder="아이디"></td>
+				<td width="350px" height="50px"><input type="text" class="form-control" name="userId" placeholder="아이디"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" class="form-control" id="userPwd" placeholder="비밀번호"></td>
+				<td><input type="password" class="form-control" name="userPwd" placeholder="비밀번호"></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
@@ -60,6 +66,8 @@ table tr {
 			<button class="huge ui button">이전</button>
 			<button class="huge ui secondary button" id="nextBtn" style="width:200px">다음</button>
 		</div>
+		
+		</form>
 	
 		</div>
 	<br><br><br>

@@ -79,7 +79,7 @@
 	
 	<script>
 		
-	$('#joinlink').click(function(){
+	$('#joinLink').click(function(){
 		
 		location.href="joinHome.pl"
 		
