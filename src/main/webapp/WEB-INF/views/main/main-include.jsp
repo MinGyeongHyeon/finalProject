@@ -8,7 +8,7 @@
 <title>머쉬룸 시스터즈 퐈이야</title>
 <style>
 .nav-area {
-	height: 100%;
+	height: 200%;
 	width:100%;
 	top-margin:5%;
 }
@@ -31,6 +31,8 @@
 #main {
 	fond-weight: bold;
 	font-size: 50px;
+	width:50px;
+	height:50px;
 }
 form{
 background:yellowgreen;
@@ -42,10 +44,9 @@ background:yellowgreen;
 		<c:set var="contextPath"
 			value="${ pageContext.servletContext.contextPath }"
 			scope="application" />
-		<div class="nav-area" align="center" style="background-image: URL(${ contextPath }/resources/images/main.PNG); background-size:100% 100%;">
+		<div class="nav-area" align="center" style="background-image: URL(${ contextPath }/resources/images/sky.png); background-size:100% 150%;">
 			<br><Br>
-			<div class="homebar" id="main" >
-				<a href="#">키즈랜드</a>
+			<div class="homebar" style="background-image: URL(${ contextPath }/resources/images/mainicon.png); background-size:150% 150%;">
 			</div>
 			<div class="homebar" onclick="introduce();">회사소개</div>
 			<div class="homebar" onclick="introduceservice();">서비스소개</div>

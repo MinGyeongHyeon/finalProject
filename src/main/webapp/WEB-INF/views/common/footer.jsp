@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
 	<div class="footerArea">
 			<table class="footerTable">
 				<tr>
-					<th>KIDRAND</th>
+					<th>KIDLAND</th>
 					<th>CONTACT</th>
 				</tr>
 				<tr>
