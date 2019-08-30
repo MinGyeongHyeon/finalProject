@@ -15,23 +15,26 @@
 		console.log(divList[div]);
 	}
 </script>
-</head>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 <link rel="stylesheet" href="${ contextPath }/resources/css/albumCss.css">
+</head>
+<style>
+	.main-panel {
+	    position: relative;
+	    width: calc(100% - 240px);
+	    height: 100vh;
+	    min-height: 100%;
+	    float: right;
+	    transition: all .3s;
+	    padding-top:100px;
+	    padding-left: 3%;
+	    padding-right: 3%;
+	}
+</style>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	
-	<!-- 학부모일경우, 학부모가 아닐경우에 따라 사이드 메뉴 종류 변경 -->
-	<c:if test="${ loginUserJob != 0 }">
-	<jsp:include page="../common/teacherSideMenu.jsp"/>
-	</c:if>
-	<c:if test="${ loginUserJob == 3 }">
-	<jsp:include page="../common/parentsSideMenu.jsp"/>
-	</c:if>
-	
-	<div class="contentsArea">
-	<div class="albumWriteArea">
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
 			<table width=100%;>
 				<tr><td>
@@ -78,7 +81,6 @@
 			</div>
 		</div>
 		
-	</div>
 	</div>
 	
 	<jsp:include page="../common/footer.jsp"/>

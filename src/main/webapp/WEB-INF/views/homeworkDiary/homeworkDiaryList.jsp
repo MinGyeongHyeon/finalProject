@@ -7,16 +7,17 @@
 <title>Insert title here</title>
 </head>
 <style>
-	.contentsArea{
-		margin-top:60px;
-		min-height: 660px;
-	}
 	
-	.homeworkDiaryArea{
-		width:65%;
-		min-height: 560px;
-		margin:0 auto;
-		align:right;
+	.main-panel {
+	    position: relative;
+	    width: calc(100% - 240px);
+	    height: 100vh;
+	    min-height: 100%;
+	    float: right;
+	    transition: all .3s;
+	    padding-top:100px;
+	    padding-left: 3%;
+	    padding-right: 3%;
 	}
 	.pageName table{
 		font-weight: bold;
@@ -24,7 +25,7 @@
 	}
 	
 	.pageName tr td:first-child{
-		width:70%;
+		width:60%;
 	}
 	
 	.pageName img{
@@ -92,10 +93,8 @@
 </style>
 
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/teacherSideMenu.jsp"/>
-	<div class="contentsArea">
-	<div class="homeworkDiaryArea">
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
 			<table width=100%;>
 				<tr>
@@ -161,8 +160,6 @@
 		<button class="printBtn">출력하기</button>
 		
 	</div>
-	</div>
-	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

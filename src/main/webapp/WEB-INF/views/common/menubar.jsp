@@ -62,7 +62,7 @@
 					<i class="fa fa-ellipsis-v"></i>
 				</button>
 				<div class="navbar-minimize">
-					<button class="btn btn-minimize btn-rounded">
+					<button class="btn btn-minimize btn-rounded" onclick="moveDiv();">
 						<i class="fa fa-bars"></i>
 					</button>
 				</div>
@@ -423,5 +423,17 @@
 
 	<!-- Azzara JS -->
 	<script src="${ contextPath }/resources/assets/js/ready.min.js"></script>
+	
+	
+	<script>
+		function moveDiv(){
+			var area = $("#firstContentArea")[0];
+			if(area.style.margin == "" ||area.style.margin == "auto auto auto 30%"){
+				$(area).css('margin','auto');
+			}else {
+				$(area).css('margin-left','30%');
+			}
+		}
+	</script>
 </body>
 </html>

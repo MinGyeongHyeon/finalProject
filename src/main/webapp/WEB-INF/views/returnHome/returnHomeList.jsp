@@ -8,17 +8,17 @@
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 </head>
 <style>
-	.contentsArea{
-		margin-top:60px;
-		min-height: 660px;
+	.main-panel {
+	    position: relative;
+	    width: calc(100% - 240px);
+	    height: 100vh;
+	    min-height: 100%;
+	    float: right;
+	    transition: all .3s;
+	    padding-top:100px;
+	    padding-left: 3%;
+	    padding-right: 3%;
 	}
-	
-	.returnHomeArea{
-		width:65%;
-		min-height: 560px;
-		margin:0 auto;
-	}
-	
 	
 	.returnHomeList{
 		margin: 0 auto;
@@ -89,11 +89,8 @@
 	
 </style>
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/teacherSideMenu.jsp"/>
-	
-	<div class="contentsArea">
-	<div class="returnHomeArea">
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
 			<table width=100%;>
 				<tr>
@@ -161,8 +158,6 @@
 		</div>
 		
 	</div>
-	</div>
-	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

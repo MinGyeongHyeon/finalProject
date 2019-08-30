@@ -9,11 +9,8 @@
 <link rel="stylesheet" href="${ contextPath }/resources/css/mainCss.css">
 </head>
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/parentsSideMenu.jsp"/>
-	
-	<div class="contentsArea">
-	<div class="mainArea">
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="mainArea" id="firstContentArea">
 		<table style="margin:0 suto; width:100%;">
 			<tr class="">
 				<td colspan="3">
@@ -137,7 +134,6 @@
 				</td>
 			</tr>
 		</table>
-	</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"/>
 	
