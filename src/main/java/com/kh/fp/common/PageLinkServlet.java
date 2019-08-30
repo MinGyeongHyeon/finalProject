@@ -32,6 +32,7 @@ public class PageLinkServlet {
 		return "account/join2";
 	}
 	
+
 	@RequestMapping(value="joinPage3.pl")
 	public String joinPage3(Member m , Model model) {
 		
@@ -51,6 +52,12 @@ public class PageLinkServlet {
 		return "account/join4";
 	}
 	
+
+	@RequestMapping(value="writeSchedule.pl")
+	public String writeSchedule() {
+		
+		return "schedule/writeSchedule";
+	}
 
 
 
