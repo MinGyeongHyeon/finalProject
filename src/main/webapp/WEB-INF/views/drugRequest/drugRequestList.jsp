@@ -4,84 +4,72 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequestCss.css">
+<title>투약의뢰서</title>
+<style>
+.main-panel {
+    position: relative;
+    width: calc(100% - 240px);
+    height: 100vh;
+    min-height: 100%;
+    float: right;
+    transition: all .3s;
+}
+#sel1 {
+	width:15%;
+	display:inline;
+}
+#sel2 {
+	width:20%;
+	display:inline;
+}
+#btn1 {
+	float:right;
+	width:15%;
+	margin-right:10px;
+}
+</style>
+
 </head>
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/teacherSideMenu.jsp"/>
-	
-	<div class="contentsArea">
-	<div class="drugRequestArea">
-		<div class="pageName">
-			<table width=100%;>
-				<tr>
-					<td>
-						<label style="font-weight:bold;">투약의뢰서</label>
-					</td>
-					<td id="writeDelete" style="text-align:right;">
-						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
-						<c:if test="${ loginUserJob != 1 }">
-							<button id="contentsWrite">작성하기</button>
-						</c:if>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<hr />
+<!-- 	<div class="main-panel">
+		<i class="fas fa-notes-medical"></i>투약의뢰서
 		
-		<div class="drugSearchArea">
-			<table style="width:100%">
-				<tr>
-					<td>
-						<select name="kidsNameList" id="kidsNameList">
-							<option value="000">전체 원아 보기</option>
-							<option value="001">김영지</option>
-							<option value="002">민경현</option>
-							<option value="003">박찬민</option>
-							<option value="004">하민희</option>
-							<option value="005">한송이</option>
-						</select>
-					</td>
-					<td style="text-align:right;">
-						<input type="date" />
-					</td>
-				</tr>		
-			</table>
-		</div>
-		<br />
-		<div class="drugRequestList">
-			<%int num = 5;
-			for(int i = 0; i < num; i++){%>
-			<div class="drugRequestSummary">
-				<table>
-					<tr>
-						<td colspan="2">kidsName<p></p></td>
-					</tr><tr>
-						<td colspan="2"> 2019년 8월 14일</td>
-					</tr><tr>
-						<td width="40%">증상</td>
-						<td>기침</td>
-					</tr><tr>
-						<td>투약시간</td>
-						<td>식후 30분</td>
-					</tr><tr>	
-						<td>의뢰자</td>
-						<td>박찬민</td>
-					</tr><tr>
-						<td colspan="2">별님반</td>
-					</tr>
-				</table>
+	</div>
+ -->	
+	<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<i class="fas fa-notes-medical" style="font-size:20px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
+					</div>
+					<hr>
+					<div class="page-category">
+						<div class="inputArea">
+							<select class="form-control" id="sel1">
+						        <option>전체반</option>
+						        <option>별님반</option>
+						        <option>티비반</option>
+      						</select>
+      						
+      						<select class="form-control" id="sel2">
+						        <option>전체 원아보기</option>
+						        <option>김영지</option>
+						        <option>한송이</option>
+      						</select>
+      						
+							<button type="button" class="btn btn-default" id="btn1">
+								<i class="far fa-calendar"></i>&nbsp; 날짜 선택
+							</button>      						
+						</div>
+						
+						<button type="button" class="btn" id="btn2">출력 및 다운로드</button>
+						
+					</div>
+				</div>
 			</div>
-			<%} %>
 		</div>
-		<div class="printBtnArea">
-			<button>출력 및 다운로드</button>
-		</div>
-		
-	</div>
-	</div>
+	
+	
 	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
