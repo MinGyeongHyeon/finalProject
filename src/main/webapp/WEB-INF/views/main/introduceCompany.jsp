@@ -27,10 +27,7 @@ margin-right:2%;
 			
 	<jsp:include page="main-include.jsp"/>
 	<form>
-	<%-- <div id="content" style="background-image: URL(${ contextPath }/resources/images/introduce.PNG); background-size:100% 100%;">
 	
-	
-	</div> --%>
 	<img src="${ contextPath }/resources/images/introduce.PNG"/>
 	
 	</form>

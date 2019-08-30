@@ -58,8 +58,9 @@ margin-left:5%;
 <jsp:include page="../common/teacherHeader.jsp"/>
 </header>
 <body>
+	<jsp:include page="../common/kingteachersidebar.jsp"/>
 	<div id="sidebar">
-	<jsp:include page="../common/directorManagementSideMenu.jsp"/>
+	
 	</div>
 	<div id="content">
 	<div>
