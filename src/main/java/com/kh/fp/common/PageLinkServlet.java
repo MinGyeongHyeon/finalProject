@@ -28,7 +28,7 @@ public class PageLinkServlet {
 	
 	@RequestMapping(value="joinPage2.pl")
 	public String JoinPage2() {
-		System.out.println("여긴 드러옹냐ㅐ !다1ㄷ2;ㅣ12ㅏㅣ바ㅣ;바ㅣ;바ㅣ;밪ㅇ;;핍ㅇ");
+		
 		
 		return "account/join2";
 	}
@@ -46,7 +46,6 @@ public class PageLinkServlet {
 	@RequestMapping(value="joinPage4.pl")
 	public String joinPage4(Member m , Model model) {
 		
-		System.out.println("join 4 넘어가기전 m 은 무슨값 ? :" + m);
 		
 		model.addAttribute("m" , m);
 		
