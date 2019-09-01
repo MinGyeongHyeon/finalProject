@@ -17,7 +17,8 @@ font-family: 'Poor Story', cursive;
 
 .mainimage {
 	height: 70%;
-	width: 100%;
+	width: 50%;
+	padding-top:8%;
 }
 
 body {
@@ -26,13 +27,13 @@ body {
 }
 
 .introduce {
-	background-color: #ffad33;
+	background-color:#4d94ff;
 	width: 100%;
 	height: 600px;
 }
 
 .introduce2 {
-	background-color: #ffad33;
+	background-color:#4d94ff;
 	width: 100%;
 	height: 150px;
 }
@@ -42,8 +43,10 @@ body {
 	height: 30%;
 }
 
-h3,h2 {
-	font-weight: lighter;
+.mainmain {
+	height: 800px;
+	width:100%;
+	padding-top:50px;
 }
 
 .donggurami {
@@ -77,6 +80,11 @@ h3,h2 {
 .some td{
 	 text-align: center;
 }
+h1,h2{
+	color:white;
+}
+
+
 </style>
 </head>
 <body>
@@ -90,14 +98,19 @@ h3,h2 {
 	
 	
 	</div> --%>
-		<img class="mainimage"src="${ contextPath }/resources/images/realmain.png" />
+		<%-- <div>
+		<img class="mainimage"src="${ contextPath }/resources/images/background2.jpg" />
+		</div> --%>
+	<div class="mainmain" align="center" style="background-image: URL(${ contextPath }/resources/images/anisky.jpg); background-size:100% 100%;">
+	<img class="mainimage"src="${ contextPath }/resources/images/mainicon.png" />
+		</div>
 		<div class="introduce">
 		<br><br><br><br>
 
 			<h1 align="center">키즈랜드는</h1>
-			<h3 align="center">원장님과 선생님의 업무효율을 높이며</h3>
-			<h3 align="center">학부모님과 아이들이 떨어져있어도 걱정없는</h3>
-			<h3 align="center">모두를 위한 서비스를 제공하도록 노력하겠습니다.</h3>
+			<h2 align="center">원장님과 선생님의 업무효율을 높이며</h2>
+			<h2 align="center">학부모님과 아이들이 떨어져있어도 걱정없는</h2>
+			<h2 align="center">모두를 위한 서비스를 제공하도록 노력하겠습니다.</h2>
 			<div align="center">
 			<table class="some" style="width:80%">
 					<tr>
@@ -108,7 +121,7 @@ h3,h2 {
 							</div>
 						</td>
 						<td style="width:40%;">
-						<img class="hand" src="${ contextPath }/resources/images/hand.png" />
+						<img class="hand" src="${ contextPath }/resources/images/hand2.png" />
 						</td>
 						<td>
 						<div class="donggurami2" style="background-image: url('${ contextPath }/resources/images/kid.png'); background-size:100%;">

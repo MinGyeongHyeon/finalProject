@@ -10,10 +10,10 @@
 </head>
 <body>
 
-	<div class="footerArea">
+	<div class="footerArea" align="center	">
 			<table class="footerTable">
 				<tr>
-					<th>KIDLAND</th>
+					<th>KIDSLAND</th>
 					<th>CONTACT</th>
 				</tr>
 				<tr>
