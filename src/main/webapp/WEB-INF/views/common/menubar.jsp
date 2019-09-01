@@ -42,16 +42,15 @@
 
 </head>
 <body>
-<!-- 	<div class="wrapper"> -->
-		<!--
-				Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
-		-->
+
+	<c:if test="${ !empty loginUser }">
+
 		<div class="main-header" data-background-color="red">
-			<!-- Logo Header -->
+		
 			<div class="logo-header">
 
 				<a href="index.html" class="logo"> 
-					<img src="${ contextPath }/resources/assets/img/logoazzara.svg" alt="navbar brand" class="navbar-brand">
+					<label for="">킨더유치원</label>
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
 					data-toggle="collapse" data-target="collapse" aria-expanded="false"
@@ -68,9 +67,7 @@
 					</button>
 				</div>
 			</div>
-			<!-- End Logo Header -->
-
-			<!-- Navbar Header -->
+			
 			<nav class="navbar navbar-header navbar-expand-lg">
 
 				<div class="container-fluid">
@@ -237,26 +234,28 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="${ contextPath }/resources/assets/img/profile.jpg" alt="..."
-								class="avatar-img rounded-circle">
+						<!-- 프로필 이미지 태그   -->
+						 	<img src="${ contextPath }/resources/assets/img/profile.jpg" alt="..."
+								class="avatar-img rounded-circle"> 
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample"
-								aria-expanded="true"> <span> Hizrian <span
-									class="user-level">Administrator</span> <span class="caret"></span>
+								aria-expanded="true"> <span> ${ loginUser.userName } <span
+									class="user-level">${ loginUser.classification }</span> <span class="caret"></span>
 							</span>
 							</a>
 							<div class="clearfix"></div>
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="#profile"> <span class="link-collapse">My
-												Profile</span>
+									<li><a href="#profile"> 
+									<span class="link-collapse">MyProfile</span>
 									</a></li>
-									<li><a href="#edit"> <span class="link-collapse">Edit
-												Profile</span>
+									<li><a href="#edit"> 
+									<span class="link-collapse">EditProfile</span>
 									</a></li>
-									<li><a href="#settings"> <span class="link-collapse">Settings</span>
+									<li><a href="#settings"> 
+									<span class="link-collapse">Settings</span>
 									</a></li>
 								</ul>
 							</div>
@@ -362,7 +361,7 @@
 				</div>
 			</div>
 		</div>
-		
+		</c:if>
 		<!-- End Sidebar -->
 <!-- 
 		<div class="main-panel">
@@ -426,6 +425,8 @@
 	
 	
 	<script>
+	
+	
 		function moveDiv(){
 			var area = $("#firstContentArea")[0];
 			if(area.style.margin == "" ||area.style.margin == "auto auto auto 30%"){
@@ -434,6 +435,8 @@
 				$(area).css('margin-left','30%');
 			}
 		}
+	
+		
 	</script>
 </body>
 </html>

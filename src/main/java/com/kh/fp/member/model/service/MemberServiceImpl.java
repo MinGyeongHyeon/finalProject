@@ -34,9 +34,10 @@ public class MemberServiceImpl implements MemberService{
 	  String encPassword = md.selectMemberPassword(sqlSession, m);
 	  
 	  
+	  
 	  if(passwordEncoder.matches(m.getUserPwd(), encPassword)) {
 	  
-	  loginUser = md.selectMember(sqlSession,m);
+		  loginUser = md.selectMember(sqlSession,m);
 	  
 	  }else {
 	  
