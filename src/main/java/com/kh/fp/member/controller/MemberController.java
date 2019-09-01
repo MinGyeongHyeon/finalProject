@@ -20,8 +20,8 @@ public class MemberController {
 	  @Autowired
 	  private MemberService ms;
 	  
-		@Autowired
-		private BCryptPasswordEncoder passwordEncoder;
+	  @Autowired
+	  private BCryptPasswordEncoder passwordEncoder;
 	 
 	
 	@RequestMapping(value="loginPage.me")
@@ -32,19 +32,21 @@ public class MemberController {
 	
 	@RequestMapping(value="login.me")
 	public String login(Member m , Model model) {
-		
+
 		try {
-			System.out.println("m : " + m);
+
 			Member loginUser = ms.login(m);
 			
+			model.addAttribute("loginUser",loginUser);
 			
 			
 			
-			return "redirect:WEB-INF/views/main/parentsMain.jsp";
+			return "main/main";
 			
 		} catch (LoginException e) {
 			
-			return "redirect:parentsMain.jsp";
+			
+			return "redirect:parentsMain";
 
 		
 		}
@@ -56,7 +58,6 @@ public class MemberController {
 	@RequestMapping(value="joinPage5.me")
 	public String joinPage5(Member m , Model model){
 		
-		System.out.println("M 이무슨 값인지 확인 : " +  m);
 		
 		String encPassword = passwordEncoder.encode(m.getUserPwd());
 		
