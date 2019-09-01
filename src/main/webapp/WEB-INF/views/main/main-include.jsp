@@ -4,13 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>머쉬룸 시스터즈 퐈이야</title>
 <style>
-.nav-area {
-	height: 200%;
+.headermain {
+	height: 100%;
 	width:100%;
 	top-margin:5%;
+	background-color:none;
 }
 
 .homebar {
@@ -25,7 +27,7 @@
 
 .homebar:hover {
 	cursor: pointer;
-	color: green;
+	color: skyblue;
 }
 
 #main {
@@ -35,8 +37,23 @@
 	height:50px;
 }
 form{
-background:yellowgreen;
+background:none;
 }
+
+.navbar {
+position:fixed;
+width:100%;
+}
+
+.navbar-item a:hover{
+	background-color:pink;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: blue;
+}
+
 </style>
 </head>
 <body>
@@ -44,16 +61,36 @@ background:yellowgreen;
 		<c:set var="contextPath"
 			value="${ pageContext.servletContext.contextPath }"
 			scope="application" />
-		<div class="nav-area" align="center" style="background-image: URL(${ contextPath }/resources/images/sky.png); background-size:100% 150%;">
+	<%-- 	<div class="headermain" align="center"">
 			<br><Br>
-			<div class="homebar" style="background-image: URL(${ contextPath }/resources/images/mainicon.png); background-size:150% 150%;">
+			<div class="homebar" style="background-image: URL(${ contextPath }/resources/images/masssinicon.png); background-size:150% 150%;">
 			</div>
 			<div class="homebar" onclick="introduce();">회사소개</div>
 			<div class="homebar" onclick="introduceservice();">서비스소개</div>
 			<div class="homebar" onclick="start();">시작하기</div>
 			<div class="homebar" onclick="login();">로그인</div>
-		</div>
-		<script>
+		</div> --%>
+		
+<nav class="navbar navbar-expand-sm" style="background: #fff; color:black!important; border-bottom: 1px solid blue; border-radius:5px">
+
+  <a class="navbar-brand" >KIDS LAND</a>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" onclick="introduce();">회사소개</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" onclick="introduceservice();">서비스소개</a>
+    </li>
+	<li class="nav-item">
+      <a class="nav-link" onclick="start();">시작하기</a>
+    </li>
+	<li class="nav-item">
+      <a class="nav-link" onclick="login();">로그인</a>
+    </li>   
+  </ul>
+</nav>
+			<script>
 			function introduce() {
 			}
 			function introduceservice() {
