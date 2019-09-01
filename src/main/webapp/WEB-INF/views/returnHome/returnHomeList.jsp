@@ -85,7 +85,30 @@
 		
 	}
 
+	.pageName label{
+		font-weight: bold;
+		font-size: 1.5em;
+		color:#000;
+	}
 	
+	.pageName tr td:first-child{
+		width:60%;
+		vertical-align:middle;
+	}
+	
+	.pageName img{
+		width:30px;
+		height:30px;
+	}
+	
+	.pageName button{
+		background:#665b55;
+		color:#fff;
+		border:none;
+		border-radius: 5px; 
+		padding-top:5px;
+		padding-bottom: 5px;
+	}
 	
 </style>
 <body>
@@ -95,6 +118,7 @@
 			<table width=100%;>
 				<tr>
 					<td>
+						<img src="${contextPath }/resources/images/house.png" alt="" />
 						<label style="font-weight:bold;">귀가동의서</label>
 					</td>
 					<td id="writeDelete" style="text-align:right;">
