@@ -45,13 +45,12 @@
 		margin:0 auto;
 		text-align: center;
 		align:center;
-		height:500px;
-		background:#555;
 		color:#fff;
 	}
 	
 </style>
 <body>
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
@@ -71,7 +70,8 @@
 		</div>
 		<hr />
 		<div class="calendarArea">
-			<h3>달력 들어갈 곳</h3>
+			<jsp:include page="calendar.jsp"/>
+			
 		</div>
 	</div>
 	
@@ -80,6 +80,7 @@
 			location.href="writeSchedule.pl";
 		}
 	</script>
+	
 </body>
 </html>
 

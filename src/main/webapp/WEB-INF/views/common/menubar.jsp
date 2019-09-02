@@ -300,7 +300,7 @@
 						</li>
 						
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#maps">
+							<a href="scheduleMain.sc">
 								<i class="far fa-calendar-alt"></i>
 								<p>일정표</p> 
 							</a>
