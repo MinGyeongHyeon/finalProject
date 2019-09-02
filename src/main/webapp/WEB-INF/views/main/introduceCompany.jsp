@@ -59,6 +59,14 @@ body {
 	padding-top: 120px;
 	padding-left:30%;
 }
+.donggurami2 > h2{
+width:150px;
+text-align:center;
+}
+.donggurami > contents{
+width:150px;
+float:center;
+}
 .donggurami h5{
 	margin: 0px 0px 0px 0px;	
 }
@@ -75,15 +83,20 @@ body {
 	
 }
 .donggurami2 h5{
-	margin: 0px 0px 0px 0px;	
+	margin: 0px 0px 0px 0px;		
 }
 .some td{
 	 text-align: center;
 }
+table td { text-align:center;}
+
 h1,h2{
 	color:white;
 }
-
+.some{
+	height:80%;
+	width:80%;
+}
 
 </style>
 </head>
@@ -112,12 +125,11 @@ h1,h2{
 			<h2 align="center">학부모님과 아이들이 떨어져있어도 걱정없는</h2>
 			<h2 align="center">모두를 위한 서비스를 제공하도록 노력하겠습니다.</h2>
 			<div align="center">
-			<table class="some" style="width:80%">
+			<table class="some">
 					<tr>
 						<td>
 							<div class="donggurami" style="background-image: url('${ contextPath }/resources/images/people.png'); background-size:100%;">
 							<br>
-							<h2 align="left">&nbsp;&nbsp;가정</h2>
 							</div>
 						</td>
 						<td style="width:40%;">
@@ -126,9 +138,18 @@ h1,h2{
 						<td>
 						<div class="donggurami2" style="background-image: url('${ contextPath }/resources/images/kid.png'); background-size:100%;">
 							<br>
-							<h2 align="right">원&nbsp;&nbsp;&nbsp;</h2>
 						</div>
 						</td>
+					</tr>
+					<tr>
+					<td style="padding-top:0">
+						<h2 align="center">가정</h2>
+					</td>
+					<td></td>
+					<td>
+						<h2 align="center">&nbsp;&nbsp;원</h2>
+					</td>
+					
 					</tr>
 			</table>
 				<div class="introduce2">

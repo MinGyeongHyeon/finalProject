@@ -9,23 +9,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div class="footerArea" align="center	">
-			<table class="footerTable">
-				<tr>
-					<th>KIDSLAND</th>
-					<th>CONTACT</th>
+	<div align="center">
+	<div class="footerArea" align="center">
+			<table class="footerTable" align="center">
+				<tr align="center">
+				<!-- 	<th>KIDSLAND</th> -->
+					<th>KIDSLANDCONTACT</th>
 				</tr>
 				<tr>
-					<td>
+				<!-- 	<td>
 						<label for="">회사소개</label><br />
 						<label for="">서비스소개</label><br />
 						<label for="">결제정보</label><br />
 						
-					</td>
+					</td> -->
 					<td>
 						<label for="">주소 : 서울특별시 강남구 테헤란로 14길 6 2층 C-Class</label><br />
-						<label for="">대표 : 민경현</label>
+						<label for="">대표 : 하면돼지	</label>
 						<label for=""> | 연락처 : 1544-9970</label><br />
 						<label for="">email:parkcm53@naver.com</label>
 						<label for=""> | 사업자번호 : 123-45-67890</label><br />
@@ -35,6 +35,6 @@
 				</tr>
 			</table>
 	</div>
-		
+		</div>
 </body>
 </html>
