@@ -28,6 +28,7 @@
 .homebar:hover {
 	cursor: pointer;
 	color: skyblue;
+	border-style:inset;
 }
 
 #main {
@@ -45,14 +46,10 @@ position:fixed;
 width:100%;
 }
 
-.navbar-item a:hover{
+.nav-link:hover{
 	background-color:pink;
 }
 
-#navbar a:hover {
-  background-color: #ddd;
-  color: blue;
-}
 
 </style>
 </head>
@@ -77,16 +74,16 @@ width:100%;
 
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" onclick="introduce();">회사소개</a>
+      <button class="nav-link" onclick="introduce();">회사소개</button>
     </li>
     <li class="nav-item">
-      <a class="nav-link" onclick="introduceservice();">서비스소개</a>
+      <button class="nav-link" onclick="introduceservice();">서비스소개</button>
     </li>
 	<li class="nav-item">
-      <a class="nav-link" onclick="start();">시작하기</a>
+      <button class="nav-link" onclick="start();">시작하기</button>
     </li>
 	<li class="nav-item">
-      <a class="nav-link" onclick="login();">로그인</a>
+      <button class="nav-link" onclick="login();">로그인</button>
     </li>   
   </ul>
 </nav>
