@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <style>
 	.main-panel {
@@ -81,13 +82,16 @@
 		height:20px;
 		
 	}
-	
-	.scheduleBtnArea table{
+	.scheduleBtnArea {
 		width:100%;
+	}
+	.scheduleBtnArea table{
+		width:60%;
+		margin:0 auto;
 	}
 	
 	.scheduleBtnArea table button{
-		width:80px;
+		width:100px;
 		height:40px;
 		color:#fff;
 		background:#554a44;
@@ -134,11 +138,11 @@
 				</tr>
 				<tr>
 					<td>
-					<input type="checkbox" name="classroom"/><label for="" style="font-size: 20px!important;">전체 반</label>
+					<input type="checkbox" name="classroom" id="selectAll"/><label for="" style="font-size: 20px!important;">전체 반</label>
 					<br />
 					<%int num = 5;
 					for(int i = 0; i < num; i++){%>
-					<input type="checkbox" name="classroom"/><label for="" style="font-size: 20px!important; margin-right:10%!important;">OO 반</label>
+					<input type="checkbox" name="classroom" class="selectClassroom"/><label for="" style="font-size: 20px!important; margin-right:10%!important;">OO 반</label>
 					
 					<%if((i+1) % 4 == 0){ %>
 						<br />
@@ -170,6 +174,16 @@
 		function writeSchedule(){
 			location.href="writeSchedule.pl";
 		}
+		
+		$("#selectAll").change(function(){
+			console.log(.selectClassroom);
+			/* if($("#selectAll").is(":checked")){
+				(".selectClassroom").prop("checked",true);
+			}else{
+				(".selectClassroom").prop("checked",false);
+			} */
+			
+		});
 	</script>
 </body>
 </html>

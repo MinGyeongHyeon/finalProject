@@ -11,7 +11,7 @@
 <style>
 .mainArea {
 	width: 70%;
-	height: 580px;
+	height: 90%;
 	background-color: white;
 	margin: 0 auto;
 }
@@ -59,10 +59,14 @@ table tr {
 				<td colspan="2"><input type="text" class="form-control" id="CerNum" placeholder="휴대전화 인증번호를 입력해주세요"></td>
 			</tr>
 			<tr>
-				<td>이메일</td>
-				<td colspan="2"><input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요"></td>
+				<td align="center">* 추가 입력 사항 * </td>
 			</tr>
 			<tr>
+				<td>이메일</td>
+				<td colspan="2"><input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요" id="emailval"></td>
+				<td colspan="2"><input type="button" class="ui grey basic button" value="인증" id="emailsend"></td>
+			</tr>
+			<tr id="emailCer">
 				<td>이메일 확인</td>
 				<td colspan="2"><input type="text" class="form-control" id="CerNum2" placeholder="이메일 인증번호를 입력해주세요"></td>
 			</tr>
@@ -77,6 +81,54 @@ table tr {
 	</form>
 		</div>
 	<br><br><br>
+	
+	<script>
+		$('#emailsend').click(function(){
+			
+			var email = $('#emailval').val();
+			
+			$.ajax({
+				url:"sendemail.me",
+				type:"post",
+				data:{email:email},
+				success:function(data){
+					
+					var randomkey = data.random;
+					
+					console.log(randomkey);
+					
+					
+					$('#CerNum2').keyup(function(){
+					var num = $('#CerNum2').val();
+						
+						if(randomkey == num){
+							
+							$("#CerNum2").css("border-color", "transparent");
+						
+							
+						}else{
+							
+							$("#CerNum2").css("border-color", "red");
+					
+						}
+						
+						
+					})
+					
+					
+				}
+				
+				
+				
+			});
+			
+		})
+		
+	
+	
+	
+	
+	</script>
 
 </body>
 </html>
