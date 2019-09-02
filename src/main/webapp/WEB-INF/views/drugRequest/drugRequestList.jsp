@@ -54,7 +54,17 @@
 	margin-left:20px;
 	color:#a1a1a1;
 }
-
+#btn2 {
+	border: 0.5px solid #e4e1dd;
+}
+#writeBtn {
+	margin-right:10px;
+	width:15%;
+	margin-left: auto;
+	color:white;
+	background:#ff7575;
+	font-weight:bold;
+}
 </style>
 
 </head>
@@ -66,6 +76,7 @@
 				<div class="page-inner">
 					<div class="page-header">
 						<i class="fas fa-notes-medical" style="font-size:20px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
+						<button type="button" class="btn" id="writeBtn" onclick="goDrugRequestWrite()"><i class="fas fa-pen"></i>&nbsp;작성하기</button>
 					</div>
 					<hr>
 					<div class="page-category">
@@ -116,13 +127,14 @@
 				</div>
 			</div>
 		</div>
-	
-	
-	<jsp:include page="../common/footer.jsp"/>
+
 	
 	<script>
 		function showDrugDetail(){
 			location.href="drugDetailList.pl";
+		}
+		function goDrugRequestWrite(){
+			location.href="drugRequestWrite.pl";
 		}
 	</script>
 </body>

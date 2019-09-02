@@ -1,170 +1,163 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>투약의뢰서 작성</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+.main-panel {
+	position: relative;
+	width: calc(100% - 240px);
+	height: 100vh;
+	min-height: 100%;
+	float: right;
+	transition: all .3s;
+}
+#profileArea {
+	margin-left: 20px;
+}
+#profileImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+#contentsArea {
+	height: 900px;
+	background: white;
+}
+#table1 {
+	font-size:14px;
+	width:96%;
+}
+#btn1, #btn2 {
+	width:100%;
+	border-radius:0px;
+	border:0.5px solid #c7c7c7;
+}
+#secondArea, #thirdArea {
+	margin-left:20px;
+}
+#addBtn {
+	float:right;
+	margin-right:4%;
+}
+#table2 {
+	width:96%;
+	height:350px;
+	border: 0.5px solid #d4d4d4;
+	margin-top:20px;
+}
+#table2 th {
+	padding-left:20px;
+}
+#input1, #input2, #input3, #input4{
+	width:98%;
+}
+#sel1 {
+	width:30%
+}
 
-<link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequestCss.css">
+</style>
+
 </head>
 <body>
-	<jsp:include page="../common/teacherHeader.jsp"/>
-	<jsp:include page="../common/parentsSideMenu.jsp"/>
-	
-	<div class="contentsArea">
-	<div class="drugRequestArea">
-		<div class="pageName">
-			<table width=100%;>
-				<tr>
-					<td>
-						<label style="font-weight:bold;">투약의뢰서</label>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<hr />
-		<div class="drugContentsArea">
-			<form action="">
-			<h2>원아명</h2>
-			<hr />
-			<table class="mainDrugContents">
-				<tr>
-					<th width=24%;>투약일</th>
-					<td style="text-align:center;">
-						<div class="selectDateDiv">
-						<label for="today">오늘(8월14일)</label>
-						</div>
-						<div class="selectDateDiv">
-						<label for="tomorrow">내일(8월15일)</label>
-						</div>
-						<input type="radio" name="selectDate" id="today"  class="selectDate" hidden/>
-						<input type="radio" name="selectDate" id="tomorrow" class="selectDate" hidden/>
-						
-					</td>
-				</tr>
-				<tr>
-					<th>증상</th>
-					<td><input type="text" placeholder="예)감기, 몸살, 기침"/></td>
-				</tr>
-			</table>
-			<hr style="width:90%;"/>
-			<table class="subDrugContents">
-				<tr>
-					<th colspan="2">투약내용</th>
-				</tr>
-				<tr>
-					<th>약의 종류</th>
-					<td><input type="text" /></td>
-				</tr>
-				<tr>
-					<th>투약 용량</th>
-					<td>
-						<input type="text" />
-						<input type="checkbox" id="ccml" /><label for="ccml">cc/ml</label>
-					</td>
-				</tr>
-				<tr>
-					<th>투약 횟수</th>
-					<td>
-						<select name="drugCount" id="drugCount">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>투약 시간</th>
-					<td><input type="text" placeholder="예)오전간식 후/점심 후/오후간식 후" /></td>
-				</tr>
-				<tr>
-					<th>보관 방법</th>
-					<td style="text-align:center;">
-					<div class="temperatureDiv">
-						<label for="room">실온</label>
-					</div>
-					<div class="temperatureDiv">
-						<label for="refrigeration">냉장</label>
-					</div>
-						<input type="radio" name="temperature" id="room" hidden/>
-						<input type="radio" name="temperature" id="refrigeration" hidden/>
-					</td>
-				</tr>
-				<tr>
-					<th>특이사항</th>
-					<td>
-						<textarea rows="5" cols="" style="width:100%;" placeholder="특이사항을 입력해 주세요."></textarea>
-					</td>
-				</tr>
-			</table>
-			<div class="warningMsg" style="padding-left:25%;">
-					<table style="margin-right: 0px;">
-						<tr>
-							<td style="vertical-align: top">
-								<label>투약으로 인한 책임은 의뢰자에게 있습니다.</label><br />
-								<label>2019.8.16 </label>
-							</td>
-							<td>
-								<div style="background:purple; width:100px; height:100px;">
-									사인
-								</div>
-							</td>
-						</tr>
-					</table>
-				<br />
+	<jsp:include page="../common/menubar.jsp" />
+
+	<div class="main-panel">
+		<div class="content">
+			<div class="page-inner">
+				<div class="page-header">
+					<i class="fas fa-notes-medical" style="font-size: 20px;"></i>&nbsp;&nbsp;
+					<h4 class="page-title">투약의뢰서 작성</h4>
 				</div>
-			<div class="btnArea">
-				<input type="reset" value="취소"/>
-				<input type="submit" value="보내기"/>
+				<div class="page-category">
+					<div id="contentsArea">
+						<br>
+						<div id="profileArea">
+							<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+							 &nbsp;&nbsp;<span><b>하뽀송</b></span>
+						</div>
+						<hr width="98%">
+						<div id="secondArea">
+							<table id="table1">
+								<tr>
+									<th style="width:15%;">투약일</th>
+									<!-- <td style="width:28%"><button type="button" class="btn btn-light btns" id="btn1">오늘</button></td> -->
+									<!-- <td style="width:28%"><button type="button" class="btn btn-light btns" id="btn2">내일</button></td> -->
+								</tr>
+								<tr>
+									<th>증상</th>
+									<td colspan="2"><input type="text" class="form-control" placeholder="예) 감기, 몸살" style="margin-top:10px;"></td>
+								</tr>
+							</table>
+						</div>
+						<hr width="98%">
+						<div id="thirdArea">					
+							<h5><b>투약 내용</b></h5>
+							<table id="table2">
+								<tr style="background:#fafafa;">
+									<th>약의 종류</th>
+									<td colspan="2"><input type="text" id="input1" class="form-control" placeholder="예) 물약, 가루약"></td>
+								</tr>
+								<tr>
+									<th>투약 용량</th>
+									<td style="padding-right:15px;"><input type="text" class="form-control" placeholder="1회분 입력"></td>
+									<td><input type="checkbox"> cc/ml</td>
+								</tr>
+								<tr>
+									<th>투약 횟수</th>
+									<td colspan="2">
+										<select class="form-control" id="sel1">
+											<option>1 회</option>
+											<option>2 회</option>
+											<option>3 회</option>
+											<option>4 회</option>
+											<option>5 회</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>투약 시간</th>
+									<td colspan="2"><input type="text" id="input2" class="form-control" placeholder="예) 오전간식 후/ 점심 후 / 오후간식 후"></td>
+								</tr>
+								<tr>
+									<th>보관 방법</th>
+									<td><button type="button" class="btn btn-light btns" id="btn3">실온</td>
+									<td><button type="button" class="btn btn-light btns" id="btn4">냉장</td>
+								</tr>
+								<tr>
+									<th>특이사항</th>
+									<td colspan="2"><input type="text" id="input3" class="form-control" placeholder="특이사항"></td>
+								</tr>
+							</table>
+							<br>
+							<button type="button" class="btn btn-primary" id="addBtn"><i class="fas fa-plus"></i> &nbsp;약 추가하기</button>
+							<br><br>
+						</div>
+						<hr>
+						
+						<div style="width: 200px;">
+    <div class="radio-items">
+        <div class="col-6">
+            <input id="a1" class="only-sr checked" type="radio" name="temp1" value="1" checked>
+            <label for="a1">1</label>
+        </div>
+        <div class="col-6">
+            <input id="a2" class="only-sr" type="radio" name="temp1" value="2">
+            <label for="a2">2</label>
+        </div>
+    </div>
+</div>
+						
+						
+					</div>
+				</div>
 			</div>
-			</form>
 		</div>
 	</div>
-	</div>
-	
-	<jsp:include page="../common/footer.jsp"/>
+
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

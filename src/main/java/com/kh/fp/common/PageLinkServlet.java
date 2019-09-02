@@ -78,6 +78,19 @@ public class PageLinkServlet {
 		return "drugRequest/drugRequestDetail";
 	}
 
+	@RequestMapping(value="writeMediReport.pl")
+	public String writeMediReport() {
+		
+		return "drugRequest/drugReportWrite";
+	}
+	
+	@RequestMapping(value="drugRequestWrite.pl")
+	public String drugRequestWrite() {
+		
+		return "drugRequest/drugRequestWrite";
+	}
+	
+	
 
 
 }

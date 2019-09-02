@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>투약의뢰서</title>
+<title>투약보고서</title>
 <style>
 .main-panel {
 	position: relative;
@@ -71,34 +71,39 @@ th, td {
 	display:inline;
 	margin-right: 20px;
 }
-#report {
-	width:100%;
+#a1 {
 	height:60px;
-	background:#2196f3;
-	color:white;
-	font-weight:bold;
-	font-size:1.5em;
-	text-align:center;
-	padding-top:15px;
+	background:#e6edfa;
+	color:#2196f3;
+    font-size: 16px;
+    line-height: 20px;
+    padding:19px;
+    font-weight:bold;
 }
-#report:hover {
-	cursor:pointer;
-	background:#2183f3;
+#reportArea {
+	height:350px;
+	background:#edf5ff;
+}
+#reportArea p, #reportArea textarea {
+	margin-left:20px;
+}
+#textA1 {
+	width:96%;
+	resize: none;
+}
+.btns {
+	width:200px;
+	height:50px;
+	color:white;
 }
 #btn1 {
-	background:#666666;
-	color:white;
-	width:100px;
+	background:#8f8f8f;
+	font-weight:bold;
+	border: 0.5px solid #7d7d7d;
 }
-#btn2, #btn3 {
-	color:#595959;
-	border: 0.5px solid #e4e1dd;
-}
-#btnA1 {
-	display:inline;
-}
-#btnA2 {
-	float:right;
+#btn2 {
+	background:#ff7575;
+	font-weight:bold;
 }
 </style>
 
@@ -111,7 +116,7 @@ th, td {
 			<div class="page-inner">
 				<div class="page-header">
 					<i class="fas fa-notes-medical" style="font-size: 20px;"></i>&nbsp;&nbsp;
-					<h4 class="page-title">투약의뢰서</h4>
+					<h4 class="page-title">투약보고서 작성</h4>
 				</div>
 				<hr>
 				<div class="page-category">
@@ -176,25 +181,24 @@ th, td {
 							</div>
 						</div>
 						<br>
-						<div id="report" onclick="goMediReport()">
-							<i class="fas fa-plus"></i>&nbsp;&nbsp;<span>투약 보고서 작성</span>
+						<div id="a1">
+							<i class="fas fa-file-medical"></i>&nbsp;<span>투약보고서 작성</span>
+						</div>
+						<div id="reportArea">
+							<br>
+							<p>금일 본 원의 하뽀송 원아에 대해 의뢰하신 내용대로 투약하였음을 보고합니다.</p>
+							<p>2019.08.31. 하민희</p>
+							<br>
+							<p style="color:#8f8f8f">투약보고서는 실제 투약 후 작성될 수 있으니 참고해 주세요.</p>
+							<hr width="96%">
+							<p><b>특이사항</b></p>
+							<textarea class="form-control" rows="5" id="textA1" placeholder="특이사항이 있는 경우 작성해 주세요."></textarea>
 						</div>
 						<br>
-						<div id="btnA1">
-							<button type="button" class="btn" id="btn1">
-								<i class="fas fa-print"></i>&nbsp; 출력
-							</button>
+						<div id="btnArea" align="center">
+							<button type="button" class="btn btns" id="btn1" onclick="showDrugDetail()">취소</button>&nbsp;&nbsp;
+							<button type="button" class="btn btns" id="btn2">보내기</button>
 						</div>
-						<div id="btnA2">
-							<button type="button" class="btn btn-light" id="btn2">
-								<i class="far fa-trash-alt"></i>&nbsp; 삭제
-							</button>&nbsp;&nbsp;
-							<button type="button" class="btn btn-light" id="btn3" onclick="goDrugMainView()">
-								<i class="fas fa-list"></i>&nbsp; 목록
-							</button>
-						</div>
-					
-					
 					</div>
 				</div>
 			</div>
@@ -202,11 +206,8 @@ th, td {
 	</div>
 	
 	<script>
-		function goMediReport(){
-			location.href="writeMediReport.pl";
-		}
-		function goDrugMainView(){
-			location.href="drugMainView.pl";
+	function showDrugDetail(){
+			location.href="drugDetailList.pl";
 		}
 	</script>
 
