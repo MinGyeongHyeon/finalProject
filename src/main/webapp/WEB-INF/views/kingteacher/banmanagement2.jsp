@@ -72,48 +72,23 @@ h1 {
 			scope="application" />
 	<div id="content">
 		<div>
-			<h1>반 정보 관리</h1>
+			<h1>반 추가</h1>
 			<hr>
-			<p>
-				* 반에 원아나 교사가 있을 경우 반 삭제를 할 수 없습니다.<br> 반 삭제를 원하시는 경우 원아나 교사를 다른
-				반으로 옮긴 후 삭제해 주세요.
-			</p>
 		</div>
-		<table id="banmanagement">
-			<tr>
-				<th>반 이름</th>
-				<th>원생 수</th>
-				<th>삭제</th>
-			</tr>
-			<tr>
-				<td>dfefe</td> 
-				<td>dfefe</td>
-				<td>dfefe</td>
-			</tr>
-			<tbody></tbody>
-
-		</table>
-		<br>
-		<button id="plusBtn" onclick="plus();">+</button>
+		<div id="banmanagement">
+			<h3>반 이름</h3>
+			<input type="text" placeholder="내용을 입력해주세요.">
+			<hr>
+		</div>
 		<br>
 		<br>
+		<br>
+		<button id="cancle">취소</button>
 		<button id="saveBtn">저장</button>
 		<br>
 		<br>
 		<br>
 	</div>
-	<script>
-		/* function plus() {
-			var td1 = "<tr><td>" + "" + "</td>";
-			var td2 = "<td>" + "" + "</td>";
-			var td3 = "<td>" + "" + "</td></tr>";
-			$(td1 + td2 + td3).clone(false).appendTo(
-					$('#banmanagement > tbody'));
-		} */
-		$('#plusBtn').click(function() {
-			location.href = "banmanagement.pl"
-
-		})
-	</script>
+	
 </body>
 </html>

@@ -6,9 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
 <style>
 #content{
 text-align:center;
+}
+form{
+font-family: 'Poor Story', cursive;
+background:#CEECF5;
+
 }
 img{
 height:100%;
@@ -16,28 +22,35 @@ width:100%;
 }
 body{
 margin-left:2%;
+
 margin-right:2%;
 }
-table{
-width:70%;
+#companyList{
+width:90%;
+height:90%;
 }
-table th{
-background:white;
+#companytable  th{
+background:lightblue;
 padding:15px;
+text-align:center;
 }
 table td{
 text-align:center;
 }
-h1{
+h3{
 margin-left:15%;
+width:30%;
 }
 #searchArea{
 	height:40px;
 	width:400px;
 	border:1px solid green;
-	background:white;
 	float:right;
 	margin-right:15%;
+	
+}
+#textArea{
+height:38px;
 }
 input{
 font-size:16px;
@@ -56,6 +69,9 @@ outline:none;
 float:right;
 color:#ffffff
 }
+#companytable{
+height:70%;
+}
 </style>
 </head>
 <body>
@@ -64,12 +80,15 @@ color:#ffffff
 			scope="application" />
 	<jsp:include page="../main/main-include.jsp"/>
 	<form><br>
-	<h1>제휴업체 목록</h1>
+	<div class="mainmain" align="center" style="background-image: URL(${ contextPath }/resources/images/anisky.jpg); background-size:100% 100%;">
+	<img class="mainimage"src="${ contextPath }/resources/images/mainicon.png" />
+		</div><br>
+	<h3>제휴업체 목록</h3>
 	<div id="searchArea">
-		<input type="text" placeholder="검색어를 입력하세요">
+		<input type="text" placeholder="검색어를 입력하세요" id="textArea">
 		<button id="searchBtn">검색</button>
-	</div><br><br><br>
-	
+	</div><br><br><br><br>
+	<div id="companytable">
 	<table id="companyList" align="center">
 	<tr>
 	<th>업체명</th>
@@ -86,6 +105,7 @@ color:#ffffff
 	<td>d</td>
 	</tr>
 	</table>
+	</div>
 	<br><br><br>
 	</form>
 	<jsp:include page="../common/footer.jsp"/>

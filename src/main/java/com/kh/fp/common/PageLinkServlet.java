@@ -1,6 +1,9 @@
 
 package com.kh.fp.common;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,6 +117,18 @@ public class PageLinkServlet {
 		return "homeworkDiary/homeworkDiaryWrite";
 	}
 
-
+	@RequestMapping(value="attendance.pl")
+	public String attendanceView(Model model) {
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+		String day = date.format(today);
+		model.addAttribute("day",day);
+		return "attendance/attendanceMain";
+	}
+	
+	@RequestMapping(value="test.pl")
+	public String test() {
+		return "attendance/test";
+	}
 }
 
