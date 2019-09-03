@@ -5,30 +5,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 table{
 width:100%;
 margin:0 auto;
 background:white;
 text-align:center;
-
 }
 table th{
 padding:10px;
 background:orange;
 }
-body{
-width:60%;
-margin:0 auto;
-}
+
+	.main-panel {
+	    position: relative;
+	    width: calc(100% - 240px);
+	    height: 100vh;
+	    min-height: 100%;
+	    float: right;
+	    transition: all .3s;
+	    padding-top:100px;
+	    padding-left: 3%;
+	    padding-right: 3%;
+	}
+	#choiceDate{
+	float:right;
+	background:lightblue;
+	color:white;
+	border-radius:5px;
+	
+	}
 </style>
 </head>
 <body>
+	<jsp:include page="../common/menubar.jsp"/>
+	<div class="main-panel" id="firstContentArea">
+<button id="choiceDate">날짜 선택</button>
+<br><br>
 <table>
-<tr><th colspan="3">
-<button>이전</button>
+<tr><th colspan="3"> 
+<button>&lt;</button>
  2019년 8월
- <button>다음</button>
+ <button>&gt;</button>
  </th></tr>
 <tr>
 <td>오전간식<br>
@@ -47,5 +66,6 @@ margin:0 auto;
 <td>오후밥</td>
 </tr>
 </table>
+</div>
 </body>
 </html>

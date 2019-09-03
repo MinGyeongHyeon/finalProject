@@ -11,6 +11,8 @@
 
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 	<title>메뉴바</title>
+	
+	
 <!-- 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' /> -->
 	<link rel="icon" href="${ contextPath }/resources/assets/img/icon.ico" type="image/x-icon"/>
 
@@ -328,7 +330,7 @@
 						</li>
 						
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
+							<a href="attendance.pl">
 								<i class="far fa-calendar-check"></i>
 								<p>출석부</p>
 							</a>
@@ -382,8 +384,10 @@
 	<script src="${ contextPath }/resources/assets/js/core/bootstrap.min.js"></script>
 
 	<!-- jQuery UI -->
-	<script src="${ contextPath }/resources/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-	<script
+<%-- 	<script src="${ contextPath }/resources/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>--%>
+ <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+ 
+ 	<script
 		src="${ contextPath }/resources/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
 	<!-- jQuery Scrollbar -->
