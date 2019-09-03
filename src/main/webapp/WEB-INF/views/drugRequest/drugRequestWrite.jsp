@@ -117,8 +117,9 @@
 							</div>
 						</div>
 						<div class="m-signature-pad--footer">
-							<button type="button" class="button clear" data-action="clear" id="clearBtn">지우기</button>
-							<button type="button" class="button save" data-action="save" id="saveBtn">저장</button>
+							<!-- <button type="button" class="button save" data-action="save" id="saveBtn">저장</button> -->
+							<button type="button" class="button clear btn" 
+								data-action="clear" id="clearBtn"><i class="fas fa-redo-alt"></i>&nbsp;다시쓰기</button>
 						</div>
 					</div>
 					<br>

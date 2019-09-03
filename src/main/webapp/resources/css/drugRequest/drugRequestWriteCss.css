@@ -150,3 +150,9 @@ input[type=radio]:checked+label {
 #check {
 	height:210px;
 }
+#clearBtn {
+	background:#ffffff;
+}
+#clearBtn:hover {
+	background:#fcfcfc;
+}
