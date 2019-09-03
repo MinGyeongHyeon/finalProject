@@ -58,53 +58,66 @@ tr {
 th, td {
 	padding-left: 20px;
 }
+
 #msgArea {
-	float:right;
-	margin-right:10%;
-	display:inline;
+	float: right;
+	margin-right: 10%;
+	display: inline;
 }
+
 #signArea {
-	width:70px;
-	height:70px;
-	border:solid 1px black;
-	float:right;
-	display:inline;
+	width: 70px;
+	height: 70px;
+	border: solid 1px black;
+	float: right;
+	display: inline;
 	margin-right: 20px;
 }
+
 #report {
-	width:100%;
-	height:60px;
-	background:#2196f3;
-	color:white;
-	font-weight:bold;
-	font-size:1.5em;
-	text-align:center;
-	padding-top:15px;
+	width: 100%;
+	height: 60px;
+	background: #2196f3;
+	color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+	padding-top: 15px;
 }
+
 #report:hover {
-	cursor:pointer;
-	background:#2183f3;
+	cursor: pointer;
+	background: #2183f3;
 }
+
 #btn1 {
-	background:#666666;
-	color:white;
-	width:100px;
+	background: #666666;
+	color: white;
+	width: 100px;
 }
+
 #btn2, #btn3 {
-	color:#595959;
+	color: #595959;
 	border: 0.5px solid #e4e1dd;
 }
+
 #btnA1 {
-	display:inline;
+	display: inline;
 }
+
 #btnA2 {
-	float:right;
+	float: right;
 }
+
 @media only print {
-  a[href]::after {
-    content: none !important;
-  }
+	a[href]::after {
+		content: none !important;
+	}
+	.noprint {
+		display:none
+	}
 }
+
 </style>
 
 </head>
@@ -171,50 +184,50 @@ th, td {
 									</tr>
 								</table>
 							</div>
-							<br><br>
+							<br> <br>
 							<div id="msgArea">
 								<p>투약으로 인한 책임은 의뢰자가 집니다.</p>
 								<span>2019.08.30</span>&nbsp;&nbsp;&nbsp;<span><b>하민희</b></span>
 							</div>
-							<div id="signArea">
-								싸인
-							</div>
+							<div id="signArea">싸인</div>
+							<br>
 						</div>
-						<br>
 						<div id="report" onclick="goMediReport()">
 							<i class="fas fa-plus"></i>&nbsp;&nbsp;<span>투약 보고서 작성</span>
 						</div>
 						<br>
 						<div id="btnA1">
-							<button type="button" class="btn" id="btn1" onclick="print()">
+							<button type="button" class="btn" id="btn1" onclick="printPage()">
 								<i class="fas fa-print"></i>&nbsp; 출력
 							</button>
 						</div>
 						<div id="btnA2">
 							<button type="button" class="btn btn-light" id="btn2">
 								<i class="far fa-trash-alt"></i>&nbsp; 삭제
-							</button>&nbsp;&nbsp;
-							<button type="button" class="btn btn-light" id="btn3" onclick="goDrugMainView()">
+							</button>
+							&nbsp;&nbsp;
+							<button type="button" class="btn btn-light" id="btn3"
+								onclick="goDrugMainView()">
 								<i class="fas fa-list"></i>&nbsp; 목록
 							</button>
 						</div>
-					
-					
+
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
-		function goMediReport(){
-			location.href="writeMediReport.pl";
+		function goMediReport() {
+			location.href = "writeMediReport.pl";
 		}
-		function goDrugMainView(){
-			location.href="drugMainView.pl";
+		function goDrugMainView() {
+			location.href = "drugMainView.pl";
 		}
-		funtcion print(){
-			$(this).window.print();
+		function printPage() {
+			window.print();
 		}
 	</script>
 
