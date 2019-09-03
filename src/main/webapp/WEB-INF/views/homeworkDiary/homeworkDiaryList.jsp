@@ -79,13 +79,13 @@
 	
 	.printBtn{
 		background:#F95;
-		font-weight: bold;
+		color:#fff;
+/* 		font-weight: bold;
 		border-radius: 5px;
 		border: none;
-		color:#fff;
 		width:80px;
 		padding-top: 5px;
-		padding-bottom: 5px;
+		padding-bottom: 5px; */
 	}
 	
 	
@@ -103,10 +103,8 @@
 						<label style="font-weight:bold;">알림장</label>
 					</td>
 					<td>
-						<button>여러명 보내기</button>
-					</td>
-					<td>
-						<button>작성하기</button>
+						<button class="btn btn-warning">여러명 보내기</button>
+						<button class="btn btn-warning" onclick="goAnnouncementWrite()">작성하기</button>
 					</td>
 				</tr>
 			</table>
@@ -157,9 +155,15 @@
 		<div>
 			페이징
 		</div>
-		<button class="printBtn">출력하기</button>
+		<button class="btn btn-light"><i class="fas fa-print"></i>&nbsp;&nbsp;출력 및 다운로드</button>
 		
 	</div>
+		<script>
+		function goAnnouncementWrite(){
+			location.href="WriteAnnounce.pl";
+		}
+	
+	</script>
 </body>
 </html>
 

@@ -279,7 +279,7 @@
 						 -->
 							
 						<li class="nav-item">
-							<a href="#">
+							<a href="Announcement.pl">
 								<i class="fas fa-bell"></i>
 								<p>알림장</p> 
 							</a>
@@ -293,7 +293,7 @@
 						</li>
 						
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#">
+							<a href="#">
 								<i class="far fa-images"></i>
 								<p>앨범</p> 
 							</a>

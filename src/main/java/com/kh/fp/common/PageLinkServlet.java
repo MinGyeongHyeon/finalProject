@@ -90,6 +90,7 @@ public class PageLinkServlet {
 		return "drugRequest/drugRequestWrite";
 	}
 	
+
 	@RequestMapping(value="businessLogMain.pl")
 	public String businessLogMain() {
 		
@@ -97,8 +98,19 @@ public class PageLinkServlet {
 	}
 	
 	
+
+	@RequestMapping(value="Announcement.pl")
+	public String Announcement() {
+		
+		return "homeworkDiary/homeworkDiaryList";
+	}
+
 	
-	
+	@RequestMapping(value="WriteAnnounce.pl")
+	public String WriteAnnounce() {
+		
+		return "homeworkDiary/homeworkDiaryWrite";
+	}
 
 
 }
