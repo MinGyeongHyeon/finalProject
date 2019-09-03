@@ -26,6 +26,11 @@
 }
 
 
+.homebar:hover {
+   cursor: pointer;
+   color: skyblue;
+   border-style:inset;
+}
 
 #main {
    fond-weight: bold;
@@ -43,7 +48,9 @@ width:100%;
 }
 
 .nav-link:hover{
-	color:#fcba03;
+
+   background-color:pink;
+
 }
 
 input{
@@ -67,7 +74,9 @@ input{
          <div class="homebar" onclick="login();">로그인</div>
       </div> --%>
       
-<nav class="navbar navbar-expand-sm" style="background: #fff; color:black!important;border-radius:5px; border-shadow: 5px 10px #888888; padding:0 auto;">
+
+<nav class="navbar navbar-expand-sm" style="background: #fff; color:black!important; border-bottom: 1px solid blue; border-radius:5px">
+
 
   <a class="navbar-brand" >KIDS LAND</a>
 

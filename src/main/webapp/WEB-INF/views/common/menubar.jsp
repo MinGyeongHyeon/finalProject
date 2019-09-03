@@ -342,9 +342,9 @@
 						</li>
 						
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
+							<a href="businessLogMain.pl">
 								<i class="far fa-clipboard"></i>
-								<p>일지작성</p>
+								<p>일지관리</p>
 							</a>
 						</li>
 						

@@ -94,7 +94,7 @@
       						</select>
       						
 							<button type="button" class="btn btn-default" id="btn1">
-								<i class="far fa-calendar"></i>&nbsp; 날짜 선택
+								<i class="far fa-calendar"></i>&nbsp;날짜 선택
 							</button>      						
 						</div>
 						<br>
