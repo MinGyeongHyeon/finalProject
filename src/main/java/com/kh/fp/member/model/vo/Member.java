@@ -17,7 +17,6 @@ public class Member implements Serializable{
 	private String classification;
 	private String status;
 	
-	
 	public Member() {}
 
 	public Member(int userNo, String userId, String userPwd, String userName, String email, String phone,
