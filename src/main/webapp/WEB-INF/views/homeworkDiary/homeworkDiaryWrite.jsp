@@ -151,17 +151,36 @@
 		
 	
 	}
-	
+	input > file{
+		background:#fa5;
+		border:none;
+		border-radius: 5px;
+		width:200px;
+		height:40px;
+		color:#fff;
+	}
 </style>
+
+<script type="text/javascript">
+
+</script>
 <script>
-	function addFile(){
-		$("<div class='albumImgArea' style='display: inline-block;'><img class='albumImg'/><input type=file name='imageList' class='imageList' hidden/>").appendTo($('.fileList:first-child'));
-		
-	}
+
+ function addFile(){
+	 $("<input type=file name='imageList' class='imageList' hidden/>").clone(true).appendTo($('.fileList:first-child'));
+	 var fileList = $("#fileList");
+	 var img = $("<input type=file name='imageList' class='imageList' id='imageList'/>");
+	 $("#fileList").bind("click", function(){
+		 alert("aa");
+	 });
+	 $("#fileList").trigger("click");
+	 fileList.append(img);
 	
-	$(".albumImgArea").click(){
+}
+	
+	 $(".albumImgArea").click(function(){
 		console.log(this);
-	}
+	});
 
 </script>
 </head>
@@ -231,10 +250,10 @@
 					</tr>
 					<tr>
 						<td>
-							<div class="fileList" style="width:100%;">
-								<input type="button" value="추가" onclick="addFile();" />
-								<input type="button" value="삭제" onclick="delFile();" /><br />
-								
+							<div class="fileList" style="width:100%;" id="fileList">	
+									<input type="file"/>
+									<input type="button" value="삭제" onclick="delFile()" /><br />
+									
 							</div>
 							
 						

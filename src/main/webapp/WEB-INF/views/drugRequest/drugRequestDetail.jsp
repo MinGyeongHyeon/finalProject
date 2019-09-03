@@ -100,6 +100,11 @@ th, td {
 #btnA2 {
 	float:right;
 }
+@media only print {
+  a[href]::after {
+    content: none !important;
+  }
+}
 </style>
 
 </head>
@@ -181,7 +186,7 @@ th, td {
 						</div>
 						<br>
 						<div id="btnA1">
-							<button type="button" class="btn" id="btn1">
+							<button type="button" class="btn" id="btn1" onclick="print()">
 								<i class="fas fa-print"></i>&nbsp; 출력
 							</button>
 						</div>
@@ -207,6 +212,9 @@ th, td {
 		}
 		function goDrugMainView(){
 			location.href="drugMainView.pl";
+		}
+		funtcion print(){
+			$(this).window.print();
 		}
 	</script>
 
