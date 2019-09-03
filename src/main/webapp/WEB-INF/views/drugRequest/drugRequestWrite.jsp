@@ -36,7 +36,7 @@
 	border-radius:0px;
 	border:0.5px solid #c7c7c7;
 }
-#secondArea, #thirdArea {
+#area1, #area2, #area4 {
 	margin-left:20px;
 }
 #addBtn {
@@ -51,6 +51,10 @@
 }
 #table2 th {
 	padding-left:20px;
+	width:20%;
+}
+#table2 td {
+	width:30%;
 }
 #input1, #input2, #input3, #input4{
 	width:98%;
@@ -58,7 +62,40 @@
 #sel1 {
 	width:30%
 }
-
+input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+input[type=radio] + label {
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    background-color: white;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    border:0.5px solid #ebebeb;
+}
+input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#ff9191;
+    color:white;
+}
+#area3 {
+	margin-left:250px;
+	display:inline;
+}
+#signArea {
+	width:150px;
+	height:150px;
+	border:1px solid black;
+	float:right;
+	display:inline;
+	margin-right:40px;
+}
+#area4 {
+	margin-left:380px;
+}
 </style>
 
 </head>
@@ -80,12 +117,18 @@
 							 &nbsp;&nbsp;<span><b>하뽀송</b></span>
 						</div>
 						<hr width="98%">
-						<div id="secondArea">
+						<div id="area1">
 							<table id="table1">
 								<tr>
 									<th style="width:15%;">투약일</th>
-									<!-- <td style="width:28%"><button type="button" class="btn btn-light btns" id="btn1">오늘</button></td> -->
-									<!-- <td style="width:28%"><button type="button" class="btn btn-light btns" id="btn2">내일</button></td> -->
+									<td>
+										<input type="radio" id="radio1" name="radios1" value="today" checked>
+       									<label for="radio1">오늘</label>
+       								</td>
+       								<td>
+       									<input type="radio" id="radio2" name="radios1"value="tomorrow">
+       									<label for="radio2">내일</label> 
+       								</td>
 								</tr>
 								<tr>
 									<th>증상</th>
@@ -94,10 +137,10 @@
 							</table>
 						</div>
 						<hr width="98%">
-						<div id="thirdArea">					
+						<div id="area2">					
 							<h5><b>투약 내용</b></h5>
 							<table id="table2">
-								<tr style="background:#fafafa;">
+								<tr>
 									<th>약의 종류</th>
 									<td colspan="2"><input type="text" id="input1" class="form-control" placeholder="예) 물약, 가루약"></td>
 								</tr>
@@ -124,8 +167,14 @@
 								</tr>
 								<tr>
 									<th>보관 방법</th>
-									<td><button type="button" class="btn btn-light btns" id="btn3">실온</td>
-									<td><button type="button" class="btn btn-light btns" id="btn4">냉장</td>
+									<td>
+										<input type="radio" id="radio3" name="radios2" value="roomTemper" checked="true">
+       									<label for="radio3">실온</label>
+									</td>
+									<td>
+										<input type="radio" id="radio4" name="radios2"value="refTemper">
+       									<label for="radio4" style="width:96%;">냉장</label> 
+									</td>
 								</tr>
 								<tr>
 									<th>특이사항</th>
@@ -136,20 +185,18 @@
 							<button type="button" class="btn btn-primary" id="addBtn"><i class="fas fa-plus"></i> &nbsp;약 추가하기</button>
 							<br><br>
 						</div>
-						<hr>
+						<hr width="98%">
+						<div id="area3">
+							<span>금일 자녀의 투약을 선생님께 의뢰합니다.</span>
+						</div>
+						<div id="signArea">
+							싸인
+						</div>
+						<div id="area4">
+							<span><b>2019.09.02</b></span><span>하민희</span>
+						</div>
 						
-						<div style="width: 200px;">
-    <div class="radio-items">
-        <div class="col-6">
-            <input id="a1" class="only-sr checked" type="radio" name="temp1" value="1" checked>
-            <label for="a1">1</label>
-        </div>
-        <div class="col-6">
-            <input id="a2" class="only-sr" type="radio" name="temp1" value="2">
-            <label for="a2">2</label>
-        </div>
-    </div>
-</div>
+
 						
 						
 					</div>

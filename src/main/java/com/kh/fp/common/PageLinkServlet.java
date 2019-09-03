@@ -90,6 +90,14 @@ public class PageLinkServlet {
 		return "drugRequest/drugRequestWrite";
 	}
 	
+	@RequestMapping(value="businessLogMain.pl")
+	public String businessLogMain() {
+		
+		return "businessLog/businessLogList";
+	}
+	
+	
+	
 	
 
 
