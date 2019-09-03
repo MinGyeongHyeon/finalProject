@@ -117,14 +117,29 @@
 	margin-top: 5px;
 	margin-right: 3%;
 }
+	.fileList label{
+		background:#fa5448;
+		color:white;
+		width:70px;
+		height:35px;
+		border-radius: 5px;
+		text-align:center;
+		padding-top:5px;
+		margin-top:20px;
+		margin-left: 5%;
+		margin-right: 5%;
+	}
 	
 	.fileList input{
-		background:#f55;
-		width:70px;
+		background:#fff;
+		width:40%;
 		height:30px;
-		color:#fff;
-		border:none;
-		border-radius: 5px;
+		color:#000;
+		border:1px solid white;
+		border-bottom:1px solid #de2c41;
+		padding-top:5px;
+		margin-top:20px;
+		
 	}
 
 	.homeworkBtnArea{
@@ -151,38 +166,22 @@
 		
 	
 	}
-	input > file{
-		background:#fa5;
-		border:none;
-		border-radius: 5px;
-		width:200px;
-		height:40px;
-		color:#fff;
-	}
+	
 </style>
-
-<script type="text/javascript">
-
-</script>
 <script>
-
- function addFile(){
-	 $("<input type=file name='imageList' class='imageList' hidden/>").clone(true).appendTo($('.fileList:first-child'));
-	 var fileList = $("#fileList");
-	 var img = $("<input type=file name='imageList' class='imageList' id='imageList'/>");
-	 $("#fileList").bind("click", function(){
-		 alert("aa");
-	 });
-	 $("#fileList").trigger("click");
-	 fileList.append(img);
-	
-}
-	
-	 $(".albumImgArea").click(function(){
-		console.log(this);
+	$(function(){
+		$("#selectFile").on('change', function(){
+			var text = $(this).val();
+			$(".fileName").val(text);
+		});
 	});
-
+	
+	
+	
+	
+	
 </script>
+
 </head>
 <body>
 
@@ -250,10 +249,10 @@
 					</tr>
 					<tr>
 						<td>
-							<div class="fileList" style="width:100%;" id="fileList">	
-									<input type="file"/>
-									<input type="button" value="삭제" onclick="delFile()" /><br />
-									
+							<div class="fileList" style="width:100%;">
+								<label for="selectFile">파일선택</label>
+								<input type="text" name="fileName" class="fileName">
+								<input type="file" value="추가" id="selectFile" class="selectFile" multiple hidden/>
 							</div>
 							
 						
