@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	function addFile(){
-		$("<div class='albumImgArea' style='display: inline-block;'><img class='albumImg'/><input type=file name='imageList' class='imageList' hidden/>").clone(true).appendTo($('.fileList:first-child'));
+		$("<div class='albumImgArea' style='display: inline-block;'><img class='albumImg'/><input type='file' name='imageList' class='imageList' hidden/>").clone(true).appendTo($('.fileList:first-child'));
 		
 	}
 	function delFile(){
@@ -15,6 +15,14 @@
 		console.log(divList[div]);
 	}
 </script>
+
+	<script>
+		$(function(){
+			$(".albumImgArea").click(function(){
+				$(this).children('input').click();
+			});
+		});
+	</script>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 <link rel="stylesheet" href="${ contextPath }/resources/css/albumCss.css">
 </head>
@@ -85,13 +93,6 @@
 	
 	<jsp:include page="../common/footer.jsp"/>
 	
-	<script>
-		$(function(){
-			$(".albumImgArea").click(function(){
-				$(this).children('input').click();
-			});
-		});
-	</script>
 	
 	
 	
