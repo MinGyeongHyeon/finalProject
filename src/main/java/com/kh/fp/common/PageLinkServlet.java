@@ -98,8 +98,7 @@ public class PageLinkServlet {
 		
 		return "businessLog/businessLogList";
 	}
-	
-	
+
 
 	@RequestMapping(value="Announcement.pl")
 	public String Announcement() {
