@@ -11,7 +11,7 @@
 		<result property="userName" column="USER_NAME"/>
 		<result property="email" column="EMAIL"/>
 		<result property="phone" column="PHONE"/>
-		<!-- <result property="enrollDate" column="ENROLL_DATE"/> -->
+	    <result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="deleteDate" column="DELETE_DATE"/>
 		<result property="deleteReason" column="DELETE_REASON"/>
 		<result property="status" column="STATUS"/>

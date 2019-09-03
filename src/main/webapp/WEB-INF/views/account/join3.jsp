@@ -41,20 +41,20 @@ table tr {
 		<h4 align="center"><b>아이디 비밀번호 입력</b></h4>
 		<h5 align="center">키즈랜드에서 로그인 시 사용할 아이디와 비밀번호를 입력해 주세요.</h5><br>
 		<form action="joinPage4.pl" method="post">
+		
 		<input type="hidden" name="userName" value="${ m.userName }">
 		<input type="hidden" name="email" value="${ m.email }"/>
 		<input type="hidden" name="phone" value="${ m.phone }"/>
 		
 		<table align="center" id="inputArea">
 			<tr>
-				
 				<td width="200px">아이디</td>
 				<td width="350px" height="50px"><input type="text" class="form-control" name="userId" placeholder="아이디"></td>
 				<td><input type="button" value="중복확인" class="ui grey basic button" id='idcheck'></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" class="form-control" name="userPwd" placeholder="비밀번호"></td>
+				<td><input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="비밀번호"></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
@@ -65,7 +65,7 @@ table tr {
 			
 		<div id="buttonArea" align="center">
 			<button class="huge ui button">이전</button>
-			<button class="huge ui secondary button" id="nextBtn" style="width:200px">다음</button>
+			<button class="huge ui secondary button" id="nextBtn" style="width:200px" >다음</button>
 		</div>
 		
 		</form>
@@ -74,6 +74,9 @@ table tr {
 	<br><br><br>
 	
 	<script>
+		
+		var count = 0;
+		
 	
 		$('#idcheck').click(function(){
 			
@@ -86,12 +89,23 @@ table tr {
 				data:{userId:userId},
 				success:function(data){
 					
-					console.log(data);
+					console.log(data.idcheck);
 					
-				},
-				error:function(data){
-				    console.log(data);
-				    
+					if(data.idcheck == 1){
+						
+						alert("해당 아이디가 존재합니다!");
+						
+					}else{
+						
+						alert("사용 가능한 아이디 입니다.");
+						
+						count++;
+						
+						
+						
+					}
+					
+					
 				}
 
 			
@@ -100,7 +114,27 @@ table tr {
 			});
 			
 			
-		})
+		});
+		
+		$('input[type=password]').keyup(function(){
+			
+			var userPwd = $('#userPwd').val();
+			var userPwd2 = $('#userPwd2').val();
+			
+			if(userPwd != userPwd2){
+				
+				$('#userPwd2').css("border-color","red");
+				
+			}else{
+				
+				$('#userPwd2').css("border-color","skyblue");
+				
+				
+			}
+			
+		});
+		
+		
 		
 	</script>
 

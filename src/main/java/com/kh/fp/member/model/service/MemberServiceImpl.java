@@ -64,8 +64,10 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("서비스 의 실행");
 
 		
-		return md.idcheck(sqlSession ,m);
+		return md.idcheck(sqlSession , m);
 	}
+
+
 
 	
 

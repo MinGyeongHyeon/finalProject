@@ -157,19 +157,16 @@ public class MemberController {
 		
 		Member idcheck = ms.idcheck(m);
 		
-		System.out.println(idcheck.getUserId());
+		System.out.println(idcheck);
 		
 		int result = 0;
 		
-		if(idcheck.getUserId() != null) {
+		if(idcheck != null) {
 			result = 1;
 		}else {
 			result = 2;
 		}
 		
-		
-		
-		System.out.println("다오에서 받아온값 : " + idcheck);
 		
 		mv.addObject("idcheck", result);
 		mv.setViewName("jsonView");
