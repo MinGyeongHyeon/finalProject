@@ -7,8 +7,11 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.fp.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.fp.member.model.vo.KidMember" alias="KidMember"/>
+		<typeAlias type="com.kh.fp.member.model.vo.KinderGarden" alias="KinderGarden"/>
 	</typeAliases>
 	
+
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 	</mappers>

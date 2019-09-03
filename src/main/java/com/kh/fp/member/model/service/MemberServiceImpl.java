@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fp.member.model.dao.MemberDao;
 import com.kh.fp.member.model.exception.LoginException;
+import com.kh.fp.member.model.vo.KidMember;
+import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
 
 @Service
@@ -65,6 +67,26 @@ public class MemberServiceImpl implements MemberService{
 
 		
 		return md.idcheck(sqlSession , m);
+	}
+
+	@Override
+	public Member selectnumber(Member m) {
+
+		
+		return md.selectnumber(sqlSession , m);
+	}
+
+	@Override
+	public int insertkid(KidMember km) {
+
+		
+		return md.insertKid(sqlSession , km);
+	}
+
+	@Override
+	public int kininsert(KinderGarden kg) {
+
+		return md.kininsert(sqlSession , kg);
 	}
 
 
