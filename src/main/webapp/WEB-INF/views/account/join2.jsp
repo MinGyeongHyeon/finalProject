@@ -25,6 +25,7 @@ table tr {
 #nextBtn:hover {
 	background:#fc6f6f;
 }
+
 </style>
 
 </head>
@@ -61,15 +62,15 @@ table tr {
 			<tr>
 				<td align="center">* 추가 입력 사항 * </td>
 			</tr>
-			<tr>
+			<tr id="aftertr">
 				<td>이메일</td>
 				<td colspan="2"><input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요" id="emailval"></td>
 				<td colspan="2"><input type="button" class="ui grey basic button" value="인증" id="emailsend"></td>
 			</tr>
-			<tr id="emailCer">
-				<td>이메일 확인</td>
-				<td colspan="2"><input type="text" class="form-control" id="CerNum2" placeholder="이메일 인증번호를 입력해주세요"></td>
-			</tr>
+		
+			
+
+			
 		</table>
 		<br><br>
 			
@@ -87,6 +88,13 @@ table tr {
 			
 			var email = $('#emailval').val();
 			
+			
+			
+			var $tr = $("<tr id='emailCer'><td>이메일 확인</td><td colspan='2'><input type='text' class='form-control' id='CerNum2' placeholder='이메일 인증번호를 입력해주세요'  ></td></tr>")
+
+			$('#aftertr').after($tr);
+			var $tr2 = $("<tr id='displaytr'><td></td><td colspan='2'><label id='lable'></label></td> </tr> ");
+			
 			$.ajax({
 				url:"sendemail.me",
 				type:"post",
@@ -97,18 +105,35 @@ table tr {
 					
 					console.log(randomkey);
 					
+				
+					
+
+					
 					
 					$('#CerNum2').keyup(function(){
 					var num = $('#CerNum2').val();
+					
+					$('#emailCer').after($tr2);
+					
+					var $label = $('#lable');
+					var $text = $('#lable').text();
 						
 						if(randomkey == num){
 							
-							$("#CerNum2").css("border-color", "transparent");
+							$("#CerNum2").css("border-color", "blue");
+							$label.text("번호가 일치합니다.").css("color","blue");
+							
+							
+							
 						
 							
 						}else{
 							
 							$("#CerNum2").css("border-color", "red");
+							
+							$label.text("번호가 일치하지 않습니다.").css("color","red");
+							
+						
 					
 						}
 						

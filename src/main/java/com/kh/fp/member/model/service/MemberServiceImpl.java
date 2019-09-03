@@ -57,6 +57,19 @@ public class MemberServiceImpl implements MemberService{
 		
 		return md.insertUser(sqlSession, m);
 	}
+
+	@Override
+	public Member idcheck(Member m) {
+		
+		System.out.println("서비스 의 실행");
+
+		
+		return md.idcheck(sqlSession ,m);
+	}
+
+	
+
+	
 	 
 	
 

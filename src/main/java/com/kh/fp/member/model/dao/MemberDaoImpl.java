@@ -32,4 +32,23 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.insert("Member.insertMember",m);
 	}
 
+
+	@Override
+	public Member idcheck(SqlSessionTemplate sqlSession, Member m) {
+		
+		System.out.println("다오의 실행");
+	
+		
+
+		return sqlSession.selectOne("Member.idcheck",m);
+		
+	}
+
+
+	
+
+	
+
+
+	
 }
