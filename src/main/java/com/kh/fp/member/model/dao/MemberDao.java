@@ -12,4 +12,10 @@ public interface MemberDao {
 
 	int insertUser(SqlSessionTemplate sqlSession, Member m);
 
+	Member idcheck(SqlSessionTemplate sqlSession, Member m);
+
+	
+
+
+
 }

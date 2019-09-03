@@ -74,28 +74,31 @@ width:100%;
 
   <ul class="navbar-nav">
     <li class="nav-item">
-      <button class="nav-link" onclick="introduce();">회사소개</button>
+      <input type="button" class="nav-link"  onclick="introduce();" value="회사소개"/>
     </li>
     <li class="nav-item">
-      <button class="nav-link" onclick="introduceservice();">서비스소개</button>
+      <input type="button" class="nav-link" onclick="introduceservice();" value="서비스소개"/>
     </li>
 	<li class="nav-item">
-      <button class="nav-link" onclick="start();">시작하기</button>
+      <input type="button" class="nav-link"  value="시작하기" onclick="start();"/>
     </li>
 	<li class="nav-item">
-      <button class="nav-link" onclick="login();">로그인</button>
+      <input type="button" class="nav-link" onclick="login();" value="로그인"/>  
     </li>   
   </ul>
 </nav>
 			<script>
 			function introduce() {
+				
 			}
 			function introduceservice() {
 				
 			}
 			function start() {
+				
 			}
 			function login() {
+			
 				location.href='loginPage.pl';
 			}
 		</script>

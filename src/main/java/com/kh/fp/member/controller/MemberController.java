@@ -1,6 +1,7 @@
 package com.kh.fp.member.controller;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -17,9 +18,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.service.MemberService;
 import com.kh.fp.member.model.vo.Member;
@@ -85,7 +89,7 @@ public class MemberController {
 	@RequestMapping(value="sendemail.me")
 	public ModelAndView sendEmail(String email, ModelAndView mv) {
 		
-		System.out.println("에아직스 여기 안들어 오냐 ?" + email);
+		
 		String host = "smtp.naver.com";
 		String subject = "키즈랜드 인증번호 전달";
 		String fromName = "키즈랜드 관리자";
@@ -146,6 +150,36 @@ public class MemberController {
 	
 		
 	}
+	
+	@RequestMapping(value="idcheck.me")
+	public ModelAndView idcheck(Member m, ModelAndView mv) {
+	
+		
+		Member idcheck = ms.idcheck(m);
+		
+		System.out.println(idcheck.getUserId());
+		
+		int result = 0;
+		
+		if(idcheck.getUserId() != null) {
+			result = 1;
+		}else {
+			result = 2;
+		}
+		
+		
+		
+		System.out.println("다오에서 받아온값 : " + idcheck);
+		
+		mv.addObject("idcheck", result);
+		mv.setViewName("jsonView");
+		
+		
+		return mv;
+	}
+
+	
+
 	
 	
 	

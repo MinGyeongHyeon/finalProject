@@ -50,6 +50,7 @@ table tr {
 				
 				<td width="200px">아이디</td>
 				<td width="350px" height="50px"><input type="text" class="form-control" name="userId" placeholder="아이디"></td>
+				<td><input type="button" value="중복확인" class="ui grey basic button" id='idcheck'></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -71,6 +72,37 @@ table tr {
 	
 		</div>
 	<br><br><br>
+	
+	<script>
+	
+		$('#idcheck').click(function(){
+			
+			var userId = $('input[name=userId]').val();
+			
+			console.log(userId);
+			$.ajax({
+				url:"idcheck.me",
+				type:"post",
+				data:{userId:userId},
+				success:function(data){
+					
+					console.log(data);
+					
+				},
+				error:function(data){
+				    console.log(data);
+				    
+				}
+
+			
+				
+				
+			});
+			
+			
+		})
+		
+	</script>
 
 </body>
 </html>

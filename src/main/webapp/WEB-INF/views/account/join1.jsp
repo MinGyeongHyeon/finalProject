@@ -63,7 +63,7 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 				<li class="checkBox check02">
 					<ul class="clearfix">
 						<li>키즈랜드 이용약관 동의 <span style="color:red">(필수)</span></li>
-						<li class="checkBtn"><input type="checkbox" name="chk">
+						<li class="checkBtn"><input type="checkbox" name="chk" class="check1">
 						</li>
 					</ul> 
 					<textarea name="" id="" rows="100">
@@ -191,7 +191,7 @@ d. 작성 년∙월∙일
 				<li class="checkBox check03">
 					<ul class="clearfix">
 						<li>개인정보 수집 및 이용 동의<span style="color:red">(필수)</span></li>
-						<li class="checkBtn"><input type="checkbox" name="chk">
+						<li class="checkBtn"><input type="checkbox" name="chk" class="check1">
 						</li>
 					</ul> 
 <textarea name="" id="">
@@ -322,10 +322,45 @@ MailChimp®	이메일 발송
 			
 			<div id="buttonArea" align="center">
 			<button class="huge ui button">이전</button>
-			<button class="huge ui secondary button" id="nextBtn" style="width:200px" onclick="location.href='joinPage2.pl'">다음</button>
+			<button class="huge ui secondary button" id="nextBtn" style="width:200px" onclick="check();">다음</button>
 		</div>
 
 	</div>
+	
+	<script>
+	$('#chk').change(function(){
+		
+		if($(this).prop('checked')){
+			
+		$('.check1').attr("checked", true);
+			
+		}else{
+			
+			$('.check1').attr("checked",false);
+		}
+		
+	});
+	
+	function check(){
+		
+		if($('.check1').eq(0).prop("checked") && $('.check1').eq(1).prop("checked")){
+			
+		location.href='joinPage2.pl'
+			
+		}else{
+			
+			alert("필수 사항에 동의 체크 해주세요.")
+			
+		}
+				
+		
+		
+		
+		
+		
+	}
+	
+	</script>
 
 </body>
 </html>

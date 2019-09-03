@@ -14,6 +14,8 @@ public class PageLinkServlet {
 	
 	@RequestMapping(value="loginPage.pl")
 	public String loginPage() {
+		
+		
 		return "account/join5";
 	}
 		

@@ -9,4 +9,8 @@ public interface MemberService {
 
 	int insertUser(Member m);
 
+	Member idcheck(Member m);
+
+
+
 }
