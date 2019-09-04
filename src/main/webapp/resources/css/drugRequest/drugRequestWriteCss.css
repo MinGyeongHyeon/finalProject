@@ -22,7 +22,7 @@
 
 .m-signature-pad--footer {
 	float:right;
-	margin-right:4%;
+	margin-right:3%;
 }
 
 
@@ -148,11 +148,12 @@ input[type=radio]:checked+label {
 	font-size: 14px;
 }
 #check {
-	height:210px;
+	height:225px;
 }
 #clearBtn {
 	background:#ffffff;
+	padding: 3px 10px;
 }
 #clearBtn:hover {
-	background:#fcfcfc;
+	text-decoration:underline;
 }

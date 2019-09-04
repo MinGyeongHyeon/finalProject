@@ -1,125 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>투약의뢰서</title>
-<style>
-.main-panel {
-	position: relative;
-	width: calc(100% - 240px);
-	height: 100vh;
-	min-height: 100%;
-	float: right;
-	transition: all .3s;
-}
-
-#titleArea {
-	background: #f5f5f5;
-	height: 55px;
-}
-
-#title {
-	padding: 15px;
-}
-
-#profileArea {
-	margin-left: 20px;
-}
-
-#contentsArea {
-	height: 700px;
-	background: white;
-}
-
-#profileImg {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-}
-
-#symptomArea, #dosageArea {
-	line-height: 230%;
-	font-size: 14px;
-	margin-left: 20px;
-}
-
-#tableArea {
-	border: 0.5px solid #d6d6d6;
-	width: 95%;
-	height: 300px;
-}
-
-tr {
-	border: 0.5px solid #d6d6d6;
-}
-
-th, td {
-	padding-left: 20px;
-}
-
-#msgArea {
-	float: right;
-	margin-right: 10%;
-	display: inline;
-}
-
-#signArea {
-	width: 70px;
-	height: 70px;
-	border: solid 1px black;
-	float: right;
-	display: inline;
-	margin-right: 20px;
-}
-
-#report {
-	width: 100%;
-	height: 60px;
-	background: #2196f3;
-	color: white;
-	font-weight: bold;
-	font-size: 1.5em;
-	text-align: center;
-	padding-top: 15px;
-}
-
-#report:hover {
-	cursor: pointer;
-	background: #2183f3;
-}
-
-#btn1 {
-	background: #666666;
-	color: white;
-	width: 100px;
-}
-
-#btn2, #btn3 {
-	color: #595959;
-	border: 0.5px solid #e4e1dd;
-}
-
-#btnA1 {
-	display: inline;
-}
-
-#btnA2 {
-	float: right;
-}
-
-@media only print {
-	a[href]::after {
-		content: none !important;
-	}
-	.noprint {
-		display:none
-	}
-}
-
-</style>
-
+<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestDetailCss.css">
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -185,33 +70,39 @@ th, td {
 								</table>
 							</div>
 							<br> <br>
-							<div id="msgArea">
-								<p>투약으로 인한 책임은 의뢰자가 집니다.</p>
-								<span>2019.08.30</span>&nbsp;&nbsp;&nbsp;<span><b>하민희</b></span>
-							</div>
-							<div id="signArea">싸인</div>
-							<br>
-						</div>
-						<div id="report" onclick="goMediReport()">
-							<i class="fas fa-plus"></i>&nbsp;&nbsp;<span>투약 보고서 작성</span>
-						</div>
-						<br>
-						<div id="btnA1">
-							<button type="button" class="btn" id="btn1" onclick="printPage()">
-								<i class="fas fa-print"></i>&nbsp; 출력
-							</button>
-						</div>
-						<div id="btnA2">
-							<button type="button" class="btn btn-light" id="btn2">
-								<i class="far fa-trash-alt"></i>&nbsp; 삭제
-							</button>
-							&nbsp;&nbsp;
-							<button type="button" class="btn btn-light" id="btn3"
-								onclick="goDrugMainView()">
-								<i class="fas fa-list"></i>&nbsp; 목록
-							</button>
-						</div>
 
+							<div id="check">
+								<div id="area3">
+									<span>금일 자녀의 투약을 선생님께 의뢰합니다.</span>
+								</div>
+								<div id="signArea">싸인</div>
+								<div id="area4">
+									<span><b>2019.09.02</b></span>&nbsp;<span>하민희</span>
+								</div>
+							</div>
+						</div>
+						<div class="noprint">
+							<div id="report" onclick="goMediReport()">
+								<i class="fas fa-plus"></i>&nbsp;&nbsp;<span>투약 보고서 작성</span>
+							</div>
+							<br>
+							<div id="btnA1">
+								<button type="button" class="btn" id="btn1"
+									onclick="printPage()">
+									<i class="fas fa-print"></i>&nbsp; 출력
+								</button>
+							</div>
+							<div id="btnA2">
+								<button type="button" class="btn btn-light" id="btn2">
+									<i class="far fa-trash-alt"></i>&nbsp; 삭제
+								</button>
+								&nbsp;&nbsp;
+								<button type="button" class="btn btn-light" id="btn3"
+									onclick="goDrugMainView()">
+									<i class="fas fa-list"></i>&nbsp; 목록
+								</button>
+							</div>
+						</div>
 
 					</div>
 				</div>
