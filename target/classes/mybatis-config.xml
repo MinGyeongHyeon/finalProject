@@ -9,6 +9,9 @@
 		<typeAlias type="com.kh.fp.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KidMember" alias="KidMember"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KinderGarden" alias="KinderGarden"/>
+		<typeAlias type="com.kh.fp.member.model.vo.KinGardenClasses" alias="KinGardenClasses"/>
+		<typeAlias type="com.kh.fp.member.model.vo.KinclassSelect" alias="KinclassSelect"/>
+		
 	</typeAliases>
 	
 
