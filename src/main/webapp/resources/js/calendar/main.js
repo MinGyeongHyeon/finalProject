@@ -249,7 +249,7 @@ var calendar = $('#calendar').fullCalendar({
         .addClass("contextOpened")
         .css({
           display: "block",
-          left: e.pageX,
+          left: e.pageX-250,
           top: e.pageY
         });
       return false;
