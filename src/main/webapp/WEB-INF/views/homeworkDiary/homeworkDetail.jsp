@@ -62,6 +62,7 @@
 
 .title{
 	height:10%;
+	width:10%;
 
 }
 
@@ -124,7 +125,7 @@
 							<div style="padding-top:10%">
 								<table id="tableArea" style="margin:0 auto;">
 									<tr style="background: #3682f5;">
-										<td colspan="2" class="title" style="color:white; border-radius: 10px;" />개별 알림장</td>
+										<td colspan="2" class="title" style="color:white; border-radius: 10px; " />개별 알림장</td>
 									</tr>
 									<tr>
 										<td colspan="2" style="border-top:white"></td>
