@@ -1,9 +1,13 @@
 package com.kh.fp.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.vo.KidMember;
+import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
 
@@ -29,17 +33,28 @@ public class MemberDaoImpl implements MemberDao{
 
 
 	@Override
-	public int insertUser(SqlSessionTemplate sqlSession, Member m) {
+	public int insertUser(SqlSessionTemplate sqlSession, Member m) throws JoinException {
+		
+		int result = 0;
+		
+		System.out.println(m);
+		
+		if(m.getUserId() != "" || m.getUserName() != "") {
+			
+			result = sqlSession.insert("Member.insertMember",m);
+			
+		}else {
+			
+			throw new JoinException("회원가입에 실패 하셨습니다. 다시 시도해주세요!");
+		}
+		
+		return result;
 
-		return sqlSession.insert("Member.insertMember",m);
 	}
 
 
 	@Override
 	public Member idcheck(SqlSessionTemplate sqlSession, Member m) {
-		
-		System.out.println("다오의 실행");
-	
 		
 
 		return sqlSession.selectOne("Member.idcheck",m);
@@ -57,7 +72,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int insertKid(SqlSessionTemplate sqlSession, KidMember km) {
 		
-		System.out.println("다오에서 km 의 값 : " +  km);
+
 
 		return sqlSession.insert("Member.insertKid", km);
 	}
@@ -68,6 +83,55 @@ public class MemberDaoImpl implements MemberDao{
 
 		
 		return sqlSession.insert("Member.kininsert", kg);
+	}
+
+
+	@Override
+	public int kinselect(SqlSessionTemplate sqlSession) {
+
+		
+		return sqlSession.selectOne("Member.kinselect");
+	}
+
+
+
+	@Override
+	public int kinclassinsert(SqlSessionTemplate sqlSession, KinGardenClass kc) {
+
+			int result = 0;
+		
+		for(int i = 0 ; i < kc.getClassName().length; i++) {
+			
+			kc.setNameCount(kc.getClassName()[i]);
+			
+			sqlSession.insert("Member.kinclassinsert" , kc );
+			
+		}
+		return 0;
+	}
+
+
+	@Override
+	public ArrayList kinclassselect(SqlSessionTemplate sqlSession, KinGardenClass kc) {
+		
+		ArrayList list = (ArrayList) sqlSession.selectList("Member.kinclassselect", kc);
+
+		
+		return list;
+	}
+
+
+	@Override
+	public int classinsert(SqlSessionTemplate sqlSession, ArrayList list) {
+		
+		for(int i = 0 ; i < list.size(); i++) {
+			
+			int result = sqlSession.insert("Member.classinsert",list.get(i));
+			
+		}
+
+		
+		return 0;
 	}
 
 
