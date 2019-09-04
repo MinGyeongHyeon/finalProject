@@ -330,7 +330,7 @@
 						</li>
 						
 						<li class="nav-item">
-							<a href="attendance.pl">
+							<a href="attendance.at">
 								<i class="far fa-calendar-check"></i>
 								<p>출석부</p>
 							</a>
