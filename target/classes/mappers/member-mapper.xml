@@ -50,6 +50,29 @@
 	
 	</select>
 	
+	<insert id="insertKid" parameterType="KidMember" >
+		
+		INSERT INTO CHILDREN 
+		VALUES(SEQ_CHILDREN_NO.NEXTVAL,  #{childrenName}, #{birth}, #{gender}, #{userNo})
+	
+	</insert>
+	
+	<select id="selectNumber" parameterType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM USERS
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<insert id="kininsert" parameterType="KinderGarden">
+		
+		INSERT INTO KINDERGARDEN
+		VALUES(SEQ_KINDER_NO.NEXTVAL, #{kinderName} ,#{phone}, #{address})
+	
+	
+	</insert>
+	
+			
+	
 	
 </mapper>
 
