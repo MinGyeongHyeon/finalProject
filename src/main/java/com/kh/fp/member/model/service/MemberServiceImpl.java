@@ -1,5 +1,7 @@
 package com.kh.fp.member.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -7,8 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.fp.member.model.dao.MemberDao;
+import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.vo.KidMember;
+import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
 
@@ -25,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
 	 @Autowired 
 	 private BCryptPasswordEncoder passwordEncoder; 
 	  
-	/* @Autowired private DataSourceTransactionManager transactionManager; */
+	 @Autowired private DataSourceTransactionManager transactionManager;
 	  
 	  
 	  @Override 
@@ -43,7 +47,7 @@ public class MemberServiceImpl implements MemberService{
 	  
 	  }else {
 	  
-	  throw new LoginException("로그인 실패!");
+	  throw new LoginException("로그인에 실패하셨습니다. 다시 시도해주세요..");
 	  
 	  }
 	  
@@ -54,16 +58,27 @@ public class MemberServiceImpl implements MemberService{
 	  }
 
 	@Override
-	public int insertUser(Member m) {
+	public int insertUser(Member m) throws JoinException {
+		
+		int result = md.insertUser(sqlSession, m);
+	
+		
+		if(result <= 0) {
+			
+			throw new JoinException("회원가입 도중 에러가 발생하였습니다. 다시 시도해주세요.");
+			
+		}else {
+	
+			
+		}
 
 		
-		return md.insertUser(sqlSession, m);
+		return result;
 	}
 
 	@Override
 	public Member idcheck(Member m) {
 		
-		System.out.println("서비스 의 실행");
 
 		
 		return md.idcheck(sqlSession , m);
@@ -77,16 +92,50 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int insertkid(KidMember km) {
+	public int insertkid(KidMember km) throws JoinException {
+		
+		int result = md.insertKid(sqlSession , km);
+		
+		if(result <= 0) {
+			throw new JoinException("자녀 등록 중 오류가 발생하였습니다. 다시 시도해주세요");
+		}
 
 		
-		return md.insertKid(sqlSession , km);
+		return result;
 	}
 
 	@Override
 	public int kininsert(KinderGarden kg) {
+		
+		
 
 		return md.kininsert(sqlSession , kg);
+	}
+
+	@Override
+	public int kinselect() {
+		
+
+		return md.kinselect(sqlSession);
+	}
+
+	@Override
+	public int Kinclassinsert(int selectKin, KinGardenClass kc) {
+
+		return md.kinclassinsert(sqlSession ,kc);
+	}
+
+	@Override
+	public ArrayList kinclassselect(KinGardenClass kc) {
+
+		
+		return md.kinclassselect(sqlSession , kc);
+	}
+
+	@Override
+	public int classinsert(ArrayList list) {
+
+		return md.classinsert(sqlSession, list);
 	}
 
 

@@ -59,18 +59,27 @@ input,select{
 		<tr>
 		<td>시/군/구 선택</td>
 		<td>
-		<select>
-			<option>시/도 선택</option>
-			<option>서울시</option>
-			<option>인천광역시</option>
-		</select>
+		<select name="sido" id="sido" aria-required="true" aria-invalid="false">
+
+	<option value="0">시/도 선택</option>
+	<option value="서울특별시">서울특별시</option>
+	<option value="부산광역시">부산광역시</option>
+	<option value="대구광역시">대구광역시</option>
+	<option value="인천광역시">인천광역시</option>
+	<option value="광주광역시">광주광역시</option>
+	<option value="대전광역시">대전광역시</option>
+	<option value="울산광역시">울산광역시</option>
+	<option value="세종특별자치시">세종특별자치시</option>
+	<option value="경기도">경기도</option>
+	
+	</select>
 		</td>
+		
 		<td>
-		<select>
-			<option>시/군/구 선택</option>
-			<option>강남구</option>
-			<option>부평구</option>
+		
+	<select class="form-control valid" name="sigungu" id="sigungu" aria-required="true" aria-invalid="false">
 		</select>
+		
 		</td>
 		</tr>
 		<tr>

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Member">
-	<resultMap type="com.kh.fp.member.model.vo.Member" id="memberResultSet">
+	<resultMap type="Member" id="memberResultSet">
 		<id property="userNo" column="USER_NO"/> 
 		<result property="userId" column="USER_ID"/>
 		<result property="userPwd" column="USER_PWD"/>
@@ -16,6 +16,16 @@
 		<result property="deleteReason" column="DELETE_REASON"/>
 		<result property="status" column="STATUS"/>
 		<result property="classification" column="CLASSIFICATION"/>
+	</resultMap>
+	
+	<resultMap type="KinclassSelect" id="kinResultSet">
+	
+		<result property="kinderNo" column="KINDER_NO"/>
+		<result property="className" column="CLASS_NAME"/>
+		<result property="classMax" column="CLASS_MAX"/>
+		<result property="openedDate" column="OPENED_DATE"/>
+		<result property="closeDate" column="CLOSE_DATE"/>
+	
 	</resultMap>
 	
 	
@@ -67,11 +77,39 @@
 		
 		INSERT INTO KINDERGARDEN
 		VALUES(SEQ_KINDER_NO.NEXTVAL, #{kinderName} ,#{phone}, #{address})
+	</insert>
+	
+	<select id="kinselect" resultType="_int">
+	
+		SELECT SEQ_KINDER_NO.CURRVAL 
+		FROM DUAL
+	
+	</select>
+	
+	<insert id="kinclassinsert">
+	
+		INSERT INTO KINDER_CLASSES
+		VALUES(#{ kinderNo } , #{NameCount} , 30 , sysdate , null)
 	
 	
 	</insert>
 	
-			
+	<select id="kinclassselect" resultMap="kinResultSet">
+		
+		SELECT *
+		FROM KINDER_CLASSES
+		WHERE KINDER_NO = #{kinderNo}
+	
+	
+	</select>
+	
+	<insert id="classinsert">
+		
+		INSERT INTO KINDER_CLASS
+		VALUES(SEQ_CLASS_NO.NEXTVAL , NULL , #{kinderNo} , NULL , NULL ,#{openedDate}, '1학기' ,#{className} )
+	
+	</insert>
+
 	
 	
 </mapper>

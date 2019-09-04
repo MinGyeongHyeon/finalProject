@@ -2,6 +2,7 @@ package com.kh.fp.member.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.service.MemberService;
 import com.kh.fp.member.model.vo.KidMember;
+import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
 
@@ -78,40 +81,54 @@ public class MemberController {
 		
 		m.setUserPwd(encPassword);
 		
-		int result = ms.insertUser(m);
+		int result;
 		
-		
-		Member selectNo = null;
-		
-		if(result > 0) {
+		try {
 			
-			selectNo = ms.selectnumber(m);
+			result = ms.insertUser(m);
+			
+			
+			Member selectNo = null;
+			
+			if(result > 0) {
+				
+				selectNo = ms.selectnumber(m);
 
-		}
-		
-		System.out.println("여기서 m 의 넘버는 ? : " +  selectNo);
-		if(selectNo != null ) {
-			
-			if(m.getClassification().equals("원장님")) {
-				
-				model.addAttribute("select",selectNo);
-				
-				return "join/kinrandEnrollment";
-				
-			}else if(m.getClassification().equals("선생님")) {
-				
-				model.addAttribute("select",selectNo);
-				
-				return "join/jointeacher";
-			}else {
-				model.addAttribute("select",selectNo);
-				
-				return "join/joinkid";
 			}
 			
+			if(selectNo != null ) {
+				
+				if(m.getClassification().equals("원장님")) {
+					
+					model.addAttribute("select",selectNo);
+					
+					return "join/kinrandEnrollment";
+					
+				}else if(m.getClassification().equals("선생님")) {
+					
+					model.addAttribute("select",selectNo);
+					
+					return "join/jointeacher";
+				}else {
+					model.addAttribute("select",selectNo);
+					
+					return "join/joinkid";
+				}
+				
+			}
+			
+			return "";
+			
+			
+		} catch (JoinException e) {
+			
+			model.addAttribute("msg" , e.getMessage());
+
+			return "account/join4";
 		}
 		
-		return "";
+		
+
 		
 	}
 	
@@ -186,7 +203,6 @@ public class MemberController {
 		
 		Member idcheck = ms.idcheck(m);
 		
-		System.out.println(idcheck);
 		
 		int result = 0;
 		
@@ -210,9 +226,17 @@ public class MemberController {
 		km.setBirth(km.getBirth1() + "/" + km.getBirth2() + "/" + km.getBirth3());
 		
 		
-		int result = ms.insertkid(km);
+		try {
+			
+			int result = ms.insertkid(km);
+			
+			
+		} catch (JoinException e) {
+
+			e.printStackTrace();
+	
+		}
 		
-		System.out.println();
 		
 		
 		
@@ -224,8 +248,29 @@ public class MemberController {
 		
 		kg.setAddress(kg.getSido()+ " " + kg.getSigungu() + " " + kg.getAddress3());
 		
+		System.out.println(kg);
 		
 		int result = ms.kininsert(kg); 
+		
+		if(result > 0) {
+			
+			KinGardenClass kc = new KinGardenClass();
+			
+			int selectKin = ms.kinselect();
+			
+			kc.setKinderNo(selectKin);
+			kc.setClassName(kg.getClassName());
+			
+			
+			
+			int insert = ms.Kinclassinsert(selectKin, kc); 
+			
+			ArrayList list = ms.kinclassselect(kc);
+			
+			
+			int classinsert = ms.classinsert(list);
+			
+		}
 		
 		
 		
