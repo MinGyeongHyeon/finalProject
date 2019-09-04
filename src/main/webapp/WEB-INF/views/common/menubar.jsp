@@ -39,6 +39,14 @@
 	.sidebar .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar .nav>.nav-item.active:hover>a:before, .sidebar .nav>.nav-item.active>a:before {
 		background:#ff6666;
 	}
+	#kinName:hover {
+		cursor:pointer;
+		color:#fcfcfc;
+	}
+	#kinName {
+		color:white;
+		font-weight:bold;
+	}
 	
 </style>
 
@@ -51,8 +59,8 @@
 		
 			<div class="logo-header">
 
-				<a href="index.html" class="logo"> 
-					<label for="">킨더유치원</label>
+				<a href="main.pl" class="logo"> 
+					<label id="kinName">킨더유치원</label>
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
 					data-toggle="collapse" data-target="collapse" aria-expanded="false"

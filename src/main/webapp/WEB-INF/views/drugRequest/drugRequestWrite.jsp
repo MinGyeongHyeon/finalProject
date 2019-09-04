@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +16,9 @@
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 
+	<c:set var="today" value="<%=new Date()%>"/>
+	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
+
 	<div class="main-panel">
 		<div class="content">
 			<div class="page-inner">
@@ -24,24 +30,28 @@
 					<div id="contentsArea">
 						<br>
 						<div id="profileArea">
-							<i><img src="${ contextPath }/resources/images/woman.png"
-								id="profileImg"></i> &nbsp;&nbsp;<span><b>하뽀송</b></span>
+							<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+							 &nbsp;&nbsp;<span><b>하뽀송</b></span>
 						</div>
 						<hr width="98%">
 						<div id="area1">
 							<table id="table1">
 								<tr>
 									<th style="width: 15%;">투약일</th>
-									<td><input type="radio" id="radio1" name="radios1"
-										value="today" checked> <label for="radio1">오늘</label>
+									<td>
+										<input type="radio" id="radio1" name="radios1" value="today" checked>
+										<label for="radio1">오늘 ( <fmt:formatDate type="date" value="${today}" pattern="MM월 dd일"/> )</label>
 									</td>
-									<td><input type="radio" id="radio2" name="radios1"
-										value="tomorrow"> <label for="radio2">내일</label></td>
+									<td>
+										<input type="radio" id="radio2" name="radios2" value="tomorrow">
+										<label for="radio2">내일 ( <fmt:formatDate type="date" value="${tomorrow}" pattern="MM월 dd일"/> )</label>
+									</td>
 								</tr>
 								<tr>
 									<th>증상</th>
-									<td colspan="2"><input type="text" class="form-control"
-										placeholder="예) 감기, 몸살" style="margin-top: 10px;"></td>
+									<td colspan="2">
+										<input type="text" class="form-control" placeholder="예) 감기, 몸살" style="margin-top: 10px;">
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -53,8 +63,9 @@
 							<table id="table2">
 								<tr>
 									<th>약의 종류</th>
-									<td colspan="2"><input type="text" id="input1"
-										class="form-control" placeholder="예) 물약, 가루약"></td>
+									<td colspan="2">
+										<input type="text" id="input1" class="form-control" placeholder="예) 물약, 가루약" name="kinds">
+									</td>
 								</tr>
 								<tr>
 									<th>투약 용량</th>
@@ -64,27 +75,32 @@
 								</tr>
 								<tr>
 									<th>투약 횟수</th>
-									<td colspan="2"><select class="form-control" id="sel1">
+									<td colspan="2">
+										<select class="form-control" id="sel1">
 											<option>1 회</option>
 											<option>2 회</option>
 											<option>3 회</option>
 											<option>4 회</option>
 											<option>5 회</option>
-									</select></td>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>투약 시간</th>
-									<td colspan="2"><input type="text" id="input2"
-										class="form-control" placeholder="예) 오전간식 후/ 점심 후 / 오후간식 후"></td>
+									<td colspan="2">
+										<input type="text" id="input2" class="form-control" placeholder="예) 오전간식 후/ 점심 후 / 오후간식 후">
+									</td>
 								</tr>
 								<tr>
 									<th>보관 방법</th>
-									<td><input type="radio" id="radio3" name="radios2"
-										value="roomTemper" checked="true"> <label for="radio3">실온</label>
+									<td>
+										<input type="radio" id="radio3" name="radios2" value="roomTemper" checked="true">
+										<label for="radio3">실온</label>
 									</td>
-									<td><input type="radio" id="radio4" name="radios2"
-										value="refTemper"> <label for="radio4"
-										style="width: 96%;">냉장</label></td>
+									<td>
+										<input type="radio" id="radio4" name="radios2" value="refTemper">
+										<label for="radio4" style="width: 96%;">냉장</label>
+									</td>
 								</tr>
 								<tr>
 									<th>특이사항</th>
@@ -128,9 +144,8 @@
 					</div>
 					<br>
 					<div id="btnArea" align="center">
-						<button type="button" class="btn btns" id="resetBtn"
-							onclick="goDrugMainView()">취소</button>
-						<button type="button" class="btn btns" id="sendBtn">보내기</button>
+						<button type="button" class="btn btns" id="resetBtn" onclick="goDrugMainView()">취소</button>
+						<button type="button" class="btn btns" id="sendBtn" onclick="insertDosageRequest()">보내기</button>
 					</div>
 
 
@@ -143,6 +158,9 @@
 	<script>
 		function goDrugMainView() {
 			location.href = "drugMainView.pl";
+		}
+		function insertDosageRequest() {
+			location.href="insertDosageRequest.ds"
 		}
 	</script>
 
