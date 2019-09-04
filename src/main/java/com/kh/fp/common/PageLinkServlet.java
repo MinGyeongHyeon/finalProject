@@ -116,14 +116,7 @@ public class PageLinkServlet {
 		return "homeworkDiary/homeworkDiaryWrite";
 	}
 
-	@RequestMapping(value="attendance.pl")
-	public String attendanceView(Model model) {
-		Date today = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		String day = date.format(today);
-		model.addAttribute("day",day);
-		return "attendance/attendanceMain";
-	}
+
 	
 	@RequestMapping(value="test.pl")
 	public String test() {
@@ -136,6 +129,6 @@ public class PageLinkServlet {
 	  return "homeworkDiary/homeworkDetail";
 	  }
 	
-	
+
 }
 

@@ -10,35 +10,35 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <style>
 .mainArea {
-	width: 70%;
-	height: 45%;
-	background-color: white;
-	margin: 0 auto;
+   width: 70%;
+   height: 45%;
+   background-color: white;
+   margin: 0 auto;
 }
 table tr {
-	height:40px;
+   height:40px;
 }
 #nextBtn {
-	color:white;
-	background:#ff7a7a;
+   color:white;
+   background:#ff7a7a;
 }
 #nextBtn:hover {
-	background:#fc6f6f;
+   background:#fc6f6f;
 }
 .img {
-	width:200px;
-	height:200px;
-	border-radius:50%;
+   width:200px;
+   height:200px;
+   border-radius:50%;
 }
 #img1, #img2, #img3 {
-	float:left;
+   float:left;
 }
 .imgArea {
-	text-align:center;
+   text-align:center;
 }
 .radioBox{
-	width:10%;
-	height:10%;
+   width:10%;
+   height:10%;
 }
 
 
@@ -49,7 +49,9 @@ table tr {
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 
 <body>
+
 <%-- 	<jsp:include page="${ contextPath }/WEB-INF/views/common/joinHeader.jsp"/> --%>
+
 	<br><br>
 		<h3 style="padding-top: 50px; padding-left: 50px;"><b>역할 등록</b></h3>
 		<hr width="90%">
@@ -68,8 +70,8 @@ table tr {
 		<div id="imgArea" align="center" style="margin-left:14%">
 			<div id="img1" style="margin-right:10px">
 			 	<img class="img" src="${ contextPath }/resources/images/account/img1.PNG">
-				<h4><b>부모님</b></h4>
-			 	<input type="radio" name="classification" value="부모님" class="radioBox"/>
+				<h4><b>학부모</b></h4>
+			 	<input type="radio" name="classification" value="학부모" class="radioBox"/>
 			</div>
 			<div id="img2" style="margin-right:10px">
 				<img class="img" src="${ contextPath }/resources/images/account/img2.jpg">
@@ -93,6 +95,19 @@ table tr {
 		
 	<br><br><br><br>
 	
+	
+	<c:if test="${ msg == null } ">
+		
+		<script>
+			$(function(){
+			
+				alert(${msg});
+				
+				location.href="account/join5";
+			})
+		</script>
+	
+	</c:if>
 	
 </body>
 </html>
