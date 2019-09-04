@@ -14,11 +14,35 @@ $(function(){
 		changeMonth: true, 
         changeYear: true,
         nextText: '다음 달',
-        prevText: '이전 달' 
+        prevText: '이전 달',
+        colseText:'닫기',
+        minDate:"-1D",
+        maxDAte:"+1D",
+        dateFormat:"yy-mm-dd",
+        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        onSelect:function(){
+        	day = $("#datepicker").val();
+        	$("#today").html(day);
+        }
 	});
 });
+/* function preBtn(){
+	SimpleDateFormat sdf = new SimpleDateFormat("yy-mm-dd");
+	Calendar cal = Calendar.getInstance();
+	
+	
+	var preday = new Date($("#today").html());
+	cal.add(preday.DAY,1);
+	console.log(pre);
+}
+function afterBtn(){
+	
+} */
 function goMonth(){
-	location.href="test.pl";
+	location.href="month.at";
 }
 </script>
 
@@ -56,6 +80,8 @@ function goMonth(){
 		border-radius: 5px; 
 		padding-top:5px;
 		padding-bottom: 5px;
+		float:right;
+		width:100%;
 	}
 	#datepicker{
 	background:#665b55;
@@ -64,6 +90,8 @@ function goMonth(){
 		border-radius: 5px; 
 		padding-top:5px;
 		padding-bottom: 5px;
+		float:right;
+		width:100%;
 	}
 	.attendanceArea{
 		margin:0 auto;
@@ -75,17 +103,29 @@ function goMonth(){
 	}
 	#timecheck{
 	float:left;
-	margin-left:5%;
 	margin-top:2%;
+	width:100%;
+	}
+	#timecheck > label{
+	color:white;
 	}
 	#attendance{
 	width:100%;
 	}
 	#right{
-	margin-right:0%;
+	text-align:right;
+	margin-left:40%;
 	}
 	#btntable > td{
 	float:right;
+	}
+	#btntable{
+	width:100%;
+	}
+	.subBtn{
+	float:left;
+	margin-left:5%;
+	margin-top:2%;
 	}
 </style>
 <body>
@@ -108,14 +148,14 @@ function goMonth(){
 		</div>
 		<hr />
 		<div class="attendanceArea">
-		<div id="timecheck"><input type="checkbox"><span>등하원 시간 표시</span>&nbsp;&nbsp;
+		<div id="timecheck"><label>총원 : ${ day }명(출석 : ${day }명)</label>&nbsp;&nbsp;
 		<span id="right">V 출석 × 결석 ◎ 병결 ○ 사고 / 입소 ★ 퇴소</span></div>
 						<table id="attendance" align="center">
 							<tr>
 							<td colspan="3">
-							<button>&lt;</button></td>
-							<td colspan="2"><h3>${ day }</h3></td>
-							<td colspan="2"><button>&gt;</button></td>
+							<button onclick="preBtn();">&lt;</button></td>
+							<td colspan="2"><h3 id="today">${ day }</h3></td>
+							<td colspan="2"><button onclick="afterBtn();">&gt;</button></td>
 							</tr>
 							<tr>
 							<td>No.</td>
@@ -128,53 +168,11 @@ function goMonth(){
 							</tr>
 							<tbody></tbody>
 						</table>
-					<button>다운로드</button>
-					<button>출력</button>
+					<button class="subBtn">다운로드</button>
+					<button class="subBtn">출력</button>
 		</div>
 	</div>
-	
-	<script>
-	/* 	$(function(){
-			var select = "<select><option>출석</option><option>결석</option><option>병가</option><option>사고</option><option>입소</option><option>퇴소</option><option>표시안함</option></select>"
-			var No = "<tr><td>"+""+"</td>";
-			var childName = "<td>"+""+"</td>";
-			var status = "<td>"+select+"</td>";
-			var time1 = "<td>"+""+"</td>";
-			var time2 = "<td>"+""+"</td>";
-			var etc = "<td>"+""+"</td>";
-			var confirm = "<td>"+""+"</td>";
-			
-		}); */
-		
-		/* function datepicker(){
-			
-		
-		$("#datepicker").onclick({
-			
-			$("#datepicker").datepicker({
-				dateFormat:'yy-mm-dd'
-				,showOtherMonths: true
-				,showMonthAfterYear: true
-				,changeYear: true
-				,changeMonth: true
-				,showOn: "both"
-				,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"
-				,buttonImageOnly:true
-				,buttonText:"선택"
-				,yearSuffix:"년"
-				,monthNamesShort:['1','2','3','4','5','6','7','8','9','10','11','12']
-				,monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-				,dayNamesMin: ['일','월','화','수','목','금','토']
-				,dayNames:['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
-				,minDate:"-1M"
-				,maxDate:"+1M"
-			
-			#('#datepicker').datepicker();
-			$('#datepicker').datepicker('setDate','today');
-		});
-		});
-		} */
-	</script>
+
 </body>
 </html>
 
