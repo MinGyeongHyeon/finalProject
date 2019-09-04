@@ -119,7 +119,7 @@ public class PageLinkServlet {
 	@RequestMapping(value="attendance.pl")
 	public String attendanceView(Model model) {
 		Date today = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);
 		model.addAttribute("day",day);
 		return "attendance/attendanceMain";
