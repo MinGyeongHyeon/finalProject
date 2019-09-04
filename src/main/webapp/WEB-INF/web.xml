@@ -11,7 +11,7 @@
 			/WEB-INF/config/spring-security.xml
 		</param-value>
 	</context-param>
-	
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -20,15 +20,15 @@
 	<servlet>
 		<servlet-name>pageLink</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		
+
 		<init-param>
-		
+
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/config/page-servlet.xml</param-value>
-		
+
 		</init-param>
-	</servlet> 
-	
+	</servlet>
+
 	<servlet>
 		<servlet-name>member</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -37,17 +37,17 @@
 			<param-value>/WEB-INF/config/member-servlet.xml</param-value>
 		</init-param>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>member</servlet-name>
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
-	
+
  	<servlet-mapping>
 		<servlet-name>pageLink</servlet-name>
 		<url-pattern>*.pl</url-pattern>
 	</servlet-mapping>
- 
+
  	<servlet>
 		<servlet-name>schedule</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -56,13 +56,28 @@
 			<param-value>/WEB-INF/config/schedule-servlet.xml</param-value>
 		</init-param>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>schedule</servlet-name>
 		<url-pattern>*.sc</url-pattern>
 	</servlet-mapping>
-	
- 
+
+
+	<servlet>
+		<servlet-name>dosage</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/dosage-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dosage</servlet-name>
+		<url-pattern>*.ds</url-pattern>
+	</servlet-mapping>
+
+
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -72,7 +87,7 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
