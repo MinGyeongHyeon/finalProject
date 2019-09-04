@@ -42,9 +42,7 @@ $(function(){
 function afterBtn(){
 	
 } */
-function goMonth(){
-	location.href="month.at";
-}
+
 </script>
 
 </head>

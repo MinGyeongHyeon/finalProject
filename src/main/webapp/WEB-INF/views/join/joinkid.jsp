@@ -17,24 +17,70 @@ float:right;
 margin-right:2%;
 }
 table td{
-text-align:center;
 padding:20px;
 font-weight:5px;
 }
-
+#childrenName{
+width:70%;
+height:40%;
+border-radius:5px;
+}
 table {
 background:white;
+width:50%;
+}
+#join{
+	background:#665b55;
+		color:#fff;
+		border:none;
+		border-radius: 5px; 
+		width:30%;
+		margin:0 auto;
+		align:center;
 }
 #userImg{
 margin:0 auto;
 }
+.fileList{
+width:50%;
+align:center;
+margin:0 auto;
+}
+#face{
+		background-image:url("/images/baby.png");
+		color:white;
+		height:30%;
+		border-radius: 5px;
+		text-align:center;
+		padding-top:5px;
+	}
+	
+	.fileList input{
+		background:#fff;
+		width:50%;
+		height:30px;
+		color:#000;
+		border:1px solid white;
+		border-bottom:1px solid #de2c41;
+		padding-top:5px;
+		margin-top:20px;
+		
+	}
+	#fileBtn{
+	float:right;
+	border:none;
+	background:#665b55;
+	width:13%;
+	height:10%;
+	color:white;
+	text-align:center;
+	margin-right:20%;
+	margin-top:3%;
+	
+	}
 </style>
 </head>
 <body>
-<div id="topbar">
-키즈랜드
-<button onclick="#" id="loginBtn">로그인</button>
-</div>
 <br><br><br>
 <div id="content">
 
@@ -42,25 +88,30 @@ margin:0 auto;
 	 
 	<input type="hidden" value="${ select.userNo }" name="userNo"/>
 	<table align="center">
-		<tr><th>자녀 등록</th></tr>
+		<tr><th><h1>자녀 등록</h1></th></tr>
 		
-		<tr>
+		<tr rowspan="3">
 		
-		<td colspan="2">
-		<div id="userImg" style="background-image: url('${ contextPath }/resources/images/woman.png');background-size:100%;"></div>
+		<td colspan="5">
+<%-- <img src="${ contextPath }/resources/images/baby.png" width="60px" align="center"> --%>
+		<label for="selectFile" id="face">파일선택</label>
+
 		</td>
 		
 		</tr>
 		
 		<tr>
 		<td colspan="3">
-    	 <input type="file" name="pic" />
-   		 <input type="submit" value="등록하기" />
+    	 <div class="fileList" style="width:100%;">
+								<input type="text" name="fileName" class="fileName">
+								<input type="file" value="추가" id="selectFile" class="selectFile" multiple hidden/>
+   		 <input type="submit" value="등록하기" id="fileBtn"/>
+							</div>
 		</td>
 		</tr>
 		
 		<tr>
-		<td colspan="2">이름 : <input type="text" placeholder="자녀의 이름을 등록해주세요" name="childrenName"></td>
+		<td colspan="2">이름 : <input type="text" placeholder="자녀의 이름을 등록해주세요" name="childrenName" id="childrenName"></td>
 		</tr>
 		
 		<tr>
@@ -115,7 +166,7 @@ document.write("</select>일  </font>");
 		</tr>
 		<tr>
 		<td colspan="2">
-		<button type="submit">등록하기</button>
+		<button type="submit" id="join">등록하기</button>
 		</td>
 		</tr>
 		</table>
