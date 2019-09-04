@@ -1,71 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>투약의뢰서</title>
-<style>
-.main-panel {
-    position: relative;
-    width: calc(100% - 240px);
-    height: 100vh;
-    min-height: 100%;
-    float: right;
-    transition: all .3s;
-}
-#sel1 {
-	width:15%;
-	display:inline;
-}
-#sel2 {
-	width:20%;
-	display:inline;
-}
-#btn1 {
-	float:right;
-	width:15%;
-	margin-right:10px;
-}
-#list1 {
-	width:230px;
-	height:270px;
-	background:white;
-}
-#list1:hover {
-	background:#fafafa;
-	cursor:pointer;
-}
-#profileImg {
-	width:50px;
-	height:50px;
-	border-radius:50%;
-}
-#profileArea {
-	 float:right;
-	 margin-right:10px;
-}
-#contentArea {
-	margin-left:20px;
-	line-height:230%;
-	font-size:13px;
-}
-#className {
-	margin-left:20px;
-	color:#a1a1a1;
-}
-#btn2 {
-	border: 0.5px solid #e4e1dd;
-}
-#writeBtn {
-	margin-right:10px;
-	width:15%;
-	margin-left: auto;
-	color:white;
-	background:#ff7575;
-	font-weight:bold;
-}
-</style>
+<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestListCss.css">
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+$(function(){
+	$("#datepicker").datepicker({
+		changeMonth: true, 
+        changeYear: true,
+        nextText: '다음 달',
+        prevText: '이전 달' 
+	});
+});
+</script>
 
 </head>
 <body>	
@@ -93,9 +47,9 @@
 						        <option>한송이</option>
       						</select>
       						
-							<button type="button" class="btn btn-default" id="btn1">
-								<i class="far fa-calendar"></i>&nbsp;날짜 선택
-							</button>      						
+      						<div id="dateA">
+							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">
+							</div>
 						</div>
 						<br>
 						<div id="listArea">
@@ -136,7 +90,20 @@
 		function goDrugRequestWrite(){
 			location.href="drugRequestWrite.pl";
 		}
+		
 	</script>
+	
+	<script>
+    	$(function(){
+    		$('.input-group.date').datepicker({
+    			calendarWeeks: false,
+    			todayHighlight: true,
+    			autoclose: true,
+    			format: "yyyy/mm/dd",
+    			language: "kr"
+        	});
+    	});
+    </script>
 </body>
 </html>
 

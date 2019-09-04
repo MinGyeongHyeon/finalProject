@@ -47,7 +47,7 @@
 
 	<c:if test="${ !empty loginUser }">
 
-		<div class="main-header" data-background-color="red">
+		<div class="main-header noprint" data-background-color="red">
 		
 			<div class="logo-header">
 
@@ -232,7 +232,7 @@
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<div class="sidebar-background"></div>
-			<div class="sidebar-wrapper scrollbar-inner">
+			<div class="sidebar-wrapper scrollbar-inner noprint">
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,6 @@
 <script src="${ contextPath }/resources/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="${ contextPath }/resources/js/signature_pad.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestWriteCss.css">
-
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -102,6 +100,10 @@
 						</div>
 						<hr width="98%">
 						<div id="check">
+							<div style="float: right; margin-right: 4%;">
+								<span><b>서명</b></span>
+							</div>
+							<br>
 							<div id="area3">
 								<span>금일 자녀의 투약을 선생님께 의뢰합니다.</span>
 							</div>
@@ -113,18 +115,21 @@
 								</div>
 							</div>
 							<div id="area4">
-								<span><b>2019.09.02</b></span><span>하민희</span>
+								<span><b>2019.09.02</b></span>&nbsp;<span>하민희</span>
 							</div>
 						</div>
 						<div class="m-signature-pad--footer">
 							<!-- <button type="button" class="button save" data-action="save" id="saveBtn">저장</button> -->
-							<button type="button" class="button clear btn" 
-								data-action="clear" id="clearBtn"><i class="fas fa-redo-alt"></i>&nbsp;다시쓰기</button>
+							<button type="button" class="button clear btn btn-xs"
+								data-action="clear" id="clearBtn">
+								<i class="fas fa-redo-alt"></i>&nbsp;다시쓰기
+							</button>
 						</div>
 					</div>
 					<br>
 					<div id="btnArea" align="center">
-						<button type="button" class="btn btns" id="resetBtn">취소</button>
+						<button type="button" class="btn btns" id="resetBtn"
+							onclick="goDrugMainView()">취소</button>
 						<button type="button" class="btn btns" id="sendBtn">보내기</button>
 					</div>
 
@@ -135,6 +140,13 @@
 		</div>
 	</div>
 
+	<script>
+		function goDrugMainView() {
+			location.href = "drugMainView.pl";
+		}
+	</script>
+
+	<!-- 싸인 패드 -->
 	<script>
 		var canvas = $("#signature-pad canvas")[0];
 		var sign = new SignaturePad(canvas, {
