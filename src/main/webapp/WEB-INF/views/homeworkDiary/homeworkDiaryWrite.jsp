@@ -167,6 +167,14 @@
 	
 	}
 	
+	.className{
+		width:100%;
+		text-align: center;
+		background:#fa5448 ;
+		border:#fa5448;
+		color:white;
+	}
+	
 </style>
 <script>
 	$(function(){
@@ -223,16 +231,9 @@
 							<div class="classroom">
 								<table>
 									<tr>
-										<td>별님반</td>
+										<td><button class="className">별님반</button></td>
 										<td>0/15</td>
-									</tr>
-								</table>
-							</div>
-							<div class="classroom">
-								<table>
-									<tr>
-										<td>별님반</td>
-										<td>0/15</td>
+										
 									</tr>
 								</table>
 							</div>
@@ -261,6 +262,7 @@
 				</table>
 			</div>
 			<hr />
+			<br><br>
 			<div class="homeworkBtnArea">
 				<table>
 					<tr>
@@ -272,6 +274,7 @@
 						</td>
 					</tr>
 				</table>
+						<br><br><br><br><br>
 			</div>
 		</form>
 	</div>

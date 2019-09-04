@@ -88,7 +88,10 @@
 		padding-bottom: 5px; */
 	}
 	
-	
+	.summaryDiv:hover {
+	background:#fafafa;
+	cursor:pointer;
+}
 	
 </style>
 
@@ -130,7 +133,7 @@
 			&nbsp;
 			<input type="date" name="searchDate" class="searchDate"/>
 		</div>
-		<div class="homeworkDiarySummary">
+		<div class="homeworkDiarySummary" onclick="showHomeWorkDetail()">
 			<% int num = 5;
 			for(int i = 0; i < num; i++){%>
 			<div class="summaryDiv">
@@ -162,7 +165,11 @@
 		function goAnnouncementWrite(){
 			location.href="WriteAnnounce.pl";
 		}
-	
+		
+		function showHomeWorkDetail(){
+			console.log("rkwk");
+			location.href = "DetailHomeWork.pl";
+		}
 	</script>
 </body>
 </html>
