@@ -129,5 +129,13 @@ public class PageLinkServlet {
 	public String test() {
 		return "attendance/test";
 	}
+	
+	
+	 @RequestMapping(value="DetailHomeWork.pl")
+	 public String DetailHomeWork() {
+	  return "homeworkDiary/homeworkDetail";
+	  }
+	
+	
 }
 

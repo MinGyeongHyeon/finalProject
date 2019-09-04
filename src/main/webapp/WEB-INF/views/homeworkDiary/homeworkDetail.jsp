@@ -18,6 +18,7 @@
 #titleArea {
 	background: #f5f5f5;
 	height: 55px;
+	
 }
 
 #title {
@@ -29,7 +30,7 @@
 }
 
 #contentsArea {
-	height: 700px;
+	height: 75%;
 	background: white;
 }
 
@@ -57,6 +58,32 @@
 
  td {
 	text-align:center;
+}
+
+.title{
+	height:10%;
+
+}
+
+.commentArea{
+	height: 300px;
+	background: #f5f5f5;
+	padding-top:2%;
+}
+
+.writeComment{
+	margin-left: 10%;
+	height:20%;
+	width:65%;
+}
+
+.registerComment{
+	height:15%;
+	width:10%;
+	border-radius:10px;
+	color:white;
+	background-color:#8981f7;
+	
 }
 </style>
 
@@ -86,19 +113,27 @@
 									id="profileImg"></i> &nbsp;&nbsp;<b>원아 이름</b>
 							</div>
 							<br>
-							<p style="font-size: 1.15em; margin-left: 20px;">금일 자녀의 투약을
-								선생님께 의뢰합니다.</p>
-		
-								<table id="tableArea">
-									<tr style="background: #f0f0f0;">
-										<td colspan="2" class="title">공통 알림장</td>
+								<table id="tableArea" style="margin:0 auto;">
+									<tr style="background: #f57373; border-radius: 5px">
+										<td colspan="2" class="title" style="color:white; border-radius:10px">공통 알림장</td>
 									</tr>
 									<tr>
-										<td colspan="2">뼈 우리 피부가 않는 그리하였는가? 물방아 생생하며, 싸인 따뜻한 보내는 있을 인간의 있으랴? 속잎나고, 몸이 위하여, 봄바람이다. 찾아다녀도, 하여도 무엇을 가치를 쓸쓸하랴? 찾아다녀도, 바이며, 공자는 기관과 천지는 피가 청춘에서만 별과 천하를 칼이다. 것은 뛰노는 무엇을 거선의 동력은 청춘의 청춘 옷을 이상의 칼이다. 이상, 꽃이 타오르고 위하여서. 얼마나 불러 뛰노는 생의 싸인 무엇을 풍부하게 끓는 이것이다. 발휘하기 끝에 곧 창공에 뛰노는 있으랴?</td>
+										<td colspan="2"></td>
 									</tr>
+								</table>	
+							<div style="padding-top:10%">
+								<table id="tableArea" style="margin:0 auto;">
+									<tr style="background: #3682f5;">
+										<td colspan="2" class="title" style="color:white; border-radius: 10px;" />개별 알림장</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border-top:white"></td>
+									</tr>	 	
 								</table>
 							</div>
 							<br>
+					</div>
+					<br><br>
 						<div id="btnA1">
 							<button type="button" class="btn" id="btn1" onclick="print()">
 								<i class="fas fa-print"></i>&nbsp; 출력
@@ -112,8 +147,13 @@
 								<i class="fas fa-list"></i>&nbsp; 목록
 							</button>
 						</div>
-					
-					
+							<br><br><br>
+						<h4 class="page-title"><i class="fas fa-comments" 	style="font-size: 30px;"></i>댓글</h4	>
+						<div class="commentArea"> 
+							<input type="text" class="writeComment">
+							<button class="registerComment">등록하기</button>
+							
+						</div>	
 					</div>
 				</div>
 			</div>
@@ -131,7 +171,7 @@
 			$(this).window.print();
 		}
 	</script>
-
+	
 </body>
 </html>
 
