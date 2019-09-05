@@ -16,6 +16,9 @@ public class DosageServiceImpl implements DosageService{
 
 	@Override
 	public int insertDosageRequest(DosageVO d) {
+		System.out.println("!!!!!!!!!! DosageService 호출됨");
+
+		System.out.println("service::::::::::::"+d);
 
 		return dd.insertDosageRequest(sqlSession, d);
 	}
