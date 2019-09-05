@@ -13,9 +13,8 @@
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 
 
-	<%-- <jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/> --%>
+	<jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/>
 
- <jsp:forward page="WEB-INF/views/join/searchGarden.jsp"/> 
 
 
 

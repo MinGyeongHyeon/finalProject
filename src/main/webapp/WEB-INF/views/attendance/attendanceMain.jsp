@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,18 +27,8 @@ $(function(){
         onSelect:function(){
         	day = $("#datepicker").val();
         	$("#today").html(day);
-        	/* ajax로 바뀐 값 보내서 다시 리스트 불러오기 */
-        	$.ajax({
-        		url:"changeAttendance.at",
-        		type:"post",
-        		data:{"day":day},
-        		success:function(data){
-        			
-        		},
-        		error:function(){
-        			
-        		}
-        	});
+        	
+        	var date = $("#today").html();
         }
 	});
 });
@@ -178,7 +169,17 @@ function goMonth(){
 							<td>비고</td>
 							<td>보호자 확인</td>
 							</tr>
-							<tbody></tbody>
+							<tbody>
+							<c:forEach var="a" items="${ list }">
+							<tr>
+								<td></td>
+								<td><c:out value="${ a.childrenName }"/></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								</tr>
+							</c:forEach>
+							</tbody>
 						</table>
 					<button class="subBtn">다운로드</button>
 					<button class="subBtn">출력</button>

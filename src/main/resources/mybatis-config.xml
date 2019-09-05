@@ -13,6 +13,8 @@
 		<typeAlias type="com.kh.fp.member.model.vo.KinclassSelect" alias="KinclassSelect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderland" alias="Kinderland"/>
 		<typeAlias type="com.kh.fp.schedule.model.vo.Schedule" alias="Schedule"/>
+		<typeAlias type="com.kh.fp.attendance.model.vo.Attendance" alias="Attendance"/>
+		<typeAlias type="com.kh.fp.attendance.model.vo.Children" alias="Children"/>
 
 	</typeAliases>
 	
@@ -21,7 +23,7 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/kinderland-mapper.xml"/>
 		<mapper resource="mappers/schedule-mapper.xml"/>
-
+		<mapper resource="mappers/attendance-mapper.xml"/>
 	</mappers>
 	
 </configuration>
