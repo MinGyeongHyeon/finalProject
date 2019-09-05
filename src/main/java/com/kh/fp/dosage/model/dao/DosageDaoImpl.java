@@ -10,6 +10,9 @@ public class DosageDaoImpl implements DosageDao{
 
 	@Override
 	public int insertDosageRequest(SqlSessionTemplate sqlSession, DosageVO d) {
+		System.out.println("!!!!!!!!!! DosageDao 호출됨");
+
+		System.out.println("dao::::::::::::"+d);
 
 		return sqlSession.insert("Dosage.insertDosageRequest", d);
 	}

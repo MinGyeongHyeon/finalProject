@@ -3569,14 +3569,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	opacity: 1
 }
 
-.collapse {
-	display: none
-}
-
-.collapse.in {
-	display: block
-}
-
 tr.collapse.in {
 	display: table-row
 }

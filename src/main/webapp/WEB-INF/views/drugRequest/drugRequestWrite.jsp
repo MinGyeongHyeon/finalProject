@@ -15,7 +15,7 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
-
+	<input type="hidden" name="childrenName" value="">
 	<c:set var="today" value="<%=new Date()%>"/>
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 
@@ -39,18 +39,18 @@
 								<tr>
 									<th style="width: 15%;">투약일</th>
 									<td>
-										<input type="radio" id="radio1" name="radios1" value="today" checked>
+										<input type="radio" id="radio1" name="dosageDate" value="${today}" checked>
 										<label for="radio1">오늘 ( <fmt:formatDate type="date" value="${today}" pattern="MM월 dd일"/> )</label>
 									</td>
 									<td>
-										<input type="radio" id="radio2" name="radios2" value="tomorrow">
+										<input type="radio" id="radio2" name="dosageDate" value="${tomorrow}">
 										<label for="radio2">내일 ( <fmt:formatDate type="date" value="${tomorrow}" pattern="MM월 dd일"/> )</label>
 									</td>
 								</tr>
 								<tr>
 									<th>증상</th>
 									<td colspan="2">
-										<input type="text" class="form-control" placeholder="예) 감기, 몸살" style="margin-top: 10px;">
+										<input type="text" class="form-control" name="symptom" placeholder="예) 감기, 몸살" style="margin-top: 10px;">
 									</td>
 								</tr>
 							</table>
@@ -69,14 +69,17 @@
 								</tr>
 								<tr>
 									<th>투약 용량</th>
-									<td style="padding-right: 15px;"><input type="text"
-										class="form-control" placeholder="1회분 입력"></td>
-									<td><input type="checkbox"> cc/ml</td>
+									<td style="padding-right: 15px;">
+										<input type="text" class="form-control" placeholder="1회분 입력" name="dosageMl">
+									</td>
+									<td>
+										<input type="checkbox"> cc/ml
+									</td>
 								</tr>
 								<tr>
 									<th>투약 횟수</th>
 									<td colspan="2">
-										<select class="form-control" id="sel1">
+										<select class="form-control" id="sel1" name="dosageCount">
 											<option>1 회</option>
 											<option>2 회</option>
 											<option>3 회</option>
@@ -88,24 +91,25 @@
 								<tr>
 									<th>투약 시간</th>
 									<td colspan="2">
-										<input type="text" id="input2" class="form-control" placeholder="예) 오전간식 후/ 점심 후 / 오후간식 후">
+										<input type="text" id="input2" class="form-control" name="dosageTime" placeholder="예) 오전간식 후/ 점심 후 / 오후간식 후">
 									</td>
 								</tr>
 								<tr>
 									<th>보관 방법</th>
 									<td>
-										<input type="radio" id="radio3" name="radios2" value="roomTemper" checked="true">
+										<input type="radio" id="radio3" name="dosageKeep" value="roomTemper" checked="true">
 										<label for="radio3">실온</label>
 									</td>
 									<td>
-										<input type="radio" id="radio4" name="radios2" value="refTemper">
+										<input type="radio" id="radio4" name="dosageKeep" value="refTemper">
 										<label for="radio4" style="width: 96%;">냉장</label>
 									</td>
 								</tr>
 								<tr>
 									<th>특이사항</th>
-									<td colspan="2"><input type="text" id="input3"
-										class="form-control" placeholder="특이사항"></td>
+									<td colspan="2">
+										<input type="text" id="input3" class="form-control" name="dosageProblem" placeholder="특이사항">
+									</td>
 								</tr>
 							</table>
 							<br>
@@ -136,16 +140,15 @@
 						</div>
 						<div class="m-signature-pad--footer">
 							<!-- <button type="button" class="button save" data-action="save" id="saveBtn">저장</button> -->
-							<button type="button" class="button clear btn btn-xs"
-								data-action="clear" id="clearBtn">
+							<button type="button" class="button clear btn btn-xs" data-action="clear" id="clearBtn">
 								<i class="fas fa-redo-alt"></i>&nbsp;다시쓰기
 							</button>
 						</div>
 					</div>
 					<br>
 					<div id="btnArea" align="center">
-						<button type="button" class="btn btns" id="resetBtn" onclick="goDrugMainView()">취소</button>
-						<button type="button" class="btn btns" id="sendBtn" onclick="insertDosageRequest()">보내기</button>
+						<button type="reset" class="btn btns" id="resetBtn" onclick="goDrugMainView()">취소</button>
+						<button type="submit" class="btn btns" id="sendBtn" onclick="insertDosageRequest()">보내기</button>
 					</div>
 
 
@@ -213,6 +216,16 @@
 		});
 
 		resizeCanvas();
+	</script>
+
+	<script>
+		$(function(){
+			$("input[name=dosageDate]").change(function(){
+					var value = $(this).val();
+					var checked = $(this).prop('checked');
+					console.log(value);
+			});
+		})
 	</script>
 
 </body>

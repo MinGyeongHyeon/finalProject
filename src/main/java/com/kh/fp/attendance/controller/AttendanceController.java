@@ -17,6 +17,7 @@ public class AttendanceController {
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 			String day = date.format(today);
 			model.addAttribute("day",day);
+			
 			return "attendance/attendanceMain";
 		}
 	
@@ -25,5 +26,10 @@ public class AttendanceController {
 		return "";
 	}
 	
+	@RequestMapping(value="changeAttendance.at")
+	public String changeAttendance(Model model) {
+		/* String day = model.getA */
+		return "attendance/attendanceMain";
+	}
 	
 }

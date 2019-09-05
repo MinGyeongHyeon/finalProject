@@ -18,9 +18,12 @@ public class DosageController {
 	@RequestMapping(value="insertDosageRequest.ds" )
 	public String insertDosageRequest(DosageVO d) {
 
-		System.out.println("호출됨");
+		System.out.println("!!!!!!!!!! DosageController 호출됨");
 
 		int result = ds.insertDosageRequest(d);
+
+		System.out.println("controller::::::::::::"+d);
+
 
 		return "";
 
