@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="homework">
+	<resultMap type="homework" id="homeworkResultSet">
+		<id property="boardNum" column="BOARD_NO"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="writeDate" column="BOARD_DATE"/>
+		<result property="boardtype" column="BOARD_TYPE"/>
+		<result property="classNum" column="CLASS_NO"/>
+	    <result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="kinderNo" column="KINDER_NO"/>
+ 		<result property="individualContent" column="ANNOUNCEMENT_CONTENT"/>
+	
+	</resultMap>
+
+	<insert id="insertHomeWork" parameterType="homework">
+		INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle},#{boardContent},#{writeDate},#{boardtype},
+		#{classNum},NULL,#{kinderNo})
+	</insert>
+
+</mapper>
+
