@@ -63,8 +63,10 @@ public class MemberController {
 			
 		} catch (LoginException e) {
 			
+			model.addAttribute("msg" ,e.getMessage());
 			
-			return "redirect:parentsMain";
+			
+			return "account/join5";
 
 		
 		}

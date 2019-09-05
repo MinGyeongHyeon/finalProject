@@ -77,6 +77,16 @@
 		</form>
 	</div>
 	
+	<c:if test="${ msg != null }">
+		
+		<script>
+		
+		alert("${msg}");
+		
+		</script>
+	
+	</c:if>
+	
 	<script>
 		
 	$('#joinLink').click(function(){

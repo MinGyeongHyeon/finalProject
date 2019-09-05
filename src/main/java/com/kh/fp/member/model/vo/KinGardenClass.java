@@ -1,9 +1,10 @@
 package com.kh.fp.member.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Arrays;
 
-public class KinGardenClass {
+public class KinGardenClass implements Serializable{
 	
 	private int kinderNo;
 	private String[] className;
