@@ -1,8 +1,9 @@
 package com.kh.fp.member.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class KinclassSelect {
+public class KinclassSelect implements Serializable{
 	
 	private int kinderNo;
 	private String className;

@@ -1,6 +1,8 @@
 package com.kh.fp.member.model.vo;
 
-public class KidMember {
+import java.io.Serializable;
+
+public class KidMember implements Serializable{
 	
 	private int childrenNo;
 	private String childrenName;

@@ -1,8 +1,9 @@
 package com.kh.fp.member.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class KinGardenClasses {
+public class KinGardenClasses implements Serializable{
 	
 	private int classNo;
 	private String divistion;

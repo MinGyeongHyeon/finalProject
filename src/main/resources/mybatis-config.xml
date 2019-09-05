@@ -11,12 +11,14 @@
 		<typeAlias type="com.kh.fp.member.model.vo.KinderGarden" alias="KinderGarden"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KinGardenClasses" alias="KinGardenClasses"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KinclassSelect" alias="KinclassSelect"/>
+		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderland" alias="Kinderland"/>
 		
 	</typeAliases>
 	
 
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/kinderland-mapper.xml"/>
 	</mappers>
 	
 </configuration>

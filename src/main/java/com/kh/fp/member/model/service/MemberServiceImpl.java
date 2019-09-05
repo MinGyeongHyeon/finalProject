@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService{
 	  
 	  }else {
 	  
-	  throw new LoginException("로그인에 실패하셨습니다. 다시 시도해주세요..");
+	  throw new LoginException("아이디 혹은 비밀번호가 틀립니다. 다시 시도해주세요");
 	  
 	  }
 	  

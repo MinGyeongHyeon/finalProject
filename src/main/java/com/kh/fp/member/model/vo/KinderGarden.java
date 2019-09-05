@@ -1,8 +1,9 @@
 package com.kh.fp.member.model.vo;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class KinderGarden {
+public class KinderGarden implements Serializable{
 	
 	private int kinderNo;
 	private String kinderName;
