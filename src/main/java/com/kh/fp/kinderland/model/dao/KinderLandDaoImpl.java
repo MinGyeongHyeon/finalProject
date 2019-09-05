@@ -1,8 +1,11 @@
 package com.kh.fp.kinderland.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 
@@ -10,10 +13,16 @@ import com.kh.fp.kinderland.model.vo.SelectKinder;
 public class KinderLandDaoImpl implements KinderLandDao{
 
 	@Override
-	public Kinderland selectKin(SqlSessionTemplate sqlSession, SelectKinder sk) {
+	public ArrayList<Kinderland> selectKin(SqlSessionTemplate sqlSession, SelectKinder sk) {
 		
 
-		return sqlSession.selectOne("KinderLand.selectckinder" , sk);
+		return (ArrayList) sqlSession.selectList("KinderLand.selectckinder" , sk);
+	}
+
+	@Override
+	public ArrayList<KinGardenClasses> selectKinderclass(SqlSessionTemplate sqlSession, Kinderland kl) {
+
+		return (ArrayList) sqlSession.selectList("KinderLand.selectKinderclass", kl);
 	}
 
 	
