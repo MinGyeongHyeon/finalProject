@@ -14,7 +14,10 @@ public class DosageDaoImpl implements DosageDao{
 
 		System.out.println("dao::::::::::::"+d);
 
-		return sqlSession.insert("Dosage.insertDosageRequest", d);
+		//int result = sqlSession.insert("Dosage.insertDosageRequest", d);
+
+		return 1;
+
 	}
 
 }

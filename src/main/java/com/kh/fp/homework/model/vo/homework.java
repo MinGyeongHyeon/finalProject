@@ -5,122 +5,122 @@ import java.sql.Date;
 
 public class homework implements Serializable{
 	
-	private int BoardNum;
-	private String BoardTitle;
-	private String BoardContent;
-	private Date WriteDate;
-	private String Boardtype;
-	private int ClassNum;
-	private int ChildrenNo;
-	private int KinderNo;
-	private int IndividualNo;
-	private String IndividualContent;
+	private int boardNum;
+	private String boardTitle;
+	private String boardContent;
+	private Date writeDate;
+	private String boardtype;
+	private int classNum;
+	private int childrenNo;
+	private int kinderNo;
+	private int individualNo;
+	private String individualContent;
 	
 	public homework() {}
 
 	public homework(int boardNum, String boardTitle, String boardContent, Date writeDate, String boardtype,
 			int classNum, int childrenNo, int kinderNo, int individualNo, String individualContent) {
 		super();
-		BoardNum = boardNum;
-		BoardTitle = boardTitle;
-		BoardContent = boardContent;
-		WriteDate = writeDate;
-		Boardtype = boardtype;
-		ClassNum = classNum;
-		ChildrenNo = childrenNo;
-		KinderNo = kinderNo;
-		IndividualNo = individualNo;
-		IndividualContent = individualContent;
+		this.boardNum = boardNum;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.writeDate = writeDate;
+		this.boardtype = boardtype;
+		this.classNum = classNum;
+		this.childrenNo = childrenNo;
+		this.kinderNo = kinderNo;
+		this.individualNo = individualNo;
+		this.individualContent = individualContent;
 	}
 
 	public int getBoardNum() {
-		return BoardNum;
+		return boardNum;
 	}
 
 	public void setBoardNum(int boardNum) {
-		BoardNum = boardNum;
+		this.boardNum = boardNum;
 	}
 
 	public String getBoardTitle() {
-		return BoardTitle;
+		return boardTitle;
 	}
 
 	public void setBoardTitle(String boardTitle) {
-		BoardTitle = boardTitle;
+		this.boardTitle = boardTitle;
 	}
 
 	public String getBoardContent() {
-		return BoardContent;
+		return boardContent;
 	}
 
 	public void setBoardContent(String boardContent) {
-		BoardContent = boardContent;
+		this.boardContent = boardContent;
 	}
 
 	public Date getWriteDate() {
-		return WriteDate;
+		return writeDate;
 	}
 
 	public void setWriteDate(Date writeDate) {
-		WriteDate = writeDate;
+		this.writeDate = writeDate;
 	}
 
 	public String getBoardtype() {
-		return Boardtype;
+		return boardtype;
 	}
 
 	public void setBoardtype(String boardtype) {
-		Boardtype = boardtype;
+		this.boardtype = boardtype;
 	}
 
 	public int getClassNum() {
-		return ClassNum;
+		return classNum;
 	}
 
 	public void setClassNum(int classNum) {
-		ClassNum = classNum;
+		this.classNum = classNum;
 	}
 
 	public int getChildrenNo() {
-		return ChildrenNo;
+		return childrenNo;
 	}
 
 	public void setChildrenNo(int childrenNo) {
-		ChildrenNo = childrenNo;
+		this.childrenNo = childrenNo;
 	}
 
 	public int getKinderNo() {
-		return KinderNo;
+		return kinderNo;
 	}
 
 	public void setKinderNo(int kinderNo) {
-		KinderNo = kinderNo;
+		this.kinderNo = kinderNo;
 	}
 
 	public int getIndividualNo() {
-		return IndividualNo;
+		return individualNo;
 	}
 
 	public void setIndividualNo(int individualNo) {
-		IndividualNo = individualNo;
+		this.individualNo = individualNo;
 	}
 
 	public String getIndividualContent() {
-		return IndividualContent;
+		return individualContent;
 	}
 
 	public void setIndividualContent(String individualContent) {
-		IndividualContent = individualContent;
+		this.individualContent = individualContent;
 	}
 
 	@Override
 	public String toString() {
-		return "homework [BoardNum=" + BoardNum + ", BoardTitle=" + BoardTitle + ", BoardContent=" + BoardContent
-				+ ", WriteDate=" + WriteDate + ", Boardtype=" + Boardtype + ", ClassNum=" + ClassNum + ", ChildrenNo="
-				+ ChildrenNo + ", KinderNo=" + KinderNo + ", IndividualNo=" + IndividualNo + ", IndividualContent="
-				+ IndividualContent + "]";
+		return "homework [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", writeDate=" + writeDate + ", boardtype=" + boardtype + ", classNum=" + classNum + ", childrenNo="
+				+ childrenNo + ", kinderNo=" + kinderNo + ", individualNo=" + individualNo + ", individualContent="
+				+ individualContent + "]";
 	}
-	
+
 	
 
 }

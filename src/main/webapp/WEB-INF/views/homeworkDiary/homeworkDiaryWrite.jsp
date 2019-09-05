@@ -177,6 +177,10 @@
 		color:white;
 	}
 	
+	.Title{
+		width:600px;
+	}
+	
 </style>
 <script>
 	$(function(){
@@ -222,11 +226,17 @@
 						<th>날짜</th>
 					</tr>
 					<tr>
-						<td><input type="date" name="WriteDate"/></td>
+						<td><input type="date" name="writeDate"/></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+					</tr>
+					<tr>
+						<td><input type="text" name="boardTitle" class="Title"/></td>
 					</tr>
 					<tr>
 						<th>원아 선택</th>
-					</tr>
+				</tr>
 					<tr>
 						<td><input type="checkbox" id="selectAll"/><label for="selectAll">전체선택</label></td>
 					</tr>
@@ -247,7 +257,7 @@
 						<th>내용</th>
 					</tr>
 					<tr>
-						<td><textarea name="contents" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;"></textarea></td>
+						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;"></textarea></td>
 					</tr>
 					<tr>
 						<th>파일첨부</th>

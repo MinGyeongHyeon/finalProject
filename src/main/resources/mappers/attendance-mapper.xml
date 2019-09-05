@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Attendance">
+	<!-- <resultMap type="Attendance" id="attendanceResultSet">
+		<id property="attendanceNo" column="ATTENDANCE_NO"/> 
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="attendancceYN" column="ATTENDANCE_YN"/>
+		<result property="time" column="TIME"/>
+		<result property="mTime" column="M_TIME"/>
+		<result property="status" column="STATUS"/>
+	</resultMap> -->
+	
+	<resultMap type="Children" id="childResultSet">
+		<id property="childrenNo" column="CHILDREN_NO"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+	
+
+	<!-- 데일리출석부 -->
+	<select id="dailyatt" parameterType="Children" resultMap="childResultSet">
+		SELECT CHILDREN_NAME
+		FROM CHILDREN
+	</select>
+
+
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

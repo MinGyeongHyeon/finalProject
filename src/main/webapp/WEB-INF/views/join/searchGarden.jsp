@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@ input,select{
 		<h5>원검색</h5>
 	</div>	
 	<table align="center">
-		<tr><td colspan="3">
+		<tr><td colspan="2">
 		지역을 먼저 선택 후 원 명을 입력해 주세요.
 		</td></tr>
 		<tr>
@@ -85,44 +86,137 @@ input,select{
 		
 		</td>
 		</tr>
-		<tr>
+		<tr id="searchlist">
 		<td>원 명 검색</td>
 		<td><input type="text" id="kinName" placeholder="원 명을 입력해 주세요."></td>
 		<td><button id="searchKin">검색</button></td>
 		</tr>
-		<tr>
-		<td colspan="8" text-align="center">검색 결과 리스트</td>
-		</tr>
+		
+		
 		
 	</table>
 	
 	<script>
 	
-		$('#searchKin').click(function(){
+		$('#sigungu').change(function(){
+			
 			
 			var sido = $('#sido').val();
 			var sigungu = $('#sigungu').val();
 			var kinName = $('#kinName').val();
 			var kinderAddress = sido + " " + sigungu;
 			
+			var $tr = $('#searchlist');
+			
+			var $remove = $('.remove');
+			
+			$remove.remove();
+			
 			
 			$.ajax({
 				url:"selectKin.kl",
 				data:{kinderAddress:kinderAddress , kinName:kinName},
 				type:"post",
+				contentType: 'application/x-www-form-urlencoded; charset=euc-kr',
 				success:function(data){
 					
-					alert(data.kd.kinderAddress);
-					console.log(data);
-					console.log(typeof(data));
 					
 					
+					for(var i = 0 ; i < data.list.length ; i++){
+						
+						var $input = $('<input type="hidden">');
+						var $tr2 = $('<tr class="remove">');	
+						var $label= $('<label>');
+						var $td = $("<td colspan='2' text-align='center'>");
+						var $td2 = $("<td colspan='1' text-align='center'>")
+						var $td3 = $("<td colspan='1' style='display:none'>");
+						var $h2 = $('<h3>');
+						
+						
+						$input.val(data.list[i].kinderNo);
+						$h2.text(data.list[i].kinderName + "");
+						$label.text("      "+data.list[i].kinderAddress );
+						$td.append($label);
+						$td2.append($h2);
+						$td3.append($input);
+						
+						$tr2.append($td2);
+						$tr2.append($td);
+						$tr2.append($td3);
+						
+						
+						$tr.after($tr2);
+						
+					}
 					
 					
+				$(".remove").click(function(){
 					
+				var kinderNo = $(this).children("td").children("input").val();
+				var $test = $(this);
+					
+					$(".test").remove();
+				
+					$.ajax({
+						
+						url:"selectKinderclass.kl",
+						type:"post",
+						data:{kinderNo:kinderNo},
+						success:function(data){
+						
+							
+							var $tr4 = $('<tr class="test">');	
+							
+							for(var i = 0 ; i < data.list2.length; i++){
+								
+								console.log($test);
+						    var $td4 = $("<td colspan='1'>");
+							var $button = $('<button class="classesNo">');
+							var $input3 = $("<input type='hidden'>");
+							
+							$button.text(data.list2[i].className);
+							$input3.val(data.list2[i].classNo);
+							
+							$td4.append($button);
+							$td4.append($input3);
+							$tr4.append($td4);
+
+							
+							$test.after($tr4); 
+							
+								
+							}
+							
+							
+							$('.classesNo').click(function(){
+								
+								var classesNo = $(this).next().val();
+								
+								console.log(kinderNo);
+								console.log(classesNo);
+								
+								
+							});
+							
+				
+							
+							
+							
+							
+							
+						}
+						
+					});
+				
+				
+				});
+				
 				}
+				
 			
 			});
+			
+			
 			
 		});
 	
