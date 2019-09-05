@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,14 +213,16 @@
 			</table>
 		</div>
 		<hr />
+
 		<form action="homeWorkWrite.hw" method="post" enctype="multipart/form-data">
+
 			<div class="homeworkDiaryForm">
 				<table>
 					<tr>
 						<th>날짜</th>
 					</tr>
 					<tr>
-						<td><input type="date" /></td>
+						<td><input type="date" name="WriteDate"/></td>
 					</tr>
 					<tr>
 						<th>원아 선택</th>
@@ -243,7 +247,7 @@
 						<th>내용</th>
 					</tr>
 					<tr>
-						<td><textarea name="contents" id="contents" cols="" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;"></textarea></td>
+						<td><textarea name="contents" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;"></textarea></td>
 					</tr>
 					<tr>
 						<th>파일첨부</th>
@@ -253,7 +257,7 @@
 							<div class="fileList" style="width:100%;">
 								<label for="selectFile">파일선택</label>
 								<input type="text" name="fileName" class="fileName">
-								<input type="file" value="추가" id="selectFile" class="selectFile" multiple hidden/>
+								<input type="file" value="추가" name="attachfile"id="selectFile" class="selectFile" multiple hidden/>
 							</div>
 							
 						

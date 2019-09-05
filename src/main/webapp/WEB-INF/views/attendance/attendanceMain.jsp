@@ -27,6 +27,17 @@ $(function(){
         	day = $("#datepicker").val();
         	$("#today").html(day);
         	/* ajax로 바뀐 값 보내서 다시 리스트 불러오기 */
+        	$.ajax({
+        		url:"changeAttendance.at",
+        		type:"post",
+        		data:{"day":day},
+        		success:function(data){
+        			
+        		},
+        		error:function(){
+        			
+        		}
+        	});
         }
 	});
 });
