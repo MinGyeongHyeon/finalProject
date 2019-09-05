@@ -1,23 +1,21 @@
 var eventModal = $('#eventModal');
 
 var modalTitle = $('.modal-title');
-var editAllDay = $('#edit-allDay');
-var editTitle = $('#edit-title');
-var editStart = $('#edit-start');
-var editEnd = $('#edit-end');
-var editType = $('#edit-type');
-var editColor = $('#edit-color');
-var editDesc = $('#edit-desc');
+var editTitle = $('#edit-title');	//제목
+var editAllDay = $("#edit-allDay"); //하루종일
+var editStart = $('#edit-start');	//시작날짜
+var editEnd = $('#edit-end');		//끝 날짜
+var editType = $('#edit-type');		//공개범위
+var editColor = $('#edit-color');	//색
+var editDesc = $('#edit-desc');		//내용
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
-
 
 /* ****************
  *  새로운 일정 생성
  * ************** */
 var newEvent = function (start, end, eventType) {
-
     $("#contextMenu").hide(); //메뉴 숨김
 
     modalTitle.html('새로운 일정');
@@ -36,20 +34,18 @@ var newEvent = function (start, end, eventType) {
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
-
         var eventData = {
-            _id: eventId,
-            title: editTitle.val(),
-            start: editStart.val(),
-            end: editEnd.val(),
-            description: editDesc.val(),
-            type: editType.val(),
-            username: '사나',
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
-            allDay: false
+            title: editTitle.val(), //제목
+            start: editStart.val(), //시작날짜
+            end: editEnd.val(),		//끝날짜
+            scheduleContent: editDesc.val(), //내용
+            type: editType.val(),		//공개범위
+            backgroundColor: editColor.val(), //색
+            textColor: '#ffffff',	//글자 색
+            allDay: false		//하루종일 여부(아래에서 체크 여부에 따라 true 부여)
         };
-
+        
+        
         if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
@@ -79,12 +75,11 @@ var newEvent = function (start, end, eventType) {
 
         //새로운 일정 저장
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //.....
-            },
+            type: "post",
+            url: "insertSchedule.sc",
+            data: eventData,
             success: function (response) {
+            	console.log("성공");
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');

@@ -6,13 +6,17 @@
 <mapper namespace="Schedule">
 	<resultMap type="Schedule" id="scheduleResultSet">
 		<id property="scheduleNo" column="SCHEDULE_NO"/>
-		<result property="scheduleDate" column="SCHEDULE_DATE"/>
-		<result property="scheduleTitle" column="SCHEDULE_TITLE"/>
-		<result property="scheduleContent" column="SCHEDULE_CONTENT"/>
-		<result property="scheduleType" column="SCHEDULE_TYPE"/>
+		<result property="title" column="SCHEDULE_TITLE"/>
+		<result property="allDay" column="ALL_DAY"/>
+		<result property="start" column="START_DATE"/>
+		<result property="end" column="END_DATE"/>
+		<result property="backgroundColor" column="COLOR"/>
+		<result property="Type" column="SCHEDULE_TYPE"/>
 		<result property="classNo" column="CLASS_NO"/>
-		<result property="kinderNo" column="KINDER_NO"/>
+		<result property="kinderNo" column="KINDER_NO"/>								
+		<result property="scheduleContent" column="SCHEDULE_CONTENT"/>
 	</resultMap>
+
 
 	<insert id="insertSchedule" parameterType="Schedule">
 		<!-- INSERT INTO SCHEDULE

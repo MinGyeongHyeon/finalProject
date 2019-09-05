@@ -21,6 +21,12 @@
 
 <style>
 	.fc-day-number{color:blue!important;}
+	.fc table{
+	}
+	#wrapper{
+		width:80%;
+		margin:0 auto;
+	}
 </style>
 </head>
 
@@ -32,10 +38,8 @@
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">카테고리1</a></li>
-                <li><a tabindex="-1" href="#">카테고리2</a></li>
-                <li><a tabindex="-1" href="#">카테고리3</a></li>
-                <li><a tabindex="-1" href="#">카테고리4</a></li>
+                <li><a tabindex="-1" href="#">원 일정</a></li>
+                <li><a tabindex="-1" href="#">반 일정</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -60,18 +64,19 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
-                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-title">일정명</label>
                                 <input class="inputModal" type="text" name="edit-title" id="edit-title"
                                     required="required" />
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-start">시작</label>
@@ -82,17 +87,6 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-end">끝</label>
                                 <input class="inputModal" type="text" name="edit-end" id="edit-end" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-type">구분</label>
-                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="카테고리1">카테고리1</option>
-                                    <option value="카테고리2">카테고리2</option>
-                                    <option value="카테고리3">카테고리3</option>
-                                    <option value="카테고리4">카테고리4</option>
-                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -113,9 +107,19 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-type">공개범위</label>
+                                <select class="inputModal" name="edit-type" id="edit-type">
+                                    <option value="원">원 일정</option>
+                                    <option value="반">반 일정</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-desc">설명</label>
                                 <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
-                                    id="edit-desc"></textarea>
+                                    id="edit-desc" style="resize: none;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -130,7 +134,7 @@
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        </div><!-- /.modal /-->
 
         <div class="panel panel-default">
 
@@ -144,10 +148,8 @@
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
-                            <option value="카테고리4">카테고리4</option>
+                            <option value="원">원 일정</option>
+                            <option value="반">반 일정</option>
                         </select>
                     </div>
                 </div>
