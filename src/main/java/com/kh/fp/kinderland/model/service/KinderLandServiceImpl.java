@@ -1,10 +1,13 @@
 package com.kh.fp.kinderland.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fp.kinderland.model.dao.KinderLandDao;
+import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 
@@ -19,10 +22,17 @@ public class KinderLandServiceImpl implements KinderLandService{
 	
 	
 	@Override
-	public Kinderland selectKin(SelectKinder sk) {
+	public ArrayList<Kinderland> selectKin(SelectKinder sk) {
 		
 
 		return kd.selectKin(sqlSession,sk);
+	}
+
+
+	@Override
+	public ArrayList<KinGardenClasses> selectKinderclass(Kinderland kl) {
+
+		return kd.selectKinderclass(sqlSession , kl);
 	}
 
 }

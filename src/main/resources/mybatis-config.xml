@@ -14,6 +14,7 @@
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderland" alias="Kinderland"/>
 		<typeAlias type="com.kh.fp.schedule.model.vo.Schedule" alias="Schedule"/>
 		<typeAlias type="com.kh.fp.dosage.model.vo.DosageVO" alias="Dosage"/>
+		<typeAlias type="com.kh.fp.kinderland.model.vo.KinGardenClasses" alias="KinGardenClassesvo"/>
 	</typeAliases>
 
 

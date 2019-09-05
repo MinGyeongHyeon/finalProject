@@ -13,13 +13,28 @@
   	
   	</resultMap>
   	
+  	<resultMap type="KinGardenClassesvo" id="kinderclassseultSet">
+  		<id property="classNo" column="CLASS_NO"/>
+  		<result property="division" column="DIVISION"/>
+  		<result property="kinderNo" column="KINDER_NO"/>
+  		<result property="className" column="CLASS_NAME"/>
+  	</resultMap>
+ 
   	<select id="selectckinder" resultMap="kinderreslutSet">
   	
   	SELECT *
   	FROM KINDERGARDEN
   	WHERE KINDER_ADDRESS LIKE '%' || #{ kinderAddress } || '%'
   		
-  		
+
+  	</select>
+  	
+  	<select id="selectKinderclass" resultMap="kinderclassseultSet">
+  	
+  		SELECT *
+  		FROM KINDER_CLASS
+  		WHERE KINDER_NO = #{kinderNo}
+  	
   	
   	</select>
 	
