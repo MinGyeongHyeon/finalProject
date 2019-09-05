@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FullCalendar Example</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel=" shortcut icon" href="image/favicon.ico">
     <link rel="stylesheet" href='${contextPath }/resources/css/calendar/bootstrap-datetimepicker.min.css' />
     <link rel="stylesheet" href="${contextPath }/resources/css/calendar/calendarBoot.css">
@@ -175,7 +174,7 @@
     </div>
     <!-- /.container -->
 
-    <script src="${contextPath }/resources/js/calendar/jquery.min.js"></script>
+    <%-- <script src="${contextPath }/resources/js/calendar/jquery-3.3.1.js"></script><!-- 9600line 주석 --> --%>
     <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script>
     <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/fullcalendar.min.js"></script>
