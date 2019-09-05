@@ -13,6 +13,7 @@
 		<typeAlias type="com.kh.fp.member.model.vo.KinclassSelect" alias="KinclassSelect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderland" alias="Kinderland"/>
 		<typeAlias type="com.kh.fp.schedule.model.vo.Schedule" alias="Schedule"/>
+		<typeAlias type="com.kh.fp.kinderland.model.vo.KinGardenClasses" alias="KinGardenClassesvo"/>
 
 	</typeAliases>
 	
