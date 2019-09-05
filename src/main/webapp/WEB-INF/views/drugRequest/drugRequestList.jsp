@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +31,14 @@ $(function(){
 				<div class="page-inner">
 					<div class="page-header">
 						<i class="fas fa-notes-medical" style="font-size:20px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
+						<c:if test="${ loginUser.classification eq '학부모'}">
 						<button type="button" class="btn" id="writeBtn" onclick="goDrugRequestWrite()"><i class="fas fa-pen"></i>&nbsp;작성하기</button>
+						</c:if>
 					</div>
 					<hr>
 					<div class="page-category">
 						<div class="inputArea">
+							<c:if test="${ !loginUser.classification eq '학부모' }">
 							<select class="form-control" id="sel1">
 						        <option>전체반</option>
 						        <option>별님반</option>
@@ -46,12 +50,12 @@ $(function(){
 						        <option>김영지</option>
 						        <option>한송이</option>
       						</select>
-      						
+      						</c:if>
       						<div id="dateA">
 							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">
 							</div>
 						</div>
-						<br>
+						<br><br><br>
 						<div id="listArea">
 						
 							<div id="list1" onclick="showDrugDetail()">
@@ -73,10 +77,11 @@ $(function(){
 						</div>
 						
 						<br>
+						<c:if test="${ !loginUser.classification eq '학부모' }">
 						<button type="button" class="btn btn-light" id="btn2">
 							<i class="fas fa-print"></i>&nbsp; 출력 및 다운로드
 						</button>
-						
+						</c:if>
 					</div>
 				</div>
 			</div>

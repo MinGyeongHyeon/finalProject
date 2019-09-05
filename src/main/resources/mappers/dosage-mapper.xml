@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Dosage">
+	<resultMap type="com.kh.fp.dosage.model.vo.DosageVO" id="dosageResultSet">
+		<id property="dosageNo" column="DOSAGE_NO"/>
+		<result property="dosageDate" column="DOSAGE_DATE"/>
+		<result property="symptom" column="SYMPTOM"/>
+		<result property="kinds" column="KINDS"/>
+		<result property="dosageMl" column="DOSAGE_ML"/>
+		<result property="dosageCount" column="DOSAGE_COUNT"/>
+	    <result property="dosageTime" column="DOSAGE_TIME"/>
+		<result property="dosageKeep" column="DOSAGE_KEEP"/>
+		<result property="dosageProblem" column="DOSAGE_PROBLEM"/>
+		<result property="reading" column="READING"/>
+		<result property="reDate" column="RE_DATE"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+	</resultMap>
+
+	<insert id="insertDosageRequest" parameterType="Dosage">
+		INSERT INTO DOSAGE
+		VALUES(DOSAGE_NO.NEXTVAL, #{})
+	</insert>
+
+</mapper>
+

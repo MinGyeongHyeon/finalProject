@@ -9,13 +9,20 @@
 <title>FullCalendar Example</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel=" shortcut icon" href="image/favicon.ico">
-    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/fullcalendar.min.css" />
-    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/bootstrap.min.css">
-    <link rel="stylesheet" href='${contextPath }/resources/css/calendar/select2.min.css' />
     <link rel="stylesheet" href='${contextPath }/resources/css/calendar/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/calendarBoot.css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/fullcalendar.min.css" />
+    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/main.css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/material-icon.css">
+    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/roboto.css">
+    <link rel="stylesheet" href='${contextPath }/resources/css/calendar/select2.min.css' />
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="${contextPath }/resources/css/calendar/main.css">
+
+<style>
+	.fc-day-number{color:blue!important;}
+</style>
 </head>
 
 <body>
@@ -169,7 +176,7 @@
     <!-- /.container -->
 
     <script src="${contextPath }/resources/js/calendar/jquery.min.js"></script>
-    <script src="${contextPath }/resources/js/calendar/bootstrap.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script>
     <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/fullcalendar.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/ko.js"></script>

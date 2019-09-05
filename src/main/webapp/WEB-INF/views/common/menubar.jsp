@@ -39,6 +39,14 @@
 	.sidebar .nav>.nav-item a[data-toggle=collapse][aria-expanded=true]:before, .sidebar .nav>.nav-item.active:hover>a:before, .sidebar .nav>.nav-item.active>a:before {
 		background:#ff6666;
 	}
+	#kinName:hover {
+		cursor:pointer;
+		color:#fcfcfc;
+	}
+	#kinName {
+		color:white;
+		font-weight:bold;
+	}
 	
 </style>
 
@@ -51,8 +59,8 @@
 		
 			<div class="logo-header">
 
-				<a href="index.html" class="logo"> 
-					<label for="">킨더유치원</label>
+				<a href="main.pl" class="logo"> 
+					<label id="kinName">킨더유치원</label>
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
 					data-toggle="collapse" data-target="collapse" aria-expanded="false"
@@ -64,7 +72,7 @@
 					<i class="fa fa-ellipsis-v"></i>
 				</button>
 				<div class="navbar-minimize">
-					<button class="btn btn-minimize btn-rounded" onclick="moveDiv();">
+					<button class="btn btn-minimize btn-rounded">
 						<i class="fa fa-bars"></i>
 					</button>
 				</div>
@@ -427,20 +435,5 @@
 	<!-- Azzara JS -->
 	<script src="${ contextPath }/resources/assets/js/ready.min.js"></script>
 	
-	
-	<script>
-	
-	
-		function moveDiv(){
-			var area = $("#firstContentArea")[0];
-			if(area.style.margin == "" ||area.style.margin == "auto auto auto 30%"){
-				$(area).css('margin','auto');
-			}else {
-				$(area).css('margin-left','30%');
-			}
-		}
-	
-		
-	</script>
 </body>
 </html>
