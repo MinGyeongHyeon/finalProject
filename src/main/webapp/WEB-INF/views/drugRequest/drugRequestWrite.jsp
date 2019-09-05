@@ -16,9 +16,13 @@
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<input type="hidden" name="childrenName" value="">
+
 	<c:set var="today" value="<%=new Date()%>"/>
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 
+	<fmt:formatDate var="todayToString" pattern="yyyyMMdd" value="${ today }"/>
+	<fmt:formatDate var="tomorrowToString" pattern="yyyyMMdd" value="${ tomorrow }"/>
+<form action="insertDosageRequest" method="post" enctype="multipart/form-date">
 	<div class="main-panel">
 		<div class="content">
 			<div class="page-inner">
@@ -35,15 +39,16 @@
 						</div>
 						<hr width="98%">
 						<div id="area1">
+
 							<table id="table1">
 								<tr>
 									<th style="width: 15%;">투약일</th>
 									<td>
-										<input type="radio" id="radio1" name="dosageDate" value="${today}" checked>
+										<input type="radio" id="radio1" name="dosageDate" value="${todayToString}" checked>
 										<label for="radio1">오늘 ( <fmt:formatDate type="date" value="${today}" pattern="MM월 dd일"/> )</label>
 									</td>
 									<td>
-										<input type="radio" id="radio2" name="dosageDate" value="${tomorrow}">
+										<input type="radio" id="radio2" name="dosageDate" value="${tomorrowToString}">
 										<label for="radio2">내일 ( <fmt:formatDate type="date" value="${tomorrow}" pattern="MM월 dd일"/> )</label>
 									</td>
 								</tr>
@@ -80,11 +85,11 @@
 									<th>투약 횟수</th>
 									<td colspan="2">
 										<select class="form-control" id="sel1" name="dosageCount">
-											<option>1 회</option>
-											<option>2 회</option>
-											<option>3 회</option>
-											<option>4 회</option>
-											<option>5 회</option>
+											<option value="1">1 회</option>
+											<option value="2">2 회</option>
+											<option value="3">3 회</option>
+											<option value="4">4 회</option>
+											<option value="5">5 회</option>
 										</select>
 									</td>
 								</tr>
@@ -148,23 +153,23 @@
 					<br>
 					<div id="btnArea" align="center">
 						<button type="reset" class="btn btns" id="resetBtn" onclick="goDrugMainView()">취소</button>
-						<button type="submit" class="btn btns" id="sendBtn" onclick="insertDosageRequest()">보내기</button>
+						<button type="submit" class="btn btns" id="sendBtn">보내기</button>
 					</div>
-
 
 
 				</div>
 			</div>
 		</div>
 	</div>
+					</form>
 
 	<script>
 		function goDrugMainView() {
 			location.href = "drugMainView.pl";
 		}
-		function insertDosageRequest() {
+/* 		function insertDosageRequest() {
 			location.href="insertDosageRequest.ds"
-		}
+		} */
 	</script>
 
 	<!-- 싸인 패드 -->
@@ -224,6 +229,12 @@
 					var value = $(this).val();
 					var checked = $(this).prop('checked');
 					console.log(value);
+			});
+
+			$("input[name=dosageKeep]").change(function(){
+				var value2 = $(this).val();
+				var checked2 = $(this).prop('checked');
+				console.log(value2);
 			});
 		})
 	</script>
