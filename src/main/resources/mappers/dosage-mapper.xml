@@ -16,14 +16,15 @@
 		<result property="dosageProblem" column="DOSAGE_PROBLEM"/>
 		<result property="reading" column="READING"/>
 		<result property="reDate" column="RE_DATE"/>
-		<result property="userNo" column="USER_NO"/>
+		<result property="userNo1" column="USER_NO"/>
 		<result property="childrenNo" column="CHILDREN_NO"/>
 		<result property="childrenName" column="CHILDREN_NAME"/>
 	</resultMap>
 
 	<insert id="insertDosageRequest" parameterType="Dosage">
 		INSERT INTO DOSAGE
-		VALUES(DOSAGE_NO.NEXTVAL, #{})
+		VALUES(DOSAGE_NO.NEXTVAL, #{dosageDate}, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
+					#{dosageTime}, #{dosageKeep}, #{dosageProblem}, NULL, NULL, #{childrenNo})
 	</insert>
 
 </mapper>
