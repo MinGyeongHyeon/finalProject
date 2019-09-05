@@ -213,7 +213,9 @@
 			</table>
 		</div>
 		<hr />
-		<form action="insertHomeWork.hw" method="post" enctype="multipart/form-data">
+
+		<form action="homeWorkWrite.hw" method="post" enctype="multipart/form-data">
+
 			<div class="homeworkDiaryForm">
 				<table>
 					<tr>
