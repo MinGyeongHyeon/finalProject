@@ -26,7 +26,7 @@ var editEvent = function (event, element, view) {
     editTitle.val(event.title);
     editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType.val(event.type);
-    editDesc.val(event.description);
+    editDesc.val(event.scheduleContent);
     editColor.val(event.backgroundColor).css('color', event.backgroundColor);
 
     addBtnContainer.hide();
@@ -72,7 +72,7 @@ var editEvent = function (event, element, view) {
         event.end = displayDate;
         event.type = editType.val();
         event.backgroundColor = editColor.val();
-        event.description = editDesc.val();
+        event.scheduleContent = editDesc.val();
 
         $("#calendar").fullCalendar('updateEvent', event);
 
