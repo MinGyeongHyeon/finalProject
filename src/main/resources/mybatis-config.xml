@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	
+
 	<typeAliases>
 		<typeAlias type="com.kh.fp.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KidMember" alias="KidMember"/>
@@ -13,15 +13,15 @@
 		<typeAlias type="com.kh.fp.member.model.vo.KinclassSelect" alias="KinclassSelect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderland" alias="Kinderland"/>
 		<typeAlias type="com.kh.fp.schedule.model.vo.Schedule" alias="Schedule"/>
-
+		<typeAlias type="com.kh.fp.dosage.model.vo.DosageVO" alias="Dosage"/>
 	</typeAliases>
-	
+
 
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/kinderland-mapper.xml"/>
 		<mapper resource="mappers/schedule-mapper.xml"/>
-
+		<mapper resource="mappers/dosage-mapper.xml"/>
 	</mappers>
-	
+
 </configuration>
