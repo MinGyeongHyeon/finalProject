@@ -23,8 +23,8 @@
 
 	<insert id="insertDosageRequest" parameterType="Dosage">
 		INSERT INTO DOSAGE
-		VALUES(DOSAGE_NO.NEXTVAL, #{dosageDate}, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
-					#{dosageTime}, #{dosageKeep}, #{dosageProblem}, NULL, NULL, #{childrenNo})
+		VALUES(DOSAGE_NO.NEXTVAL, SYSDATE, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
+					#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo})
 	</insert>
 
 </mapper>
