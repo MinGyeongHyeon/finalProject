@@ -120,6 +120,21 @@
 		<servlet-name>dosage</servlet-name>
 		<url-pattern>*.ds</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>individualhomework</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/individualhomework-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>individualhomework</servlet-name>
+		<url-pattern>*.ih</url-pattern>
+	</servlet-mapping>
+	
 
 
 

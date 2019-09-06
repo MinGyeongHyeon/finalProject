@@ -7,4 +7,6 @@ public interface HomeworkService  {
 
 	int insertHomeWork(homework h) throws HomeWorkException;
 
+	int howManyPeople(int classNum);
+
 }
