@@ -37,7 +37,6 @@ public class AttendanceController {
 			
 			try {
 				ArrayList<Children> dayAtt = as.dailyAttendance();
-				System.out.println(dayAtt);
 				mv.addAttribute("list", dayAtt);
 				return "attendance/attendanceMain";
 			} catch (DailyException e) {
@@ -46,25 +45,20 @@ public class AttendanceController {
 			}
 			
 			
-			
-			
-			
 		}
 	
 	@RequestMapping(value="month.at")//월별출석부
 	public String monthAtt() {
 		
 		
-		return "";
+		return "attendance/monthAttendance";
 	}
 	
 	@RequestMapping(value="changeAttendance.at")
-	public String changeAttendance(String date,HttpServletResponse rs, Model model) {
+	public String changeAttendance(String time,HttpServletResponse rs, Model model) {
 		/* 특정 날짜 출석부 */
-		rs.setContentType("text/html;charset=utf-8");
-		JSONObject jso = new JSONObject();
 		
-		System.out.println(date);
+		System.out.println(time);
 		System.out.println("나오세요~");
 		return "attendance/attendanceMain";
 	}
