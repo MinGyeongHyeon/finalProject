@@ -128,6 +128,11 @@ public class PageLinkServlet {
 	 public String DetailHomeWork() {
 	  return "homeworkDiary/homeworkDetail";
 	  }
+	 
+	 @RequestMapping(value="WriteSomeoneHomeWork.pl")
+	 public String WriteSomeoneHomeWork() {
+	  return "homeworkDiary/homeworkIndividualWrite";
+	  }
 	
 
 }

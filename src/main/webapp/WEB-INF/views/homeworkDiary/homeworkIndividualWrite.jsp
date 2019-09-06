@@ -177,6 +177,9 @@
 		color:white;
 	}
 	
+	.Title{
+		width:600px;
+	}
 	
 </style>
 <script>
@@ -202,7 +205,7 @@
 			<table style="width:100%;">
 				<tr>
   					<td style="vertical-align: middle;">
-						<p style="font-weight:bold; font-size:large">알림장 작성</p>
+						<p style="font-weight:bold;">알림장 작성</p>
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
@@ -231,7 +234,25 @@
 					<tr>
 						<td><input type="text" name="boardTitle" class="Title" style="width:50%"/></td>
 					</tr>
-					
+					<tr>
+						<th>원아 선택</th>
+				</tr>
+					<tr>
+						<td><input type="checkbox" id="selectAll"/><label for="selectAll">전체선택</label></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="classroom">
+								<table>
+									<tr>
+										<td><button class="className">별님반</button></td>
+										<td>0/15</td>
+										
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
 					<tr>
 						<th>내용</th>
 					</tr>
@@ -263,7 +284,7 @@
 							<input type="reset" value="취소"/>
 						</td>
 						<td>
-							<input type="submit" value="완료"/>
+							<input type="submit" value="다음"/>
 						</td>
 					</tr>
 				</table>
