@@ -171,7 +171,7 @@
 		}
 		
 		function goSomeoneWrite(){
-			location.href = "WriteSomeoneHomeWork.pl";
+			location.href = "howmanypeopleinClass.ih";
 		}
 	</script>
 </body>

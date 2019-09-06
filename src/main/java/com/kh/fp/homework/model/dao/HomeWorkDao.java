@@ -9,4 +9,6 @@ public interface HomeWorkDao {
 
 	int insertHomeWork(SqlSessionTemplate sqlSession, homework h) throws HomeWorkException;
 
+	int selectHowmany(SqlSessionTemplate sqlSession, int classNum);
+
 }

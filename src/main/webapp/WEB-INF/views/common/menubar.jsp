@@ -11,8 +11,8 @@
 
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 	<title>메뉴바</title>
-	
-	
+
+
 <!-- 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' /> -->
 	<link rel="icon" href="${ contextPath }/resources/assets/img/icon.ico" type="image/x-icon"/>
 
@@ -47,7 +47,7 @@
 		color:white;
 		font-weight:bold;
 	}
-	
+
 </style>
 
 </head>
@@ -56,10 +56,10 @@
 	<c:if test="${ !empty loginUser }">
 
 		<div class="main-header noprint" data-background-color="red">
-		
+
 			<div class="logo-header">
 
-				<a href="main.pl" class="logo"> 
+				<a href="main.pl" class="logo">
 					<label id="kinName">킨더유치원</label>
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
@@ -77,16 +77,13 @@
 					</button>
 				</div>
 			</div>
-			
+
 			<nav class="navbar navbar-header navbar-expand-lg">
 
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-						<li class="nav-item toggle-nav-search hidden-caret"><a
-							class="nav-link" data-toggle="collapse" href="#search-nav"
-							role="button" aria-expanded="false" aria-controls="search-nav">
-								<i class="fa fa-search"></i>
-						</a></li>
+
+						<c:if test="${ loginUser.classification eq '원장님' }">
 						<li class="nav-item dropdown hidden-caret"><a
 							class="nav-link dropdown-toggle" href="#" id="messageDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -97,7 +94,7 @@
 								<li>
 									<div
 										class="dropdown-title d-flex justify-content-between align-items-center">
-										Messages <a href="#" class="small">Mark all as read</a>
+										새로운 쪽지 <a href="#" class="small">Mark all as read</a>
 									</div>
 								</li>
 								<li>
@@ -141,10 +138,10 @@
 										</div>
 									</div>
 								</li>
-								<li><a class="see-all" href="javascript:void(0);">See
-										all messages<i class="fa fa-angle-right"></i>
+								<li><a class="see-all" href="noteMain.pl">쪽지함 이동<i class="fa fa-angle-right"></i>
 								</a></li>
 							</ul></li>
+							</c:if>
 						<li class="nav-item dropdown hidden-caret"><a
 							class="nav-link dropdown-toggle" href="#" id="notifDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -246,7 +243,7 @@
 						<div class="avatar-sm float-left mr-2">
 						<!-- 프로필 이미지 태그   -->
 						 	<img src="${ contextPath }/resources/assets/img/profile.jpg" alt="..."
-								class="avatar-img rounded-circle"> 
+								class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample"
@@ -258,13 +255,13 @@
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="#profile"> 
+									<li><a href="#profile">
 									<span class="link-collapse">MyProfile</span>
 									</a></li>
-									<li><a href="#edit"> 
+									<li><a href="#edit">
 									<span class="link-collapse">EditProfile</span>
 									</a></li>
-									<li><a href="#settings"> 
+									<li><a href="#settings">
 									<span class="link-collapse">Settings</span>
 									</a></li>
 								</ul>
@@ -278,8 +275,8 @@
 								<p>HOME</p>
 							</a>
 						</li>
-						
-						<!-- 
+
+						<!--
 						<li class="nav-section">
 							<span class="sidebar-mini-icon">
 							<i class="fa fa-ellipsis-h"></i>
@@ -287,93 +284,121 @@
 							<h4 class="text-section">Components</h4>
 						</li>
 						 -->
-							
+
 						<li class="nav-item">
 							<a href="Announcement.pl">
 								<i class="fas fa-bell"></i>
-								<p>알림장</p> 
-							</a>
-						</li>
-						
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#">
-								<i class="fas fa-bullhorn"></i>
-								<p>공지사항</p> 
-							</a>
-						</li>
-						
-						<li class="nav-item">
-							<a href="#">
-								<i class="far fa-images"></i>
-								<p>앨범</p> 
-							</a>
-						</li>
-						
-						<li class="nav-item">
-							<a href="scheduleMain.sc">
-								<i class="far fa-calendar-alt"></i>
-								<p>일정표</p> 
-							</a>
-						</li>
-						
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#charts">
-								<i class="fas fa-utensils"></i>
-								<p>식단표</p> 
+								<p>알림장</p>
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a href="drugMainView.pl"> 
+							<a data-toggle="collapse" href="#">
+								<i class="fas fa-bullhorn"></i>
+								<p>공지사항</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="#">
+								<i class="far fa-images"></i>
+								<p>앨범</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="scheduleMain.sc">
+								<i class="far fa-calendar-alt"></i>
+								<p>일정표</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="#charts">
+								<i class="fas fa-utensils"></i>
+								<p>식단표</p>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a href="drugMainView.pl">
 								<i class="fas fa-notes-medical"></i>
 								<p>투약의뢰서</p>
 							</a>
 						</li>
-						
+
 						<li class="nav-item">
 							<a href="#">
 								<i class="fas fa-child"></i>
-								<p>귀가동의서</p> 
+								<p>귀가동의서</p>
 							</a>
 						</li>
-						
+
 						<li class="nav-item">
 							<a href="attendance.at">
 								<i class="far fa-calendar-check"></i>
 								<p>출석부</p>
 							</a>
 						</li>
-						
+
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
+							<a href="#submenu">
 								<i class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
 							</a>
 						</li>
-						
+
 						<li class="nav-item">
 							<a href="businessLogMain.pl">
 								<i class="far fa-clipboard"></i>
 								<p>일지관리</p>
 							</a>
 						</li>
-						
+
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
+							<a href="#submenu">
 								<i class="far fa-comments"></i>
 								<p>채팅</p>
 							</a>
 						</li>
-						
-						
-					
+
+						<c:if test="${ loginUser.classification eq '원장님' }">
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#submenu">
+								<i class="far fa-envelope"></i>
+								<p>쪽지함</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="submenu">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="noteMain.pl">
+										<span class="sub-item">받은 쪽지함</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+										<span class="sub-item">보낸 쪽지함</span>
+										</a>
+									</li>
+									<li>
+										<a href="sendNote.pl">
+										<span class="sub-item">쪽지 보내기</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						</c:if>
+
+
 					</ul>
 				</div>
 			</div>
 		</div>
 		</c:if>
 		<!-- End Sidebar -->
-<!-- 
+<!--
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
@@ -394,7 +419,7 @@
 	<!-- jQuery UI -->
 <%-- 	<script src="${ contextPath }/resources/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>--%>
  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
- 
+
  	<script
 		src="${ contextPath }/resources/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
@@ -434,6 +459,6 @@
 
 	<!-- Azzara JS -->
 	<script src="${ contextPath }/resources/assets/js/ready.min.js"></script>
-	
+
 </body>
 </html>

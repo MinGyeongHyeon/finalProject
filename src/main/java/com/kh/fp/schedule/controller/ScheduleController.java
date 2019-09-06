@@ -1,5 +1,7 @@
 package com.kh.fp.schedule.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.schedule.model.service.ScheduleService;
-import com.kh.fp.schedule.model.vo.Schedule;
 
 @Controller
 public class ScheduleController {
@@ -23,8 +24,10 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping(value="insertSchedule.sc")
-	public ModelAndView insertSchedule(ModelAndView mv,Schedule s) {
-		System.out.println(s);
+	public ModelAndView insertSchedule(ModelAndView mv, @RequestParam(value="eventData", required=false) ArrayList eventData) {
+		System.out.println(eventData);
+		
+		
 		mv.setViewName("jsonView");
 		return mv;
 	}
