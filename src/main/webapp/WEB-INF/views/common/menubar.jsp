@@ -17,7 +17,7 @@
 	<link rel="icon" href="${ contextPath }/resources/assets/img/icon.ico" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
-	<script src="${ contextPath }/resources/assets/js/plugin/webfont/webfont.min.js"></script>
+	<%-- <script src="${ contextPath }/resources/assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Open+Sans:300,400,600,700"]},
@@ -26,7 +26,7 @@
 				sessionStorage.fonts = true;
 			}
 		});
-	</script>
+	</script> --%>
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="${ contextPath }/resources/assets/css/bootstrap.min.css">
