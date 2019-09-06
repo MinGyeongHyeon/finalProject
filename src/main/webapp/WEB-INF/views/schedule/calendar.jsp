@@ -22,6 +22,7 @@
 <style>
 	.fc-day-number{color:blue!important;}
 	.fc table{
+		
 	}
 	#wrapper{
 		width:80%;
