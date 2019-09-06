@@ -138,6 +138,13 @@ public class MemberServiceImpl implements MemberService{
 		return md.classinsert(sqlSession, list);
 	}
 
+	@Override
+	public int selectkid(int select) {
+	
+		return md.selectkid(sqlSession , select);
+		
+	}
+
 
 
 	

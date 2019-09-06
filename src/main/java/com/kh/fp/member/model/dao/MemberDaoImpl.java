@@ -135,6 +135,13 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public int selectkid(SqlSessionTemplate sqlSession, int select) {
+
+		return sqlSession.selectOne("Member.selectkkid", select);
+	}
+
+
 	
 
 	

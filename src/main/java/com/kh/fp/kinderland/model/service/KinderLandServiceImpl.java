@@ -10,6 +10,7 @@ import com.kh.fp.kinderland.model.dao.KinderLandDao;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
+import com.kh.fp.member.model.vo.ChildrenInsert;
 
 @Service
 public class KinderLandServiceImpl implements KinderLandService{
@@ -33,6 +34,13 @@ public class KinderLandServiceImpl implements KinderLandService{
 	public ArrayList<KinGardenClasses> selectKinderclass(Kinderland kl) {
 
 		return kd.selectKinderclass(sqlSession , kl);
+	}
+
+
+	@Override
+	public int insertChildren(ChildrenInsert ci) {
+
+		return kd.insertChildren(sqlSession,ci);
 	}
 
 }

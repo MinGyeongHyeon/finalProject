@@ -55,6 +55,7 @@ input,select{
 	<div align="center" class="searchkinder">
 		<h5>원검색</h5>
 	</div>	
+	<input type="hidden"  value="${ km.childrenNo }" id="childrenNo"/>
 	<table align="center">
 		<tr><td colspan="2">
 		지역을 먼저 선택 후 원 명을 입력해 주세요.
@@ -106,6 +107,9 @@ input,select{
 			var kinName = $('#kinName').val();
 			var kinderAddress = sido + " " + sigungu;
 			
+			var childrenNo = $('#childrenNo').val() - 0;
+			
+			
 			var $tr = $('#searchlist');
 			
 			var $remove = $('.remove');
@@ -119,7 +123,6 @@ input,select{
 				type:"post",
 				contentType: 'application/x-www-form-urlencoded; charset=euc-kr',
 				success:function(data){
-					
 					
 					
 					for(var i = 0 ; i < data.list.length ; i++){
@@ -152,7 +155,7 @@ input,select{
 					
 				$(".remove").click(function(){
 					
-				var kinderNo = $(this).children("td").children("input").val();
+				var kinderNo = $(this).children("td").children("input").val() -0;
 				var $test = $(this);
 					
 					$(".test").remove();
@@ -190,10 +193,34 @@ input,select{
 							
 							$('.classesNo').click(function(){
 								
-								var classesNo = $(this).next().val();
 								
-								console.log(kinderNo);
-								console.log(classesNo);
+								var kinder = $(this).parent().parent().prev().children().eq(0).children().text();
+								
+								
+								var classesNo = $(this).next().val();
+									
+								var check = confirm(kinder + "의 " + $(this).text() + " 에 승인요청 을 보내시겠습니까 ?");
+								
+								
+								if(check){
+									
+								
+								
+									 $.ajax({
+										url:"insertchildren.kl",
+										type:"post",
+										data:{childrenNo:childrenNo,kinderNo:kinderNo},
+										success:function(data){
+											
+											alert("승인요청이 완료 되었습니다!");
+											
+											location.href='loginPage.pl';
+											
+										}
+									
+									}); 
+							
+								}
 								
 								
 							});

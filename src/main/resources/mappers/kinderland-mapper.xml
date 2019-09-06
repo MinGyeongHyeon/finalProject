@@ -37,6 +37,11 @@
   	
   	
   	</select>
+  	
+  	<insert id="insertChildren">
+  		INSERT INTO CHILDREN_KIND VALUES( #{kinderNo}, #{childrenNo}  )	
+  	
+  	</insert>
 	
 
   </mapper>
