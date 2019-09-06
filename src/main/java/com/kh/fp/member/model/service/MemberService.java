@@ -31,6 +31,8 @@ public interface MemberService {
 
 	int classinsert(ArrayList list);
 
+	int selectkid(int select);
+
 
 
 }

@@ -74,7 +74,7 @@ public class PageLinkServlet {
 	@RequestMapping(value="main.pl")
 	public String mainView() {
 		
-		return "main/main";
+		return "main/parentsMain";
 	}
 	
 	@RequestMapping(value="drugDetailList.pl")

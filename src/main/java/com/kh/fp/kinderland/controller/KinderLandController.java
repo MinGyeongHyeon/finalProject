@@ -12,6 +12,7 @@ import com.kh.fp.kinderland.model.service.KinderLandService;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
+import com.kh.fp.member.model.vo.ChildrenInsert;
 
 @Controller
 public class KinderLandController {
@@ -22,15 +23,9 @@ public class KinderLandController {
 	
 	@RequestMapping(value="selectKin.kl")
 	public ModelAndView selectKin(SelectKinder sk , ModelAndView mv ) {
-		System.out.println("들어온 sk 값 : " + sk);
 		
 		ArrayList<Kinderland> list = ks.selectKin(sk);
-		
-		
-		System.out.println("받아온 kd 의 값 : " + list);
-		
-		
-		
+	
 		
 		mv.addObject("list" , list);
 		mv.setViewName("jsonView");
@@ -45,9 +40,19 @@ public class KinderLandController {
 		
 		ArrayList<KinGardenClasses> list2 = ks.selectKinderclass(kl);
 		
-		System.out.println("받아온 list 의 값 : " + list2);
 		
 		mv.addObject("list2" , list2);
+		mv.setViewName("jsonView");
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="insertchildren.kl")
+	public ModelAndView insetChildren(ChildrenInsert ci, ModelAndView mv) {
+			
+		int result = ks.insertChildren(ci);
+		
 		mv.setViewName("jsonView");
 		
 		

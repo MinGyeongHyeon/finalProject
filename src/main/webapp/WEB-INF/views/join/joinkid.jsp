@@ -105,7 +105,7 @@ margin:0 auto;
     	 <div class="fileList" style="width:100%;">
 								<input type="text" name="fileName" class="fileName">
 								<input type="file" value="추가" id="selectFile" class="selectFile" multiple hidden/>
-   		 <input type="submit" value="등록하기" id="fileBtn"/>
+   		
 							</div>
 		</td>
 		</tr>

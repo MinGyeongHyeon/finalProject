@@ -59,7 +59,7 @@ public class MemberController {
 			
 			
 			
-			return "main/main";
+			return "main/parentsMain";
 			
 		} catch (LoginException e) {
 			
@@ -227,10 +227,23 @@ public class MemberController {
 		
 		km.setBirth(km.getBirth1() + "/" + km.getBirth2() + "/" + km.getBirth3());
 		
-		
+			System.out.println("km :  의 값 " + km);
 		try {
 			
 			int result = ms.insertkid(km);
+			
+			if(result > 0 ) {
+				int select = km.getUserNo();
+				
+				int selectki = ms.selectkid(select);
+				
+				System.out.println("selectki 의 값  : " + selectki);
+				
+				km.setChildrenNo(selectki);
+				
+			}
+			
+			model.addAttribute("km",km);
 			
 			
 		} catch (JoinException e) {
@@ -242,7 +255,7 @@ public class MemberController {
 		
 		
 		
-		return "";
+		return "join/searchGarden";
 	}
 	
 	@RequestMapping(value="kinrand.me")
@@ -268,7 +281,6 @@ public class MemberController {
 			int insert = ms.Kinclassinsert(selectKin, kc); 
 			
 			ArrayList list = ms.kinclassselect(kc);
-			
 			
 			int classinsert = ms.classinsert(list);
 			

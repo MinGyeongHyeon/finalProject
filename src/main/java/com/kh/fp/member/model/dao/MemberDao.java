@@ -36,6 +36,8 @@ public interface MemberDao {
 
 	int classinsert(SqlSessionTemplate sqlSession, ArrayList list);
 
+	int selectkid(SqlSessionTemplate sqlSession, int select);
+
 	
 
 
