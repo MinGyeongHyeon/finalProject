@@ -43,11 +43,11 @@
 									<tr>
 										<th style="width: 15%;">투약일</th>
 										<td>
-											<input type="radio" id="radio1" name="dosageDate" value="${ today }" checked>
+											<input type="radio" id="radio1" name="dosageDate" value="today" checked>
 											<label for="radio1">오늘 ( <fmt:formatDate type="date" value="${today}" pattern="MM월 dd일" /> )</label>
 										</td>
 										<td>
-											<input type="radio" id="radio2" name="dosageDate" value="${ tomorrow }">
+											<input type="radio" id="radio2" name="dosageDate" value="tomorrow">
 											<label for="radio2">내일 ( <fmt:formatDate type="date" value="${tomorrow}" pattern="MM월 dd일" /> )</label>
 										</td>
 									</tr>

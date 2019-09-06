@@ -14,18 +14,18 @@
 <script>
 $(function(){
 	$("#datepicker").datepicker({
-		changeMonth: true, 
+		changeMonth: true,
         changeYear: true,
         nextText: '다음 달',
-        prevText: '이전 달' 
+        prevText: '이전 달'
 	});
 });
 </script>
 
 </head>
-<body>	
- 	<jsp:include page="../common/menubar.jsp"></jsp:include>
- 	
+<body>
+ 	<jsp:include page="../common/menubar.jsp"/>
+
 	<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
@@ -57,14 +57,14 @@ $(function(){
 						</div>
 						<br><br><br>
 						<div id="listArea">
-						
+
 							<div id="list1" onclick="showDrugDetail()">
 								<br>
-								<div id="profileArea">								
+								<div id="profileArea">
 									<b>하뽀송</b>&nbsp;&nbsp;
 									<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
 								</div><br><br><br>
-								<div id="contentArea">								
+								<div id="contentArea">
 									<h3><b>2019년 8월 30일</b></h3>
 									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span>증상</span>&nbsp;&nbsp;<span>감기</span><br>
 									<i class="far fa-clock"></i>&nbsp;&nbsp;<span>투약 시간</span>&nbsp;&nbsp;<span>점심 후</span><br>
@@ -73,9 +73,9 @@ $(function(){
 								<br>
 								<p id="className">별님반</p>
 							</div>
-							
+
 						</div>
-						
+
 						<br>
 						<c:if test="${ !loginUser.classification eq '학부모' }">
 						<button type="button" class="btn btn-light" id="btn2">
@@ -87,7 +87,7 @@ $(function(){
 			</div>
 		</div>
 
-	
+
 	<script>
 		function showDrugDetail(){
 			location.href="drugDetailList.pl";
@@ -95,9 +95,9 @@ $(function(){
 		function goDrugRequestWrite(){
 			location.href="drugRequestWrite.pl";
 		}
-		
+
 	</script>
-	
+
 	<script>
     	$(function(){
     		$('.input-group.date').datepicker({
