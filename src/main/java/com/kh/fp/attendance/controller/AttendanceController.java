@@ -48,7 +48,12 @@ public class AttendanceController {
 		}
 	
 	@RequestMapping(value="month.at")//월별출석부
-	public String monthAtt() {
+	public String monthAtt(Model model,Children att) {
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		String day = date.format(today);
+		model.addAttribute("day", day);
+		
 		
 		
 		return "attendance/monthAttendance";
