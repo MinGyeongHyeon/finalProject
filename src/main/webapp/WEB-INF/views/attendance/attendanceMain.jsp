@@ -26,8 +26,8 @@ $(function(){
         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
         onSelect:function(){
         	day = $("#datepicker").val();
-        	$("#today").html(day);
-        	
+        	var date = $("#today").html(day);
+        	location.href = "changeAttendance.at";
         	var date = $("#today").html();
         }
 	});
@@ -46,6 +46,13 @@ function afterBtn(){
 } */
 function goMonth(){
 	location.href="month.at";
+}
+function statusChange(){
+	/* $(this).parents().children("td").eq(5).css({"display":"inline-block","background":"white"}); */
+/* 	$(".bgo").parents().parents().children("td").eq(5).css({"display":"inline-block","background":"white"}); */
+	var name = $(this).parents().siblings().eq(1).text();
+	var selectval = $(this).html();
+console.log(selectval);
 }
 </script>
 
@@ -114,6 +121,7 @@ function goMonth(){
 	}
 	#attendance{
 	width:100%;
+	color:white;
 	}
 	#right{
 	text-align:right;
@@ -157,7 +165,7 @@ function goMonth(){
 							<tr>
 							<td colspan="3">
 							<button onclick="preBtn();">&lt;</button></td>
-							<td colspan="2"><h3 id="today">${ day }</h3></td>
+							<td colspan="2"><h3 id="today" name="time">${ day }</h3></td>
 							<td colspan="2"><button onclick="afterBtn();">&gt;</button></td>
 							</tr>
 							<tr>
@@ -171,9 +179,20 @@ function goMonth(){
 							</tr>
 							<tbody>
 							<c:forEach var="a" items="${ list }">
-							<tr>
+							<tr style="border:1px solid white;">
 								<td></td>
 								<td><c:out value="${ a.childrenName }"/></td>
+								<td>
+								<select class="status" name="status" onchange="statusChange();">
+									<option value="V">출결</option>
+									<option value="×">결석</option>
+									<option value="◎">병결</option>
+									<option value="○">사고</option>
+									<option value="/">입소</option>
+									<option value="★">퇴소</option>
+								</select>
+								</td>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -185,7 +204,13 @@ function goMonth(){
 					<button class="subBtn">출력</button>
 		</div>
 	</div>
+<!-- <script>
+$(".status").onchange(function(){
+	$(this).parents().children("td").eq(5).css({"display":"inline-block","background":"white","width":"100%","height":"100%"});
+	console.log("졸리당");
+});
 
+</script> -->
 </body>
 </html>
 
