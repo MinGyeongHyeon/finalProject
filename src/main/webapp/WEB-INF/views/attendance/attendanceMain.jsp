@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
+num1 = 0;
 $(function(){
 	$("#datepicker").datepicker({
 		changeMonth: true, 
@@ -32,28 +33,28 @@ $(function(){
         }
 	});
 });
-/* function preBtn(){
-	SimpleDateFormat sdf = new SimpleDateFormat("yy-mm-dd");
-	Calendar cal = Calendar.getInstance();
-	
-	
-	var preday = new Date($("#today").html());
-	cal.add(preday.DAY,1);
-	console.log(pre);
-}
-function afterBtn(){
-	
-} */
+
 function goMonth(){
 	location.href="month.at";
-}
+};
 function statusChange(){
 	/* $(this).parents().children("td").eq(5).css({"display":"inline-block","background":"white"}); */
 /* 	$(".bgo").parents().parents().children("td").eq(5).css({"display":"inline-block","background":"white"}); */
-	var name = $(this).parents().siblings().eq(1).text();
-	var selectval = $(this).html();
-console.log(selectval);
+var savec = '<button>비고</button>';
+$(this).parents().siblings("#bgo").html("ㅅㅂ");
+
+
+if(num1==0){
+var saveb = '<button>저장</button>';
+$("#saveBtn").append(saveb);
+num1+=1;
 }
+
+
+
+
+
+ };
 </script>
 
 </head>
@@ -194,7 +195,7 @@ console.log(selectval);
 								</td>
 								<td></td>
 								<td></td>
-								<td></td>
+								<td id="bgo" name="bgo"></td>
 								<td></td>
 								</tr>
 							</c:forEach>
@@ -202,6 +203,7 @@ console.log(selectval);
 						</table>
 					<button class="subBtn">다운로드</button>
 					<button class="subBtn">출력</button>
+					<div id="saveBtn"></div>
 		</div>
 	</div>
 <!-- <script>

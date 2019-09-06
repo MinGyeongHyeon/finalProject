@@ -147,7 +147,7 @@ function afterBtn(){
 		</div>
 		<hr />
 		<div class="attendanceArea">
-		<div id="timecheck"><label>총원 : ${ day }명(출석 : ${day }명)</label>&nbsp;&nbsp;
+		<div id="timecheck"><input type="checkbox"><label>등하원 시간 표시</label>&nbsp;&nbsp;
 		<span id="right">V 출석 × 결석 ◎ 병결 ○ 사고 / 입소 ★ 퇴소</span></div>
 						<table id="attendance" align="center">
 							<tr>
@@ -157,13 +157,21 @@ function afterBtn(){
 							<td colspan="2"><button onclick="afterBtn();">&gt;</button></td>
 							</tr>
 							<tr>
-							<td>No.</td>
-							<td>원아명</td>
-							<td>출결상태</td>
-							<td>등원 시간</td>
-							<td>하원 시간</td>
-							<td>비고</td>
-							<td>보호자 확인</td>
+							<td>이름</td>
+							<td>&lt;</td>
+							<td>&gt;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>출석</td>
+							<td>결석</td>
 							</tr>
 							<tbody></tbody>
 						</table>
