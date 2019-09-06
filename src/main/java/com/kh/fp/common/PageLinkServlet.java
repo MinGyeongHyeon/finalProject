@@ -133,6 +133,13 @@ public class PageLinkServlet {
 	 public String WriteSomeoneHomeWork() {
 	  return "homeworkDiary/homeworkIndividualWrite";
 	  }
+	 
+	 @RequestMapping(value="findid.pl")
+	 public String findid() {
+		 
+		 
+		 return "join/findId";
+	 }
 	
 
 }
