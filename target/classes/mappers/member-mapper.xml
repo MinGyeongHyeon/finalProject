@@ -106,9 +106,16 @@
 	<insert id="classinsert">
 		
 		INSERT INTO KINDER_CLASS
-		VALUES(SEQ_CLASS_NO.NEXTVAL , NULL , #{kinderNo} , NULL , NULL ,#{openedDate}, '1학기' ,#{className} )
+		VALUES(SEQ_CLASS_NO.NEXTVAL , #{className} , #{kinderNo} , NULL , sysdate , '1학기' )
 	
 	</insert>
+	
+	<select id="selectkkid" parameterType="_int" resultType="_int">
+		SELECT CHILDREN_NO
+		FROM CHILDREN
+		WHERE USER_NO = #{select}
+	
+	</select>
 
 	
 	
