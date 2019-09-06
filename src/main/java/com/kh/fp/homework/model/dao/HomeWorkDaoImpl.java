@@ -13,7 +13,6 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 	@Override
 	public int insertHomeWork(SqlSessionTemplate sqlSession, homework h) throws HomeWorkException{
 		 
-		System.out.println("여기는 다오");
 		System.out.println("여기는 다오" + h);
 		int user = sqlSession.insert("homework.insertHomeWork",h);
 		
@@ -22,6 +21,15 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 		}
 		return user;
 	
+	}
+
+	@Override
+	public int selectHowmany(SqlSessionTemplate sqlSession, int classNum) {
+		System.out.println("여기는 몇명 다오");
+		
+		int howmanyP = sqlSession.selectOne("homework.selectPeople", classNum);
+		
+		return howmanyP;
 	}
 
 

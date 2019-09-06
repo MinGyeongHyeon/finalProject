@@ -21,6 +21,10 @@
 		INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle},#{boardContent},#{writeDate},#{boardtype},
 		#{classNum},NULL,#{kinderNo})
 	</insert>
+	
+	<select id="selectPeople" resultType="_int">
+		SELECT COUNT(CHILDREN_NO)FROM CHILDREN_KIND WHERE CHILDREN_NO = #{classNum}	
+	</select>
 
 </mapper>
 

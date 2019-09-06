@@ -22,11 +22,23 @@ public class HomeworkServiceImpl implements HomeworkService{
 		System.out.println("여기는 서비스");
 		int insertHomeWork = hd.insertHomeWork(sqlSession,h);
 		
-		return 0;
+		return insertHomeWork;
 	
 		
 		
 	}
+
+	@Override
+	public int howManyPeople(int classNum) {
+		System.out.println("여기는 몇명 서비스");
+		
+		int howManyPeople = hd.selectHowmany(sqlSession,classNum);
+		
+		
+		return howManyPeople;
+	}
+
+
 	
 	 
 

@@ -17,7 +17,7 @@
 	    float: right;
 	    transition: all .3s;
 	    padding-top:100px;
-	    padding-left: 3%;
+	    padding-left: 3%;z
 	    padding-right: 3%;
 	}
 	.drugRequestArea{
@@ -245,8 +245,8 @@
 							<div class="classroom">
 								<table>
 									<tr>
-										<td><button class="className">별님반</button></td>
-										<td>0/15</td>
+										<td><button class="className" onclick="openClass">별님반</button></td>
+										<td><lable>0/${result}</lable></td>
 										
 									</tr>
 								</table>
@@ -295,6 +295,14 @@
 	
 	
 </body>
+
+<script>
+	openClass.onclick=function(){
+		 
+		 window.open("homeworkSelectPeople.jsp","child","width=400,height=300");
+	}
+
+</script>
 </html>
 
 
