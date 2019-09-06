@@ -1,31 +1,29 @@
 .m-signature-pad {
-  font-size: 10px;
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  border:1px solid #bababa;
+	font-size: 10px;
+	width: 200px;
+	height: 200px;
+	background-color: #fff;
+	border: 1px solid #bababa;
 }
+
 .m-signature-pad--body canvas {
-    width: 200px;
-    height: 200px;
- }
+	width: 200px;
+	height: 200px;
+}
 
 @media screen and (max-height: 320px) {
-  .m-signature-pad--body {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 32px;
-  }
-
+	.m-signature-pad--body {
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 32px;
+	}
 }
 
 .m-signature-pad--footer {
-	float:right;
-	margin-right:3%;
+	float: right;
+	margin-right: 3%;
 }
-
-
 
 .main-panel {
 	position: relative;
@@ -147,13 +145,24 @@ input[type=radio]:checked+label {
 	font-weight: bold;
 	font-size: 14px;
 }
+
 #check {
-	height:225px;
+	height: 225px;
 }
+
 #clearBtn {
-	background:#ffffff;
+	background: #ffffff;
+}
+
+#clearBtn:hover {
+	text-decoration: underline;
+}
+
+#saveBtn1 {
+	background: white;
 	padding: 3px 10px;
 }
-#clearBtn:hover {
-	text-decoration:underline;
+
+#saveBtn1:hover {
+	text-decoration: underline;
 }

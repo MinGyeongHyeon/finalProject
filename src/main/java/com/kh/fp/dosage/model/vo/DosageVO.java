@@ -4,7 +4,8 @@ import java.sql.Date;
 
 public class DosageVO implements java.io.Serializable{
 	private int dosageNo;			//투약의뢰번호
-	private Date dosageDate;		//투약일
+	private String dosageDate;		//투약일
+	private Date dateDate;
 	private String symptom;			//증상
 	private String kinds;			//약의종류
 	private int dosageMl;			//투약용량
@@ -20,12 +21,13 @@ public class DosageVO implements java.io.Serializable{
 
 	public DosageVO() {}
 
-	public DosageVO(int dosageNo, Date dosageDate, String symptom, String kinds, int dosageMl, String dosageCount,
-			String dosageTime, String dosageKeep, String dosageProblem, String reading, Date reDate, int userNo,
-			int childrenNo, String childrenName) {
+	public DosageVO(int dosageNo, String dosageDate, Date dateDate, String symptom, String kinds, int dosageMl,
+			String dosageCount, String dosageTime, String dosageKeep, String dosageProblem, String reading, Date reDate,
+			int userNo, int childrenNo, String childrenName) {
 		super();
 		this.dosageNo = dosageNo;
 		this.dosageDate = dosageDate;
+		this.dateDate = dateDate;
 		this.symptom = symptom;
 		this.kinds = kinds;
 		this.dosageMl = dosageMl;
@@ -48,12 +50,20 @@ public class DosageVO implements java.io.Serializable{
 		this.dosageNo = dosageNo;
 	}
 
-	public Date getDosageDate() {
+	public String getDosageDate() {
 		return dosageDate;
 	}
 
-	public void setDosageDate(Date dosageDate) {
+	public void setDosageDate(String dosageDate) {
 		this.dosageDate = dosageDate;
+	}
+
+	public Date getDateDate() {
+		return dateDate;
+	}
+
+	public void setDateDate(Date dateDate) {
+		this.dateDate = dateDate;
 	}
 
 	public String getSymptom() {
@@ -154,11 +164,14 @@ public class DosageVO implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "DosageVO [dosageNo=" + dosageNo + ", dosageDate=" + dosageDate + ", symptom=" + symptom + ", kinds="
-				+ kinds + ", dosageMl=" + dosageMl + ", dosageCount=" + dosageCount + ", dosageTime=" + dosageTime
-				+ ", dosageKeep=" + dosageKeep + ", dosageProblem=" + dosageProblem + ", reading=" + reading
-				+ ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo + ", childrenName="
-				+ childrenName + "]";
+		return "DosageVO [dosageNo=" + dosageNo + ", dosageDate=" + dosageDate + ", dateDate=" + dateDate + ", symptom="
+				+ symptom + ", kinds=" + kinds + ", dosageMl=" + dosageMl + ", dosageCount=" + dosageCount
+				+ ", dosageTime=" + dosageTime + ", dosageKeep=" + dosageKeep + ", dosageProblem=" + dosageProblem
+				+ ", reading=" + reading + ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo
+				+ ", childrenName=" + childrenName + "]";
 	}
+
+
+
 
 }

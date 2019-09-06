@@ -8,5 +8,4 @@ public interface DosageDao {
 
 	int insertDosageRequest(SqlSessionTemplate sqlSession, DosageVO d);
 
-
 }

@@ -1,7 +1,5 @@
 package com.kh.fp.dosage.model.service;
 
-import java.sql.Date;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,33 +16,14 @@ public class DosageServiceImpl implements DosageService{
 
 	@Override
 	public int insertDosageRequest(DosageVO d) {
-		System.out.println("!!!!!!!!!! DosageService 호출됨");
 
-		/* Date dosageDate = d.getDosageDate(); */
-		String symptom = d.getSymptom();
-		String kinds = d.getKinds();
-		int dosageMl = d.getDosageMl();
-		String dosageCount = d.getDosageCount();
-		String dosageTime = d.getDosageTime();
-		String dosageProblem = d.getDosageProblem();
-		int childrenNo = d.getChildrenNo();
+		System.out.println("투약의뢰서 서비스 in!");
 
-		DosageVO dVO = new DosageVO();
+		int insertDosageRequest = dd.insertDosageRequest(sqlSession, d);
 
-		/* d.setDosageDate(dosageDate); */
-		dVO.setSymptom(symptom);
-		dVO.setKinds(kinds);
-		dVO.setDosageMl(dosageMl);
-		dVO.setDosageCount(dosageCount);
-		dVO.setDosageTime(dosageTime);
-		dVO.setDosageProblem(dosageProblem);
-		dVO.setChildrenNo(childrenNo);
-
-		System.out.println("service::::::::::::"+dVO);
-
-		 int result = dd.insertDosageRequest(sqlSession, d);
-
-		return result;
+		return 0;
 	}
+
+
 
 }
