@@ -106,7 +106,7 @@
 						<label style="font-weight:bold;">알림장</label>
 					</td>
 					<td>
-						<button class="btn btn-warning">여러명 보내기</button>
+						<button class="btn btn-warning" onclick="goSomeoneWrite()">여러명 보내기</button>
 						<button class="btn btn-warning" onclick="goAnnouncementWrite()">작성하기</button>
 					</td>
 				</tr>
@@ -167,8 +167,11 @@
 		}
 		
 		function showHomeWorkDetail(){
-			console.log("rkwk");
 			location.href = "DetailHomeWork.pl";
+		}
+		
+		function goSomeoneWrite(){
+			location.href = "WriteSomeoneHomeWork.pl";
 		}
 	</script>
 </body>
