@@ -106,7 +106,7 @@
 	<insert id="classinsert">
 		
 		INSERT INTO KINDER_CLASS
-		VALUES(SEQ_CLASS_NO.NEXTVAL , #{className} , #{kinderNo} , NULL , sysdate , '1학기' )
+		VALUES(SEQ_CLASS_NO.NEXTVAL , #{kinderNo} ,#{className}, SYSDATE , '1학기', NULL ,NULL,NULL )
 	
 	</insert>
 	

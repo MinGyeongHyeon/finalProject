@@ -237,7 +237,6 @@ public class MemberController {
 				
 				int selectki = ms.selectkid(select);
 				
-				System.out.println("selectki 의 값  : " + selectki);
 				
 				km.setChildrenNo(selectki);
 				
@@ -263,7 +262,6 @@ public class MemberController {
 		
 		kg.setAddress(kg.getSido()+ " " + kg.getSigungu() + " " + kg.getAddress3());
 		
-		System.out.println(kg);
 		
 		int result = ms.kininsert(kg); 
 		
@@ -291,7 +289,17 @@ public class MemberController {
 		
 		
 		
-		return "";
+		return "account/join5";
+	}
+	
+	@RequestMapping(value="selectId.me")
+	public ModelAndView selectId(Member m , ModelAndView mv) {
+		
+		
+		
+		
+		
+		return mv;
 	}
 
 	

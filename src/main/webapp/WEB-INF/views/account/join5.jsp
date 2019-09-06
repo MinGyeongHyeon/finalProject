@@ -61,9 +61,7 @@
 			<input type="password" class="form-control" name="userPwd" placeholder="비밀번호">
 			<br>		
 		</div>
-		<div style="padding-left:50px">		
-			<input type="checkbox" id="check">&nbsp;&nbsp;<label for="check">자동 로그인</label>
-		</div>
+		
 		<br><br>
 		<div id="btnDiv" align="center">
 			<button class="ui button" id="loginBtn" type="submit">로그인</button>
@@ -94,6 +92,12 @@
 		location.href="joinHome.pl"
 		
 	})
+	
+	$('#findIdLink').click(function(){
+		
+		location.href="findid.pl";
+		
+	});
 	
 	</script>
 	
