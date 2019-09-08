@@ -11,7 +11,7 @@
 		<result property="start" column="START_DATE"/>
 		<result property="end" column="END_DATE"/>
 		<result property="backgroundColor" column="COLOR"/>
-		<result property="Type" column="SCHEDULE_TYPE"/>
+		<result property="type" column="SCHEDULE_TYPE"/>
 		<result property="classNo" column="CLASS_NO"/>
 		<result property="kinderNo" column="KINDER_NO"/>								
 		<result property="scheduleContent" column="SCHEDULE_CONTENT"/>

@@ -2,7 +2,7 @@ var eventModal = $('#eventModal');
 
 var modalTitle = $('.modal-title');
 var editTitle = $('#edit-title');	//제목
-var editAllDay = $("#edit-allDay"); //하루종일
+var editAllDay = $('#edit-allDay'); //하루종일
 var editStart = $('#edit-start');	//시작날짜
 var editEnd = $('#edit-end');		//끝 날짜
 var editType = $('#edit-type');		//공개범위
@@ -34,14 +34,16 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
         var eventData = {
+        	scheduleNo : 0,
             title: editTitle.val(), //제목
+            allDay: false,		//하루종일 여부(아래에서 체크 여부에 따라 true 부여)
             start: editStart.val(), //시작날짜
             end: editEnd.val(),		//끝날짜
-            realEndDay: "",
-            scheduleContent: editDesc.val(), //내용
-            type: editType.val(),		//공개범위
             backgroundColor: editColor.val(), //색
-            allDay: false		//하루종일 여부(아래에서 체크 여부에 따라 true 부여)
+            type: editType.val(),		//공개범위
+            classNo: 0,
+            kinderNo: 0,
+            scheduleContent: editDesc.val() //내용
         };
         
         if (eventData.start > eventData.end) {
@@ -58,14 +60,16 @@ var newEvent = function (start, end, eventType) {
 
         if (editAllDay.is(':checked')) {
             eventData.start = moment(eventData.start).format('YYYY-MM-DD');
+            eventData.start = eventData.start + "";
             //render시 날짜표기수정
             eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
+            eventData.end = eventData.end + "";
             //DB에 넣을때(선택)
-            eventData.realEndDay = moment(eventData.end).format('YYYY-MM-DD');
+            //eventData.realEndDay = moment(eventData.end).format('YYYY-MM-DD');
 
             eventData.allDay = true;
         }
-
+        
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
@@ -74,10 +78,13 @@ var newEvent = function (start, end, eventType) {
         //새로운 일정 저장
         $.ajax({
             url: "insertSchedule.sc",
-            data: {eventData:eventData},
-            type: "get",
+            type:"post",
+            data:{eventData:eventData},
+			/*dataType: 'JSON',
+			contentType : "application/json; charset=UTF-8", 	*/
             success: function (data) {
             	console.log("성공");
+            	console.log(data.eventData);
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');
@@ -89,3 +96,24 @@ var newEvent = function (start, end, eventType) {
         });
     });
 };
+
+/*$(function(){
+	var title = "tt";
+    $.ajax({
+        url:"insertSchedule.sc",
+        type:"post",
+        data:{title:title},
+        success:function (data) {
+        	console.log("성공");
+            //DB연동시 중복이벤트 방지를 위한
+            //$('#calendar').fullCalendar('removeEvents');
+            //$('#calendar').fullCalendar('refetchEvents');
+        },
+        error:function(data){
+        	console.log(data);
+        	
+        	console.log("실패");
+        }
+    });
+	
+})*/

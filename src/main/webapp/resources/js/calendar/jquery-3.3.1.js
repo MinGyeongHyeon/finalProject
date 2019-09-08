@@ -23,7 +23,8 @@
 		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
-		// See ticket #14549 for more info.
+		// See ticket #14549 for more info. 
+		
 		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
@@ -9597,7 +9598,7 @@ jQuery.ajaxTransport( function( options ) {
 				try {
 
 					// Do send the request (this may raise an exception)
-					xhr.send( options.hasContent && options.data || null );
+					//xhr.send( options.hasContent && options.data || null );
 				} catch ( e ) {
 
 					// #14683: Only rethrow if this hasn't been notified as an error yet
