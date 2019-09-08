@@ -119,11 +119,6 @@ public class MemberServiceImpl implements MemberService{
 		return md.kinselect(sqlSession);
 	}
 
-	@Override
-	public int Kinclassinsert(int selectKin, KinGardenClass kc) {
-
-		return md.kinclassinsert(sqlSession ,kc);
-	}
 
 	@Override
 	public ArrayList kinclassselect(KinGardenClass kc) {
@@ -143,6 +138,24 @@ public class MemberServiceImpl implements MemberService{
 	
 		return md.selectkid(sqlSession , select);
 		
+	}
+
+	@Override
+	public int Kinclassinsert(KinGardenClass kc) {
+
+		return md.kinclassinsert(sqlSession ,kc);
+	}
+
+	@Override
+	public int childrenCount(Member loginUser) {
+
+		return md.childrenCount(sqlSession , loginUser);
+	}
+
+	@Override
+	public int teacherCount(Member loginUser) {
+
+		return md.teacherCount(sqlSession,loginUser);
 	}
 
 

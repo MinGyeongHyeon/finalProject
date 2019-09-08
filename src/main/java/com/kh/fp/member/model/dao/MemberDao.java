@@ -38,6 +38,10 @@ public interface MemberDao {
 
 	int selectkid(SqlSessionTemplate sqlSession, int select);
 
+	int childrenCount(SqlSessionTemplate sqlSession, Member loginUser);
+
+	int teacherCount(SqlSessionTemplate sqlSession, Member loginUser);
+
 	
 
 

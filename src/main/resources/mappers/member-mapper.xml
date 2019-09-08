@@ -76,15 +76,9 @@
 	<insert id="kininsert" parameterType="KinderGarden">
 		
 		INSERT INTO KINDERGARDEN
-		VALUES(SEQ_KINDER_NO.NEXTVAL, #{kinderName} ,#{phone}, #{address})
+		VALUES( #{kinderNo} , #{kinderName} ,#{phone}, #{address})
 	</insert>
 	
-	<select id="kinselect" resultType="_int">
-	
-		SELECT SEQ_KINDER_NO.CURRVAL 
-		FROM DUAL
-	
-	</select>
 	
 	<insert id="kinclassinsert">
 	
@@ -115,6 +109,18 @@
 		FROM CHILDREN
 		WHERE USER_NO = #{select}
 	
+	</select>
+	
+	<select id="childrenCount">
+		SELECT COUNT(*)
+		FROM CHILDREN_KIND
+		WHERE KINDER_NO = #{USER_NO}
+	</select>
+	
+	<select id="childrenCount">
+		SELECT COUNT(*)
+		FROM TEACHER
+		WHERE KINDER_NO = #{USER_NO}
 	</select>
 
 	

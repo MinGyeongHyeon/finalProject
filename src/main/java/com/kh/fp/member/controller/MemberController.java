@@ -55,8 +55,19 @@ public class MemberController {
 
 			Member loginUser = ms.login(m);
 			
-			model.addAttribute("loginUser",loginUser);
+			if(loginUser.getClassification().equals("원장님")) {
+				
+				int childrenCount = ms.childrenCount(loginUser);
+				int teacherCount = ms.teacherCount(loginUser);
+				
+				model.addAttribute("childrenCount", childrenCount);
+				model.addAttribute("teacherCount",teacherCount);
+				
+				
+			}
 			
+			model.addAttribute("loginUser",loginUser);
+		
 			
 			
 			return "main/parentsMain";
@@ -262,6 +273,7 @@ public class MemberController {
 		
 		kg.setAddress(kg.getSido()+ " " + kg.getSigungu() + " " + kg.getAddress3());
 		
+		System.out.println("회원번호의 값 : " + kg.getKinderNo());
 		
 		int result = ms.kininsert(kg); 
 		
@@ -269,18 +281,18 @@ public class MemberController {
 			
 			KinGardenClass kc = new KinGardenClass();
 			
-			int selectKin = ms.kinselect();
-			
-			kc.setKinderNo(selectKin);
+			kc.setKinderNo(kg.getKinderNo());
 			kc.setClassName(kg.getClassName());
 			
 			
 			
-			int insert = ms.Kinclassinsert(selectKin, kc); 
+			int insert = ms.Kinclassinsert( kc); 
 			
 			ArrayList list = ms.kinclassselect(kc);
 			
 			int classinsert = ms.classinsert(list);
+			
+			model.addAttribute("msg" , "회원가입이 완료 되었습니다.");
 			
 		}
 		

@@ -39,7 +39,7 @@
   	</select>
   	
   	<insert id="insertChildren">
-  		INSERT INTO CHILDREN_KIND VALUES( #{kinderNo}, #{childrenNo}  )	
+  		INSERT INTO CHILDREN_KIND VALUES( #{childrenNo}, #{kinderNo}  )	
   	
   	</insert>
 	
