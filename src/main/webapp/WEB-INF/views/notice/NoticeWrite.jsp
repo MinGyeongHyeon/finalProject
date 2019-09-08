@@ -17,7 +17,7 @@
 	    float: right;
 	    transition: all .3s;
 	    padding-top:100px;
-	    padding-left: 3%;z
+	    padding-left: 3%;
 	    padding-right: 3%;
 	}
 	.drugRequestArea{
@@ -48,17 +48,17 @@
 		padding-bottom: 5px;
 	}
 	
-	.homeworkDiaryForm{
+	.noticeForm{
 		background:#fff;
 		padding:30px;
-		
+		padding-left:30px;
 	}
 	
-	.homeworkDiaryForm table{
+	.noticeForm table{
 		width:100%;
 		
 	}
-	.homeworkDiaryForm th{
+	.noticeForm th{
 		font-size: 1.5em;
 		text-align: left;
 		padding-left: 10px;
@@ -66,59 +66,21 @@
 		vertical-align: bottom;
 	}
 	
-	.homeworkDiaryForm td{
+	.noticeForm td{
 		font-size: 1.2em;
 	} 
 
-	.homeworkDiaryForm tr:nth-child(2) input{
-		width:300px;
-		height:40px;
-	}
 	
-	.homeworkDiaryForm tr:nth-child(4) input{
-		width:20px;
-		heigth:20px;
-	}
-	
-	
-	.homeworkDiaryForm input{
+	.noticeForm input{
 		border:1px solid #bbb;
 	}
 	
-	.homeworkDiaryForm textarea{
+	.noticeForm textarea{
 		border:1px solid #bbb;
 	}
+
 	
-	.classroom{
-		width:35%;
-		height:40px;
-		vertical-align:middle;
-		border-radius:5px;
-		display: inline-block;
-		padding-top:5px;
-		margin-top:20px;
-		margin-left: 5%;
-		margin-right: 5%;
-		background:#f55;
-		
-	}
-	
-	.classroom table{
-		width:100%;
-		text-align: center;
-		vertical-align:middle;
-		color:#fff;
-		
-	}
-	
-.albumImgArea {
-	width: 100px;
-	height: 70px;
-	border: 1px solid #779;
-	text-align: center;
-	margin-top: 5px;
-	margin-right: 3%;
-}
+
 	.fileList label{
 		background:#fa5448;
 		color:white;
@@ -144,21 +106,21 @@
 		
 	}
 
-	.homeworkBtnArea{
+	.noticeBtnArea{
 		width:100%;
 		text-align: center;
 	}
 	
-	.homeworkBtnArea table{
+	.noticeBtnArea table{
 		width:100%;
 	}
 	
-	.homeworkBtnArea td{
+	.noticeBtnArea td{
 		width:50%;
 		text-align: center;
 	}
 	
-	.homeworkBtnArea input{
+	.noticeBtnArea input{
 		background:#fa5;
 		border:none;
 		border-radius: 5px;
@@ -177,8 +139,9 @@
 		color:white;
 	}
 	
-	.Title{
-		width:600px;
+	.selectClass{
+		width:15px;
+		height:15px;
 	}
 	
 </style>
@@ -205,59 +168,44 @@
 			<table style="width:100%;">
 				<tr>
   					<td style="vertical-align: middle;">
-						<p style="font-weight:bold;">알림장 작성</p>
+						<p style="font-weight:bold; font-size:20px">공지사항 작성</p>
 					</td>
-					<td id="writeDelete" style="text-align:right;">
-						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
-						<c:if test="${ loginUserJob != 1 }">
-							<button id="contentsWrite">작성하기</button>
-						</c:if>
-					</td>
+					
 				</tr>
 			</table>
 		</div>
 		<hr />
 
-		<form action="homeWorkWrite.hw" method="post" enctype="multipart/form-data">
+		<form action="NoticeWrite.no" method="post" enctype="multipart/form-data">
 
-			<div class="homeworkDiaryForm">
+			<div class="noticeForm">
 				<table>
-					<tr>
-						<th>날짜</th>
-					</tr>
-					<tr>
-						<td><input type="date" name="writeDate"/></td>
-					</tr>
 					<tr>
 						<th>제목</th>
 					</tr>
 					<tr>
-						<td><input type="text" name="boardTitle" class="Title" style="width:50%;  border-radius:10px"/></td>
+						<td><textarea placeholder="제목을 입력해 주세요" name="boardTitle" class="Title" style="width:100%; height:40px; border:1px solid #dadada; border-radius:4px; padding:5px 10px"></textarea></td>
 					</tr>
 					<tr>
-						<th>원아 선택</th>
-				</tr>
-					<tr>
-						<td><input type="checkbox" id="selectAll"/><label for="selectAll">전체선택</label></td>
+						<th>반 선택</th>
 					</tr>
 					<tr>
-						<td>
-							<div class="classroom">
-								<table>
-									<tr>
-										<td><button class="className" id="test2" type="button" >별님반</button></td>
-										<td><lable>0/${result}</lable></td>
-										
-									</tr>
-								</table>
-							</div>
-						</td>
+						<td style="margin-left:2px; border:1px solid #dadada; padding: 12px 20px; margin-bottm:4px; border-radius:4px">
+						<input type="radio" name="selectClass" class="selectClass" value="AllClass"/>원 공지</td>
+					</tr>
+					</table>
+					<div style="width:10px; height:10px"></div>
+					<table>
+					<tr>
+						<td style="margin-left:2px; border:1px solid #dadada; padding: 12px 20px; margin-bottm:4px; border-radius:4px">
+						<input type="radio" name="selectClass" class="selectClass" value="MyClass"/>우리 반 공지</td>
+					</tr>
+					
+					<tr>
+						<th>내용<i class="far fa-comment-alt" style="size:10px; margin-right:3px"></i></th>
 					</tr>
 					<tr>
-						<th>내용</th>
-					</tr>
-					<tr>
-						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;  border-radius:10px;"></textarea></td>
+						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%; border:1px solid #dadada;  border-radius:4px"></textarea></td>
 					</tr>
 					<tr>
 						<th>파일첨부</th>
@@ -277,14 +225,14 @@
 			</div>
 			<hr />
 			<br><br>
-			<div class="homeworkBtnArea">
+			<div class="noticeBtnArea">
 				<table>
 					<tr>
 						<td>
 							<input type="reset" value="취소"/>
 						</td>
 						<td>
-							<input type="submit" value="다음"/>
+							<input type="submit" value="보내기"/>
 						</td>
 					</tr>
 				</table>
@@ -295,16 +243,6 @@
 	
 	
 </body>
-
-<script>
-	
-	
-	$('#test2').click(function(){
-		
-		 window.open("homeworkSelectPeople.pl","child","width=400","height=300");
-	})
-
-</script>
 </html>
 
 
