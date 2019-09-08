@@ -50,6 +50,8 @@ public class KinderLandController {
 	
 	@RequestMapping(value="insertchildren.kl")
 	public ModelAndView insetChildren(ChildrenInsert ci, ModelAndView mv) {
+		
+		System.out.println("여기서 들어온 값 뭐야 : " + ci);
 			
 		int result = ks.insertChildren(ci);
 		

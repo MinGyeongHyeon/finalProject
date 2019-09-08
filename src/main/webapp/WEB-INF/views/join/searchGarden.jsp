@@ -203,8 +203,6 @@ input,select{
 								
 								
 								if(check){
-									
-								
 								
 									 $.ajax({
 										url:"insertchildren.kl",

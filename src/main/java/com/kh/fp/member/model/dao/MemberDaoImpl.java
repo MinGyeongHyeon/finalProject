@@ -17,9 +17,6 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public String selectMemberPassword(SqlSessionTemplate sqlSession, Member m) {
 		
-		
-
-		
 		return sqlSession.selectOne("Member.selectPassword", m);
 	}
 
@@ -139,6 +136,20 @@ public class MemberDaoImpl implements MemberDao{
 	public int selectkid(SqlSessionTemplate sqlSession, int select) {
 
 		return sqlSession.selectOne("Member.selectkkid", select);
+	}
+
+
+	@Override
+	public int childrenCount(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.childrenCount",loginUser);
+	}
+
+
+	@Override
+	public int teacherCount(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.teacherCount" , loginUser);
 	}
 
 

@@ -25,13 +25,17 @@ public interface MemberService {
 
 	int kinselect();
 
-	int Kinclassinsert(int selectKin, KinGardenClass kc);
+	int Kinclassinsert(KinGardenClass kc);
 
 	ArrayList kinclassselect(KinGardenClass kc);
 
 	int classinsert(ArrayList list);
 
 	int selectkid(int select);
+
+	int childrenCount(Member loginUser);
+
+	int teacherCount(Member loginUser);
 
 
 

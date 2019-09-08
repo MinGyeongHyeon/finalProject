@@ -59,7 +59,7 @@ function plus(){
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 <form action="kinrand.me" method="post">
 
-<input type="hidden" value="${ select.userNo }" />
+<input type="hidden" value="${ select.userNo }" name="kinderNo"/>
 
 <h1 align="center">
 <img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
