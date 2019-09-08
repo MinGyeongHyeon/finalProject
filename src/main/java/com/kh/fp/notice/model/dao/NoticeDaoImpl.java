@@ -1,9 +1,11 @@
 package com.kh.fp.notice.model.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.kh.fp.notice.model.vo.Notice;
 
+@Repository
 public class NoticeDaoImpl implements NoticeDao{
 
 	@Override

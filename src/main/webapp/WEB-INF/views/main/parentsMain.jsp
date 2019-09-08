@@ -185,7 +185,7 @@
 								<tr><td><p></p></td></tr>
 								<tr>
 									<td>승인 대기중인 교사</td>
-									<td>0명</td>
+									<td>${ teacherCount }</td>
 								</tr>
 							</table>
 							<br />
@@ -210,7 +210,7 @@
 								<tr><td><p></p></td></tr>
 								<tr>
 									<td>승인 대기중인 원생</td>
-									<td>0명</td>
+									<td>${ childrenCount }</td>
 								</tr>
 							</table>
 							<br />
