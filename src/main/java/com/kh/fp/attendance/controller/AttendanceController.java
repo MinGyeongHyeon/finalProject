@@ -26,7 +26,7 @@ public class AttendanceController {
 
 	@Autowired
 	private AttendanceService as;
-	
+
 	 @RequestMapping(value="attendance.at")
 		public String attendanceView(Model mv,Children att){
 		/* 오늘 날짜 출석부 */
@@ -34,7 +34,7 @@ public class AttendanceController {
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 			String day = date.format(today);
 			((Model) mv).addAttribute("day",day);
-			
+
 			try {
 				ArrayList<Children> dayAtt = as.dailyAttendance();
 				mv.addAttribute("list", dayAtt);
@@ -43,29 +43,29 @@ public class AttendanceController {
 				mv.addAttribute("msg",e.getMessage());
 				return "common/errorPage";
 			}
-			
-			
+
+
 		}
-	
+
 	@RequestMapping(value="month.at")//월별출석부
 	public String monthAtt(Model model,Children att) {
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);
 		model.addAttribute("day", day);
-		
-		
-		
+
+
+
 		return "attendance/monthAttendance";
 	}
-	
+
 	@RequestMapping(value="changeAttendance.at")
 	public String changeAttendance(String time,HttpServletResponse rs, Model model) {
 		/* 특정 날짜 출석부 */
-		
+
 		System.out.println(time);
 		System.out.println("나오세요~");
 		return "attendance/attendanceMain";
 	}
-	
+
 }

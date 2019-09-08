@@ -144,13 +144,14 @@ public class PageLinkServlet {
 	 public String WriteSomeoneHomeWork() {
 	  return "homeworkDiary/homeworkIndividualWrite";
 	  }
-	 
+
 	 @RequestMapping(value="findid.pl")
 	 public String findid() {
-		 
-		 
+
+
 		 return "join/findId";
 	 }
+
 
 	 @RequestMapping(value="homeworkSelectPeople.pl")
 	 public String homeworkSelectPeople() {
@@ -168,6 +169,7 @@ public class PageLinkServlet {
 	 public String NoticeWrite() {
 		 return "notice/NoticeWrite";
 	 }
+
 
 	 @RequestMapping(value="DetailNotice.pl")
 	 public String DetailNotice() {
