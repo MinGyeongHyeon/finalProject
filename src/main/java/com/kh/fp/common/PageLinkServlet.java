@@ -151,7 +151,27 @@ public class PageLinkServlet {
 		 
 		 return "join/findId";
 	 }
-	
 
+	 @RequestMapping(value="homeworkSelectPeople.pl")
+	 public String homeworkSelectPeople() {
+		 
+		 return "homeworkDiary/homeworkSelectPeople";
+	 }
+	 
+	
+	 @RequestMapping(value="Notice.pl")
+	 public String Notice() {
+		 return "notice/NoticeList";
+	 }
+
+	 @RequestMapping(value="NoticeWrite.pl")
+	 public String NoticeWrite() {
+		 return "notice/NoticeWrite";
+	 }
+
+	 @RequestMapping(value="DetailNotice.pl")
+	 public String DetailNotice() {
+		 return "notice/DetailNotice";
+	 }
 }
 

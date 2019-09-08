@@ -229,14 +229,14 @@
 						<th>제목</th>
 					</tr>
 					<tr>
-						<td><input type="text" name="boardTitle" class="Title" style="width:50%"/></td>
+						<td><input type="text" name="boardTitle" class="Title" style="width:50%;  border-radius:10px"/></td>
 					</tr>
 					
 					<tr>
 						<th>내용</th>
 					</tr>
 					<tr>
-						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;"></textarea></td>
+						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;  border-radius:10px"></textarea></td>
 					</tr>
 					<tr>
 						<th>파일첨부</th>
