@@ -293,7 +293,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#">
+							<a href="Notice.pl">
 								<i class="fas fa-bullhorn"></i>
 								<p>공지사항</p>
 							</a>
@@ -458,7 +458,7 @@
 	<script src="${ contextPath }/resources/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 	<!-- Azzara JS -->
-	<script src="${ contextPath }/resources/assets/js/ready.min.js"></script>
+	<%-- <script src="${ contextPath }/resources/assets/js/ready.min.js"></script> --%>
 
 </body>
 </html>
