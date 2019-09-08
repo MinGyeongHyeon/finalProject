@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- The definition of the Root Spring Container shared by all Servlets
+		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -14,36 +15,40 @@
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
 	</listener>
 
 	<servlet>
 		<servlet-name>pageLink</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 
 		<init-param>
 
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/config/page-servlet.xml</param-value>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/page-servlet.xml</param-value>
 
 		</init-param>
 	</servlet>
 
 	<servlet>
 		<servlet-name>selectLink</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 
 		<init-param>
 
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/config/selectKin-servlet.xml</param-value>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/selectKin-servlet.xml</param-value>
 
 		</init-param>
 	</servlet>
 
 	<servlet>
 		<servlet-name>member</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/member-servlet.xml</param-value>
@@ -51,7 +56,8 @@
 	</servlet>
 	<servlet>
 		<servlet-name>homework</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/homework-servlet.xml</param-value>
@@ -63,20 +69,21 @@
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
 
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>selectLink</servlet-name>
 		<url-pattern>*.kl</url-pattern>
 	</servlet-mapping>
 
 
- 	<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>pageLink</servlet-name>
 		<url-pattern>*.pl</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>attendance</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/attendance-servlet.xml</param-value>
@@ -87,14 +94,15 @@
 		<servlet-name>attendance</servlet-name>
 		<url-pattern>*.at</url-pattern>
 	</servlet-mapping>
- 	<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>homework</servlet-name>
 		<url-pattern>*.hw</url-pattern>
 	</servlet-mapping>
 
- 	<servlet>
+	<servlet>
 		<servlet-name>schedule</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/schedule-servlet.xml</param-value>
@@ -109,7 +117,8 @@
 
 	<servlet>
 		<servlet-name>dosage</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/dosage-servlet.xml</param-value>
@@ -120,25 +129,11 @@
 		<servlet-name>dosage</servlet-name>
 		<url-pattern>*.ds</url-pattern>
 	</servlet-mapping>
-	
-		<servlet>
-		<servlet-name>individualhomework</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/individualhomework-servlet.xml</param-value>
-		</init-param>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>individualhomework</servlet-name>
-		<url-pattern>*.ih</url-pattern>
-	</servlet-mapping>
-	
 
 	<servlet>
 		<servlet-name>note</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/note-servlet.xml</param-value>
@@ -150,16 +145,34 @@
 		<url-pattern>*.nt</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet>
+		<servlet-name>individualhomework</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/individualhomework-servlet.xml
+			</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>individualhomework</servlet-name>
+		<url-pattern>*.ih</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
 		<init-param>
-      <param-name>forceEncoding</param-name>
-      <param-value>true</param-value>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
 		</init-param>
 	</filter>
 

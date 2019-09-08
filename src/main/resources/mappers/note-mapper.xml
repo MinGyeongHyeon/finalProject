@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Note">
+
+
+<!--
+  	<select id="selectKinderArr" parameterType="Note" resultMap="kinderReslutSet">
+  		SELECT U.USER_NAME, K.KINDER_NAME, K.KINDER_ADDRESS
+  		FROM USERS U
+  		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+  	</select>
+ -->
+</mapper>

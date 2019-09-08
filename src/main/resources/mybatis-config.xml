@@ -28,6 +28,7 @@
 		<mapper resource="mappers/attendance-mapper.xml"/>
 		<mapper resource="mappers/homework-mapper.xml"/>
 		<mapper resource="mappers/dosage-mapper.xml"/>
+		<mapper resource="mappers/note-mapper.xml"/>
 	</mappers>
 
 </configuration>
