@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 	.fc-day-number{color:blue!important;}
 	.fc table{
@@ -185,9 +187,11 @@
     <script src="${contextPath }/resources/js/calendar/select2.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/bootstrap-datetimepicker.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/main.js"></script>
-    <script src="${contextPath }/resources/js/calendar/addEvent.js"></script>
+    <script src="${contextPath }/resources/js/calendar/addEvent.js"></script> 
     <script src="${contextPath }/resources/js/calendar/editEvent.js"></script>
     <script src="${contextPath }/resources/js/calendar/etcSetting.js"></script>
+    
+ 
 </body>
 
 </html>

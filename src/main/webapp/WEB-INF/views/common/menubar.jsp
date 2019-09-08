@@ -458,7 +458,7 @@
 	<script src="${ contextPath }/resources/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 	<!-- Azzara JS -->
-	<script src="${ contextPath }/resources/assets/js/ready.min.js"></script>
+	<%-- <script src="${ contextPath }/resources/assets/js/ready.min.js"></script> --%>
 
 </body>
 </html>
