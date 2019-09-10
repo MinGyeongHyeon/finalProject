@@ -36,13 +36,12 @@
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
     <div>
-
+	
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">원 일정</a></li>
-                <li><a tabindex="-1" href="#">반 일정</a></li>
+                <li><a tabindex="-1" href="#">일정 등록하기</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -112,8 +111,10 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">공개범위</label>
                                 <select class="inputModal" name="edit-type" id="edit-type">
-                                    <option value="원">원 일정</option>
-                                    <option value="반">반 일정</option>
+                                    <option value="원" default>원 일정</option>
+					                <c:if test="${ loginUser.classification eq '선생님' }">
+	                                    <option value="반">반 일정</option>
+					                </c:if>
                                 </select>
                             </div>
                         </div>
@@ -179,6 +180,17 @@
     </div>
     <!-- /.container -->
 
+ 	<script>
+	 	var classification = "${loginUser.classification}";
+	 	var kinderNo;
+	 	var teacherNo;
+	 	if(classification == '원장님'){
+	 		kinderNo = "${loginUser.userNo}";
+	 	}else if(classification == '선생님'){
+	 		teacherNo = "${loginUser.userNo}";
+	 	}
+	 	
+ 	</script>
     <%-- <script src="${contextPath }/resources/js/calendar/jquery-3.3.1.js"></script><!-- 9600line 주석 --> --%>
     <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script>
     <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
@@ -191,7 +203,6 @@
     <script src="${contextPath }/resources/js/calendar/editEvent.js"></script>
     <script src="${contextPath }/resources/js/calendar/etcSetting.js"></script>
     
- 
 </body>
 
 </html>
