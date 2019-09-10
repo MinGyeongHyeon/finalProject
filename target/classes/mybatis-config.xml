@@ -13,11 +13,17 @@
 		<typeAlias type="com.kh.fp.member.model.vo.KinclassSelect" alias="KinclassSelect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderland" alias="Kinderland"/>
 		<typeAlias type="com.kh.fp.schedule.model.vo.Schedule" alias="Schedule"/>
+		<typeAlias type="com.kh.fp.schedule.model.vo.KinderClass" alias="KinderClass"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Attendance" alias="Attendance"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Children" alias="Children"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.homework" alias="homework"/>
 		<typeAlias type="com.kh.fp.dosage.model.vo.DosageVO" alias="Dosage"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinGardenClasses" alias="KinGardenClassesvo"/>
+		<typeAlias type="com.kh.fp.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.kh.fp.notice.model.vo.NoticeWho" alias="NoticeWho"/>
+
+		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
+		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
 	</typeAliases>
 
 
@@ -29,6 +35,7 @@
 		<mapper resource="mappers/homework-mapper.xml"/>
 		<mapper resource="mappers/dosage-mapper.xml"/>
 		<mapper resource="mappers/note-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 
 </configuration>
