@@ -23,17 +23,7 @@ public class NoticeController {
 		
 		n.setBoardtype("공지사항");
 		
-		
-		if(n.getSelectClass().equals("AllClass")) {
-			
-			n.setKinderNum(1);
-			
-		}else {
-			
-			n.setClassNum(1);
-			
-		}
-		
+	
 		System.out.println("컨트롤러"+n);
 		 
 		try {
