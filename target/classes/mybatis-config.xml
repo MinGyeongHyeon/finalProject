@@ -21,9 +21,10 @@
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinGardenClasses" alias="KinGardenClassesvo"/>
 		<typeAlias type="com.kh.fp.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.fp.notice.model.vo.NoticeWho" alias="NoticeWho"/>
-
+		<typeAlias type="com.kh.fp.member.model.vo.KinderYN" alias="KinderYN"/>
 		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
 		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
+		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
 	</typeAliases>
 
 
