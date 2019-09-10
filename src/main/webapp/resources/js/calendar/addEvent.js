@@ -9,6 +9,8 @@ var editType = $('#edit-type');		//공개범위
 var editColor = $('#edit-color');	//색
 var editDesc = $('#edit-desc');		//내용
 
+
+//var loginNo = 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
@@ -27,22 +29,19 @@ var newEvent = function (start, end, eventType) {
     eventModal.modal('show');
 
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-    var eventId = 1 + Math.floor(Math.random() * 1000);
+    //var eventId = 1 + Math.floor(Math.random() * 1000);
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
         var eventData = {
-        	scheduleNo : 0,
             title: editTitle.val(), //제목
             allDay: false,		//하루종일 여부(아래에서 체크 여부에 따라 true 부여)
             start: editStart.val(), //시작날짜
             end: editEnd.val(),		//끝날짜
             backgroundColor: editColor.val(), //색
             type: editType.val(),		//공개범위
-            classNo: 0,
-            kinderNo: 0,
             scheduleContent: editDesc.val() //내용
         };
         
@@ -70,18 +69,87 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
         
+        
+        
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
         console.log(eventData);
-        //새로운 일정 저장
+        
+        if(kinderNo > 0){
+        	var classNo = kinderNo;
+        	$.ajax({
+	            url: "insertSchedule1.sc",
+	            type:"post",
+	            data:{
+		                title: eventData.title, 
+		                allDay: eventData.allDay,
+		                start: eventData.start,
+		                end: eventData.end,
+		                backgroundColor: eventData.backgroundColor,
+		                type: eventData.type,
+		                classNo:classNo,
+		                scheduleContent: eventData.scheduleContent
+	                },
+	            success: function (data) {
+	            	console.log("성공");
+	            	console.log(data.eventData);
+	                //DB연동시 중복이벤트 방지를 위한
+	                //$('#calendar').fullCalendar('removeEvents');
+	                //$('#calendar').fullCalendar('refetchEvents');
+	            },
+	            error: function(data){
+	            	console.log(data);
+	            	console.log("실패");
+	            }
+	        });
+        }else if(teacherNo > 0){
+        	if(eventData.type == '원'){
+        		$.ajax({
+    	            url: "findClassNo.sc",
+    	            type:"post",
+    	            data:{teacherNo:teacherNo},
+    	            success: function (data) {
+    	            	console.log("성공");
+    	            	console.log(data.fkc);
+    	            	
+    	            },
+    	            error: function(data){
+    	            	console.log(data);
+    	            	console.log("실패");
+    	            }
+    	        });
+        	}else{
+        		
+        	}
+        }
         $.ajax({
+        	url:"searchUserInfo.sc",
+        	type:"post",
+        	data:{kinderNo:kinderNo, teacherNo:teacherNo},
+        	success: function(data){
+        		if(data.searchInfo == 1){
+        			
+        		}
+        	},
+        	error:function(data){
+        		console.log("조회실패");
+        	}
+        });
+        //새로운 일정 저장
+        /*$.ajax({
             url: "insertSchedule.sc",
             type:"post",
-            data:{eventData:eventData},
-			/*dataType: 'JSON',
-			contentType : "application/json; charset=UTF-8", 	*/
+            data:{
+	                title: eventData.title, 
+	                allDay: eventData.allDay,
+	                start: eventData.start,
+	                end: eventData.end,
+	                backgroundColor: eventData.backgroundColor,
+	                type: eventData.type,
+	                scheduleContent: eventData.scheduleContent
+                },
             success: function (data) {
             	console.log("성공");
             	console.log(data.eventData);
@@ -93,7 +161,7 @@ var newEvent = function (start, end, eventType) {
             	console.log(data);
             	console.log("실패");
             }
-        });
+        });*/
     });
 };
 
