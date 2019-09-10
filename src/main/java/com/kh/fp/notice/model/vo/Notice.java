@@ -26,7 +26,18 @@ public class Notice implements Serializable{
 		this.boardtype = boardtype;
 		this.classNum = classNum;
 		this.kinderNum = kinderNum;
-		SelectClass = selectClass;
+		this.SelectClass = selectClass;
+	}
+	
+	
+
+	public Notice(int boardNum, String boardTitle, String boardContent, Date boardDate, String boardtype) {
+		super();
+		this.boardNum = boardNum;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardDate = boardDate;
+		this.boardtype = boardtype;
 	}
 
 	public int getBoardNum() {
@@ -90,7 +101,7 @@ public class Notice implements Serializable{
 	}
 
 	public void setSelectClass(String selectClass) {
-		SelectClass = selectClass;
+		this.SelectClass = selectClass;
 	}
 
 	@Override

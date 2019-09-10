@@ -143,7 +143,9 @@
 		width:15px;
 		height:15px;
 	}
-	
+	.nonedisplay{
+		
+	}
 </style>
 <script>
 	$(function(){
@@ -190,7 +192,7 @@
 						<th>반 선택</th>
 					</tr>
 					<tr>
-						<td style="margin-left:2px; border:1px solid #dadada; padding: 12px 20px; margin-bottm:4px; border-radius:4px">
+						<td style="margin-left:2px; border:1px solid #dadada; padding: 12px 20px; margin-bottm:4px; border-radius:10px">
 						<input type="radio" name="selectClass" class="selectClass" value="AllClass"/>원 공지</td>
 					</tr>
 					</table>
@@ -203,6 +205,13 @@
 					
 					<tr>
 						<th>내용<i class="far fa-comment-alt" style="size:10px; margin-right:3px"></i></th>
+					</tr>
+					<tr class="nonedisplay">
+					<c:forEach var="i" items="${ selectWho }">
+						<th name="classNum">${i.classNum}</th>
+						<th name="kinderNum">${i.kinderNum}</th>
+						<th name="className">${i.className}</th>
+					</c:forEach>
 					</tr>
 					<tr>
 						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%; border:1px solid #dadada;  border-radius:4px"></textarea></td>
