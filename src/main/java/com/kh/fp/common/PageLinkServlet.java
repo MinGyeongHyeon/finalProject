@@ -13,6 +13,8 @@ import com.kh.fp.member.model.vo.Member;
 
 @Controller
 public class PageLinkServlet {
+	
+
 
 
 	@RequestMapping(value="loginPage.pl")

@@ -158,6 +158,12 @@ public class MemberServiceImpl implements MemberService{
 		return md.teacherCount(sqlSession,loginUser);
 	}
 
+	@Override
+	public ArrayList teacherMe(Member m) {
+
+		return md.teacherMe(sqlSession , m);
+	}
+
 
 
 	

@@ -153,6 +153,20 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+
+	@Override
+	public ArrayList teacherMe(SqlSessionTemplate sqlSession,Member m) {
+			
+			ArrayList list = (ArrayList) sqlSession.selectList("Member.teacherMe", m);
+		
+		
+		return list;
+	}
+
+
+
+
+
 	
 
 	

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 <link rel="stylesheet" href="${ contextPath }/resources/css/mainCss.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 
 .main-panel {
@@ -163,6 +163,7 @@
 <c:if test="${ loginUser.classification eq '원장님'}">
 
 
+	
 		<div class="main-panel">
 			<table style="margin:0 suto; width:100%;">
 				<tr class="firstTr">
@@ -172,7 +173,10 @@
 								<tr>
 								<th style="text-align: left;">교사 관리</th>
 								<th style="text-align:right; color:#aaa;">
-								<label for="">더보기 ></label>
+								<form action="teacheron.me" method="post">
+								<button type="submit">더보기 ></button>
+								<input type="hidden" value="${ loginUser.userNo }" name="userNo"/>
+								</form>
 								</th>
 								</tr>
 							</table>
@@ -190,12 +194,13 @@
 							</table>
 							<br />
 						</div>
+						
 					</td>
 					<td colspan="3">
 						<div class="managementTitle">
 							<table class="mmanagementTable" style="width:100%; background:#ddd">
 								<tr>
-								<th style="text-align: left; font-size: bold;">교사 관리</th>
+								<th style="text-align: left; font-size: bold;">원생 관리</th>
 								<th style="text-align:right; font-size:bold; color:#aaa;">
 								<label for="">더보기 ></label>
 								</th>
@@ -295,6 +300,7 @@
 
 
 </c:if>
+
 	
 	<jsp:include page="../common/footer.jsp"/>
 	

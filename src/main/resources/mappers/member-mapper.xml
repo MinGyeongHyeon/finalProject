@@ -30,6 +30,13 @@
 	
 	</resultMap>
 	
+	<resultMap type="KinderYN" id="KinderYNResultSet">
+		
+		<result property="userName" column="USER_NAME"/>
+		<result property="className" column="CLASS_NAME"/>
+	
+	</resultMap>
+	
 	
 	
 	<!-- 회원 가입용 쿼리문 -->
@@ -117,12 +124,24 @@
 		SELECT COUNT(*)
 		FROM CHILDREN_KIND
 		WHERE KINDER_NO = #{userNo}
+		AND STATUS = '미승인'
 	</select>
 	
 	<select id="teacherCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM TEACHER
 		WHERE KINDER_NO = #{userNo}
+		AND STATUS = '미승인'
+	</select>
+	
+	
+	<select id="teacherMe" resultMap="KinderYNResultSet">
+	
+		SELECT U.USER_NAME,K.CLASS_NAME
+		FROM USERS U
+		JOIN KINDER_CLASS K ON(U.USER_NO = K.TEACHER_NO)
+		WHERE KINDER_NO = #{userNo}
+		
 	</select>
 
 	
