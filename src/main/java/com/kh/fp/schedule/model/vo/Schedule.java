@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Schedule implements java.io.Serializable{
 	private int scheduleNo;
 	private String title;
-	private boolean allDay;
+	private String allDay;
 	private String start;
 	private String end;
 	private String backgroundColor;
@@ -16,7 +16,7 @@ public class Schedule implements java.io.Serializable{
 	
 	public Schedule() {}
 
-	public Schedule(int scheduleNo, String title, boolean allDay, String start, String end, String backgroundColor,
+	public Schedule(int scheduleNo, String title, String allDay, String start, String end, String backgroundColor,
 			String type, int classNo, int kinderNo, String scheduleContent) {
 		super();
 		this.scheduleNo = scheduleNo;
@@ -47,11 +47,11 @@ public class Schedule implements java.io.Serializable{
 		this.title = title;
 	}
 
-	public boolean isAllDay() {
+	public String isAllDay() {
 		return allDay;
 	}
 
-	public void setAllDay(boolean allDay) {
+	public void setAllDay(String allDay) {
 		this.allDay = allDay;
 	}
 

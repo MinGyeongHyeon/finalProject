@@ -13,15 +13,42 @@
 		<result property="backgroundColor" column="COLOR"/>
 		<result property="type" column="SCHEDULE_TYPE"/>
 		<result property="classNo" column="CLASS_NO"/>
-		<result property="kinderNo" column="KINDER_NO"/>								
+		<result property="kinderNo" column="KINDER_NO"/> 								
 		<result property="scheduleContent" column="SCHEDULE_CONTENT"/>
 	</resultMap>
 
-
-	<insert id="insertSchedule" parameterType="Schedule">
-		<!-- INSERT INTO SCHEDULE
-		VALUES(SCHEDULE_NO.NEXTVAL, #{}) -->
+	<resultMap type="KinderClass" id="kinderClassResultSet">
+		<id property="classNo" column="CLASS_NO"/>
+		<result property="kinderNo" column="KINDER_NO"/>
+		<result property="className" column="CLASS_NAME"/>
+		<result property="openedDate" column="OPENED_DATE"/>
+		<result property="semester" column="SEMESTER"/>
+		<result property="division" column="DIVISION"/>
+		<result property="teacherNo" column="TEACHER_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+	</resultMap>
+	
+	<select id="findClassNo" parameterType="KinderClass" resultMap="kinderClassResultSet">
+		SELECT *
+		FROM (
+		        SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, TEACHER_NO, CHILDREN_NO,
+		        RANK() OVER (ORDER BY CLASS_NO DESC) AS RANK
+		        FROM KINDER_CLASS
+		        WHERE DIVISION = '선생님'
+		        AND TEACHER_NO = #{teacherNo})
+		WHERE RANK = 1;
+	</select>
+	
+	
+	<insert id="insertSchedule1" parameterType="Schedule">
+		INSERT INTO SCHEDULE
+		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, #{classNo}, null, #{scheduleContent})
 	</insert>
-
+	
+	<insert id="insertSchedule2" parameterType="Schedule">
+		INSERT INTO SCHEDULE
+		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, null, #{kinderNo}, #{scheduleContent})
+	</insert>
+	
 </mapper>
 
