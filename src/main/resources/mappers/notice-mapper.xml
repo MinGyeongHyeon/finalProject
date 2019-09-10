@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Notice">
+	<resultMap type="Notice" id="noticeResultSet">
+		<id property="boardNum" column="BOARD_NO" />
+		<result property="boardTitle" column="BOARD_TITLE" />
+		<result property="boardContent" column="BOARD_CONTENT" />
+		<result property="boardDate" column="BOARD_DATE" />
+		<result property="boardtype" column="BOARD_TYPE" />
+		<result property="classNum" column="CLASS_NO" />
+		<result property="kinderNum" column="KINDER_NO" />
+
+	</resultMap>
+
+	<resultMap type="NoticeWho" id="noticeWho">
+		<id property="classNum" column="CLASS_NO" />
+		<result property="kinderNum" column="KINDER_NO" />
+		<result property="className" column="CLASS_NAME" />
+	</resultMap>
+
+
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO BOARD
+		VALUES(SEQ_BOARD_NO.NEXTVAL,
+		#{boardTitle},#{boardContent},SYSDATE,#{boardtype},
+		#{classNum},NULL,#{kinderNum})
+	</insert>
+
+	<select id="selectWho" resultMap="noticeWho">
+		SELECT C.CLASS_NO,C.KINDER_NO,C.CLASS_NAME
+		FROM KINDER_CLASS C
+		JOIN USERS U
+		ON U.USER_NO = C.TEACHER_NO
+		WHERE U.USER_NO = #{userNo}
+		AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
+	</select>
+</mapper>
+

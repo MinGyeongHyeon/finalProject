@@ -162,12 +162,28 @@
 		<url-pattern>*.ih</url-pattern>
 	</servlet-mapping>
 	
+	
+	
 		<servlet>
 		<servlet-name>notice</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/notice-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>notice</servlet-name>
+		<url-pattern>*.nw</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>noticeWhoAreYou</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/noticeWhoAreYou-servlet.xml</param-value>
 		</init-param>
 	</servlet>
 

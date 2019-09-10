@@ -174,6 +174,7 @@
 			location.href = "howmanypeopleinClass.ih";
 		}
 	</script>
+	<!--  <c:set var = "member" value="${sessionScope.loginUser}"/>-->
 </body>
 </html>
 

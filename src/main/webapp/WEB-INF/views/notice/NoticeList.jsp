@@ -145,7 +145,7 @@
 	</div>
 		<script>
 		function goNoticeWrite(){
-			location.href="NoticeWrite.pl";
+			location.href="NoticeWhoAreYou.no";
 		}
 		
 		function showDetailNotice(){
