@@ -16,10 +16,19 @@ public class NoticeDaoImpl implements NoticeDao{
 	@Override
 	public String insertNotice(SqlSessionTemplate sqlSession, Notice n) throws NoticeException {
 		System.out.println("여기는 공지사항 다오" + n);
-		
-		int notice = sqlSession.insert("Notice.insertNotice",n);
-		
 		String insert = "";
+		int notice = 0;
+		
+		if(n.getClassNum() == 0) {
+
+		 notice = sqlSession.insert("Notice.insertNotice",n);
+			
+		}else {
+			
+		notice = sqlSession.insert("Notice.insertNotice2",n);	
+			
+		}
+
 		if(notice <= 0) {
 			
 			insert = "실패";
@@ -30,7 +39,7 @@ public class NoticeDaoImpl implements NoticeDao{
 		}
 		
 		return insert;
-	}
+	} 
 
 	@Override
 	public ArrayList selectWho(SqlSessionTemplate sqlSession, int userNo) {

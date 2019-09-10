@@ -162,6 +162,21 @@
 		<url-pattern>*.ih</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>SelectNoticeList</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/SelectNoticeList-servlet.xml
+			</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SelectNoticeList</servlet-name>
+		<url-pattern>*.sn</url-pattern>
+	</servlet-mapping>
 	
 	
 		<servlet>
