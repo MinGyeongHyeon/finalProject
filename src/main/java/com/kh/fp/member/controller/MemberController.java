@@ -273,8 +273,6 @@ public class MemberController {
 		
 		kg.setAddress(kg.getSido()+ " " + kg.getSigungu() + " " + kg.getAddress3());
 		
-		System.out.println("회원번호의 값 : " + kg.getKinderNo());
-		
 		int result = ms.kininsert(kg); 
 		
 		if(result > 0) {
@@ -312,6 +310,21 @@ public class MemberController {
 		
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="teacheron.me")
+	public String teacherOn(Member m ,Model model) {
+		
+		
+		ArrayList listMe = ms.teacherMe(m);
+		
+		System.out.println("받아온 값 : " + listMe);
+		
+		model.addAttribute("listMe", listMe);
+		
+		
+		
+		return "kingteacher/teachermanagement";
 	}
 
 	

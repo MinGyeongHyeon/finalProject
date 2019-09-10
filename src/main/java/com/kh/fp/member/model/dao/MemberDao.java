@@ -2,6 +2,7 @@ package com.kh.fp.member.model.dao;
 
 import java.util.ArrayList;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fp.member.model.exception.JoinException;
@@ -41,6 +42,9 @@ public interface MemberDao {
 	int childrenCount(SqlSessionTemplate sqlSession, Member loginUser);
 
 	int teacherCount(SqlSessionTemplate sqlSession, Member loginUser);
+
+
+	ArrayList teacherMe(SqlSessionTemplate sqlSession, Member m);
 
 	
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,7 +96,16 @@ color:white;
 	<th>교사 이름</th>
 	<th>담당 반</th>
 	<th>연락처</th>
+	
+	<c:forEach var="name" items="${ listMe }" varStatus="test">
+		<tr>
+		<td>${ name.userName }</td>
+		<td>${ name.className }</td>
+		</tr>
+	</c:forEach>
+	
 	</tr>
+	
 	</table>
 	</div>
 

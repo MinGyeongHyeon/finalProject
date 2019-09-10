@@ -2,6 +2,7 @@ package com.kh.fp.member.model.service;
 
 import java.util.ArrayList;
 
+
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.vo.KidMember;
@@ -36,6 +37,9 @@ public interface MemberService {
 	int childrenCount(Member loginUser);
 
 	int teacherCount(Member loginUser);
+
+
+	ArrayList teacherMe(Member m);
 
 
 
