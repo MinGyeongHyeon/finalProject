@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.service.NoteService;
+import com.kh.fp.note.model.vo.Note;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
 @Controller
@@ -34,6 +35,45 @@ public class NoteController {
 			return "index.jsp";
 		}
 	}
+
+	//보낸 쪽지함 리스트 조회
+//	@RequestMapping(value="sentNoteList.nt")
+//	public String sentNoteList(Model model, Note n) {
+//
+//		System.out.println("sentNoteList 컨트롤러 호출");
+//
+//		ArrayList<Note> nList;
+//		try {
+//			nList = ns.selectSentNoteList();
+//			model.addAttribute("nList", nList);
+//			return "note/sentNoteBox";
+//
+//		} catch (NoteException e) {
+//			model.addAttribute("msg", e.getMessage());
+//			e.printStackTrace();
+//			return "index.jsp";
+//		}
+//	}
+
+	//보낸 쪽지함 페이징 처리
+	@RequestMapping(value="sentNoteList.nt")
+	public String sentNoteList(Model model, Note n) {
+
+		System.out.println("sentNoteList 컨트롤러 호출");
+
+		ArrayList<Note> nList;
+		try {
+			nList = ns.selectSentNoteList();
+			model.addAttribute("nList", nList);
+			return "note/sentNoteBox";
+
+		} catch (NoteException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index.jsp";
+		}
+	}
+
 
 	@RequestMapping(value="goUserList.nt")
 	public String goUserList() {

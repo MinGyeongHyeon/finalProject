@@ -16,17 +16,17 @@
 	transition: all .3s;
 }
 #mainArea {
-	height:470px;
+	height:510px;
 	background:white;
 }
-#text1 {
-	font-size: 17px;
+#text1, #text2 {
+	font-size: 15px;
 }
 #nameArea {
 	width:69%;
 	display:inline;
 }
-#inputArea {
+#inputArea{
 	margin-left:3%;
 }
 #selectBtn {
@@ -37,7 +37,7 @@
 #textArea {
 	width:67%;
 	resize:none;
-	margin-left:17%;
+	margin-left:15.3%;
 }
 .btns {
 	width: 200px;
@@ -55,7 +55,14 @@
 	background: #ff7575;
 	font-weight: bold;
 }
-
+#titleArea {
+	margin-left:7.5%;
+	margin-bottom:10px;
+}
+#title {
+	width:73%;
+	display:inline;
+}
 </style>
 
 </head>
@@ -79,8 +86,12 @@
 							<button type="button" class="btn" id="selectBtn" onclick="return userList()">선택하기</button>
 						</div>
 						<br>
+						<div id="titleArea">
+							<span id="text2"><b>제목 : </b></span>&nbsp;
+							<input type="text" class="form-control" id="title">
+						</div>
 						<div>
-							<textarea class="form-control" rows="13" id="textArea"></textarea>
+							<textarea class="form-control" rows="13" id="textArea" placeholder="내용을 입력해 주세요."></textarea>
 						</div>
 						<br>
 						<div id="btnArea" align="center">

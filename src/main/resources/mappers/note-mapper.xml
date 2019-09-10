@@ -26,8 +26,16 @@
   		</association>
   	</resultMap>
 
-<!--   	<resultMap type="Users" id="Users">
-		<id property="userNo" column="USER_NO"/>
+  	<resultMap type="Note" id="Note">
+  		<id property="noteNo" column="NOTE_NO"/>
+  		<result property="noteTitle" column="NOTE_TITLE"/>
+  		<result property="noteContent" column="NOTE_CONTENT"/>
+  		<result property="noteDate" column="NOTE_DATE"/>
+  		<result property="receiveNo" column="RECEIVE_NO"/>
+  		<result property="sendNo" column="SEND_NO"/>
+
+  		<association property="Users" javaType="Users">
+  		<id property="userNo" column="USER_NO"/>
 		<result property="userId" column="USER_ID"/>
 		<result property="userPwd" column="USER_PWD"/>
 		<result property="userName" column="USER_NAME"/>
@@ -38,12 +46,21 @@
 		<result property="deleteReason" column="DELETE_REASON"/>
 		<result property="status" column="STATUS"/>
 		<result property="classification" column="CLASSIFICATION"/>
-	</resultMap> -->
+  		</association>
+  	</resultMap>
+
 
   	<select id="selectKinderArr" parameterType="noteKindergarden" resultMap="noteKindergarden">
   		SELECT U.USER_NO, U.USER_NAME, K.KINDER_NO, K.KINDER_NAME, K.KINDER_ADDRESS
   		FROM USERS U
   		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+  	</select>
+
+  	<select id="selectSentNoteList" parameterType="Note" resultMap="Note">
+		SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		ORDER BY NOTE_DATE DESC, USER_NAME
   	</select>
 
 </mapper>

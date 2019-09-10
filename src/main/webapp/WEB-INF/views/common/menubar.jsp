@@ -362,7 +362,7 @@
 							</a>
 						</li>
 
-						<c:if test="${ loginUser.classification eq '원장님' }">
+						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '관리자'}">
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#submenu">
 								<i class="far fa-envelope"></i>
@@ -377,7 +377,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="sentNoteList.nt">
 										<span class="sub-item">보낸 쪽지함</span>
 										</a>
 									</li>
