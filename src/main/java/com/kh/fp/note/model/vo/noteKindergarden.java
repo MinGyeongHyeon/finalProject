@@ -2,33 +2,35 @@ package com.kh.fp.note.model.vo;
 
 import java.util.Arrays;
 
-public class Kindergarden implements java.io.Serializable{
+public class noteKindergarden implements java.io.Serializable{
 	private int kinderNo;
 	private String kinderName;
 	private String phone;
-	private String address;
+	private String kinderAddress;
 	private String sido;
 	private String sigungu;
 	private String address3;
 	private String[] className;
-	private Users users;
+	private String userName;
+	private Users Users;
 
 
-	public Kindergarden() {}
+	public noteKindergarden() {}
 
 
-	public Kindergarden(int kinderNo, String kinderName, String phone, String address, String sido, String sigungu,
-			String address3, String[] className, Users users) {
+	public noteKindergarden(int kinderNo, String kinderName, String phone, String kinderAddress, String sido,
+			String sigungu, String address3, String[] className, String userName, com.kh.fp.note.model.vo.Users users) {
 		super();
 		this.kinderNo = kinderNo;
 		this.kinderName = kinderName;
 		this.phone = phone;
-		this.address = address;
+		this.kinderAddress = kinderAddress;
 		this.sido = sido;
 		this.sigungu = sigungu;
 		this.address3 = address3;
 		this.className = className;
-		this.users = users;
+		this.userName = userName;
+		Users = users;
 	}
 
 
@@ -62,13 +64,13 @@ public class Kindergarden implements java.io.Serializable{
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getKinderAddress() {
+		return kinderAddress;
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setKinderAddress(String kinderAddress) {
+		this.kinderAddress = kinderAddress;
 	}
 
 
@@ -112,22 +114,36 @@ public class Kindergarden implements java.io.Serializable{
 	}
 
 
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
 	public Users getUsers() {
-		return users;
+		return Users;
 	}
 
 
 	public void setUsers(Users users) {
-		this.users = users;
+		Users = users;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Kindergarden [kinderNo=" + kinderNo + ", kinderName=" + kinderName + ", phone=" + phone + ", address="
-				+ address + ", sido=" + sido + ", sigungu=" + sigungu + ", address3=" + address3 + ", className="
-				+ Arrays.toString(className) + ", users=" + users + "]";
+		return "noteKindergarden [kinderNo=" + kinderNo + ", kinderName=" + kinderName + ", phone=" + phone
+				+ ", kinderAddress=" + kinderAddress + ", sido=" + sido + ", sigungu=" + sigungu + ", address3="
+				+ address3 + ", className=" + Arrays.toString(className) + ", userName=" + userName + ", Users=" + Users
+				+ "]";
 	}
+
+
+
 
 
 

@@ -6,10 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.exception.NoteException;
-import com.kh.fp.note.model.vo.Kindergarden;
+import com.kh.fp.note.model.vo.noteKindergarden;
 
 public interface NoteDao {
 
-	ArrayList<Kindergarden> selectUserList(SqlSessionTemplate sqlSession) throws NoteException;
+	ArrayList<noteKindergarden> selectUserList(SqlSessionTemplate sqlSession) throws NoteException;
 
 }

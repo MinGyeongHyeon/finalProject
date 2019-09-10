@@ -55,10 +55,7 @@
 	background: #ff7575;
 	font-weight: bold;
 }
-#mTable {
-	width:100%;
-	text-align:center;
-}
+
 </style>
 
 </head>
@@ -78,7 +75,8 @@
 						<div id="inputArea">
 							<span id="text1"><b>받는 사람 : </b></span>&nbsp;
 							<input type="text" class="form-control" id="nameArea">
-							<button type="button" class="btn" data-toggle="modal" data-target="#myModal" id="selectBtn" onclick="goUserList()">선택하기</button>
+							<input type="hidden" id="userList" value="${ kArr }">
+							<button type="button" class="btn" id="selectBtn" onclick="return userList()">선택하기</button>
 						</div>
 						<br>
 						<div>
@@ -86,9 +84,9 @@
 						</div>
 						<br>
 						<div id="btnArea" align="center">
-							<button type="button" class="btn btns" id="btn1">취소</button>
+							<button type="button" class="btn btns" id="btn1" onclick="goNoteMain()">취소</button>
 							&nbsp;&nbsp;
-							<button type="button" class="btn btns" id="btn2">보내기</button>
+							<button type="submit" class="btn btns" id="btn2">보내기</button>
 						</div>
 					</div>
 
@@ -97,64 +95,31 @@
 		</div>
 	</div>
 
-	  <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">받는 사람 선택</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-        	<table class="table" id="mTable">
-        		<thead>
-        			<tr>
-        				<th><input type="checkbox" id="checkAll"></th>
-        				<th>대표자 이름</th>
-        				<th>유치원 이름</th>
-        				<th>소재지</th>
-        			</tr>
-        		</thead>
-        		<tbody>
-        			<c:forEach var="kinderList" items="${ list }">
-        			<tr>
-        				<td><input type="checkbox" name="chk"></td>
-        				<td>${ kinderList.userName }</td>
-        				<td>${ kinderList.kinderName }</td>
-        				<td>${ kinderList.kinderAddress }</td>
-        			</tr>
-        			</c:forEach>
-        		</tbody>
-        	</table>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">선택</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
 	<script>
-		$(function(){
-			$("#checkAll").click(function(){
-				if($("#checkAll").prop("checked")){
-					$("input[name=chk]").prop("checked", true);
-				}else {
-					$("input[name=chk]").prop("checked", false);
-				}
-			})
-		});
-
 		function goUserList(){
+			var data = document.querySelector("#userList").value;
+			var openWindow = window.open("goUserList.nt?val="+data,"newWindow", "height=500, width=480, resizable=yes" );
+		}
+		function goNoteMain(){
+			location.href="noteMain.pl";
+		}
+		function userList(){
+/*
+			$.ajax({
+				url:"userList.nt",
+				type:"post",
+				dataType:"json",
+				success:function() {
+					window.open("note/userList.jsp","newWindow", "height=500, width=480, resizable=yes" );
+				},
+				error:function(err){
+					console.log("실패!");
+				}
+			});
+ */
 			location.href="userList.nt";
 		}
+
 	</script>
 
 </body>
