@@ -18,6 +18,8 @@
 		<typeAlias type="com.kh.fp.homework.model.vo.homework" alias="homework"/>
 		<typeAlias type="com.kh.fp.dosage.model.vo.DosageVO" alias="Dosage"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinGardenClasses" alias="KinGardenClassesvo"/>
+		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
+		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
 	</typeAliases>
 
 

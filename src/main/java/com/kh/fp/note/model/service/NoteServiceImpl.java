@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.dao.NoteDao;
 import com.kh.fp.note.model.exception.NoteException;
-import com.kh.fp.note.model.vo.Kindergarden;
+import com.kh.fp.note.model.vo.noteKindergarden;
 
 @Service
 public class NoteServiceImpl implements NoteService{
@@ -20,7 +20,7 @@ public class NoteServiceImpl implements NoteService{
 
 
 	@Override
-	public ArrayList<Kindergarden> selectUserList() throws NoteException {
+	public ArrayList<noteKindergarden> selectUserList() throws NoteException {
 		System.out.println("서비스 호출!!!");
 
 		return nd.selectUserList(sqlSession);

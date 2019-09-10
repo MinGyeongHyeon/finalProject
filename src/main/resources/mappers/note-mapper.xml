@@ -5,12 +5,45 @@
 
 <mapper namespace="Note">
 
+	<resultMap type="noteKindergarden" id="noteKindergarden">
+  		<id property="kinderNo" column="KINDER_NO"/>
+  		<result property="kinderName" column="KINDER_NAME"/>
+  		<result property="kinderPhone" column="KINDER_PHONE"/>
+  		<result property="kinderAddress" column="KINDER_ADDRESS"/>
 
-<!--
-  	<select id="selectKinderArr" parameterType="Note" resultMap="kinderReslutSet">
-  		SELECT U.USER_NAME, K.KINDER_NAME, K.KINDER_ADDRESS
+  		<association property="Users" javaType="Users">
+  			<id property="userNo" column="USER_NO"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+	    <result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="deleteDate" column="DELETE_DATE"/>
+		<result property="deleteReason" column="DELETE_REASON"/>
+		<result property="status" column="STATUS"/>
+		<result property="classification" column="CLASSIFICATION"/>
+  		</association>
+  	</resultMap>
+
+<!--   	<resultMap type="Users" id="Users">
+		<id property="userNo" column="USER_NO"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+	    <result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="deleteDate" column="DELETE_DATE"/>
+		<result property="deleteReason" column="DELETE_REASON"/>
+		<result property="status" column="STATUS"/>
+		<result property="classification" column="CLASSIFICATION"/>
+	</resultMap> -->
+
+  	<select id="selectKinderArr" parameterType="noteKindergarden" resultMap="noteKindergarden">
+  		SELECT U.USER_NO, U.USER_NAME, K.KINDER_NO, K.KINDER_NAME, K.KINDER_ADDRESS
   		FROM USERS U
   		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
   	</select>
- -->
+
 </mapper>
