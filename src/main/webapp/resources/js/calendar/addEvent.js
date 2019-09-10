@@ -37,7 +37,7 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
         var eventData = {
             title: editTitle.val(), //제목
-            allDay: false,		//하루종일 여부(아래에서 체크 여부에 따라 true 부여)
+            allDay: false,			//하루종일 여부(아래에서 체크 여부에 따라 true 부여)
             start: editStart.val(), //시작날짜
             end: editEnd.val(),		//끝날짜
             backgroundColor: editColor.val(), //색
@@ -76,9 +76,10 @@ var newEvent = function (start, end, eventType) {
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
         console.log(eventData);
+        console.log("선생님 번호 : " + teacherNo);
         
         if(kinderNo > 0){
-        	var classNo = kinderNo;
+        	var kinderNo = kinderNo;
         	$.ajax({
 	            url: "insertSchedule1.sc",
 	            type:"post",
@@ -93,7 +94,6 @@ var newEvent = function (start, end, eventType) {
 		                scheduleContent: eventData.scheduleContent
 	                },
 	            success: function (data) {
-	            	console.log("성공");
 	            	console.log(data.eventData);
 	                //DB연동시 중복이벤트 방지를 위한
 	                //$('#calendar').fullCalendar('removeEvents');
@@ -105,26 +105,74 @@ var newEvent = function (start, end, eventType) {
 	            }
 	        });
         }else if(teacherNo > 0){
-        	if(eventData.type == '원'){
-        		$.ajax({
-    	            url: "findClassNo.sc",
-    	            type:"post",
-    	            data:{teacherNo:teacherNo},
-    	            success: function (data) {
-    	            	console.log("성공");
-    	            	console.log(data.fkc);
-    	            	
-    	            },
-    	            error: function(data){
-    	            	console.log(data);
-    	            	console.log("실패");
-    	            }
-    	        });
-        	}else{
-        		
-        	}
+        	$.ajax({
+	            url: "selectKinderClass.sc",
+	            type:"post",
+	            data:{teacherNo:teacherNo},
+	            success: function (data) {
+	            	console.log(data.selectKc);
+	            	if(eventData.type == '원'){
+	            		var kinderNo = data.selectKc.kinderNo;
+	                	$.ajax({
+	        	            url: "insertSchedule1.sc",
+	        	            type:"post",
+	        	            data:{
+	        		                title: eventData.title, 
+	        		                allDay: eventData.allDay,
+	        		                start: eventData.start,
+	        		                end: eventData.end,
+	        		                backgroundColor: eventData.backgroundColor,
+	        		                type: eventData.type,
+	        		                kinderNo:kinderNo,
+	        		                scheduleContent: eventData.scheduleContent
+	        	                },
+	        	            success: function (data) {
+	        	            	console.log(data.eventData);
+	        	                //DB연동시 중복이벤트 방지를 위한
+	        	                //$('#calendar').fullCalendar('removeEvents');
+	        	                //$('#calendar').fullCalendar('refetchEvents');
+	        	            },
+	        	            error: function(data){
+	        	            	console.log(data);
+	        	            	console.log("실패");
+	        	            }
+	        	        });
+	            	}else{
+	            		var classNo = data.selectKc.classNo;
+	                	$.ajax({
+	        	            url: "insertSchedule2.sc",
+	        	            type:"post",
+	        	            data:{
+	        		                title: eventData.title, 
+	        		                allDay: eventData.allDay,
+	        		                start: eventData.start,
+	        		                end: eventData.end,
+	        		                backgroundColor: eventData.backgroundColor,
+	        		                type: eventData.type,
+	        		                classNo:classNo,
+	        		                scheduleContent: eventData.scheduleContent
+	        	                },
+	        	            success: function (data) {
+	        	            	console.log(data.eventData);
+	        	                //DB연동시 중복이벤트 방지를 위한
+	        	                //$('#calendar').fullCalendar('removeEvents');
+	        	                //$('#calendar').fullCalendar('refetchEvents');
+	        	            },
+	        	            error: function(data){
+	        	            	console.log(data);
+	        	            	console.log("실패");
+	        	            }
+	        	        });
+	            	}
+	            },
+	            error: function(data){
+	            	console.log(data.fkc);
+	            	console.log("실패");
+	            }
+	        });
+        	
         }
-        $.ajax({
+        /*$.ajax({
         	url:"searchUserInfo.sc",
         	type:"post",
         	data:{kinderNo:kinderNo, teacherNo:teacherNo},
@@ -136,7 +184,8 @@ var newEvent = function (start, end, eventType) {
         	error:function(data){
         		console.log("조회실패");
         	}
-        });
+        });*/
+        
         //새로운 일정 저장
         /*$.ajax({
             url: "insertSchedule.sc",
