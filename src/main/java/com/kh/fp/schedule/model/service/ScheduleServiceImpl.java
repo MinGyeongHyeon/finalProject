@@ -1,5 +1,7 @@
 package com.kh.fp.schedule.model.service;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,20 +20,35 @@ public class ScheduleServiceImpl implements ScheduleService{
 	private ScheduleDao scd;
 
 	@Override
-	public KinderClass findClassNo(KinderClass kc) {
-		KinderClass fkc = scd.findClassNo(sqlSession, kc);
+	public KinderClass selectKinderClass(KinderClass kc) {
+		KinderClass selectKc = scd.selectKinderClass(sqlSession, kc);
 		
-		return fkc;
+		return selectKc;
 	}
-	
-	
-	
+
 	@Override
 	public int insertSchedule1(Schedule sc){
 		int result = scd.insertSchedule1(sqlSession, sc);
 		
 		return result;
 	}
+
+	@Override
+	public int insertSchedule2(Schedule sc){
+		int result = scd.insertSchedule2(sqlSession, sc);
+		
+		return result;
+	}
+
+
+	@Override
+	public HashMap<Schedule, Object> searchSchedule() {
+		HashMap<Schedule, Object> array = scd.searchSchedule(sqlSession);
+		
+		return array;
+	}
+
+
 
 	
 	

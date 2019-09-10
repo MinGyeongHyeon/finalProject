@@ -20,12 +20,10 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/jquery-3.4.1.js"></script>
 <style>
 	.fc-day-number{color:blue!important;}
-	.fc table{
-		
-	}
+	
 	#wrapper{
 		width:80%;
 		margin:0 auto;

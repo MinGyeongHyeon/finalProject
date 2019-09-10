@@ -6,7 +6,7 @@ public class KinderClass implements java.io.Serializable{
 	private int classNo;
 	private int kinderNo;
 	private String className;
-	private Date openedDate;
+	private String openedDate;
 	private String semester;
 	private String division;
 	private int teacherNo;
@@ -14,7 +14,7 @@ public class KinderClass implements java.io.Serializable{
 	
 	public KinderClass() {}
 
-	public KinderClass(int classNo, int kinderNo, String className, Date openedDate, String semester, String division,
+	public KinderClass(int classNo, int kinderNo, String className, String openedDate, String semester, String division,
 			int teacherNo, int childrenNo) {
 		super();
 		this.classNo = classNo;
@@ -51,11 +51,11 @@ public class KinderClass implements java.io.Serializable{
 		this.className = className;
 	}
 
-	public Date getOpenedDate() {
+	public String getOpenedDate() {
 		return openedDate;
 	}
 
-	public void setOpenedDate(Date openedDate) {
+	public void setOpenedDate(String openedDate) {
 		this.openedDate = openedDate;
 	}
 

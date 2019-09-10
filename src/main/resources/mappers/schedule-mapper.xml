@@ -28,27 +28,33 @@
 		<result property="childrenNo" column="CHILDREN_NO"/>
 	</resultMap>
 	
-	<select id="findClassNo" parameterType="KinderClass" resultMap="kinderClassResultSet">
-		SELECT *
+	<select id="selectKinderClass" parameterType="KinderClass" resultMap="kinderClassResultSet">
+		SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, TEACHER_NO, CHILDREN_NO
 		FROM (
-		        SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, TEACHER_NO, CHILDREN_NO,
-		        RANK() OVER (ORDER BY CLASS_NO DESC) AS RANK
+		        SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, TEACHER_NO, CHILDREN_NO, RANK() OVER (ORDER BY CLASS_NO DESC) AS RANK
 		        FROM KINDER_CLASS
 		        WHERE DIVISION = '선생님'
-		        AND TEACHER_NO = #{teacherNo})
-		WHERE RANK = 1;
+		        AND TEACHER_NO = #{teacherNo}
+		     )
+		WHERE RANK = 1
 	</select>
 	
 	
 	<insert id="insertSchedule1" parameterType="Schedule">
 		INSERT INTO SCHEDULE
-		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, #{classNo}, null, #{scheduleContent})
+		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, null, #{kinderNo}, #{scheduleContent})
 	</insert>
 	
 	<insert id="insertSchedule2" parameterType="Schedule">
 		INSERT INTO SCHEDULE
-		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, null, #{kinderNo}, #{scheduleContent})
+		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, #{classNo}, null, #{scheduleContent})
 	</insert>
+	
+	<select id="searchSchedule" parameterType="Schedule" resultMap="scheduleResultSet">
+		SELECT *
+		FROM SCHEDULE
+	
+	</select>
 	
 </mapper>
 
