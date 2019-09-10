@@ -114,6 +114,13 @@ public class PageLinkServlet {
 		return "note/sendNote";
 	}
 
+	@RequestMapping(value="sentNoteBox.pl")
+	public String sentNoteBox() {
+
+		return "note/sentNoteBox";
+	}
+
+
 	@RequestMapping(value="Announcement.pl")
 	public String Announcement() {
 
@@ -155,11 +162,11 @@ public class PageLinkServlet {
 
 	 @RequestMapping(value="homeworkSelectPeople.pl")
 	 public String homeworkSelectPeople() {
-		 
+
 		 return "homeworkDiary/homeworkSelectPeople";
 	 }
-	 
-	
+
+
 	 @RequestMapping(value="Notice.pl")
 	 public String Notice() {
 		 return "notice/NoticeList";
