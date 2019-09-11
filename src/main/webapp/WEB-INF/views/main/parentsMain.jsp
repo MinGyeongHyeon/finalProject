@@ -184,7 +184,7 @@
 							<table class="managementContentsTable">
 								<tr>
 									<td>승인이 완료된 교사</td>
-									<td>0명</td>
+									<td>${teacherCountN }</td>
 								</tr>
 								<tr><td><p></p></td></tr>
 								<tr>
@@ -202,7 +202,10 @@
 								<tr>
 								<th style="text-align: left; font-size: bold;">원생 관리</th>
 								<th style="text-align:right; font-size:bold; color:#aaa;">
-								<label for="">더보기 ></label>
+								<form action="childrenMe.me" method="post">
+								<button type="submit">더보기 ></button>
+								<input type="hidden" value="${ loginUser.userNo }" name="userNo"/>
+								</form>
 								</th>
 								</tr>
 							</table>
@@ -210,7 +213,7 @@
 							<table class="managementContentsTable">
 								<tr>
 									<td>승인이 완료된 원생</td>
-									<td>0명</td>
+									<td>${ childrenCountN }</td>
 								</tr>
 								<tr><td><p></p></td></tr>
 								<tr>

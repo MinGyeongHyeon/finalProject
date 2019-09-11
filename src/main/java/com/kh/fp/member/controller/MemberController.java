@@ -59,9 +59,13 @@ public class MemberController {
 				
 				int childrenCount = ms.childrenCount(loginUser);
 				int teacherCount = ms.teacherCount(loginUser);
+				int childrenCountN = ms.childrenCountN(loginUser);
+				int teacherCountN = ms.teacherCountN(loginUser);
 				
 				model.addAttribute("childrenCount", childrenCount);
 				model.addAttribute("teacherCount",teacherCount);
+				model.addAttribute("childrenCountN", childrenCountN);
+				model.addAttribute("teacherCountN",teacherCountN);
 				
 				
 			}
@@ -326,6 +330,25 @@ public class MemberController {
 		
 		return "kingteacher/teachermanagement";
 	}
+	@RequestMapping(value="childrenMe.me")
+	public String childrenMe(Member m , Model model) {
+		
+		ArrayList listMe = ms.childrenMe(m);
+		ArrayList listMe2 = ms.childrenMe2(m);
+		ArrayList listMe3 = ms.childrenMe3(m);
+		
+		System.out.println("listMe 의 값 : " + listMe );
+		System.out.println("listMe2 의 값 : " + listMe2);
+		System.out.println("listMe3 의 값 : " + listMe3);
+		
+		model.addAttribute("listMe",listMe);
+		model.addAttribute("listMe2", listMe2);
+		model.addAttribute("listMe3", listMe3);
+		
+		
+		return"kingteacher/teachermanagement";
+	}
+	
 
 	
 

@@ -164,6 +164,36 @@ public class MemberServiceImpl implements MemberService{
 		return md.teacherMe(sqlSession , m);
 	}
 
+	@Override
+	public int childrenCountN(Member loginUser) {
+
+		return md.childrenCountN(sqlSession,loginUser);
+	}
+
+	@Override
+	public int teacherCountN(Member loginUser) {
+
+		return md.teacherCountN(sqlSession,loginUser);
+	}
+
+	@Override
+	public ArrayList childrenMe(Member m) {
+
+		return md.childrenMe(sqlSession, m);
+	}
+
+	@Override
+	public ArrayList childrenMe2(Member m) {
+
+		return md.childrenMe2(sqlSession , m);
+	}
+
+	@Override
+	public ArrayList childrenMe3(Member m) {
+
+		return md.childrenMe3(sqlSession, m);
+	}
+
 
 
 	

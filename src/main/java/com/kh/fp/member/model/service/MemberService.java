@@ -41,6 +41,16 @@ public interface MemberService {
 
 	ArrayList teacherMe(Member m);
 
+	int childrenCountN(Member loginUser);
+
+	int teacherCountN(Member loginUser);
+
+	ArrayList childrenMe(Member m);
+
+	ArrayList childrenMe2(Member m);
+
+	ArrayList childrenMe3(Member m);
+
 
 
 }

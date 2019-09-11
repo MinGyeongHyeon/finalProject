@@ -164,6 +164,41 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public int childrenCountN(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.childrenCountN" , loginUser);
+	}
+
+
+	@Override
+	public int teacherCountN(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.teacherCountN", loginUser);
+	}
+
+
+	@Override
+	public ArrayList childrenMe(SqlSessionTemplate sqlSession, Member m) {
+
+		return (ArrayList) sqlSession.selectList("Member.childrenMe",m);
+	}
+
+
+	@Override
+	public ArrayList childrenMe2(SqlSessionTemplate sqlSession, Member m) {
+
+		return (ArrayList) sqlSession.selectList("Member.childrenMe2" , m);
+	}
+
+
+	@Override
+	public ArrayList childrenMe3(SqlSessionTemplate sqlSession, Member m) {
+
+		return (ArrayList) sqlSession.selectList("Member.childrenMe3",m);
+	}
+
+
 
 
 
