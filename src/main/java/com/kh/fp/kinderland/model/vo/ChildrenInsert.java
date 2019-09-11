@@ -1,4 +1,4 @@
-package com.kh.fp.member.model.vo;
+package com.kh.fp.kinderland.model.vo;
 
 public class ChildrenInsert {
 	

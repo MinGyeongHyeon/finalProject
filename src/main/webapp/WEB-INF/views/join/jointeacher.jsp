@@ -36,6 +36,8 @@ margin:0 auto;
 </div>
 <br><br><br>
 <div id="content">
+<form action="teacherAt.me" method="post">
+<input type="hidden" value="${ select.userNo }" name="userNo"/>
 	<table align="center">
 		<tr><th>선생님 등록</th></tr>
 		<tr><td>
@@ -49,6 +51,8 @@ margin:0 auto;
 </form>
 		</td></tr>
 	</table>
+
+</form>
 
 </div>
 </body>

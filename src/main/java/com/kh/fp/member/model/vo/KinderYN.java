@@ -7,16 +7,21 @@ public class KinderYN {
 	private String phone;
 	private String classification;
 	private String childrenName;
+	private String childrenNo;
+	private String teacherNo;
 	
 	public KinderYN() {}
 
-	public KinderYN(String userName, String className, String phone, String classification, String childrenName) {
+	public KinderYN(String userName, String className, String phone, String classification, String childrenName,
+			String childrenNo, String teacherNo) {
 		super();
 		this.userName = userName;
 		this.className = className;
 		this.phone = phone;
 		this.classification = classification;
 		this.childrenName = childrenName;
+		this.childrenNo = childrenNo;
+		this.teacherNo = teacherNo;
 	}
 
 	public String getUserName() {
@@ -59,13 +64,28 @@ public class KinderYN {
 		this.childrenName = childrenName;
 	}
 
+	public String getChildrenNo() {
+		return childrenNo;
+	}
+
+	public void setChildrenNo(String childrenNo) {
+		this.childrenNo = childrenNo;
+	}
+
+	public String getTeacherNo() {
+		return teacherNo;
+	}
+
+	public void setTeacherNo(String teacherNo) {
+		this.teacherNo = teacherNo;
+	}
+
 	@Override
 	public String toString() {
 		return "KinderYN [userName=" + userName + ", className=" + className + ", phone=" + phone + ", classification="
-				+ classification + ", childrenName=" + childrenName + "]";
+				+ classification + ", childrenName=" + childrenName + ", childrenNo=" + childrenNo + ", teacherNo="
+				+ teacherNo + "]";
 	}
-
-
 
 	
 	

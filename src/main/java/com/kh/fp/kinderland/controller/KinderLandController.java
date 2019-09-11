@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.kinderland.model.service.KinderLandService;
+import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
+import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
-import com.kh.fp.member.model.vo.ChildrenInsert;
+import com.kh.fp.kinderland.model.vo.TeacherInsert;
 
 @Controller
 public class KinderLandController {
@@ -36,8 +38,7 @@ public class KinderLandController {
 	
 	@RequestMapping(value="selectKinderclass.kl")
 	public ModelAndView selectKinderclass(Kinderland kl , ModelAndView mv) {
-		
-		
+
 		ArrayList<KinGardenClasses> list2 = ks.selectKinderclass(kl);
 		
 		
@@ -59,6 +60,37 @@ public class KinderLandController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="insertTacher.kl")
+	public ModelAndView insertTeacher(TeacherInsert ti ,ModelAndView mv) {
+		
+		int result = ks.insertTeacher(ti);
+		
+		mv.setViewName("jsonView");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="insertchildrenclass.kl")
+	public ModelAndView insertchildrenclass(ChildrenClassInsert ci, ModelAndView mv) {
+		
+		
+		int result = ks.insertchildrenclass(ci);
+		
+		if(result > 0) {
+ 
+			int update = ks.updatechildrenclass(ci);
+		}
+		
+		System.out.println("넘어가기전 result " + result);
+		
+		mv.addObject("result",result);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
 	
 
 	
