@@ -110,6 +110,10 @@
 		</div>
 		<hr />
 		
+		<c:forEach var="w" items="${WhoAreYou}">
+			<c:out value="${w.classNum}"/>	
+		</c:forEach>
+		
 		<div class="homeworkDiarySummary" onclick="showDetailNotice()">
 			<% int num = 5;
 			for(int i = 0; i < num; i++){%>

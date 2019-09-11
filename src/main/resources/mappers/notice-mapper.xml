@@ -20,6 +20,13 @@
 		<result property="kinderNum" column="KINDER_NO" />
 		<result property="className" column="CLASS_NAME" />
 	</resultMap>
+	
+	
+	<resultMap type="NoticeWho" id="noticeWhoAreYou">
+		<id property="classNum" column="CLASS_NO" />
+		<result property="kinderNum" column="KINDER_NO" />
+	</resultMap>
+	
 
 
 	<insert id="insertNotice" parameterType="Notice">
@@ -54,10 +61,10 @@
 		SELECT COUNT(*)
 		FROM BOARD B
 		WHERE STATUS='N'
-		AND KINDER_NO = 1
+		AND KINDER_NO = #{kinderNum}
 		AND BOARD_TYPE = '공지사항'
 		AND CLASS_NO IS NULL 
-		OR CLASS_NO = 1
+		OR CLASS_NO = #{classNum}
 	</select>
 
 </mapper>
