@@ -52,4 +52,24 @@ public class NoticeDaoImpl implements NoticeDao{
 		return  Who;
 	}
 
+	@Override
+	public int getListCount(SqlSessionTemplate sqlSession) {
+
+		
+		return sqlSession.selectOne("Notice.selectListCount");
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

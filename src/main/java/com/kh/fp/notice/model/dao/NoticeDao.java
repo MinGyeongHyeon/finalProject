@@ -15,4 +15,6 @@ public interface NoticeDao {
 
 	ArrayList selectWho(SqlSessionTemplate sqlSession, int userNo);
 
+	int getListCount(SqlSessionTemplate sqlSession);
+
 }

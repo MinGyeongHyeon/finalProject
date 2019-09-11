@@ -293,7 +293,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="Notice.pl">
+							<a href="NoticeList.sn">
 								<i class="fas fa-bullhorn"></i>
 								<p>공지사항</p>
 							</a>
