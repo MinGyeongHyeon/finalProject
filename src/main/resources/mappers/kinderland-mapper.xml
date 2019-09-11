@@ -39,7 +39,7 @@
   	</select>
   	
   	<insert id="insertChildren">
-  		INSERT INTO CHILDREN_KIND VALUES( #{childrenNo}, #{kinderNo}  )	
+  		INSERT INTO CHILDREN_KIND VALUES( #{childrenNo}, #{kinderNo} , '미승인' )	
   	
   	</insert>
 	

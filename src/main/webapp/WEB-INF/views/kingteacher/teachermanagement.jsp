@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -70,37 +70,39 @@ color:white;
 	<div id="sidebar">
 	<jsp:include page="../common/directorManagementSideMenu.jsp"/>
 	</div>
+	<c:if test="${ listMe[0].classification eq '선생님'}">
 	<div id="content">
 	<div class="change">
-	<h1>���� ����</h1><hr>
+	<h1>교사 관리</h1><hr>
 	</div>
-	<h3>�̽��� ����</h3>
+	<h3>미승인 교사</h3>
 	<div>
 	<table id="miteacher" class="teacher">
 	<tr>
-	<th>���� �̸�</th>
-	<th>��� ��</th>
-	<th>���� ����</th>
+	<th>교사 이름</th>
+	<th>담당 반</th>
+	<th>승인 여부</th>
 	</tr>
 	<tr>
 	<td></td>
 	<td></td>
-	<td><button class="btn">����</button>&nbsp;&nbsp;<button class="btn">����</button></td>
+	<td><button class="btn">승인</button>&nbsp;&nbsp;<button class="btn">거절</button></td>
 	</tr>
 	</table>
 	</div>	
-	<h3>������ �Ϸ�� ����</h3>
+	<h3>승인이 완료된 교사</h3>
 	<div>
 	<table id="realteacher" class="teacher">
 	<tr>
-	<th>���� �̸�</th>
-	<th>��� ��</th>
-	<th>����ó</th>
+	<th>교사 이름</th>
+	<th>담당 반</th>
+	<th>연락처</th>
 	
-	<c:forEach var="name" items="${ listMe }" varStatus="test">
+	<c:forEach var="name" items="${ listMe }" >
 		<tr>
 		<td>${ name.userName }</td>
 		<td>${ name.className }</td>
+		<td>${ name.phone }</td>
 		</tr>
 	</c:forEach>
 	
@@ -110,7 +112,66 @@ color:white;
 	</div>
 
 	<br><br>
-	<button id="saveBtn">����</button><br><br><br>
+	<button id="saveBtn">저장</button><br><br><br>
 	</div>
+	</c:if>
+	
+	
+	
+
+	
+	<div id="content">
+	<div class="change">
+	<h1>원생 관리</h1><hr>
+	</div>
+	<h3>미승인 원생</h3>
+	<div>
+	<table id="miteacher" class="teacher">
+	<tr>
+	<th>원생 이름</th>
+	<th>담당 반</th>
+	<th>승인 여부</th>
+	</tr>
+	<c:forEach var="i" items="${ listMe2 }" >
+	<tr>
+	<td>${ i.childrenName }</td>
+	<td>
+		<select>
+		<c:forEach var="b" items="${ listMe3 }">
+			<option value="${ b.className }">${ b.className }</option>
+		</c:forEach>
+		</select>
+	</td>
+	<td><button class="btn">승인</button>&nbsp;&nbsp;<button class="btn">거절</button></td>
+	</tr>
+		</c:forEach>
+	</table>
+	</div>	
+	<h3>승인이 완료된 원생</h3>
+	<div>
+	<table id="realteacher" class="teacher">
+	<tr>
+	<th>원생 이름</th>
+	<th>담당 반</th>
+	<th>연락처</th>
+	
+	<c:forEach var="name" items="${ listMe }" varStatus="test">
+		<tr>
+		<td>${ name.childrenName }</td>
+		<td>${ name.className }</td>
+		<td>${ name.phone }</td>
+		</tr>
+	</c:forEach>
+	
+	</tr>
+	
+	</table>
+	</div>
+
+	<br><br>
+	<button id="saveBtn">저장</button><br><br><br>
+	</div>
+	
+	
 </body>
 </html>

@@ -34,7 +34,10 @@
 		
 		<result property="userName" column="USER_NAME"/>
 		<result property="className" column="CLASS_NAME"/>
-	
+		<result property="phone" column="PHONE"/>
+		<result property="classification" column="CLASSIFICATION"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+
 	</resultMap>
 	
 	
@@ -126,6 +129,12 @@
 		WHERE KINDER_NO = #{userNo}
 		AND STATUS = '미승인'
 	</select>
+	<select id="childrenCountN" resultType="_int">
+		SELECT COUNT(*)
+		FROM CHILDREN_KIND
+		WHERE KINDER_NO = #{userNo}
+		AND STATUS = '승인'
+	</select>
 	
 	<select id="teacherCount" resultType="_int">
 		SELECT COUNT(*)
@@ -133,14 +142,50 @@
 		WHERE KINDER_NO = #{userNo}
 		AND STATUS = '미승인'
 	</select>
+		<select id="teacherCountN" resultType="_int">
+		SELECT COUNT(*)
+		FROM TEACHER
+		WHERE KINDER_NO = #{userNo}
+		AND STATUS = '승인'
+	</select>
+	
 	
 	
 	<select id="teacherMe" resultMap="KinderYNResultSet">
 	
-		SELECT U.USER_NAME,K.CLASS_NAME
+		SELECT U.USER_NAME,K.CLASS_NAME,U.PHONE,U.CLASSIFICATION
 		FROM USERS U
 		JOIN KINDER_CLASS K ON(U.USER_NO = K.TEACHER_NO)
 		WHERE KINDER_NO = #{userNo}
+		
+	</select>
+	
+	<select id="childrenMe" resultMap="KinderYNResultSet">
+	
+		 SELECT U.CLASSIFICATION , K.CLASS_NAME , C.CHILDREN_NAME , U.PHONE
+		FROM USERS U
+		JOIN CHILDREN C ON(U.USER_NO = C.USER_NO)
+        JOIN KINDER_CLASS K ON(C.CHILDREN_NO = K.CHILDREN_NO)
+		WHERE KINDER_NO = #{userNo}
+		
+	</select>
+	
+	<select id="childrenMe2" resultMap="KinderYNResultSet">
+		SELECT H.CHILDREN_NAME
+        FROM USERS U
+        JOIN CHILDREN_KIND C ON(U.USER_NO = C.KINDER_NO)
+        JOIN CHILDREN H ON(C.CHILDREN_NO = H.CHILDREN_NO)
+        WHERE C.STATUS LIKE '미승인'
+        AND U.USER_NO = #{userNo}
+	
+	</select>
+	
+	<select id="childrenMe3" resultMap="KinderYNResultSet">
+	
+		SELECT K.CLASS_NAME
+		FROM USERS U
+		JOIN KINDER_CLASSES K ON(U.USER_NO = K.KINDER_NO)	
+		WHERE K.KINDER_NO = #{userNo}
 		
 	</select>
 
