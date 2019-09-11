@@ -75,11 +75,11 @@ height:100%;
         <div class="wapper">
           <table class="table--inner">
             	<!-- 날짜 일일이 가져오기 -->
-            	<c:forEach var="z" items="${ month }">
+            	<%-- <c:forEach var="z" items="${ month }">
             	<tr>
             		<td><c:out value="${ month }"/></td>
             	</tr>
-            	</c:forEach>
+            	</c:forEach> --%>
             	<tr>
             	<td><c:out value="${ month }"/></td>
             	<td>2</td>

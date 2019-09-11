@@ -63,16 +63,13 @@ public class AttendanceController {
 		}else {
 			model.addAttribute("month",30);
 		}
-		int[] arr = null;
-		for(int i=0; i<month; i++) {
-			arr[i] = month-(month)+1;
-		}
+		
 		try {
 			ArrayList<Children> childList = as.monthAttendance();
 			int hmc = childList.size()*3+1;
 			model.addAttribute("list",childList);
 			model.addAttribute("hmc",hmc);
-			return "attendance/testtest";
+			return "attendance/test";
 		} catch (DailyException e) {
 			model.addAttribute("msg",e.getMessage());
 			return "common/errorPage";
