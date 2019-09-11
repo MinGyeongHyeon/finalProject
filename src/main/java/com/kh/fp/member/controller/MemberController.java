@@ -320,33 +320,49 @@ public class MemberController {
 	public String teacherOn(Member m ,Model model) {
 		
 		
-		ArrayList listMe = ms.teacherMe(m);
+		System.out.println("선생의 m 값 : " + m);
 		
-		System.out.println("받아온 값 : " + listMe);
+		ArrayList listMe = ms.teacherMe(m);
+		ArrayList listMe2 = ms.teacherMe2(m);
+		
+	
 		
 		model.addAttribute("listMe", listMe);
+
 		
 		
 		
 		return "kingteacher/teachermanagement";
 	}
+	
 	@RequestMapping(value="childrenMe.me")
 	public String childrenMe(Member m , Model model) {
-		
+	
 		ArrayList listMe = ms.childrenMe(m);
 		ArrayList listMe2 = ms.childrenMe2(m);
 		ArrayList listMe3 = ms.childrenMe3(m);
 		
-		System.out.println("listMe 의 값 : " + listMe );
-		System.out.println("listMe2 의 값 : " + listMe2);
-		System.out.println("listMe3 의 값 : " + listMe3);
 		
 		model.addAttribute("listMe",listMe);
 		model.addAttribute("listMe2", listMe2);
 		model.addAttribute("listMe3", listMe3);
+
 		
 		
-		return"kingteacher/teachermanagement";
+		return"kingteacher/childrenmanagement";
+	}
+	
+	@RequestMapping(value="teacherAt.me")
+	public String teacherAt(Member m ,Model model) {
+		
+		System.out.println("들어온 m 값 : " + m);
+		
+		Member teacher = ms.teacherAt(m);
+		
+		model.addAttribute("teacher" , teacher);
+		
+		
+		return "join/searchGarden";
 	}
 	
 

@@ -37,6 +37,8 @@
 		<result property="phone" column="PHONE"/>
 		<result property="classification" column="CLASSIFICATION"/>
 		<result property="childrenName" column="CHILDREN_NAME"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="teacherNo" column="TEACHER_NO"/>
 
 	</resultMap>
 	
@@ -171,7 +173,7 @@
 	</select>
 	
 	<select id="childrenMe2" resultMap="KinderYNResultSet">
-		SELECT H.CHILDREN_NAME
+		SELECT H.CHILDREN_NAME, H.CHILDREN_NO
         FROM USERS U
         JOIN CHILDREN_KIND C ON(U.USER_NO = C.KINDER_NO)
         JOIN CHILDREN H ON(C.CHILDREN_NO = H.CHILDREN_NO)
@@ -187,6 +189,19 @@
 		JOIN KINDER_CLASSES K ON(U.USER_NO = K.KINDER_NO)	
 		WHERE K.KINDER_NO = #{userNo}
 		
+	</select>
+	
+	<select id="teacherMe2">
+		
+		
+	
+	</select>
+	
+	<select id="teacherAt">
+		SELECT * 
+		FROM USERS
+		WHERE USER_NO = #{userNo}
+	
 	</select>
 
 	

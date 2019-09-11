@@ -74,17 +74,16 @@ color:white;
  	<jsp:include page="../common/directorManagementSideMenu.jsp"/> 
 	</div>
 	
-
 	<input type="hidden" id="kinderNo" value="${ loginUser.userNo }"/>
 	<div id="content">
 	<div class="change">
-	<h1>교사 관리</h1><hr>
+	<h1>원생 관리</h1><hr>
 	</div>
-	<h3>미승인 교사</h3>
+	<h3>미승인 원생</h3>
 	<div>
 	<table id="miteacher" class="teacher">
 	<tr>
-	<th>교사 이름</th>
+	<th>원생 이름</th>
 	<th>담당 반</th>
 	<th>승인 여부</th>
 	</tr>
@@ -104,11 +103,11 @@ color:white;
 		</c:forEach>
 	</table>
 	</div>	
-	<h3>승인이 완료된 교사</h3>
+	<h3>승인이 완료된 원생</h3>
 	<div>
 	<table id="realteacher" class="teacher">
 	<tr>
-	<th>교사 이름</th>
+	<th>원생 이름</th>
 	<th>담당 반</th>
 	<th>연락처</th>
 	
@@ -139,6 +138,11 @@ color:white;
 		var childrenNo = $(this).parent().next().children().val();
 		var className = $(this).parent().prev().children().val();
 
+
+		console.log(kinderNo);
+		console.log(className);
+		console.log(childrenNo);
+		
 		
 		if(confirm("승인 하시겠습니까?")){
 			

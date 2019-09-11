@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
+import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
-import com.kh.fp.member.model.vo.ChildrenInsert;
+import com.kh.fp.kinderland.model.vo.TeacherInsert;
 
 @Repository
 public class KinderLandDaoImpl implements KinderLandDao{
@@ -30,6 +32,24 @@ public class KinderLandDaoImpl implements KinderLandDao{
 	public int insertChildren(SqlSessionTemplate sqlSession, ChildrenInsert ci) {
 
 		return sqlSession.insert("KinderLand.insertChildren", ci);
+	}
+
+	@Override
+	public int insertchildrenclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci) {
+
+		return sqlSession.insert("KinderLand.insertchildrenclass",ci);
+	}
+
+	@Override
+	public int updatechildrenclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci) {
+		
+		return sqlSession.update("KinderLand.updatechildrenclass" , ci);
+	}
+
+	@Override
+	public int insertTeacher(SqlSessionTemplate sqlSession, TeacherInsert ti) {
+
+		return sqlSession.insert("KinderLand.insertTeacher" , ti);
 	}
 
 	

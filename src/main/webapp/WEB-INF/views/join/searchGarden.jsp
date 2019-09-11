@@ -47,6 +47,9 @@ input,select{
 </style>
 </head>
 <body>
+
+
+
 <div id="topbar" style='height:60px'>
 유치원 검색
 </div>
@@ -56,6 +59,7 @@ input,select{
 		<h5>원검색</h5>
 	</div>	
 	<input type="hidden"  value="${ km.childrenNo }" id="childrenNo"/>
+	<input type="hidden" value="${ teacher.userNo }" id="teacherNo" />
 	<table align="center">
 		<tr><td colspan="2">
 		지역을 먼저 선택 후 원 명을 입력해 주세요.
@@ -97,6 +101,7 @@ input,select{
 		
 	</table>
 	
+	
 	<script>
 	
 		$('#sigungu').change(function(){
@@ -134,6 +139,8 @@ input,select{
 						var $td2 = $("<td colspan='1' text-align='center'>")
 						var $td3 = $("<td colspan='1' style='display:none'>");
 						var $h2 = $('<h3>');
+						var $button = $('<button class="buttonkind">요청</button>');
+						var $td4 = $("<td>");
 						
 						
 						$input.val(data.list[i].kinderNo);
@@ -142,18 +149,77 @@ input,select{
 						$td.append($label);
 						$td2.append($h2);
 						$td3.append($input);
+						$td4.append($button);
 						
 						$tr2.append($td2);
 						$tr2.append($td);
 						$tr2.append($td3);
+						$tr2.append($td4);
 						
 						
 						$tr.after($tr2);
 						
 					}
 					
+					$('.buttonkind').click(function(){
+						
+						var kinderNo = $(this).parent().prev().children().val() -0;
+						var kinderName = $(this).parent().prev().prev().prev().text();
+						var childrenNo = $('#childrenNo').val();
+						var teacherNo = $('#teacherNo').val();
+						
+						console.log(kinderName);
+						
+						console.log(kinderNo);
+						console.log(childrenNo);
+						
+					 	var check = confirm(kinderName + " 에 승인요청 을 보내시겠습니까 ?"); 
 					
-				$(".remove").click(function(){
+					 	
+					 	if(check){
+					 		
+							if(childrenNo != ""){
+								
+								/* 원생 승인 요청 */
+							
+								 $.ajax({
+										url:"insertchildren.kl",
+										type:"post",
+										data:{childrenNo:childrenNo,kinderNo:kinderNo},
+										success:function(data){
+											
+											alert("승인요청이 완료 되었습니다!");
+											
+											location.href='loginPage.pl';
+											
+										}
+									
+									}); 
+							
+								
+							}else{
+								/* 선생 승인 요청 */
+								$.ajax({
+									url:"insertTacher.kl",
+									type:"post",
+									data:{teacherNo:teacherNo,kinderNo:kinderNo},
+									success:function(data){
+										
+										alert("승인 요청이 완료 되었습니다!");
+										
+										location.href="loinPage.pl";
+										
+									}
+								});
+								
+							}
+					 		
+					 		
+					 	}
+					});
+					
+					
+				/* $(".remove").click(function(){
 					
 				var kinderNo = $(this).children("td").children("input").val() -0;
 				var $test = $(this);
@@ -234,7 +300,7 @@ input,select{
 					});
 				
 				
-				});
+				}); */
 				
 				}
 				

@@ -51,6 +51,10 @@ public interface MemberService {
 
 	ArrayList childrenMe3(Member m);
 
+	ArrayList teacherMe2(Member m);
+
+	Member teacherAt(Member m);
+
 
 
 }

@@ -194,6 +194,18 @@ public class MemberServiceImpl implements MemberService{
 		return md.childrenMe3(sqlSession, m);
 	}
 
+	@Override
+	public ArrayList teacherMe2(Member m) {
+
+		return md.teacherMe2(sqlSession ,m);
+	}
+
+	@Override
+	public Member teacherAt(Member m) {
+
+		return md.teacherAt(sqlSession, m);
+	}
+
 
 
 	

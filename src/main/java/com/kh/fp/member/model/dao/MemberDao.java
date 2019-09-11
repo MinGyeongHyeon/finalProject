@@ -56,6 +56,10 @@ public interface MemberDao {
 
 	ArrayList childrenMe3(SqlSessionTemplate sqlSession, Member m);
 
+	ArrayList teacherMe2(SqlSessionTemplate sqlSession, Member m);
+
+	Member teacherAt(SqlSessionTemplate sqlSession, Member m);
+
 	
 
 
