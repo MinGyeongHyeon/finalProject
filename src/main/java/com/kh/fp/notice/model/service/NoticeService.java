@@ -2,8 +2,13 @@ package com.kh.fp.notice.model.service;
 
 import java.util.ArrayList;
 
+import org.apache.tools.ant.Project;
+import org.springframework.ui.Model;
+
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.exception.NoticeException;
 import com.kh.fp.notice.model.vo.Notice;
+import com.kh.fp.notice.model.vo.NoticeWho;
 
 public interface NoticeService {
 
@@ -11,6 +16,9 @@ public interface NoticeService {
 
 	ArrayList selectWho(int userNo);
 
-	int getListCount();
+	int getListCount(NoticeWho noticeWho);
+
+	ArrayList<Notice> selectProjectList(PageInfo pi);
+
 
 }

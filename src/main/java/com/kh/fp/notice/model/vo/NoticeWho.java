@@ -1,6 +1,7 @@
 package com.kh.fp.notice.model.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class NoticeWho implements Serializable{
 	
@@ -18,7 +19,12 @@ public class NoticeWho implements Serializable{
 		this.kinderNum = kinderNum;
 		this.className = className;
 	}
-
+	
+	public NoticeWho(int classNum, int kinderNum) {
+		super();
+		this.classNum = classNum;
+		this.kinderNum = kinderNum;
+	}
 
 	public int getClassNum() {
 		return classNum;
@@ -54,6 +60,14 @@ public class NoticeWho implements Serializable{
 	public String toString() {
 		return "NoticeWho [classNum=" + classNum + ", kinderNum=" + kinderNum + ", className=" + className + "]";
 	}
+
+
+	public static void addAttribute(ArrayList selectWho) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 	
 	

@@ -3,11 +3,16 @@ package com.kh.fp.notice.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+import org.apache.tools.ant.Project;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.exception.NoticeException;
 import com.kh.fp.notice.model.vo.Notice;
+import com.kh.fp.notice.model.vo.NoticeWho;
 
 @Repository
 public class NoticeDaoImpl implements NoticeDao{
@@ -47,17 +52,33 @@ public class NoticeDaoImpl implements NoticeDao{
 		
 		ArrayList Who = (ArrayList) sqlSession.selectList("Notice.selectWho",userNo);
 		
-		System.out.println(Who);
-		
 		return  Who;
 	}
 
-	@Override
-	public int getListCount(SqlSessionTemplate sqlSession) {
 
-		
-		return sqlSession.selectOne("Notice.selectListCount");
+
+	@Override
+	@SuppressWarnings({"unchecked","rawtypes"})
+	public int getListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho) {
+		System.out.println("자바를자바");
+		return sqlSession.selectOne("Notice.selectListCount",noticeWho);
 	}
+
+	@Override
+	public ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		ArrayList<Notice> list = null;
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		list = (ArrayList) sqlSession.selectList("Notice.selectList",null,rowBounds);
+		
+		return list;
+	}
+
+	
+
+	
 
 }
 
