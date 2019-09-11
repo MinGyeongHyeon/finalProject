@@ -1,5 +1,6 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
+var today = new Date();
 
 function getDisplayEventDate(event) {
 
@@ -166,15 +167,39 @@ var calendar = $('#calendar').fullCalendar({
       },
       success: function (response) {
     	  console.log("조회완료");
-        var fixedDate = response.map(function (array) {
-          if (array.allDay && array.start !== array.end) {
-            // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-            array.end = moment(array.end).add(1, 'days');
-          }
-          return array;
-        })
-        callback(fixedDate);
+    	  console.log(response.list);
+    	  
+    	  var events = [];
+
+    	  for (var i = 0; i < response.length; i++) {
+    	  var evt = {
+    	  id: response[i].id,
+    	  title: response[i].title
+    	  };
+    	  events.push(evt);
+    	  }
+    	  callback(events);
+        /*var fixedDate = response.map(function (array) {
+	    	if (array.allDay && array.start !== array.end) {
+	    		// 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
+	    		array.end = moment(array.end).add(1, 'days');
+          	}
+          	return array;
+	        })
+        callback(fixedDate);*/
       },
+/*      success: function (response) {
+    	  var events = [];
+
+    	  for (var i = 0; i < response.length; i++) {
+    	  var evt = {
+    	  _id: response[i].id,
+    	  title: response[i].title... 등등
+    	  };
+    	  events.push(evt);
+    	  }
+    	  callback(events);
+    	  }*/
       error: function(response){
       	console.log("실패");
       }
@@ -323,7 +348,7 @@ var calendar = $('#calendar').fullCalendar({
   },
   eventLimitClick: 'week', //popover
   navLinks: true,
-  //defaultDate: moment('2019-05'), //실제 사용시 삭제
+  defaultDate: today, //실제 사용시 삭제
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: true,

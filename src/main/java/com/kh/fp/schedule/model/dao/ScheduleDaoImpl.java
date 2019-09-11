@@ -1,7 +1,8 @@
 package com.kh.fp.schedule.model.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +32,7 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return result;
 	}
 	
-
+	
 	@Override
 	public int insertSchedule2(SqlSessionTemplate sqlSession, Schedule sc) {
 		
@@ -45,10 +46,15 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public HashMap<Schedule, Object> searchSchedule(SqlSessionTemplate sqlSession) {
-		//HashMap<Schedule, Object> array = (HashMap<Schedule, Object>)sqlSession.selectmap
-		return null;
+	public ArrayList<Schedule> searchSchedule(SqlSessionTemplate sqlSession) {
+		RowBounds rowBounds = new RowBounds(1, 999);
+		ArrayList<Schedule> list = (ArrayList) sqlSession.selectList("Schedule.searchSchedule", null, rowBounds);
+		System.out.println("list출력" + list);
+		//list = (ArrayList<Schedule>) sqlSession.selectList("Schedule.searchSchedule", null);
+		
+		return list; 
 	}
 //("Schedule.searchSchedule");
 }

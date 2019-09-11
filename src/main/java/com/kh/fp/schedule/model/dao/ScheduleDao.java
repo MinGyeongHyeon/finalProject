@@ -2,6 +2,7 @@ package com.kh.fp.schedule.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -16,6 +17,6 @@ public interface ScheduleDao {
 
 	int insertSchedule2(SqlSessionTemplate sqlSession, Schedule sc);
 
-	HashMap<Schedule, Object> searchSchedule(SqlSessionTemplate sqlSession);
+	ArrayList<Schedule> searchSchedule(SqlSessionTemplate sqlSession);
 
 }

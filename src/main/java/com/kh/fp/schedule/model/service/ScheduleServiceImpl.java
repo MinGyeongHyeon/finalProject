@@ -1,6 +1,7 @@
 package com.kh.fp.schedule.model.service;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 
 	@Override
-	public HashMap<Schedule, Object> searchSchedule() {
-		HashMap<Schedule, Object> array = scd.searchSchedule(sqlSession);
+	public ArrayList<Schedule> searchSchedule() {
+		ArrayList<Schedule> list = scd.searchSchedule(sqlSession);
 		
-		return array;
+		return list;
 	}
 
 

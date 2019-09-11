@@ -1,6 +1,6 @@
 package com.kh.fp.schedule.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,11 +74,11 @@ public class ScheduleController {
 	
 	@RequestMapping(value="searchSchedule.sc")
 	public ModelAndView searchSchedule(ModelAndView mv) {
-		HashMap<Schedule, Object> array = null;
+		ArrayList<Schedule> list = null;
 		System.out.println("들어오긴했냐");
-		array = scs.searchSchedule();
+		list = scs.searchSchedule();
 			
-		mv.addObject("array", array);
+		mv.addObject("list", list);
 		mv.setViewName("jsonView");
 		return mv;
 	}
