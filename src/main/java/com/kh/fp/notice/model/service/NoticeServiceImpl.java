@@ -38,4 +38,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return Who;
 	}
 
+	@Override
+	public int getListCount() {
+		
+		return nd.getListCount(sqlSession);
+	}
+
 }

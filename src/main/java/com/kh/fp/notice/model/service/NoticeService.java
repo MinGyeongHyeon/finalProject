@@ -11,4 +11,6 @@ public interface NoticeService {
 
 	ArrayList selectWho(int userNo);
 
+	int getListCount();
+
 }

@@ -194,8 +194,8 @@
 				<c:forEach var="i" items="${ selectWho }">
 					<tr>
 						<td style="margin-left:2px; border:1px solid #dadada; padding: 12px 20px; margin-bottm:4px; border-radius:10px">
-						<input type="radio"  name="kinderNum" class="selectClass" value="${i.kinderNum}"/>원 공지</td>
-						
+						<input type="radio"  name="kinderNum" class="selectClass" value="${i.kinderNum }"/>원 공지</td>
+						<td><input type="hidden" name="kinderNum" value="${i.kinderNum }"/></td>
 					</tr>
 					
 					<tr>
@@ -208,11 +208,7 @@
 						<th>내용<i class="far fa-comment-alt" style="size:10px; margin-right:3px"></i></th>
 					</tr>
 					<tr class="nonedisplay">
-					<%-- <c:forEach var="i" items="${ selectWho }">
-						<th name="classNum">${i.classNum}</th>
-						<th name="kinderNum">${i.kinderNum}</th>
-						<th name="className">${i.className}</th>
-					</c:forEach> --%>
+					
 					</tr>
 					<tr>
 						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%; border:1px solid #dadada;  border-radius:4px"></textarea></td>
@@ -225,15 +221,13 @@
 							<div class="fileList" style="width:100%;">
 								<label for="selectFile">파일선택</label>
 								<input type="text" name="fileName" class="fileName">
-								<input type="file" value="추가" name="attachfile"id="selectFile" class="selectFile" multiple hidden/>
+								<input type="file" value="추가" name="attachfile"id="selectFile" class="selectFile" multiple/>
 							</div>
-							
-						
 						</td>
 					</tr>
 				</table>
 			</div>
-			<hr />
+			<hr/>
 			<br><br>
 			<div class="noticeBtnArea">
 				<table>

@@ -141,7 +141,7 @@
 		</div>
 		<div>
 		 <!-- 페이징 -->
-  <%--  <div id="paginArea" align="center">
+  <div id="paginArea" align="center">
          <c:if test="${ pi.currentPage <= 1 }">
            		 이전 &emsp;
          </c:if>
@@ -173,7 +173,7 @@
          </c:if>
          <c:if test="${ pi.currentPage >= pi.maxPage }">
             &emsp; 다음
-         </c:if> --%>
+         </c:if> 
       </div>
 		</div>
 		

@@ -26,25 +26,54 @@
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL,
 		#{boardTitle},#{boardContent},SYSDATE,#{boardtype},
-		  NULL,NULL,#{kinderNum})
+		NULL,NULL,#{kinderNum},'N')
 	</insert>
-	
-	
+
+
 	<insert id="insertNotice2" parameterType="Notice">
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL,
 		#{boardTitle},#{boardContent},SYSDATE,#{boardtype},
-		#{classNum},NULL,NULL)
+		#{classNum},NULL,#{kinderNum},'N')
 	</insert>
-	
+
 
 	<select id="selectWho" resultMap="noticeWho">
-		SELECT C.CLASS_NO,C.KINDER_NO,C.CLASS_NAME
+		SELECT
+		C.CLASS_NO,C.KINDER_NO,C.CLASS_NAME
 		FROM KINDER_CLASS C
 		JOIN USERS U
-		ON U.USER_NO = C.TEACHER_NO
+		ON
+		U.USER_NO = C.TEACHER_NO
 		WHERE U.USER_NO = #{userNo}
-		AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
+		AND
+		SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
 	</select>
+
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD B
+		WHERE STATUS='N'
+		AND KINDER_NO = 1
+		AND BOARD_TYPE = '공지사항'
+		AND CLASS_NO IS NULL 
+		OR CLASS_NO = 1
+	</select>
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
