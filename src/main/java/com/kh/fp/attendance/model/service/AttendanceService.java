@@ -9,4 +9,6 @@ public interface AttendanceService {
 
 	ArrayList<Children> dailyAttendance() throws DailyException;
 
+	ArrayList<Children> monthAttendance() throws DailyException;
+
 }
