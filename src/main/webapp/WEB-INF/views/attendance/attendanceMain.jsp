@@ -37,24 +37,18 @@ $(function(){
 function goMonth(){
 	location.href="month.at";
 };
-function statusChange(){
-	/* $(this).parents().children("td").eq(5).css({"display":"inline-block","background":"white"}); */
-/* 	$(".bgo").parents().parents().children("td").eq(5).css({"display":"inline-block","background":"white"}); */
-var savec = '<button>비고</button>';
-$(this).parents().siblings("#bgo").html("ㅅㅂ");
 
-
-if(num1==0){
-var saveb = '<button>저장</button>';
-$("#saveBtn").append(saveb);
-num1+=1;
+$(document).on('change', 'select', function() {
+	if(num1==0){
+		var saveb = '<button>저장</button>';
+		$("#saveBtn").append(saveb);
+		num1+=1;
+	};
+	$(this).parent().parent().children("td").eq(5).append("<button onclick='bgo();' name=''>비고</button>");
+});
+function bgo(){
+	console.log(this);
 }
-
-
-
-
-
- };
 </script>
 
 </head>
@@ -184,7 +178,7 @@ num1+=1;
 								<td></td>
 								<td><c:out value="${ a.childrenName }"/></td>
 								<td>
-								<select class="status" name="status" onchange="statusChange();">
+								<select class="status" name="status" >
 									<option value="V">출결</option>
 									<option value="×">결석</option>
 									<option value="◎">병결</option>
@@ -195,7 +189,7 @@ num1+=1;
 								</td>
 								<td></td>
 								<td></td>
-								<td id="bgo" name="bgo"></td>
+								<td></td>
 								<td></td>
 								</tr>
 							</c:forEach>
@@ -206,13 +200,7 @@ num1+=1;
 					<div id="saveBtn"></div>
 		</div>
 	</div>
-<!-- <script>
-$(".status").onchange(function(){
-	$(this).parents().children("td").eq(5).css({"display":"inline-block","background":"white","width":"100%","height":"100%"});
-	console.log("졸리당");
-});
 
-</script> -->
 </body>
 </html>
 

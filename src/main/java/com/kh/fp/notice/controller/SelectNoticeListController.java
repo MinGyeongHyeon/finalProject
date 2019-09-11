@@ -28,12 +28,12 @@ public class SelectNoticeListController {
 		
 		ArrayList selectWho = ns.selectWho(userNo);
 		
-			
-		int classNum = selectWho.indexOf(0);
-		int kinderNum = selectWho.indexOf(1);	
+		System.out.println(selectWho);
+		//int classNum = selectWho.indexOf(0);
+		//int kinderNum = selectWho.indexOf(1);	
 		
-		System.out.println("반번호"+classNum);
-		System.out.println("유치원번호"+kinderNum);
+		//System.out.println("반번호"+classNum);
+		//System.out.println("유치원번호"+kinderNum);
 		
 		int currentPage = 1;
 		
