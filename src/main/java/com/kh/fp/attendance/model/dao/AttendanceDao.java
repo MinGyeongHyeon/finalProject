@@ -12,4 +12,6 @@ public interface AttendanceDao {
 
 	ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession) throws DailyException;
 
+	ArrayList<Children> monthAttendance(SqlSessionTemplate sqlSession) throws DailyException;
+
 }

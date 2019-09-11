@@ -21,6 +21,16 @@ public class AttendanceDaoImpl implements AttendanceDao{
 		return dailyatt;
 	}
 
+	@Override
+	public ArrayList<Children> monthAttendance(SqlSessionTemplate sqlSession) throws DailyException {
+		ArrayList<Children> monthatt = null;
+		monthatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt");
+		if(monthatt == null) {
+			throw new DailyException("정보조회실패");
+		}
+		return monthatt;
+	}
+
 
 
 }

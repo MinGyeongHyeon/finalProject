@@ -54,9 +54,30 @@ public class AttendanceController {
 		String day = date.format(today);
 		model.addAttribute("day", day);
 
+		int month = Integer.parseInt(day.substring(5,7));
+		
+		if(month==2) {
+			model.addAttribute("month",28);
+		}else if(month == 1||month == 3||month == 5||month == 7||month==8||month==10||month==12) {
+			model.addAttribute("month",31);
+		}else {
+			model.addAttribute("month",30);
+		}
+		int[] arr = null;
+		for(int i=0; i<month; i++) {
+			arr[i] = month-(month)+1;
+		}
+		try {
+			ArrayList<Children> childList = as.monthAttendance();
+			int hmc = childList.size()*3+1;
+			model.addAttribute("list",childList);
+			model.addAttribute("hmc",hmc);
+			return "attendance/testtest";
+		} catch (DailyException e) {
+			model.addAttribute("msg",e.getMessage());
+			return "common/errorPage";
+		}
 
-
-		return "attendance/monthAttendance";
 	}
 
 	@RequestMapping(value="changeAttendance.at")

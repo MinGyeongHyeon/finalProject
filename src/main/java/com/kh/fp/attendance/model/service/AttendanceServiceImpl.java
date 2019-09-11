@@ -27,4 +27,12 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 	}
 
+
+	@Override
+	public ArrayList<Children> monthAttendance() throws DailyException {
+		return ad.monthAttendance(sqlSession);
+	}
+
+
+
 }
