@@ -51,10 +51,14 @@ public class NoticeServiceImpl implements NoticeService {
 		return nd.getListCount(sqlSession,noticeWho);
 	}
 
+	
+
 	@Override
-	public ArrayList<Notice> selectProjectList(PageInfo pi) {
+	public ArrayList<Notice> selectProjectList(PageInfo pi, NoticeWho noticeWho) {
 		
-		ArrayList<Notice>list = nd.selectBoardList(sqlSession,pi);
+		ArrayList<Notice>list = nd.selectBoardList(sqlSession,pi,noticeWho);
+
+		System.out.println("서비스"+list);
 		
 		return list;
 	}

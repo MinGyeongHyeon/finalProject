@@ -15,7 +15,7 @@ import com.kh.fp.notice.model.service.NoticeService;
 import com.kh.fp.notice.model.vo.Notice;
 
 @Controller
-@SessionAttributes("Who")
+@SessionAttributes("loginUser")
 public class NoticeWhoAreYouController {
 
 	
@@ -26,6 +26,7 @@ public class NoticeWhoAreYouController {
 	public String NoticeWhoAreYou(Notice Who,Model model,@ModelAttribute("loginUser") Member loginUser) {
 		
 		System.out.println("controller :"+loginUser);
+		
 		int userNo = loginUser.getUserNo();
 		
 		System.out.println("유저번호는" + userNo);
@@ -49,9 +50,7 @@ public class NoticeWhoAreYouController {
 		
 		ArrayList selectWho = ns.selectWho(userNo);
 		
-	
 		model.addAttribute("selectWho",selectWho);
-		
 		
 		return "redirect:NoticeList.sn";
 	}
