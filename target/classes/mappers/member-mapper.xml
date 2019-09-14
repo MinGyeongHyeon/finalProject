@@ -42,6 +42,23 @@
 
 	</resultMap>
 	
+	<resultMap type="KinGardenClasses" id="KinGardenClassesResultSet">
+		
+		<id property="classNo" column="CLASS_NO"/>
+		<result property="divistion" column="DIVISTION"/>
+		<result property="kinderNo" column="KINDER_NO"/>
+		<result property="teacherNo" column="TEACHER_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="openedDate" column="OPENED_DATE"/>
+		<result property="semester" column="SEMESTER"/>
+		<result property="className" column="CLASS_NAME"/>
+	
+	
+	</resultMap>
+	
+	
+
+	
 	
 	
 	<!-- 회원 가입용 쿼리문 -->
@@ -144,7 +161,8 @@
 		WHERE KINDER_NO = #{userNo}
 		AND STATUS = '미승인'
 	</select>
-		<select id="teacherCountN" resultType="_int">
+	
+	<select id="teacherCountN" resultType="_int">
 		SELECT COUNT(*)
 		FROM TEACHER
 		WHERE KINDER_NO = #{userNo}
@@ -162,6 +180,39 @@
 		
 	</select>
 	
+	
+	<select id="teacherMe2" resultMap="KinderYNResultSet">
+		
+		SELECT U.USER_NAME, C.TEACHER_NO
+        FROM USERS U
+        JOIN TEACHER C ON(U.USER_NO = C.TEACHER_NO)
+        WHERE C.STATUS LIKE '미승인'
+        AND C.KINDER_NO = #{userNo}
+		
+		
+	
+	</select>
+	
+	<select id="teacherMeCount" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM USERS U
+        JOIN TEACHER C ON(U.USER_NO = C.TEACHER_NO)
+        WHERE C.STATUS LIKE '미승인'
+        AND C.KINDER_NO = #{userNo}
+		
+	</select>
+	
+	<select id="teacherMeCount2" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM USERS U
+		JOIN KINDER_CLASS K ON(U.USER_NO = K.TEACHER_NO)
+		WHERE KINDER_NO = #{userNo}
+		
+	
+	</select>
+	
 	<select id="childrenMe" resultMap="KinderYNResultSet">
 	
 		 SELECT U.CLASSIFICATION , K.CLASS_NAME , C.CHILDREN_NAME , U.PHONE
@@ -173,6 +224,7 @@
 	</select>
 	
 	<select id="childrenMe2" resultMap="KinderYNResultSet">
+	
 		SELECT H.CHILDREN_NAME, H.CHILDREN_NO
         FROM USERS U
         JOIN CHILDREN_KIND C ON(U.USER_NO = C.KINDER_NO)
@@ -191,18 +243,53 @@
 		
 	</select>
 	
-	<select id="teacherMe2">
-		
-		
 	
-	</select>
-	
-	<select id="teacherAt">
+	<select id="teacherAt" resultMap="memberResultSet">
 		SELECT * 
 		FROM USERS
 		WHERE USER_NO = #{userNo}
 	
 	</select>
+	
+	<select id="childrenMeCount" resultType="_int">
+	
+		SELECT COUNT(*)
+        FROM USERS U
+        JOIN CHILDREN_KIND C ON(U.USER_NO = C.KINDER_NO)
+        JOIN CHILDREN H ON(C.CHILDREN_NO = H.CHILDREN_NO)
+        WHERE C.STATUS LIKE '미승인'
+        AND U.USER_NO = #{userNo}
+		
+	
+	</select>
+	
+	<select id="childrenMeCount2" resultType="_int">
+	
+		 SELECT COUNT(*)
+		FROM USERS U
+		JOIN CHILDREN C ON(U.USER_NO = C.USER_NO)
+        JOIN KINDER_CLASS K ON(C.CHILDREN_NO = K.CHILDREN_NO)
+		WHERE KINDER_NO = #{userNo}
+	
+	</select>
+	
+	<select id="teachetYn" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM KINDER_CLASS
+		WHERE TEACHER_NO = #{userNo}
+	
+	</select>
+	
+	<select id="teacherKing" resultMap="KinGardenClassesResultSet">
+		
+		SELECT *
+		FROM KINDER_CLASS
+		WHERE TEACHER_NO = #{userNo}
+	
+	</select>
+	
+	
 
 	
 	
