@@ -46,9 +46,16 @@ $(document).on('change', 'select', function() {
 	};
 	$(this).parent().parent().children("td").eq(5).append("<button onclick='bgo();' name=''>비고</button>");
 });
+
+/* $("#statusArea").click(function(){
+	$(this).children("select").css('visibility', 'visible');
+	console.log("왜안나와");
+}); */
 function bgo(){
 	console.log(this);
 }
+
+
 </script>
 
 </head>
@@ -68,16 +75,19 @@ function bgo(){
 		font-weight: bold;
 		font-size: 1.5em;
 	}
-	
+	#statusArea{
+	background:lightgray;
+	}
+/* 	.status{
+	visibility:hidden;
+	} */
 	.pageName tr td:first-child{
 		width:60%;
 	}
-	
 	.pageName img{
 		width:30px;
 		height:30px;
 	}
-	
 	.pageName button{
 		background:#665b55;
 		color:#fff;
@@ -177,8 +187,9 @@ function bgo(){
 							<tr style="border:1px solid white;">
 								<td></td>
 								<td><c:out value="${ a.childrenName }"/></td>
-								<td>
-								<select class="status" name="status" >
+								<td id="statusArea">
+								<select class="status" name="status">
+									<option value="">선택</option>
 									<option value="V">출결</option>
 									<option value="×">결석</option>
 									<option value="◎">병결</option>
@@ -195,12 +206,20 @@ function bgo(){
 							</c:forEach>
 							</tbody>
 						</table>
-					<button class="subBtn">다운로드</button>
-					<button class="subBtn">출력</button>
+					<!-- <button class="subBtn">다운로드</button> -->
+					<a href="/attendance/2019/9/11/download/?qs_class=" type="button" class="btn btn-default hidden-print"
+                   onclick="ga('send', 'event', 'attendance', 'Click', 'dailyAttendance|download');">
+                    <i class="kn kn-download-box"></i> 다운로드
+                </a>
+					<!-- <button class="subBtn">출력</button> -->
+					<a href="/attendance/2019/9/11/print/?qs_class=" target="_blank" type="button" class="btn btn-gray btn-fix-width-sm hidden-print"
+               id="dailyAttendancePrintLink"
+               onclick="ga('send', 'event', 'attendance', 'Click', 'dailyAttendance|print');">
+                <i class="kn2 kn-print"></i> 출력
+            </a>
 					<div id="saveBtn"></div>
 		</div>
 	</div>
-
 </body>
 </html>
 

@@ -931,7 +931,6 @@
         
             <div class="status-menu dropdown-content">
                 <a class="atts_status_btn" data-status="0">출석</a>
-                <!-- 일본원 -->
                 
                     <a class="atts_status_btn" data-status="1">결석</a>
                     <a class="atts_status_btn" data-status="2">병가</a>
