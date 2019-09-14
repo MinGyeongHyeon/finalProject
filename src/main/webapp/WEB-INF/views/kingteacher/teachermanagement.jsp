@@ -6,8 +6,10 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 
 #content{
@@ -63,6 +65,7 @@ background:lightblue;
 border-radius:5px;
 color:white;
 }
+
 </style>
 </head>
 <header>
@@ -74,7 +77,6 @@ color:white;
  	<jsp:include page="../common/directorManagementSideMenu.jsp"/> 
 	</div>
 	
-
 	<input type="hidden" id="kinderNo" value="${ loginUser.userNo }"/>
 	<div id="content">
 	<div class="change">
@@ -90,7 +92,7 @@ color:white;
 	</tr>
 	<c:forEach var="i" items="${ listMe2 }" >
 	<tr>
-	<td>${ i.childrenName }</td>
+	<td>${ i.userName }</td>
 	<td>
 		<select class="className">
 		<c:forEach var="b" items="${ listMe3 }">
@@ -99,11 +101,33 @@ color:white;
 		</select>
 	</td>
 	<td><button class="btn" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn">거절</button></td>
-	<td><input type="hidden" class="childrenNo" value="${ i.childrenNo }"/></td>
+	<td><input type="hidden" class="teacherNo" value="${ i.teacherNo }"/></td>
 	</tr>
 		</c:forEach>
 	</table>
 	</div>	
+	
+	<div class="container" align="center" style="width:50%;">
+  <ul class="pagination">
+ 
+    
+    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			<c:if test="${ p eq pi.currentPage }">
+			
+				<li class="active"><a href="teacheron.me?currentPage=${ p }&currentPage2=1&userNo=${loginUser.userNo}">${ p }</a></li>
+			
+			</c:if>
+			<c:if test="${ p ne pi.currentPage }">
+			
+				<li><a href="teacheron.me?currentPage=${ p }&currentPage2=1&userNo=${loginUser.userNo}">${ p }</a></li>
+			</c:if>
+		
+		</c:forEach>
+  </ul>
+</div>
+	
+	
+	
 	<h3>승인이 완료된 교사</h3>
 	<div>
 	<table id="realteacher" class="teacher">
@@ -115,7 +139,7 @@ color:white;
 	<c:forEach var="name" items="${ listMe }" varStatus="test">
 		<tr>
 	
-		<td>${ name.childrenName }</td>
+		<td>${ name.userName }</td>
 		<td>${ name.className }</td>
 		<td>${ name.phone }</td>
 		</tr>
@@ -127,7 +151,24 @@ color:white;
 	</div>
 
 	<br><br>
-	<button id="saveBtn">저장</button><br><br><br>
+		<div class="container" align="center" style="width:50%;">
+  <ul class="pagination">
+ 
+    
+    <c:forEach var="p" begin="${ pi2.startPage }" end="${ pi2.endPage }">
+			<c:if test="${ p eq pi2.currentPage }">
+			
+				<li class="active"><a href="teacheron.me?currentPage=1&currentPage2=${ p }&userNo=${loginUser.userNo}">${ p }</a></li>
+			
+			</c:if>
+			<c:if test="${ p ne pi2.currentPage }">
+			
+				<li><a href="teacheron.me?currentPage=1&currentPage2=${ p }&userNo=${loginUser.userNo}">${ p }</a></li>
+			</c:if>
+		
+		</c:forEach>
+  </ul>
+</div>
 	</div>
 	
 	
@@ -136,27 +177,22 @@ color:white;
 		$('.btn').click(function(){
 	
 		var kinderNo = $('#kinderNo').val();
-		var childrenNo = $(this).parent().next().children().val();
+		var teacherNo = $(this).parent().next().children().val();
 		var className = $(this).parent().prev().children().val();
 
 		
 		if(confirm("승인 하시겠습니까?")){
 			
 		$.ajax({
-			url:"insertchildrenclass.kl",
+			url:"insertteacherclass.kl",
 			type:"post",
-			data:{kinderNo:kinderNo,childrenNo:childrenNo,className:className},
+			data:{kinderNo:kinderNo,teacherNo:teacherNo,className:className},
 			success:function(data){
-				
-				console.log(data);
-				
-				console.log(data.result);
-				
 				
 				if(data.result == 1){
 					alert("승인이 완료 되었습니다.");
 						
-					location.href="childrenMe.me?userNo="+ kinderNo;
+					location.href="teacheron.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
 					
 				}
 				

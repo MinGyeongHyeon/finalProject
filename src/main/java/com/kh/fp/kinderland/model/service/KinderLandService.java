@@ -23,4 +23,8 @@ public interface KinderLandService {
 
 	int insertTeacher(TeacherInsert ti);
 
+	int insertteacherclass(ChildrenClassInsert ci);
+
+	int updateteacherclass(ChildrenClassInsert ci);
+
 }

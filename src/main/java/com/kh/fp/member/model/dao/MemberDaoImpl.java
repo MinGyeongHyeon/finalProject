@@ -2,14 +2,17 @@ package com.kh.fp.member.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.note.model.vo.PageInfo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -155,10 +158,15 @@ public class MemberDaoImpl implements MemberDao{
 
 
 	@Override
-	public ArrayList teacherMe(SqlSessionTemplate sqlSession,Member m) {
+	public ArrayList teacherMe(SqlSessionTemplate sqlSession,Member m,PageInfo pi2) {
 			
-			ArrayList list = (ArrayList) sqlSession.selectList("Member.teacherMe", m);
+			ArrayList list = null;
+			
+			int offset = (pi2.getCurrentPage() -1 ) * pi2.getLimit();
+			
+			RowBounds rowBounds = new RowBounds(offset, pi2.getLimit());
 		
+			 list = (ArrayList) sqlSession.selectList("Member.teacherMe", m, rowBounds);
 		
 		return list;
 	}
@@ -179,16 +187,34 @@ public class MemberDaoImpl implements MemberDao{
 
 
 	@Override
-	public ArrayList childrenMe(SqlSessionTemplate sqlSession, Member m) {
+	public ArrayList childrenMe(SqlSessionTemplate sqlSession, Member m , PageInfo pi2) {
+		
+		ArrayList list = null;
+		
+		int offset = (pi2.getCurrentPage() -1 ) * pi2.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi2.getLimit());
+		
+		list = (ArrayList) sqlSession.selectList("Member.childrenMe", m , rowBounds);
 
-		return (ArrayList) sqlSession.selectList("Member.childrenMe",m);
+		return list;
 	}
 
 
 	@Override
-	public ArrayList childrenMe2(SqlSessionTemplate sqlSession, Member m) {
+	public ArrayList childrenMe2(SqlSessionTemplate sqlSession, Member m , PageInfo pi) {
+	
+		ArrayList list = null;
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
-		return (ArrayList) sqlSession.selectList("Member.childrenMe2" , m);
+		list = (ArrayList) sqlSession.selectList("Member.childrenMe2" , m , rowBounds);
+		
+		System.out.println("list 의 값 : " + list);
+		
+		return list;
 	}
 
 
@@ -200,9 +226,19 @@ public class MemberDaoImpl implements MemberDao{
 
 
 	@Override
-	public ArrayList teacherMe2(SqlSessionTemplate sqlSession, Member m) {
+	public ArrayList teacherMe2(SqlSessionTemplate sqlSession, Member m, PageInfo pi) {
+		
+		ArrayList list = null;
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		list = (ArrayList) sqlSession.selectList("Member.teacherMe2",m,rowBounds);
 
-		return (ArrayList) sqlSession.selectList("Member.teacherMe2",m);
+		
+
+		return list;
 	}
 
 
@@ -210,6 +246,48 @@ public class MemberDaoImpl implements MemberDao{
 	public Member teacherAt(SqlSessionTemplate sqlSession, Member m) {
 
 		return sqlSession.selectOne("Member.teacherAt",m);
+	}
+
+
+	@Override
+	public int childrenMeCount(SqlSessionTemplate sqlSession , Member m) {
+
+		return sqlSession.selectOne("Member.childrenMeCount",m);
+	}
+
+
+	@Override
+	public int childrenMeCount2(SqlSessionTemplate sqlSession, Member m) {
+
+		return sqlSession.selectOne("Member.childrenMeCount2", m);
+	}
+
+
+	@Override
+	public int teacherYn(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.teachetYn" , loginUser);
+	}
+
+
+	@Override
+	public KinGardenClasses teacherKing(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.teacherKing", loginUser);
+	}
+
+
+	@Override
+	public int teacherMeCount(SqlSessionTemplate sqlSession, Member m) {
+
+		return sqlSession.selectOne("Member.teacherMeCount",m);
+	}
+
+
+	@Override
+	public int teacherMe2Count(SqlSessionTemplate sqlSession, Member m) {
+
+		return sqlSession.selectOne("Member.teacherMeCount2",m);
 	}
 
 
