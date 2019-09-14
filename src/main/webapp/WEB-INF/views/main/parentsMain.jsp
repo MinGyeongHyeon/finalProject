@@ -173,7 +173,7 @@
 								<tr>
 								<th style="text-align: left;">교사 관리</th>
 								<th style="text-align:right; color:#aaa;">
-								<form action="teacheron.me" method="post">
+								<form action="teacheron.me?currentPage=1&currentPage2=1" method="post">
 								<button type="submit">더보기 ></button>
 								<input type="hidden" value="${ loginUser.userNo }" name="userNo"/>
 								</form>
@@ -202,7 +202,7 @@
 								<tr>
 								<th style="text-align: left; font-size: bold;">원생 관리</th>
 								<th style="text-align:right; font-size:bold; color:#aaa;">
-								<form action="childrenMe.me" method="post">
+								<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 								<button type="submit">더보기 ></button>
 								<input type="hidden" value="${ loginUser.userNo }" name="userNo"/>
 								</form>

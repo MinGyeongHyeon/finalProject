@@ -13,8 +13,10 @@ import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.note.model.vo.PageInfo;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -159,9 +161,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList teacherMe(Member m) {
+	public ArrayList teacherMe(Member m,PageInfo pi2) {
 
-		return md.teacherMe(sqlSession , m);
+		return md.teacherMe(sqlSession , m,pi2);
 	}
 
 	@Override
@@ -177,15 +179,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList childrenMe(Member m) {
+	public ArrayList childrenMe(Member m , PageInfo pi2) {
 
-		return md.childrenMe(sqlSession, m);
+		return md.childrenMe(sqlSession, m , pi2);
 	}
 
 	@Override
-	public ArrayList childrenMe2(Member m) {
+	public ArrayList childrenMe2(Member m ,PageInfo pi) {
 
-		return md.childrenMe2(sqlSession , m);
+		return md.childrenMe2(sqlSession , m ,pi);
 	}
 
 	@Override
@@ -195,15 +197,52 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList teacherMe2(Member m) {
+	public ArrayList teacherMe2(Member m , PageInfo pi) {
 
-		return md.teacherMe2(sqlSession ,m);
+		return md.teacherMe2(sqlSession ,m,pi);
 	}
 
 	@Override
 	public Member teacherAt(Member m) {
 
 		return md.teacherAt(sqlSession, m);
+	}
+
+	@Override
+	public int childrenMeCount(Member m) {
+
+		
+		return md.childrenMeCount(sqlSession,m);
+	}
+
+	@Override
+	public int childrenMeCount2(Member m) {
+
+		return md.childrenMeCount2(sqlSession,m);
+	}
+
+	@Override
+	public int teacherYn(Member loginUser) {
+
+		return md.teacherYn(sqlSession , loginUser);
+	}
+
+	@Override
+	public KinGardenClasses teacherKing(Member loginUser) {
+
+		return md.teacherKing(sqlSession, loginUser);
+	}
+
+	@Override
+	public int teacherMeCount(Member m) {
+
+		return md.teacherMeCount(sqlSession,m);
+	}
+
+	@Override
+	public int teacherMe2Count(Member m) {
+
+		return md.teacherMe2Count(sqlSession,m);
 	}
 
 

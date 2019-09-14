@@ -6,8 +6,10 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 
 #content{
@@ -63,6 +65,7 @@ background:lightblue;
 border-radius:5px;
 color:white;
 }
+
 </style>
 </head>
 <header>
@@ -103,6 +106,28 @@ color:white;
 		</c:forEach>
 	</table>
 	</div>	
+	
+	<div class="container" align="center" style="width:50%;">
+  <ul class="pagination">
+ 
+    
+    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			<c:if test="${ p eq pi.currentPage }">
+			
+				<li class="active"><a href="childrenMe.me?currentPage=${ p }&currentPage2=1&userNo=${loginUser.userNo}">${ p }</a></li>
+			
+			</c:if>
+			<c:if test="${ p ne pi.currentPage }">
+			
+				<li><a href="childrenMe.me?currentPage=${ p }&currentPage2=1&userNo=${loginUser.userNo}">${ p }</a></li>
+			</c:if>
+		
+		</c:forEach>
+  </ul>
+</div>
+	
+	
+	
 	<h3>승인이 완료된 원생</h3>
 	<div>
 	<table id="realteacher" class="teacher">
@@ -126,7 +151,24 @@ color:white;
 	</div>
 
 	<br><br>
-	<button id="saveBtn">저장</button><br><br><br>
+		<div class="container" align="center" style="width:50%;">
+  <ul class="pagination">
+ 
+    
+    <c:forEach var="p" begin="${ pi2.startPage }" end="${ pi2.endPage }">
+			<c:if test="${ p eq pi2.currentPage }">
+			
+				<li class="active"><a href="childrenMe.me?currentPage=1&currentPage2=${ p }&userNo=${loginUser.userNo}">${ p }</a></li>
+			
+			</c:if>
+			<c:if test="${ p ne pi2.currentPage }">
+			
+				<li><a href="childrenMe.me?currentPage=1&currentPage2=${ p }&userNo=${loginUser.userNo}">${ p }</a></li>
+			</c:if>
+		
+		</c:forEach>
+  </ul>
+</div>
 	</div>
 	
 	
@@ -152,15 +194,10 @@ color:white;
 			data:{kinderNo:kinderNo,childrenNo:childrenNo,className:className},
 			success:function(data){
 				
-				console.log(data);
-				
-				console.log(data.result);
-				
-				
 				if(data.result == 1){
 					alert("승인이 완료 되었습니다.");
 						
-					location.href="childrenMe.me?userNo="+ kinderNo;
+					location.href="childrenMe.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
 					
 				}
 				
