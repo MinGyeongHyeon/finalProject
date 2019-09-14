@@ -52,5 +52,17 @@ public class KinderLandDaoImpl implements KinderLandDao{
 		return sqlSession.insert("KinderLand.insertTeacher" , ti);
 	}
 
+	@Override
+	public int insertteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci) {
+
+		return sqlSession.insert("KinderLand.insertTeacgerClass", ci);
+	}
+
+	@Override
+	public int updateteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci) {
+
+		return sqlSession.update("KinderLand.updateteacherclass",ci);
+	}
+
 	
 }

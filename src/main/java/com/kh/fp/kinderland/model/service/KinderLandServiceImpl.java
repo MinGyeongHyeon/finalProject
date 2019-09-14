@@ -66,4 +66,18 @@ public class KinderLandServiceImpl implements KinderLandService{
 		return kd.insertTeacher(sqlSession , ti);
 	}
 
+
+	@Override
+	public int insertteacherclass(ChildrenClassInsert ci) {
+
+		return kd.insertteacherclass(sqlSession,ci);
+	}
+
+
+	@Override
+	public int updateteacherclass(ChildrenClassInsert ci) {
+
+		return kd.updateteacherclass(sqlSession,ci);
+	}
+
 }

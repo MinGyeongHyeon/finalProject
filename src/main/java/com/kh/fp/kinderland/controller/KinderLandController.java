@@ -83,10 +83,27 @@ public class KinderLandController {
 			int update = ks.updatechildrenclass(ci);
 		}
 		
-		System.out.println("넘어가기전 result " + result);
+		mv.addObject("result",result);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="insertteacherclass.kl")
+	public ModelAndView insertteacherclass(ChildrenClassInsert ci , ModelAndView mv) {
+		
+		
+		int result = ks.insertteacherclass(ci);
+		
+		if(result > 0) {
+			
+			int update = ks.updateteacherclass(ci);
+			
+		}
 		
 		mv.addObject("result",result);
 		mv.setViewName("jsonView");
+		
 		
 		return mv;
 	}

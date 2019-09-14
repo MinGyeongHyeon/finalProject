@@ -8,8 +8,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.note.model.vo.PageInfo;
 
 public interface MemberDao {
 
@@ -44,21 +46,33 @@ public interface MemberDao {
 	int teacherCount(SqlSessionTemplate sqlSession, Member loginUser);
 
 
-	ArrayList teacherMe(SqlSessionTemplate sqlSession, Member m);
+	ArrayList teacherMe(SqlSessionTemplate sqlSession, Member m, PageInfo pi2);
 
 	int childrenCountN(SqlSessionTemplate sqlSession, Member loginUser);
 
 	int teacherCountN(SqlSessionTemplate sqlSession, Member loginUser);
 
-	ArrayList childrenMe(SqlSessionTemplate sqlSession, Member m);
+	ArrayList childrenMe(SqlSessionTemplate sqlSession, Member m, PageInfo pi2);
 
-	ArrayList childrenMe2(SqlSessionTemplate sqlSession, Member m);
+	ArrayList childrenMe2(SqlSessionTemplate sqlSession, Member m, PageInfo pi);
 
 	ArrayList childrenMe3(SqlSessionTemplate sqlSession, Member m);
 
-	ArrayList teacherMe2(SqlSessionTemplate sqlSession, Member m);
+	ArrayList teacherMe2(SqlSessionTemplate sqlSession, Member m, PageInfo pi);
 
 	Member teacherAt(SqlSessionTemplate sqlSession, Member m);
+
+	int childrenMeCount(SqlSessionTemplate sqlSession, Member m);
+
+	int childrenMeCount2(SqlSessionTemplate sqlSession, Member m);
+
+	int teacherYn(SqlSessionTemplate sqlSession, Member loginUser);
+
+	KinGardenClasses teacherKing(SqlSessionTemplate sqlSession, Member loginUser);
+
+	int teacherMeCount(SqlSessionTemplate sqlSession, Member m);
+
+	int teacherMe2Count(SqlSessionTemplate sqlSession, Member m);
 
 	
 

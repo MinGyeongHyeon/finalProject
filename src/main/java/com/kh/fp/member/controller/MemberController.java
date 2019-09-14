@@ -22,16 +22,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fp.common.Pagination;
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.service.MemberService;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.note.model.vo.PageInfo;
 
 @Controller
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser","teacherKing"})
 public class MemberController {
 	
 	
@@ -66,6 +69,28 @@ public class MemberController {
 				model.addAttribute("teacherCount",teacherCount);
 				model.addAttribute("childrenCountN", childrenCountN);
 				model.addAttribute("teacherCountN",teacherCountN);
+				
+				
+			}else if(loginUser.getClassification().equals("선생님")) {
+				
+				int teacherYn = ms.teacherYn(loginUser);
+				
+				if(teacherYn > 0) {
+					
+					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
+					
+					model.addAttribute("teacherKing" , teacherKing);
+					
+					return "main/parentsMain";
+					
+					
+				}else {
+					
+					model.addAttribute("msg" ," 승인 처리가 안료되지 않았습니다. 해당 유치원에 문의 주세요. ");
+					
+					return "account/join5";
+					
+				}
 				
 				
 			}
@@ -242,7 +267,6 @@ public class MemberController {
 		
 		km.setBirth(km.getBirth1() + "/" + km.getBirth2() + "/" + km.getBirth3());
 		
-			System.out.println("km :  의 값 " + km);
 		try {
 			
 			int result = ms.insertkid(km);
@@ -317,17 +341,37 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="teacheron.me")
-	public String teacherOn(Member m ,Model model) {
+	public String teacherOn(Member m ,Model model, int currentPage , int currentPage2) {
 		
 		
-		System.out.println("선생의 m 값 : " + m);
+		int listCount = ms.teacherMeCount(m);
 		
-		ArrayList listMe = ms.teacherMe(m);
-		ArrayList listMe2 = ms.teacherMe2(m);
+		int listCount2 = ms.teacherMe2Count(m);
+		
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		PageInfo pi2 = Pagination.getPageInfo(currentPage2, listCount2);
+		
+		
+		ArrayList listMe = ms.teacherMe(m,pi2);
+		
+		ArrayList listMe2 = ms.teacherMe2(m,pi);
+		
+		ArrayList listMe3 = ms.childrenMe3(m);
+		
+		System.out.println("선생님 list 의 값 : " + listMe);
+		System.out.println("선생님 list2  의 값 : " + listMe2);
+		System.out.println("선생님 list3 의 값 : " + listMe3);
+		
 		
 	
 		
 		model.addAttribute("listMe", listMe);
+		model.addAttribute("listMe2",listMe2);
+		model.addAttribute("listMe3",listMe3);
+		model.addAttribute("pi",pi);
+		model.addAttribute("pi2",pi2);
 
 		
 		
@@ -336,16 +380,29 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="childrenMe.me")
-	public String childrenMe(Member m , Model model) {
+	public String childrenMe(Member m , Model model , int currentPage , int currentPage2) {
+		
+		int listCount = ms.childrenMeCount(m);
+		
+		int listCount2 = ms.childrenMeCount2(m);
+		
 	
-		ArrayList listMe = ms.childrenMe(m);
-		ArrayList listMe2 = ms.childrenMe2(m);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		PageInfo pi2 = Pagination.getPageInfo(currentPage2,listCount2);
+	
+		ArrayList listMe = ms.childrenMe(m, pi2);
+		
+		ArrayList listMe2 = ms.childrenMe2(m , pi);
+		
 		ArrayList listMe3 = ms.childrenMe3(m);
 		
 		
 		model.addAttribute("listMe",listMe);
 		model.addAttribute("listMe2", listMe2);
 		model.addAttribute("listMe3", listMe3);
+		model.addAttribute("pi",pi);
+		model.addAttribute("pi2",pi2);
 
 		
 		
@@ -354,8 +411,6 @@ public class MemberController {
 	
 	@RequestMapping(value="teacherAt.me")
 	public String teacherAt(Member m ,Model model) {
-		
-		System.out.println("들어온 m 값 : " + m);
 		
 		Member teacher = ms.teacherAt(m);
 		

@@ -25,4 +25,8 @@ public interface KinderLandDao {
 
 	int insertTeacher(SqlSessionTemplate sqlSession, TeacherInsert ti);
 
+	int insertteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci);
+
+	int updateteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci);
+
 }

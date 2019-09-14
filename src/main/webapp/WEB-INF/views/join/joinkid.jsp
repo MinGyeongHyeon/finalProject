@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
 
 #topbar{
@@ -93,8 +97,13 @@ margin:0 auto;
 		<tr rowspan="3">
 		
 		<td colspan="5">
-<%-- <img src="${ contextPath }/resources/images/baby.png" width="60px" align="center"> --%>
-		<label for="selectFile" id="face">파일선택</label>
+		
+		<div class="container">
+          
+  		<img src="cinqueterre.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236"> 
+  		
+		</div>
+
 
 		</td>
 		
@@ -102,11 +111,16 @@ margin:0 auto;
 		
 		<tr>
 		<td colspan="3">
-    	 <div class="fileList" style="width:100%;">
-								<input type="text" name="fileName" class="fileName">
-								<input type="file" value="추가" id="selectFile" class="selectFile" multiple hidden/>
+    	
+    		 <div class="fileList" style="width:100%;">
+    		 
+			<div id="imghide">
+
+			<input type="file" value="추가" id="selectFile" class="selectFile" multiple />
+			
+			</div>
    		
-							</div>
+			</div>
 		</td>
 		</tr>
 		
@@ -174,6 +188,17 @@ document.write("</select>일  </font>");
 		</form>
 	
 </div>
+
+<script>
+
+$(function(){
+	
+	$('#imghide').hide();
+	
+	
+})
+
+</script>
 
 
 
