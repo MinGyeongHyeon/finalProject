@@ -62,6 +62,19 @@
   		VALUES (#{kinderNo} , #{teacherNo} , '미승인')
   	
   	</insert>
+  	
+  	<insert id="insertTeacgerClass">
+  		
+  		INSERT INTO KINDER_CLASS VALUES( SEQ_CLASS_NO.NEXTVAL , #{kinderNo} ,  #{className} , SYSDATE , '1학기' ,'선생님' , #{teacherNo} , NULL )
+  	
+  	</insert>
+  	
+  	<update id="updateteacherclass">
+  		
+  		UPDATE TEACHER SET STATUS = '승인'
+  		WHERE TEACHER_NO = #{teacherNo}
+  	
+  	</update>
 	
 
   </mapper>

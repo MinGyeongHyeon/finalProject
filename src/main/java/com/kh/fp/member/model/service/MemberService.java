@@ -7,8 +7,10 @@ import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.note.model.vo.PageInfo;
 
 public interface MemberService {
 
@@ -39,21 +41,33 @@ public interface MemberService {
 	int teacherCount(Member loginUser);
 
 
-	ArrayList teacherMe(Member m);
+	ArrayList teacherMe(Member m, PageInfo pi2);
 
 	int childrenCountN(Member loginUser);
 
 	int teacherCountN(Member loginUser);
 
-	ArrayList childrenMe(Member m);
+	ArrayList childrenMe(Member m, PageInfo pi2);
 
-	ArrayList childrenMe2(Member m);
+	ArrayList childrenMe2(Member m, PageInfo pi);
 
 	ArrayList childrenMe3(Member m);
 
-	ArrayList teacherMe2(Member m);
+	ArrayList teacherMe2(Member m, PageInfo pi);
 
 	Member teacherAt(Member m);
+
+	int childrenMeCount(Member m);
+
+	int childrenMeCount2(Member m);
+
+	int teacherYn(Member loginUser);
+
+	KinGardenClasses teacherKing(Member loginUser);
+
+	int teacherMeCount(Member m);
+
+	int teacherMe2Count(Member m);
 
 
 
