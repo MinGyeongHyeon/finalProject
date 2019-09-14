@@ -21,7 +21,7 @@ public interface NoticeDao {
 
 	int getListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho);
 
-	ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
+	ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
 
 }

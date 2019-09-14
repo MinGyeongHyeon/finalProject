@@ -18,7 +18,7 @@ public interface NoticeService {
 
 	int getListCount(NoticeWho noticeWho);
 
-	ArrayList<Notice> selectProjectList(PageInfo pi);
+	ArrayList<Notice> selectProjectList(PageInfo pi, NoticeWho noticeWho);
 
 
 }

@@ -8,7 +8,7 @@ public class NoticeWho implements Serializable{
 	private int classNum;
 	private int kinderNum;
 	private String className;
-	
+	private int userNum;
 	
 	public NoticeWho() {}
 
@@ -20,10 +20,11 @@ public class NoticeWho implements Serializable{
 		this.className = className;
 	}
 	
-	public NoticeWho(int classNum, int kinderNum) {
+	public NoticeWho(int classNum, int kinderNum, int userNum) {
 		super();
 		this.classNum = classNum;
 		this.kinderNum = kinderNum;
+		this.userNum = userNum;
 	}
 
 	public int getClassNum() {
@@ -55,10 +56,23 @@ public class NoticeWho implements Serializable{
 		this.className = className;
 	}
 
+	
+	public int getUserNum() {
+		return userNum;
+	}
+
+
+	public void setUserNum(int userNum) {
+		this.userNum = userNum;
+	}
+
+
+	
 
 	@Override
 	public String toString() {
-		return "NoticeWho [classNum=" + classNum + ", kinderNum=" + kinderNum + ", className=" + className + "]";
+		return "NoticeWho [classNum=" + classNum + ", kinderNum=" + kinderNum + ", className=" + className
+				+ ", userNum=" + userNum + "]";
 	}
 
 

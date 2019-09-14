@@ -60,30 +60,28 @@ public class NoticeDaoImpl implements NoticeDao{
 	@Override
 	@SuppressWarnings({"unchecked","rawtypes"})
 	public int getListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho) {
-		System.out.println("자바를자바");
 		return sqlSession.selectOne("Notice.selectListCount",noticeWho);
 	}
 
 	@Override
-	public ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho) {
 		ArrayList<Notice> list = null;
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-		list = (ArrayList) sqlSession.selectList("Notice.selectList",null,rowBounds);
+		System.out.println(noticeWho);
+		list = (ArrayList) sqlSession.selectList("Notice.selectList",noticeWho);
+		
+		System.out.println("다오"+list);
+		
 		
 		return list;
+	
 	}
 
-	
-
-	
 
 }
-
-
-
 
 
 

@@ -12,7 +12,8 @@
 		<result property="boardtype" column="BOARD_TYPE" />
 		<result property="classNum" column="CLASS_NO" />
 		<result property="kinderNum" column="KINDER_NO" />
-
+		<result property="writer" column="WRITER" />
+		<result property="className" column="CLASS_NAME" />
 	</resultMap>
 
 	<resultMap type="NoticeWho" id="noticeWho">
@@ -33,7 +34,7 @@
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL,
 		#{boardTitle},#{boardContent},SYSDATE,#{boardtype},
-		NULL,NULL,#{kinderNum},'N')
+		NULL,NULL,#{kinderNum},'N',#{writer})
 	</insert>
 
 
@@ -41,7 +42,7 @@
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL,
 		#{boardTitle},#{boardContent},SYSDATE,#{boardtype},
-		#{classNum},NULL,#{kinderNum},'N')
+		#{classNum},NULL,#{kinderNum},'N',#{writer})
 	</insert>
 
 
@@ -66,6 +67,20 @@
 		AND CLASS_NO IS NULL 
 		OR CLASS_NO = #{classNum}
 	</select>
+	
+	<select id="selectList" resultMap="noticeResultSet">
+		SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_DATE,K.CLASS_NAME,B.BOARD_CONTENT
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO = #{kinderNum}
+		AND K.TEACHER_NO = #{userNum}
+		AND B.BOARD_TYPE = '공지사항'
+		AND B.CLASS_NO IS NULL 
+		OR B.CLASS_NO = #{classNum}
+		ORDER BY B.BOARD_NO DESC
+	</select>
+
 
 </mapper>
 

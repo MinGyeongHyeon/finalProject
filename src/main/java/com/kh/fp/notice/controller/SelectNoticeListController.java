@@ -47,11 +47,6 @@ public class SelectNoticeListController {
 		noticeWho.setKinderNum(kinderNum);
 
 		System.out.println(selectWho);
-		//int classNum = selectWho.indexOf(0);
-		//int kinderNum = selectWho.indexOf(1);	
-		
-		//System.out.println("반번호"+classNum);
-		//System.out.println("유치원번호"+kinderNum);
 
 		int currentPage = 1;
 		
@@ -65,7 +60,13 @@ public class SelectNoticeListController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Notice> list = ns.selectProjectList(pi);
+		noticeWho.setUserNum(loginUser.getUserNo());
+		
+		ArrayList<Notice> list = ns.selectProjectList(pi,noticeWho);
+		
+		System.out.println("컨트롤러"+list);
+		
+		model.addAttribute("list",list);
 		
 		return "notice/NoticeList";
 	}
