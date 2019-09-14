@@ -80,6 +80,7 @@ public class MemberController {
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
 					model.addAttribute("teacherKing" , teacherKing);
+					model.addAttribute("loginUser",loginUser);
 					
 					return "main/parentsMain";
 					
@@ -95,12 +96,14 @@ public class MemberController {
 				
 			}
 			
+			
 			model.addAttribute("loginUser",loginUser);
 		
 			
 			
 			return "main/parentsMain";
 			
+		
 		} catch (LoginException e) {
 			
 			model.addAttribute("msg" ,e.getMessage());

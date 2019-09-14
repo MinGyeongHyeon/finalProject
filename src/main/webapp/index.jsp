@@ -15,10 +15,10 @@
 
 
 
-  <jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/>  
+ <jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/>
 
-<%--  <jsp:forward page="WEB-INF/views/join/joinkid.jsp"/> --%>
-
+<%--  <jsp:forward page="WEB-INF/views/join/joinkid.jsp"/>
+ --%>
  
 
 

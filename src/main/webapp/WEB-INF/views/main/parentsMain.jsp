@@ -30,7 +30,7 @@
 	<jsp:include page="../common/menubar.jsp"/>
 	
 	
-	<c:if test="${ !loginUser.classification eq '원장님'}">
+	<c:if test="${ loginUser.classification eq '선생님'}">
 	
 	<div class="mainArea" id="firstContentArea">
 		<table style="margin:0 suto; width:100%;">

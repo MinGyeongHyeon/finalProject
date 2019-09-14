@@ -100,7 +100,7 @@ margin:0 auto;
 		
 		<div class="container">
           
-  		<img src="cinqueterre.jpg" class="img-circle" alt="Cinque Terre" width="304" height="236"> 
+  		<img class="img-circle" width="304" height="236"> 
   		
 		</div>
 
