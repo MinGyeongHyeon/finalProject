@@ -22,7 +22,6 @@ public class ReturnHomeController {
 	public String returnHomeMain(@SessionAttribute("loginUser") Member loginUser, Model m) {
 		ArrayList<Children> list = null;
 		KinderClass kc = new KinderClass();
-		
 		if(loginUser.getClassification().equals("선생님")) {
 			kc.setTeacherNo(loginUser.getUserNo());
 			
