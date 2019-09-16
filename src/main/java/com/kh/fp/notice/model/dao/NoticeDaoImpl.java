@@ -80,6 +80,31 @@ public class NoticeDaoImpl implements NoticeDao{
 	
 	}
 
+	@Override
+	public int updateCount(SqlSessionTemplate sqlSession, int bid) {
+
+		int result = sqlSession.update("Notice.updateNoticeCount",bid);
+		
+		
+		
+		return 0;
+	}
+
+	@Override
+	public Notice selectOneNotice(SqlSessionTemplate sqlSession, int bid) throws NoticeException {
+		
+		Notice n ;
+		
+		Notice selectOneNotice = sqlSession.selectOne("Notice.selectNoticeOne",bid);
+		
+		if(selectOneNotice == null) {
+			
+			throw new NoticeException("공지사항 가져오기 실패!");
+		}
+		
+		return selectOneNotice;
+	}
+
 
 }
 

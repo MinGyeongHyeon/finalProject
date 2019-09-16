@@ -46,7 +46,7 @@ public class NoticeWhoAreYouController {
 		System.out.println("controller :"+loginUser);
 		int userNo = loginUser.getUserNo();
 		
-		System.out.println("유저번호는" + userNo);
+		System.out.println();
 		
 		ArrayList selectWho = ns.selectWho(userNo);
 		

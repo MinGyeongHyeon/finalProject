@@ -63,6 +63,43 @@ public class NoticeServiceImpl implements NoticeService {
 		return list;
 	}
 
+
+	@Override
+	public Notice selectNotice(int bid) throws NoticeException {
+		
+		//int result = nd.updateCount(sqlSession,bid);
+		
+		Notice n;
+		
+		n = nd.selectOneNotice(sqlSession,bid);
+		
+		
+		return null;
+	}
+
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

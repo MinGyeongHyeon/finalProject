@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.kh.fp.notice.model.vo.Notice" %>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <style>
 .main-panel {
 	position: relative;
@@ -47,8 +48,8 @@
 .summaryDiv {
 	display: inline-block;
 	background: #fff;
-	width: 30%;
-	height: 180px;
+	width: 220px;
+    height: 260px;
 	margin-left: 1%;
 	margin-right: 1%;
 	margin-top: 3%;
@@ -93,6 +94,18 @@
 	font-size: 20px;
 	padding-bottom:5%;
 }
+
+.card {
+    border: 1px solid #e4e1dd;
+    margin-bottom: 20px;
+    background-color: #fff;
+    width: 220px;
+    height: 260px;
+    border-radius: 3px;
+    margin-right: 20px;
+    float: left;
+    position: relative;
+    }
 </style>
 
 <body>
@@ -120,6 +133,7 @@
 		<div class="homeworkDiarySummary">
 		<c:forEach var="l" items="${list}">
 			<div class="summaryDiv">
+				<div class="card">
 				<table class="tq">
 						<tr class="first">
 							<td class="tqtq"><c:out value="${l.boardNum}" /></td>
@@ -140,6 +154,7 @@
 						</tr>
 						
 				</table>
+			</div>	
 			</div>
 		</c:forEach>
 		</div>
@@ -213,12 +228,10 @@
 			//});
 				//location.href="selectOne.bo?bid=" + bid;
 		//};
-		$(".homeworkDiarySummary").click(function(){
-			//var ab = $(this).children("").eq(0).children(".tqtq").val();
-		//var bid=$(this).children("tr").eq(0).children().text();	
-		var test = $(this).children("table").children("tr").eq(0).children("td").val();
-			console.log(test);
-			
+		$(".card").click(function(){
+			var bid = $(this).children().children().eq(0).children().children("td").eq(0).text();
+			console.log(bid);
+			location.href="NoticeOne.no?bid="+bid;
 		});
 	
 	</script>
