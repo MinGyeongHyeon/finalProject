@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fp.member.model.dao.MemberDao;
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
+import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
@@ -243,6 +244,12 @@ public class MemberServiceImpl implements MemberService{
 	public int teacherMe2Count(Member m) {
 
 		return md.teacherMe2Count(sqlSession,m);
+	}
+
+	@Override
+	public int insertAttachment(Attachment at) {
+
+		return md.insertAttachment(sqlSession,at);
 	}
 
 

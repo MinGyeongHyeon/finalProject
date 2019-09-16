@@ -289,6 +289,14 @@
 	
 	</select>
 	
+	<insert id="insertAttachment">
+	
+		INSERT INTO ATTACHMENT
+		VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , null,null,null,null,null,null,null,#{userNo} )
+	
+	
+	</insert>
+	
 	
 
 	

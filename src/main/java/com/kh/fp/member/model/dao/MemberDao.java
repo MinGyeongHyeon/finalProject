@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fp.member.model.exception.JoinException;
+import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
@@ -73,6 +74,8 @@ public interface MemberDao {
 	int teacherMeCount(SqlSessionTemplate sqlSession, Member m);
 
 	int teacherMe2Count(SqlSessionTemplate sqlSession, Member m);
+
+	int insertAttachment(SqlSessionTemplate sqlSession, Attachment at);
 
 	
 
