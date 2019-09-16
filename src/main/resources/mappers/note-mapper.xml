@@ -56,11 +56,28 @@
   		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
   	</select>
 
-  	<select id="selectSentNoteList" parameterType="Note" resultMap="Note">
+  	<!-- 리스트 카운트 조회용 쿼리문 -->
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTEBOX
+		WHERE STATUS='N'
+	</select>
+
+	<!-- 페이징 처리 후 보낸 쪽지함 리스트 조회용 쿼리문 -->
+	<select id="selectSentNoteList" parameterType="Note" resultMap="Note">
 		SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-		ORDER BY NOTE_DATE DESC, USER_NAME
+        WHERE N.STATUS = 'N'
+		ORDER BY N.NOTE_NO DESC
+  	</select>
+
+	<!-- 보낸 쪽지함 상세보기 -->
+  	<select id="selectSentNoteOne" parameterType="_int" resultMap="Note">
+  		SELECT *
+  		FROM NOTEBOX
+  		WHERE NOTE_NO = #{noteNo}
+  		AND STATUS = 'N'
   	</select>
 
 </mapper>

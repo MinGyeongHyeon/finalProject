@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
 public interface NoteService {
@@ -12,6 +13,12 @@ public interface NoteService {
 	ArrayList<noteKindergarden> selectUserList() throws NoteException;
 
 	//보낸 쪽지함 리스트 조회
-	ArrayList<Note> selectSentNoteList() throws NoteException;
+	ArrayList<Note> selectSentNoteList(PageInfo pi) throws NoteException;
+
+	//리스트 카운드 가져오기
+	int getListCount();
+
+	//보낸 쪽지함 상세보기
+	Note selectSentNoteOne(int noteNo) throws NoteException;
 
 }
