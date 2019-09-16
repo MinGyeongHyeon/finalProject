@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fp.member.model.exception.JoinException;
+import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
@@ -288,6 +289,13 @@ public class MemberDaoImpl implements MemberDao{
 	public int teacherMe2Count(SqlSessionTemplate sqlSession, Member m) {
 
 		return sqlSession.selectOne("Member.teacherMeCount2",m);
+	}
+
+
+	@Override
+	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment at) {
+
+		return sqlSession.insert("Member.insertAttachment", at);
 	}
 
 

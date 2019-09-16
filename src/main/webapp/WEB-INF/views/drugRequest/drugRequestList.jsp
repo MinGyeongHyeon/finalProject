@@ -38,7 +38,7 @@ $(function(){
 					<hr>
 					<div class="page-category">
 						<div class="inputArea">
-							<c:if test="${ !loginUser.classification eq '학부모' }">
+							<c:if test="${ loginUser.classification ne '학부모' }">
 							<select class="form-control" id="sel1">
 						        <option>전체반</option>
 						        <option>별님반</option>

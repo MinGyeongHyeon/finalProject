@@ -54,18 +54,18 @@ table tr {
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="비밀번호"></td>
+				<td><input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="비밀번호" disabled></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td><input type="password" class="form-control" id="userPwd2" placeholder="비밀번호 확인"></td>
+				<td><input type="password" class="form-control" id="userPwd2" placeholder="비밀번호 확인" disabled></td>
 			</tr>
 		</table>
 		<br><br>
 			
 		<div id="buttonArea" align="center">
 			<button class="huge ui button">이전</button>
-			<button class="huge ui secondary button" id="nextBtn" style="width:200px" >다음</button>
+			<button class="huge ui secondary button" id="nextBtn" style="width:200px" type="button">다음</button>
 		</div>
 		
 		</form>
@@ -75,7 +75,7 @@ table tr {
 	
 	<script>
 		
-		var count = 0;
+	
 		
 	
 		$('#idcheck').click(function(){
@@ -95,11 +95,20 @@ table tr {
 						
 						alert("해당 아이디가 존재합니다!");
 						
+						$('#userPwd').attr('disabled',true);
+					    $('#userPwd2').attr('disabled',true);
+						
+						
+					
+						
 					}else{
 						
 						alert("사용 가능한 아이디 입니다.");
 						
-						count++;
+						
+					$('#userPwd').attr('disabled',false);
+				    $('#userPwd2').attr('disabled',false);
+					
 						
 						
 						
@@ -123,16 +132,33 @@ table tr {
 			
 			if(userPwd != userPwd2){
 				
-				$('#userPwd2').css("border-color","red");
+				$('#userPwd2').css("border-color","#ff1d69");
+				
+				$('#nextBtn').attr('type','button');
 				
 			}else{
 				
 				$('#userPwd2').css("border-color","skyblue");
 				
+				$('#nextBtn').attr('type','submit');
 				
 			}
 			
 		});
+		
+	
+		
+		$('#nextBtn').click(function(){
+			
+			
+			if($(this).attr('type') == 'button'){
+				
+				alert("아이뒤 중복 체크 및 비밀번호 확인 을 해주세요.");
+			
+			}
+			
+			
+		})
 		
 		
 		
