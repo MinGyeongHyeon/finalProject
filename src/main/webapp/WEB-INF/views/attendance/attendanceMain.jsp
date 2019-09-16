@@ -44,7 +44,28 @@ $(document).on('change', 'select', function() {
 		$("#saveBtn").append(saveb);
 		num1+=1;
 	};
+	if($(this).parent().parent().children("td").eq(5).html() == ""){
 	$(this).parent().parent().children("td").eq(5).append("<button onclick='bgo();' name=''>비고</button>");
+	}
+	var tv = $(this).val();
+	if(tv == "V" || tv =="★" || tv=="/"){
+		console.log(tv);
+		$(this).parent().parent().children("td").eq(3).append("<button class='timepicker'>딸깍!</button>");
+		
+			$('.timepicker').timepicker({
+			    timeFormat: 'h:mm p',
+			    interval: 15,
+			    minTime: '10',
+			    maxTime: '6:00pm',
+			    defaultTime: '9',
+			    startTime: '10:00',
+			    dynamic: false,
+			    dropdown: true,
+			    scrollbar: true
+		});
+			
+	}
+	
 });
 
 /* $("#statusArea").click(function(){
@@ -75,12 +96,19 @@ function bgo(){
 		font-weight: bold;
 		font-size: 1.5em;
 	}
-	#statusArea{
-	background:lightgray;
+ 	.status{
+ 	width:100%;
+ 	height:100%;
+ 	border : none;
+ 	background:url('arrow.jsp') no-repeat 95% 50%;
+ 	appearnace:none;
+ 	color:white;
 	}
-/* 	.status{
-	visibility:hidden;
-	} */
+	.status > option{
+ 	text-align:center;
+ 	margin:0 auto;
+ 	color:black;
+	}
 	.pageName tr td:first-child{
 		width:60%;
 	}
@@ -111,7 +139,6 @@ function bgo(){
 	.attendanceArea{
 		margin:0 auto;
 		align:center;
-		height:500px;
 		background:#555;
 		color:#fff;
 		text-align:center;
@@ -198,8 +225,37 @@ function bgo(){
 									<option value="★">퇴소</option>
 								</select>
 								</td>
-								<td></td>
-								<td></td>
+								<td class="timepicker">
+								<!-- 등원시간 -->
+						<!-- 		<div class="form-group attendance-time-list">
+                        <span class="base-time-margin text-left">등원 시간</span>
+                        <form id="baseAttendanceInTimeForm" class="form-timepicker-wrapper base-time-form">
+                            <select class="form-control form-timepicker" id="selectInTimeAMPM" name="ampm" style="width:30%;">
+                                <option value="-1" disabled selected></option>
+                                <option id="selectInTimeAM">오전</option>
+                                <option id="selectInTimePM">오후</option>
+                            </select>
+                            <select class="form-control form-timepicker" id="selectInTimeHour" name="hour" style="width:30%;">
+                                <option id="selectInTimeHourDefault" value="-1" disabled selected></option>
+                                <option id="selectInTimeHour">08</option>
+                                <option id="selectInTimeHour">09</option>
+                                <option id="selectInTimeHour">10</option>
+                                <option id="selectInTimeHour">11</option>
+                                <option id="selectInTimeHour">12</option>
+                            </select>
+                            <select class="form-control form-timepicker" id="selectInTimeMin" name="minute" style="width:30%;">
+                                <option id="selectInTimeMinDefault" value="-1" disabled selected></option>
+                                <option id="selectInTimeMin">00</option>
+                                <option id="selectInTimeMin">15</option>
+                                <option id="selectInTimeMin">30</option>
+                                <option id="selectInTimeMin">45</option>
+                            </select>
+                        </form>
+                    </div> -->
+								</td>
+								<td>
+								<!-- 하원시간 -->
+								</td>
 								<td></td>
 								<td></td>
 								</tr>
