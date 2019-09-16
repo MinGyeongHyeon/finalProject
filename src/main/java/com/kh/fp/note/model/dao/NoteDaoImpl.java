@@ -2,11 +2,13 @@ package com.kh.fp.note.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
 @Repository
@@ -29,20 +31,62 @@ public class NoteDaoImpl implements NoteDao{
 	}
 
 	//보낸 쪽지함 리스트 조회
+//	@Override
+//	public ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession) throws NoteException {
+//		System.out.println("보낸 쪽지함 dao 호출");
+//
+//		ArrayList<Note> nList = null;
+//		nList = (ArrayList) sqlSession.selectList("Note.selectSentNoteList");
+//
+//		System.out.println("dao :::" + nList);
+//
+//		if(nList == null) {
+//			throw new NoteException("리스트 불러오기 실패!");
+//		}
+//
+//		return nList;
+//	}
+
+	//페이징 처리 후 보낸쪽지함 리스트
 	@Override
-	public ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession) throws NoteException {
+	public ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi) throws NoteException {
 		System.out.println("보낸 쪽지함 dao 호출");
 
 		ArrayList<Note> nList = null;
-		nList = (ArrayList) sqlSession.selectList("Note.selectSentNoteList");
 
-		System.out.println("dao :::" + nList);
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 
-		if(nList == null) {
-			throw new NoteException("리스트 불러오기 실패!");
-		}
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		nList = (ArrayList)sqlSession.selectList("Note.selectSentNoteList", null, rowBounds);
 
 		return nList;
 	}
+
+
+
+	//리스트 카운트 조회
+	@Override
+	public int getListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("Note.selectListCount");
+	}
+
+	//보낸 쪽지함 상세보기
+	@Override
+	public Note selectSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
+		System.out.println("noteNo :::" + noteNo);
+
+		Note n = (Note)sqlSession.selectOne("Note.selectSentNoteOne");
+
+		System.out.println("noteNo :::" + noteNo);
+		System.out.println("n :::: " + n);
+
+		if(n == null) {
+			throw new NoteException("쪽지 상세보기 실패!");
+		}
+
+		return n;
+	}
+
 
 }

@@ -38,7 +38,6 @@ public class SelectNoticeListController {
 		
 		ArrayList selectWho = ns.selectWho(userNo);
 		NoticeWho baby = (NoticeWho)selectWho.get(0);
-		System.out.println(baby+"kkk");
 		
 		int classNum = baby.getClassNum();
 		int kinderNum = baby.getKinderNum();
@@ -64,10 +63,7 @@ public class SelectNoticeListController {
 		
 		ArrayList<Notice> list = ns.selectProjectList(pi,noticeWho);
 		
-		System.out.println("컨트롤러"+list);
-		
 		model.addAttribute("list",list);
-		
 		
 		return "notice/NoticeList";
 	}

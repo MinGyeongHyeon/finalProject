@@ -43,12 +43,12 @@ import com.kh.fp.common.Pagination;
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
 import com.kh.fp.member.model.service.MemberService;
+import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
-import com.kh.fp.member.model.vo.PhoneSend;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Controller
@@ -148,6 +148,11 @@ public class MemberController {
 					return "account/join5";
 					
 				}
+				
+				
+			}else if(loginUser.getClassification().equals("학부모")) {
+				
+				
 				
 				
 			}
@@ -324,6 +329,8 @@ public class MemberController {
 	@RequestMapping(value="kidjoin.me")
 	public String kidjoin(KidMember km ,Model model ,HttpServletRequest request, @RequestParam(name="photo", required=false) MultipartFile photo) {
 		
+		Attachment at = new Attachment();
+		
 		km.setBirth(km.getBirth1() + "/" + km.getBirth2() + "/" + km.getBirth3());
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
@@ -336,11 +343,19 @@ public class MemberController {
 		
 		String changeName = CommonUtils.getRandomString(); 
 		
-		System.out.println("포토의 값 : " + photo);
-		
 		try {
+			
+			at.setOrigineName(originFileName);
+			at.setChangeName(changeName);
+			at.setFilePath(filePath);
+			at.setFileLevel("1");
+			at.setAttachType("유저");
+			at.setUserNo(km.getUserNo());
+			
 	
 			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			
+			int resultat = ms.insertAttachment(at);
 		
 			int result = ms.insertkid(km);
 			
@@ -407,17 +422,7 @@ public class MemberController {
 		
 		return "account/join5";
 	}
-	
-	@RequestMapping(value="selectId.me")
-	public ModelAndView selectId(Member m , ModelAndView mv) {
-		
-		
-		
-		
-		
-		return mv;
-	}
-	
+
 	@RequestMapping(value="teacheron.me")
 	public String teacherOn(Member m ,Model model, int currentPage , int currentPage2) {
 		
@@ -511,7 +516,9 @@ public class MemberController {
 
 	    String  action  = nullcheck(request.getParameter("action"), "");
 	    
-	    if(action.equals("go")) {
+	    System.out.println("여긴? 들어옴 ? " + random);
+	    
+	    if(action.equals("gottt")) {
 
 	        
 	        String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS 전송요청 URL
@@ -663,9 +670,11 @@ public class MemberController {
 
 	    }
 	            
-		mv.addObject("random", random);
+	    
+	    mv.addObject("random" , random);
 		mv.setViewName("jsonView");
 		
+		System.out.println("넘어가기전 mv 값 : " + mv);
 		return mv;
 	}
 

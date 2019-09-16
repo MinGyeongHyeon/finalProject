@@ -10,6 +10,7 @@ import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.dao.NoteDao;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
 @Service
@@ -30,10 +31,25 @@ public class NoteServiceImpl implements NoteService{
 
 	//보낸 쪽지함 리스트 조회
 	@Override
-	public ArrayList<Note> selectSentNoteList() throws NoteException {
+	public ArrayList<Note> selectSentNoteList(PageInfo pi) throws NoteException {
 		System.out.println("보낸 쪽지함 서비스");
 
-		return nd.selectSentNoteList(sqlSession);
+		return nd.selectSentNoteList(sqlSession, pi);
+	}
+
+	//리스트 카운트 가져오기
+	@Override
+	public int getListCount() {
+		return nd.getListCount(sqlSession);
+	}
+
+	//보낸 쪽지함 상세보기
+	@Override
+	public Note selectSentNoteOne(int noteNo) throws NoteException {
+
+		/* System.out.println(noteNo); */
+
+		return nd.selectSentNoteOne(sqlSession, noteNo);
 	}
 
 }

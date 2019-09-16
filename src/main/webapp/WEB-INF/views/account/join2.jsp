@@ -59,7 +59,7 @@ table tr {
 				<td><input type="tel" class="form-control" name="phone" placeholder="휴대전화번호" id="rphone"></td>
 				<td><button class="ui grey basic button" id="phonesend" type="button">인증번호 발송</button></td>
 			</tr>
-			<tr>
+			<tr hidden id="CerNumtr">
 				<td>*인증번호</td>
 				<td colspan="2"><input type="text" class="form-control" id="CerNum" placeholder="휴대전화 인증번호를 입력해주세요"></td>
 			</tr>
@@ -80,7 +80,7 @@ table tr {
 			
 		<div id="buttonArea" align="center">
 			<button class="huge ui button">이전</button>
-			<button class="huge ui secondary button" id="nextBtn" style="width:200px" type="submit">다음</button>
+			<button class="huge ui secondary button" id="nextBtn" style="width:200px" type="button">다음</button>
 		</div>
 		
 	</form>
@@ -109,11 +109,6 @@ table tr {
 					
 					console.log(randomkey);
 					
-				
-					
-
-					
-					
 					$('#CerNum2').keyup(function(){
 					var num = $('#CerNum2').val();
 					
@@ -124,8 +119,8 @@ table tr {
 						
 						if(randomkey == num){
 							
-							$("#CerNum2").css("border-color", "blue");
-							$label.text("번호가 일치합니다.").css("color","blue");
+							$("#CerNum2").css("border-color", "skyblue");
+							$label.text("번호가 일치합니다.").css("color","skyblue");
 							
 							
 							
@@ -133,9 +128,9 @@ table tr {
 							
 						}else{
 							
-							$("#CerNum2").css("border-color", "red");
+							$("#CerNum2").css("border-color", "#ff1d69");
 							
-							$label.text("번호가 일치하지 않습니다.").css("color","red");
+							$label.text("번호가 일치하지 않습니다.").css("color","#ff1d69");
 							
 						
 					
@@ -155,31 +150,118 @@ table tr {
 
 		
 		$('#phonesend').click(function(){
+			
 			var sphone1 = $('#sphone1').val();
 			var sphone2 = $('#sphone2').val();
 			var sphone3 = $('#sphone3').val();
 			
 			var rphone = $('#rphone').val();
+			
 			var action = "go";
 			
+			$('#CerNumtr').attr('hidden',false);
+			
 			$.ajax({
+				
 				url:"phoneMe.me",
 				data:{rphone:rphone,sphone1:sphone1,sphone2:sphone2,sphone3:sphone3,action:action},
 				type:"post",
 				success:function(data){
 					
-					console.log("여긴 들어오냐");
-					console.log(data);
+					var randomkey = data.random;
+					
+					console.log(data.random);
+					
+						var $tr = $('<tr class="randomkeyphone">');
+						var $td = $('<td>');
+						var $td2 = $('<td>');
+						var $label = $('<label>');
+						
+					$('#CerNum').keyup(function(){
+						
+						var num = $('#CerNum').val();
+								
+						console.log(num);
+						
+						if(randomkey == num){
+						   $('.randomkeyphone').remove();
+							
+							$('#CerNum').css("border-color","skyblue");
+							$label.text("번호가 일치합니다").css("color","skyblue");
+							
+							$td2.append($label);
+							$tr.append($td);
+							$tr.append($td2);
+							
+							$('#CerNumtr').after($tr);
+							
+								$('#nextBtn').attr('type','submit');
+						
+							
+							
+						}else{
+							
+							 $('.randomkeyphone').remove();
+							 
+							 $('#CerNum').css("border-color","#ff1d69");
+							 
+							 
+							 $label.text("번호가 일치하지 않습니다.").css("color","#ff1d69");
+								
+								$td2.append($label);
+								$tr.append($td);
+								$tr.append($td2);
+								
+								$('#CerNumtr').after($tr);
+							 
+								
+						}
+						
+							
+						
+					
+						
+					});
+					
+					
+				/* 	joinPage3.pl */
+					
+					console.log(data.random);
 					
 					
 					
-				}
+					
+				},error:function(request,status,error){
+			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
 				
 			});
 			
 			
 			
 		});
+		
+
+			
+			
+		
+			
+			
+		$('#nextBtn').click(function(){
+			
+			if($(this).attr('type') == 'button'){
+				
+				alert("본인인증이 완료 되지 않았습니다. (핸드폰 *필수*  이메일 *선택*)");
+				
+			}
+			
+		});
+		
+	
+		
+	
+		
+		
 		
 	
 	

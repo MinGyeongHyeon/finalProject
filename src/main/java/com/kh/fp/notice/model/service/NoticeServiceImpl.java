@@ -74,7 +74,16 @@ public class NoticeServiceImpl implements NoticeService {
 		n = nd.selectOneNotice(sqlSession,bid);
 		
 		
-		return null;
+		return n;
+	}
+
+	@Override
+	public int UpdateNoticeStatus(int bid, String status) {
+
+		int result = nd.updateNoticeStatus(bid,status,sqlSession);
+		
+		
+		return result;
 	}
 
 	

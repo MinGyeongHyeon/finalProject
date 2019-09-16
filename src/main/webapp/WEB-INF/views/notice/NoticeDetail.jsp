@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>알림장</title>
 <style>
@@ -17,7 +19,7 @@
 
 #titleArea {
 	background: #f5f5f5;
-	height: 55px;
+	height: 15%;
 	
 }
 
@@ -86,6 +88,11 @@
 	background-color:#8981f7;
 	
 }
+
+.noticeNum{
+	visibility: hidden;
+
+}
 </style>
 
 </head>
@@ -96,54 +103,56 @@
 		<div class="content">
 			<div class="page-inner">
 				<div class="page-header">
-					<i class="fas fa-envelope-open-text" style="font-size: 20px;">&nbsp;</i>
-					<h4 class="page-title">알림장</h4>
+					<i class="fas fa-paper-plane" style="font-size: 20px;">&nbsp;</i>
+					<h4 class="page-title">공지사항</h4>
 				</div>
 				<hr>
 				<div class="page-category">
 					<div id="mainArea">
 						<div id="titleArea">
 							<h2 id="title">
-								<b>2019-09-03 알림장</b>
+								<c:out value="${SelectNotice.boardTitle}"/>
 							</h2>
+							<p hidden><c:out value="${SelectNotice.boardNum}"/></p>
 						</div>
+						<div>
+							<h5 style="text-align:right"><c:out value="${SelectNotice.boardDate}"/></h5>
+							</div>
 						<div id="contentsArea">
 							<br>
-							<div id="profileArea">
-								<i><img src="${ contextPath }/resources/images/woman.png"
-									id="profileImg"></i> &nbsp;&nbsp;<b>원아 이름</b>
-							</div>
-							<br>
-								<table id="tableArea" style="margin:0 auto;">
-									<tr style="background: #f57373; border-radius: 5px">
-										<td colspan="2" class="title" style="color:white; border-radius:10px">공통 알림장</td>
+								<table id="tableArea" style="margin:0 auto; board:1px solid white ">
+									<tr>
+										<td colspan="2" class="title"></td>
 									</tr>
 									<tr>
-										<td colspan="2"></td>
+										<td colspan="2"><c:out value="${SelectNotice.boardContent}"/></td>
 									</tr>
 								</table>	
-							<div style="padding-top:10%">
-								<table id="tableArea" style="margin:0 auto;">
-									<tr style="background: #3682f5;">
-										<td colspan="2" class="title" style="color:white; border-radius: 10px; " />개별 알림장</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="border-top:white"></td>
-									</tr>	 	
-								</table>
-							</div>
 							<br>
 					</div>
+					<div id="titleArea">
+							<h5 id="title" style="text-align:right">
+								<c:out value="${SelectNotice.className}"/>교사
+								<br><br>
+ 							</h5>
+						</div>
 					<br><br>
 						<div id="btnA1">
-							<button type="button" class="btn" id="btn1" onclick="print()">
+							<button type="button" class="btn" id="btn0" onclick="print()">
 								<i class="fas fa-print"></i>&nbsp; 출력
 							</button>
 						</div>
+						
 						<div id="btnA2">
-							<button type="button" class="btn btn-light" id="btn2">
+						<c:if test="${loginUser.userNo eq SelectNotice.writer}">					 
+						<button type="button" class="btn btn-light" id="btn1">
+								<i class="fas fa-cog"></i>&nbsp; 수정
+							</button>&nbsp;&nbsp;
+					
+							<button type="button" class="btn btn-light" id="btn2" >
 								<i class="far fa-trash-alt"></i>&nbsp; 삭제
 							</button>&nbsp;&nbsp;
+						</c:if>		
 							<button type="button" class="btn btn-light" id="btn3" onclick="goDrugMainView()">
 								<i class="fas fa-list"></i>&nbsp; 목록
 							</button>
@@ -162,15 +171,16 @@
 	</div>
 	
 	<script>
-		function goMediReport(){
-			location.href="writeMediReport.pl";
-		}
-		function goDrugMainView(){
-			location.href="drugMainView.pl";
-		}
-		funtcion print(){
+		function print(){
 			$(this).window.print();
 		}
+		
+		$("#btn2").click(function(){
+			var bid = $("#titleArea").children().siblings().eq(1).html();
+			
+			location.href="delectNotice.no?bid="+bid;
+			
+		});
 	</script>
 	
 </body>
