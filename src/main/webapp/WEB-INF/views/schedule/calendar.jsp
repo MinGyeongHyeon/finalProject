@@ -109,7 +109,7 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">공개범위</label>
                                 <select class="inputModal" name="edit-type" id="edit-type">
-                                    <option value="원" default>원 일정</option>
+                                    <option value="원">원 일정</option>
 					                <c:if test="${ loginUser.classification eq '선생님' }">
 	                                    <option value="반">반 일정</option>
 					                </c:if>
@@ -192,9 +192,10 @@
     <%-- <script src="${contextPath }/resources/js/calendar/jquery-3.3.1.js"></script><!-- 9600line 주석 --> --%>
     <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script>
     <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
-    <script src="${contextPath }/resources/js/calendar/fullcalendar.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/fullcalendar.js"></script>
     <script src="${contextPath }/resources/js/calendar/ko.js"></script>
     <script src="${contextPath }/resources/js/calendar/select2.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/bootstrap.js"></script>
     <script src="${contextPath }/resources/js/calendar/bootstrap-datetimepicker.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/main.js"></script>
     <script src="${contextPath }/resources/js/calendar/addEvent.js"></script> 

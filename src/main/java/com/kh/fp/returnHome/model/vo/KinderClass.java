@@ -1,4 +1,4 @@
-package com.kh.fp.schedule.model.vo;
+package com.kh.fp.returnHome.model.vo;
 
 public class KinderClass implements java.io.Serializable{
 	private int classNo;

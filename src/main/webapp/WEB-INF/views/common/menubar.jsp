@@ -330,7 +330,7 @@
 								<p>투약의뢰서</p>
 						</a></li>
 
-						<li class="nav-item"><a href="#"> <i class="fas fa-child"></i>
+						<li class="nav-item"><a href="returnHomeMain.rh"> <i class="fas fa-child"></i>
 								<p>귀가동의서</p>
 						</a></li>
 
@@ -342,7 +342,7 @@
 						<li class="nav-item"><a href="#submenu"> <i
 								class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
-						</a></li>
+						</az></li>
 
 						<li class="nav-item"><a href="businessLogMain.pl"> <i
 								class="far fa-clipboard"></i>

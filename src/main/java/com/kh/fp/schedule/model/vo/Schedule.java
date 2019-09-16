@@ -1,7 +1,5 @@
 package com.kh.fp.schedule.model.vo;
 
-import java.sql.Date;
-
 public class Schedule implements java.io.Serializable{
 	private int scheduleNo;
 	private String title;
@@ -47,7 +45,7 @@ public class Schedule implements java.io.Serializable{
 		this.title = title;
 	}
 
-	public String isAllDay() {
+	public String getAllDay() {
 		return allDay;
 	}
 
@@ -118,4 +116,7 @@ public class Schedule implements java.io.Serializable{
 				+ ", kinderNo=" + kinderNo + ", scheduleContent=" + scheduleContent + "]";
 	}
 
+	
+	
+	
 }

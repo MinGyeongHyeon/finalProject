@@ -127,10 +127,10 @@ var newEvent = function (start, end, eventType) {
 	        		                scheduleContent: eventData.scheduleContent
 	        	                },
 	        	            success: function (data) {
-	        	            	console.log(data.eventData);
+	        	            	console.log(data.insertsc);
 	        	                //DB연동시 중복이벤트 방지를 위한
-	        	                //$('#calendar').fullCalendar('removeEvents');
-	        	                //$('#calendar').fullCalendar('refetchEvents');
+	        	                $('#calendar').fullCalendar('removeEvents');
+	        	                $('#calendar').fullCalendar('refetchEvents');
 	        	            },
 	        	            error: function(data){
 	        	            	console.log(data);
@@ -153,10 +153,10 @@ var newEvent = function (start, end, eventType) {
 	        		                scheduleContent: eventData.scheduleContent
 	        	                },
 	        	            success: function (data) {
-	        	            	console.log(data.eventData);
+	        	            	console.log(data.insertsc);
 	        	                //DB연동시 중복이벤트 방지를 위한
-	        	                //$('#calendar').fullCalendar('removeEvents');
-	        	                //$('#calendar').fullCalendar('refetchEvents');
+	        	                $('#calendar').fullCalendar('removeEvents');
+	        	                $('#calendar').fullCalendar('refetchEvents');
 	        	            },
 	        	            error: function(data){
 	        	            	console.log(data);
@@ -213,24 +213,3 @@ var newEvent = function (start, end, eventType) {
         });*/
     });
 };
-
-/*$(function(){
-	var title = "tt";
-    $.ajax({
-        url:"insertSchedule.sc",
-        type:"post",
-        data:{title:title},
-        success:function (data) {
-        	console.log("성공");
-            //DB연동시 중복이벤트 방지를 위한
-            //$('#calendar').fullCalendar('removeEvents');
-            //$('#calendar').fullCalendar('refetchEvents');
-        },
-        error:function(data){
-        	console.log(data);
-        	
-        	console.log("실패");
-        }
-    });
-	
-})*/
