@@ -27,5 +27,7 @@ public interface NoticeDao {
 
 	Notice selectOneNotice(SqlSessionTemplate sqlSession, int bid)throws NoticeException;
 
+	int updateNoticeStatus(int bid, String status, SqlSessionTemplate sqlSession);
+
 
 }

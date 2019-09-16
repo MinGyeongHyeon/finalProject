@@ -51,8 +51,8 @@ public class NoticeController {
 		
 		try {
 			Notice SelectNotice = ns.selectNotice(bid);
-			
-			model.addAttribute("Notice",SelectNotice);
+			System.out.println(SelectNotice + "입니다.");
+			model.addAttribute("SelectNotice",SelectNotice);
 
 		} catch (NoticeException e) {
 			// TODO Auto-generated catch block
@@ -60,7 +60,21 @@ public class NoticeController {
 		}
 		
 		
-		return null;
+		return "notice/NoticeDetail";
+		
+	}
+	
+	@RequestMapping(value="delectNotice.no")
+	public String Noticedelete(Notice n,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		
+		String status = "Y";
+	
+		int result = ns.UpdateNoticeStatus(bid,status);
+		
+		
+		return "redirect:NoticeList.sn";
 		
 	}
 	

@@ -50,9 +50,7 @@
 		SELECT
 		C.CLASS_NO,C.KINDER_NO,C.CLASS_NAME
 		FROM KINDER_CLASS C
-		JOIN USERS U
-		ON
-		U.USER_NO = C.TEACHER_NO
+		JOIN USERS U ON U.USER_NO = C.TEACHER_NO
 		WHERE U.USER_NO = #{userNo}
 		AND
 		SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
@@ -97,7 +95,12 @@
 		AND B.STATUS = 'N'
 		ORDER BY COMMENT_NO DESC
 	</select>
-
+	
+	<update id="updateNoticeStatus" parameterType="_int">
+	UPDATE BOARD
+	SET STATUS = 'Y'
+	WHERE BOARD_NO=#{bid}
+	</update>
 
 </mapper>
 
