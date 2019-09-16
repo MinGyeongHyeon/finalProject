@@ -72,6 +72,10 @@ public interface MemberService {
 
 	int insertAttachment(Attachment at);
 
+	Member selectId(String phone);
+
+	Member selectemailId(String email);
+
 
 
 }

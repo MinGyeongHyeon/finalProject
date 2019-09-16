@@ -11,7 +11,7 @@
 <style>
 .mainArea {
 	width: 70%;
-	height: 90%;
+	height: 95%;
 	background-color: white;
 	margin: 0 auto;
 }
@@ -56,10 +56,10 @@ table tr {
 			</tr>
 			<tr>
 				<td>*휴대전화번호</td>
-				<td><input type="tel" class="form-control phonefind" id="phone" placeholder="휴대전화번호" disabled></td>
-				<td><button class="ui grey basic button" disabled >인증번호 발송</button></td>
+				<td><input type="tel" class="form-control phonefind" id="phone" placeholder="휴대전화번호 (-) 뺴고 입력" disabled></td>
+				<td><button class="ui grey basic button" id="phonebut" disabled >인증번호 발송</button></td>
 			</tr>
-			<tr>
+			<tr hidden id="phonehid">
 				<td>*인증번호</td>
 				<td colspan="2"><input type="text" class="form-control phonefind" id="CerNum" placeholder="휴대전화 인증번호를 입력해주세요" disabled ></td>
 			</tr>
@@ -73,8 +73,8 @@ table tr {
 			</tr>
 			<tr id="aftertr">
 				<td>이메일</td>
-				<td colspan="2"><input type="email" class="form-control emailfind" id="email" placeholder="이메일을 입력해주세요" id="emailval" disabled ></td>
-				<td colspan="2"><input type="button" class="ui grey basic button" value="인증" id="emailsend" disabled ></td>
+				<td colspan="2"><input type="email" class="form-control emailfind" placeholder="이메일을 입력해주세요" id="emailval" disabled ></td>
+				<td colspan="2"><input type="button" class="ui grey basic button" value="인증번호 발송" id="emailsend" disabled ></td>
 			</tr>
 		
 			
@@ -93,21 +93,22 @@ table tr {
 	<br><br><br>
 	
 	<script>
+	
 		$('#emailsend').click(function(){
 			
 			var email = $('#emailval').val();
 			
-			
+			console.log(email);
 			
 			var $tr = $("<tr id='emailCer'><td>이메일 확인</td><td colspan='2'><input type='text' class='form-control' id='CerNum2' placeholder='이메일 인증번호를 입력해주세요'  ></td></tr>")
 
 			$('#aftertr').after($tr);
 			var $tr2 = $("<tr id='displaytr'><td></td><td colspan='2'><label id='lable'></label></td> </tr> ");
-			
+			var email2 = "아이디찾기";
 			$.ajax({
 				url:"sendemail.me",
 				type:"post",
-				data:{email:email},
+				data:{email:email,email2:email2},
 				success:function(data){
 					
 					var randomkey = data.random;
@@ -124,15 +125,15 @@ table tr {
 						
 						if(randomkey == num){
 							
-							$("#CerNum2").css("border-color", "blue");
-							$label.text("번호가 일치합니다.").css("color","blue");
+							$("#CerNum2").css("border-color", "skyblue");
+							$label.text("번호가 일치합니다.").css("color","skyblue");
 							
 							
 						}else{
 							
-							$("#CerNum2").css("border-color", "red");
+							$("#CerNum2").css("border-color", "#ff1d69");
 							
-							$label.text("번호가 일치하지 않습니다.").css("color","red");
+							$label.text("번호가 일치하지 않습니다.").css("color","#ff1d69");
 							
 						
 					
@@ -152,6 +153,9 @@ table tr {
 		
 		$('#phonefind').click(function(){
 			
+			
+			$("#emailsend").attr("disabled",true);
+			$("#phonebut").attr("disabled", false);
 			$(".phonefind").attr("disabled" , false);
 			$(".emailfind").attr("disabled" , true);
 			$(".emailfind").val("");
@@ -160,18 +164,25 @@ table tr {
 		
 		$('#emailfind').click(function(){
 			
+			$("#emailsend").attr("disabled",false);
 			$(".emailfind").attr("disabled" , false);
 			$(".phonefind").attr("disabled" , true);
+			$("#phonebut").attr("disabled", true);
 			$(".phonefind").val("");
 			
 		});
 		
+		if($('#CerNum').css('border-color') == 'skyblue'){
+		
+		}
 		
 		$("#selectBtn").click(function(){
 			
 			var phone = $("#phone").val();
-			var email = $("#email").val();
+			var email = $("#emailval").val();
 
+			console.log(email);
+			console.log(phone);
 			
 			if(phone != ""){
 				
@@ -182,19 +193,135 @@ table tr {
 				type:"post",
 				success:function(data){
 					
-					console.log(data);
+					var userIdlength = data.me.userId.length;
+					var userId;
+					
+						userId = data.me.userId.substring(0,userIdlength - 3);
+						
+						var userst = userId + "***";
+					
+					 alert("회원님의 아이디는 " + userst + "입니다");
 				
 				}
 			
 			}); 
 		
 			
-			}else{
-				console.log("이메일로 들어옴");
+			}else if(email != ""){
+				
+				$.ajax({
+					
+					url:"selectemialId.me",
+					data:{email:email},
+					type:"post",
+					success:function(data){
+						
+						var userIdlength = data.me.userId.length;
+						var userId;
+						
+							userId = data.me.userId.substring(0,userIdlength - 3);
+							
+							var userst = userId + "***";
+						
+						 alert("회원님의 아이디는 " + userst + "입니다");
+					
+					}
+				
+				}); 
+				
 			}
 
 		
-		})
+		});
+		
+		
+		$('#phonebut').click(function(){
+			
+			$('#phonehid').attr("hidden",false);
+			
+			var sphone1 = $('#sphone1').val();
+			var sphone2 = $('#sphone2').val();
+			var sphone3 = $('#sphone3').val();
+			
+			var rphone = $('#rphone').val();
+			
+			var action = "go";
+			
+			$('#CerNumtr').attr('hidden',false);
+			
+			$.ajax({
+				
+				url:"phoneMe.me",
+				data:{rphone:rphone,sphone1:sphone1,sphone2:sphone2,sphone3:sphone3,action:action},
+				type:"post",
+				success:function(data){
+					
+					var randomkey = data.random;
+					
+					console.log(data.random);
+					
+						var $tr = $('<tr class="randomkeyphone">');
+						var $td = $('<td>');
+						var $td2 = $('<td>');
+						var $label = $('<label>');
+						
+					$('#CerNum').keyup(function(){
+						
+						var num = $('#CerNum').val();
+								
+						console.log(num);
+						
+						if(randomkey == num){
+						   $('.randomkeyphone').remove();
+							
+							$('#CerNum').css("border-color","skyblue");
+							$label.text("번호가 일치합니다").css("color","skyblue");
+							
+							$td2.append($label);
+							$tr.append($td);
+							$tr.append($td2);
+							
+							$('#phonehid').after($tr);
+							
+								
+						
+							
+							
+						}else{
+							
+							 $('.randomkeyphone').remove();
+							 
+							 $('#CerNum').css("border-color","#ff1d69");
+							 
+							 
+							 $label.text("번호가 일치하지 않습니다.").css("color","#ff1d69");
+								
+								$td2.append($label);
+								$tr.append($td);
+								$tr.append($td2);
+								
+								$('#phonehid').after($tr);
+							 
+								
+						}
+						
+							
+						
+					
+						
+					});
+			
+					
+	
+					
+					
+					
+					
+				}
+				
+			});
+			
+		});
 		
 		
 	
