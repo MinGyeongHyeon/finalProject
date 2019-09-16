@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Schedule">
-	<resultMap type="Schedule" id="scheduleResultSet">
+	<resultMap type="ScheduleSC" id="scheduleResultSet">
 		<id property="scheduleNo" column="SCHEDULE_NO"/>
 		<result property="title" column="SCHEDULE_TITLE"/>
 		<result property="allDay" column="ALL_DAY"/>
@@ -17,7 +17,7 @@
 		<result property="scheduleContent" column="SCHEDULE_CONTENT"/>
 	</resultMap>
 
-	<resultMap type="KinderClass" id="kinderClassResultSet">
+	<resultMap type="KinderClassSC" id="kinderClassResultSet">
 		<id property="classNo" column="CLASS_NO"/>
 		<result property="kinderNo" column="KINDER_NO"/>
 		<result property="className" column="CLASS_NAME"/>
@@ -28,7 +28,7 @@
 		<result property="childrenNo" column="CHILDREN_NO"/>
 	</resultMap>
 	
-	<select id="selectKinderClass" parameterType="KinderClass" resultMap="kinderClassResultSet">
+	<select id="selectKinderClass" parameterType="KinderClassSC" resultMap="kinderClassResultSet">
 		SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, TEACHER_NO, CHILDREN_NO
 		FROM (
 		        SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, TEACHER_NO, CHILDREN_NO, RANK() OVER (ORDER BY CLASS_NO DESC) AS RANK
@@ -40,18 +40,18 @@
 	</select>
 	
 	
-	<insert id="insertSchedule1" parameterType="Schedule">
+	<insert id="insertSchedule1" parameterType="ScheduleSC">
 		INSERT INTO SCHEDULE
 		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, null, #{kinderNo}, #{scheduleContent})
 	</insert>
 	
-	<insert id="insertSchedule2" parameterType="Schedule">
+	<insert id="insertSchedule2" parameterType="ScheduleSC">
 		INSERT INTO SCHEDULE
 		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, #{classNo}, null, #{scheduleContent})
 	</insert>
 	
-	<select id="searchSchedule" parameterType="Schedule" resultMap="scheduleResultSet">
-		SELECT *
+	<select id="searchSchedule" parameterType="ScheduleSC" resultMap="scheduleResultSet">
+		SELECT SCHEDULE_NO, SCHEDULE_TITLE, ALL_DAY, START_DATE, END_DATE, COLOR, SCHEDULE_TYPE,CLASS_NO, KINDER_NO, SCHEDULE_CONTENT
 		FROM SCHEDULE
 	
 	</select>

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -123,9 +124,9 @@
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
-						<c:if test="${ loginUserJob != 1 }">
-							<button id="contentsWrite">작성하기</button>
-						</c:if>
+		                <c:if test="${ loginUser.classification eq '학부모' }">
+							<button id="contentsWrite" onclick="location.href='returnHomeWrite.rh'">작성하기</button>
+		                </c:if>
 					</td>
 				</tr>
 			</table>
@@ -136,14 +137,14 @@
 			<table style="width:100%">
 				<tr>
 					<td>
-						<select name="kidsNameList" id="kidsNameList">
-							<option value="000">전체 원아 보기</option>
-							<option value="001">김영지</option>
-							<option value="002">민경현</option>
-							<option value="003">박찬민</option>
-							<option value="004">하민희</option>
-							<option value="005">한송이</option>
-						</select>
+						<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
+							<select name="kidsNameList" id="kidsNameList">
+									<option value="000">전체 원아 보기</option>
+								<c:forEach var="childrenList" items="${list}" varStatus="status">
+									<option value="00${status.count }"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
+								</c:forEach>
+							</select>
+						</c:if>
 					</td>
 					<td style="text-align:right;">
 						<input type="date" />

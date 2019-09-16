@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReturnHome">
+	<resultMap type="ReturnHomeRH" id="returnHomeResultSet">
+		<id property="homeNo" column="HOME_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="homeDate" column="HOME_DATE"/>
+		<result property="homeTime" column="HOME_TIME"/>
+		<result property="homeWay" column="HOME_WAY"/>
+		<result property="parentsName" column="PARENTS_NAME"/>
+		<result property="parentsPhone" column="PARENTS_PHONE"/>
+		<result property="emergencyName" column="EMERGENCY_NAME"/>
+		<result property="emergencyPhone" column="EMERGENCY_PHONE"/> 								
+		<result property="reading" column="READING"/>						
+		<result property="reDate" column="RE_DATE"/>						
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+	
+	<resultMap type="ChildrenRH" id="childrenResultSet">
+		<id property="childrenNo" column="CHILDREN_NO"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+	
+	
+	<select id="selectChildrenName" parameterType="KinderClassRH" resultMap="childrenResultSet">
+		SELECT CHILDREN_NO, CHILDREN_NAME, BIRTH, GENDER, USER_NO
+		FROM CHILDREN
+		WHERE CHILDREN_NO IN (SELECT CHILDREN_NO
+							FROM KINDER_CLASS K1
+							WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
+																					FROM KINDER_CLASS K2
+																					WHERE K2.TEACHER_NO = #{teacherNo})
+							AND DIVISION = '원생')
+	</select>
+	
+	<!-- <insert id="insertSchedule1" parameterType="Schedule">
+		INSERT INTO SCHEDULE
+		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, null, #{kinderNo}, #{scheduleContent})
+	</insert> -->
+	
+	
+</mapper>
+

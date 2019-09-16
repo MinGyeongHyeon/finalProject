@@ -14,7 +14,6 @@ import com.kh.fp.schedule.model.vo.Schedule;
 @Controller
 public class ScheduleController {
 	
-	
 	@Autowired
 	private ScheduleService scs;
 	
@@ -75,9 +74,8 @@ public class ScheduleController {
 	@RequestMapping(value="searchSchedule.sc")
 	public ModelAndView searchSchedule(ModelAndView mv) {
 		ArrayList<Schedule> list = null;
-		System.out.println("들어오긴했냐");
 		list = scs.searchSchedule();
-			
+		
 		mv.addObject("list", list);
 		mv.setViewName("jsonView");
 		return mv;

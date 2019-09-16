@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 	.main-panel {
 	    position: relative;
@@ -75,7 +78,9 @@
 		padding-top:13px;
 		padding-bottom: 13px;
 	}
-	
+	.selectDateDiv label{
+		color:#fff;
+	}
 	.selectDateDiv:first-child{
 		background:#59f;
 	}
@@ -123,9 +128,15 @@
 		border-radius: 5px;
 	}
 	
+	.returnWay label{
+		color:#000;
+	}
 </style>
 </head>
 <body>
+	<c:set var="today" value="<%=new java.util.Date()%>" />
+	<c:set var="todayDate"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd" /></c:set>
+
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
@@ -158,14 +169,14 @@
 					</tr>
 					<tr>
 						<td>
-							<div class="selectDateDiv">
-								<label for="today">오늘(8월14일)</label>
+							<div class="selectDateDiv" id="selectDiv1">
+								<label for="today" id="dateLabel1">오늘(8월14일)</label>
 							</div>
-							<div class="selectDateDiv">
-								<label for="tomorrow">내일(8월15일)</label>
+							<div class="selectDateDiv" id="selectDiv2">
+								<label for="tomorrow" id="dateLabel2">내일(8월15일)</label>
 							</div>
-							<input type="radio" name="selectDate" id="today"  class="selectDate" hidden/>
-							<input type="radio" name="selectDate" id="tomorrow" class="selectDate" hidden/>
+							<input type="radio" name="selectDate" id="today"  class="selectDate" value="today" checked="true" hidden/>
+							<input type="radio" name="selectDate" id="tomorrow" class="selectDate" value="tomorrow" hidden/>
 						</td>
 					</tr>
 					<tr>
@@ -206,12 +217,12 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="radio" name="car" id="walk" value="walk"/>
-							<label for="walk">도보</label>
-							<input type="radio" name="car" id="mycar" value="mycar"/>
-							<label for="mycar">자가</label>
-							<input type="radio" name="car" id="bus" value="bus"/>
-							<label for="bus">통학버스</label>
+							<input type="radio" name="returnWay" class="returnWay" value="walk"/>
+							<label for="walk" style="color:#000;">도보</label>
+							<input type="radio" name="returnWay" class="returnWay" value="car"/>
+							<label for="mycar" style="color:#000;">자가</label>
+							<input type="radio" name="returnWay" class="returnWay" value="bus"/>
+							<label for="bus" style="color:#000;">통학버스</label>
 						</td>
 					</tr>
 					<tr>
@@ -252,7 +263,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: right;">
-						<label for="">2019.8.14 박찬민</label>
+						<label for=""><c:out value="${todayDate}" /> 박찬민</label>
 					</td>
 				</tr>
 			</table>
@@ -267,9 +278,31 @@
 				</tr>
 			</table>
 		</div>
-		
-		
 	</div>
+	
+	
+	<script>
+		$(function(){
+			var selectDiv1 = document.getElementById('selectDiv1');
+			var selectDiv2 = document.getElementById('selectDiv2');
+			$(".selectDateDiv").click(function(){
+				var label = $(this.children[0].id);
+				
+				if(this.children[0].id == "dateLabel1"){
+					$(this).css("background", "#59f");
+					$("#selectDiv2").css("background", "#554a44");
+					selectDiv1.children[0].click();
+				}else{
+					$(this).css("background", "#59f");
+					$("#selectDiv1").css("background", "#554a44");
+					selectDiv2.children[0].click();
+				}
+			})
+			
+			
+			
+		});
+	</script>
 </body>
 </html>
 

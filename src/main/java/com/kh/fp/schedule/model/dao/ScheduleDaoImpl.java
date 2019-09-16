@@ -49,12 +49,15 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<Schedule> searchSchedule(SqlSessionTemplate sqlSession) {
-		RowBounds rowBounds = new RowBounds(1, 999);
-		ArrayList<Schedule> list = (ArrayList) sqlSession.selectList("Schedule.searchSchedule", null, rowBounds);
+		/*
+		 * RowBounds rowBounds = new RowBounds(0, 999); ArrayList<Schedule> list =
+		 * (ArrayList) sqlSession.selectList("Schedule.searchSchedule", null,
+		 * rowBounds);
+		 */
+		
+		ArrayList<Schedule> list = (ArrayList) sqlSession.selectList("Schedule.searchSchedule");
 		System.out.println("list출력" + list);
-		//list = (ArrayList<Schedule>) sqlSession.selectList("Schedule.searchSchedule", null);
 		
 		return list; 
 	}
-//("Schedule.searchSchedule");
 }
