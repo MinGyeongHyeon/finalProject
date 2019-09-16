@@ -116,6 +116,16 @@ public class NoteController {
 		}
 	}
 
+	//보낸쪽지함 상세내용 조회에서 삭제하기
+	@RequestMapping(value="deleteSentNoteOne.nt")
+	public String deleteSentNoteOne() {
+		System.out.println("호출됨");
+
+		int result = ns.deleteSentNoteOne();
+
+		return "";
+	}
+
 	@RequestMapping(value="goUserList.nt")
 	public String goUserList() {
 		return "note/userList";

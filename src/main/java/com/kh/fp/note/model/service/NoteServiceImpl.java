@@ -52,4 +52,11 @@ public class NoteServiceImpl implements NoteService{
 		return nd.selectSentNoteOne(sqlSession, noteNo);
 	}
 
+	//보낸 쪽지함 상세보기에서 삭제하기
+	@Override
+	public int deleteSentNoteOne() {
+
+		return nd.deleteSentNoteOne(sqlSession);
+	}
+
 }
