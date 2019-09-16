@@ -20,5 +20,7 @@ public interface NoticeService {
 
 	ArrayList<Notice> selectProjectList(PageInfo pi, NoticeWho noticeWho);
 
+	Notice selectNotice(int bid)throws NoticeException;
+
 
 }

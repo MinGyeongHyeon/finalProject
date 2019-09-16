@@ -1,5 +1,8 @@
 package com.kh.fp.notice.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +42,26 @@ public class NoticeController {
 		}
 		
 		return "notice/NoticeList";
+	}
+	
+	@RequestMapping(value="NoticeOne.no")
+	public String NoticeOne(Notice n,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		
+		try {
+			Notice SelectNotice = ns.selectNotice(bid);
+			
+			model.addAttribute("Notice",SelectNotice);
+
+		} catch (NoticeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+		
 	}
 	
 	

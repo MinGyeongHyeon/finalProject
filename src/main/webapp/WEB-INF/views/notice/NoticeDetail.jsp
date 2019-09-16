@@ -96,27 +96,42 @@
 		<div class="content">
 			<div class="page-inner">
 				<div class="page-header">
-					<i class="fas fa-paper-plane" style="font-size: 20px;">&nbsp;</i>
-					<h4 class="page-title">공지사항</h4>
+					<i class="fas fa-envelope-open-text" style="font-size: 20px;">&nbsp;</i>
+					<h4 class="page-title">알림장</h4>
 				</div>
 				<hr>
 				<div class="page-category">
 					<div id="mainArea">
 						<div id="titleArea">
 							<h2 id="title">
-								<b>타이틀</b>
+								<b>2019-09-03 알림장</b>
 							</h2>
 						</div>
 						<div id="contentsArea">
 							<br>
-								<table id="tableArea" style="margin:0 auto; board:1px solid white ">
-									<tr>
-										<td colspan="2" class="title"></td>
+							<div id="profileArea">
+								<i><img src="${ contextPath }/resources/images/woman.png"
+									id="profileImg"></i> &nbsp;&nbsp;<b>원아 이름</b>
+							</div>
+							<br>
+								<table id="tableArea" style="margin:0 auto;">
+									<tr style="background: #f57373; border-radius: 5px">
+										<td colspan="2" class="title" style="color:white; border-radius:10px">공통 알림장</td>
 									</tr>
 									<tr>
-										<td colspan="2">ㅋㅋㅋ</td>
+										<td colspan="2"></td>
 									</tr>
 								</table>	
+							<div style="padding-top:10%">
+								<table id="tableArea" style="margin:0 auto;">
+									<tr style="background: #3682f5;">
+										<td colspan="2" class="title" style="color:white; border-radius: 10px; " />개별 알림장</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border-top:white"></td>
+									</tr>	 	
+								</table>
+							</div>
 							<br>
 					</div>
 					<br><br>

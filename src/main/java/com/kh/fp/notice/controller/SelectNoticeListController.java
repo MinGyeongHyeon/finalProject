@@ -68,6 +68,7 @@ public class SelectNoticeListController {
 		
 		model.addAttribute("list",list);
 		
+		
 		return "notice/NoticeList";
 	}
 	

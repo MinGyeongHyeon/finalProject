@@ -23,5 +23,9 @@ public interface NoticeDao {
 
 	ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
+	int updateCount(SqlSessionTemplate sqlSession, int bid);
+
+	Notice selectOneNotice(SqlSessionTemplate sqlSession, int bid)throws NoticeException;
+
 
 }

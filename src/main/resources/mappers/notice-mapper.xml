@@ -80,6 +80,23 @@
 		OR B.CLASS_NO = #{classNum}
 		ORDER BY B.BOARD_NO DESC
 	</select>
+	
+<!-- 	<update id="updateNoticeCount" parameterType="_int">
+		Update Notice
+		SET 	
+	
+	
+	</update> -->
+	
+	<select id="selectNoticeOne" resultMap="noticeResultSet">
+		SELECT *
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON (B.WRITER = K.TEACHER_NO)
+		LEFT JOIN BOARD_COMMENT C ON (B.BOARD_NO = C.BOARD_NO)
+		WHERE B.BOARD_NO = #{bid}
+		AND B.STATUS = 'N'
+		ORDER BY COMMENT_NO DESC
+	</select>
 
 
 </mapper>
