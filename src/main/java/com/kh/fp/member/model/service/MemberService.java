@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
+import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KidMember;
 import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
@@ -68,6 +69,8 @@ public interface MemberService {
 	int teacherMeCount(Member m);
 
 	int teacherMe2Count(Member m);
+
+	int insertAttachment(Attachment at);
 
 
 
