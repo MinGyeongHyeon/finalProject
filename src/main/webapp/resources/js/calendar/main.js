@@ -188,14 +188,7 @@ var calendar = $('#calendar').fullCalendar({
 					searchList.push(evt);
 				}
 				callback(searchList);
-				/*var fixedDate = response.map(function (array) {
-	    	if (array.allDay && array.start !== array.end) {
-	    		// 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-	    		array.end = moment(array.end).add(1, 'days');
-          	}
-          	return array;
-	        })
-        callback(fixedDate);*/
+				
 			},
 			error: function(response){
 				console.log("실패");

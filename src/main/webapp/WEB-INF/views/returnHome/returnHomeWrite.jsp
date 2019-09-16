@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="${contextPath }/resources/css/signature/jquery.signaturepad.css" rel="stylesheet">
 <style>
 	.main-panel {
 	    position: relative;
@@ -134,174 +136,224 @@
 </style>
 </head>
 <body>
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+	
 	<c:set var="today" value="<%=new java.util.Date()%>" />
-	<c:set var="todayDate"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd" /></c:set>
-
+	<c:set var="todayDate1"><fmt:formatDate value="${today}" pattern="MM월dd일" /></c:set>
+	<c:set var="todayDate2"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd" /></c:set>
+	<c:set var="tomorrowDate" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
+	<c:set var="tomorrow"><fmt:formatDate value="${tomorrowDate}" pattern="MM월dd일"/></c:set>
+	
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
 			<table width=100%;>
 				<tr>
 					<td>
-						<label style="font-weight:bold;">박찬민원아의 귀가동의서</label>
+						<label style="font-weight:bold;">귀가동의서</label>
 					</td>
 				</tr>
 			</table>
 		</div>
 		<hr />
-		<div class="returnHomeContents">
-			<div class="kinderInfo">
-				<table>
-					<tr>
-						<td rowspan="2"><img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
-						<td>원아명</td>
-					</tr>
-					<tr>
-						<td>별님반	</td>
-					</tr>
-				</table>
-			</div>
-			<hr />
-			<div class="returnHomeDetail">
-				<table>
-					<tr>
-						<th>귀가요청일</th>
-					</tr>
-					<tr>
-						<td>
-							<div class="selectDateDiv" id="selectDiv1">
-								<label for="today" id="dateLabel1">오늘(8월14일)</label>
-							</div>
-							<div class="selectDateDiv" id="selectDiv2">
-								<label for="tomorrow" id="dateLabel2">내일(8월15일)</label>
-							</div>
-							<input type="radio" name="selectDate" id="today"  class="selectDate" value="today" checked="true" hidden/>
-							<input type="radio" name="selectDate" id="tomorrow" class="selectDate" value="tomorrow" hidden/>
-						</td>
-					</tr>
-					<tr>
-						<th>귀가요청시간</th>
-					</tr>
-					<tr>
-						<td class="selectTime">
-							<select name="noonCheck" id="noonCheck">
-								<option value="morning">오전</option>
-								<option value="afternoon">오후</option>
-							</select>&nbsp;
-							<select name="hour" id="hour">
-								<option value="1">1시</option>
-								<option value="2">2시</option>
-								<option value="3">3시</option>
-								<option value="4">4시</option>
-								<option value="5">5시</option>
-								<option value="6">6시</option>
-								<option value="7">7시</option>
-								<option value="8">8시</option>
-								<option value="9">9시</option>
-								<option value="10">10시</option>
-								<option value="11">11시</option>
-								<option value="12">12시</option>
-							</select>&nbsp;
-							<select name="minute" id="minute">
-								<option value="00">00분</option>
-								<option value="10">10분</option>
-								<option value="20">20분</option>
-								<option value="30">30분</option>
-								<option value="40">40분</option>
-								<option value="50">50분</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>귀가방법</th>
-					</tr>
-					<tr>
-						<td>
-							<input type="radio" name="returnWay" class="returnWay" value="walk"/>
-							<label for="walk" style="color:#000;">도보</label>
-							<input type="radio" name="returnWay" class="returnWay" value="car"/>
-							<label for="mycar" style="color:#000;">자가</label>
-							<input type="radio" name="returnWay" class="returnWay" value="bus"/>
-							<label for="bus" style="color:#000;">통학버스</label>
-						</td>
-					</tr>
-					<tr>
-						<th>보호자</th>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="family1" id="family1" placeholder="원아와 관계"/> &nbsp;
-							<input type="text" name="phone1" id="phone1"/>
-						</td>
-					</tr>
-					<tr>
-						<th>비상연락망</th>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="famaily2" id="famaily2" placeholder="원아와 관계"/> &nbsp;
-							<input type="text" name="phone2" id="phone2"/>
-						</td>
-						
-					</tr>
-				</table>
+		<form action="">
+			<div class="returnHomeContents">
+				<div class="kinderInfo">
+					<table>
+						<tr>
+							<td rowspan="2"><img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
+							<td>원아명</td>
+						</tr>
+						<tr>
+							<td>별님반</td>
+						</tr>
+					</table>
+				</div>
 				<hr />
+				<div class="returnHomeDetail">
+					<table>
+						<tr>
+							<th>귀가요청일</th>
+						</tr>
+						<tr>
+							<td>
+								<div class="selectDateDiv" id="selectDiv1">
+									<label for="today" id="dateLabel1">오늘(<c:out value="${todayDate1}" />)</label>
+								</div>
+								<div class="selectDateDiv" id="selectDiv2">
+									<label for="tomorrow" id="dateLabel2">내일(<c:out value="${tomorrow}" />)</label>
+								</div>
+								<input type="radio" name="selectDate" id="today"  class="selectDate" value="today" checked="true" hidden/>
+								<input type="radio" name="selectDate" id="tomorrow" class="selectDate" value="tomorrow" hidden/>
+							</td>
+						</tr>
+						<tr>
+							<th>귀가요청시간</th>
+						</tr>
+						<tr>
+							<td class="selectTime">
+								<select name="noonCheck" id="noonCheck">
+									<option value="morning">오전</option>
+									<option value="afternoon">오후</option>
+								</select>&nbsp;
+								<select name="hour" id="hour">
+									<option value="1">1시</option>
+									<option value="2">2시</option>
+									<option value="3">3시</option>
+									<option value="4">4시</option>
+									<option value="5">5시</option>
+									<option value="6">6시</option>
+									<option value="7">7시</option>
+									<option value="8">8시</option>
+									<option value="9">9시</option>
+									<option value="10">10시</option>
+									<option value="11">11시</option>
+									<option value="12">12시</option>
+								</select>&nbsp;
+								<select name="minute" id="minute">
+									<option value="00">00분</option>
+									<option value="10">10분</option>
+									<option value="20">20분</option>
+									<option value="30">30분</option>
+									<option value="40">40분</option>
+									<option value="50">50분</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>귀가방법</th>
+						</tr>
+						<tr>
+							<td>
+								<input type="radio" name="returnWay" class="returnWay" value="walk"/>
+								<label for="walk" style="color:#000;">도보</label>
+								<input type="radio" name="returnWay" class="returnWay" value="car"/>
+								<label for="mycar" style="color:#000;">자가</label>
+								<input type="radio" name="returnWay" class="returnWay" value="bus"/>
+								<label for="bus" style="color:#000;">통학버스</label>
+							</td>
+						</tr>
+						<tr>
+							<th>보호자</th>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="family1" id="family1" placeholder="원아와 관계" style="width:80px;"/> &nbsp;
+								<input type="text" name="phone1" id="phone1" placeholder='"-"를 제외하고 입력'/>
+							</td>
+						</tr>
+						<tr>
+							<th>비상연락망</th>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="famaily2" id="famaily2" placeholder="원아와 관계" style="width:80px;"/> &nbsp;
+								<input type="text" name="phone2" id="phone2" placeholder='"-"를 제외하고 입력'/>
+							</td>
+							
+						</tr>
+					</table>
+					<hr />
+				</div>
+				<table style="width:95%; margin:0 auto;">
+					<tr>
+						<td style="width:84%; vertical-align: top;">
+							<p style="margin-left:2.5%; font-size:0.8em;">영유아의 귀가 시 위 보호자에게 인보하여 주세요. <br />
+							위 보호자 이외의 다른 사람에게 인계할 때는 사전에 반드시 연락을 취하겠습니다. <br />
+							원에서는 부모가 희망하더라도 영유아를 혼자 귀가시키지 않습니다.</p>
+						</td>
+						<td>
+							<div class="sigPad">
+								<ul class="sigNav">
+							      <li class="clearButton"><a href="#clear">Clear</a></li>
+							    </ul>
+							    <div class="sig sigWrapper">
+							      <div class="typed"></div>
+							      <canvas class="pad" width="198" height="98px"></canvas>
+							      <input type="hidden" name="output" class="output">
+							    </div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: right;">
+							<label for=""><c:out value="${todayDate2}" /><c:out value="${loginUser.userName }"/></label>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<table style="width:95%; margin:0 auto;">
-				<tr>
-					<td style="width:84%; vertical-align: top;">
-						<p style="margin-left:2.5%; font-size:0.8em;">영유아의 귀가 시 위 보호자에게 인보하여 주세요. <br />
-						위 보호자 이외의 다른 사람에게 인계할 때는 사전에 반드시 연락을 취하겠습니다. <br />
-						원에서는 부모가 희망하더라도 영유아를 혼자 귀가시키지 않습니다.</p>
-					</td>
-					<td>
-						<div class="signArea">
-							사인
-							영역
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: right;">
-						<label for=""><c:out value="${todayDate}" /> 박찬민</label>
-					</td>
-				</tr>
-			</table>
-		</div>
-		
-		<div class="detailBtnArea">
-			<button class="checkBtn">수신확인</button>
-			<table>
-				<tr>
-					<td style="text-align:left;"><button>출력</button></td>
-					<td style="text-align:right;"><button>목록</button></td>
-				</tr>
-			</table>
-		</div>
+			<br />
+			
+			<c:if test="${ loginUser.classification eq '선생님' }">
+				<div class="detailBtnArea">
+					<button class="checkBtn">수신확인</button>
+					<table>
+						<tr>
+							<td style="text-align:left;"><button>출력</button></td>
+							<td style="text-align:right;"><button>목록</button></td>
+						</tr>
+					</table>
+				</div>
+			</c:if>
+			<c:if test="${ loginUser.classification eq '학부모' }">
+				<div class="detailBtnArea">
+					<table>
+						<tr>
+							<td style="text-align:left;"><button onclick="">취소</button></td>
+							<td style="text-align:right;"><button type="submit">작성완료</button></td>
+						</tr>
+					</table>
+				</div>
+			</c:if>
+		</form>
+		<br />
+	<%-- <jsp:include page="require-drawn-signature.jsp"/> --%>
 	</div>
 	
+  <!-- <script src="../jquery.signaturepad.js"></script> -->
+  <script src="${contextPath }/resources/js/signature/jquery.signaturepad.js"></script>
+  <script src="${contextPath }/resources/js/signature/jquery.signaturepad.js"></script>
+  <script src="${contextPath }/resources/js/signature/jquery.signaturepad.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.sigPad').signaturePad({drawOnly:true});
+    });
+    
+    $(function(){
+		var selectDiv1 = document.getElementById('selectDiv1');
+		var selectDiv2 = document.getElementById('selectDiv2');
+		$(".selectDateDiv").click(function(){
+			var label = $(this.children[0].id);
+			
+			if(this.children[0].id == "dateLabel1"){
+				$(this).css("background", "#59f");
+				$("#selectDiv2").css("background", "#554a44");
+				selectDiv1.children[0].click();
+			}else{
+				$(this).css("background", "#59f");
+				$("#selectDiv1").css("background", "#554a44");
+				selectDiv2.children[0].click();
+			}
+		});
+	});
+    
+    $(function(){
+		console.log($(".pad")[0]);
+		/* $(".pad").mouseout({
+				
+			
+		}); */
+		/* $(".canvasPad").change(function(){
+			console.log("가나다");
+		}); */
+    	
+    });
+    
+    
+  </script>
 	
 	<script>
-		$(function(){
-			var selectDiv1 = document.getElementById('selectDiv1');
-			var selectDiv2 = document.getElementById('selectDiv2');
-			$(".selectDateDiv").click(function(){
-				var label = $(this.children[0].id);
-				
-				if(this.children[0].id == "dateLabel1"){
-					$(this).css("background", "#59f");
-					$("#selectDiv2").css("background", "#554a44");
-					selectDiv1.children[0].click();
-				}else{
-					$(this).css("background", "#59f");
-					$("#selectDiv1").css("background", "#554a44");
-					selectDiv2.children[0].click();
-				}
-			})
-			
-			
-			
-		});
+		
 	</script>
 </body>
 </html>

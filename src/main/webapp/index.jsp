@@ -16,9 +16,11 @@
 
 
 
+
  <jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/>
 
 <%--   <jsp:forward page="WEB-INF/views/account/join2.jsp"/> --%>
+
 
 
  
