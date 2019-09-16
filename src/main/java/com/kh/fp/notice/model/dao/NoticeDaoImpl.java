@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.tools.ant.Project;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -105,6 +106,16 @@ public class NoticeDaoImpl implements NoticeDao{
 		return selectOneNotice;
 	}
 
+	@Override
+	public int updateNoticeStatus(int bid, String status, SqlSessionTemplate sqlSession) {
+
+		int result = sqlSession.update("Notice.updateNoticeStatus",bid);
+		
+		
+		return result;
+	}
+
+	
 
 }
 

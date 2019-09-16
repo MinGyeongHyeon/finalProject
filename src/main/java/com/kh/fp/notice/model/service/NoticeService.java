@@ -22,5 +22,7 @@ public interface NoticeService {
 
 	Notice selectNotice(int bid)throws NoticeException;
 
+	int UpdateNoticeStatus(int bid, String status);
+
 
 }
