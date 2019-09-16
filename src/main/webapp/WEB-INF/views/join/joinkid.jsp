@@ -98,12 +98,48 @@ margin:0 auto;
 		
 		<td colspan="5">
 		
-		<div class="container">
+		<div class="container" style="width:50%">
           
-  		<img class="img-circle" width="304" height="236"> 
+  		<img class="img-circle" width="150" height="100" id="titleImg" style="border:1px solid;"/> 
   		
 		</div>
+		
+			<div id="imghide">
 
+			<input type="file" value="추가" id="selectFile" class="selectFile" onchange="loadImg(this, 1)" name="photo" >
+			
+			</div>
+
+<script>
+
+$(function(){
+	
+	$('#imghide').hide();
+	
+	$('.container').click(function(){
+		$('#selectFile').click();
+		
+	});
+	
+	
+});
+
+function loadImg(value, num) {
+	if(value.files && value.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			switch(num){
+				case 1 : $("#titleImg").attr("src", e.target.result); break;
+			}
+		}
+
+		reader.readAsDataURL(value.files[0]);
+	}
+}
+
+
+</script>
 
 		</td>
 		
@@ -114,11 +150,7 @@ margin:0 auto;
     	
     		 <div class="fileList" style="width:100%;">
     		 
-			<div id="imghide">
-
-			<input type="file" value="추가" id="selectFile" class="selectFile" multiple />
-			
-			</div>
+		
    		
 			</div>
 		</td>
@@ -189,16 +221,6 @@ document.write("</select>일  </font>");
 	
 </div>
 
-<script>
-
-$(function(){
-	
-	$('#imghide').hide();
-	
-	
-})
-
-</script>
 
 
 
