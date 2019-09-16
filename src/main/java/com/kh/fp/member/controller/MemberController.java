@@ -2,9 +2,22 @@ package com.kh.fp.member.controller;
 
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.URL;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -13,15 +26,19 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fp.common.CommonUtils;
 import com.kh.fp.common.Pagination;
 import com.kh.fp.member.model.exception.JoinException;
 import com.kh.fp.member.model.exception.LoginException;
@@ -31,6 +48,7 @@ import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.PhoneSend;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Controller
@@ -44,12 +62,50 @@ public class MemberController {
 	  @Autowired
 	  private BCryptPasswordEncoder passwordEncoder;
 	 
+	  
+	   public static String nullcheck(String str,  String Defaultvalue ) throws Exception
+	    {
+	         String ReturnDefault = "" ;
+	         if (str == null)
+	         {
+	             ReturnDefault =  Defaultvalue ;
+	         }
+	         else if (str == "" )
+	        {
+	             ReturnDefault =  Defaultvalue ;
+	         }
+	         else
+	         {
+	                     ReturnDefault = str ;
+	         }
+	          return ReturnDefault ;
+	    }
+	   
+	   
+	  
+	   public static String base64Encode(String str)  throws java.io.IOException {
+	       sun.misc.BASE64Encoder encoder = new sun.misc.BASE64Encoder();
+	       byte[] strByte = str.getBytes();
+	       String result = encoder.encode(strByte);
+	       return result ;
+	   }
+
+	 
+	   public static String base64Decode(String str)  throws java.io.IOException {
+	       sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
+	       byte[] strByte = decoder.decodeBuffer(str);
+	       String result = new String(strByte);
+	       return result ;
+	   }
+
 	
 	@RequestMapping(value="loginPage.me")
 	public String loginPage() {
 		
 		return "account/join5";
 	}
+	
+	
 	
 	@RequestMapping(value="login.me")
 	public String login(Member m , Model model) {
@@ -266,12 +322,26 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="kidjoin.me")
-	public String kidjoin(KidMember km ,Model model) {
+	public String kidjoin(KidMember km ,Model model ,HttpServletRequest request, @RequestParam(name="photo", required=false) MultipartFile photo) {
 		
 		km.setBirth(km.getBirth1() + "/" + km.getBirth2() + "/" + km.getBirth3());
 		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String filePath = root + "\\uploadFiles";
+		
+		String originFileName = photo.getOriginalFilename();
+		
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		
+		String changeName = CommonUtils.getRandomString(); 
+		
+		System.out.println("포토의 값 : " + photo);
+		
 		try {
-			
+	
+			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+		
 			int result = ms.insertkid(km);
 			
 			if(result > 0 ) {
@@ -287,9 +357,14 @@ public class MemberController {
 			model.addAttribute("km",km);
 			
 			
-		} catch (JoinException e) {
+		} catch (Exception e) {
+			
+			new File(filePath + "\\" + changeName + ext).delete();
+			
+			model.addAttribute("msg", "회원 가입 도중 애기치 못한 오류가 발생했습니다. 다시 시도해주세요!");
+			
 
-			e.printStackTrace();
+			return "account/join5";
 	
 		}
 		
@@ -423,9 +498,178 @@ public class MemberController {
 		return "join/searchGarden";
 	}
 	
-
 	
+	@RequestMapping(value="phoneMe.me")
+	public ModelAndView phoneMe(ModelAndView mv , HttpServletRequest request) throws IOException, Exception {
+		
+		System.out.println("여긴 들어왔냐 ?");
+		
+		String msg2 = "";
+		int random = (int)(Math.random()* 99999)+1; 
+		
+		msg2 = "키즈랜드 인증 번호 입니다. " + random;
 
+	    String  action  = nullcheck(request.getParameter("action"), "");
+	    
+	    if(action.equals("go")) {
+
+	        
+	        String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS 전송요청 URL
+	        String user_id = base64Encode("rudgus1005"); // SMS아이디
+	        String secure = base64Encode("7c1496e3ee0322fb676d324aaff8b66e");//인증키
+	        String msg = base64Encode(nullcheck(msg2 , ""));
+	        String rphone = base64Encode(nullcheck(request.getParameter("rphone"), ""));
+	        String sphone1 = base64Encode(nullcheck(request.getParameter("sphone1"), ""));
+	        String sphone2 = base64Encode(nullcheck(request.getParameter("sphone2"), ""));
+	        String sphone3 = base64Encode(nullcheck(request.getParameter("sphone3"), ""));
+	        String rdate = base64Encode(nullcheck(request.getParameter("rdate"), ""));
+	        String rtime = base64Encode(nullcheck(request.getParameter("rtime"), ""));
+	        String mode = base64Encode("1");
+	        String subject = "";
+	      
+	        String testflag = base64Encode(nullcheck(request.getParameter("testflag"), ""));
+	        String destination = base64Encode(nullcheck(request.getParameter("destination"), ""));
+	        String repeatFlag = base64Encode(nullcheck(request.getParameter("repeatFlag"), ""));
+	        String repeatNum = base64Encode(nullcheck(request.getParameter("repeatNum"), ""));
+	        String repeatTime = base64Encode(nullcheck(request.getParameter("repeatTime"), ""));
+	        String returnurl = nullcheck(request.getParameter("returnurl"), "");
+	        String nointeractive = nullcheck(request.getParameter("nointeractive"), "");
+	        String smsType = base64Encode(nullcheck(request.getParameter("smsType"), ""));
+
+	        String[] host_info = sms_url.split("/");
+	        String host = host_info[2];
+	        String path = "/" + host_info[3];
+	        int port = 80;
+
+	        // 데이터 맵핑 변수 정의
+	        String arrKey[]
+	            = new String[] {"user_id","secure","msg", "rphone","sphone1","sphone2","sphone3","rdate","rtime"
+	                        ,"mode","testflag","destination","repeatFlag","repeatNum", "repeatTime", "smsType", "subject"};
+	        String valKey[]= new String[arrKey.length] ;
+	        valKey[0] = user_id;
+	        valKey[1] = secure;
+	        valKey[2] = msg;
+	        valKey[3] = rphone;
+	        valKey[4] = sphone1;
+	        valKey[5] = sphone2;
+	        valKey[6] = sphone3;
+	        valKey[7] = rdate;
+	        valKey[8] = rtime;
+	        valKey[9] = mode;
+	        valKey[10] = testflag;
+	        valKey[11] = destination;
+	        valKey[12] = repeatFlag;
+	        valKey[13] = repeatNum;
+	        valKey[14] = repeatTime;
+	        valKey[15] = smsType;
+	        valKey[16] = subject;
+
+	        String boundary = "";
+	        Random rnd = new Random();
+	        String rndKey = Integer.toString(rnd.nextInt(32000));
+	        MessageDigest md = MessageDigest.getInstance("MD5");
+	        byte[] bytData = rndKey.getBytes();
+	        md.update(bytData);
+	        byte[] digest = md.digest();
+	        for(int i =0;i<digest.length;i++)
+	        {
+	            boundary = boundary + Integer.toHexString(digest[i] & 0xFF);
+	        }
+	        boundary = "---------------------"+boundary.substring(0,11);
+
+	        // 본문 생성
+	        String data = "";
+	        String index = "";
+	        String value = "";
+	        for (int i=0;i<arrKey.length; i++)
+	        {
+	            index =  arrKey[i];
+	            value = valKey[i];
+	            data +="--"+boundary+"\r\n";
+	            data += "Content-Disposition: form-data; name=\""+index+"\"\r\n";
+	            data += "\r\n"+value+"\r\n";
+	            data +="--"+boundary+"\r\n";
+	        }
+
+	        //out.println(data);
+
+	        InetAddress addr = InetAddress.getByName(host);
+	        Socket socket = new Socket(host, port);
+	        // 헤더 전송
+	        BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+	        wr.write("POST "+path+" HTTP/1.0\r\n");
+	        wr.write("Content-Length: "+data.length()+"\r\n");
+	        wr.write("Content-type: multipart/form-data, boundary="+boundary+"\r\n");
+	        wr.write("\r\n");
+
+	        // 데이터 전송
+	        wr.write(data);
+	        wr.flush();
+
+	        // 결과값 얻기
+	        BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+	        String line;
+	        String alert = "";
+	        ArrayList tmpArr = new ArrayList();
+	        while ((line = rd.readLine()) != null) {
+	            tmpArr.add(line);
+	        }
+	        wr.close();
+	        rd.close();
+
+	        String tmpMsg = (String)tmpArr.get(tmpArr.size()-1);
+	        String[] rMsg = tmpMsg.split(",");
+	        String Result= rMsg[0]; //발송결과
+	        String Count= ""; //잔여건수
+	        if(rMsg.length>1) {Count= rMsg[1]; }
+
+	     
+
+	    }
+	    
+	            
+	    try {
+	           String apiUrl =  "https://sslsms.cafe24.com/smsSenderPhone.php";
+	            String userAgent = "Mozilla/5.0";
+	            String postParams = "userId=rudgus1005&passwd=7c1496e3ee0322fb676d324aaff8b66e";
+	            URL obj = new URL(apiUrl);
+	            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+	            con.setRequestMethod("POST");
+	            con.setRequestProperty("User-Agent", userAgent);
+
+	            // For POST only - START
+	            con.setDoOutput(true);
+	            OutputStream os = con.getOutputStream();
+	            os.write(postParams.getBytes());
+	            os.flush();
+	            os.close();
+	            // For POST only - END
+
+	            int responseCode = con.getResponseCode();
+
+	            if (responseCode == HttpURLConnection.HTTP_OK) { //success
+	                BufferedReader in = new BufferedReader(new InputStreamReader(
+	                        con.getInputStream()));
+	                String inputLine;
+	                StringBuffer buf = new StringBuffer();
+
+	                while ((inputLine = in.readLine()) != null) {
+	                    buf.append(inputLine);
+	                }
+	                in.close();
+	            } else {
+	            }
+	    } catch(IOException ex){
+
+	    }
+	            
+		mv.addObject("random", random);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+
+ 
 	
 	
 	

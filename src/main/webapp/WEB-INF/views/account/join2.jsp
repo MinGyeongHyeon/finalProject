@@ -44,6 +44,10 @@ table tr {
 		<h5 align="center">본인의 이름과 휴대전화번호 및 이메일을 모두 정확하게 입력해 주세요.</h5><br>
 		
 		<form action="joinPage3.pl" method="post">
+		 <input type="hidden" id="sphone1" value="010">
+        <input type="hidden" id="sphone2" value="4736">
+        <input type="hidden" id="sphone3" value="5427">
+
 		
 		<table align="center" id="inputArea">
 			<tr>
@@ -52,8 +56,8 @@ table tr {
 			</tr>
 			<tr>
 				<td>*휴대전화번호</td>
-				<td><input type="tel" class="form-control" name="phone" placeholder="휴대전화번호"></td>
-				<td><button class="ui grey basic button">인증번호 발송</button></td>
+				<td><input type="tel" class="form-control" name="phone" placeholder="휴대전화번호" id="rphone"></td>
+				<td><button class="ui grey basic button" id="phonesend" type="button">인증번호 발송</button></td>
 			</tr>
 			<tr>
 				<td>*인증번호</td>
@@ -147,7 +151,35 @@ table tr {
 				
 			});
 			
-		})
+		});
+
+		
+		$('#phonesend').click(function(){
+			var sphone1 = $('#sphone1').val();
+			var sphone2 = $('#sphone2').val();
+			var sphone3 = $('#sphone3').val();
+			
+			var rphone = $('#rphone').val();
+			var action = "go";
+			
+			$.ajax({
+				url:"phoneMe.me",
+				data:{rphone:rphone,sphone1:sphone1,sphone2:sphone2,sphone3:sphone3,action:action},
+				type:"post",
+				success:function(data){
+					
+					console.log("여긴 들어오냐");
+					console.log(data);
+					
+					
+					
+				}
+				
+			});
+			
+			
+			
+		});
 		
 	
 	
