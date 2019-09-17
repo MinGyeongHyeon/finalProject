@@ -15,11 +15,12 @@ public class homework implements Serializable{
 	private int kinderNo;
 	private int individualNo;
 	private String individualContent;
+	private int writer;
 	
 	public homework() {}
 
 	public homework(int boardNum, String boardTitle, String boardContent, Date writeDate, String boardtype,
-			int classNum, int childrenNo, int kinderNo, int individualNo, String individualContent) {
+			int classNum, int childrenNo, int kinderNo, int individualNo, String individualContent, int writer) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -31,6 +32,7 @@ public class homework implements Serializable{
 		this.kinderNo = kinderNo;
 		this.individualNo = individualNo;
 		this.individualContent = individualContent;
+		this.writer = writer;
 	}
 
 	public int getBoardNum() {
@@ -113,14 +115,23 @@ public class homework implements Serializable{
 		this.individualContent = individualContent;
 	}
 
+	public int getWriter() {
+		return writer;
+	}
+
+	public void setWriter(int writer) {
+		this.writer = writer;
+	}
+
 	@Override
 	public String toString() {
 		return "homework [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", writeDate=" + writeDate + ", boardtype=" + boardtype + ", classNum=" + classNum + ", childrenNo="
 				+ childrenNo + ", kinderNo=" + kinderNo + ", individualNo=" + individualNo + ", individualContent="
-				+ individualContent + "]";
+				+ individualContent + ", writer=" + writer + "]";
 	}
 
+	
 	
 
 }

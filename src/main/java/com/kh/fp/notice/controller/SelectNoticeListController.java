@@ -30,7 +30,8 @@ public class SelectNoticeListController {
 	
 	@RequestMapping(value="NoticeList.sn")
 	public String SelectNoticeList(Notice notice,NoticeWho noticeWho,Model model,HttpServletRequest request,HttpServletResponse response, @ModelAttribute("loginUser") Member loginUser) {
-
+		
+		
 		int userNo = loginUser.getUserNo();
 		
 		String classNum1 = "";
@@ -39,6 +40,7 @@ public class SelectNoticeListController {
 		String role = loginUser.getClassification();
 		
 		ArrayList selectWho = null;
+		ArrayList Teacher = null;
 		ArrayList<Notice> list = null;
 		
 		int selectNum;
@@ -68,8 +70,6 @@ public class SelectNoticeListController {
 		noticeWho.setRole(role);
 		noticeWho.setUserNum(loginUser.getUserNo());
 
-		System.out.println(selectWho);
-
 		int currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null){
@@ -91,9 +91,16 @@ public class SelectNoticeListController {
 			
 			selectNum = ns.selectChildrenNum(userNo);
 			
-			int selectTeacher = ns.selectTeacher(userNo);
+			Teacher = ns.selectTeacher(userNo);
 			
-			noticeWho.setUserNum(selectTeacher);
+			NoticeWho teacher = (NoticeWho)Teacher.get(0);
+			System.out.println("선생님은"+teacher);
+			int teacherClassNum = teacher.getClassNum();
+			int teacherNum = teacher.getTeacherNum();
+			
+			noticeWho.setTeacherNum(teacherNum);
+			noticeWho.setClassNum(teacherClassNum);
+			
 			list = ns.selectProjectChildrenList(pi,noticeWho);
 		}
 		

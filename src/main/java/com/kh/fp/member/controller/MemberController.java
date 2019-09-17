@@ -372,6 +372,7 @@ public class MemberController {
 			int result = ms.insertkid(km);
 			
 			if(result > 0 ) {
+				
 				int select = km.getUserNo();
 				
 				int selectki = ms.selectkid(select);

@@ -32,7 +32,7 @@ public interface NoticeService {
 
 	ArrayList<Notice> selectProjectChildrenList(PageInfo pi, NoticeWho noticeWho);
 
-	int selectTeacher(int userNo);
+	ArrayList selectTeacher(int userNo);
 
 
 }

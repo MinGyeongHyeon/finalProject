@@ -204,12 +204,6 @@
   					<td style="vertical-align: middle;">
 						<p style="font-weight:bold;">알림장 작성</p>
 					</td>
-					<td id="writeDelete" style="text-align:right;">
-						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
-						<c:if test="${ loginUserJob != 1 }">
-							<button id="contentsWrite">작성하기</button>
-						</c:if>
-					</td>
 				</tr>
 			</table>
 		</div>
@@ -246,7 +240,7 @@
 							<div class="fileList" style="width:100%;">
 								<label for="selectFile">파일선택</label>
 								<input type="text" name="fileName" class="fileName">
-								<input type="file" value="추가" name="attachfile"id="selectFile" class="selectFile" multiple hidden/>
+								<input type="file" value="추가" id="selectFile" name="photo" class="selectFile" multiple hidden/>
 							</div>
 							
 						
