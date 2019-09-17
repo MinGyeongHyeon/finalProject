@@ -29,6 +29,7 @@
 	</resultMap>
 	
 
+	
 
 	<insert id="insertNotice" parameterType="Notice">
 		INSERT INTO BOARD
@@ -55,6 +56,49 @@
 		AND
 		SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
 	</select>
+	
+	<select id="selectChildrenNum" resultType="_int">
+		SELECT CHILDREN_NO
+    	FROM CHILDREN C
+     	JOIN USERS U ON U.USER_NO = C.USER_NO
+      	WHERE U.USER_NO = #{userNo}
+	</select>
+	
+	<select id="selectTeacher" resultType="noticeResultSet">
+	SELECT C.CLASS_NO,C.TEACHER_NO
+    FROM KINDER_CLASS C
+    WHERE (KINDER_NO,CLASS_NAME,OPENED_DATE) IN
+    (SELECT K.KINDER_NO, K.CLASS_NAME,K.OPENED_DATE
+    FROM KINDER_CLASS K
+    WHERE  K.CHILDREN_NO =(SELECT C.CHILDREN_NO
+                FROM CHILDREN C
+                JOIN USERS U ON U.USER_NO = C.USER_NO
+            	WHERE U.USER_NO = #{userNo}))
+    AND C.DIVISION = '선생님'
+	</select>
+	
+	
+	
+	<select id="selectWhoChildren" resultMap="noticeWho">
+		SELECT
+		C.CLASS_NO,C.KINDER_NO,C.CLASS_NAME
+		FROM KINDER_CLASS C
+		JOIN USERS U ON U.USER_NO = C.CHILDREN_NO
+		WHERE U.USER_NO = #{selectNum}
+		AND
+		SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
+      </select>
+	
+	 <select id="selectWhoMaster" resultMap="noticeWho">
+		SELECT
+		C.CLASS_NO,C.KINDER_NO,C.CLASS_NAME
+		FROM KINDER_CLASS C
+		JOIN USERS U ON U.USER_NO = C.CHILDREN_NO
+		WHERE U.USER_NO = #{userNo}
+		AND
+		SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
+      </select>
+	
 
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -79,6 +123,18 @@
 		ORDER BY B.BOARD_NO DESC
 	</select>
 	
+	<select id="selectChildrenList" resultMap="noticeResultSet">
+	SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_DATE,K.CLASS_NAME,B.BOARD_CONTENT
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO = #{kinderNum}
+		AND K.TEACHER_NO = #{userNum}
+		AND B.BOARD_TYPE = '공지사항'
+		AND B.CLASS_NO IS NULL 
+		OR B.CLASS_NO = #{classNum}
+		ORDER BY B.BOARD_NO DESC
+	</select>
 <!-- 	<update id="updateNoticeCount" parameterType="_int">
 		Update Notice
 		SET 	

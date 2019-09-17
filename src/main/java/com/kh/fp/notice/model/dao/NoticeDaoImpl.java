@@ -49,18 +49,41 @@ public class NoticeDaoImpl implements NoticeDao{
 
 	@Override
 	public ArrayList selectWho(SqlSessionTemplate sqlSession, int userNo) {
-		System.out.println("여기는 누구 다오");
 		
 		ArrayList Who = (ArrayList) sqlSession.selectList("Notice.selectWho",userNo);
 		
 		return  Who;
 	}
+	
+	@Override
+	public int selectChildrenNum(SqlSessionTemplate sqlSession, int userNo) {
 
+		int ChildrenNum = sqlSession.selectOne("Notice.selectChildrenNum",userNo);
+		
+		return ChildrenNum;
+	}
+
+	@Override
+	public ArrayList selectWhoChildren(SqlSessionTemplate sqlSession, int selectNum) {
+		
+		ArrayList Who = (ArrayList) sqlSession.selectList("Notice.selectWhoChildren",selectNum);
+		
+		return Who;
+	}
+	
+	@Override
+	public ArrayList selectWhoMaster(SqlSessionTemplate sqlSession, int userNo) {
+		
+		ArrayList Who = (ArrayList) sqlSession.selectList("Notice.selectWhoMaster",userNo);
+		
+		return Who;
+	}
 
 
 	@Override
 	@SuppressWarnings({"unchecked","rawtypes"})
 	public int getListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho) {
+		
 		return sqlSession.selectOne("Notice.selectListCount",noticeWho);
 	}
 
@@ -74,18 +97,34 @@ public class NoticeDaoImpl implements NoticeDao{
 		System.out.println(noticeWho);
 		list = (ArrayList) sqlSession.selectList("Notice.selectList",noticeWho);
 		
-		System.out.println("다오"+list);
-		
 		
 		return list;
 	
 	}
+	
+	@Override
+	public ArrayList<Notice> selectBoardChildrenList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho) {
+		
+		ArrayList<Notice> list = null;
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		System.out.println(noticeWho);
+		list = (ArrayList) sqlSession.selectList("Notice.selectChildrenList",noticeWho);
+		
+		System.out.println("다오"+list);
+		
+		
+		return list;
+	}
+
 
 	@Override
 	public int updateCount(SqlSessionTemplate sqlSession, int bid) {
 
-		int result = sqlSession.update("Notice.updateNoticeCount",bid);
 		
+		int result = sqlSession.update("Notice.updateNoticeCount",bid);
 		
 		
 		return 0;
@@ -115,7 +154,21 @@ public class NoticeDaoImpl implements NoticeDao{
 		return result;
 	}
 
+	@Override
+	public int SelectTeacher(int userNo, SqlSessionTemplate sqlSession) {
+		ArrayList<Notice> list = null;
+		
+		
+		list = (ArrayList)sqlSession.selectOne("Notice.selectTeacher",userNo);
+		
+		System.out.println(list);
+		
+		return 0;
+	}
+
 	
+	
+
 
 }
 

@@ -29,5 +29,15 @@ public interface NoticeDao {
 
 	int updateNoticeStatus(int bid, String status, SqlSessionTemplate sqlSession);
 
+	ArrayList selectWhoChildren(SqlSessionTemplate sqlSession, int selectNum);
+
+	ArrayList selectWhoMaster(SqlSessionTemplate sqlSession, int userNo);
+
+	int selectChildrenNum(SqlSessionTemplate sqlSession, int userNo);
+
+	ArrayList<Notice> selectBoardChildrenList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
+
+	int SelectTeacher(int userNo, SqlSessionTemplate sqlSession);
+
 
 }

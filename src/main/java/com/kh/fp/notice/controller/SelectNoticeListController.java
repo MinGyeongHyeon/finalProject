@@ -32,11 +32,32 @@ public class SelectNoticeListController {
 	public String SelectNoticeList(Notice notice,NoticeWho noticeWho,Model model,HttpServletRequest request,HttpServletResponse response, @ModelAttribute("loginUser") Member loginUser) {
 
 		int userNo = loginUser.getUserNo();
+		
 		String classNum1 = "";
 		String kinderNum1 = "";
 		String kinderName = "";
+		String role = loginUser.getClassification();
 		
-		ArrayList selectWho = ns.selectWho(userNo);
+		ArrayList selectWho = null;
+		ArrayList<Notice> list = null;
+		
+		int selectNum;
+		
+		if(role.equals("선생님")) {
+		
+			 selectWho = ns.selectWho(userNo);
+		
+		}else if(role.equals("학부모")){
+
+			selectNum = ns.selectChildrenNum(userNo);
+			
+			selectWho = ns.selectWhochildren(selectNum);
+			
+		}else {
+			
+			selectWho = ns.selectWhoMaster(userNo);
+		}
+		
 		NoticeWho baby = (NoticeWho)selectWho.get(0);
 		
 		int classNum = baby.getClassNum();
@@ -44,6 +65,8 @@ public class SelectNoticeListController {
 		 
 		noticeWho.setClassNum(classNum);
 		noticeWho.setKinderNum(kinderNum);
+		noticeWho.setRole(role);
+		noticeWho.setUserNum(loginUser.getUserNo());
 
 		System.out.println(selectWho);
 
@@ -59,11 +82,24 @@ public class SelectNoticeListController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		noticeWho.setUserNum(loginUser.getUserNo());
+		if(role.equals("선생님")) {
 		
-		ArrayList<Notice> list = ns.selectProjectList(pi,noticeWho);
+			noticeWho.setClassNum(classNum);
+			list = ns.selectProjectList(pi,noticeWho);
+		
+		}else if(role.equals("학부모")) {
+			
+			selectNum = ns.selectChildrenNum(userNo);
+			
+			int selectTeacher = ns.selectTeacher(userNo);
+			
+			noticeWho.setUserNum(selectTeacher);
+			list = ns.selectProjectChildrenList(pi,noticeWho);
+		}
+		
 		
 		model.addAttribute("list",list);
+		model.addAttribute("pi",pi);
 		
 		return "notice/NoticeList";
 	}

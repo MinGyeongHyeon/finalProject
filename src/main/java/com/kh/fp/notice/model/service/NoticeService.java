@@ -24,5 +24,15 @@ public interface NoticeService {
 
 	int UpdateNoticeStatus(int bid, String status);
 
+	ArrayList selectWhochildren(int selectNum);
+
+	ArrayList selectWhoMaster(int userNo);
+
+	int selectChildrenNum(int userNo);
+
+	ArrayList<Notice> selectProjectChildrenList(PageInfo pi, NoticeWho noticeWho);
+
+	int selectTeacher(int userNo);
+
 
 }

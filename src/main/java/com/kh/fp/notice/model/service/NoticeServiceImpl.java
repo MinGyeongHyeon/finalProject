@@ -35,15 +35,38 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public ArrayList selectWho(int userNo) {
-		System.out.println("여기는 누구일까 서비스");
 		
 		ArrayList Who = nd.selectWho(sqlSession,userNo);
 		System.out.println(Who);
 		return Who;
 	}
-
-
 	
+
+	@Override
+	public int selectChildrenNum(int userNo) {
+		
+		int num = nd.selectChildrenNum(sqlSession,userNo);
+		
+		return num;
+	}
+	
+	@Override
+	public ArrayList selectWhochildren(int selectNum) {
+
+		ArrayList Who = nd.selectWhoChildren(sqlSession,selectNum);
+		
+		return Who;
+	}
+
+	@Override
+	public ArrayList selectWhoMaster(int userNo) {
+
+		ArrayList Who = nd.selectWhoMaster(sqlSession,userNo);
+		
+		return Who;
+	}
+
+
 
 	@Override
 	public int getListCount(NoticeWho noticeWho) {
@@ -59,6 +82,14 @@ public class NoticeServiceImpl implements NoticeService {
 		ArrayList<Notice>list = nd.selectBoardList(sqlSession,pi,noticeWho);
 
 		System.out.println("서비스"+list);
+		
+		return list;
+	}
+	
+	@Override
+	public ArrayList<Notice> selectProjectChildrenList(PageInfo pi, NoticeWho noticeWho) {
+		
+		ArrayList<Notice>list = nd.selectBoardChildrenList(sqlSession,pi,noticeWho);
 		
 		return list;
 	}
@@ -86,7 +117,18 @@ public class NoticeServiceImpl implements NoticeService {
 		return result;
 	}
 
-	
+	@Override
+	public int selectTeacher(int userNo) {
+		
+		int result = nd.SelectTeacher(userNo,sqlSession);
+		
+		
+		return result;
+	}
+
+
+
+
 
 }
 
