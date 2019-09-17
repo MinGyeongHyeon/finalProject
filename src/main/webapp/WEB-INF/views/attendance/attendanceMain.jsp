@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -50,22 +51,26 @@ $(document).on('change', 'select', function() {
 	var tv = $(this).val();
 	if(tv == "V" || tv =="★" || tv=="/"){
 		console.log(tv);
-		$(this).parent().parent().children("td").eq(3).append("<button class='timepicker'>딸깍!</button>");
-		
-			$('.timepicker').timepicker({
-			    timeFormat: 'h:mm p',
-			    interval: 15,
-			    minTime: '10',
-			    maxTime: '6:00pm',
-			    defaultTime: '9',
-			    startTime: '10:00',
-			    dynamic: false,
-			    dropdown: true,
-			    scrollbar: true
-		});
-			
+		$(this).parent().parent().children("td").eq(3).children("input").css('visibility','visible');
+		$(this).parent().parent().children("td").eq(4).children("input").css('visibility','visible');
+		$(document).find("input[name=timepicker]").removeClass('hasDatepicker').datepicker();     
+
 	}
 	
+});
+
+$(function(){
+	$(".timepicker").timepicker({
+		timeFormat: 'h:mm p',
+	    interval: 15,
+	    minTime: '10',
+	    maxTime: '6:00pm',
+	    defaultTime: '9',
+	    startTime: '10:00',
+	    dynamic: false,
+	    dropdown: true,
+	    scrollbar: true
+	})
 });
 
 /* $("#statusArea").click(function(){
@@ -81,6 +86,9 @@ function bgo(){
 
 </head>
 <style>
+.timepicker{
+width:100%;
+}
 	.main-panel {
 	    position: relative;
 	    width: calc(100% - 240px);
@@ -225,36 +233,11 @@ function bgo(){
 									<option value="★">퇴소</option>
 								</select>
 								</td>
-								<td class="timepicker">
-								<!-- 등원시간 -->
-						<!-- 		<div class="form-group attendance-time-list">
-                        <span class="base-time-margin text-left">등원 시간</span>
-                        <form id="baseAttendanceInTimeForm" class="form-timepicker-wrapper base-time-form">
-                            <select class="form-control form-timepicker" id="selectInTimeAMPM" name="ampm" style="width:30%;">
-                                <option value="-1" disabled selected></option>
-                                <option id="selectInTimeAM">오전</option>
-                                <option id="selectInTimePM">오후</option>
-                            </select>
-                            <select class="form-control form-timepicker" id="selectInTimeHour" name="hour" style="width:30%;">
-                                <option id="selectInTimeHourDefault" value="-1" disabled selected></option>
-                                <option id="selectInTimeHour">08</option>
-                                <option id="selectInTimeHour">09</option>
-                                <option id="selectInTimeHour">10</option>
-                                <option id="selectInTimeHour">11</option>
-                                <option id="selectInTimeHour">12</option>
-                            </select>
-                            <select class="form-control form-timepicker" id="selectInTimeMin" name="minute" style="width:30%;">
-                                <option id="selectInTimeMinDefault" value="-1" disabled selected></option>
-                                <option id="selectInTimeMin">00</option>
-                                <option id="selectInTimeMin">15</option>
-                                <option id="selectInTimeMin">30</option>
-                                <option id="selectInTimeMin">45</option>
-                            </select>
-                        </form>
-                    </div> -->
+								<td>
+								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden;" value="딸깍!">
 								</td>
 								<td>
-								<!-- 하원시간 -->
+								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden;" value="딸깍!">
 								</td>
 								<td></td>
 								<td></td>
@@ -276,6 +259,7 @@ function bgo(){
 					<div id="saveBtn"></div>
 		</div>
 	</div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </body>
 </html>
 
