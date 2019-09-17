@@ -99,6 +99,12 @@
 		
 	});
 	
+	$('#findPwdLink').click(function(){
+		
+		location.href="findpwd.pl";
+		
+	});
+	
 	</script>
 	
 	

@@ -81,6 +81,10 @@ public interface MemberDao {
 
 	Member selectemailId(SqlSessionTemplate sqlSession, String email);
 
+	Member findPwdId(SqlSessionTemplate sqlSession, String findId);
+
+	int RePwd(SqlSessionTemplate sqlSession, Member mb);
+
 	
 
 

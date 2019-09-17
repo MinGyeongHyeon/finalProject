@@ -27,6 +27,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +36,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -177,6 +179,16 @@ public class MemberController {
 		
 		
 	}
+	
+	@RequestMapping(value="logout.me")
+	public String logout(SessionStatus status) {
+		
+		status.setComplete();
+		
+		
+		return "account/join5";
+	}
+	
 	
 	
 	@RequestMapping(value="joinPage5.me")
@@ -455,13 +467,6 @@ public class MemberController {
 		
 		ArrayList listMe3 = ms.childrenMe3(m);
 		
-		System.out.println("선생님 list 의 값 : " + listMe);
-		System.out.println("선생님 list2  의 값 : " + listMe2);
-		System.out.println("선생님 list3 의 값 : " + listMe3);
-		
-		
-	
-		
 		model.addAttribute("listMe", listMe);
 		model.addAttribute("listMe2",listMe2);
 		model.addAttribute("listMe3",listMe3);
@@ -708,6 +713,8 @@ public class MemberController {
 	@RequestMapping(value="selectemialId")
 	public ModelAndView selectemailId(ModelAndView mv , String email) {
 		
+
+		
 		Member me = ms.selectemailId(email);
 		
 		mv.addObject("me",me);
@@ -715,6 +722,35 @@ public class MemberController {
 		
 		return mv;
 		
+	}
+	
+	@RequestMapping(value="findPwdId.me")
+	public ModelAndView findPwdId(ModelAndView mv , String findId) {
+		
+		Member id = ms.findPwdId(findId);
+		
+		mv.addObject("id",id);
+		mv.setViewName("jsonView");
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="RePwd.me")
+	public ModelAndView RePwd(ModelAndView mv , Member mb) {
+		
+		String encPassword = passwordEncoder.encode(mb.getUserPwd());
+		
+		mb.setUserPwd(encPassword);
+		
+		int updatePwd = ms.RePwd(mb);
+		
+		mv.addObject("updatePwd",updatePwd);
+		mv.setViewName("jsonView");
+		
+		
+		
+		return mv;
 	}
 
  

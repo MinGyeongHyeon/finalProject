@@ -96,6 +96,8 @@ table tr {
 	
 		$('#emailsend').click(function(){
 			
+			$('#emailCer').remove();
+			
 			var email = $('#emailval').val();
 			
 			console.log(email);
@@ -184,7 +186,15 @@ table tr {
 			console.log(email);
 			console.log(phone);
 			
+			var phonecolor = $('#CerNum').css('border-color');
+			
+			var emailcolor = $('#CerNum2').css('border-color');
+			
+			console.log(emailcolor);
+			
 			if(phone != ""){
+				
+				if(phonecolor == 'rgb(135, 206, 235)'){
 				
 			$.ajax({
 				
@@ -205,10 +215,20 @@ table tr {
 				}
 			
 			}); 
+			
+				}else{
+					
+					alert("핸드폰 인증 번호를 정확히 입력해주세요.");
+					
+					
+				}
+				
 		
 			
 			}else if(email != ""){
 				
+				if(emailcolor == 'rgb(135, 206, 235)'){
+					
 				$.ajax({
 					
 					url:"selectemialId.me",
@@ -216,6 +236,10 @@ table tr {
 					type:"post",
 					success:function(data){
 						
+						console.log(data.me);
+						
+						if(data.me != null){
+							
 						var userIdlength = data.me.userId.length;
 						var userId;
 						
@@ -224,10 +248,28 @@ table tr {
 							var userst = userId + "***";
 						
 						 alert("회원님의 아이디는 " + userst + "입니다");
+						
+						}else{
+							
+							alert("조회된 아이디가 없습니다! \n(회원가입시 이메일 기입자 만 찾을수있습니다.)");
+							
+						}
+						
 					
 					}
 				
 				}); 
+					
+				}else{
+					
+					alert("이메일 인증번호를 정확히 입력해주세요.");
+					
+				}
+				
+				
+			}else{
+				
+				alert("인증수단을 선택해주세요.");
 				
 			}
 

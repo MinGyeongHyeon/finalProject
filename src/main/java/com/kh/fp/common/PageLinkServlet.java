@@ -4,6 +4,8 @@ package com.kh.fp.common;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -184,5 +186,31 @@ public class PageLinkServlet {
 	 public String DetailNotice() {
 		 return "notice/DetailNotice";
 	 }
+	 
+	 @RequestMapping(value="findpwd.pl")
+	 public String FindPwd() {
+		 
+		 return "join/findPwd";
+	 }
+	 
+	@RequestMapping(value="findPwd2.pl")
+	public String findPwd2(String userId , Model model) {
+		
+		model.addAttribute("userId",userId);
+		
+		return "join/findPwd2";
+	}
+	@RequestMapping(value="findPwd3.pl")
+	public String findPwd3(String selectId , Model model) {
+		
+		model.addAttribute("selectId",selectId);
+		
+		return "join/findPwd3";
+	}
+		
+	 
+	 
+	 
+	 
 }
 
