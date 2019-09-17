@@ -12,13 +12,13 @@ public class ReturnHome implements java.io.Serializable {
 	private String emergencyPhone;
 	private String reading;
 	private String reDate;
-	private int userNo;
+	private String writeDate;
 	
 	public ReturnHome() {}
 
 	public ReturnHome(int homeNo, int childrenNo, String homeDate, String homeTime, String homeWay, String parentsName,
 			String parentsPhone, String emergencyName, String emergencyPhone, String reading, String reDate,
-			int userNo) {
+			String writeDate) {
 		super();
 		this.homeNo = homeNo;
 		this.childrenNo = childrenNo;
@@ -31,7 +31,7 @@ public class ReturnHome implements java.io.Serializable {
 		this.emergencyPhone = emergencyPhone;
 		this.reading = reading;
 		this.reDate = reDate;
-		this.userNo = userNo;
+		this.writeDate = writeDate;
 	}
 
 	public int getHomeNo() {
@@ -122,12 +122,12 @@ public class ReturnHome implements java.io.Serializable {
 		this.reDate = reDate;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public String getWriteDate() {
+		return writeDate;
 	}
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
 	}
 
 	@Override
@@ -135,8 +135,7 @@ public class ReturnHome implements java.io.Serializable {
 		return "ReturnHome [homeNo=" + homeNo + ", childrenNo=" + childrenNo + ", homeDate=" + homeDate + ", homeTime="
 				+ homeTime + ", homeWay=" + homeWay + ", parentsName=" + parentsName + ", parentsPhone=" + parentsPhone
 				+ ", emergencyName=" + emergencyName + ", emergencyPhone=" + emergencyPhone + ", reading=" + reading
-				+ ", reDate=" + reDate + ", userNo=" + userNo + "]";
+				+ ", reDate=" + reDate + ", writeDate=" + writeDate + "]";
 	}
-	
-	
+
 }
