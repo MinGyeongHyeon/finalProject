@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.main-panel {
+	position: relative;
+	width: calc(100% - 240px);
+	height: 100vh;
+	min-height: 100%;
+	float: right;
+	transition: all .3s;
+}
+
+#table1 {
+	text-align: center;
+}
+
+#btnArea {
+	float: right;
+	margin-right: 4%;
+}
+
+#btn1 {
+	background: #ff7575;
+	font-weight: bold;
+	color: white;
+}
+
+#sel1 {
+	width: 15%;
+	display: inline;
+}
+
+#sel2 {
+	width: 20%;
+	display: inline;
+}
+
+#datepicker {
+	float: right;
+	width: 15%;
+	margin-right: 10px;
+}
+
+#dateA {
+	display: inline;
+}
+tbody tr:hover {
+	cursor:pointer;
+}
+#listTitle:hover {
+	text-decoration:underline;
+}
+#listTitle {
+	width:40%;
+}
+#checkA {
+	width:10%;
+}
+#nidA {
+	width:10%;
+}

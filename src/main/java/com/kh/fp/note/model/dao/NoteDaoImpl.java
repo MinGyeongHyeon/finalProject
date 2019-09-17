@@ -90,13 +90,17 @@ public class NoteDaoImpl implements NoteDao{
 
 	//보낸 쪽지함 상세보기에서 삭제하기
 	@Override
-	public int deleteSentNoteOne(SqlSessionTemplate sqlSession) {
+	public int deleteSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
 
-		int result = sqlSession.update("Note.deleteSentNoteOne");
+		int result = sqlSession.update("Note.deleteSentNoteOne", noteNo);
 
 		System.out.println("result :::" + result);
 
-		return 0;
+		if(result == 0) {
+			throw new NoteException("쪽지 삭제하기 실패!");
+		}
+
+		return result;
 	}
 
 
