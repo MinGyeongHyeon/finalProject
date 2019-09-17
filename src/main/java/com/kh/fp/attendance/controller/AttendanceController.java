@@ -3,6 +3,7 @@ package com.kh.fp.attendance.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kh.fp.attendance.model.exception.DailyException;
 import com.kh.fp.attendance.model.service.AttendanceService;
 import com.kh.fp.attendance.model.vo.Children;
-
-import net.sf.json.JSONObject;
 
 
 @Controller
@@ -55,21 +54,39 @@ public class AttendanceController {
 		model.addAttribute("day", day);
 
 		int month = Integer.parseInt(day.substring(5,7));
-		
+		//int[] montharr = new int[31];
+		ArrayList montharr = null;
 		if(month==2) {
 			model.addAttribute("month",28);
+			
+			for(int i=1; i<29; i++) {
+				montharr[i] = i;
+				
+			}
+			model.addAttribute("monarr",montharr);
+			
 		}else if(month == 1||month == 3||month == 5||month == 7||month==8||month==10||month==12) {
 			model.addAttribute("month",31);
+			
+			for(int i=1; i<32; i++) {
+				montharr[i] = i;
+			}
+			model.addAttribute("monarr",montharr);
+			
 		}else {
+			for(int i=1; i<31; i++) {
+				montharr[i] = i;
+			}
 			model.addAttribute("month",30);
+			model.addAttribute("monarr",montharr);
 		}
-		
+		System.out.println(montharr);
 		try {
 			ArrayList<Children> childList = as.monthAttendance();
 			int hmc = childList.size()*3+1;
 			model.addAttribute("list",childList);
 			model.addAttribute("hmc",hmc);
-			return "attendance/test";
+			return "attendance/monthAttendance";
 		} catch (DailyException e) {
 			model.addAttribute("msg",e.getMessage());
 			return "common/errorPage";

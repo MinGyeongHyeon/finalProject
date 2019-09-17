@@ -102,7 +102,6 @@ function afterBtn(){
 .attendanceArea {
 	margin: 0 auto;
 	align: center;
-	height: 500px;
 	background: #555;
 	color: #fff;
 	text-align: center;
@@ -188,13 +187,17 @@ function afterBtn(){
 					<td colspan="${ month }" rowspan="${ hmc }" class="td-2-3">
 						<div class="wapper">
 							<table class="table--inner">
-								<c:forEach var="d" items="${ daylist }">
+								<c:forEach var="d" items="${ monarr }">
 									<!-- 날짜 일일이 가져오기 -->
-									<td>1</td>
+									<td></td>
 								</c:forEach>
 							</table>
 						</div>
 					</td>
+					
+					
+					
+					
 					<td>출석</td>
 					<td>결석</td>
 				</tr>
