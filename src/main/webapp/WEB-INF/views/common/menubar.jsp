@@ -275,11 +275,11 @@
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="#profile"> <span class="link-collapse">MyProfile</span>
+									<li><a href="#profile"> <span class="link-collapse">마이 페이지</span>
 									</a></li>
 									<li><a href="#edit"> <span class="link-collapse">EditProfile</span>
 									</a></li>
-									<li><a href="#settings"> <span class="link-collapse">Settings</span>
+									<li><a href="logout.me"> <span class="link-collapse">로그 아웃</span>
 									</a></li>
 								</ul>
 							</div>

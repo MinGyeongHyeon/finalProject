@@ -264,6 +264,18 @@ public class MemberServiceImpl implements MemberService{
 		return md.selectemailId(sqlSession, email);
 	}
 
+	@Override
+	public Member findPwdId(String findId) {
+
+		return md.findPwdId(sqlSession,findId);
+	}
+
+	@Override
+	public int RePwd(Member mb) {
+
+		return md.RePwd(sqlSession, mb);
+	}
+
 
 
 	

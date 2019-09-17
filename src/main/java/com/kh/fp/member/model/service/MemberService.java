@@ -76,6 +76,10 @@ public interface MemberService {
 
 	Member selectemailId(String email);
 
+	Member findPwdId(String findId);
+
+	int RePwd(Member mb);
+
 
 
 }

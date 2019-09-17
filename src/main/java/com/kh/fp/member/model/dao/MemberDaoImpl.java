@@ -313,6 +313,20 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public Member findPwdId(SqlSessionTemplate sqlSession, String findId) {
+
+		return sqlSession.selectOne("Member.findPwdId",findId);
+	}
+
+
+	@Override
+	public int RePwd(SqlSessionTemplate sqlSession, Member mb) {
+
+		return sqlSession.update("Member.RePwd",mb);
+	}
+
+
 
 
 
