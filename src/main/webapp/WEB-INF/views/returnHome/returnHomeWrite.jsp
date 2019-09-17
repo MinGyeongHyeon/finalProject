@@ -140,7 +140,7 @@
 	
 	<c:set var="today" value="<%=new java.util.Date()%>" />
 	<c:set var="todayDate1"><fmt:formatDate value="${today}" pattern="MM월dd일" /></c:set>
-	<c:set var="todayDate2"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd" /></c:set>
+	<c:set var="todayDate2"><fmt:formatDate value="${today}" pattern="yyyy년 MM월 dd일" /></c:set>
 	<c:set var="tomorrowDate" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 	<c:set var="tomorrow"><fmt:formatDate value="${tomorrowDate}" pattern="MM월dd일"/></c:set>
 	
@@ -196,30 +196,30 @@
 						<tr>
 							<td class="selectTime">
 								<select name="homeTime" id="noonCheck">
-									<option value="morning">오전</option>
-									<option value="afternoon">오후</option>
+									<option value="오전">오전</option>
+									<option value="오후">오후</option>
 								</select>&nbsp;
 								<select name="homeTime" id="hour">
-									<option value="1">1시</option>
-									<option value="2">2시</option>
-									<option value="3">3시</option>
-									<option value="4">4시</option>
-									<option value="5">5시</option>
-									<option value="6">6시</option>
-									<option value="7">7시</option>
-									<option value="8">8시</option>
-									<option value="9">9시</option>
-									<option value="10">10시</option>
-									<option value="11">11시</option>
-									<option value="12">12시</option>
+									<option value="1시">1시</option>
+									<option value="2시">2시</option>
+									<option value="3시">3시</option>
+									<option value="4시">4시</option>
+									<option value="5시">5시</option>
+									<option value="6시">6시</option>
+									<option value="7시">7시</option>
+									<option value="8시">8시</option>
+									<option value="9시">9시</option>
+									<option value="10시">10시</option>
+									<option value="11시">11시</option>
+									<option value="12시">12시</option>
 								</select>&nbsp;
 								<select name="homeTime" id="minute">
-									<option value="00">00분</option>
-									<option value="10">10분</option>
-									<option value="20">20분</option>
-									<option value="30">30분</option>
-									<option value="40">40분</option>
-									<option value="50">50분</option>
+									<option value="00분">00분</option>
+									<option value="10분">10분</option>
+									<option value="20분">20분</option>
+									<option value="30분">30분</option>
+									<option value="40분">40분</option>
+									<option value="50분">50분</option>
 								</select>
 							</td>
 						</tr>
@@ -228,11 +228,11 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="radio" name="homeWay" class="returnWay" value="walk"/>
+								<input type="radio" name="homeWay" class="returnWay" value="도보"/>
 								<label for="walk" style="color:#000;">도보</label>
-								<input type="radio" name="homeWay" class="returnWay" value="car"/>
+								<input type="radio" name="homeWay" class="returnWay" value="자가"/>
 								<label for="mycar" style="color:#000;">자가</label>
-								<input type="radio" name="homeWay" class="returnWay" value="bus"/>
+								<input type="radio" name="homeWay" class="returnWay" value="통학버스"/>
 								<label for="bus" style="color:#000;">통학버스</label>
 							</td>
 						</tr>
