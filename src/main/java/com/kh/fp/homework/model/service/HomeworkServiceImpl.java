@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fp.homework.model.dao.HomeWorkDao;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.homework;
+import com.kh.fp.member.model.vo.Attachment;
 
 @Service
 public class HomeworkServiceImpl implements HomeworkService{
@@ -36,6 +37,29 @@ public class HomeworkServiceImpl implements HomeworkService{
 		
 		
 		return howManyPeople;
+	}
+
+	@Override
+	public int insertAt(Attachment at) {
+		System.out.println("서비스"+at);
+		
+		int BoardNo = hd.selectBoardNum(sqlSession,at);
+		
+		at.setBoardNo(BoardNo);
+		
+		
+		
+		int insertAt = hd.insertAt(sqlSession,at);
+		
+		return insertAt;
+	}
+
+	@Override
+	public int selectClassNum(int userNo) {
+		
+		int classNum = hd.selectClassNum(sqlSession,userNo);
+		
+		return classNum;
 	}
 
 

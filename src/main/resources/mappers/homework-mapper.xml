@@ -14,17 +14,38 @@
 	    <result property="childrenNo" column="CHILDREN_NO"/>
 		<result property="kinderNo" column="KINDER_NO"/>
  		<result property="individualContent" column="ANNOUNCEMENT_CONTENT"/>
-	
+		<result property="writer" column="WRITER"/>
 	</resultMap>
 
 	<insert id="insertHomeWork" parameterType="homework">
 		INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle},#{boardContent},#{writeDate},#{boardtype},
-		#{classNum},NULL,#{kinderNo})
+		#{classNum},NULL,#{kinderNo},'N',#{writer})
 	</insert>
+	
+	<select id="selectClassNum" resultType="_int">
+	SELECT COUNT(*)
+	FROM KINDER_CLASS S
+	WHERE (S.KINDER_NO,S.CLASS_NAME,S.OPENED_DATE) IN 
+        (SELECT KINDER_NO,CLASS_NAME,OPENED_DATE
+        FROM KINDER_CLASS K
+        WHERE K.CHILDREN_NO = (SELECT CHILDREN_NO
+        FROM CHILDREN C
+        JOIN USERS U ON U.USER_NO = C.USER_NO
+        WHERE U.USER_NO=#{userNo}))
+	</select>
 	
 	<select id="selectPeople" resultType="_int">
 		SELECT COUNT(CHILDREN_NO)FROM CHILDREN_KIND WHERE CHILDREN_NO = #{classNum}	
 	</select>
-
+	
+	<select id="selectNum" resultType="_int">
+		SELECT SEQ_BOARD_NO.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id = "insertAt">
+		INSERT INTO ATTACHMENT
+		VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , #{boardNo},null,null,null,null,null,null,#{userNo} )
+	
+	</insert>
 </mapper>
 

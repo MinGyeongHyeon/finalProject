@@ -155,15 +155,11 @@ public class NoticeDaoImpl implements NoticeDao{
 	}
 
 	@Override
-	public int SelectTeacher(int userNo, SqlSessionTemplate sqlSession) {
-		ArrayList<Notice> list = null;
+	public ArrayList SelectTeacher(int userNo, SqlSessionTemplate sqlSession) {
+ 		
+		ArrayList list = (ArrayList) sqlSession.selectList("Notice.selectTeacher",userNo);
 		
-		
-		list = (ArrayList)sqlSession.selectOne("Notice.selectTeacher",userNo);
-		
-		System.out.println(list);
-		
-		return 0;
+		return list;
 	}
 
 	

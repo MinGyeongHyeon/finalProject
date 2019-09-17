@@ -28,6 +28,7 @@
 	<resultMap type="NoticeWho" id="noticeWhoAreYou">
 		<id property="classNum" column="CLASS_NO" />
 		<result property="kinderNum" column="KINDER_NO" />
+		<result property="teacherNum" column="TEACHER_NO" />
 	</resultMap>
 	
 
@@ -66,7 +67,7 @@
       	WHERE U.USER_NO = #{userNo}
 	</select>
 	
-	<select id="selectTeacher" resultMap="noticeResultSet">
+	<select id="selectTeacher" resultMap="noticeWhoAreYou">
 	SELECT C.CLASS_NO,C.TEACHER_NO
     FROM KINDER_CLASS C
     WHERE (KINDER_NO,CLASS_NAME,OPENED_DATE) IN
@@ -131,18 +132,12 @@
 		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
 		WHERE B.STATUS='N'
 		AND B.KINDER_NO = #{kinderNum}
-		AND K.TEACHER_NO = #{userNum}
+		AND K.TEACHER_NO = #{teacherNum}
 		AND B.BOARD_TYPE = '공지사항'
 		AND B.CLASS_NO IS NULL 
 		OR B.CLASS_NO = #{classNum}
 		ORDER BY B.BOARD_NO DESC
 	</select>
-<!-- 	<update id="updateNoticeCount" parameterType="_int">
-		Update Notice
-		SET 	
-	
-	
-	</update> -->
 	
 	<select id="selectNoticeOne" resultMap="noticeResultSet">
 		SELECT *

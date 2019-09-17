@@ -37,7 +37,7 @@ public interface NoticeDao {
 
 	ArrayList<Notice> selectBoardChildrenList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
-	int SelectTeacher(int userNo, SqlSessionTemplate sqlSession);
+	ArrayList SelectTeacher(int userNo, SqlSessionTemplate sqlSession);
 
 
 }

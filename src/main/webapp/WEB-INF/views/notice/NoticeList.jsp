@@ -117,10 +117,12 @@
 					<td><i class="fas fa-book" style="size: 25px"></i> <label
 						style="font-weight: bold; font-size: 20px; color: black">공지사항</label>
 					</td>
+						<c:if test="${loginUser.classification eq '선생님'}">
 					<td>
 						<button class="btn btn-warning" onclick="goNoticeWrite()"
 							style="margin-left: 50%">작성하기</button>
 					</td>
+						</c:if>		
 				</tr>
 			</table>
 		</div>
@@ -172,39 +174,37 @@
 		</div>
 		<div>
 			<!-- 페이징 -->
-		<div id="paginArea" align="center">
-			<c:if test="${ pi.currentPage <= 1 }">
-				[이전] &nbsp;
-			</c:if>
-			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="blistBack" value="/selectList.bo">
-					<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
-				</c:url>
-				<a href="${ blistBack }">[이전]</a>&nbsp;
-			</c:if>
+					<div id="paginArea" align="center">
+						<c:if test="${ pi.currentPage <= 1 }">이전 &emsp;</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="blistBack" value="NoticeList.sn">
+								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+							</c:url>
+							<a href="${ blistBack }">이전</a>
+							&emsp;
+						</c:if>
 
-			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				<c:if test="${ p eq pi.currentPage }">
-					<font color="red" size="4"><b>[${ p }]</b></font>
-				</c:if>
-				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="blistCheck" value="selectList.bo">
-						<c:param name="currentPage" value="${ p }"/>
-					</c:url>
-					<a href="${ blistCheck }">${ p }</a>
-				</c:if>
-			</c:forEach>
+						<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+							<c:if test="${ p eq pi.currentPage }">
+								<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
+							</c:if>
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="blistCheck" value="NoticeList.sn">
+									<c:param name="currentPage" value="${ p }" />
+								</c:url>
+								<a href="${ blistCheck }">${ p }</a>
+							</c:if>
+						</c:forEach>
 
-			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="blistEnd" value="selectList.bo">
-					<c:param name="currentPage" value="${ pi.currentPage + 1}"/>
-				</c:url>
-				<a href="${ blistEnd }">&nbsp; [다음]</a>
-			</c:if>
-			<c:if test="${ pi.currentPage >= pi.maxPage }">
-				&nbsp; [다음]
-			</c:if>
-		</div>
+
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="blistEnd" value="NoticeList.sn">
+								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+							</c:url>
+							<a href="${ blistEnd }">&emsp; 다음</a>
+						</c:if>
+						<c:if test="${ pi.currentPage >= pi.maxPage }"> &emsp; 다음 </c:if>
+					</div>
 
 
 	</div>

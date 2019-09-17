@@ -118,9 +118,9 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public int selectTeacher(int userNo) {
+	public ArrayList selectTeacher(int userNo) {
 		
-		int result = nd.SelectTeacher(userNo,sqlSession);
+		ArrayList result = nd.SelectTeacher(userNo,sqlSession);
 		
 		
 		return result;
