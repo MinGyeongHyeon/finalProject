@@ -34,7 +34,7 @@ public class NoticeController {
 		try {
 			String insertNotice = ns.insertNotice(n);
 			
-			return "redirect:homeworkDiaryList";
+			return "redirect:NoticeList.sn";
 			
 		} catch (NoticeException e) {
 			// TODO Auto-generated catch block
