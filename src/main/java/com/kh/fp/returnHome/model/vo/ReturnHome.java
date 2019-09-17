@@ -13,12 +13,13 @@ public class ReturnHome implements java.io.Serializable {
 	private String reading;
 	private String reDate;
 	private String writeDate;
+	private String dataURL;
 	
 	public ReturnHome() {}
 
 	public ReturnHome(int homeNo, int childrenNo, String homeDate, String homeTime, String homeWay, String parentsName,
 			String parentsPhone, String emergencyName, String emergencyPhone, String reading, String reDate,
-			String writeDate) {
+			String writeDate, String dataURL) {
 		super();
 		this.homeNo = homeNo;
 		this.childrenNo = childrenNo;
@@ -32,6 +33,7 @@ public class ReturnHome implements java.io.Serializable {
 		this.reading = reading;
 		this.reDate = reDate;
 		this.writeDate = writeDate;
+		this.dataURL = dataURL;
 	}
 
 	public int getHomeNo() {
@@ -130,12 +132,20 @@ public class ReturnHome implements java.io.Serializable {
 		this.writeDate = writeDate;
 	}
 
+	public String getDataURL() {
+		return dataURL;
+	}
+
+	public void setDataURL(String dataURL) {
+		this.dataURL = dataURL;
+	}
+
 	@Override
 	public String toString() {
 		return "ReturnHome [homeNo=" + homeNo + ", childrenNo=" + childrenNo + ", homeDate=" + homeDate + ", homeTime="
 				+ homeTime + ", homeWay=" + homeWay + ", parentsName=" + parentsName + ", parentsPhone=" + parentsPhone
 				+ ", emergencyName=" + emergencyName + ", emergencyPhone=" + emergencyPhone + ", reading=" + reading
-				+ ", reDate=" + reDate + ", writeDate=" + writeDate + "]";
+				+ ", reDate=" + reDate + ", writeDate=" + writeDate + ", dataURL=" + dataURL + "]";
 	}
 
 }

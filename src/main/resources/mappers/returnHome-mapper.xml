@@ -17,6 +17,7 @@
 		<result property="reading" column="READING"/>						
 		<result property="reDate" column="RE_DATE"/>						
 		<result property="writeDate" column="WRITE_DATE"/>
+		<result property="dataURL" column="FILE_PATH"/>
 	</resultMap>
 	
 	<resultMap type="ChildrenRH" id="childrenResultSet">
@@ -63,12 +64,29 @@
 		                         WHERE USER_NO = #{userNo})
 	</select>
 	
-	<insert id="insertReturnHome" parameterType="ReturnHomeRH">
+	<insert id="insertReturnHome1" parameterType="ReturnHomeRH">
 		INSERT INTO RETURN_HOME
-		VALUES(SEQ_HOME_NO.NEXTVAL, #{childrenNo}, #{homeDate}, #{homeTime}, #{homeWay}, #{parentsName}, #{parentsPhone},
-				#{emergencyName}, #{emergencyPhone}, 'N', NULL, #{writeDate});
+		VALUES(SEQ_HOME_NO.NEXTVAL, #{childrenNo}, #{homeDate}, #{homeTime}, #{homeWay}, #{parentsName}, #{parentsPhone}, #{emergencyName}, #{emergencyPhone}, DEFAULT, NULL, #{writeDate})
+		
 	</insert>
 	
+	<insert id="insertReturnHome2" parameterType="ReturnHomeRH">
+		INSERT INTO ATTACHMENT 
+		VALUES(SEQ_FILE_ID.NEXTVAL, 'sign', 'sign', #{dataURL}, SYSDATE, '귀가동의', NULL, NULL, NULL, NULL, NULL, NULL, SEQ_HOME_NO.CURRVAL, NULL, NULL)
+	</insert>
+	
+	<select id="selctReturnHomeList" parameterType="KinderClassRH" resultMap="returnHomeResultSet">
+		SELECT RH.HOME_NO, RH.CHILDREN_NO, RH.HOME_DATE, RH.HOME_TIME, RH.HOME_WAY, RH.PARENTS_NAME, RH.PARENTS_PHONE,
+        		RH.EMERGENCY_NAME, RH.EMERGENCY_PHONE, RH.READING, RH.RE_DATE, RH.WRITE_DATE, AT.FILE_PATH
+		FROM RETURN_HOME RH
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		WHERE RH.CHILDREN_NO IN (SELECT CHILDREN_NO
+								FROM KINDER_CLASS K1
+								WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
+																					FROM KINDER_CLASS K2
+																					WHERE K2.TEACHER_NO = #{teacherNo})
+								AND DIVISION = '원생')
+	</select>
 	
 </mapper>
 
