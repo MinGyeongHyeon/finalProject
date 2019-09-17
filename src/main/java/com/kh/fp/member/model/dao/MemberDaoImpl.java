@@ -299,6 +299,20 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public Member selectId(SqlSessionTemplate sqlSession, String phone) {
+
+		return sqlSession.selectOne("Member.selectId",phone);
+	}
+
+
+	@Override
+	public Member selectemailId(SqlSessionTemplate sqlSession, String email) {
+
+		return sqlSession.selectOne("Member.selecteamilId",email);
+	}
+
+
 
 
 

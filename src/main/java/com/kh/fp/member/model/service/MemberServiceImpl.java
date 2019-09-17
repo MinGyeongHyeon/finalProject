@@ -252,6 +252,18 @@ public class MemberServiceImpl implements MemberService{
 		return md.insertAttachment(sqlSession,at);
 	}
 
+	@Override
+	public Member selectId(String phone) {
+
+		return md.selectId(sqlSession,phone);
+	}
+
+	@Override
+	public Member selectemailId(String email) {
+
+		return md.selectemailId(sqlSession, email);
+	}
+
 
 
 	

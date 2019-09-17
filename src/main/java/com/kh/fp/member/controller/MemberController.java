@@ -239,8 +239,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="sendemail.me")
-	public ModelAndView sendEmail(String email, ModelAndView mv) {
+	public ModelAndView sendEmail(String email ,String email2, ModelAndView mv) {
 		
+		System.out.println("email2 의 값 : " + email2);
+		System.out.println("email 의 값 : " + email);
 		
 		String host = "smtp.naver.com";
 		String subject = "키즈랜드 인증번호 전달";
@@ -253,7 +255,17 @@ public class MemberController {
 		
 		random = (int)(Math.random()*99999)+10000;
 		
-		String content = "키즈랜드 회원가입 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
+		String content = null;
+		
+		if(email2.equals("아이디찾기")) {
+			
+			content = "키즈랜드 아이디찾기 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
+			
+		}else {
+			
+			content = "키즈랜드 회원가입 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
+		}
+		
 		
 		try {
 		
@@ -506,8 +518,7 @@ public class MemberController {
 	
 	@RequestMapping(value="phoneMe.me")
 	public ModelAndView phoneMe(ModelAndView mv , HttpServletRequest request) throws IOException, Exception {
-		
-		System.out.println("여긴 들어왔냐 ?");
+
 		
 		String msg2 = "";
 		int random = (int)(Math.random()* 99999)+1; 
@@ -676,6 +687,34 @@ public class MemberController {
 		
 		System.out.println("넘어가기전 mv 값 : " + mv);
 		return mv;
+	}
+	
+	@RequestMapping(value="selectId.me")
+	public ModelAndView selectId(ModelAndView mv , String phone) {
+		
+		System.out.println("들어온 phone :" + phone);
+		
+		Member me = ms.selectId(phone);
+		
+		mv.addObject("me", me);
+		mv.setViewName("jsonView");
+		
+		System.out.println("값 받아온 멤버 : " + me);
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="selectemialId")
+	public ModelAndView selectemailId(ModelAndView mv , String email) {
+		
+		Member me = ms.selectemailId(email);
+		
+		mv.addObject("me",me);
+		mv.setViewName("jsonView");
+		
+		return mv;
+		
 	}
 
  

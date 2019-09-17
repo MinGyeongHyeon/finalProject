@@ -77,6 +77,10 @@ public interface MemberDao {
 
 	int insertAttachment(SqlSessionTemplate sqlSession, Attachment at);
 
+	Member selectId(SqlSessionTemplate sqlSession, String phone);
+
+	Member selectemailId(SqlSessionTemplate sqlSession, String email);
+
 	
 
 
