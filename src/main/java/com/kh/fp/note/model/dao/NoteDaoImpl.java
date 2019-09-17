@@ -76,7 +76,7 @@ public class NoteDaoImpl implements NoteDao{
 	public Note selectSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
 		System.out.println("noteNo :::" + noteNo);
 
-		Note n = (Note)sqlSession.selectOne("Note.selectSentNoteOne");
+		Note n = (Note)sqlSession.selectOne("Note.selectSentNoteOne", noteNo);
 
 		System.out.println("noteNo :::" + noteNo);
 		System.out.println("n :::: " + n);
@@ -86,6 +86,17 @@ public class NoteDaoImpl implements NoteDao{
 		}
 
 		return n;
+	}
+
+	//보낸 쪽지함 상세보기에서 삭제하기
+	@Override
+	public int deleteSentNoteOne(SqlSessionTemplate sqlSession) {
+
+		int result = sqlSession.update("Note.deleteSentNoteOne");
+
+		System.out.println("result :::" + result);
+
+		return 0;
 	}
 
 

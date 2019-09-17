@@ -66,9 +66,9 @@
 			<div class="logo-header">
 
 				<a href="main.pl" class="logo"> <label id="kinName">킨더유치원</label>
-				
+
 				</a><div>
-		
+
 				</div>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
 					data-toggle="collapse" data-target="collapse" aria-expanded="false"
@@ -305,7 +305,7 @@
 								<p>알림장</p>
 						</a></li>
 					<li class="nav-item">
-						<a href="NoticeList.sn"> 		
+						<a href="NoticeList.sn">
 						<i class="fas fa-bullhorn"></i>
 								<p>공지사항</p>
 						</a></li>
@@ -342,7 +342,7 @@
 						<li class="nav-item"><a href="#submenu"> <i
 								class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
-						</az></li>
+						</li>
 
 						<li class="nav-item"><a href="businessLogMain.pl"> <i
 								class="far fa-clipboard"></i>

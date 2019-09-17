@@ -9,12 +9,15 @@ public class Note implements java.io.Serializable{
 	private Date noteDate;
 	private int receiveNo;
 	private int sendNo;
+	private String status;
 	private Users Users;
+	private noteKindergarden noteKindergarden;
 
 	public Note() {}
 
 	public Note(int noteNo, String noteTitle, String noteContent, Date noteDate, int receiveNo, int sendNo,
-			com.kh.fp.note.model.vo.Users users) {
+			String status, com.kh.fp.note.model.vo.Users users,
+			com.kh.fp.note.model.vo.noteKindergarden noteKindergarden) {
 		super();
 		this.noteNo = noteNo;
 		this.noteTitle = noteTitle;
@@ -22,7 +25,9 @@ public class Note implements java.io.Serializable{
 		this.noteDate = noteDate;
 		this.receiveNo = receiveNo;
 		this.sendNo = sendNo;
+		this.status = status;
 		Users = users;
+		this.noteKindergarden = noteKindergarden;
 	}
 
 	public int getNoteNo() {
@@ -73,6 +78,14 @@ public class Note implements java.io.Serializable{
 		this.sendNo = sendNo;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Users getUsers() {
 		return Users;
 	}
@@ -81,14 +94,20 @@ public class Note implements java.io.Serializable{
 		Users = users;
 	}
 
+	public noteKindergarden getNoteKindergarden() {
+		return noteKindergarden;
+	}
+
+	public void setNoteKindergarden(noteKindergarden noteKindergarden) {
+		this.noteKindergarden = noteKindergarden;
+	}
+
 	@Override
 	public String toString() {
 		return "Note [noteNo=" + noteNo + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent + ", noteDate="
-				+ noteDate + ", receiveNo=" + receiveNo + ", sendNo=" + sendNo + ", Users=" + Users + "]";
+				+ noteDate + ", receiveNo=" + receiveNo + ", sendNo=" + sendNo + ", status=" + status + ", Users="
+				+ Users + ", noteKindergarden=" + noteKindergarden + "]";
 	}
-
-
-
 
 
 }

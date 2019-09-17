@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class noteKindergarden implements java.io.Serializable{
 	private int kinderNo;
 	private String kinderName;
-	private String phone;
+	private String kinderPhone;
 	private String kinderAddress;
 	private String sido;
 	private String sigungu;
@@ -18,12 +18,12 @@ public class noteKindergarden implements java.io.Serializable{
 	public noteKindergarden() {}
 
 
-	public noteKindergarden(int kinderNo, String kinderName, String phone, String kinderAddress, String sido,
+	public noteKindergarden(int kinderNo, String kinderName, String kinderPhone, String kinderAddress, String sido,
 			String sigungu, String address3, String[] className, String userName, com.kh.fp.note.model.vo.Users users) {
 		super();
 		this.kinderNo = kinderNo;
 		this.kinderName = kinderName;
-		this.phone = phone;
+		this.kinderPhone = kinderPhone;
 		this.kinderAddress = kinderAddress;
 		this.sido = sido;
 		this.sigungu = sigungu;
@@ -54,13 +54,13 @@ public class noteKindergarden implements java.io.Serializable{
 	}
 
 
-	public String getPhone() {
-		return phone;
+	public String getKinderPhone() {
+		return kinderPhone;
 	}
 
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setKinderPhone(String kinderPhone) {
+		this.kinderPhone = kinderPhone;
 	}
 
 
@@ -136,7 +136,7 @@ public class noteKindergarden implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "noteKindergarden [kinderNo=" + kinderNo + ", kinderName=" + kinderName + ", phone=" + phone
+		return "noteKindergarden [kinderNo=" + kinderNo + ", kinderName=" + kinderName + ", kinderPhone=" + kinderPhone
 				+ ", kinderAddress=" + kinderAddress + ", sido=" + sido + ", sigungu=" + sigungu + ", address3="
 				+ address3 + ", className=" + Arrays.toString(className) + ", userName=" + userName + ", Users=" + Users
 				+ "]";

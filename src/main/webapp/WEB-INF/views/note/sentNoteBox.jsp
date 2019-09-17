@@ -105,9 +105,9 @@ tbody tr:hover {
 						<thead>
 							<tr>
 								<th><input type="checkbox" id="checkAll"></th>
-								<th>번호</th>
+								<th>순번</th>
 								<th>제목</th>
-								<th>받은 사람</th>
+								<th>받은 사람 (유치원 명)</th>
 								<th>보낸 날짜</th>
 							</tr>
 						</thead>
@@ -117,7 +117,7 @@ tbody tr:hover {
 									<td id="checkA"><input type="checkbox" name="chk"></td>
 									<td id="nidA"><c:out value="${ nList.noteNo }"/></td>
 									<td id="listTitle"><c:out value="${ nList.noteTitle }" /></td>
-									<td><c:out value="${ nList.users.userName }" /></td>
+									<td><c:out value="${ nList.users.userName }" /> ( <c:out value="${ nList.noteKindergarden.kinderName }"/> )</td>
 									<td><c:out value="${ nList.noteDate }" /></td>
 								</tr>
 							</c:forEach>
