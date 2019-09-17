@@ -297,6 +297,23 @@
 	
 	</insert>
 	
+	<select id="selectId" resultMap="memberResultSet">
+	
+		SELECT USER_ID
+		FROM USERS
+		WHERE PHONE = #{phone}
+		
+	
+	</select>
+	
+	<select id="selecteamilId" resultMap="memberResultSet">
+		
+		SELECT USER_ID
+		FROM USERS
+		WHERE EMAIL = #{email}
+	
+	</select>
+	
 	
 
 	
