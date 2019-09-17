@@ -41,7 +41,7 @@ function goMonth(){
 
 $(document).on('change', 'select', function() {
 	if(num1==0){
-		var saveb = '<button>저장</button>';
+		var saveb = '<input type="submit" value="저장">';
 		$("#saveBtn").append(saveb);
 		num1+=1;
 	};
@@ -59,6 +59,10 @@ $(document).on('change', 'select', function() {
 	
 });
 
+$(document).on('change',"input[id=timepicker1]",function(){
+	console.log("뭐야");
+});
+
 $(function(){
 	$(".timepicker").timepicker({
 		timeFormat: 'h:mm p',
@@ -73,10 +77,6 @@ $(function(){
 	})
 });
 
-/* $("#statusArea").click(function(){
-	$(this).children("select").css('visibility', 'visible');
-	console.log("왜안나와");
-}); */
 function bgo(){
 	console.log(this);
 }
@@ -149,6 +149,7 @@ width:100%;
 		align:center;
 		background:#555;
 		color:#fff;
+		height:100%;
 		text-align:center;
 	}
 	#timecheck{
@@ -199,6 +200,7 @@ width:100%;
 		</div>
 		<hr />
 		<div class="attendanceArea">
+		<form action="attendanceMain.at" method="post">
 		<div id="timecheck"><label>총원 : ${ day }명(출석 : ${day }명)</label>&nbsp;&nbsp;
 		<span id="right">V 출석 × 결석 ◎ 병결 ○ 사고 / 입소 ★ 퇴소</span></div>
 						<table id="attendance" align="center">
@@ -220,7 +222,9 @@ width:100%;
 							<tbody>
 							<c:forEach var="a" items="${ list }">
 							<tr style="border:1px solid white;">
-								<td></td>
+								<td><p><c:out value="${ a.childrenNo }"/></p>
+								<input type="hidden" name="childrenNo" value="${a.childrenNo }">
+								</td>
 								<td><c:out value="${ a.childrenName }"/></td>
 								<td id="statusArea">
 								<select class="status" name="status">
@@ -245,18 +249,19 @@ width:100%;
 							</c:forEach>
 							</tbody>
 						</table>
-					<!-- <button class="subBtn">다운로드</button> -->
-					<a href="/attendance/2019/9/11/download/?qs_class=" type="button" class="btn btn-default hidden-print"
+					<button class="subBtn">다운로드</button>
+					<!-- <a href="/attendance/2019/9/11/download/?qs_class=" type="button" class="btn btn-default hidden-print"
                    onclick="ga('send', 'event', 'attendance', 'Click', 'dailyAttendance|download');">
                     <i class="kn kn-download-box"></i> 다운로드
-                </a>
-					<!-- <button class="subBtn">출력</button> -->
-					<a href="/attendance/2019/9/11/print/?qs_class=" target="_blank" type="button" class="btn btn-gray btn-fix-width-sm hidden-print"
+                </a> -->
+					<button class="subBtn">출력</button>
+					<!-- <a href="/attendance/2019/9/11/print/?qs_class=" target="_blank" type="button" class="btn btn-gray btn-fix-width-sm hidden-print"
                id="dailyAttendancePrintLink"
                onclick="ga('send', 'event', 'attendance', 'Click', 'dailyAttendance|print');">
                 <i class="kn2 kn-print"></i> 출력
-            </a>
+            </a> -->
 					<div id="saveBtn"></div>
+		</form>
 		</div>
 	</div>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
