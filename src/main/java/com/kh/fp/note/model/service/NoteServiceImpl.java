@@ -54,9 +54,9 @@ public class NoteServiceImpl implements NoteService{
 
 	//보낸 쪽지함 상세보기에서 삭제하기
 	@Override
-	public int deleteSentNoteOne() {
+	public int deleteSentNoteOne(int noteNo) throws NoteException {
 
-		return nd.deleteSentNoteOne(sqlSession);
+		return nd.deleteSentNoteOne(sqlSession, noteNo);
 	}
 
 }

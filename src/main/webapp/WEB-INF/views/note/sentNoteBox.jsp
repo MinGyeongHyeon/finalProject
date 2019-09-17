@@ -5,68 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>보낸 쪽지함</title>
-
-<style>
-.main-panel {
-	position: relative;
-	width: calc(100% - 240px);
-	height: 100vh;
-	min-height: 100%;
-	float: right;
-	transition: all .3s;
-}
-
-#table1 {
-	text-align: center;
-}
-
-#btnArea {
-	float: right;
-	margin-right: 4%;
-}
-
-#btn1 {
-	background: #ff7575;
-	font-weight: bold;
-	color: white;
-}
-
-#sel1 {
-	width: 15%;
-	display: inline;
-}
-
-#sel2 {
-	width: 20%;
-	display: inline;
-}
-
-#datepicker {
-	float: right;
-	width: 15%;
-	margin-right: 10px;
-}
-
-#dateA {
-	display: inline;
-}
-tbody tr:hover {
-	cursor:pointer;
-}
-#listTitle:hover {
-	text-decoration:underline;
-}
-#listTitle {
-	width:40%;
-}
-#checkA {
-	width:10%;
-}
-#nidA {
-	width:10%;
-}
-</style>
-
+<link rel="stylesheet" href="${ contextPath }/resources/css/note/sentNoteBoxCss.css">
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -93,8 +32,7 @@ tbody tr:hover {
 						</select>
 
 						<div id="dateA">
-							<input type="button" class="btn btn-default" id="datepicker"
-								value="날짜 선택">
+							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">
 						</div>
 					</div>
 				</div>
@@ -105,7 +43,7 @@ tbody tr:hover {
 						<thead>
 							<tr>
 								<th><input type="checkbox" id="checkAll"></th>
-								<th>순번</th>
+								<!-- <th>순번</th> -->
 								<th>제목</th>
 								<th>받은 사람 (유치원 명)</th>
 								<th>보낸 날짜</th>
@@ -114,11 +52,13 @@ tbody tr:hover {
 						<tbody>
 							<c:forEach var="nList" items="${ nList }">
 								<tr>
-									<td id="checkA"><input type="checkbox" name="chk"></td>
-									<td id="nidA"><c:out value="${ nList.noteNo }"/></td>
-									<td id="listTitle"><c:out value="${ nList.noteTitle }" /></td>
-									<td><c:out value="${ nList.users.userName }" /> ( <c:out value="${ nList.noteKindergarden.kinderName }"/> )</td>
-									<td><c:out value="${ nList.noteDate }" /></td>
+									<td id="checkA"><input type="checkbox" name="chk" value="${ nList.noteNo }"></td>
+									<input type="hidden" id="nidA" value="${ nList.noteNo }">
+									<%-- <td><input type="hidden" id="nidA" value="${ nList.noteNo }"></td> --%>
+									<%-- <td id="nidA"><c:out value="${ nList.noteNo }"/></td> --%>
+									<td class="in" id="listTitle"><c:out value="${ nList.noteTitle }" /></td>
+									<td class="in"><c:out value="${ nList.users.userName }" /> ( <c:out value="${ nList.noteKindergarden.kinderName }"/> )</td>
+									<td class="in"><c:out value="${ nList.noteDate }" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -179,12 +119,24 @@ tbody tr:hover {
 			})
 
 			/* 쪽지 내용 상세 조회 */
-			$("#table1").find("td").click(function(){
-				var noteNo = $(this).parents().children("td").eq(1).text();
+			/* $("#table1").find("td").click(function(){
+				var noteNo = $(this).parents().children("input").val();
 
 				console.log(noteNo);
+
+				location.href="selectSentNoteOne.nt?noteNo=" + noteNo;
+
+			}); */
+
+			$(".in").click(function(){
+				var noteNo = $(this).parents().children("input").val();
+
+				console.log(noteNo);
+
 				location.href="selectSentNoteOne.nt?noteNo=" + noteNo;
 			});
+
+
 		});
 	</script>
 

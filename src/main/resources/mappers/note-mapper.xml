@@ -99,9 +99,9 @@
 
   	<!-- 보낸 쪽지함 상세보기에서 삭제하기 -->
   	<update id="deleteSentNoteOne">
-  		UPDATE STATUS
-  		FROM NOTEBOX
-  		WHERE NOTE_NO = #{noteNo}
+  		UPDATE NOTEBOX
+		SET STATUS = 'Y'
+		WHERE NOTE_NO = #{noteNo}
   	</update>
 
 </mapper>
