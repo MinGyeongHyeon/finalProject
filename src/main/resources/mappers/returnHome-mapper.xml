@@ -16,11 +16,26 @@
 		<result property="emergencyPhone" column="EMERGENCY_PHONE"/> 								
 		<result property="reading" column="READING"/>						
 		<result property="reDate" column="RE_DATE"/>						
-		<result property="userNo" column="USER_NO"/>
+		<result property="writeDate" column="WRITE_DATE"/>
 	</resultMap>
 	
 	<resultMap type="ChildrenRH" id="childrenResultSet">
 		<id property="childrenNo" column="CHILDREN_NO"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+	
+	<resultMap type="ChildrenClassRH" id="childrenClassResultSet">
+		<id property="classNo" column="CLASS_NO"/>
+		<result property="kinderNo" column="KINDER_NO"/>
+		<result property="className" column="CLASS_NAME"/>
+		<result property="openedDate" column="OPENED_DATE"/>
+		<result property="semester" column="SEMESTER"/>
+		<result property="division" column="DIVISION"/>
+		<result property="teacherNo" column="TEACHER_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
 		<result property="childrenName" column="CHILDREN_NAME"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="gender" column="GENDER"/>
@@ -39,10 +54,20 @@
 							AND DIVISION = '원생')
 	</select>
 	
-	<!-- <insert id="insertSchedule1" parameterType="Schedule">
-		INSERT INTO SCHEDULE
-		VALUES(SEQ_SCHEDULE_NO.NEXTVAL, #{title}, #{allDay}, #{start}, #{end}, #{backgroundColor}, #{type}, null, #{kinderNo}, #{scheduleContent})
-	</insert> -->
+	<select id="selectParentChildrens" parameterType="ChildrenClassRH" resultMap="childrenClassResultSet">
+		SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, KC.CHILDREN_NO, CHILDREN_NAME, BIRTH, GENDER, USER_NO
+		FROM KINDER_CLASS KC
+		JOIN CHILDREN C ON (KC.CHILDREN_NO = C.CHILDREN_NO)
+		WHERE KC.CHILDREN_NO IN (SELECT CH.CHILDREN_NO
+		                         FROM CHILDREN CH
+		                         WHERE USER_NO = #{userNo})
+	</select>
+	
+	<insert id="insertReturnHome" parameterType="ReturnHomeRH">
+		INSERT INTO RETURN_HOME
+		VALUES(SEQ_HOME_NO.NEXTVAL, #{childrenNo}, #{homeDate}, #{homeTime}, #{homeWay}, #{parentsName}, #{parentsPhone},
+				#{emergencyName}, #{emergencyPhone}, 'N', NULL, #{writeDate});
+	</insert>
 	
 	
 </mapper>

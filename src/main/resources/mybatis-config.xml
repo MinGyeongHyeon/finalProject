@@ -17,6 +17,7 @@
 		<typeAlias type="com.kh.fp.returnHome.model.vo.ReturnHome" alias="ReturnHomeRH"/>
 		<typeAlias type="com.kh.fp.returnHome.model.vo.Children" alias="ChildrenRH"/>
 		<typeAlias type="com.kh.fp.returnHome.model.vo.KinderClass" alias="KinderClassRH"/>
+		<typeAlias type="com.kh.fp.returnHome.model.vo.ChildrenClass" alias="ChildrenClassRH"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Attendance" alias="Attendance"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Children" alias="Children"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.homework" alias="homework"/>

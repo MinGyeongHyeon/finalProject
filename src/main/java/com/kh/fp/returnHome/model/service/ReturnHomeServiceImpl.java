@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fp.returnHome.model.dao.ReturnHomeDao;
 import com.kh.fp.returnHome.model.vo.Children;
+import com.kh.fp.returnHome.model.vo.ChildrenClass;
 import com.kh.fp.returnHome.model.vo.KinderClass;
 
 @Service
@@ -23,6 +24,14 @@ public class ReturnHomeServiceImpl implements ReturnHomeService{
 	@Override
 	public ArrayList<Children> selectChildrenName(KinderClass kc) {
 		ArrayList<Children> list = rhd.selectChildrenName(sqlSession, kc);
+		return list;
+	}
+
+
+	@Override
+	public ArrayList<ChildrenClass> selectParentChildrens(ChildrenClass cc) {
+		ArrayList<ChildrenClass> list = rhd.selectParentChildrens(sqlSession, cc);
+		
 		return list;
 	}
 

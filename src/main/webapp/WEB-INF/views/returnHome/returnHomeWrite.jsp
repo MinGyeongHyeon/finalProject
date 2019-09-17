@@ -36,9 +36,9 @@
 	}
 	
 	.kinderInfo img{
-		background:#ccc;
-		width:60px;
-		height:60px; 
+		background:#fff;
+		width:30px;
+		height:30px; 
 		border-radius: 30px;
 	}
 	
@@ -156,16 +156,19 @@
 			</table>
 		</div>
 		<hr />
-		<form action="">
+		<form action="insertReturnHome.rh" method="post">
 			<div class="returnHomeContents">
 				<div class="kinderInfo">
 					<table>
 						<tr>
-							<td rowspan="2"><img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
-							<td>원아명</td>
+							<td><img src="${ contextPath }/resources/images/baby.png" alt="" />원아선택</td>
 						</tr>
 						<tr>
-							<td>별님반</td>
+							<td>
+								<c:forEach var="childrenList" items="${list}" varStatus="status">
+									<input type="checkbox" name="selectChild" value="${childrenList.childrenNo }" id="selectChild"/><label for="selectChild"><c:out value="${childrenList.childrenName}" escapeXml="false"/></label>
+								</c:forEach>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -183,8 +186,8 @@
 								<div class="selectDateDiv" id="selectDiv2">
 									<label for="tomorrow" id="dateLabel2">내일(<c:out value="${tomorrow}" />)</label>
 								</div>
-								<input type="radio" name="selectDate" id="today"  class="selectDate" value="today" checked="true" hidden/>
-								<input type="radio" name="selectDate" id="tomorrow" class="selectDate" value="tomorrow" hidden/>
+								<input type="radio" name="homeDate" id="today"  class="selectDate" value="today" checked="true" hidden/>
+								<input type="radio" name="homeDate" id="tomorrow" class="selectDate" value="tomorrow" hidden/>
 							</td>
 						</tr>
 						<tr>
@@ -192,11 +195,11 @@
 						</tr>
 						<tr>
 							<td class="selectTime">
-								<select name="noonCheck" id="noonCheck">
+								<select name="homeTime" id="noonCheck">
 									<option value="morning">오전</option>
 									<option value="afternoon">오후</option>
 								</select>&nbsp;
-								<select name="hour" id="hour">
+								<select name="homeTime" id="hour">
 									<option value="1">1시</option>
 									<option value="2">2시</option>
 									<option value="3">3시</option>
@@ -210,7 +213,7 @@
 									<option value="11">11시</option>
 									<option value="12">12시</option>
 								</select>&nbsp;
-								<select name="minute" id="minute">
+								<select name="homeTime" id="minute">
 									<option value="00">00분</option>
 									<option value="10">10분</option>
 									<option value="20">20분</option>
@@ -225,11 +228,11 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="radio" name="returnWay" class="returnWay" value="walk"/>
+								<input type="radio" name="homeWay" class="returnWay" value="walk"/>
 								<label for="walk" style="color:#000;">도보</label>
-								<input type="radio" name="returnWay" class="returnWay" value="car"/>
+								<input type="radio" name="homeWay" class="returnWay" value="car"/>
 								<label for="mycar" style="color:#000;">자가</label>
-								<input type="radio" name="returnWay" class="returnWay" value="bus"/>
+								<input type="radio" name="homeWay" class="returnWay" value="bus"/>
 								<label for="bus" style="color:#000;">통학버스</label>
 							</td>
 						</tr>
@@ -238,8 +241,8 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="family1" id="family1" placeholder="원아와 관계" style="width:80px;"/> &nbsp;
-								<input type="text" name="phone1" id="phone1" placeholder='"-"를 제외하고 입력'/>
+								<input type="text" name="parentsName" id="family1" placeholder="보호자 성함" style="width:80px;"/> &nbsp;
+								<input type="text" name="parentsPhone" id="phone1" placeholder='"-"를 제외하고 입력'/>
 							</td>
 						</tr>
 						<tr>
@@ -247,8 +250,8 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="famaily2" id="famaily2" placeholder="원아와 관계" style="width:80px;"/> &nbsp;
-								<input type="text" name="phone2" id="phone2" placeholder='"-"를 제외하고 입력'/>
+								<input type="text" name="emergencyName" id="famaily2" placeholder="보호자 성함" style="width:80px;"/> &nbsp;
+								<input type="text" name="emergencyPhone" id="phone2" placeholder='"-"를 제외하고 입력'/>
 							</td>
 							
 						</tr>
@@ -258,7 +261,7 @@
 				<table style="width:95%; margin:0 auto;">
 					<tr>
 						<td style="width:84%; vertical-align: top;">
-							<p style="margin-left:2.5%; font-size:0.8em;">영유아의 귀가 시 위 보호자에게 인보하여 주세요. <br />
+							<p style="margin-left:2.5%; font-size:0.8em;">영유아의 귀가 시 위 보호자에게 인계하여 주세요. <br />
 							위 보호자 이외의 다른 사람에게 인계할 때는 사전에 반드시 연락을 취하겠습니다. <br />
 							원에서는 부모가 희망하더라도 영유아를 혼자 귀가시키지 않습니다.</p>
 						</td>
@@ -269,15 +272,19 @@
 							    </ul>
 							    <div class="sig sigWrapper">
 							      <div class="typed"></div>
-							      <canvas class="pad" width="198" height="98px"></canvas>
-							      <input type="hidden" name="output" class="output">
+							      <canvas class="pad" id="canvas" width="198" height="98px"></canvas>
+									<img id="myImage">
+							      <input type="hidden" name="dataURL" id="urlInput"/>
+							      <!-- <input type="hidden" name="output" class="output" id="outout"> -->
 							    </div>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" style="text-align: right;">
-							<label for=""><c:out value="${todayDate2}" /><c:out value="${loginUser.userName }"/></label>
+							<input type="text" name="writeDate" value="<c:out value='${todayDate2}' />"
+										style="border:none; text-align: right;" readonly/>
+										<c:out value="${loginUser.userName }"/>
 						</td>
 					</tr>
 				</table>
@@ -336,25 +343,21 @@
 			}
 		});
 	});
-    
-    $(function(){
-		console.log($(".pad")[0]);
-		/* $(".pad").mouseout({
-				
-			
-		}); */
-		/* $(".canvasPad").change(function(){
-			console.log("가나다");
-		}); */
+    $(document).ready(function(){
+		var canvas = document.getElementById('canvas');
+		var padpad = $(".pad");
     	
+    	padpad.mouseout(function(){
+    		var dataURL = canvas.toDataURL();
+			var urlInput = document.getElementById('urlInput');
+    		console.log(dataURL);
+    		urlInput.value = dataURL;
+			
+    	});
     });
-    
     
   </script>
 	
-	<script>
-		
-	</script>
 </body>
 </html>
 
