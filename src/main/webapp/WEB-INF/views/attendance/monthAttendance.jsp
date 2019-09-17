@@ -147,6 +147,10 @@ function afterBtn(){
 	margin-left: 5%;
 	margin-top: 2%;
 }
+.monttday{
+width:3%;
+border:1px solid white;
+}
 </style>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -187,9 +191,13 @@ function afterBtn(){
 					<td colspan="${ month }" rowspan="${ hmc }" class="td-2-3">
 						<div class="wapper">
 							<table class="table--inner">
-								<c:forEach var="d" items="${ monarr }">
-									<!-- 날짜 일일이 가져오기 -->
-									<td></td>
+								<c:forEach var="i" begin="1" end="${ month }">
+								   <td class="monttday"><c:out value="${i}" /></td>
+								</c:forEach>
+								<c:forEach var="i" begin="1" end="${hmc }">
+								<tr>
+								<td></td>
+								</tr>
 								</c:forEach>
 							</table>
 						</div>
@@ -216,13 +224,13 @@ function afterBtn(){
 					</tr>
 				</c:forEach>
 				</tbody>
-				<tr>
+				<!-- <tr>
 					<td>전월말 재적수</td>
 					<td>입소아동</td>
 					<td>퇴소아동</td>
 					<td>월말 재적수</td>
 					<td>교육일수</td>
-				</tr>
+				</tr> -->
 			</table>
 			<button class="subBtn">다운로드</button>
 			<button class="subBtn">출력</button>

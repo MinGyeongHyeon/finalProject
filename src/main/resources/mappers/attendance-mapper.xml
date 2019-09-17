@@ -24,7 +24,7 @@
 
 	<!-- 데일리출석부 -->
 	<select id="dailyatt" parameterType="Children" resultMap="childResultSet">
-		SELECT CHILDREN_NAME
+		SELECT *
 		FROM CHILDREN
 	</select>
 
