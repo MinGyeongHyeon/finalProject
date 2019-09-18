@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.returnHome.model.exception.ReturnHomeInsertException;
 import com.kh.fp.returnHome.model.vo.Children;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
@@ -18,7 +19,16 @@ public interface ReturnHomeDao {
 
 	int insertReturnHome(SqlSessionTemplate sqlSession, String[] selectChild, ReturnHome rh) throws ReturnHomeInsertException;
 
-	ArrayList<ReturnHome> selectReturnHomeList(SqlSessionTemplate sqlSession, ArrayList<Children> list);
+	ArrayList<ReturnHome> selectReturnHomeList(SqlSessionTemplate sqlSession, KinderClass kc, PageInfo pi);
 
+	ArrayList<ReturnHome> selectParentsReturnHomeList(SqlSessionTemplate sqlSession, ChildrenClass cc, PageInfo pi);
+
+	int countListAll(SqlSessionTemplate sqlSession, KinderClass kc);
+
+	int parentsCountList(SqlSessionTemplate sqlSession, ChildrenClass cc);
+
+	ArrayList<ReturnHome> selectReturnHomeDetail(SqlSessionTemplate sqlSession, int homeNo);
+
+	ArrayList<Children> selectKinderChildrenName(SqlSessionTemplate sqlSession, KinderClass kc);
 
 }

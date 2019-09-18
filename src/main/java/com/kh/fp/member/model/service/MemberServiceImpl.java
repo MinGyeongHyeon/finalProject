@@ -278,6 +278,38 @@ public class MemberServiceImpl implements MemberService{
 
 
 
+	@Override
+	public KidMember childrenMember(Member loginUser) {
+
+		return md.childrenMember(sqlSession,loginUser);
+	}
+
+	@Override
+	public int childrenYn(KidMember km) {
+
+		return md.childrenYn(sqlSession,km);
+	}
+
+	@Override
+	public KinGardenClasses childrenKing(KidMember km) {
+
+		return md.childrenKing(sqlSession,km);
+	}
+
+	@Override
+	public Attachment childrenAt(Member loginUser) {
+
+		return md.childrenAt(sqlSession,loginUser);
+	}
+
+	@Override
+	public int insertTeacherphoto(Attachment at) {
+
+		return md.insertTeacherphoto(sqlSession,at);
+	}
+
+
+
 	
 
 	

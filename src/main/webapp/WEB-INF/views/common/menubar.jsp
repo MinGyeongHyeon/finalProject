@@ -217,7 +217,7 @@
 							class="dropdown-toggle profile-pic" data-toggle="dropdown"
 							href="#" aria-expanded="false">
 								<div class="avatar-sm">
-									<img src="${ contextPath }/resources/assets/img/profile.jpg"
+									<img src="${ contextPath }/resources/uploadFiles/${at.changeName}"
 										alt="..." class="avatar-img rounded-circle">
 								</div>
 						</a>
@@ -225,7 +225,7 @@
 								<li>
 									<div class="user-box">
 										<div class="avatar-lg">
-											<img src="${ contextPath }/resources/assets/img/profile.jpg"
+											<img src="${ contextPath }/resources/uploadFiles/${at.changeName}"
 												alt="image profile" class="avatar-img rounded">
 										</div>
 										<div class="u-text">
@@ -261,7 +261,7 @@
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
 							<!-- 프로필 이미지 태그   -->
-							<img src="${ contextPath }/resources/assets/img/profile.jpg"
+							<img src="${ contextPath }/resources/uploadFiles/${at.changeName}"
 								alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
@@ -368,7 +368,7 @@
 										<li><a href="sentNoteList.nt"> <span class="sub-item">보낸
 													쪽지함</span>
 										</a></li>
-										<li><a href="sendNote.pl"> <span class="sub-item">쪽지
+										<li><a href="userList.nt"> <span class="sub-item">쪽지
 													보내기</span>
 										</a></li>
 									</ul>

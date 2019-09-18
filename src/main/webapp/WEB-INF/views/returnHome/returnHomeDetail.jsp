@@ -1,9 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	.main-panel {
@@ -51,9 +53,12 @@
 		height:55px;
 	}
 	
+	.returnHomeDetail th{
+		width:30%;
+	}
+	
 	.signArea{
-		width:100px;
-		height:100px;
+		margin-right:10px;
 		background:#aaa;
 		
 	}
@@ -67,6 +72,19 @@
 	}
 	.detailBtnArea table{
 		width:100%;
+	}
+	
+	.message{
+		width:100%;
+		height:40px;
+		color:#fff;
+		background:#58f;
+		border:none;
+		border-radius: 5px;
+		text-align:center;
+		font-weight:bold;
+		vertical-align: middle;
+		padding-top:10px;
 	}
 	
 	.detailBtnArea table button{
@@ -87,7 +105,7 @@
 			<table width=100%;>
 				<tr>
 					<td>
-						<label style="font-weight:bold;">박찬민원아의 귀가동의서</label>
+						<label style="font-weight:bold;"><c:out value="${rhList.childrenName}" />원아의 귀가동의서</label>
 					</td>
 				</tr>
 			</table>
@@ -98,10 +116,10 @@
 				<table>
 					<tr>
 						<td rowspan="2"><img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
-						<td>원아명</td>
+						<td><c:out value="${rhList.childrenName}" /></td>
 					</tr>
 					<tr>
-						<td>별님반	</td>
+						<td><p></p></td>
 					</tr>
 				</table>
 			</div>
@@ -110,23 +128,23 @@
 				<table>
 					<tr>
 						<th>귀가요청일</th>
-						<td>2019.08.14</td>
+						<td><c:out value="${rhList.homeDate}" /></td>
 					</tr>
 					<tr>
 						<th>귀가요청시간</th>
-						<td>오후 6:30</td>
+						<td><c:out value="${rhList.homeTime}" /></td>
 					</tr>
 					<tr>
 						<th>귀가방법</th>
-						<td>도보</td>
+						<td><c:out value="${rhList.homeWay}" /></td>
 					</tr>
 					<tr>
 						<th>보호자</th>
-						<td>아빠 010-1234-5678</td>
+						<td><c:out value="${rhList.parentsName}" /> (<c:out value="${rhList.parentsPhone}" />)</td>
 					</tr>
 					<tr>
 						<th>비상연락망</th>
-						<td>엄마 010-1234-5678</td>
+						<td><c:out value="${rhList.emergencyName}" /> (<c:out value="${rhList.emergencyPhone}" />)</td>
 					</tr>
 				</table>
 				<hr />
@@ -140,21 +158,27 @@
 					</td>
 					<td>
 						<div class="signArea">
-							사인
-							영역
+							<img src="<c:out value="${rhList.dataURL}" />" alt="" />
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: right;">
-						<label for="">2019.8.14 박찬민</label>
+						<label for="" style="margin-right: 10px;"><c:out value="${rhList.writeDate}" /><p></p></label>
 					</td>
 				</tr>
 			</table>
 		</div>
-		
+		<br />
 		<div class="detailBtnArea">
-			<button class="checkBtn">수신확인</button>
+			<c:if test="${ loginUser.classification eq '학부모' }">
+				<c:if test="${ rhList.reading eq 'N' }">
+					<div class="message">미확인</div>
+	            </c:if>
+	            <c:if test="${ rhLis.reading eq 'Y' }">
+					<div class="message">확인</div>
+	            </c:if>
+			</c:if>
 			<table>
 				<tr>
 					<td style="text-align:left;"><button>출력</button></td>

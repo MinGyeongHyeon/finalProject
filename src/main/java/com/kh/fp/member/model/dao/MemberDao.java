@@ -85,6 +85,17 @@ public interface MemberDao {
 
 	int RePwd(SqlSessionTemplate sqlSession, Member mb);
 
+
+	KidMember childrenMember(SqlSessionTemplate sqlSession, Member loginUser);
+
+	int childrenYn(SqlSessionTemplate sqlSession, KidMember km);
+
+	KinGardenClasses childrenKing(SqlSessionTemplate sqlSession, KidMember km);
+
+	Attachment childrenAt(SqlSessionTemplate sqlSession, Member loginUser);
+
+	int insertTeacherphoto(SqlSessionTemplate sqlSession, Attachment at);
+
 	
 
 

@@ -80,6 +80,16 @@ public interface MemberService {
 
 	int RePwd(Member mb);
 
+	KidMember childrenMember(Member loginUser);
+
+	int childrenYn(KidMember km);
+
+	KinGardenClasses childrenKing(KidMember km);
+
+	Attachment childrenAt(Member loginUser);
+
+	int insertTeacherphoto(Attachment at);
+
 
 
 }
