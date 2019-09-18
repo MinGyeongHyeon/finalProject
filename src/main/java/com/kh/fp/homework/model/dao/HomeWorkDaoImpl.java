@@ -1,11 +1,16 @@
 package com.kh.fp.homework.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fp.homework.model.exception.HomeWorkException;
+import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
+import com.kh.fp.notice.model.vo.Notice;
+import com.kh.fp.returnHome.model.vo.ChildrenClass;
 
 @Repository
 public class HomeWorkDaoImpl implements HomeWorkDao {
@@ -52,15 +57,30 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 	}
 
 	@Override
-	public int selectClassNum(SqlSessionTemplate sqlSession, int userNo) {
-		System.out.println(userNo + "유저");
+	public int selectClassNum(SqlSessionTemplate sqlSession, int userNo2) {
 		
-		int classNum = sqlSession.selectOne("homework.selectClassNum",userNo);
+		System.out.println(userNo2+ "유저");
 		
-		System.out.println(classNum + " 반 번호");
+		int classNum = sqlSession.selectOne("homework.selectClassNum",userNo2);
+		
 		
 		return classNum;
 	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public ArrayList<HomeWorkChildren> selectChildrenName(SqlSessionTemplate sqlSession, int userNo2) {
+		
+		
+		ArrayList<HomeWorkChildren> list = null;
+		System.out.println("어디야");
+		list = (ArrayList)sqlSession.selectList("homework.selectChildrenNatt",userNo2);
+		
+		System.out.println(list + "zizi");
+		
+		return list;
+	}
+
 
 
 }

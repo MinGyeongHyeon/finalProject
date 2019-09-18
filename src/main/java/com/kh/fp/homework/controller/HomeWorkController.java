@@ -34,6 +34,7 @@ public class HomeWorkController {
 
 		@RequestMapping(value="homeWorkWrite.hw" )
 		public String homeWorkWrite(homework h,Model model,HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser,  @RequestParam(name="photo",required=false) MultipartFile photo) {
+		
 			int userNo = loginUser.getUserNo();
 			
 			
@@ -72,7 +73,7 @@ public class HomeWorkController {
 				 at.setFileLevel("1");
 				 at.setAttachType("알림장");
 				 at.setUserNo(userNo);
-				 at.setBoardNo(1);
+				 at.setBaordNo(1);
 			
 			 
 				 photo.transferTo(new File(filePath+"\\"+changeName+ext));

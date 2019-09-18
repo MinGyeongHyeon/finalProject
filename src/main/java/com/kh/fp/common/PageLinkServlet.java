@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -165,8 +166,11 @@ public class PageLinkServlet {
 
 
 	 @RequestMapping(value="homeworkSelectPeople.pl")
-	 public String homeworkSelectPeople() {
+	 public String homeworkSelectPeople(HttpSession session,HttpServletRequest request ) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		 int memberId = loginUser.getUserNo();
 
+		 
 		 return "homeworkDiary/homeworkSelectPeople";
 	 }
 

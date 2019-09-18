@@ -7,12 +7,12 @@ public class ChildrenClass implements java.io.Serializable{
 	private String openedDate;
 	private String semester;
 	private String division;
-	private int teacherNo;
-	private int childrenNo;
+	private int teacherNo; //선생님 번호
+	private int childrenNo; // 애기 번호
 	private String childrenName;
 	private String birth;
 	private String gender;
-	private int userNo;
+	private int userNo; //학부모 번호
 	
 	public ChildrenClass() {}
 
