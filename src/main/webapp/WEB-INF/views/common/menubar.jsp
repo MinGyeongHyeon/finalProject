@@ -368,7 +368,7 @@
 										<li><a href="sentNoteList.nt"> <span class="sub-item">보낸
 													쪽지함</span>
 										</a></li>
-										<li><a href="sendNote.pl"> <span class="sub-item">쪽지
+										<li><a href="userList.nt"> <span class="sub-item">쪽지
 													보내기</span>
 										</a></li>
 									</ul>

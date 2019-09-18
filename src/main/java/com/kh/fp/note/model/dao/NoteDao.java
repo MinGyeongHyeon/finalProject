@@ -12,6 +12,7 @@ import com.kh.fp.note.model.vo.noteKindergarden;
 
 public interface NoteDao {
 
+	//쪽지보내기 유치원 리스트 불러오기
 	ArrayList<noteKindergarden> selectUserList(SqlSessionTemplate sqlSession) throws NoteException;
 
 	//보낸 쪽지함 리스트 조회

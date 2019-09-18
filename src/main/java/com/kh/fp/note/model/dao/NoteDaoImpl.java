@@ -14,6 +14,7 @@ import com.kh.fp.note.model.vo.noteKindergarden;
 @Repository
 public class NoteDaoImpl implements NoteDao{
 
+	//쪽지보내기 유치원 리스트 불러오기
 	@Override
 	public ArrayList<noteKindergarden> selectUserList(SqlSessionTemplate sqlSession) throws NoteException {
 		System.out.println("dao 호출!!!");
