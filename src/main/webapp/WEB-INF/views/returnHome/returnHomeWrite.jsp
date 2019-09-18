@@ -186,8 +186,8 @@
 								<div class="selectDateDiv" id="selectDiv2">
 									<label for="tomorrow" id="dateLabel2">내일(<c:out value="${tomorrow}" />)</label>
 								</div>
-								<input type="radio" name="homeDate" id="today"  class="selectDate" value="today" checked="true" hidden/>
-								<input type="radio" name="homeDate" id="tomorrow" class="selectDate" value="tomorrow" hidden/>
+								<input type="radio" name="homeDate" id="today"  class="selectDate" value="<c:out value='${todayDate1}' />" checked="true" hidden/>
+								<input type="radio" name="homeDate" id="tomorrow" class="selectDate" value="<c:out value='${tomorrow}' />" hidden/>
 							</td>
 						</tr>
 						<tr>

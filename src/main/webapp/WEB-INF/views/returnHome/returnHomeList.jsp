@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 </head>
 <style>
@@ -140,8 +141,8 @@
 						<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
 							<select name="kidsNameList" id="kidsNameList">
 									<option value="000">전체 원아 보기</option>
-								<c:forEach var="childrenList" items="${list}" varStatus="status">
-									<option value="00${status.count }"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
+								<c:forEach var="childrenList" items="${list}" varStatus="listStatus">
+									<option value="00${listStatus.count }"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
 								</c:forEach>
 							</select>
 						</c:if>
@@ -154,35 +155,85 @@
 		</div>
 		<br />
 		<div class="returnHomeList">
-			<%int num = 4;
-			for(int i = 0; i < num; i++){%>
-			<div class="returnHomeSummary">
-				<table>
-					<tr>
-						<td colspan="2">kidsName<p></p></td>
-					</tr><tr>
-						<td colspan="2"> 2019년 8월 14일</td>
-					</tr><tr>
-						<td width="50%"><img src="${ contextPath }/resources/images/car.png" alt="" />귀가방법</td>
-						<td>버스</td>
-					</tr><tr>
-						<td><img src="${ contextPath }/resources/images/alarm-clock.png" alt="" />시간</td>
-						<td>오후 6:30</td>
-					</tr><tr>	
-						<td><img src="${ contextPath }/resources/images/family.png" alt="" />보호자</td>
-						<td>엄마</td>
-					</tr><tr>
-						<td colspan="2">별님반</td>
-					</tr>
-				</table>
-			</div>
-			<%} %>
+			<c:forEach var="rhList" items="${ rhList }" varStatus="rhStatus">
+				<div class="returnHomeSummary" >
+					<form action="selectReturnHomeDetail.rh">
+						<input type="hidden" name="homeNo" value="<c:out value='${ rhList.homeNo }'/>"/>
+						<table>
+							<tr>
+								<td colspan="2"><c:out value="${ rhList.childrenName }"/><p></p></td>
+							</tr><tr>
+								<td colspan="2"><c:out value="${ rhList.writeDate }"/></td>
+							</tr><tr>
+								<td width="50%"><img src="${ contextPath }/resources/images/car.png" alt="" />귀가방법</td>
+								<td><c:out value="${ rhList.homeWay }"/></td>
+							</tr><tr>
+								<td><img src="${ contextPath }/resources/images/alarm-clock.png" alt="" />시간</td>
+								<td><c:out value="${ rhList.homeTime }"/></td>
+							</tr><tr>	
+								<td><img src="${ contextPath }/resources/images/family.png" alt="" />보호자</td>
+								<td><c:out value="${ rhList.parentsName }"/></td>
+							</tr>
+						</table>
+						<button onclick="submit" hidden></button>
+					</form>
+				</div>
+			</c:forEach>
 		</div>
+		
+		<div id="paginArea" align="center">
+			<c:if test="${ pi.currentPage <= 1 }">
+				[이전] &nbsp;
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="blistBack" value="/returnHomeMain.rh">
+					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+				</c:url>
+				<a href="${ blistBack }">[이전]</a> &nbsp;
+			</c:if>
+			
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<font color="red" size="4"><b>[${ p }]</b></font>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="blistCheck" value="returnHomeMain.rh">
+						<c:param name="currentPage" value="${ p }"/>
+					</c:url>
+					<a href="${ blistCheck }">${ p }</a>
+				</c:if>
+			</c:forEach>
+			
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="blistEnd" value="returnHomeMain.rh">
+					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+				</c:url>
+				<a href="${ blistEnd }">&nbsp; [다음]</a>
+			</c:if>
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				&nbsp; [다음]
+			</c:if>
+		</div>
+		
+		
 		<div class="printBtnArea">
 			<button>출력 및 다운로드</button>
 		</div>
 		
 	</div>
+	
+	<script>
+	$(document).ready(function(){
+		$(".returnHomeSummary").on("click", function(){
+			var selectform = this.children[0];
+			var selectBtn = selectform.children[2];
+			console.log(selectBtn);
+			selectBtn.click();
+		});
+	});
+	
+	
+	</script>
 </body>
 </html>
 

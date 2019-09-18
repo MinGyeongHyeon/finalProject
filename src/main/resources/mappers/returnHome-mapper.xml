@@ -13,10 +13,11 @@
 		<result property="parentsName" column="PARENTS_NAME"/>
 		<result property="parentsPhone" column="PARENTS_PHONE"/>
 		<result property="emergencyName" column="EMERGENCY_NAME"/>
-		<result property="emergencyPhone" column="EMERGENCY_PHONE"/> 								
-		<result property="reading" column="READING"/>						
-		<result property="reDate" column="RE_DATE"/>						
+		<result property="emergencyPhone" column="EMERGENCY_PHONE"/>
+		<result property="reading" column="READING"/>
+		<result property="reDate" column="RE_DATE"/>
 		<result property="writeDate" column="WRITE_DATE"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
 		<result property="dataURL" column="FILE_PATH"/>
 	</resultMap>
 	
@@ -55,6 +56,15 @@
 							AND DIVISION = '원생')
 	</select>
 	
+	<select id="parentsCountList" parameterType="ChildrenClassRH" resultType="_int">
+		SELECT COUNT(*)
+		FROM RETURN_HOME RH
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN (SELECT *
+		      FROM CHILDREN CHILD
+		      WHERE USER_NO = #{userNo}) CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+	</select>
+	
 	<select id="selectParentChildrens" parameterType="ChildrenClassRH" resultMap="childrenClassResultSet">
 		SELECT CLASS_NO, KINDER_NO, CLASS_NAME, OPENED_DATE, SEMESTER, DIVISION, KC.CHILDREN_NO, CHILDREN_NAME, BIRTH, GENDER, USER_NO
 		FROM KINDER_CLASS KC
@@ -75,18 +85,67 @@
 		VALUES(SEQ_FILE_ID.NEXTVAL, 'sign', 'sign', #{dataURL}, SYSDATE, '귀가동의', NULL, NULL, NULL, NULL, NULL, NULL, SEQ_HOME_NO.CURRVAL, NULL, NULL)
 	</insert>
 	
-	<select id="selctReturnHomeList" parameterType="KinderClassRH" resultMap="returnHomeResultSet">
-		SELECT RH.HOME_NO, RH.CHILDREN_NO, RH.HOME_DATE, RH.HOME_TIME, RH.HOME_WAY, RH.PARENTS_NAME, RH.PARENTS_PHONE,
-        		RH.EMERGENCY_NAME, RH.EMERGENCY_PHONE, RH.READING, RH.RE_DATE, RH.WRITE_DATE, AT.FILE_PATH
+	<select id="countListAll" parameterType="KinderClassRH" resultType="_int">
+		SELECT COUNT(*)
 		FROM RETURN_HOME RH
 		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN CHILDREN CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
 		WHERE RH.CHILDREN_NO IN (SELECT CHILDREN_NO
 								FROM KINDER_CLASS K1
 								WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
+																						FROM KINDER_CLASS K2
+																						WHERE K2.TEACHER_NO = #{teacherNo})
+								AND DIVISION = '원생')			
+	</select>
+	
+	<select id="selctReturnHomeList" parameterType="KinderClassRH" resultMap="returnHomeResultSet">
+		SELECT RH.HOME_NO, RH.CHILDREN_NO, RH.HOME_DATE, RH.HOME_TIME, RH.HOME_WAY, RH.PARENTS_NAME, RH.PARENTS_PHONE,
+       		   RH.EMERGENCY_NAME, RH.EMERGENCY_PHONE, RH.READING, RH.RE_DATE, RH.WRITE_DATE, CH.CHILDREN_NAME, AT.FILE_PATH
+		FROM RETURN_HOME RH
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN CHILDREN CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+		WHERE RH.CHILDREN_NO IN (SELECT CHILDREN_NO
+								FROM KINDER_CLASS K1
+								WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
+																						FROM KINDER_CLASS K2
+																						WHERE K2.TEACHER_NO = #{teacherNo})
+								AND DIVISION = '원생')
+		ORDER BY HOME_NO DESC					
+	</select>
+	
+	<select id="selectParentsReturnHomeList" parameterType="ChildrenClassRH" resultMap="returnHomeResultSet">
+		SELECT RH.HOME_NO, RH.CHILDREN_NO, RH.HOME_DATE, RH.HOME_TIME, RH.HOME_WAY, RH.PARENTS_NAME, RH.PARENTS_PHONE,
+               RH.EMERGENCY_NAME, RH.EMERGENCY_PHONE, RH.READING, RH.RE_DATE, RH.WRITE_DATE, CH.CHILDREN_NAME, AT.FILE_PATH
+		FROM RETURN_HOME RH
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN CHILDREN CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+		JOIN (SELECT *
+		      FROM CHILDREN CHILD
+		      WHERE USER_NO = #{userNo}) CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+		ORDER BY HOME_NO DESC	
+	</select>
+	
+	<select id="selectReturnHomeDetail" parameterType="_int" resultMap="returnHomeResultSet">
+		SELECT RH.HOME_NO, RH.CHILDREN_NO, RH.HOME_DATE, RH.HOME_TIME, RH.HOME_WAY, RH.PARENTS_NAME, RH.PARENTS_PHONE,
+               RH.EMERGENCY_NAME, RH.EMERGENCY_PHONE, RH.READING, RH.RE_DATE, RH.WRITE_DATE, CH.CHILDREN_NAME, AT.FILE_PATH
+		FROM RETURN_HOME RH
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN CHILDREN CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+		WHERE RH.HOME_NO = #{homeNo}
+	</select>
+	
+	<select id="selectKinderChildrenName" parameterType="KinderClassRH" resultMap="childrenResultSet">
+		<!-- SELECT CHILDREN_NO, CHILDREN_NAME, BIRTH, GENDER, USER_NO
+		FROM CHILDREN
+		WHERE CHILDREN_NO IN (SELECT CHILDREN_NO
+							FROM KINDER_CLASS K1
+							WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
 																					FROM KINDER_CLASS K2
 																					WHERE K2.TEACHER_NO = #{teacherNo})
-								AND DIVISION = '원생')
+							AND DIVISION = '원생') -->
 	</select>
+	
+	
 	
 </mapper>
 

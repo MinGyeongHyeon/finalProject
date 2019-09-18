@@ -3,9 +3,11 @@ package com.kh.fp.returnHome.model.dao;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.returnHome.model.exception.ReturnHomeInsertException;
 import com.kh.fp.returnHome.model.vo.Children;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
@@ -19,8 +21,6 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 	@Override
 	public ArrayList<Children> selectChildrenName(SqlSessionTemplate sqlSession, KinderClass kc) {
 		ArrayList<Children> list = (ArrayList) sqlSession.selectList("ReturnHome.selectChildrenName", kc);
-		
-		
 		
 		return list;
 	}
@@ -58,9 +58,54 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<ReturnHome> selectReturnHomeList(SqlSessionTemplate sqlSession, ArrayList<Children> list) {
-		ArrayList<ReturnHome> rhList = (ArrayList) sqlSession.selectList("ReturnHome.selctReturnHomeList", list);
+	public ArrayList<ReturnHome> selectReturnHomeList(SqlSessionTemplate sqlSession, KinderClass kc, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		ArrayList<ReturnHome> rhList = (ArrayList) sqlSession.selectList("ReturnHome.selctReturnHomeList", kc, rowBounds);
 		return rhList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<ReturnHome> selectParentsReturnHomeList(SqlSessionTemplate sqlSession, ChildrenClass cc, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		ArrayList<ReturnHome> rhList = (ArrayList) sqlSession.selectList("ReturnHome.selectParentsReturnHomeList", cc, rowBounds);
+		return rhList;
+	}
+
+	@Override
+	public int countListAll(SqlSessionTemplate sqlSession, KinderClass kc) {
+		int result = sqlSession.selectOne("ReturnHome.countListAll", kc);
+		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public int parentsCountList(SqlSessionTemplate sqlSession, ChildrenClass cc) {
+		int result = sqlSession.selectOne("ReturnHome.parentsCountList", cc);
+		System.out.println(result);
+		return result;
+	}
+
+	
+	@Override
+	public ArrayList<ReturnHome> selectReturnHomeDetail(SqlSessionTemplate sqlSession, int homeNo) {
+		@SuppressWarnings("unchecked")
+		ArrayList<ReturnHome> rhList = (ArrayList) sqlSession.selectList("ReturnHome.selectReturnHomeDetail", homeNo);
+		
+		return rhList;
+	}
+
+	@Override
+	public ArrayList<Children> selectKinderChildrenName(SqlSessionTemplate sqlSession, KinderClass kc) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Children> list = (ArrayList) sqlSession.selectList("ReturnHome.selectKinderChildrenName", kc);
+		return list;
 	}
 
 
