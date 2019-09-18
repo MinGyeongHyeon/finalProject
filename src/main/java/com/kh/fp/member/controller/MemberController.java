@@ -54,7 +54,7 @@ import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Controller
-@SessionAttributes({"loginUser","teacherKing"})
+@SessionAttributes({"loginUser","teacherKing" ,"childrenKing" , "at"})
 public class MemberController {
 	
 	
@@ -116,6 +116,8 @@ public class MemberController {
 
 			Member loginUser = ms.login(m);
 			
+			Attachment at = ms.childrenAt(loginUser);
+			
 			if(loginUser.getClassification().equals("원장님")) {
 				
 				int childrenCount = ms.childrenCount(loginUser);
@@ -138,14 +140,14 @@ public class MemberController {
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
 					model.addAttribute("teacherKing" , teacherKing);
-					model.addAttribute("loginUser",loginUser);
-					
-					return "main/parentsMain";
+//					model.addAttribute("loginUser",loginUser);
+//					
+//					return "main/parentsMain";
 					
 					
 				}else {
 					
-					model.addAttribute("msg" ," 승인 처리가 안료되지 않았습니다. 해당 유치원에 문의 주세요. ");
+					model.addAttribute("msg" ," 승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요. ");
 					
 					return "account/join5";
 					
@@ -154,12 +156,43 @@ public class MemberController {
 				
 			}else if(loginUser.getClassification().equals("학부모")) {
 				
+				KidMember km = ms.childrenMember(loginUser);
+				
+				System.out.println("받아온 값 학부모 : " + km);
+				
+				int childrenYn = ms.childrenYn(km);
+				
+				if(childrenYn > 0) {
+					
+					KinGardenClasses childrenKing = ms.childrenKing(km);
+					
+					
+					
+					
+					
+					
+					model.addAttribute("childrenKing" , childrenKing);
+					
+//					model.addAttribute("loginUser",loginUser);
+//					
+//					return "main/parentsMain";
+//					
+					
+				}else {
+					
+					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
+					
+					return "account/join5";
+					
+					
+				}
 				
 				
 				
 			}
 			
 			
+			model.addAttribute("at",at);
 			model.addAttribute("loginUser",loginUser);
 		
 			
@@ -370,7 +403,7 @@ public class MemberController {
 		try {
 			
 			at.setOrigineName(originFileName);
-			at.setChangeName(changeName);
+			at.setChangeName(changeName + ext);
 			at.setFilePath(filePath);
 			at.setFileLevel("1");
 			at.setAttachType("유저");
@@ -413,6 +446,49 @@ public class MemberController {
 		
 		return "join/searchGarden";
 	}
+	
+	@RequestMapping(value="teacherjoin.me")
+	public String teacherjoin(Model model , Member mb ,HttpServletRequest request , @RequestParam(name="photo", required=false) MultipartFile photo) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String filePath = root + "\\uploadFiles";
+		
+		String originFileName = photo.getOriginalFilename();
+		
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		
+		String changeName = CommonUtils.getRandomString(); 
+		
+		Attachment at = new Attachment();
+		
+		try {
+			
+			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			
+			at.setOrigineName(originFileName);
+			at.setChangeName(changeName + ext);
+			at.setFilePath(filePath);
+			at.setFileLevel("1");
+			at.setAttachType("유저");
+			at.setUserNo(mb.getUserNo());
+			
+			int result = ms.insertTeacherphoto(at);
+			
+			
+			
+			
+		} catch (IllegalStateException | IOException e) {
+
+			
+			e.printStackTrace();
+		}
+		
+		
+		return "";
+	}
+	
+	
 	
 	@RequestMapping(value="kinrand.me")
 	public String kininset(KinderGarden kg ,Model model) {

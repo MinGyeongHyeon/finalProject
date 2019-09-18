@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  
 <style>
 #topbar{
 background:white;
@@ -27,6 +37,8 @@ background:white;
 #userImg{
 margin:0 auto;
 }
+
+
 </style>
 </head>
 <body>
@@ -35,25 +47,81 @@ margin:0 auto;
 <button onclick="#" id="loginBtn">로그인</button>
 </div>
 <br><br><br>
+
 <div id="content">
-<form action="teacherAt.me" method="post">
-<input type="hidden" value="${ select.userNo }" name="userNo"/>
+
+<form method="post" enctype="multipart/form-data" action="teacherjoin.me">
+
+<input type="hidden" value="10" name="userNo"/>
+
 	<table align="center">
-		<tr><th>선생님 등록</th></tr>
-		<tr><td>
-		<div id="userImg" style="background-image: url('${ contextPath }/resources/images/woman.png');
-												 background-size:100%;"></div></td>
+		<tr>
+		<th id="magin">선생님  프로필 등록</th>
+		</tr>
+		
+		<tr>
+		
+		<td>
+		
+		<div class="container" style="width:100%">
+          
+  		<img class="img-circle" width="200" height="150" id="titleImg" style="border:1px solid; align:center"/> 
+  		
+		</div>
+		
+			<div id="imghide">
+
+			<input type="file" value="추가" id="selectFile" class="selectFile" onchange="loadImg(this, 1)" name="photo" >
+			
+			</div>
+
+		</td>
+		
 		</tr>
 		<tr><td colspan="3">
-		<form method="post" enctype="multipart/form-data" action="upload.php"> 
-    <input type="file" name="pic" />
-    <input type="submit" value="등록하기" />
-</form>
+
+    <button  class="ui grey basic button" type="submit">등록하기</button>
+    
+    
 		</td></tr>
 	</table>
 
+
 </form>
 
+
 </div>
+
+
+<script>
+
+$(function(){
+	
+	$('#imghide').hide();
+	
+	$('.container').click(function(){
+		$('#selectFile').click();
+		
+	});
+	
+	
+});
+
+function loadImg(value, num) {
+	if(value.files && value.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			switch(num){
+				case 1 : $("#titleImg").attr("src", e.target.result); break;
+			}
+		}
+
+		reader.readAsDataURL(value.files[0]);
+	}
+}
+
+
+</script>
 </body>
 </html>
