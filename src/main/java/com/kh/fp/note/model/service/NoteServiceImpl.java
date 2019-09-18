@@ -20,7 +20,7 @@ public class NoteServiceImpl implements NoteService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-
+	//쪽지보내기 유치원 리스트 불러오기
 	@Override
 	public ArrayList<noteKindergarden> selectUserList() throws NoteException {
 		System.out.println("서비스 호출!!!");

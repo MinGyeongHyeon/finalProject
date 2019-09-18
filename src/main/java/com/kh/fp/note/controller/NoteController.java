@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.common.Pagination;
 import com.kh.fp.note.model.exception.NoteException;
@@ -25,19 +26,21 @@ public class NoteController {
 	@Autowired
 	private NoteService ns;
 
+	//쪽지보내기 유치원 리스트 불러오기
 	@RequestMapping(value="userList.nt")
-	public String userList(Model model, noteKindergarden k) {
+	public ModelAndView userList(ModelAndView mv, noteKindergarden k) {
 
 		System.out.println("userList 컨트롤러 호출");
 
 		try {
 			ArrayList<noteKindergarden> kArr = ns.selectUserList();
-			model.addAttribute("kArr", kArr);
-			return "note/userList";
+			mv.addObject("kArr", kArr);
+			mv.setViewName("note/sendNote");
+			return mv;
 		} catch (NoteException e) {
-			model.addAttribute("msg", e.getMessage());
+			mv.addObject("msg", e.getMessage());
 			e.printStackTrace();
-			return "index.jsp";
+			return mv;
 		}
 	}
 
