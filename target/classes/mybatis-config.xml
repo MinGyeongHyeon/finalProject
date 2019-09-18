@@ -30,8 +30,10 @@
 		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
 		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KinGardenClasses" alias="KinGardenClasses"/>
+		<typeAlias type="com.kh.fp.homework.model.vo.HomeWorkChildren" alias="HomeWorkChildren"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KidMember" alias="KidMember"/>
 		<typeAlias type="com.kh.fp.member.model.vo.Attachment" alias="Attachment"/>
+
 	</typeAliases>
 
 
