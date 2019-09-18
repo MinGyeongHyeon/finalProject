@@ -45,7 +45,7 @@ public class ReturnHomeController {
 		if (loginUser.getClassification().equals("원장님")) {
 			KinderClass kc = new KinderClass();
 			kc.setKinderNo(loginUser.getUserNo());
-			list1 = rhs.selectChildrenName(kc);
+			list1 = rhs.selectKinderChildrenName(kc);
 			//count = rhs.countListAll(kc);
 			
 
