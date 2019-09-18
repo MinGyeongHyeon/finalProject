@@ -86,6 +86,7 @@ margin:0 auto;
 </head>
 <body>
 <br><br><br>
+
 <div id="content">
 
 	<form method="post" enctype="multipart/form-data" action="kidjoin.me">

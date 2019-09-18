@@ -327,6 +327,41 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public KidMember childrenMember(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.childrenMember", loginUser);
+	}
+
+
+	@Override
+	public int childrenYn(SqlSessionTemplate sqlSession, KidMember km) {
+
+		return sqlSession.selectOne("Member.childrenYn",km);
+	}
+
+
+	@Override
+	public KinGardenClasses childrenKing(SqlSessionTemplate sqlSession, KidMember km) {
+
+		return sqlSession.selectOne("Member.childrenKing",km);
+	}
+
+
+	@Override
+	public Attachment childrenAt(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.childrenAt",loginUser);
+	}
+
+
+	@Override
+	public int insertTeacherphoto(SqlSessionTemplate sqlSession, Attachment at) {
+
+		return sqlSession.insert("Member.insetTeacherphoto",at);
+	}
+
+
 
 
 
