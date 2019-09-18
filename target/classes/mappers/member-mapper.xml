@@ -56,6 +56,41 @@
 	
 	</resultMap>
 	
+	<resultMap type="KidMember" id="KidMemberResultSet">
+	
+		<id property="childrenNo" column="CHILDREN_NO"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="userNo" column="USER_NO"/>
+	
+	</resultMap>
+	
+	<resultMap type="Attachment" id="AttachmentResultSet">
+	
+		<id property="fileId" column="FILE_ID"/>
+		<result property="origineName" column="ORIGINE_NAME"/>
+		<result property="changeName" column="CHANGE_NAME"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="attachType" column="ATTACH_TYPE"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+		<result property="baordNo" column="BOARD_NO"/>
+		<result property="albumNo" column="ALBUM_NO"/>
+		<result property="ntboardNo" column="NTBOARD_NO"/>
+		<result property="mealNo" column="MEAL_NO"/>
+		<result property="dosageNo" column="DOSAGE_NO"/>
+		<result property="homeNo" column="HOME_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="userNo" column="USER_NO"/>
+		
+
+	</resultMap>
+	
+	
+	
+
+	
 	
 
 	
@@ -330,6 +365,45 @@
 		
 	
 	</update>
+	
+	<select id="childrenMember" resultMap="KidMemberResultSet">
+		
+		SELECT *
+		FROM CHILDREN
+		WHERE USER_NO = #{userNo}
+	
+	</select>
+	
+	<select id="childrenYn" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM KINDER_CLASS
+		WHERE CHILDREN_NO = #{childrenNo} 
+	
+	</select>
+	
+	<select id="childrenKing" resultMap="KinGardenClassesResultSet">
+	
+		SELECT *
+		FROM KINDER_CLASS
+		WHERE CHILDREN_NO = #{childrenNo}
+	
+	</select>
+	
+	<select id="childrenAt" resultMap="AttachmentResultSet">
+		
+		SELECT *
+		FROM ATTACHMENT
+		WHERE USER_NO = #{userNo}
+	
+	</select>
+	
+	<insert id="insetTeacherphoto">
+		
+		INSERT INTO ATTACHMENT
+		VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , null,null,null,null,null,null,null,#{userNo} )
+	
+	</insert>
 	
 	
 
