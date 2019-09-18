@@ -2,6 +2,7 @@ package com.kh.fp.returnHome.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.returnHome.model.exception.ReturnHomeInsertException;
 import com.kh.fp.returnHome.model.vo.Children;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
@@ -16,6 +17,17 @@ public interface ReturnHomeService {
 
 	int insertReturnHome(String[] selectChild, ReturnHome rh) throws ReturnHomeInsertException;
 
-	ArrayList<ReturnHome> selectReturnHomeList(ArrayList<Children> list);
+	ArrayList<ReturnHome> selectReturnHomeList(KinderClass kc, PageInfo pi);
+
+	ArrayList<ReturnHome> selectParentsReturnHomeList(ChildrenClass cc, PageInfo pi);
+
+	int countListAll(KinderClass kc);
+
+	int partentsCountList(ChildrenClass cc);
+
+	ArrayList<ReturnHome> selectReturnHomeDetail(int homeNo);
+
+	ArrayList<Children> selectKinderChildrenName(KinderClass kc);
+
 
 }

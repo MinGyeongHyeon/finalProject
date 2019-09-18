@@ -2,6 +2,9 @@ package com.kh.fp.returnHome.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.kh.fp.common.Pagination;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.returnHome.model.exception.ReturnHomeInsertException;
 import com.kh.fp.returnHome.model.service.ReturnHomeService;
 import com.kh.fp.returnHome.model.vo.Children;
@@ -24,25 +29,64 @@ public class ReturnHomeController {
 	private ReturnHomeService rhs;
 
 	@RequestMapping(value = "returnHomeMain.rh")
-	public String returnHomeMain(@SessionAttribute("loginUser") Member loginUser, Model m) {
-		ArrayList<Children> list = null;
+	public String returnHomeMain(@SessionAttribute("loginUser") Member loginUser, Model m, HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Children> list1 = null;
+		ArrayList<ChildrenClass> list2 = null;
 		ArrayList<ReturnHome> rhList = null;
-		KinderClass kc = new KinderClass();
-		if (loginUser.getClassification().equals("선생님")) {
+		int count = 0;
+		PageInfo pi = null;
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		
+		if (loginUser.getClassification().equals("원장님")) {
+			KinderClass kc = new KinderClass();
+			kc.setKinderNo(loginUser.getUserNo());
+			list1 = rhs.selectChildrenName(kc);
+			//count = rhs.countListAll(kc);
+			
+
+			pi = Pagination.getPageInfo(currentPage, count);
+			//rhList = rhs.selectMasterReturnHomeList(kc, pi);
+			
+			//rhList = rhs.selectReturnHomeList(kc);
+			
+			m.addAttribute("list", list1);
+		}else if (loginUser.getClassification().equals("선생님")) {
+			KinderClass kc = new KinderClass();
 			kc.setTeacherNo(loginUser.getUserNo());
-			list = rhs.selectChildrenName(kc);
+			list1 = rhs.selectChildrenName(kc);
+			count = rhs.countListAll(kc);
 			
-			rhList = rhs.selectReturnHomeList(list);
+
+			pi = Pagination.getPageInfo(currentPage, count);
+			rhList = rhs.selectReturnHomeList(kc, pi);
 			
+			//rhList = rhs.selectReturnHomeList(kc);
+			
+			m.addAttribute("list", list1);
+		}else if (loginUser.getClassification().equals("학부모")) {
+			ChildrenClass cc = new ChildrenClass();
+			cc.setUserNo(loginUser.getUserNo());
+			list2 = rhs.selectParentChildrens(cc);
+			count = rhs.partentsCountList(cc);
+			System.out.println("count!! " + count);
+
+			pi = Pagination.getPageInfo(currentPage, count);
+			rhList = rhs.selectParentsReturnHomeList(cc, pi);
+			
+			//rhList = rhs.selectParentsReturnHomeList(cc);
+			
+			m.addAttribute("list", list2);
 		}
 		
 		
-		
-		
-		
-		
-		
-		m.addAttribute("list", list);
+		System.out.println(rhList.size());
+		m.addAttribute("pi", pi);
+		m.addAttribute("rhList", rhList);
 		return "returnHome/returnHomeList";
 	}
 
@@ -75,4 +119,11 @@ public class ReturnHomeController {
 		
 	}
 
+	@RequestMapping(value = "selectReturnHomeDetail.rh")
+	public String selectReturnHomeDetail(@RequestParam(value="homeNo") int homeNo, Model m) {
+		ArrayList<ReturnHome> rhList = rhs.selectReturnHomeDetail(homeNo);
+		System.out.println("리스트 출력" + rhList);
+		m.addAttribute("rhList", rhList.get(0));
+		return "returnHome/returnHomeDetail";
+	}
 }
