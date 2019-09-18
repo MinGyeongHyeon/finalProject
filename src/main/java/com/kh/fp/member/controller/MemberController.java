@@ -475,6 +475,10 @@ public class MemberController {
 			
 			int result = ms.insertTeacherphoto(at);
 			
+			Member teacher = ms.teacherAt(mb);
+			
+			model.addAttribute("teacher" , teacher);
+			
 			
 			
 			
@@ -485,7 +489,7 @@ public class MemberController {
 		}
 		
 		
-		return "";
+		return "join/searchGarden";
 	}
 	
 	
@@ -586,16 +590,7 @@ public class MemberController {
 		return"kingteacher/childrenmanagement";
 	}
 	
-	@RequestMapping(value="teacherAt.me")
-	public String teacherAt(Member m ,Model model) {
-		
-		Member teacher = ms.teacherAt(m);
-		
-		model.addAttribute("teacher" , teacher);
-		
-		
-		return "join/searchGarden";
-	}
+
 	
 	
 	@RequestMapping(value="phoneMe.me")

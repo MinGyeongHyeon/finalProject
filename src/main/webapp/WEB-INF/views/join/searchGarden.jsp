@@ -207,7 +207,7 @@ input,select{
 										
 										alert("승인 요청이 완료 되었습니다!");
 										
-										location.href="loinPage.pl";
+										location.href="loginPage.pl";
 										
 									}
 								});

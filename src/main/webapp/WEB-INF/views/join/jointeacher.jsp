@@ -52,7 +52,7 @@ margin:0 auto;
 
 <form method="post" enctype="multipart/form-data" action="teacherjoin.me">
 
-<input type="hidden" value="10" name="userNo"/>
+<input type="hidden" value="${ select.userNo }" name="userNo"/>
 
 	<table align="center">
 		<tr>
