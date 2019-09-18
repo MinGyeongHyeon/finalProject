@@ -1,13 +1,18 @@
 package com.kh.fp.homework.model.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fp.homework.model.dao.HomeWorkDao;
 import com.kh.fp.homework.model.exception.HomeWorkException;
+import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
+import com.kh.fp.returnHome.model.vo.ChildrenClass;
 
 @Service
 public class HomeworkServiceImpl implements HomeworkService{
@@ -45,9 +50,7 @@ public class HomeworkServiceImpl implements HomeworkService{
 		
 		int BoardNo = hd.selectBoardNum(sqlSession,at);
 		
-		at.setBoardNo(BoardNo);
-		
-		
+		at.setBaordNo(BoardNo);
 		
 		int insertAt = hd.insertAt(sqlSession,at);
 		
@@ -55,11 +58,22 @@ public class HomeworkServiceImpl implements HomeworkService{
 	}
 
 	@Override
-	public int selectClassNum(int userNo) {
+	public int selectClassNum(int userNo2) {
 		
-		int classNum = hd.selectClassNum(sqlSession,userNo);
+		int classNum = hd.selectClassNum(sqlSession,userNo2);
 		
 		return classNum;
+	}
+
+	@Override
+	public ArrayList<HomeWorkChildren> selectChildren(int userNo2) {
+		
+		ArrayList<HomeWorkChildren> list = null;
+		
+		list = hd.selectChildrenName(sqlSession,userNo2);
+		
+		System.out.println(list + "리스트");
+		return list;
 	}
 
 

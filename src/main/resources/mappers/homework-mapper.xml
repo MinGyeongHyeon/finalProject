@@ -5,47 +5,72 @@
 
 <mapper namespace="homework">
 	<resultMap type="homework" id="homeworkResultSet">
-		<id property="boardNum" column="BOARD_NO"/>
-		<result property="boardTitle" column="BOARD_TITLE"/>
-		<result property="boardContent" column="BOARD_CONTENT"/>
-		<result property="writeDate" column="BOARD_DATE"/>
-		<result property="boardtype" column="BOARD_TYPE"/>
-		<result property="classNum" column="CLASS_NO"/>
-	    <result property="childrenNo" column="CHILDREN_NO"/>
-		<result property="kinderNo" column="KINDER_NO"/>
- 		<result property="individualContent" column="ANNOUNCEMENT_CONTENT"/>
-		<result property="writer" column="WRITER"/>
+		<id property="boardNum" column="BOARD_NO" />
+		<result property="boardTitle" column="BOARD_TITLE" />
+		<result property="boardContent" column="BOARD_CONTENT" />
+		<result property="writeDate" column="BOARD_DATE" />
+		<result property="boardtype" column="BOARD_TYPE" />
+		<result property="classNum" column="CLASS_NO" />
+		<result property="childrenNo" column="CHILDREN_NO" />
+		<result property="kinderNo" column="KINDER_NO" />
+		<result property="individualContent"
+			column="ANNOUNCEMENT_CONTENT" />
+		<result property="writer" column="WRITER" />
+	</resultMap>
+
+	<resultMap type="HomeWorkChildren" id="childrenNatt">
+		<result property="childrenName" column="CHILDREN_NAME" />
+		<result property="fileName" column="CHANGE_NAME" />
+		<result property="childrenNo" column="CHILDREN_NO" />
 	</resultMap>
 
 	<insert id="insertHomeWork" parameterType="homework">
-		INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle},#{boardContent},#{writeDate},#{boardtype},
+		INSERT INTO BOARD
+		VALUES(SEQ_BOARD_NO.NEXTVAL,
+		#{boardTitle},#{boardContent},#{writeDate},#{boardtype},
 		#{classNum},NULL,#{kinderNo},'N',#{writer})
 	</insert>
-	
+
 	<select id="selectClassNum" resultType="_int">
-	SELECT COUNT(*)
-	FROM KINDER_CLASS S
-	WHERE (S.KINDER_NO,S.CLASS_NAME,S.OPENED_DATE) IN 
-        (SELECT KINDER_NO,CLASS_NAME,OPENED_DATE
-        FROM KINDER_CLASS K
-        WHERE K.CHILDREN_NO = (SELECT CHILDREN_NO
-        FROM CHILDREN C
-        JOIN USERS U ON U.USER_NO = C.USER_NO
-        WHERE U.USER_NO=#{userNo}))
+		SELECT COUNT(*)
+		FROM
+		KINDER_CLASS S
+		WHERE (S.KINDER_NO,S.CLASS_NAME,S.OPENED_DATE) IN
+		(SELECT KINDER_NO,CLASS_NAME,OPENED_DATE
+		FROM KINDER_CLASS K
+		WHERE
+		K.TEACHER_NO = #{userNo2})
 	</select>
-	
+
 	<select id="selectPeople" resultType="_int">
-		SELECT COUNT(CHILDREN_NO)FROM CHILDREN_KIND WHERE CHILDREN_NO = #{classNum}	
+		SELECT
+		COUNT(CHILDREN_NO)FROM CHILDREN_KIND WHERE CHILDREN_NO = #{classNum}
 	</select>
-	
+
 	<select id="selectNum" resultType="_int">
-		SELECT SEQ_BOARD_NO.CURRVAL FROM DUAL
+		SELECT SEQ_BOARD_NO.CURRVAL
+		FROM DUAL
 	</select>
-	
-	<insert id = "insertAt">
-		INSERT INTO ATTACHMENT
-		VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , #{boardNo},null,null,null,null,null,null,#{userNo} )
-	
-	</insert>
+
+	<select id="selectChildren" resultType="_int">
+		SELECT
+		SEQ_BOARD_NO.CURRVAL FROM DUAL
+	</select>
+
+	<select id="selectChildrenNatt" resultMap="childrenNatt">
+		SELECT C.CHILDREN_NAME,C.CHILDREN_NO,A.CHANGE_NAME
+		FROM CHILDREN C
+		JOIN USERS U ON U.USER_NO = C.USER_NO
+		LEFT OUTER JOIN ATTACHMENT A ON U.USER_NO = A.USER_NO
+		WHERE C.CHILDREN_NO IN (SELECT C.CHILDREN_NO
+		FROM KINDER_CLASS C
+		WHERE (KINDER_NO,CLASS_NAME,OPENED_DATE) IN
+		( SELECT K.KINDER_NO,K.CLASS_NAME,K.OPENED_DATE
+		FROM KINDER_CLASS K
+		JOIN USERS U ON K.TEACHER_NO = U.USER_NO
+		WHERE K.TEACHER_NO = #{userNo2})
+		AND C.DIVISION = '원생')
+	</select>
+
 </mapper>
 

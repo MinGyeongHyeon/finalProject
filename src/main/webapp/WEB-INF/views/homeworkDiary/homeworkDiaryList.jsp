@@ -98,6 +98,7 @@
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" id="firstContentArea">
+	<input type="text" id="userNo2" value="${ loginUser.userNo }" hidden>
 		<div class="pageName">
 			<table width=100%;>
 				<tr>
@@ -171,7 +172,15 @@
 		}
 		
 		function goSomeoneWrite(){
-			location.href = "howmanypeopleinClass.ih";
+			var userNo2 = $('#userNo2').val()
+			
+			location.href = "howmanypeopleinClass.ih?userNo2="+userNo2;
+		}
+		
+		function goWhoAreYou(){
+			var userNo2 = $('#userNo2').val()
+			
+			location.href = "peopleinClass.ih?userNo2="+userNo2;
 		}
 	</script>
 	<!--  <c:set var = "member" value="${sessionScope.loginUser}"/>-->
