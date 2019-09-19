@@ -240,6 +240,12 @@ public class PageLinkServlet {
 		
 		return "join/findPwd3";
 	}
+	
+	@RequestMapping(value="kindermenu.pl")
+	public String kindermenu() {
+		
+		return "kingteacher/menumanagement";
+	}
 		
 	 
 	 

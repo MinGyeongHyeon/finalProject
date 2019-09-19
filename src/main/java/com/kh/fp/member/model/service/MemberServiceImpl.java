@@ -17,6 +17,7 @@ import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.OnOff;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Service
@@ -306,6 +307,18 @@ public class MemberServiceImpl implements MemberService{
 	public int insertTeacherphoto(Attachment at) {
 
 		return md.insertTeacherphoto(sqlSession,at);
+	}
+
+	@Override
+	public int classonoff(KinderGarden kg) {
+
+		return md.classonoff(sqlSession,kg);
+	}
+
+	@Override
+	public OnOff selectOnOff(Member loginUser) {
+
+		return md.selectOnOff(sqlSession, loginUser);
 	}
 
 

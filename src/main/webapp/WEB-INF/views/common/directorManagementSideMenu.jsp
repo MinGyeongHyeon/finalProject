@@ -73,7 +73,9 @@ font-family: 'Sunflower', sans-serif;
 				</tr>
 				<tr>
 					<td>
+						<form action="kindermenu.pl">
 						<button class="btn btn-info" style="width:100%">메뉴 관리</button><br />
+						</form>
 						<p></p>
 					</td>
 				</tr>

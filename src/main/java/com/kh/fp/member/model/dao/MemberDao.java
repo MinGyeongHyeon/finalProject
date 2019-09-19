@@ -12,6 +12,7 @@ import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.OnOff;
 import com.kh.fp.note.model.vo.PageInfo;
 
 public interface MemberDao {
@@ -95,6 +96,10 @@ public interface MemberDao {
 	Attachment childrenAt(SqlSessionTemplate sqlSession, Member loginUser);
 
 	int insertTeacherphoto(SqlSessionTemplate sqlSession, Attachment at);
+
+	int classonoff(SqlSessionTemplate sqlSession, KinderGarden kg);
+
+	OnOff selectOnOff(SqlSessionTemplate sqlSession, Member loginUser);
 
 	
 
