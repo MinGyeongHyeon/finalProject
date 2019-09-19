@@ -100,7 +100,7 @@ color:white;
 		</c:forEach>
 		</select>
 	</td>
-	<td><button class="btn" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn">거절</button></td>
+	<td><button class="btn btnaccept" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn">거절</button></td>
 	<td><input type="hidden" class="teacherNo" value="${ i.teacherNo }"/></td>
 	</tr>
 		</c:forEach>
@@ -110,7 +110,6 @@ color:white;
 	<div class="container" align="center" style="width:50%;">
   <ul class="pagination">
  
-    
     <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 			<c:if test="${ p eq pi.currentPage }">
 			
@@ -123,6 +122,7 @@ color:white;
 			</c:if>
 		
 		</c:forEach>
+ 
   </ul>
 </div>
 	
@@ -174,7 +174,7 @@ color:white;
 	
 	<script>
 		
-		$('.btn').click(function(){
+		$('.btnaccept').click(function(){
 	
 		var kinderNo = $('#kinderNo').val();
 		var teacherNo = $(this).parent().next().children().val();

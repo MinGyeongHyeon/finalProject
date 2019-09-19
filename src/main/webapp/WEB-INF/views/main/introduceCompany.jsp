@@ -5,6 +5,7 @@
 <html>
 <head>
 <link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -97,6 +98,13 @@ h1,h2{
 	height:80%;
 	width:80%;
 }
+
+body{
+
+font-family: 'Sunflower', sans-serif;
+
+}
+
 
 </style>
 </head>

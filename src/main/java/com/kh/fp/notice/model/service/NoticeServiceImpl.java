@@ -81,7 +81,6 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		ArrayList<Notice>list = nd.selectBoardList(sqlSession,pi,noticeWho);
 
-		System.out.println("서비스"+list);
 		
 		return list;
 	}

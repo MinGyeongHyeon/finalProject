@@ -21,7 +21,7 @@ public class NoticeDaoImpl implements NoticeDao{
 	//notice insert용
 	@Override
 	public String insertNotice(SqlSessionTemplate sqlSession, Notice n) throws NoticeException {
-		System.out.println("여기는 공지사항 다오" + n);
+	
 		String insert = "";
 		int notice = 0;
 		

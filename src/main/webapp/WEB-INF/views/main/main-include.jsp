@@ -6,6 +6,9 @@
 <html>
 <head>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>머쉬룸 시스터즈 퐈이야</title>
 <style>
@@ -14,6 +17,7 @@
 	width:100%;
 	top-margin:5%;
 	background-color:none;
+	font-family: 'Sunflower', sans-serif;
 }
 
 .homebar {
@@ -50,6 +54,11 @@ width:100%;
 .nav-link:hover{
 	background-color:pink;
 }
+body{
+
+font-family: 'Sunflower', sans-serif;
+
+}
 
 
 </style>
@@ -59,15 +68,7 @@ width:100%;
 		<c:set var="contextPath"
 			value="${ pageContext.servletContext.contextPath }"
 			scope="application" />
-	<%-- 	<div class="headermain" align="center"">
-			<br><Br>
-			<div class="homebar" style="background-image: URL(${ contextPath }/resources/images/masssinicon.png); background-size:150% 150%;">
-			</div>
-			<div class="homebar" onclick="introduce();">회사소개</div>
-			<div class="homebar" onclick="introduceservice();">서비스소개</div>
-			<div class="homebar" onclick="start();">시작하기</div>
-			<div class="homebar" onclick="login();">로그인</div>
-		</div> --%>
+
 		
 <nav class="navbar navbar-expand-sm" style="background: #fff; color:black!important; border-bottom: 1px solid blue; border-radius:5px">
 
@@ -75,16 +76,16 @@ width:100%;
 
   <ul class="navbar-nav">
     <li class="nav-item">
-      <input type="button" class="nav-link"  onclick="introduce();" value="회사소개"/>
+      <input type="button" class="nav-link btn btn-default"  onclick="introduce();" value="회사소개"/>
     </li>
     <li class="nav-item">
-      <input type="button" class="nav-link" onclick="introduceservice();" value="서비스소개"/>
+      <input type="button" class="nav-link btn btn-default" onclick="introduceservice();" value="서비스소개"/>
     </li>
 	<li class="nav-item">
-      <input type="button" class="nav-link"  value="시작하기" onclick="start();"/>
+      <input type="button" class="nav-link btn btn-default"  value="시작하기" onclick="start();"/>
     </li>
 	<li class="nav-item">
-      <input type="button" class="nav-link" onclick="login();" value="로그인"/>  
+      <input type="button" class="nav-link btn btn-default" onclick="login();" value="로그인"/>  
     </li>   
   </ul>
 </nav>

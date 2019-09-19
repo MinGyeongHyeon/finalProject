@@ -7,16 +7,22 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.kh.fp.member.model.service.MemberService;
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.Member;
 
 
 @Controller
 public class PageLinkServlet {
 	
+	@Autowired
+	private MemberService ms;
 
 
 
@@ -77,7 +83,30 @@ public class PageLinkServlet {
 	}
 
 	@RequestMapping(value="main.pl")
-	public String mainView() {
+	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model) {
+		
+		if(loginUser.getClassification().equals("원장님")) {
+			
+			int childrenCount = ms.childrenCount(loginUser);
+			int teacherCount = ms.teacherCount(loginUser);
+			int childrenCountN = ms.childrenCountN(loginUser);
+			int teacherCountN = ms.teacherCountN(loginUser);
+			
+			model.addAttribute("childrenCount", childrenCount);
+			model.addAttribute("teacherCount",teacherCount);
+			model.addAttribute("childrenCountN", childrenCountN);
+			model.addAttribute("teacherCountN",teacherCountN);
+	
+		}else if(loginUser.getClassification().equals("선생님")) {
+				
+				int childrenCount = ms.childrenCount(loginUser);
+				int childrenCountN = ms.childrenCountN(loginUser);
+				
+				model.addAttribute("childrenCount", childrenCount);
+				model.addAttribute("childrenCountN", childrenCountN);
+				
+		}
+		
 
 		return "main/parentsMain";
 	}
