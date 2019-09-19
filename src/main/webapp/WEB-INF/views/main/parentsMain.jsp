@@ -151,7 +151,6 @@
 
 	
 		<div class="main-panel">
-				<a href="payPage.pa">결제test</a>
 			<table style="margin:0 suto; width:100%;">
 				<tr class="firstTr">
 					<td colspan="3">
