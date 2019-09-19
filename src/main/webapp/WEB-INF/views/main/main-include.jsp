@@ -94,7 +94,7 @@ font-family: 'Sunflower', sans-serif;
 				
 			}
 			function introduceservice() {
-				
+				location.href='introduceService.pl';
 			}
 			function start() {
 				
