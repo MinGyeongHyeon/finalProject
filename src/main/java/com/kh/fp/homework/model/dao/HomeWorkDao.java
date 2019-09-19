@@ -24,5 +24,7 @@ public interface HomeWorkDao {
 
 	ArrayList<HomeWorkChildren> selectChildrenName(SqlSessionTemplate sqlSession, int userNo2);
 
+	String selectClassName(SqlSessionTemplate sqlSession, int userNo2);
+
 
 }

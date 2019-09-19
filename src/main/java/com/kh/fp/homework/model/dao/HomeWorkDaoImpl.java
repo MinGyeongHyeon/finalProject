@@ -50,7 +50,9 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 
 	@Override
 	public int insertAt(SqlSessionTemplate sqlSession, Attachment at) {
-
+		
+		System.out.println("at"+at);
+		
 		int insertAt = sqlSession.insert("homework.insertAt",at);
 		
 		return insertAt;
@@ -79,6 +81,14 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 		System.out.println(list + "zizi");
 		
 		return list;
+	}
+
+	@Override
+	public String selectClassName(SqlSessionTemplate sqlSession, int userNo2) {
+
+		String className = sqlSession.selectOne("homework.selectChildrenName",userNo2);
+		System.out.println(className);
+		return className;
 	}
 
 

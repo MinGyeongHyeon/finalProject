@@ -50,7 +50,7 @@ public class HomeworkServiceImpl implements HomeworkService{
 		
 		int BoardNo = hd.selectBoardNum(sqlSession,at);
 		
-		at.setBaordNo(BoardNo);
+		at.setBoardNo(BoardNo);
 		
 		int insertAt = hd.insertAt(sqlSession,at);
 		
@@ -74,6 +74,13 @@ public class HomeworkServiceImpl implements HomeworkService{
 		
 		System.out.println(list + "리스트");
 		return list;
+	}
+
+	@Override
+	public String selectClassName(int userNo2) {
+		String ClassName = hd.selectClassName(sqlSession,userNo2);
+		
+		return ClassName;
 	}
 
 

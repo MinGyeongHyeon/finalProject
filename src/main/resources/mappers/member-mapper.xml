@@ -75,7 +75,7 @@
 		<result property="updateDate" column="UPDATE_DATE"/>
 		<result property="attachType" column="ATTACH_TYPE"/>
 		<result property="fileLevel" column="FILE_LEVEL"/>
-		<result property="baordNo" column="BOARD_NO"/>
+		<result property="boardNo" column="BOARD_NO"/>
 		<result property="albumNo" column="ALBUM_NO"/>
 		<result property="ntboardNo" column="NTBOARD_NO"/>
 		<result property="mealNo" column="MEAL_NO"/>

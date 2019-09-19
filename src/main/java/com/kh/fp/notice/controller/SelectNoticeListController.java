@@ -61,6 +61,7 @@ public class SelectNoticeListController {
 		}
 		
 		NoticeWho baby = (NoticeWho)selectWho.get(0);
+		System.out.println(baby);
 		
 		int classNum = baby.getClassNum();
 		int kinderNum = baby.getKinderNum();
