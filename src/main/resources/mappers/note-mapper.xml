@@ -6,102 +6,120 @@
 <mapper namespace="Note">
 
 	<resultMap type="noteKindergarden" id="noteKindergarden">
-  		<id property="kinderNo" column="KINDER_NO"/>
-  		<result property="kinderName" column="KINDER_NAME"/>
-  		<result property="kinderPhone" column="KINDER_PHONE"/>
-  		<result property="kinderAddress" column="KINDER_ADDRESS"/>
+		<id property="kinderNo" column="KINDER_NO" />
+		<result property="kinderName" column="KINDER_NAME" />
+		<result property="kinderPhone" column="KINDER_PHONE" />
+		<result property="kinderAddress" column="KINDER_ADDRESS" />
 
-  		<association property="Users" javaType="Users">
-  			<id property="userNo" column="USER_NO"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="userPwd" column="USER_PWD"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="email" column="EMAIL"/>
-		<result property="phone" column="PHONE"/>
-	    <result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="deleteDate" column="DELETE_DATE"/>
-		<result property="deleteReason" column="DELETE_REASON"/>
-		<result property="status" column="STATUS"/>
-		<result property="classification" column="CLASSIFICATION"/>
-  		</association>
-  	</resultMap>
+		<association property="Users" javaType="Users">
+			<id property="userNo" column="USER_NO" />
+			<result property="userId" column="USER_ID" />
+			<result property="userPwd" column="USER_PWD" />
+			<result property="userName" column="USER_NAME" />
+			<result property="email" column="EMAIL" />
+			<result property="phone" column="PHONE" />
+			<result property="enrollDate" column="ENROLL_DATE" />
+			<result property="deleteDate" column="DELETE_DATE" />
+			<result property="deleteReason" column="DELETE_REASON" />
+			<result property="status" column="STATUS" />
+			<result property="classification" column="CLASSIFICATION" />
+		</association>
+	</resultMap>
 
-  	<resultMap type="Note" id="Note">
-  		<id property="noteNo" column="NOTE_NO"/>
-  		<result property="noteTitle" column="NOTE_TITLE"/>
-  		<result property="noteContent" column="NOTE_CONTENT"/>
-  		<result property="noteDate" column="NOTE_DATE"/>
-  		<result property="receiveNo" column="RECEIVE_NO"/>
-  		<result property="sendNo" column="SEND_NO"/>
-  		<result property="status" column="STATUS"/>
+	<resultMap type="Note" id="Note">
+		<id property="noteNo" column="NOTE_NO" />
+		<result property="noteTitle" column="NOTE_TITLE" />
+		<result property="noteContent" column="NOTE_CONTENT" />
+		<result property="noteDate" column="NOTE_DATE" />
+		<result property="receiveNo" column="RECEIVE_NO" />
+		<result property="sendNo" column="SEND_NO" />
+		<result property="status" column="STATUS" />
 
-  		<association property="Users" javaType="Users">
-  		<id property="userNo" column="USER_NO"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="userPwd" column="USER_PWD"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="email" column="EMAIL"/>
-		<result property="phone" column="PHONE"/>
-	    <result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="deleteDate" column="DELETE_DATE"/>
-		<result property="deleteReason" column="DELETE_REASON"/>
-		<result property="status" column="STATUS"/>
-		<result property="classification" column="CLASSIFICATION"/>
-  		</association>
+		<association property="Users" javaType="Users">
+			<id property="userNo" column="USER_NO" />
+			<result property="userId" column="USER_ID" />
+			<result property="userPwd" column="USER_PWD" />
+			<result property="userName" column="USER_NAME" />
+			<result property="email" column="EMAIL" />
+			<result property="phone" column="PHONE" />
+			<result property="enrollDate" column="ENROLL_DATE" />
+			<result property="deleteDate" column="DELETE_DATE" />
+			<result property="deleteReason" column="DELETE_REASON" />
+			<result property="status" column="STATUS" />
+			<result property="classification" column="CLASSIFICATION" />
+		</association>
 
-  		<association property="noteKindergarden" javaType="noteKindergarden">
-  		<id property="kinderNo" column="KINDER_NO"/>
-  		<result property="kinderName" column="KINDER_NAME"/>
-  		<result property="kinderPhone" column="KINDER_PHONE"/>
-  		<result property="kinderAddress" column="KINDER_ADDRESS"/>
-  		</association>
-  	</resultMap>
+		<association property="noteKindergarden"
+			javaType="noteKindergarden">
+			<id property="kinderNo" column="KINDER_NO" />
+			<result property="kinderName" column="KINDER_NAME" />
+			<result property="kinderPhone" column="KINDER_PHONE" />
+			<result property="kinderAddress" column="KINDER_ADDRESS" />
+		</association>
+	</resultMap>
 
 
-  	<select id="selectKinderArr" parameterType="noteKindergarden" resultMap="noteKindergarden">
-  		SELECT U.USER_NO, U.USER_NAME, K.KINDER_NO, K.KINDER_NAME, K.KINDER_ADDRESS
-  		FROM USERS U
-  		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
-  	</select>
+	<select id="selectKinderArr" parameterType="noteKindergarden"
+		resultMap="noteKindergarden">
+		SELECT U.USER_NO, U.USER_NAME, K.KINDER_NO, K.KINDER_NAME, K.KINDER_ADDRESS
+		FROM USERS U
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+	</select>
 
-  	<!-- 리스트 카운트 조회용 쿼리문 -->
-	<select id="selectListCount" resultType="_int">
+	<!-- 리스트 카운트 조회용 쿼리문 -->
+	<select id="selectListCount" parameterType="Note" resultType="_int">
 		SELECT COUNT(*)
-		FROM NOTEBOX
-		WHERE STATUS='N'
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.STATUS = 'N'
+		ORDER BY N.NOTE_NO DESC
 	</select>
 
 	<!-- 페이징 처리 후 보낸 쪽지함 리스트 조회용 쿼리문 -->
 	<select id="selectSentNoteList" parameterType="Note" resultMap="Note">
-		<!-- SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME
-		FROM NOTEBOX N
-		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-        WHERE N.STATUS = 'N'
-		ORDER BY N.NOTE_NO DESC -->
+		<!-- SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME FROM
+			NOTEBOX N JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO) WHERE N.STATUS = 'N'
+			ORDER BY N.NOTE_NO DESC -->
 
-		SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME, K.KINDER_NAME
+		SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME,
+		K.KINDER_NAME
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-        JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
-        WHERE N.STATUS = 'N'
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.STATUS = 'N'
 		ORDER BY N.NOTE_NO DESC
-  	</select>
+	</select>
 
 	<!-- 보낸 쪽지함 상세보기 -->
-  	<select id="selectSentNoteOne" parameterType="_int" resultMap="Note">
-  		SELECT *
-  		FROM NOTEBOX N
-  		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-  		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
-  		WHERE N.NOTE_NO = #{noteNo}
-  		AND N.STATUS = 'N'
-  	</select>
+	<select id="selectSentNoteOne" parameterType="_int"
+		resultMap="Note">
+		SELECT *
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.NOTE_NO = #{noteNo}
+		AND N.STATUS = 'N'
+	</select>
 
-  	<!-- 보낸 쪽지함 상세보기에서 삭제하기 -->
-  	<update id="deleteSentNoteOne">
-  		UPDATE NOTEBOX
+	<!-- 보낸 쪽지함 상세보기에서 삭제하기 -->
+	<update id="deleteSentNoteOne">
+		UPDATE NOTEBOX
 		SET STATUS = 'Y'
 		WHERE NOTE_NO = #{noteNo}
-  	</update>
+	</update>
+
+	<update id="deleteSentNotes">
+		UPDATE NOTEBOX
+		SET STATUS = 'Y'
+		WHERE NOTE_NO IN (#{noteNo})
+	</update>
+
+	<!-- 쪽지보내기 -->
+	<insert id="insertNote" parameterType="Note">
+		INSERT INTO NOTEBOX
+		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{kinderNo}, #{userNo},
+		DEFAULT, DEFAULT)
+	</insert>
 
 </mapper>

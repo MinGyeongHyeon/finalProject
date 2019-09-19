@@ -104,5 +104,20 @@ public class NoteDaoImpl implements NoteDao{
 		return result;
 	}
 
+	//쪽지보내기
+	@Override
+	public int insertNote(SqlSessionTemplate sqlSession, int kinderNo) throws NoteException {
+
+		int result = sqlSession.insert("Note.insertNote", kinderNo);
+
+		System.out.println(result);
+
+		if(result == 0) {
+			throw new NoteException("쪽지 보내기 실패!");
+		}
+
+		return result;
+	}
+
 
 }

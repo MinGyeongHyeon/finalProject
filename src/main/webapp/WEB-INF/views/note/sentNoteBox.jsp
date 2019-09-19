@@ -14,7 +14,7 @@
 		<div class="content">
 			<div class="page-inner">
 				<div class="page-header">
-					<i class="fas fa-envelope-open-text" style="font-size: 20px;"></i>&nbsp;&nbsp;
+					<i class="far fa-envelope" style="font-size: 20px;"></i>&nbsp;&nbsp;
 					<h4 class="page-title">보낸 쪽지함</h4>
 				</div>
 				<hr>
@@ -52,7 +52,7 @@
 						<tbody>
 							<c:forEach var="nList" items="${ nList }">
 								<tr>
-									<td id="checkA"><input type="checkbox" name="chk" value="${ nList.noteNo }"></td>
+									<td id="checkA"><input type="checkbox" name="chk" class="noteNo" value="${ nList.noteNo }"></td>
 									<input type="hidden" id="nidA" value="${ nList.noteNo }">
 									<%-- <td><input type="hidden" id="nidA" value="${ nList.noteNo }"></td> --%>
 									<%-- <td id="nidA"><c:out value="${ nList.noteNo }"/></td> --%>
@@ -134,6 +134,27 @@
 				console.log(noteNo);
 
 				location.href="selectSentNoteOne.nt?noteNo=" + noteNo;
+			});
+
+			var noteNo = Array();
+
+			$("#btn1").click(function(){
+				$("input:checkbox[class=noteNo]:checked").each(function(index){
+					noteNo[index] = $(this).val();
+				});
+				console.log(noteNo);
+
+				if(!noteNo){
+					alert("삭제할 쪽지를 선택해 주세요.");
+					return;
+				}
+
+				var agree = confirm("삭제 하시겠습니까?");
+				if(agree){
+
+				}
+
+				location.href="deleteSentNotes.nt";
 			});
 
 

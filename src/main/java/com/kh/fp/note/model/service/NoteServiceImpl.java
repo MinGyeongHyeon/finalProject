@@ -59,4 +59,17 @@ public class NoteServiceImpl implements NoteService{
 		return nd.deleteSentNoteOne(sqlSession, noteNo);
 	}
 
+
+	//쪽지 보내기
+	@Override
+	public int insertNote(int kinderNo) throws NoteException {
+		return nd.insertNote(sqlSession, kinderNo);
+	}
+
+	//보낸 쪽지함 여러개 삭제
+//	@Override
+//	public int deleteSentNotes(String noteNo) {
+//		return nd.deleteSentNotes(sqlSession, noteNo);
+//	}
+
 }

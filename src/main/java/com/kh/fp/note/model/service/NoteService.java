@@ -25,4 +25,10 @@ public interface NoteService {
 	//보낸 쪽지함 상세보기에서 삭제하기
 	int deleteSentNoteOne(int noteNo) throws NoteException;
 
+	//쪽지 보내기
+	int insertNote(int kinderNo)  throws NoteException;
+
+	//보낸 쪽지함 여러개 삭제
+	//int deleteSentNotes(String noteNo);
+
 }
