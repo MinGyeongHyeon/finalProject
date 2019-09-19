@@ -29,18 +29,18 @@ public class NoteServiceImpl implements NoteService{
 	}
 
 
-	//보낸 쪽지함 리스트 조회
+	//보낸 쪽지함 리스트 조회(관리자)
 	@Override
-	public ArrayList<Note> selectSentNoteList(PageInfo pi) throws NoteException {
+	public ArrayList<Note> selectSentNoteList(PageInfo pi, int userNo) throws NoteException {
 		System.out.println("보낸 쪽지함 서비스");
 
-		return nd.selectSentNoteList(sqlSession, pi);
+		return nd.selectSentNoteList(sqlSession, pi, userNo);
 	}
 
-	//리스트 카운트 가져오기
+	//보낸 쪽지함 관리자 리스트 카운트 가져오기
 	@Override
-	public int getListCount() {
-		return nd.getListCount(sqlSession);
+	public int getListCount(int userNo) {
+		return nd.getListCount(sqlSession, userNo);
 	}
 
 	//보낸 쪽지함 상세보기

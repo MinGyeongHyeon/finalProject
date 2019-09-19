@@ -50,7 +50,7 @@ public class NoteDaoImpl implements NoteDao{
 
 	//페이징 처리 후 보낸쪽지함 리스트
 	@Override
-	public ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi) throws NoteException {
+	public ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException {
 		System.out.println("보낸 쪽지함 dao 호출");
 
 		ArrayList<Note> nList = null;
@@ -66,10 +66,10 @@ public class NoteDaoImpl implements NoteDao{
 
 
 
-	//리스트 카운트 조회
+	//보낸 쪽지함 관리자 리스트 카운트 가져오기
 	@Override
-	public int getListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("Note.selectListCount");
+	public int getListCount(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("Note.selectListCount", userNo);
 	}
 
 	//보낸 쪽지함 상세보기

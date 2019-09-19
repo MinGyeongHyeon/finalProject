@@ -16,10 +16,10 @@ public interface NoteDao {
 	ArrayList<noteKindergarden> selectUserList(SqlSessionTemplate sqlSession) throws NoteException;
 
 	//보낸 쪽지함 리스트 조회
-	ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi) throws NoteException;
+	ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException;
 
-	//리스트 카운트 가져오기
-	int getListCount(SqlSessionTemplate sqlSession);
+	//보낸 쪽지함 관리자 리스트 카운트 가져오기
+	int getListCount(SqlSessionTemplate sqlSession, int userNo);
 
 	//보낸 쪽지함 상세보기
 	Note selectSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException;

@@ -71,42 +71,16 @@
 	<select id="selectListCount" parameterType="Note" resultType="_int">
 		SELECT COUNT(*)
 		FROM NOTEBOX N
-		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
-		WHERE N.STATUS = 'N'
-		ORDER BY N.NOTE_NO DESC
-	</select>
-
-	<!-- 받은 쪽지함 리스트 카운트 조회용 쿼리문 -->
-	<select id="recieveListCount" parameterType="Note" resultType="_int">
-		SELECT COUNT(*)
-		FROM NOTEBOX N
 		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
-		WHERE N.STATUS = 'N'
-		ORDER BY N.NOTE_NO DESC
+		WHERE U.USER_NO = #{userNo}
+		AND N.STATUS = 'N'
 	</select>
 
 	<!-- 페이징 처리 후 보낸 쪽지함 리스트 조회용 쿼리문 -->
 	<select id="selectSentNoteList" parameterType="Note" resultMap="Note">
-		<!-- SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME FROM
-			NOTEBOX N JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO) WHERE N.STATUS = 'N'
-			ORDER BY N.NOTE_NO DESC -->
-
 		SELECT *
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
-		WHERE N.STATUS = 'N'
-		ORDER BY N.NOTE_NO DESC
-	</select>
-
-	<!-- 받은 쪽지함 리스트 조회용 쿼리문 -->
-	<select id="selectRecieveNoteList" parameterType="Note" resultMap="Note">
-		SELECT *
-		FROM NOTEBOX N
-		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
 		WHERE N.STATUS = 'N'
 		ORDER BY N.NOTE_NO DESC
 	</select>
@@ -141,6 +115,25 @@
 		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{kinderNo}, #{userNo},
 		DEFAULT, DEFAULT)
 	</insert>
+
+	<!-- 받은 쪽지함 리스트 카운트 조회용 쿼리문 -->
+	<select id="recieveListCount" parameterType="Note" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
+		WHERE N.STATUS = 'N'
+		ORDER BY N.NOTE_NO DESC
+	</select>
+
+	<!-- 받은 쪽지함 리스트 조회용 쿼리문 -->
+	<select id="selectRecieveNoteList" parameterType="Note" resultMap="Note">
+		SELECT *
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.STATUS = 'N'
+		ORDER BY N.NOTE_NO DESC
+	</select>
 
 	<!-- 받은 쪽지함 상세보기 -->
 	<select id="selectRecieveNoteOne" parameterType="_int"
