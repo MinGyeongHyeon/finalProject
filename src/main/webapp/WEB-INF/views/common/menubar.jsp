@@ -234,7 +234,7 @@
 											<c:if test="${ empty loginUser.email }">
 												<p class="text-muted">메일이 등록 안된 회원 </p>
 											</c:if>
-											<c:if test="${ empty loginUser.email }">											
+											<c:if test="${ empty loginUser.email }">
 											<p class="text-muted">${ loginUser.email }</p>
 											</c:if>
 											<a href="profile.html"
@@ -304,44 +304,59 @@
 							<h4 class="text-section">Components</h4>
 						</li>
 						 -->
-
+						<c:if test="${ of.announcement eq 'Y'}">
 						<li class="nav-item"><a href="Announcement.pl"> <i
 								class="fas fa-bell"></i>
 								<p>알림장</p>
 						</a></li>
+						</c:if>
+						<c:if test="${ of.boardNotice eq 'Y' }">
 					<li class="nav-item">
 						<a href="NoticeList.sn">
 						<i class="fas fa-bullhorn"></i>
 								<p>공지사항</p>
 						</a></li>
-
+						</c:if>
+						
+						<c:if test="${ of.album eq 'Y' }">
 						<li class="nav-item"><a href="album.ab"> <i class="far fa-images"></i>
 								<p>앨범</p>
 						</a></li>
+						</c:if>
 
+						<c:if test="${ of.schedule eq 'Y' }">
 						<li class="nav-item"><a href="scheduleMain.sc"> <i
 								class="far fa-calendar-alt"></i>
 								<p>일정표</p>
 						</a></li>
+						</c:if>
 
+						<c:if test="${of.meal eq 'Y' }">
 						<li class="nav-item"><a href="#charts"> <i
 								class="fas fa-utensils"></i>
 								<p>식단표</p>
 						</a></li>
-
+						</c:if>
+						
+						<c:if test="${ of.dosage eq 'Y' }">
 						<li class="nav-item"><a href="drugMainView.pl"> <i
 								class="fas fa-notes-medical"></i>
 								<p>투약의뢰서</p>
 						</a></li>
-
+						</c:if>
+			
+						<c:if test="${ of.homecoming eq 'Y' }">
 						<li class="nav-item"><a href="returnHomeMain.rh"> <i class="fas fa-child"></i>
 								<p>귀가동의서</p>
 						</a></li>
+						</c:if>
 
+						<c:if test="${ of.attendance eq 'Y' }">
 						<li class="nav-item"><a href="attendance.at"> <i
 								class="far fa-calendar-check"></i>
 								<p>출석부</p>
 						</a></li>
+						</c:if>
 
 						<li class="nav-item"><a href="#submenu"> <i
 								class="fas fa-shuttle-van"></i>
@@ -358,15 +373,14 @@
 								<p>채팅</p>
 						</a></li>
 
-						<c:if
-							test="${ loginUser.classification == '원장님' || loginUser.classification == '관리자'}">
+						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '관리자'}">
 							<li class="nav-item"><a data-toggle="collapse"
 								href="#submenu"> <i class="far fa-envelope"></i>
 									<p>쪽지함</p> <span class="caret"></span>
 							</a>
 								<div class="collapse" id="submenu">
 									<ul class="nav nav-collapse">
-										<li><a href="noteMain.pl"> <span class="sub-item">받은
+										<li><a href="recieveNoteList.nt"> <span class="sub-item">받은
 													쪽지함</span>
 										</a></li>
 										<li><a href="sentNoteList.nt"> <span class="sub-item">보낸

@@ -10,13 +10,14 @@ public class Note implements java.io.Serializable{
 	private int receiveNo;
 	private int sendNo;
 	private String status;
+	private String checked;
 	private Users Users;
 	private noteKindergarden noteKindergarden;
 
 	public Note() {}
 
 	public Note(int noteNo, String noteTitle, String noteContent, Date noteDate, int receiveNo, int sendNo,
-			String status, com.kh.fp.note.model.vo.Users users,
+			String status, String checked, com.kh.fp.note.model.vo.Users users,
 			com.kh.fp.note.model.vo.noteKindergarden noteKindergarden) {
 		super();
 		this.noteNo = noteNo;
@@ -26,6 +27,7 @@ public class Note implements java.io.Serializable{
 		this.receiveNo = receiveNo;
 		this.sendNo = sendNo;
 		this.status = status;
+		this.checked = checked;
 		Users = users;
 		this.noteKindergarden = noteKindergarden;
 	}
@@ -86,6 +88,14 @@ public class Note implements java.io.Serializable{
 		this.status = status;
 	}
 
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
 	public Users getUsers() {
 		return Users;
 	}
@@ -105,8 +115,8 @@ public class Note implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Note [noteNo=" + noteNo + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent + ", noteDate="
-				+ noteDate + ", receiveNo=" + receiveNo + ", sendNo=" + sendNo + ", status=" + status + ", Users="
-				+ Users + ", noteKindergarden=" + noteKindergarden + "]";
+				+ noteDate + ", receiveNo=" + receiveNo + ", sendNo=" + sendNo + ", status=" + status + ", checked="
+				+ checked + ", Users=" + Users + ", noteKindergarden=" + noteKindergarden + "]";
 	}
 
 

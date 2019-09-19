@@ -34,6 +34,7 @@
 		<result property="receiveNo" column="RECEIVE_NO" />
 		<result property="sendNo" column="SEND_NO" />
 		<result property="status" column="STATUS" />
+		<result property="checked" column="CHECKED" />
 
 		<association property="Users" javaType="Users">
 			<id property="userNo" column="USER_NO" />
@@ -66,11 +67,21 @@
 		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
 	</select>
 
-	<!-- 리스트 카운트 조회용 쿼리문 -->
+	<!-- 보낸 쪽지함 리스트 카운트 조회용 쿼리문 -->
 	<select id="selectListCount" parameterType="Note" resultType="_int">
 		SELECT COUNT(*)
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.STATUS = 'N'
+		ORDER BY N.NOTE_NO DESC
+	</select>
+
+	<!-- 받은 쪽지함 리스트 카운트 조회용 쿼리문 -->
+	<select id="recieveListCount" parameterType="Note" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
 		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
 		WHERE N.STATUS = 'N'
 		ORDER BY N.NOTE_NO DESC
@@ -82,10 +93,19 @@
 			NOTEBOX N JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO) WHERE N.STATUS = 'N'
 			ORDER BY N.NOTE_NO DESC -->
 
-		SELECT NOTE_NO, NOTE_TITLE, NOTE_CONTENT, NOTE_DATE, U.USER_NAME,
-		K.KINDER_NAME
+		SELECT *
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.STATUS = 'N'
+		ORDER BY N.NOTE_NO DESC
+	</select>
+
+	<!-- 받은 쪽지함 리스트 조회용 쿼리문 -->
+	<select id="selectRecieveNoteList" parameterType="Note" resultMap="Note">
+		SELECT *
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
 		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
 		WHERE N.STATUS = 'N'
 		ORDER BY N.NOTE_NO DESC
@@ -109,11 +129,11 @@
 		WHERE NOTE_NO = #{noteNo}
 	</update>
 
-	<update id="deleteSentNotes">
+<!-- 	<update id="deleteSentNotes">
 		UPDATE NOTEBOX
 		SET STATUS = 'Y'
 		WHERE NOTE_NO IN (#{noteNo})
-	</update>
+	</update> -->
 
 	<!-- 쪽지보내기 -->
 	<insert id="insertNote" parameterType="Note">
@@ -121,5 +141,30 @@
 		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{kinderNo}, #{userNo},
 		DEFAULT, DEFAULT)
 	</insert>
+
+	<!-- 받은 쪽지함 상세보기 -->
+	<select id="selectRecieveNoteOne" parameterType="_int"
+		resultMap="Note">
+		SELECT *
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.NOTE_NO = #{noteNo}
+		AND N.STATUS = 'N'
+	</select>
+
+	<!-- 받은쪽지함 상세내용 조회에서 삭제하기 -->
+	<update id="deleteRecieveNoteOne">
+		UPDATE NOTEBOX
+		SET STATUS = 'Y'
+		WHERE NOTE_NO = #{noteNo}
+	</update>
+
+	<!-- 쪽지 확인 여부 변경 -->
+	<update id="checkedYN">
+		UPDATE NOTEBOX
+		SET CHECKED = 'Y'
+		WHERE NOTE_NO = #{noteNo}
+	</update>
 
 </mapper>

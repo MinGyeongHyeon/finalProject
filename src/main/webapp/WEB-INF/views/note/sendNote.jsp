@@ -140,8 +140,7 @@
 				} else {
 					$("input[name=chk]").prop("checked", false);
 				}
-			})
-
+			});
 
 
 		});

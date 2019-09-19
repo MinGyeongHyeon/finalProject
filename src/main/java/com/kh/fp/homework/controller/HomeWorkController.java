@@ -36,7 +36,7 @@ public class HomeWorkController {
 			@RequestParam(name = "photo", required = false) MultipartFile photo) {
 
 		int userNo = loginUser.getUserNo();
-
+		System.out.println("로그인유저"+loginUser);
 		h.setBoardtype("알림장");
 		h.setKinderNo(1);
 		h.setClassNum(2);
@@ -96,11 +96,12 @@ public class HomeWorkController {
 	
 	@RequestMapping(value = "homeWorkIndiWrite.hw")
 	public String homeWorkIndiWrite(homework h, Model model, HttpServletRequest request,
-			@ModelAttribute("loginUser") Member loginUser,
+			@ModelAttribute("loginUser") Member teacherKing,
 			@RequestParam(name = "photo", required = false) MultipartFile photo) {
 
-		int userNo = loginUser.getUserNo();
-
+		int userNo = teacherKing.getUserNo();
+		System.out.println(userNo + "개인");
+		
 		h.setBoardtype("알림장");
 		h.setKinderNo(1);
 		h.setClassNum(2);
@@ -115,10 +116,13 @@ public class HomeWorkController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(photo+"ss");
-		if (photo.getOriginalFilename() != null) {
-
-			Attachment at = new Attachment();
+		
+		System.out.println(photo.getOriginalFilename()+"ss");
+		
+		if (!photo.getOriginalFilename().equals("")) {
+			
+			System.out.println("사진입니다.");
+			Attachment at = new Attachment();	
 
 			String root = request.getSession().getServletContext().getRealPath("resources");
 
@@ -153,8 +157,15 @@ public class HomeWorkController {
 		} else {
 
 		}
-
-		return "homeworkDiary/homeworkDiaryList";
+		
+		int userNo2 = teacherKing.getUserNo();
+		
+		System.out.println("userNo2" + userNo2);
+		
+		
+		
+		
+		return "redirect:/howmanypeopleinClass.ih";
 
 	}
 	

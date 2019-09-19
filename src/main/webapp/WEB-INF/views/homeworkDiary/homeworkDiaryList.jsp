@@ -172,15 +172,13 @@
 		}
 		
 		function goSomeoneWrite(){
-			var userNo2 = $('#userNo2').val()
 			
-			location.href = "howmanypeopleinClass.ih?userNo2="+userNo2;
+			location.href = "WriteIndi.pl";
 		}
 		
 		function goWhoAreYou(){
-			var userNo2 = $('#userNo2').val()
-			
-			location.href = "peopleinClass.ih?userNo2="+userNo2;
+
+			location.href="WriteAnnounce.pl";
 		}
 	</script>
 	<!--  <c:set var = "member" value="${sessionScope.loginUser}"/>-->

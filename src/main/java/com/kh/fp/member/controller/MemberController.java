@@ -52,10 +52,11 @@ import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.OnOff;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Controller
-@SessionAttributes({"loginUser","teacherKing" ,"childrenKing" , "at"})
+@SessionAttributes({"loginUser","teacherKing" ,"childrenKing" , "at" , "of"})
 public class MemberController {
 	
 	
@@ -119,6 +120,8 @@ public class MemberController {
 			
 			Attachment at = ms.childrenAt(loginUser);
 			
+			OnOff of = ms.selectOnOff(loginUser);
+			
 			if(loginUser.getClassification().equals("원장님")) {
 				
 				int childrenCount = ms.childrenCount(loginUser);
@@ -134,8 +137,6 @@ public class MemberController {
 				
 			}else if(loginUser.getClassification().equals("선생님")) {
 				
-				
-				
 				int teacherYn = ms.teacherYn(loginUser);
 				
 				if(teacherYn > 0) {
@@ -143,8 +144,6 @@ public class MemberController {
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
 					loginUser.setUserNo(teacherKing.getKinderNo());
-					
-					System.out.println("여기에 뭐가 담겨있니 ? : " + teacherKing);
 					
 					int childrenCount = ms.childrenCount(loginUser);
 					int childrenCountN = ms.childrenCountN(loginUser);
@@ -193,7 +192,9 @@ public class MemberController {
 				//return "redirect:companyList.ad";
 			}
 			
+			System.out.println("받아온 온오프 : " + of);
 			
+			model.addAttribute("of",of);
 			model.addAttribute("at",at);
 			model.addAttribute("loginUser",loginUser);
 		
@@ -508,15 +509,16 @@ public class MemberController {
 			KinGardenClass kc = new KinGardenClass();
 			
 			kc.setKinderNo(kg.getKinderNo());
-			kc.setClassName(kg.getClassName());
+			kc.setClassName(kg.getClassName());		
 			
-			
-			
-			int insert = ms.Kinclassinsert( kc); 
+			int insert = ms.Kinclassinsert(kc); 
 			
 			ArrayList list = ms.kinclassselect(kc);
 			
 			int classinsert = ms.classinsert(list);
+			
+			int classonoff = ms.classonoff(kg);
+			
 			
 			model.addAttribute("msg" , "회원가입이 완료 되었습니다.");
 			
