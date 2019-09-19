@@ -11,6 +11,7 @@ import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.OnOff;
 import com.kh.fp.note.model.vo.PageInfo;
 
 public interface MemberService {
@@ -89,6 +90,10 @@ public interface MemberService {
 	Attachment childrenAt(Member loginUser);
 
 	int insertTeacherphoto(Attachment at);
+
+	int classonoff(KinderGarden kg);
+
+	OnOff selectOnOff(Member loginUser);
 
 
 

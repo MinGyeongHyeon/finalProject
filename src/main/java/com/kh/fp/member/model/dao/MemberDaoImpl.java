@@ -13,6 +13,7 @@ import com.kh.fp.member.model.vo.KinGardenClass;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.OnOff;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Repository
@@ -359,6 +360,22 @@ public class MemberDaoImpl implements MemberDao{
 	public int insertTeacherphoto(SqlSessionTemplate sqlSession, Attachment at) {
 
 		return sqlSession.insert("Member.insetTeacherphoto",at);
+	}
+
+
+	@Override
+	public int classonoff(SqlSessionTemplate sqlSession, KinderGarden kg) {
+
+		return sqlSession.insert("Member.classonoff",kg);
+	}
+
+
+	@Override
+	public OnOff selectOnOff(SqlSessionTemplate sqlSession, Member loginUser) {
+		
+		System.out.println("다오에서 로그인 유저 : " + loginUser);
+
+		return sqlSession.selectOne("Member.selectOnOff",loginUser);
 	}
 
 
