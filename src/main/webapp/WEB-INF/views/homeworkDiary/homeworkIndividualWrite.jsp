@@ -210,7 +210,7 @@
 		<hr />
 
 		<form action="homeWorkIndiWrite.hw" method="post" enctype="multipart/form-data">
-
+		<input type="text" id="userNo2" value="${ teacherKing.teacherNo }">
 			<div class="homeworkDiaryForm">
 				<table>
 					<tr>
