@@ -49,15 +49,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="nList" items="${ nList }">
+							<c:forEach var="rList" items="${ rList }">
 								<tr>
-									<td id="checkA"><input type="checkbox" name="chk" class="noteNo" value="${ nList.noteNo }"></td>
-									<input type="hidden" id="nidA" value="${ nList.noteNo }">
+									<input type="hidden" id="checked" value="${ rList.checked }">
+									<td id="checkA"><input type="checkbox" name="chk" class="noteNo" value="${ rList.noteNo }"></td>
+									<input type="hidden" id="nidA" value="${ rList.noteNo }">
 									<%-- <td><input type="hidden" id="nidA" value="${ nList.noteNo }"></td> --%>
 									<%-- <td id="nidA"><c:out value="${ nList.noteNo }"/></td> --%>
-									<td class="in" id="listTitle"><c:out value="${ nList.noteTitle }" /></td>
-									<td class="in"><c:out value="${ nList.users.userName }" /> ( <c:out value="${ nList.noteKindergarden.kinderName }"/> )</td>
-									<td class="in"><c:out value="${ nList.noteDate }" /></td>
+									<td class="in" id="listTitle"><c:out value="${ rList.noteTitle }" /></td>
+									<td class="in"><c:out value="${ rList.users.userName }" /> ( <c:out value="${ rList.noteKindergarden.kinderName }"/> )</td>
+									<td class="in"><c:out value="${ rList.noteDate }" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -72,7 +73,7 @@
 					<div id="paginArea" align="center">
 						<c:if test="${ pi.currentPage <= 1 }">이전 &emsp;</c:if>
 						<c:if test="${ pi.currentPage > 1 }">
-							<c:url var="blistBack" value="sentNoteList.nt">
+							<c:url var="blistBack" value="recieveNoteList.nt">
 								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 							</c:url>
 							<a href="${ blistBack }">이전</a>
@@ -84,7 +85,7 @@
 								<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
 							</c:if>
 							<c:if test="${ p ne pi.currentPage }">
-								<c:url var="blistCheck" value="sentNoteList.nt">
+								<c:url var="blistCheck" value="recieveNoteList.nt">
 									<c:param name="currentPage" value="${ p }" />
 								</c:url>
 								<a href="${ blistCheck }">${ p }</a>
@@ -93,7 +94,7 @@
 
 
 						<c:if test="${ pi.currentPage < pi.maxPage }">
-							<c:url var="blistEnd" value="sentNoteList.nt">
+							<c:url var="blistEnd" value="recieveNoteList.nt">
 								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 							</c:url>
 							<a href="${ blistEnd }">&emsp; 다음</a>
@@ -117,6 +118,13 @@
 				}
 			})
 
+			$(".in").click(function(){
+				var noteNo = $(this).parents().children("input").eq(1).val();
+
+				console.log(noteNo);
+
+				location.href="selectRecieveNoteOne.nt?noteNo=" + noteNo;
+			});
 
 
 		});

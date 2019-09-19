@@ -22,14 +22,15 @@
 					<div class="inputArea">
 
 						<select class="form-control" id="sel1">
-							<option>전체보기</option>
-							<option>별님반</option>
-							<option>티비반</option>
-						</select> &nbsp;&nbsp;&nbsp; <select class="form-control" id="sel2">
+							<option>받은사람 (유치원 명)</option>
+						</select>
+						<!--
+						&nbsp;&nbsp;&nbsp;
+ 						<select class="form-control" id="sel2">
 							<option>전체 원아보기</option>
 							<option>김영지</option>
 							<option>한송이</option>
-						</select>
+						</select> -->
 
 						<div id="dateA">
 							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">

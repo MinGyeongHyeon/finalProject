@@ -234,7 +234,7 @@
 											<c:if test="${ empty loginUser.email }">
 												<p class="text-muted">메일이 등록 안된 회원 </p>
 											</c:if>
-											<c:if test="${ empty loginUser.email }">											
+											<c:if test="${ empty loginUser.email }">
 											<p class="text-muted">${ loginUser.email }</p>
 											</c:if>
 											<a href="profile.html"
@@ -358,15 +358,14 @@
 								<p>채팅</p>
 						</a></li>
 
-						<c:if
-							test="${ loginUser.classification == '원장님' || loginUser.classification == '관리자'}">
+						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '관리자'}">
 							<li class="nav-item"><a data-toggle="collapse"
 								href="#submenu"> <i class="far fa-envelope"></i>
 									<p>쪽지함</p> <span class="caret"></span>
 							</a>
 								<div class="collapse" id="submenu">
 									<ul class="nav nav-collapse">
-										<li><a href="noteMain.pl"> <span class="sub-item">받은
+										<li><a href="recieveNoteList.nt"> <span class="sub-item">받은
 													쪽지함</span>
 										</a></li>
 										<li><a href="sentNoteList.nt"> <span class="sub-item">보낸

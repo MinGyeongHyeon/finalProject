@@ -66,6 +66,43 @@ public class NoteServiceImpl implements NoteService{
 		return nd.insertNote(sqlSession, kinderNo);
 	}
 
+	//받은 쪽지함 리스트 카운트 가져오기
+	@Override
+	public int getRecieveListCount() {
+		return nd.getRecieveListCount(sqlSession);
+	}
+
+
+	//받은 쪽지함 리스트 조회
+	@Override
+	public ArrayList<Note> selectRecieveNoteList(PageInfo pi) throws NoteException {
+		System.out.println("받은 쪽지함 서비스");
+
+		return nd.selectRecieveNoteList(sqlSession, pi);
+	}
+
+	//받은 쪽지함 상세보기
+	@Override
+	public Note selectRecieveNoteOne(int noteNo) throws NoteException {
+
+		return nd.selectRecieveNoteOne(sqlSession, noteNo);
+	}
+
+
+	//받은쪽지함 상세내용 조회에서 삭제하기
+	@Override
+	public int deleteRecieveNoteOne(int noteNo) throws NoteException {
+
+		return nd.deleteRecieveNoteOne(sqlSession, noteNo);
+	}
+
+	//쪽지 확인 여부 체크
+	@Override
+	public int checkedYN(int noteNo) throws NoteException {
+
+		return nd.checkedYN(sqlSession, noteNo);
+	}
+
 	//보낸 쪽지함 여러개 삭제
 //	@Override
 //	public int deleteSentNotes(String noteNo) {

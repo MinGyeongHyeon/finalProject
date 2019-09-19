@@ -119,5 +119,71 @@ public class NoteDaoImpl implements NoteDao{
 		return result;
 	}
 
+	//받은 쪽지함 리스트 카운드 가져오기
+	@Override
+	public int getRecieveListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("Note.recieveListCount");
+	}
+
+	//받은 쪽지함 리스트 조회
+	@Override
+	public ArrayList<Note> selectRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi) throws NoteException{
+		System.out.println("받은 쪽지함 dao 호출");
+
+		ArrayList<Note> rList = null;
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		rList = (ArrayList)sqlSession.selectList("Note.selectRecieveNoteList", null, rowBounds);
+
+		return rList;
+	}
+
+	//받은 쪽지함 상세보기
+	@Override
+	public Note selectRecieveNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
+		System.out.println("noteNo :::" + noteNo);
+
+		Note note = (Note)sqlSession.selectOne("Note.selectRecieveNoteOne", noteNo);
+
+		System.out.println("noteNo :::" + noteNo);
+		System.out.println("note :::: " + note);
+
+		if(note == null) {
+			throw new NoteException("쪽지 상세보기 실패!");
+		}
+
+		return note;
+	}
+
+	//받은쪽지함 상세내용 조회에서 삭제하기
+	@Override
+	public int deleteRecieveNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
+		int result = sqlSession.update("Note.deleteRecieveNoteOne", noteNo);
+
+		System.out.println("result :::" + result);
+
+		if(result == 0) {
+			throw new NoteException("쪽지 삭제하기 실패!");
+		}
+
+		return result;
+	}
+
+	//쪽지 확인 여부 체크
+	@Override
+	public int checkedYN(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
+		int result = sqlSession.update("Note.checkedYN", noteNo);
+
+		System.out.println(result);
+
+		if(result == 0) {
+			throw new NoteException("쪽지 확인여부 변경 실패!");
+		}
+		return result;
+	}
+
 
 }
