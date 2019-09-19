@@ -17,11 +17,11 @@ public class PayController {
 	@Autowired
 	private PayService pas;
 	
-	@RequestMapping(value = "payPage.pa")
+	@RequestMapping(value = "payment.pa")
 	public String payPage(@SessionAttribute("loginUser") Member loginUser, Model m) {
 		
 
-		return "main/introduceService";
+		return "main/payment";
 	}
 
 	

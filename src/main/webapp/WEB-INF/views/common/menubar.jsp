@@ -391,6 +391,11 @@
 										</a></li>
 									</ul>
 								</div></li>
+								
+						<li class="nav-item"><a href="payment.pa"> <i
+								class="far fa-comments"></i>
+								<p>결제test</p>
+						</a></li>
 						</c:if>
 
 
