@@ -16,10 +16,7 @@ font-family: 'Poor Story', cursive;
 background:#CEECF5;
 
 }
-img{
-height:100%;
-width:100%;
-}
+
 body{
 margin-left:2%;
 
@@ -78,9 +75,9 @@ height:70%;
 <c:set var="contextPath"
 			value="${ pageContext.servletContext.contextPath }"
 			scope="application" />
-	<jsp:include page="../main/main-include.jsp"/>
+	<jsp:include page="../main/main-include2.jsp"/>
 	<form><br>
-	<div class="mainmain" align="center" style="background-image: URL(${ contextPath }/resources/images/anisky.jpg); background-size:100% 100%;">
+	<div class="mainmain" align="center" style="background-image: URL(${ contextPath }/resources/images/anisky.jpg); background-size:60% 60%;">
 	<img class="mainimage"src="${ contextPath }/resources/images/mainicon.png" />
 		</div><br>
 	<h3>제휴업체 목록</h3>
@@ -97,13 +94,15 @@ height:70%;
 	<th>서비스 시작일</th>
 	<th>이용 횟수</th>
 	</tr>
+	<c:forEach var="l" items="${ list }">
 	<tr>
-	<td>d</td>
-	<td>d</td>
-	<td>d</td>
-	<td>d</td>
-	<td>d</td>
+	<td><c:out value="${ l.kinderName }"/></td>
+	<td><c:out value="${ l.payDateDay }"/></td>
+	<td><c:out value="${ l.payDateCount }"/></td>
+	<td><c:out value="${ l.payDate }"/></td>
+	<td><c:out value="${ l.seasonName }"/></td>
 	</tr>
+	</c:forEach>
 	</table>
 	</div>
 	<br><br><br>
