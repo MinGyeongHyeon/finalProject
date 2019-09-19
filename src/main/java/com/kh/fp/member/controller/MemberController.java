@@ -120,10 +120,12 @@ public class MemberController {
 			
 			Attachment at = ms.childrenAt(loginUser);
 			
-			OnOff of = ms.selectOnOff(loginUser);
+			OnOff of = null;
 			
 			if(loginUser.getClassification().equals("원장님")) {
 				
+			 of = ms.selectOnOff(loginUser);
+			 
 				int childrenCount = ms.childrenCount(loginUser);
 				int teacherCount = ms.teacherCount(loginUser);
 				int childrenCountN = ms.childrenCountN(loginUser);
@@ -144,6 +146,8 @@ public class MemberController {
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
 					loginUser.setUserNo(teacherKing.getKinderNo());
+					
+					of = ms.selectOnOff(loginUser);
 					
 					int childrenCount = ms.childrenCount(loginUser);
 					int childrenCountN = ms.childrenCountN(loginUser);
@@ -175,8 +179,12 @@ public class MemberController {
 					KinGardenClasses childrenKing = ms.childrenKing(km);
 	
 					model.addAttribute("childrenKing" , childrenKing);
-			
 					
+					loginUser.setUserNo(childrenKing.getKinderNo());
+					
+					System.out.println("loginUser"  + loginUser);
+					
+					of = ms.selectOnOff(loginUser);
 				}else {
 					
 					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
