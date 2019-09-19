@@ -135,16 +135,40 @@
 	</select>
 	
 	<select id="selectKinderChildrenName" parameterType="KinderClassRH" resultMap="childrenResultSet">
-		<!-- SELECT CHILDREN_NO, CHILDREN_NAME, BIRTH, GENDER, USER_NO
-		FROM CHILDREN
-		WHERE CHILDREN_NO IN (SELECT CHILDREN_NO
-							FROM KINDER_CLASS K1
-							WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
-																					FROM KINDER_CLASS K2
-																					WHERE K2.TEACHER_NO = #{teacherNo})
-							AND DIVISION = '원생') -->
+		SELECT KC.CHILDREN_NO, CH.CHILDREN_NAME, CH.BIRTH, CH.GENDER, CH.USER_NO
+		FROM KINDER_CLASS KC
+		JOIN CHILDREN CH ON (KC.CHILDREN_NO = CH.CHILDREN_NO)
+		WHERE KINDER_NO = #{kinderNo}
+		AND KC.CHILDREN_NO IS NOT NULL
 	</select>
 	
+	<select id="countList" parameterType="KinderClassRH" resultType="_int">
+		SELECT COUNT(*)
+		FROM RETURN_HOME RH
+		JOIN CHILDREN CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN KINDER_CLASS KC1 ON (KC1.CHILDREN_NO = RH.CHILDREN_NO)
+		WHERE RH.CHILDREN_NO IN (SELECT CHILDREN_NO
+		                        FROM KINDER_CLASS 
+		                        WHERE KINDER_NO = #{kinderNo}
+		                        AND CHILDREN_NO IS NOT NULL)
+		AND KINDER_NO = #{kinderNo}	
+	</select>
+	
+	
+	<select id="selectMasterReturnHome" parameterType="KinderClassRH" resultMap="returnHomeResultSet">
+		SELECT RH.HOME_NO, RH.CHILDREN_NO, RH.HOME_DATE, RH.HOME_TIME, RH.HOME_WAY, RH.PARENTS_NAME, RH.PARENTS_PHONE,
+               RH.EMERGENCY_NAME, RH.EMERGENCY_PHONE, RH.READING, RH.RE_DATE, RH.WRITE_DATE, CH.CHILDREN_NAME, AT.FILE_PATH
+		FROM RETURN_HOME RH
+		JOIN CHILDREN CH ON (CH.CHILDREN_NO = RH.CHILDREN_NO)
+		JOIN ATTACHMENT AT ON (RH.HOME_NO = AT.HOME_NO)
+		JOIN KINDER_CLASS KC1 ON (KC1.CHILDREN_NO = RH.CHILDREN_NO)
+		WHERE RH.CHILDREN_NO IN (SELECT CHILDREN_NO
+		                        FROM KINDER_CLASS 
+		                        WHERE KINDER_NO = #{kinderNo}
+		                        AND CHILDREN_NO IS NOT NULL)
+		AND KINDER_NO = #{kinderNo}	
+	</select>
 	
 	
 </mapper>

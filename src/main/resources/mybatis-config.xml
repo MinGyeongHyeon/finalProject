@@ -18,6 +18,7 @@
 		<typeAlias type="com.kh.fp.returnHome.model.vo.Children" alias="ChildrenRH"/>
 		<typeAlias type="com.kh.fp.returnHome.model.vo.KinderClass" alias="KinderClassRH"/>
 		<typeAlias type="com.kh.fp.returnHome.model.vo.ChildrenClass" alias="ChildrenClassRH"/>
+		<typeAlias type="com.kh.fp.pay.model.vo.Pay" alias="PayPA"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Attendance" alias="Attendance"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Children" alias="Children"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.homework" alias="homework"/>
@@ -43,6 +44,7 @@
 		<mapper resource="mappers/schedule-mapper.xml"/>
 		<mapper resource="mappers/returnHome-mapper.xml"/>
 		<mapper resource="mappers/attendance-mapper.xml"/>
+		<mapper resource="mappers/pay-mapper.xml"/>
 		<mapper resource="mappers/homework-mapper.xml"/>
 		<mapper resource="mappers/dosage-mapper.xml"/>
 		<mapper resource="mappers/note-mapper.xml"/>

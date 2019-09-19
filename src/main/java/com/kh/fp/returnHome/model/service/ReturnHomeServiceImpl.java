@@ -83,6 +83,18 @@ public class ReturnHomeServiceImpl implements ReturnHomeService{
 		return list;
 	}
 
+	@Override
+	public int countList(KinderClass kc) {
+		int result = rhd.countList(sqlSession, kc);
+		return result;
+	}
+
+	@Override
+	public ArrayList<ReturnHome> selectMasterReturnHomeList(KinderClass kc, PageInfo pi) {
+		ArrayList<ReturnHome> rhList = rhd.selectMasterReturnHomeList(sqlSession, kc, pi);
+		return rhList;
+	}
+
 
 	
 }

@@ -31,4 +31,8 @@ public interface ReturnHomeDao {
 
 	ArrayList<Children> selectKinderChildrenName(SqlSessionTemplate sqlSession, KinderClass kc);
 
+	int countList(SqlSessionTemplate sqlSession, KinderClass kc);
+
+	ArrayList<ReturnHome> selectMasterReturnHomeList(SqlSessionTemplate sqlSession, KinderClass kc, PageInfo pi);
+
 }
