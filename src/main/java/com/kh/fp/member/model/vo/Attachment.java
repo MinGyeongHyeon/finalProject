@@ -11,7 +11,7 @@ public class Attachment {
 	private Date updateDate;
 	private String attachType;
 	private String fileLevel;
-	private int baordNo;
+	private int boardNo;
 	private int albumNo;
 	private int ntboardNo;
 	private int mealNo;
@@ -25,7 +25,7 @@ public class Attachment {
 
 
 	public Attachment(int fileId, String origineName, String changeName, String filePath, Date updateDate,
-			String attachType, String fileLevel, int baordNo, int albumNo, int ntboardNo, int mealNo, int dosageNo,
+			String attachType, String fileLevel, int boardNo, int albumNo, int ntboardNo, int mealNo, int dosageNo,
 			int homeNo, int childrenNo, int userNo) {
 		super();
 		this.fileId = fileId;
@@ -35,7 +35,7 @@ public class Attachment {
 		this.updateDate = updateDate;
 		this.attachType = attachType;
 		this.fileLevel = fileLevel;
-		this.baordNo = baordNo;
+		this.boardNo = boardNo;
 		this.albumNo = albumNo;
 		this.ntboardNo = ntboardNo;
 		this.mealNo = mealNo;
@@ -116,13 +116,13 @@ public class Attachment {
 	}
 
 
-	public int getBaordNo() {
-		return baordNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
 
-	public void setBaordNo(int baordNo) {
-		this.baordNo = baordNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 
 
@@ -200,10 +200,13 @@ public class Attachment {
 	public String toString() {
 		return "Attachment [fileId=" + fileId + ", origineName=" + origineName + ", changeName=" + changeName
 				+ ", filePath=" + filePath + ", updateDate=" + updateDate + ", attachType=" + attachType
-				+ ", fileLevel=" + fileLevel + ", baordNo=" + baordNo + ", albumNo=" + albumNo + ", ntboardNo="
+				+ ", fileLevel=" + fileLevel + ", boardNo=" + boardNo + ", albumNo=" + albumNo + ", ntboardNo="
 				+ ntboardNo + ", mealNo=" + mealNo + ", dosageNo=" + dosageNo + ", homeNo=" + homeNo + ", childrenNo="
 				+ childrenNo + ", userNo=" + userNo + "]";
 	}
+
+
+	
 	
 	
 	

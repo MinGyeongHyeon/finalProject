@@ -310,8 +310,7 @@
 								<p>공지사항</p>
 						</a></li>
 
-						<li class="nav-item"><a href="#"> <i
-								class="far fa-images"></i>
+						<li class="nav-item"><a href="album.ab"> <i class="far fa-images"></i>
 								<p>앨범</p>
 						</a></li>
 

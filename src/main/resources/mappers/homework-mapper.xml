@@ -41,6 +41,13 @@
 		WHERE
 		K.TEACHER_NO = #{userNo2})
 	</select>
+	
+	<select id="selectChildrenName" resultType="java.lang.String">
+		SELECT CLASS_NAME
+		FROM KINDER_CLASS K
+		WHERE K.TEACHER_NO = #{userNo2}
+        AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2)
+	</select>
 
 	<select id="selectPeople" resultType="_int">
 		SELECT
@@ -71,6 +78,11 @@
 		WHERE K.TEACHER_NO = #{userNo2})
 		AND C.DIVISION = '원생')
 	</select>
+	
+	
+	<insert id="insertAt"> 
+	INSERT INTO ATTACHMENT VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , #{boardNo},null,null,null,null,null,null,null )
+	 </insert>
 
 </mapper>
 

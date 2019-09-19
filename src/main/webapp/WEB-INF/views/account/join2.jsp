@@ -163,7 +163,7 @@ table tr {
 			
 			$.ajax({
 				
-				url:"phoneMe.me",
+				url:"homeWorkWrite.hw",
 				data:{rphone:rphone,sphone1:sphone1,sphone2:sphone2,sphone3:sphone3,action:action},
 				type:"post",
 				success:function(data){

@@ -591,7 +591,19 @@ public class MemberController {
 	}
 	
 
-	
+	@RequestMapping(value = "IndiviualhomeWorkWrite.me")
+	public ModelAndView individual(ModelAndView mv, HttpServletRequest request, String[] array) {
+		System.out.println("넘어옵니까?");
+		System.out.println("array:::" + array);
+		String[] num = request.getParameterValues("array");
+		HttpSession session = request.getSession();
+
+		session.setAttribute("num", num);
+		System.out.println(num);
+
+		mv.setViewName("jsonView");
+		return mv;
+	}
 	
 	@RequestMapping(value="phoneMe.me")
 	public ModelAndView phoneMe(ModelAndView mv , HttpServletRequest request) throws IOException, Exception {

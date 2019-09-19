@@ -20,4 +20,6 @@ public interface HomeworkService  {
 
 	ArrayList<HomeWorkChildren> selectChildren(int userNo2);
 
+	String selectClassName(int userNo2);
+
 }
