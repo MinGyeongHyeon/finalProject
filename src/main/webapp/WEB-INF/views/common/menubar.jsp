@@ -16,6 +16,7 @@
 <!-- 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' /> -->
 <link rel="icon" href="${ contextPath }/resources/assets/img/icon.ico"
 	type="image/x-icon" />
+	  <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 
 <!-- Fonts and icons -->
 <%-- <script src="${ contextPath }/resources/assets/js/plugin/webfont/webfont.min.js"></script>
@@ -229,8 +230,13 @@
 												alt="image profile" class="avatar-img rounded">
 										</div>
 										<div class="u-text">
-											<h4>Hizrian</h4>
-											<p class="text-muted">hello@example.com</p>
+											<h4>${ loginUser.userName }</h4>
+											<c:if test="${ empty loginUser.email }">
+												<p class="text-muted">메일이 등록 안된 회원 </p>
+											</c:if>
+											<c:if test="${ empty loginUser.email }">											
+											<p class="text-muted">${ loginUser.email }</p>
+											</c:if>
 											<a href="profile.html"
 												class="btn btn-rounded btn-danger btn-sm">View Profile</a>
 										</div>
@@ -238,12 +244,11 @@
 								</li>
 								<li>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">My Profile</a> <a class="dropdown-item" href="#">My
-										Balance</a> <a class="dropdown-item" href="#">Inbox</a>
+									href="#">마이 페이지</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
 									href="#">Account Setting</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">Logout</a>
+									href="logout.me">로그 아웃</a>
 								</li>
 							</ul></li>
 

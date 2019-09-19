@@ -133,16 +133,26 @@ public class MemberController {
 				
 			}else if(loginUser.getClassification().equals("선생님")) {
 				
+				
+				
 				int teacherYn = ms.teacherYn(loginUser);
 				
 				if(teacherYn > 0) {
 					
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
+					loginUser.setUserNo(teacherKing.getKinderNo());
+					
+					System.out.println("여기에 뭐가 담겨있니 ? : " + teacherKing);
+					
+					int childrenCount = ms.childrenCount(loginUser);
+					int childrenCountN = ms.childrenCountN(loginUser);
+					
+					
 					model.addAttribute("teacherKing" , teacherKing);
-//					model.addAttribute("loginUser",loginUser);
-//					
-//					return "main/parentsMain";
+					model.addAttribute("childrenCount", childrenCount);
+					model.addAttribute("childrenCountN", childrenCountN);
+
 					
 					
 				}else {
@@ -158,25 +168,14 @@ public class MemberController {
 				
 				KidMember km = ms.childrenMember(loginUser);
 				
-				System.out.println("받아온 값 학부모 : " + km);
-				
 				int childrenYn = ms.childrenYn(km);
 				
 				if(childrenYn > 0) {
 					
 					KinGardenClasses childrenKing = ms.childrenKing(km);
-					
-					
-					
-					
-					
-					
+	
 					model.addAttribute("childrenKing" , childrenKing);
-					
-//					model.addAttribute("loginUser",loginUser);
-//					
-//					return "main/parentsMain";
-//					
+			
 					
 				}else {
 					

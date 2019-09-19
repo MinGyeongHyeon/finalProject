@@ -6,9 +6,10 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
 <style>
 
@@ -69,12 +70,12 @@ color:white;
 </style>
 </head>
 <header>
- <jsp:include page="../common/teacherHeader.jsp"/>
+  <jsp:include page="../common/teacherHeader.jsp"/> 
 </header>
 <body>
-<%-- <jsp:include page="../common/menubar.jsp"/> --%>
+
 	<div id="sidebar">
- 	<jsp:include page="../common/directorManagementSideMenu.jsp"/> 
+	<jsp:include page="../common/directorManagementSideMenu.jsp"/>  
 	</div>
 	
 	<input type="hidden" id="kinderNo" value="${ loginUser.userNo }"/>
@@ -100,15 +101,15 @@ color:white;
 		</c:forEach>
 		</select>
 	</td>
-	<td><button class="btn" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn">거절</button></td>
+	<td><button class="btn btnaccept" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn">거절</button></td>
 	<td><input type="hidden" class="childrenNo" value="${ i.childrenNo }"/></td>
 	</tr>
 		</c:forEach>
 	</table>
 	</div>	
 	
-	<div class="container" align="center" style="width:50%;">
-  <ul class="pagination">
+	<div class="container" align="center" style="width:10%;">
+  <ul class="pagination" >
  
     
     <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
@@ -174,17 +175,11 @@ color:white;
 	
 	<script>
 		
-		$('.btn').click(function(){
+		$('.btnaccept').click(function(){
 	
 		var kinderNo = $('#kinderNo').val();
 		var childrenNo = $(this).parent().next().children().val();
 		var className = $(this).parent().prev().children().val();
-
-
-		console.log(kinderNo);
-		console.log(className);
-		console.log(childrenNo);
-		
 		
 		if(confirm("승인 하시겠습니까?")){
 			
