@@ -252,8 +252,11 @@ public class PageLinkServlet {
 		
 		return "kingteacher/menumanagement";
 	}
-		
-	 
+
+	@RequestMapping(value="introduceService.pl")
+	public String introduceservice() {
+		return "main/introduceService";
+	}
 	 
 	 
 	 

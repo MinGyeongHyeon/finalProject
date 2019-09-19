@@ -12,20 +12,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 
-.main-panel {
-	    position: relative;
-	    width: calc(100% - 240px);
-	    height: 100vh;
-	    min-height: 100%;
-	    float: right;
-	    transition: all .3s;
-	    padding-top:10%;
-	    padding-left: 3%;
-	    padding-right: 3%;
+	.main-panel {
+		    position: relative;
+		    width: calc(100% - 240px);
+		    height: 100vh;
+		    min-height: 100%;
+		    float: right;
+		    transition: all .3s;
+		    padding-top:10%;
+		    padding-left: 3%;
+		    padding-right: 3%;
 	}
 
+	#pageTitleArea{
+		width:80%;
+		background:#aaa;
+		font-size: 2em;
+		font-weight: bold;
+	}
+	#payInfoArea{
+		width:80%;
+		background:#ccc;
+		font-size: 1.5em;
+		
+	}
+	
+	#payInfoArea table th{
+		width:150px;
+	}
+	
 	.setDiv{
 		display: inline-block;
+	}
+	
+	.SetList{
+		width:30%;
+		
 	}
 </style>
 </head>
@@ -34,45 +56,71 @@
 		
 	<div class="main-panel">
 	
-	<div id="pageTitleArea">
-			<label for="" style="color:#000;">결제하기</label>
+		<div id="pageTitleArea">
+			결제하기
 		</div>
 		<div id="payInfoArea">
-		<form action="payment.pa">
 			<table>
 				<tr>
 					<th>유치원 명 : </th>
 					<td>유치원이름</td>
 				</tr>
 				<tr>
-					<th>결제 메뉴</th>
+					<th>주소</th>
+					<td>여긴어디?</td>
+				</tr>
+				
+				<tr>
+					<th>이용권 선택</th>
 					<td></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<div id="setDiv1" class="setDiv">
-							<label for="Aset" id="Aset">30일 이용권</label>
-						<input type="radio" name="seasonId" id="Aset" value="1" checked="true"/>
+							<label for="Aset" id="Aset" style="color:#000">30일 이용권</label>
+						<input type="radio" name="seasonId" id="Aset" value="1" checked="true" hidden/>
 						</div>
 						<div id="setDiv2" class="setDiv">
-							<label for="Bset" id="Bset">180일 이용권</label>
-						<input type="radio" name="seasonId" id="Bset" value="2"/>
+							<label for="Bset" id="Bset" style="color:#000">180일 이용권</label>
+						<input type="radio" name="seasonId" id="Bset" value="2" hidden/>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="setList1" class="SetList">
+							<table>
+								<tr>
+									<th>30일 이용권</th>
+								</tr>
+								<tr>
+									<td>12000원</td>
+								</tr>
+							</table>
+							<input type="hidden" value="1"/>
+						</div>
+						<div id="setList2" class="SetList" hidden>
+							<table>
+								<tr>
+									<th>30일 이용권</th>
+								</tr>
+								<tr>
+									<td>12000원</td>
+								</tr>
+							</table>
+							<input type="hidden" value="1"/>
 						</div>
 					</td>
 				</tr>
 			</table>
 			<div id="paymentBtnArea">
-				<button onclick="payment();">결제하기</button>
+				<button onclick="payment()">결제하기</button>
 			</div>
-		</form>
 		</div>
 	
-	<%-- <jsp:include page="payApi.jsp"/> --%>
+	</div>
 	<!-- 결제script -->
 	<script>
-		$(function(){
-			
-
 			function payment(){
 				//실제 복사하여 사용시에는 모든 주석을 지운 후 사용하세요
 				BootPay.request({
@@ -88,18 +136,18 @@
 							qty: 1, //수량
 							unique: '123', //해당 상품을 구분짓는 primary key
 							price: 1000, //상품 단가
-							cat1: 'TOP', // 대표 상품의 카테고리 상, 50글자 이내
-							cat2: '티셔츠', // 대표 상품의 카테고리 중, 50글자 이내
+							cat1: '이용권', // 대표 상품의 카테고리 상, 50글자 이내
+							//cat2: '티셔츠', // 대표 상품의 카테고리 중, 50글자 이내
 						}
 					],
 					user_info: {
 						username: '사용자 이름',
-						email: '사용자 이메일',
+						email: '',
 						addr: '사용자 주소',
 						phone: '010-1234-4567'
 					},
 					order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
-					params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
+					//params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
 					//account_expire_at: '2018-05-25', // 가상계좌 입금기간 제한 ( yyyy-mm-dd 포멧으로 입력해주세요. 가상계좌만 적용됩니다. )
 					extra: {
 					    //start_at: '2019-05-10', // 정기 결제 시작일 - 시작일을 지정하지 않으면 그 날 당일로부터 결제가 가능한 Billing key 지급
@@ -135,16 +183,9 @@
 					console.log(data);
 				});
 
-			}
-		});
+			};
 	</script>
 	
-	
-	
-	
-	
-	
-	</div>
 	
 	<script>
 		$(function(){
