@@ -162,13 +162,19 @@ public class PageLinkServlet {
 	}
 
 
+	@RequestMapping(value="WriteIndi.pl")
+	public String WriteIndi() {
+
+		return "homeworkDiary/homeworkIndividualWrite";
+	}
+	
+
 	@RequestMapping(value="WriteAnnounce.pl")
 	public String WriteAnnounce() {
 
 		return "homeworkDiary/homeworkDiaryWrite";
 	}
-
-
+	
 
 	@RequestMapping(value="test.pl")
 	public String test() {
