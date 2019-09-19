@@ -58,12 +58,26 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public ArrayList<ReturnHome> selectMasterReturnHomeList(SqlSessionTemplate sqlSession, KinderClass kc, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		ArrayList<ReturnHome> rhList = (ArrayList) sqlSession.selectList("ReturnHome.selectMasterReturnHome", kc, rowBounds);
+
+		System.out.println("DAO : " + rhList.size());
+		return rhList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public ArrayList<ReturnHome> selectReturnHomeList(SqlSessionTemplate sqlSession, KinderClass kc, PageInfo pi) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
 		ArrayList<ReturnHome> rhList = (ArrayList) sqlSession.selectList("ReturnHome.selctReturnHomeList", kc, rowBounds);
+		System.out.println("DAO : " + rhList.size());
 		return rhList;
 	}
 
@@ -107,7 +121,13 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 		ArrayList<Children> list = (ArrayList) sqlSession.selectList("ReturnHome.selectKinderChildrenName", kc);
 		return list;
 	}
+	
+	@Override
+	public int countList(SqlSessionTemplate sqlSession, KinderClass kc) {
+		int result = sqlSession.selectOne("ReturnHome.countList", kc);
+		System.out.println(result);
+		return result;
+	}
 
-
-
+	
 }

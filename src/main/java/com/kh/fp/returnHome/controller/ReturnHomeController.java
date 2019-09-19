@@ -46,13 +46,12 @@ public class ReturnHomeController {
 			KinderClass kc = new KinderClass();
 			kc.setKinderNo(loginUser.getUserNo());
 			list1 = rhs.selectKinderChildrenName(kc);
-			//count = rhs.countListAll(kc);
+			count = rhs.countList(kc);
 			
 
 			pi = Pagination.getPageInfo(currentPage, count);
-			//rhList = rhs.selectMasterReturnHomeList(kc, pi);
+			rhList = rhs.selectMasterReturnHomeList(kc, pi);
 			
-			//rhList = rhs.selectReturnHomeList(kc);
 			
 			m.addAttribute("list", list1);
 		}else if (loginUser.getClassification().equals("선생님")) {
@@ -102,8 +101,8 @@ public class ReturnHomeController {
 	}
 
 	@RequestMapping(value = "insertReturnHome.rh", method = RequestMethod.POST)
-	public String insertReturnHome(@SessionAttribute("loginUser") Member loginUser, @RequestParam(value = "selectChild") String[] selectChild,
-								 @RequestParam(value = "homeTime") String[] homeTimeList, ReturnHome rh, Model m) {
+	public String insertReturnHome(@RequestParam(value = "selectChild") String[] selectChild,
+								 @RequestParam(value = "homeTime") String[] homeTimeList, ReturnHome rh) {
 		int result = 0;
 		String homeTime = homeTimeList[0] + " " + homeTimeList[1] + " " + homeTimeList[2];
 		rh.setHomeTime(homeTime);
@@ -114,13 +113,13 @@ public class ReturnHomeController {
 		} catch (ReturnHomeInsertException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		//return "returnHome/returnList";
 		return "returnHome/returnHome";
 		
 	}
 
 	@RequestMapping(value = "selectReturnHomeDetail.rh")
-	public String selectReturnHomeDetail(@RequestParam(value="homeNo") int homeNo, Model m) {
+	public String selectReturnHomeDetail(@SessionAttribute("loginUser") Member loginUser, @RequestParam(value="homeNo") int homeNo, Model m) {
 		ArrayList<ReturnHome> rhList = rhs.selectReturnHomeDetail(homeNo);
 		System.out.println("리스트 출력" + rhList);
 		m.addAttribute("rhList", rhList.get(0));

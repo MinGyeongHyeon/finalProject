@@ -29,5 +29,9 @@ public interface ReturnHomeService {
 
 	ArrayList<Children> selectKinderChildrenName(KinderClass kc);
 
+	int countList(KinderClass kc);
+
+	ArrayList<ReturnHome> selectMasterReturnHomeList(KinderClass kc, PageInfo pi);
+
 
 }
