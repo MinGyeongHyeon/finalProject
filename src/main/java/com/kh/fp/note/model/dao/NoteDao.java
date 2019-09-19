@@ -27,4 +27,7 @@ public interface NoteDao {
 	//보낸 쪽지함 상세보기에서 삭제하기
 	int deleteSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException;
 
+	//쪽지 보내기
+	int insertNote(SqlSessionTemplate sqlSession, int kinderNo) throws NoteException;
+
 }

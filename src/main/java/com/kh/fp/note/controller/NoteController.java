@@ -1,6 +1,7 @@
 package com.kh.fp.note.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,15 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.fp.common.Pagination;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.service.NoteService;
 import com.kh.fp.note.model.vo.Note;
 import com.kh.fp.note.model.vo.PageInfo;
+import com.kh.fp.note.model.vo.Pagination;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
 @Controller
@@ -42,6 +44,39 @@ public class NoteController {
 			e.printStackTrace();
 			return mv;
 		}
+	}
+
+	//쪽지 보내기 리스트 input창에 입력
+	@RequestMapping(value="insertSendList.nt", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView insertSendList(ModelAndView mv, int sendNo, List<String> receiveList) {
+		System.out.println("호출됨");
+
+		System.out.println("sendNo :::" + sendNo);
+		for(String receiveNo:receiveList) {
+			System.out.println("receiveList ::" + receiveList);
+		}
+
+		return mv;
+	}
+
+	//쪽지 보내기
+	@RequestMapping(value="insertNote.nt")
+	public String insertNote(Model model, Note n, int kinderNo) {
+
+		System.out.println("쪽지보내기 호출됨");
+		try {
+			int result = ns.insertNote(kinderNo);
+
+			return "note/sentNoteBox";
+
+		} catch (NoteException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index.jsp";
+		}
+
+
 	}
 
 	//보낸 쪽지함 리스트 조회
@@ -135,6 +170,23 @@ public class NoteController {
 			return "index.jsp";
 		}
 	}
+
+	//보낸 쪽지함 여러개 삭제
+//	@RequestMapping(value="deleteSentNotes.nt")
+//	public String deleteSentNoteOne(String noteNo, Model model) {
+//		System.out.println("호출됨");
+//
+//		try {
+//			int result = ns.deleteSentNotes(noteNo);
+//
+//			return "redirect:sentNoteList.nt";
+//
+//		} catch (NoteException e) {
+//			model.addAttribute("msg", e.getMessage());
+//			e.printStackTrace();
+//			return "index.jsp";
+//		}
+//	}
 
 	@RequestMapping(value="goUserList.nt")
 	public String goUserList() {
