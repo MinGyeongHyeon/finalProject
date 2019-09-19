@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.ProcessBuilder.Redirect;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -187,6 +188,8 @@ public class MemberController {
 				
 				
 				
+			}else if(loginUser.getClassification().equals("관리자")) {
+				//return "redirect:companyList.ad";
 			}
 			
 			System.out.println("받아온 온오프 : " + of);

@@ -94,6 +94,23 @@
 		<servlet-name>attendance</servlet-name>
 		<url-pattern>*.at</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Company</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/company-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Company</servlet-name>
+		<url-pattern>*.ad</url-pattern>
+	</servlet-mapping>
+	
+	
 	<servlet-mapping>
 		<servlet-name>homework</servlet-name>
 		<url-pattern>*.hw</url-pattern>

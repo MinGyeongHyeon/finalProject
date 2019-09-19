@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Company">
+	<!-- <resultMap type="Attendance" id="attendanceResultSet">
+		<id property="attendanceNo" column="ATTENDANCE_NO"/> 
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="attendancceYN" column="ATTENDANCE_YN"/>
+		<result property="time" column="TIME"/>
+		<result property="mTime" column="M_TIME"/>
+		<result property="status" column="STATUS"/>
+	</resultMap> -->
+	
+	<resultMap type="Company" id="companyResultSet">
+		<id property="payDate" column="PAY_DATE"/>
+		<id property="payDateday" column="PAY_DATE_DAY"/>
+		<id property="payDateCount" column="CT"/>
+		<result property="kinderName" column="KINDER_NAME"/>
+		<result property="seasonName" column="SEASON_NAME"/>
+	</resultMap>
+	
+
+	<!-- 데일리출석부 -->
+<!-- 	<select id="companyList" resultMap="companyResultSet">
+		SELECT PAY_DATE,PAY_DATE_DAY,CT,KINDER_NAME,SEASON_NAME
+		FROM (SELECT KINDER_NAME,SUBSTR(PAY_DATE,-2,2) as PAY_DATE_DAY,(SELECT COUNT(*) AS CT FROM PAY_ON PO JOIN PAY P ON(PO.PAY_NO = P.PAY_NO)) AS CT,PAY_DATE,SEASON_NAME
+		FROM KINDERGARDEN K
+		JOIN USERS U ON(K.KINDER_NO = U.USER_NO)
+		JOIN PAY P ON(U.USER_NO = P.USER_NO)
+		JOIN PAY_ON PO ON(P.PAY_NO = PO.PAY_NO)
+		JOIN SEASON_TI S ON(P.SEASON_ID = S.SEASON_ID))
+	</select> -->
+
+
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

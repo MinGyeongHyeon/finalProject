@@ -34,6 +34,7 @@
 		<typeAlias type="com.kh.fp.homework.model.vo.HomeWorkChildren" alias="HomeWorkChildren"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KidMember" alias="KidMember"/>
 		<typeAlias type="com.kh.fp.member.model.vo.Attachment" alias="Attachment"/>
+		<typeAlias type="com.kh.fp.admin.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.kh.fp.member.model.vo.OnOff" alias="OnOff"/>
 
 	</typeAliases>
