@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.service.NoteService;
 import com.kh.fp.note.model.vo.Note;
@@ -99,38 +101,48 @@ public class NoteController {
 
 	// 보낸 쪽지함 페이징 처리
 	@RequestMapping(value = "sentNoteList.nt")
-	public String sentNoteList(Model model, Note n, HttpServletRequest request, HttpServletResponse response) {
+	public String sentNoteList(Model model, Note n, HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("loginUser") Member loginUser) {
+
+		int userNo = loginUser.getUserNo();
 
 		System.out.println("sentNoteList 컨트롤러 호출");
+		System.out.println("userNo" + userNo);
 
-		int currentPage = 1;
+		if(userNo == 0) {
+			System.out.println("로그인 유저 :::::: " + userNo);
 
-		if (request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			int currentPage = 1;
+
+			if (request.getParameter("currentPage") != null) {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			}
+
+			ArrayList<Note> nList;
+
+			try {
+				int listCount = ns.getListCount(userNo);
+
+				System.out.println("listCount :::: " + listCount);
+
+				PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+				nList = ns.selectSentNoteList(pi, userNo);
+
+				model.addAttribute("nList", nList);
+				model.addAttribute("pi", pi);
+
+				return "note/sentNoteBox";
+
+			} catch (NoteException e) {
+				model.addAttribute("msg", e.getMessage());
+				e.printStackTrace();
+				return "index.jsp";
+			}
 		}
-
-		ArrayList<Note> nList;
-		try {
-
-			int listCount = ns.getListCount();
-
-			System.out.println("listCount :::: " + listCount);
-
-			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-
-			nList = ns.selectSentNoteList(pi);
-
-			model.addAttribute("nList", nList);
-			model.addAttribute("pi", pi);
-
-			return "note/sentNoteBox";
-
-		} catch (NoteException e) {
-			model.addAttribute("msg", e.getMessage());
-			e.printStackTrace();
-			return "index.jsp";
-		}
+		return "";
 	}
+
 
 	// 보낸 쪽지함 내용 상세보기
 	@RequestMapping(value = "selectSentNoteOne.nt")
