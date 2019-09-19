@@ -87,14 +87,21 @@
 
 	</resultMap>
 	
+	<resultMap type="OnOff" id="OnOffResultSet">
 	
+		<id property="kinderNo" column="KINDER_NO"/>
+		<result property="announcement" column="ANNOUNCEMENT"/>
+		<result property="meal" column="MEAL"/>
+		<result property="dosage" column="DOSAGE"/>
+		<result property="homecoming" column="HOMECOMING"/>
+		<result property="boardNotice" column="BOARD_NOTICE"/>
+		<result property="album" column="ALBUM"/>
+		<result property="schedule" column="SCHEDULE"/>
+		<result property="attendance" column="ATTENDANCE"/>
+		<result property="chatting" column="CHATTING"/>
+		<result property="mypage" column="MYPAGE"/>
 	
-
-	
-	
-
-	
-	
+	</resultMap>
 	
 	<!-- 회원 가입용 쿼리문 -->
 	<insert id="insertMember" parameterType="Member">
@@ -404,6 +411,21 @@
 		VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , null,null,null,null,null,null,null,#{userNo} )
 	
 	</insert>
+	
+	<insert id="classonoff">
+	
+		INSERT INTO ON_OFF
+		VALUES( #{kinderNo} ,'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y')
+		
+	</insert>
+	
+	<select id="selectOnOff" resultMap="OnOffResultSet">
+	
+		SELECT *
+		FROM ON_OFF
+		WHERE KINDER_NO = #{userNo}
+	
+	</select>
 	
 	
 
