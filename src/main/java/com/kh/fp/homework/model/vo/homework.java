@@ -16,11 +16,17 @@ public class homework implements Serializable{
 	private int individualNo;
 	private String individualContent;
 	private int writer;
+	private int inboardNum;
+	private String inboardContent;
+	private String className;
+	
 	
 	public homework() {}
 
+
 	public homework(int boardNum, String boardTitle, String boardContent, Date writeDate, String boardtype,
-			int classNum, int childrenNo, int kinderNo, int individualNo, String individualContent, int writer) {
+			int classNum, int childrenNo, int kinderNo, int individualNo, String individualContent, int writer,
+			int inboardNum, String inboardContent, String className) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -33,105 +39,162 @@ public class homework implements Serializable{
 		this.individualNo = individualNo;
 		this.individualContent = individualContent;
 		this.writer = writer;
+		this.inboardNum = inboardNum;
+		this.inboardContent = inboardContent;
+		this.className = className;
 	}
+
 
 	public int getBoardNum() {
 		return boardNum;
 	}
 
+
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
+
 
 	public String getBoardTitle() {
 		return boardTitle;
 	}
 
+
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
+
 
 	public String getBoardContent() {
 		return boardContent;
 	}
 
+
 	public void setBoardContent(String boardContent) {
 		this.boardContent = boardContent;
 	}
+
 
 	public Date getWriteDate() {
 		return writeDate;
 	}
 
+
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
+
 
 	public String getBoardtype() {
 		return boardtype;
 	}
 
+
 	public void setBoardtype(String boardtype) {
 		this.boardtype = boardtype;
 	}
+
 
 	public int getClassNum() {
 		return classNum;
 	}
 
+
 	public void setClassNum(int classNum) {
 		this.classNum = classNum;
 	}
+
 
 	public int getChildrenNo() {
 		return childrenNo;
 	}
 
+
 	public void setChildrenNo(int childrenNo) {
 		this.childrenNo = childrenNo;
 	}
+
 
 	public int getKinderNo() {
 		return kinderNo;
 	}
 
+
 	public void setKinderNo(int kinderNo) {
 		this.kinderNo = kinderNo;
 	}
+
 
 	public int getIndividualNo() {
 		return individualNo;
 	}
 
+
 	public void setIndividualNo(int individualNo) {
 		this.individualNo = individualNo;
 	}
+
 
 	public String getIndividualContent() {
 		return individualContent;
 	}
 
+
 	public void setIndividualContent(String individualContent) {
 		this.individualContent = individualContent;
 	}
+
 
 	public int getWriter() {
 		return writer;
 	}
 
+
 	public void setWriter(int writer) {
 		this.writer = writer;
 	}
+
+
+	public int getInboardNum() {
+		return inboardNum;
+	}
+
+
+	public void setInboardNum(int inboardNum) {
+		this.inboardNum = inboardNum;
+	}
+
+
+	public String getInboardContent() {
+		return inboardContent;
+	}
+
+
+	public void setInboardContent(String inboardContent) {
+		this.inboardContent = inboardContent;
+	}
+
+
+	public String getClassName() {
+		return className;
+	}
+
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
 
 	@Override
 	public String toString() {
 		return "homework [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", writeDate=" + writeDate + ", boardtype=" + boardtype + ", classNum=" + classNum + ", childrenNo="
 				+ childrenNo + ", kinderNo=" + kinderNo + ", individualNo=" + individualNo + ", individualContent="
-				+ individualContent + ", writer=" + writer + "]";
+				+ individualContent + ", writer=" + writer + ", inboardNum=" + inboardNum + ", inboardContent="
+				+ inboardContent + ", className=" + className + "]";
 	}
 
-	
+
 	
 
 }

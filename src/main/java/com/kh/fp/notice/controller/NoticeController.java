@@ -78,6 +78,7 @@ public class NoticeController {
 	
 		int result = ns.UpdateNoticeStatus(bid,status);
 		
+		System.out.println(result);
 		
 		return "redirect:NoticeList.sn";
 		

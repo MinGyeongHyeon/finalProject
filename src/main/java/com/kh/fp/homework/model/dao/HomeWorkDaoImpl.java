@@ -2,12 +2,15 @@ package com.kh.fp.homework.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
+import com.kh.fp.homework.model.vo.PageInfo;
+import com.kh.fp.homework.model.vo.Whoselect;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.notice.model.vo.Notice;
@@ -114,6 +117,79 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 		return Num;
 	}
 
+	@Override
+	public int TListCount(SqlSessionTemplate sqlSession,int userNo) {
 
+		int BNum = sqlSession.selectOne("homework.selectTBlistC",userNo);
+		
+		return BNum;
+	}
+
+
+
+	@Override
+	public ArrayList<homework> selectTH(SqlSessionTemplate sqlSession, int userNo, PageInfo pi) {
+		ArrayList<homework> list = null;
+		
+		int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+	
+		list = (ArrayList)sqlSession.selectList("homework.selectTList",userNo,rowBounds);
+		
+		System.out.println("list:::::"+list);
+		
+		return list;
+	
+	}
+
+	
+
+	@Override
+	public ArrayList<homework> selectOneT(SqlSessionTemplate sqlSession, int userNo, int bid) {
+		
+		ArrayList<homework> list = null;
+		
+		
+		Whoselect who = new Whoselect();
+		who.setBoardNum(bid);
+		who.setUserNo(userNo);
+		
+		System.out.println("반은"+who.getBoardNum());
+		System.out.println("유저번호는"+who.getUserNo());
+		
+		list = (ArrayList)sqlSession.selectList("homework.seletOneT",who);
+		
+		System.out.println("list---->"+list);
+		
+		return list;
+			
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

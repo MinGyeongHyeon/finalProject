@@ -13,9 +13,9 @@
 		<result property="classNum" column="CLASS_NO" />
 		<result property="childrenNo" column="CHILDREN_NO" />
 		<result property="kinderNo" column="KINDER_NO" />
-		<result property="individualContent"
-			column="ANNOUNCEMENT_CONTENT" />
+		<result property="individualContent" column="ANNOUNCEMENT_CONTENT" />
 		<result property="writer" column="WRITER" />
+		<result property="className" column="CLASS_NAME" />
 	</resultMap>
 
 	<resultMap type="HomeWorkChildren" id="childrenNatt">
@@ -88,6 +88,67 @@
 	INSERT INTO BOARD_AN VALUES(SEQ_ANNOUNCEMENT_NO.NEXTVAL , #{boardContent},#{boardNum},#{childrenNo})
 	 </insert>
 	 
+	 
+	<select id="selectTBlistC" resultType="_int">
+		SELECT COUNT(*)
+        FROM BOARD B
+        JOIN USERS U ON U.USER_NO = B.WRITER
+        WHERE BOARD_TYPE = '알림장'
+        AND  U.USER_NO = #{userNo}
+        AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2)
+	</select>
+	
+	<select id="selectTAlistC" resultType="_int">
+		SELECT COUNT(*)
+        FROM BOARD_AN A
+        WHERE A.BOARD_NO IN (SELECT BOARD_NO
+                             FROM BOARD B
+                             JOIN USERS U ON B.WRITER = U.USER_NO
+                             WHERE U.USER_NO = #{userNo}
+                             AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2))
+	</select>
+	
+	
+	<select id="selectTList" resultMap="homeworkResultSet">
+	   (SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,BOARD_DATE,WRITER, K.CLASS_NAME
+        FROM BOARD B
+       	JOIN USERS U ON B.WRITER = U.USER_NO
+        JOIN KINDER_CLASS K ON B.WRITER = K.TEACHER_NO
+        WHERE B.WRITER = #{userNo}
+        AND BOARD_TYPE = '알림장'
+        AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2))
+	</select>
+	
+	<select id="seletOneT" resultMap="homeworkResultSet">
+	  SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,BOARD_DATE,A.ANNOUNCEMENT_NO,A.ANNOUNCEMENT_CONTENT,A.BOARD_NO,A.CHILDREN_NO
+        FROM BOARD_AN A
+        RIGHT JOIN BOARD B ON B.BOARD_NO = A.BOARD_NO
+        WHERE A.BOARD_NO IN (SELECT BOARD_NO
+                                            FROM BOARD B
+                                        	JOIN USERS U ON B.WRITER = U.USER_NO
+                                            WHERE B.WRITER = #{userNo}
+                                            AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2))
+        AND B.BOARD_NO = #{boardNum}
+	</select>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>
 
