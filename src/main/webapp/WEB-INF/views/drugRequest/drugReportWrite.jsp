@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,10 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
+
+	<c:set var="today" value="<%=new Date()%>" />
+	<fmt:formatDate var="todayToString" pattern="yyyy-MM-dd" value="${ today }" />
+
 
 	<div class="main-panel">
 		<div class="content">
@@ -88,7 +94,7 @@
 						<div id="reportArea">
 							<br>
 							<p>금일 본 원의 하뽀송 원아에 대해 의뢰하신 내용대로 투약하였음을 보고합니다.</p>
-							<p>2019.08.31. 하민희</p>
+							<fmt:formatDate type="date" value="${today}" pattern="YYYY.MM.dd" /> <p>하민희</p>
 							<br>
 							<p style="color: #8f8f8f">투약보고서는 실제 투약 후 작성될 수 있으니 참고해 주세요.</p>
 							<hr width="96%">

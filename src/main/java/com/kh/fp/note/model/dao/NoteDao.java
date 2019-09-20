@@ -17,6 +17,7 @@ public interface NoteDao {
 
 	//보낸 쪽지함 리스트 조회
 	ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException;
+	ArrayList<Note> selectTeacherSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException;
 
 	//보낸 쪽지함 관리자 리스트 카운트 가져오기
 	int getListCount(SqlSessionTemplate sqlSession, int userNo);
@@ -30,11 +31,12 @@ public interface NoteDao {
 	//쪽지 보내기
 	int insertNote(SqlSessionTemplate sqlSession, int kinderNo) throws NoteException;
 
-	//받은 쪽지함 리스트 카운드 가져오기
-	int getRecieveListCount(SqlSessionTemplate sqlSession);
+	//받은 쪽지함 리스트 카운트 가져오기
+	int getRecieveListCount(SqlSessionTemplate sqlSession, int userNo);
 
 	//받은 쪽지함 리스트 조회
-	ArrayList<Note> selectRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi) throws NoteException;
+	ArrayList<Note> selectRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException;
+	ArrayList<Note> selectTeacherRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException;
 
 	//받은 쪽지함 상세보기
 	Note selectRecieveNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException;
@@ -44,5 +46,7 @@ public interface NoteDao {
 
 	//쪽지 확인 여부 체크
 	int checkedYN(SqlSessionTemplate sqlSession, int noteNo) throws NoteException;
+
+
 
 }

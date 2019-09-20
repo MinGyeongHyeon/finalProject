@@ -75,29 +75,10 @@ public class NoteController {
 		} catch (NoteException e) {
 			model.addAttribute("msg", e.getMessage());
 			e.printStackTrace();
-			return "index.jsp";
+			return "index";
 		}
 
 	}
-
-	// 보낸 쪽지함 리스트 조회
-//	@RequestMapping(value="sentNoteList.nt")
-//	public String sentNoteList(Model model, Note n) {
-//
-//		System.out.println("sentNoteList 컨트롤러 호출");
-//
-//		ArrayList<Note> nList;
-//		try {
-//			nList = ns.selectSentNoteList();
-//			model.addAttribute("nList", nList);
-//			return "note/sentNoteBox";
-//
-//		} catch (NoteException e) {
-//			model.addAttribute("msg", e.getMessage());
-//			e.printStackTrace();
-//			return "index.jsp";
-//		}
-//	}
 
 	// 보낸 쪽지함 페이징 처리
 	@RequestMapping(value = "sentNoteList.nt")
@@ -109,62 +90,60 @@ public class NoteController {
 		System.out.println("sentNoteList 컨트롤러 호출");
 		System.out.println("userNo" + userNo);
 
-		if(userNo == 0) {
-			System.out.println("로그인 유저 :::::: " + userNo);
+		int currentPage = 1;
 
-			int currentPage = 1;
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
 
-			if (request.getParameter("currentPage") != null) {
-				currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			}
+		ArrayList<Note> nList;
 
-			ArrayList<Note> nList;
+		try {
+			int listCount = ns.getListCount(userNo);
 
-			try {
-				int listCount = ns.getListCount(userNo);
+			System.out.println("listCount :::: " + listCount);
 
-				System.out.println("listCount :::: " + listCount);
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
-				PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-
+			if(userNo == 0) {
 				nList = ns.selectSentNoteList(pi, userNo);
-
 				model.addAttribute("nList", nList);
 				model.addAttribute("pi", pi);
+			}else {
+				nList = ns.selectTeacherSentNoteList(pi, userNo);
+				model.addAttribute("nList",nList);
+				model.addAttribute("pi", pi);
+			}
+			return "note/sentNoteBox";
+			} catch (NoteException e) {
+				model.addAttribute("msg", e.getMessage());
+				e.printStackTrace();
+				return "index";
+			}
+		}
 
-				return "note/sentNoteBox";
+
+	// 보낸 쪽지함 내용 상세보기
+		@RequestMapping(value = "selectSentNoteOne.nt")
+		public String selectSentNoteOne(int noteNo, Model model) {
+
+			System.out.println("상세보기 호출");
+			System.out.println(noteNo);
+
+			try {
+
+				Note n = ns.selectSentNoteOne(noteNo);
+
+				model.addAttribute("n", n);
+
+				return "note/sentNoteDetail";
 
 			} catch (NoteException e) {
 				model.addAttribute("msg", e.getMessage());
 				e.printStackTrace();
-				return "index.jsp";
+				return "index";
 			}
 		}
-		return "";
-	}
-
-
-	// 보낸 쪽지함 내용 상세보기
-	@RequestMapping(value = "selectSentNoteOne.nt")
-	public String selectSentNoteOne(int noteNo, Model model) {
-
-		System.out.println("상세보기 호출");
-		System.out.println(noteNo);
-
-		try {
-
-			Note n = ns.selectSentNoteOne(noteNo);
-
-			model.addAttribute("n", n);
-
-			return "note/sentNoteDetail";
-
-		} catch (NoteException e) {
-			model.addAttribute("msg", e.getMessage());
-			e.printStackTrace();
-			return "index.jsp";
-		}
-	}
 
 	// 보낸쪽지함 상세내용 조회에서 삭제하기
 	@RequestMapping(value = "deleteSentNoteOne.nt")
@@ -174,7 +153,7 @@ public class NoteController {
 		try {
 			int result = ns.deleteSentNoteOne(noteNo);
 
-			return "redirect:sentNoteList.nt";
+			return "redirect:sentNoteList.nt?check=Y";
 
 		} catch (NoteException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -202,7 +181,10 @@ public class NoteController {
 
 	// 받은 쪽지함 리스트 조회
 	@RequestMapping(value = "recieveNoteList.nt")
-	public String recieveNoteList(Model model, Note n, HttpServletRequest request, HttpServletResponse response) {
+	public String recieveNoteList(Model model, Note n, HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("loginUser") Member loginUser) {
+
+		int userNo = loginUser.getUserNo();
 
 		System.out.println("recieveNoteList 컨트롤러 호출");
 
@@ -213,18 +195,21 @@ public class NoteController {
 		}
 
 		ArrayList<Note> rList;
+
 		try {
-
-			int listCount = ns.getRecieveListCount();
-
+			int listCount = ns.getRecieveListCount(userNo);
 			System.out.println("listCount :::: " + listCount);
-
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
-			rList = ns.selectRecieveNoteList(pi);
-
-			model.addAttribute("rList", rList);
-			model.addAttribute("pi", pi);
+			if(userNo == 0) {
+				rList = ns.selectRecieveNoteList(pi, userNo);
+				model.addAttribute("rList", rList);
+				model.addAttribute("pi", pi);
+			}else {
+				rList = ns.selectTeacherRecieveNoteList(pi, userNo);
+				model.addAttribute("rList", rList);
+				model.addAttribute("pi", pi);
+			}
 
 			return "note/noteMain";
 
@@ -265,7 +250,7 @@ public class NoteController {
 		try {
 			int result = ns.deleteRecieveNoteOne(noteNo);
 
-			return "redirect:recieveNoteList.nt";
+			return "redirect:recieveNoteList.nt?check=Y";
 		} catch (NoteException e) {
 			model.addAttribute("msg", e.getMessage());
 			e.printStackTrace();
