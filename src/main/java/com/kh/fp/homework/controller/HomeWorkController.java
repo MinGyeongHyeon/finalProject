@@ -23,6 +23,8 @@ import com.kh.fp.common.CommonUtils;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.service.HomeworkService;
 import com.kh.fp.homework.model.vo.IndividualHomework;
+import com.kh.fp.homework.model.vo.PageInfo;
+import com.kh.fp.homework.model.vo.Pagination;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KinGardenClasses;
@@ -220,17 +222,90 @@ public class HomeWorkController {
 	public String homeworklist(Model model,HttpSession session, HttpServletRequest request) {
 
 		
-		/*
-		 * if(KinGardenClasses loginUser =
-		 * (KinGardenClasses)session.getAttribute("teacherKing")) {
-		 * 
-		 * 
-		 * };
-		 */
+		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
+
+		int userNo = 0;
+		String userC = null;
+		int currentPage = 1;
 		
+		if(TloginUser != null) {
+			
+			userNo = TloginUser.getTeacherNo();
+			userC = "선생님";
+			System.out.println("선생님");
+			
+		}else if(CloginUser != null) {
+			
+			userNo = CloginUser.getChildrenNo();
+			int tNo = CloginUser.getTeacherNo();
+			System.out.println(tNo+"선생님 번호");
+			userC = "원아";
+			System.out.println("원아");
+		}
+		
+
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		
+		ArrayList<homework> nList;
+			
+		int listCount = hs.getTListCount(userNo);
+		
+		if(listCount != 0) {
+			
+		System.out.println(listCount + "개");
+			
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+		nList = hs.selectThomework(pi, userNo);
+		
+		model.addAttribute("nList", nList);
+		model.addAttribute("pi", pi);
+			
+		}
 		
 		return "homeworkDiary/homeworkDiaryList";
 
+	}
+	
+	
+	@RequestMapping(value = "homeworkDetail.hw")
+	public String homeworkDetail(Model model,HttpSession session, HttpServletRequest request) {
+		
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		
+		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
+		
+		ArrayList<homework> nList;
+		int userNo = 0;
+		String userC = null;
+		int currentPage = 1;
+		
+		if(TloginUser != null) {
+			
+			userNo = TloginUser.getTeacherNo();
+			userC = "선생님";
+			System.out.println("선생님");
+			nList = hs.SelectOneT(userNo,bid);
+			
+			System.out.println(bid + "zz");
+			System.out.println(userNo + "ss");
+			
+		}else if(CloginUser != null) {
+			
+			userNo = CloginUser.getChildrenNo();
+			int tNo = CloginUser.getTeacherNo();
+			System.out.println(tNo+"선생님 번호");
+			userC = "원아";
+			System.out.println("원아");
+		}
+		
+
+		return "homeworkDiary/homeworkDetail";
 	}
 
 }

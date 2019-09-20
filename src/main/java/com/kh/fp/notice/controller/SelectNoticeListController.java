@@ -77,10 +77,12 @@ public class SelectNoticeListController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
+		
 		int listCount = ns.getListCount(noticeWho);
 			
 		System.out.println(listCount + "개");
 		
+		if(listCount != 0) {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		if(role.equals("선생님")) {
@@ -108,6 +110,8 @@ public class SelectNoticeListController {
 		
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
+		
+		}
 		
 		return "notice/NoticeList";
 	}

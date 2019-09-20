@@ -38,6 +38,9 @@
 		<typeAlias type="com.kh.fp.admin.model.vo.Company" alias="Company"/>
 		<typeAlias type="com.kh.fp.member.model.vo.OnOff" alias="OnOff"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.IndividualHomework" alias="IndividualHomeWork"/>
+		<typeAlias type="com.kh.fp.homework.model.vo.PageInfo" alias="PageInfo"/>
+		<typeAlias type="com.kh.fp.homework.model.vo.Pagination" alias="Pagination"/>
+		<typeAlias type="com.kh.fp.homework.model.vo.Whoselect" alias="Whoselect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclass" alias="Kinderclass"/>
 
 	</typeAliases>

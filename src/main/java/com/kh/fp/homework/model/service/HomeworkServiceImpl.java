@@ -13,6 +13,7 @@ import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
+import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
 
 @Service
@@ -101,7 +102,39 @@ public class HomeworkServiceImpl implements HomeworkService{
 		return BoardNo;
 	}
 
+	@Override
+	public int getTListCount(int userNo) {
 
+		int ListCount = hd.TListCount(sqlSession,userNo);
+		
+		
+		return ListCount;
+	}
+
+
+
+	@Override
+	public ArrayList<homework> selectThomework(com.kh.fp.homework.model.vo.PageInfo pi, int userNo) {
+		ArrayList<homework> list = null;
+		
+		list = hd.selectTH(sqlSession,userNo,pi);
+		
+		return list;
+		
+	}
+
+
+
+	@Override
+	public ArrayList<homework> SelectOneT(int userNo, int bid) {
+		
+		ArrayList<homework> list = null;
+		
+		list = hd.selectOneT(sqlSession,userNo,bid);
+		
+		return list;
+
+	}
 	
 	 
 

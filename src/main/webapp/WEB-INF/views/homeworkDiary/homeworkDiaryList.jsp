@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,7 +107,7 @@
 						<img src="${ contextPath }/resources/images/homework.png" alt="" />
 						<label style="font-weight:bold;">알림장</label>
 					</td>
-					<td>
+					<td style="text-align:right">
 						<button class="btn btn-warning" onclick="goSomeoneWrite()">여러명 보내기</button>
 						<button class="btn btn-warning" onclick="goAnnouncementWrite()">작성하기</button>
 					</td>
@@ -134,54 +135,87 @@
 			&nbsp;
 			<input type="date" name="searchDate" class="searchDate"/>
 		</div>
-		<div class="homeworkDiarySummary" onclick="showHomeWorkDetail()">
-			<% int num = 5;
-			for(int i = 0; i < num; i++){%>
+		<div class="homeworkDiarySummary">
+			<!-- <div class="summaryDiv"> -->
+			<c:forEach var="l" items="${nList}">
 			<div class="summaryDiv">
-				<table>
-					<tr>
-						<td>WriterNAme</td>
-						<td width="30px;"><img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
-					</tr>
-					<tr>
-						<td>제목 영역</td>
-					</tr>
-					<tr>
-						<td>내용입력란</td>
-					</tr>
-					<tr>
-						<td>작성날짜</td>
-					</tr>
+				<div class="card">
+				<table class="tq">
+						<tr class="first">
+							<td class="tqtq"><c:out value="${l.boardNum}" /></td>
+						</tr>
+						<tr>
+							<td><c:out value="${l.className}"/>교사</td>
+							<td width="30px;">
+							<img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
+						</tr>
+						<tr>
+							<td class="titleView"><c:out value="${l.boardTitle}"/></td>
+						</tr>
+						<tr>
+							<td><c:out value="${l.boardContent}"/></td>
+						</tr>
+						<tr>
+							<td><c:out value="${l.writeDate}" /></td>
+						</tr>
+						
 				</table>
+			</div>	
 			</div>
-			<%} %>
+		</c:forEach>
+			<!-- </div> -->
 		</div>
-		<div>
-			페이징
-		</div>
+		<div id="paginArea" align="center">
+						<c:if test="${ pi.currentPage <= 1 }">이전 &emsp;</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="blistBack" value="homeworklist.hw">
+								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+							</c:url>
+							<a href="${ blistBack }">이전</a>
+							&emsp;
+						</c:if>
+
+						<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+							<c:if test="${ p eq pi.currentPage }">
+								<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
+							</c:if>
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="blistCheck" value="homeworklist.hw">
+									<c:param name="currentPage" value="${ p }" />
+								</c:url>
+								<a href="${ blistCheck }">${ p }</a>
+							</c:if>
+						</c:forEach>
+
+
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="blistEnd" value="homeworklist.hw">
+								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+							</c:url>
+							<a href="${ blistEnd }">&emsp; 다음</a>
+						</c:if>
+						<c:if test="${ pi.currentPage >= pi.maxPage }"> &emsp; 다음 </c:if>
+					</div>
 		<button class="btn btn-light"><i class="fas fa-print"></i>&nbsp;&nbsp;출력 및 다운로드</button>
 		
 	</div>
 		<script>
-		function goAnnouncementWrite(){
+	/* 	function goAnnouncementWrite(){
 			location.href="WriteAnnounce.pl";
-		}
-		
-		function showHomeWorkDetail(){
-			location.href = "DetailHomeWork.pl";
-		}
-		
-		function goSomeoneWrite(){
-			
-			location.href = "WriteIndi.pl";
 		}
 		
 		function goWhoAreYou(){
 
 			location.href="WriteAnnounce.pl";
-		}
+		} */
+		
+		$(".card").click(function(){
+			var bid = $(this).children().children().eq(0).children().children("td").eq(0).text();
+			console.log(bid);
+			location.href="homeworkDetail.hw?bid="+bid;
+		});
+	
 	</script>
-	<!--  <c:set var = "member" value="${sessionScope.loginUser}"/>-->
 </body>
 </html>
 
