@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
+import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 
@@ -21,5 +22,9 @@ public interface HomeworkService  {
 	ArrayList<HomeWorkChildren> selectChildren(int userNo2);
 
 	String selectClassName(int userNo2);
+
+	int insertIndiHomework(ArrayList<IndividualHomework> homeless);
+
+	int selectBoardNum();
 
 }

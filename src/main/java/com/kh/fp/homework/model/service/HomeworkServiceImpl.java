@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fp.homework.model.dao.HomeWorkDao;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
+import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
@@ -81,6 +82,23 @@ public class HomeworkServiceImpl implements HomeworkService{
 		String ClassName = hd.selectClassName(sqlSession,userNo2);
 		
 		return ClassName;
+	}
+
+	@Override
+	public int insertIndiHomework(ArrayList<IndividualHomework> homeless) {
+		
+		
+		int insertIndiH = hd.insertIndiH(sqlSession,homeless);
+		
+		return 0;
+	}
+
+	@Override
+	public int selectBoardNum() {
+
+		int BoardNo = hd.selectBoardNum(sqlSession);
+
+		return BoardNo;
 	}
 
 

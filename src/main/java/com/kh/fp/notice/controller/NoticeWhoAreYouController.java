@@ -43,7 +43,6 @@ public class NoticeWhoAreYouController {
 	@RequestMapping(value="WhoAreYou.no")
 	public String WhoAreYou(Notice Who,Model model,@ModelAttribute("loginUser") Member loginUser) {
 		
-		System.out.println("controller :"+loginUser);
 		int userNo = loginUser.getUserNo();
 		
 		System.out.println();

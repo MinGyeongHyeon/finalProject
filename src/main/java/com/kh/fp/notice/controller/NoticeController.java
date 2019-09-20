@@ -2,6 +2,7 @@ package com.kh.fp.notice.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.notice.model.exception.NoticeException;
 import com.kh.fp.notice.model.service.NoticeService;
@@ -24,10 +26,13 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="NoticeWrite.no")
-	public String NoticeWrite(Notice n, Model model,@ModelAttribute("loginUser") Member loginUser) {
+	public String NoticeWrite(Notice n, Model mode,HttpSession session) {
+		
+		KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		int userNo = loginUser.getTeacherNo();
 		
 		n.setBoardtype("공지사항");
-		n.setWriter(loginUser.getUserNo());
+		n.setWriter(userNo);
 	
 		System.out.println("컨트롤러"+n);
 		 
