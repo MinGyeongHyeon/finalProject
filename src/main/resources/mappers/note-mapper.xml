@@ -59,6 +59,8 @@
 		</association>
 	</resultMap>
 
+<!-- ****************************************************************************** -->
+
 
 	<select id="selectKinderArr" parameterType="noteKindergarden"
 		resultMap="noteKindergarden">
@@ -66,6 +68,15 @@
 		FROM USERS U
 		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
 	</select>
+
+		<!-- 쪽지보내기 -->
+	<insert id="insertNote" parameterType="Note">
+		INSERT INTO NOTEBOX
+		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{kinderNo}, #{userNo},
+		DEFAULT, DEFAULT)
+	</insert>
+
+<!-- ****************************************************************************** -->
 
 	<!-- 보낸 쪽지함 리스트 카운트 조회용 쿼리문 -->
 	<select id="selectListCount" parameterType="Note" resultType="_int">
@@ -76,25 +87,37 @@
 		AND N.STATUS = 'N'
 	</select>
 
-	<!-- 페이징 처리 후 보낸 쪽지함 리스트 조회용 쿼리문 -->
+	<!-- 페이징 처리 후 보낸 쪽지함 리스트 조회용 쿼리문(관리자)-->
 	<select id="selectSentNoteList" parameterType="Note" resultMap="Note">
 		SELECT *
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		JOIN KINDERGARDEN K ON(K.KINDER_NO = U.USER_NO)
 		WHERE N.STATUS = 'N'
+		AND N.SEND_NO = #{userNo}
 		ORDER BY N.NOTE_NO DESC
 	</select>
 
-	<!-- 보낸 쪽지함 상세보기 -->
-	<select id="selectSentNoteOne" parameterType="_int"
-		resultMap="Note">
+	<!-- 페이징 처리 후 보낸 쪽지함 리스트 조회용 쿼리문(원장님)-->
+	<select id="selectTeacherSentNoteList" parameterType="Note" resultMap="Note">
 		SELECT *
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		WHERE N.STATUS = 'N'
+		AND N.SEND_NO = #{userNo}
+		ORDER BY N.NOTE_NO DESC
+	</select>
+
+
+	<!-- 보낸 쪽지함 상세보기-->
+	<select id="selectSentNoteOne" parameterType="_int" resultMap="Note">
+		SELECT *
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
 		WHERE N.NOTE_NO = #{noteNo}
 		AND N.STATUS = 'N'
 	</select>
+
 
 	<!-- 보낸 쪽지함 상세보기에서 삭제하기 -->
 	<update id="deleteSentNoteOne">
@@ -103,35 +126,34 @@
 		WHERE NOTE_NO = #{noteNo}
 	</update>
 
-<!-- 	<update id="deleteSentNotes">
-		UPDATE NOTEBOX
-		SET STATUS = 'Y'
-		WHERE NOTE_NO IN (#{noteNo})
-	</update> -->
 
-	<!-- 쪽지보내기 -->
-	<insert id="insertNote" parameterType="Note">
-		INSERT INTO NOTEBOX
-		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{kinderNo}, #{userNo},
-		DEFAULT, DEFAULT)
-	</insert>
-
+<!-- ****************************************************************************** -->
 	<!-- 받은 쪽지함 리스트 카운트 조회용 쿼리문 -->
 	<select id="recieveListCount" parameterType="Note" resultType="_int">
 		SELECT COUNT(*)
 		FROM NOTEBOX N
-		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
-		WHERE N.STATUS = 'N'
-		ORDER BY N.NOTE_NO DESC
+		JOIN USERS U ON(N.RECEIVE_NO = U.USER_NO)
+		WHERE U.USER_NO = #{userNo}
+		AND N.STATUS = 'N'
 	</select>
 
-	<!-- 받은 쪽지함 리스트 조회용 쿼리문 -->
+	<!-- 받은 쪽지함 리스트 조회용 쿼리문(관리자) -->
 	<select id="selectRecieveNoteList" parameterType="Note" resultMap="Note">
 		SELECT *
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
+		JOIN KINDERGARDEN K ON(K.KINDER_NO = U.USER_NO)
 		WHERE N.STATUS = 'N'
+		AND N.RECEIVE_NO = #{userNo}
+		ORDER BY N.NOTE_NO DESC
+	</select>
+	<!-- 받은 쪽지함 리스트 조회용 쿼리문(원장님) -->
+	<select id="selectTeacherRecieveNoteList" parameterType="Note" resultMap="Note">
+		SELECT *
+		FROM NOTEBOX N
+		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
+		WHERE N.STATUS = 'N'
+		AND N.RECEIVE_NO = #{userNo}
 		ORDER BY N.NOTE_NO DESC
 	</select>
 
@@ -141,7 +163,6 @@
 		SELECT *
 		FROM NOTEBOX N
 		JOIN USERS U ON(N.SEND_NO = U.USER_NO)
-		JOIN KINDERGARDEN K ON(U.USER_NO = K.KINDER_NO)
 		WHERE N.NOTE_NO = #{noteNo}
 		AND N.STATUS = 'N'
 	</select>

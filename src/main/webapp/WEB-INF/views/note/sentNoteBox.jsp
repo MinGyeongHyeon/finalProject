@@ -48,6 +48,7 @@
 								<th>제목</th>
 								<th>받은 사람 (유치원 명)</th>
 								<th>보낸 날짜</th>
+								<th>확인 여부</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,8 +59,18 @@
 									<%-- <td><input type="hidden" id="nidA" value="${ nList.noteNo }"></td> --%>
 									<%-- <td id="nidA"><c:out value="${ nList.noteNo }"/></td> --%>
 									<td class="in" id="listTitle"><c:out value="${ nList.noteTitle }" /></td>
-									<td class="in"><c:out value="${ nList.users.userName }" /> ( <c:out value="${ nList.noteKindergarden.kinderName }"/> )</td>
+									<td class="in"><c:out value="${ nList.users.userName }" />
+										<c:if test="${ loginUser.userNo eq 0}">
+										 ( <c:out value="${ nList.noteKindergarden.kinderName }"/> )
+										 </c:if>
+									</td>
 									<td class="in"><c:out value="${ nList.noteDate }" /></td>
+									<td class="in">
+										<c:choose>
+										    <c:when test="${ nList.checked eq 'Y'}">읽음</c:when>
+										    <c:when test="${ nList.checked eq 'N'}">읽지않음</c:when>
+										</c:choose>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -109,7 +120,21 @@
 	</div>
 
 	<script>
+		function getUrlParams() {
+	    	var params = {};
+	   		window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+	    	return params;
+		}
+
 		$(function() {
+
+			oParams = getUrlParams();
+
+			if(oParams.check == 'Y'){
+				alert("삭제되었습니다.");
+			}
+
+
 
 			$("#checkAll").click(function() {
 				if ($("#checkAll").prop("checked")) {

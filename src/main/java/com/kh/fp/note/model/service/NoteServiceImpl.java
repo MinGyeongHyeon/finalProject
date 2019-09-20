@@ -33,23 +33,32 @@ public class NoteServiceImpl implements NoteService{
 	@Override
 	public ArrayList<Note> selectSentNoteList(PageInfo pi, int userNo) throws NoteException {
 		System.out.println("보낸 쪽지함 서비스");
+		System.out.println("userNo ::: " + userNo);
 
 		return nd.selectSentNoteList(sqlSession, pi, userNo);
 	}
+	//보낸 쪽지함 리스트 조회(원장님)
+	@Override
+	public ArrayList<Note> selectTeacherSentNoteList(PageInfo pi, int userNo) throws NoteException {
+		System.out.println("보낸 쪽지함 서비스");
+		System.out.println("userNo ::: " + userNo);
 
-	//보낸 쪽지함 관리자 리스트 카운트 가져오기
+		return nd.selectTeacherSentNoteList(sqlSession, pi, userNo);
+	}
+
+	//보낸 쪽지함 리스트 카운트 가져오기
 	@Override
 	public int getListCount(int userNo) {
 		return nd.getListCount(sqlSession, userNo);
 	}
 
 	//보낸 쪽지함 상세보기
-	@Override
-	public Note selectSentNoteOne(int noteNo) throws NoteException {
+		@Override
+		public Note selectSentNoteOne(int noteNo) throws NoteException {
 
-		/* System.out.println(noteNo); */
+			/* System.out.println(noteNo); */
 
-		return nd.selectSentNoteOne(sqlSession, noteNo);
+			return nd.selectSentNoteOne(sqlSession, noteNo);
 	}
 
 	//보낸 쪽지함 상세보기에서 삭제하기
@@ -68,17 +77,24 @@ public class NoteServiceImpl implements NoteService{
 
 	//받은 쪽지함 리스트 카운트 가져오기
 	@Override
-	public int getRecieveListCount() {
-		return nd.getRecieveListCount(sqlSession);
+	public int getRecieveListCount(int userNo) {
+		return nd.getRecieveListCount(sqlSession, userNo);
 	}
 
 
 	//받은 쪽지함 리스트 조회
 	@Override
-	public ArrayList<Note> selectRecieveNoteList(PageInfo pi) throws NoteException {
+	public ArrayList<Note> selectRecieveNoteList(PageInfo pi, int userNo) throws NoteException {
 		System.out.println("받은 쪽지함 서비스");
 
-		return nd.selectRecieveNoteList(sqlSession, pi);
+		return nd.selectRecieveNoteList(sqlSession, pi, userNo);
+	}
+	//받은 쪽지함 리스트 조회(원장님)
+	@Override
+	public ArrayList<Note> selectTeacherRecieveNoteList(PageInfo pi, int userNo) throws NoteException {
+		System.out.println("받은 쪽지함 서비스");
+
+		return nd.selectTeacherRecieveNoteList(sqlSession, pi, userNo);
 	}
 
 	//받은 쪽지함 상세보기
@@ -102,6 +118,11 @@ public class NoteServiceImpl implements NoteService{
 
 		return nd.checkedYN(sqlSession, noteNo);
 	}
+
+
+
+
+
 
 	//보낸 쪽지함 여러개 삭제
 //	@Override

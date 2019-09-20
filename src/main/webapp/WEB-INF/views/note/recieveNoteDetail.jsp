@@ -29,8 +29,7 @@
 							<table id="table1">
 								<tr>
 									<th>보낸 사람 :</th>
-									<td>${ note.users.userName }( ${ note.noteKindergarden.kinderName }
-										)</td>
+									<td>${ note.users.userName }</td>
 								</tr>
 								<tr>
 									<th>보낸 날짜 :</th>

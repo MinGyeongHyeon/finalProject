@@ -53,18 +53,43 @@ public class NoteDaoImpl implements NoteDao{
 	public ArrayList<Note> selectSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException {
 		System.out.println("보낸 쪽지함 dao 호출");
 
+		System.out.println("userNo ::: " + userNo);
+
 		ArrayList<Note> nList = null;
 
 		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
-		nList = (ArrayList)sqlSession.selectList("Note.selectSentNoteList", null, rowBounds);
+		nList = (ArrayList)sqlSession.selectList("Note.selectSentNoteList", userNo, rowBounds);
+
+		if(nList == null) {
+			throw new NoteException("보낸 쪽지함 리스트 불러오기 실패!");
+		}
 
 		return nList;
 	}
+	//보낸 쪽지함 리스트 가져오기(원장님)
+	@Override
+	public ArrayList<Note> selectTeacherSentNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException {
+		System.out.println("보낸 쪽지함 dao 호출");
 
+		System.out.println("userNo ::: " + userNo);
 
+		ArrayList<Note> nList = null;
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		nList = (ArrayList)sqlSession.selectList("Note.selectTeacherSentNoteList", userNo, rowBounds);
+
+		if(nList == null) {
+			throw new NoteException("보낸 쪽지함 리스트 불러오기 실패!");
+		}
+
+		return nList;
+	}
 
 	//보낸 쪽지함 관리자 리스트 카운트 가져오기
 	@Override
@@ -73,21 +98,21 @@ public class NoteDaoImpl implements NoteDao{
 	}
 
 	//보낸 쪽지함 상세보기
-	@Override
-	public Note selectSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
-		System.out.println("noteNo :::" + noteNo);
+		@Override
+		public Note selectSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException {
+			System.out.println("noteNo :::" + noteNo);
 
-		Note n = (Note)sqlSession.selectOne("Note.selectSentNoteOne", noteNo);
+			Note n = (Note)sqlSession.selectOne("Note.selectSentNoteOne", noteNo);
 
-		System.out.println("noteNo :::" + noteNo);
-		System.out.println("n :::: " + n);
+			System.out.println("noteNo :::" + noteNo);
+			System.out.println("n :::: " + n);
 
-		if(n == null) {
-			throw new NoteException("쪽지 상세보기 실패!");
+			if(n == null) {
+				throw new NoteException("쪽지 상세보기 실패!");
+			}
+
+			return n;
 		}
-
-		return n;
-	}
 
 	//보낸 쪽지함 상세보기에서 삭제하기
 	@Override
@@ -119,15 +144,15 @@ public class NoteDaoImpl implements NoteDao{
 		return result;
 	}
 
-	//받은 쪽지함 리스트 카운드 가져오기
+	//받은 쪽지함 리스트 카운트 가져오기
 	@Override
-	public int getRecieveListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("Note.recieveListCount");
+	public int getRecieveListCount(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("Note.recieveListCount", userNo);
 	}
 
 	//받은 쪽지함 리스트 조회
 	@Override
-	public ArrayList<Note> selectRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi) throws NoteException{
+	public ArrayList<Note> selectRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException{
 		System.out.println("받은 쪽지함 dao 호출");
 
 		ArrayList<Note> rList = null;
@@ -136,7 +161,30 @@ public class NoteDaoImpl implements NoteDao{
 
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
-		rList = (ArrayList)sqlSession.selectList("Note.selectRecieveNoteList", null, rowBounds);
+		rList = (ArrayList)sqlSession.selectList("Note.selectRecieveNoteList", userNo, rowBounds);
+
+		if(rList == null) {
+			throw new NoteException("받은 쪽지 리스트 불러오기 실패!");
+		}
+
+		return rList;
+	}
+	//받은 쪽지함 리스트 조회(원장님)
+	@Override
+	public ArrayList<Note> selectTeacherRecieveNoteList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) throws NoteException{
+		System.out.println("받은 쪽지함 dao 호출");
+
+		ArrayList<Note> rList = null;
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		rList = (ArrayList)sqlSession.selectList("Note.selectTeacherRecieveNoteList", userNo, rowBounds);
+
+		if(rList == null) {
+			throw new NoteException("받은 쪽지 리스트 불러오기 실패!");
+		}
 
 		return rList;
 	}
@@ -184,6 +232,10 @@ public class NoteDaoImpl implements NoteDao{
 		}
 		return result;
 	}
+
+
+
+
 
 
 }

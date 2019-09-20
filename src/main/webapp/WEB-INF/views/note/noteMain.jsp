@@ -25,10 +25,6 @@
 							<option>전체보기</option>
 							<option>별님반</option>
 							<option>티비반</option>
-						</select> &nbsp;&nbsp;&nbsp; <select class="form-control" id="sel2">
-							<option>전체 원아보기</option>
-							<option>김영지</option>
-							<option>한송이</option>
 						</select>
 
 						<div id="dateA">
@@ -46,6 +42,7 @@
 								<th>제목</th>
 								<th>보낸 사람 (유치원 명)</th>
 								<th>보낸 날짜</th>
+								<th>확인 여부</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,8 +54,19 @@
 									<%-- <td><input type="hidden" id="nidA" value="${ nList.noteNo }"></td> --%>
 									<%-- <td id="nidA"><c:out value="${ nList.noteNo }"/></td> --%>
 									<td class="in" id="listTitle"><c:out value="${ rList.noteTitle }" /></td>
-									<td class="in"><c:out value="${ rList.users.userName }" /> ( <c:out value="${ rList.noteKindergarden.kinderName }"/> )</td>
+									<td class="in">
+										<c:out value="${ rList.users.userName }" />
+										<c:if test="${ loginUser.userNo eq 0}">
+										 ( <c:out value="${ rList.noteKindergarden.kinderName }"/> )
+										 </c:if>
+									</td>
 									<td class="in"><c:out value="${ rList.noteDate }" /></td>
+									<td class="in">
+										<c:choose>
+										    <c:when test="${ rList.checked eq 'Y'}">읽음</c:when>
+										    <c:when test="${ rList.checked eq 'N'}">읽지않음</c:when>
+										</c:choose>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -108,7 +116,19 @@
 	</div>
 
 	<script>
+		function getUrlParams() {
+    		var params = {};
+   			window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+    		return params;
+		}
+
 		$(function() {
+
+			oParams = getUrlParams();
+
+			if(oParams.check == 'Y'){
+				alert("삭제되었습니다.");
+			}
 
 			$("#checkAll").click(function() {
 				if ($("#checkAll").prop("checked")) {
