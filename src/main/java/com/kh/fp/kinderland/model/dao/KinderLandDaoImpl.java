@@ -78,5 +78,27 @@ public class KinderLandDaoImpl implements KinderLandDao{
 		return sqlSession.update("KinderLand.kinderUpdate",kg);
 	}
 
+	@Override
+	public ArrayList kinderbanplus(SqlSessionTemplate sqlSession, int kinderNo) {
+
+		return (ArrayList) sqlSession.selectList("KinderLand.kinderbanplus",kinderNo);
+	}
+
+	@Override
+	public ArrayList kinderclassMax(SqlSessionTemplate sqlSession, ArrayList list) {
+
+		ArrayList list2 = new ArrayList();
+		
+		System.out.println("list 사이즈  "+ list.size());
+		
+		for(int i = 0 ; i < list.size(); i++) {
+			
+			list2.add(sqlSession.selectOne("KinderLand.kinderclassMax",list.get(i)));
+			
+		}
+		
+		return list2;
+	}
+
 	
 }

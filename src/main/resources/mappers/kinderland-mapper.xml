@@ -19,6 +19,17 @@
   		<result property="kinderNo" column="KINDER_NO"/>
   		<result property="className" column="CLASS_NAME"/>
   	</resultMap>
+  	
+  	<resultMap type="Kinderclass" id="KinderclassResultSet">
+  	
+  		<id property="kinderNo" column="KINDER_NO"/>
+  		<result property="className" column="CLASS_NAME"/>
+  		<result property="classMax" column="CLASS_MAX"/>
+  		<result property="openedDate" column="OPENED_DATE"/>
+  		<result property="closeDate" column="CLOSE_DATE"/>
+  	
+  	</resultMap>
+  	
  
   	<select id="selectckinder" resultMap="kinderreslutSet">
   	
@@ -89,6 +100,23 @@
   		WHERE KINDER_NO = #{kinderNo}
   	
   	</update>
+  	
+  	<select id="kinderbanplus" resultMap="KinderclassResultSet">
+  		
+  		SELECT *
+  		FROM KINDER_CLASSES
+  		WHERE KINDER_NO = #{kinderNo}
+  	
+  	</select>
+  	
+  	<select id="kinderclassMax" resultType="_int">
+  		
+  		SELECT COUNT(*)
+  		FROM KINDER_CLASS
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND CLASS_NAME = #{className}
+  	
+  	</select>
 	
 
   </mapper>
