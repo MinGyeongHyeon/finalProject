@@ -104,6 +104,15 @@
 	
 	</resultMap>
 	
+	<resultMap type="KinderGarden" id="KinderGardenResultSet">
+	
+		<id property="kinderNo" column="KINDER_NO"/>
+		<result property="kinderName" column="KINDER_NAME"/>
+		<result property="phone" column="KINDER_PHONE"/>
+		<result property="address" column="KINDER_ADDRESS"/>
+		
+	</resultMap>
+	
 	<!-- 회원 가입용 쿼리문 -->
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO USERS
@@ -171,12 +180,12 @@
 	
 	</select>
 	
-	<insert id="classinsert">
+<!-- 	<insert id="classinsert">
 		
 		INSERT INTO KINDER_CLASS
 		VALUES(SEQ_CLASS_NO.NEXTVAL , #{kinderNo} ,#{className}, SYSDATE , '1학기', NULL ,NULL,NULL )
 	
-	</insert>
+	</insert> -->
 	
 	<select id="selectkkid" parameterType="_int" resultType="_int">
 		SELECT CHILDREN_NO
@@ -424,6 +433,14 @@
 	
 		SELECT *
 		FROM ON_OFF
+		WHERE KINDER_NO = #{userNo}
+	
+	</select>
+	
+	<select id="selectKinderName" resultMap="KinderGardenResultSet">
+	
+		SELECT *
+		FROM KINDERGARDEN
 		WHERE KINDER_NO = #{userNo}
 	
 	</select>

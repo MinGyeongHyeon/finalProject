@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/1eba500ac5.js"></script>
+
 
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 <title>메뉴바</title> 
@@ -66,7 +67,7 @@
 
 			<div class="logo-header">
 
-				<a href="main.pl" class="logo"> <label id="kinName">킨더유치원</label>
+				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
 
 				</a><div>
 
@@ -317,7 +318,7 @@
 								<p>공지사항</p>
 						</a></li>
 						</c:if>
-						
+
 						<c:if test="${ of.album eq 'Y' }">
 						<li class="nav-item"><a href="album.ab"> <i class="far fa-images"></i>
 								<p>앨범</p>
@@ -337,14 +338,15 @@
 								<p>식단표</p>
 						</a></li>
 						</c:if>
-						
+
 						<c:if test="${ of.dosage eq 'Y' }">
-						<li class="nav-item"><a href="drugMainView.pl"> <i
-								class="fas fa-notes-medical"></i>
+						<li class="nav-item"><!-- <a href="dosageList.ds"> -->
+						<a href="drugMainView.pl">
+						<i class="fas fa-notes-medical"></i>
 								<p>투약의뢰서</p>
 						</a></li>
 						</c:if>
-			
+
 						<c:if test="${ of.homecoming eq 'Y' }">
 						<li class="nav-item"><a href="returnHomeMain.rh"> <i class="fas fa-child"></i>
 								<p>귀가동의서</p>
@@ -391,7 +393,7 @@
 										</a></li>
 									</ul>
 								</div></li>
-								
+
 						<li class="nav-item"><a href="payment.pa"> <i
 								class="far fa-comments"></i>
 								<p>결제test</p>

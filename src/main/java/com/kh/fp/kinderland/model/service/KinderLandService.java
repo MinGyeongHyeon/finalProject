@@ -33,4 +33,8 @@ public interface KinderLandService {
 
 	int kinderUpdate(KinderGarden kg);
 
+	ArrayList kinderbanplus(int kinderNo);
+
+	ArrayList kinderclassMax(ArrayList list);
+
 }

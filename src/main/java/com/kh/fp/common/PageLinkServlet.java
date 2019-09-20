@@ -24,7 +24,7 @@ import com.kh.fp.member.model.vo.OnOff;
 @Controller
 @SessionAttributes("of")
 public class PageLinkServlet {
-	
+
 	@Autowired
 	private MemberService ms;
 
@@ -88,29 +88,29 @@ public class PageLinkServlet {
 
 	@RequestMapping(value="main.pl")
 	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model) {
-		
+
 		if(loginUser.getClassification().equals("원장님")) {
-			
+
 			int childrenCount = ms.childrenCount(loginUser);
 			int teacherCount = ms.teacherCount(loginUser);
 			int childrenCountN = ms.childrenCountN(loginUser);
 			int teacherCountN = ms.teacherCountN(loginUser);
-			
+
 			model.addAttribute("childrenCount", childrenCount);
 			model.addAttribute("teacherCount",teacherCount);
 			model.addAttribute("childrenCountN", childrenCountN);
 			model.addAttribute("teacherCountN",teacherCountN);
-	
+
 		}else if(loginUser.getClassification().equals("선생님")) {
-				
+
 				int childrenCount = ms.childrenCount(loginUser);
 				int childrenCountN = ms.childrenCountN(loginUser);
-				
+
 				model.addAttribute("childrenCount", childrenCount);
 				model.addAttribute("childrenCountN", childrenCountN);
-				
+
 		}
-		
+
 
 		return "main/parentsMain";
 	}
@@ -171,14 +171,14 @@ public class PageLinkServlet {
 
 		return "homeworkDiary/homeworkIndividualWrite";
 	}
-	
+
 
 	@RequestMapping(value="WriteAnnounce.pl")
 	public String WriteAnnounce() {
 
 		return "homeworkDiary/homeworkDiaryWrite";
 	}
-	
+
 
 	@RequestMapping(value="test.pl")
 	public String test() {
@@ -209,7 +209,7 @@ public class PageLinkServlet {
 		 Member loginUser = (Member)session.getAttribute("loginUser");
 		 int memberId = loginUser.getUserNo();
 
-		 
+
 		 return "homeworkDiary/homeworkSelectPeople";
 	 }
 
@@ -229,36 +229,36 @@ public class PageLinkServlet {
 	 public String DetailNotice() {
 		 return "notice/DetailNotice";
 	 }
-	 
+
 	 @RequestMapping(value="findpwd.pl")
 	 public String FindPwd() {
-		 
+
 		 return "join/findPwd";
 	 }
-	 
+
 	@RequestMapping(value="findPwd2.pl")
 	public String findPwd2(String userId , Model model) {
-		
+
 		model.addAttribute("userId",userId);
-		
+
 		return "join/findPwd2";
 	}
 	@RequestMapping(value="findPwd3.pl")
 	public String findPwd3(String selectId , Model model) {
-		
+
 		model.addAttribute("selectId",selectId);
-		
+
 		return "join/findPwd3";
 	}
-	
-	
+
+
 
 	@RequestMapping(value="introduceService.pl")
 	public String introduceservice() {
 		return "main/introduceService";
 	}
-	 
-	 
-	 
+
+
+
 }
 

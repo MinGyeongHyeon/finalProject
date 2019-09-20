@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Dosage">
-	<resultMap type="com.kh.fp.dosage.model.vo.DosageVO" id="dosageResultSet">
+	<resultMap type="com.kh.fp.dosage.model.vo.Dosage" id="dosageResultSet">
 		<id property="dosageNo" column="DOSAGE_NO"/>
 		<result property="dosageDate" column="DOSAGE_DATE"/>
 		<result property="symptom" column="SYMPTOM"/>
@@ -26,6 +26,12 @@
 		VALUES(SEQ_DOSAGE_NO.NEXTVAL, #{dateDate}, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
 					#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo})
 	</insert>
+
+	<!-- 투약의뢰서 리스트 카운트 조회용 쿼리문 -->
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM DOSAGE
+	</select>
 
 </mapper>
 

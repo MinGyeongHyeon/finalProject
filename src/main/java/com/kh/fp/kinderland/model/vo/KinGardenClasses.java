@@ -10,12 +10,7 @@ public class KinGardenClasses implements Serializable{
 	private int kinderNo;
 	private String className;
 	
-
-	
-	
 	public KinGardenClasses() {}
-
-
 
 
 	public KinGardenClasses(int classNo, String division, int kinderNo, String className) {

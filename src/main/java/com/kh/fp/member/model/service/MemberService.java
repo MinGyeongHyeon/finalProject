@@ -34,7 +34,7 @@ public interface MemberService {
 
 	ArrayList kinclassselect(KinGardenClass kc);
 
-	int classinsert(ArrayList list);
+	//int classinsert(ArrayList list);
 
 	int selectkid(int select);
 
@@ -94,6 +94,8 @@ public interface MemberService {
 	int classonoff(KinderGarden kg);
 
 	OnOff selectOnOff(Member loginUser);
+
+	KinderGarden selectKinderName(int userNo);
 
 
 

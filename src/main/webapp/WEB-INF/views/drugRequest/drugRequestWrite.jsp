@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.Date"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>투약의뢰서 작성</title>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- 싸인 패드 -->
 <script src="${ contextPath }/resources/js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -23,7 +24,8 @@
 	<fmt:formatDate var="todayToString" pattern="yyyy-MM-dd" value="${ today }" />
 	<fmt:formatDate var="tomorrowToString" pattern="yyyy-MM-dd" value="${ tomorrow }" />
 
-	<form action="insertDosageRequest.ds" method="post" enctype="multipart/form-date">
+<!-- 	<form action="insertDosageRequest.ds" method="post" enctype="multipart/form-date"> -->
+
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
@@ -117,11 +119,14 @@
 									</tr>
 								</table>
 								</div>
+								<!--
 								<br>
 								<button type="button" class="btn btn-primary" id="addBtn">
 									<i class="fas fa-plus"></i> &nbsp;약 추가하기
 								</button>
 								<br> <br>
+								 -->
+								 <br>
 							</div>
 							<hr width="98%">
 							<div id="check">
@@ -135,19 +140,21 @@
 								<div id="signArea">
 									<div id="signature-pad" class="m-signature-pad">
 										<div class="m-signature-pad--body">
-											<canvas></canvas>
+											<canvas id="aaa"></canvas>
 										</div>
 									</div>
 								</div>
 								<div id="area4">
-									<span><b>2019.09.02</b></span>&nbsp;<span>하민희</span>
+									<span><b><fmt:formatDate type="date" value="${today}" pattern="yyyy.MM.dd"/></b></span>&nbsp;<span>하민희</span>
 								</div>
 							</div>
 							<div class="m-signature-pad--footer">
 								<button type="button" class="button clear btn btn-xs" data-action="clear" id="clearBtn">
 									<i class="fas fa-redo-alt"></i>&nbsp;다시쓰기
 								</button>
+								<!--
 								<button type="button" class="button save btn btn-xs" data-action="save" id="saveBtn1">저장</button>
+								 -->
 							</div>
 						</div>
 						<br>
@@ -156,21 +163,20 @@
 							<button type="submit" class="btn btns" id="sendBtn">보내기</button>
 						</div>
 
+						<input type="hidden" id="url">
 
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+
 
 	<script>
 		function goDrugMainView() {
 			location.href = "drugMainView.pl";
 		}
-	</script>
 
-	<!-- 싸인 패드 -->
-	<script>
+		/* 싸인패드 */
 		var canvas = $("#signature-pad canvas")[0];
 		var sign = new SignaturePad(canvas, {
 			minWidth : 2,
@@ -179,28 +185,8 @@
 		});
 
 		$("[data-action]").on("click", function() {
-			if ($(this).data("action") == "clear") {
+			if($(this).data("action") == "clear"){
 				sign.clear();
-			} else if ($(this).data("action") == "save") {
-				if (sign.isEmpty()) {
-					alert("사인을 해주세요!");
-				} else {
-					$.ajax({
-						url : "save.jsp",
-						method : "post",
-						dataType : "json",
-						data : {
-							sign : sign.toDataURL()
-						},
-						success : function(r) {
-							alert("저장완료 : " + r.filename);
-							sign.clear();
-						},
-						error : function(res) {
-							console.log(res);
-						}
-					});
-				}
 			}
 		});
 
@@ -218,10 +204,25 @@
 		});
 
 		resizeCanvas();
-	</script>
 
-	<script>
-		$(function() {
+		$(function(){
+
+			$("#sendBtn").click(function(){
+				if (sign.isEmpty()) {
+					alert("싸인을 해주세요!");
+				}else {
+					var url = canvas.toDataURL();
+
+					$("#url").attr('value', url);
+
+					var value = $("#url").val();
+
+					console.log(value);
+
+					location.href="insertDosageRequest.ds";
+				}
+			});
+
 			$("input[name=dosageDate]").change(function() {
 				var value = $(this).val();
 				var checked = $(this).prop('checked');
@@ -233,8 +234,12 @@
 				var checked2 = $(this).prop('checked');
 				console.log(value2);
 			});
-		})
+
+
+		});
+
 	</script>
+
 
 </body>
 </html>

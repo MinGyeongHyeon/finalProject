@@ -39,7 +39,7 @@ public interface MemberDao {
 
 	ArrayList kinclassselect(SqlSessionTemplate sqlSession, KinGardenClass kc);
 
-	int classinsert(SqlSessionTemplate sqlSession, ArrayList list);
+	//int classinsert(SqlSessionTemplate sqlSession, ArrayList list);
 
 	int selectkid(SqlSessionTemplate sqlSession, int select);
 
@@ -100,6 +100,8 @@ public interface MemberDao {
 	int classonoff(SqlSessionTemplate sqlSession, KinderGarden kg);
 
 	OnOff selectOnOff(SqlSessionTemplate sqlSession, Member loginUser);
+
+	KinderGarden selectKinderName(SqlSessionTemplate sqlSession, int userNo);
 
 	
 

@@ -96,4 +96,18 @@ public class KinderLandServiceImpl implements KinderLandService{
 		return kd.kinderUpdate(sqlSession, kg);
 	}
 
+
+	@Override
+	public ArrayList kinderbanplus(int kinderNo) {
+
+		return kd.kinderbanplus(sqlSession,kinderNo);
+	}
+
+
+	@Override
+	public ArrayList kinderclassMax(ArrayList list) {
+
+		return kd.kinderclassMax(sqlSession,list);
+	}
+
 }

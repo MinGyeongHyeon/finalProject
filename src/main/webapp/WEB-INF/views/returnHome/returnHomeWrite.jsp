@@ -342,16 +342,18 @@
 				selectDiv2.children[0].click();
 			}
 		});
-	});
-    $(document).ready(function(){
+		
+		
 		var canvas = document.getElementById('canvas');
-		var padpad = $(".pad");
+		var padpad = $("#canvas");
     	
     	padpad.mouseout(function(){
-    		var dataURL = canvas.toDataURL();
+    		/* var dataURL = canvas.toDataURL();
 			var urlInput = document.getElementById('urlInput');
+			console.log(urlInput);
     		console.log(dataURL);
-    		urlInput.value = dataURL;
+    		urlInput.value = dataURL; */
+    		console.log("ㅁㄴㅇ");
 			
     	});
     });

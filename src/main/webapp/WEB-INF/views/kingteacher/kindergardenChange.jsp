@@ -82,7 +82,7 @@ width:15%;
 	<h3>원 전화번호</h3>
 	<div class="change"><input type="text"class="form-control" placeholder="전화번호 입력하세요" name="phone"></div>
 	<h3>원장님 이름</h3>
-	<div class="change"><input type="text" class="form-control"></div>
+	<div class="change"><input type="text" class="form-control" value="${ loginUser.userName }" disabled></div>
 	<h3>위치</h3>
 	<div class="change" id="inline">
 	<table>

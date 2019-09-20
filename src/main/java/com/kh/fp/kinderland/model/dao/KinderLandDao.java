@@ -35,4 +35,8 @@ public interface KinderLandDao {
 
 	int kinderUpdate(SqlSessionTemplate sqlSession, KinderGarden kg);
 
+	ArrayList kinderbanplus(SqlSessionTemplate sqlSession, int kinderNo);
+
+	ArrayList kinderclassMax(SqlSessionTemplate sqlSession, ArrayList list);
+
 }
