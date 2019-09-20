@@ -10,15 +10,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kh.fp.member.model.service.MemberService;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.member.model.vo.OnOff;
 
 
 @Controller
+@SessionAttributes("of")
 public class PageLinkServlet {
 	
 	@Autowired
@@ -247,11 +251,7 @@ public class PageLinkServlet {
 		return "join/findPwd3";
 	}
 	
-	@RequestMapping(value="kindermenu.pl")
-	public String kindermenu() {
-		
-		return "kingteacher/menumanagement";
-	}
+	
 
 	@RequestMapping(value="introduceService.pl")
 	public String introduceservice() {

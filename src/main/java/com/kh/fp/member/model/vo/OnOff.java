@@ -13,11 +13,12 @@ public class OnOff {
 	private String attendance;
 	private String chatting;
 	private String mypage;
+	private String inOut;
 	
 	public OnOff() {}
 
 	public OnOff(int kinderNo, String announcement, String meal, String dosage, String homecoming, String boardNotice,
-			String album, String schedule, String attendance, String chatting, String mypage) {
+			String album, String schedule, String attendance, String chatting, String mypage, String inOut) {
 		super();
 		this.kinderNo = kinderNo;
 		this.announcement = announcement;
@@ -30,6 +31,7 @@ public class OnOff {
 		this.attendance = attendance;
 		this.chatting = chatting;
 		this.mypage = mypage;
+		this.inOut = inOut;
 	}
 
 	public int getKinderNo() {
@@ -120,13 +122,23 @@ public class OnOff {
 		this.mypage = mypage;
 	}
 
+	public String getInOut() {
+		return inOut;
+	}
+
+	public void setInOut(String inOut) {
+		this.inOut = inOut;
+	}
+
 	@Override
 	public String toString() {
 		return "OnOff [kinderNo=" + kinderNo + ", announcement=" + announcement + ", meal=" + meal + ", dosage="
 				+ dosage + ", homecoming=" + homecoming + ", boardNotice=" + boardNotice + ", album=" + album
 				+ ", schedule=" + schedule + ", attendance=" + attendance + ", chatting=" + chatting + ", mypage="
-				+ mypage + "]";
+				+ mypage + ", inOut=" + inOut + "]";
 	}
+
+	
 	
 	
 

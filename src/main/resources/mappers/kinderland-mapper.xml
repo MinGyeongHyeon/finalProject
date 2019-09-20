@@ -75,6 +75,20 @@
   		WHERE TEACHER_NO = #{teacherNo}
   	
   	</update>
+  	
+  	<update id="menuupdate">
+  		
+  		UPDATE ON_OFF SET ANNOUNCEMENT = #{announcement} , MEAL = #{meal} , DOSAGE = #{dosage} , HOMECOMING = #{homecoming} , BOARD_NOTICE = #{boardNotice} , ALBUM = #{album} , SCHEDULE = #{schedule} , ATTENDANCE = #{attendance}, IN_OUT = #{inOut}
+		WHERE KINDER_NO = #{kinderNo}
+  	
+  	</update>
+  	
+  	<update id="kinderUpdate">
+  		
+  		UPDATE KINDERGARDEN SET KINDER_NAME = #{kinderName} , KINDER_PHONE = #{phone} , KINDER_ADDRESS = #{address}
+  		WHERE KINDER_NO = #{kinderNo}
+  	
+  	</update>
 	
 
   </mapper>

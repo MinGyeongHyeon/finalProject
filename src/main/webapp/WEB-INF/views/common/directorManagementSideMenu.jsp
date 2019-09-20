@@ -14,13 +14,14 @@
 	li{
 		list-style: none;
 	}
-
+#followquick { position:absolute; top:180px; right:50%; margin-right:350px; }
 body{
 font-family: 'Sunflower', sans-serif;
 }
 </style>
 </head>
 <body >
+<div id="followquick">
 	<div class="managementSideMenu">
 		<div class="sideMenuList">
 			<table class="managementSideTable">
@@ -67,21 +68,28 @@ font-family: 'Sunflower', sans-serif;
 				<tr><td><p></p></td></tr>
 				<tr>
 					<td>
-						<button class="btn btn-info" style="width:100%">원 기본정보 설정</button><br />
+						<form action="kinderchange.kl">
+						<button class="btn btn-info" style="width:100%">원 기본설정</button><br />
+						<input type="hidden" value="${ of.kinderNo }" name="kinderNo"/>
+						</form>
 							<p></p>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<form action="kindermenu.pl">
+						<form action="kindermenu.kl">
 						<button class="btn btn-info" style="width:100%">메뉴 관리</button><br />
+						<input type="hidden" value="${ of.kinderNo }" name="kinderNo" />
 						</form>
 						<p></p>
 					</td>
 				</tr>
 				<tr>
 					<td>
+						<form action="kinderchange.kl">
 						<button class="btn btn-info" style="width:100%">반 정보 설정</button><br />
+						<input type="hidden" value="${ of.kinderNo }" name="kinderNo"/>
+						</form>	
 							<p></p>					
 					</td>
 				</tr>
@@ -90,8 +98,16 @@ font-family: 'Sunflower', sans-serif;
 		</div>
 	</div>
 	
+</div>	
 	<script>
-	
+	$(window).scroll(function(){
+		var scrollTop = $(document).scrollTop();
+		if (scrollTop < 180) {
+		 scrollTop = 180;
+		}
+		$("#followquick").stop();
+		$("#followquick").animate( { "top" : scrollTop });
+		});
 	</script>
 </body>
 </html>

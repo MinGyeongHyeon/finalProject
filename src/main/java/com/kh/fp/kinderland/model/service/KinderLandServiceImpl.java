@@ -13,6 +13,8 @@ import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
+import com.kh.fp.member.model.vo.KinderGarden;
+import com.kh.fp.member.model.vo.OnOff;
 
 @Service
 public class KinderLandServiceImpl implements KinderLandService{
@@ -78,6 +80,20 @@ public class KinderLandServiceImpl implements KinderLandService{
 	public int updateteacherclass(ChildrenClassInsert ci) {
 
 		return kd.updateteacherclass(sqlSession,ci);
+	}
+
+
+	@Override
+	public int menuupdate(OnOff oo) {
+
+		return kd.menuupdate(sqlSession,oo);
+	}
+
+
+	@Override
+	public int kinderUpdate(KinderGarden kg) {
+
+		return kd.kinderUpdate(sqlSession, kg);
 	}
 
 }
