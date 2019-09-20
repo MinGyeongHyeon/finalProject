@@ -10,6 +10,8 @@ import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
+import com.kh.fp.member.model.vo.KinderGarden;
+import com.kh.fp.member.model.vo.OnOff;
 
 public interface KinderLandDao {
 
@@ -28,5 +30,9 @@ public interface KinderLandDao {
 	int insertteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci);
 
 	int updateteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci);
+
+	int menuupdate(SqlSessionTemplate sqlSession, OnOff oo);
+
+	int kinderUpdate(SqlSessionTemplate sqlSession, KinderGarden kg);
 
 }

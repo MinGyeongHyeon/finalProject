@@ -11,6 +11,8 @@ import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
+import com.kh.fp.member.model.vo.KinderGarden;
+import com.kh.fp.member.model.vo.OnOff;
 
 @Repository
 public class KinderLandDaoImpl implements KinderLandDao{
@@ -62,6 +64,18 @@ public class KinderLandDaoImpl implements KinderLandDao{
 	public int updateteacherclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci) {
 
 		return sqlSession.update("KinderLand.updateteacherclass",ci);
+	}
+
+	@Override
+	public int menuupdate(SqlSessionTemplate sqlSession, OnOff oo) {
+
+		return sqlSession.update("KinderLand.menuupdate" , oo);
+	}
+
+	@Override
+	public int kinderUpdate(SqlSessionTemplate sqlSession, KinderGarden kg) {
+
+		return sqlSession.update("KinderLand.kinderUpdate",kg);
 	}
 
 	
