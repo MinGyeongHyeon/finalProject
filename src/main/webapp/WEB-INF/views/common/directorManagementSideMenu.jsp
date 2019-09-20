@@ -86,7 +86,7 @@ font-family: 'Sunflower', sans-serif;
 				</tr>
 				<tr>
 					<td>
-						<form action="kinderchange.kl">
+						<form action="kinderbanplus.kl">
 						<button class="btn btn-info" style="width:100%">반 정보 설정</button><br />
 						<input type="hidden" value="${ of.kinderNo }" name="kinderNo"/>
 						</form>	

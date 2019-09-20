@@ -123,18 +123,19 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
-	@Override
-	public int classinsert(SqlSessionTemplate sqlSession, ArrayList list) {
-		
-		for(int i = 0 ; i < list.size(); i++) {
-			
-			int result = sqlSession.insert("Member.classinsert",list.get(i));
-			
-		}
-
-		
-		return 0;
-	}
+	/*
+	 * @Override public int classinsert(SqlSessionTemplate sqlSession, ArrayList
+	 * list) {
+	 * 
+	 * for(int i = 0 ; i < list.size(); i++) {
+	 * 
+	 * int result = sqlSession.insert("Member.classinsert",list.get(i));
+	 * 
+	 * }
+	 * 
+	 * 
+	 * return 0; }
+	 */
 
 
 	@Override
@@ -373,9 +374,15 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public OnOff selectOnOff(SqlSessionTemplate sqlSession, Member loginUser) {
 		
-		System.out.println("다오에서 로그인 유저 : " + loginUser);
 
 		return sqlSession.selectOne("Member.selectOnOff",loginUser);
+	}
+
+
+	@Override
+	public KinderGarden selectKinderName(SqlSessionTemplate sqlSession, int userNo) {
+
+		return sqlSession.selectOne("Member.selectKinderName",userNo);
 	}
 
 

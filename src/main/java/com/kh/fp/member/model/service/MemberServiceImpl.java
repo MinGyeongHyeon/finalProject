@@ -131,11 +131,11 @@ public class MemberServiceImpl implements MemberService{
 		return md.kinclassselect(sqlSession , kc);
 	}
 
-	@Override
-	public int classinsert(ArrayList list) {
-
-		return md.classinsert(sqlSession, list);
-	}
+	/*
+	 * @Override public int classinsert(ArrayList list) {
+	 * 
+	 * return md.classinsert(sqlSession, list); }
+	 */
 
 	@Override
 	public int selectkid(int select) {
@@ -319,6 +319,12 @@ public class MemberServiceImpl implements MemberService{
 	public OnOff selectOnOff(Member loginUser) {
 
 		return md.selectOnOff(sqlSession, loginUser);
+	}
+
+	@Override
+	public KinderGarden selectKinderName(int userNo) {
+
+		return md.selectKinderName(sqlSession,userNo);
 	}
 
 

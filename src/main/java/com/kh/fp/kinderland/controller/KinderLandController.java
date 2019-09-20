@@ -186,6 +186,25 @@ public class KinderLandController {
 		return "kingteacher/kindergardenChange";
 	}
 	
+	@RequestMapping(value="kinderbanplus.kl")
+	public String kinderbanplus(Model model , int kinderNo) {
+		
+		ArrayList list = ks.kinderbanplus(kinderNo);
+		
+		System.out.println("list 의 값 : " + list);
+		
+		ArrayList list2 = ks.kinderclassMax(list);
+		
+		System.out.println("list2 값 : " + list2);
+		
+		
+		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
+		
+		
+		return "kingteacher/banplus";
+	}
+	
 	
 
 	

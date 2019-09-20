@@ -55,7 +55,7 @@ import com.kh.fp.member.model.vo.OnOff;
 import com.kh.fp.note.model.vo.PageInfo;
 
 @Controller
-@SessionAttributes({"loginUser","teacherKing" ,"childrenKing" , "at" , "of"})
+@SessionAttributes({"loginUser","teacherKing" ,"childrenKing" , "at" , "of" ,"kga"})
 public class MemberController {
 	
 	
@@ -121,9 +121,13 @@ public class MemberController {
 			
 			OnOff of = null;
 			
+			KinderGarden kga = null;
+			
 			if(loginUser.getClassification().equals("원장님")) {
 				
 			 of = ms.selectOnOff(loginUser);
+			 
+			 kga = ms.selectKinderName(loginUser.getUserNo());
 			 
 				int childrenCount = ms.childrenCount(loginUser);
 				int teacherCount = ms.teacherCount(loginUser);
@@ -142,9 +146,15 @@ public class MemberController {
 				
 				if(teacherYn > 0) {
 					
+					int result = loginUser.getUserNo();
+					
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
+					System.out.println("kin값 : " + teacherKing);
+					
 					loginUser.setUserNo(teacherKing.getKinderNo());
+					
+					kga = ms.selectKinderName(loginUser.getUserNo());
 					
 					of = ms.selectOnOff(loginUser);
 					
@@ -155,6 +165,8 @@ public class MemberController {
 					model.addAttribute("teacherKing" , teacherKing);
 					model.addAttribute("childrenCount", childrenCount);
 					model.addAttribute("childrenCountN", childrenCountN);
+					
+					loginUser.setUserNo(result);
 					
 				}else {
 					
@@ -173,15 +185,20 @@ public class MemberController {
 				
 				if(childrenYn > 0) {
 					
+					int result = loginUser.getUserNo();
+					
 					KinGardenClasses childrenKing = ms.childrenKing(km);
 	
 					model.addAttribute("childrenKing" , childrenKing);
 					
 					loginUser.setUserNo(childrenKing.getKinderNo());
 					
-					System.out.println("loginUser"  + loginUser);
-					
+				    kga = ms.selectKinderName(loginUser.getUserNo());
+	
 					of = ms.selectOnOff(loginUser);
+					
+					loginUser.setUserNo(result);
+					
 				}else {
 					
 					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
@@ -197,7 +214,7 @@ public class MemberController {
 				//return "redirect:companyList.ad";
 			}
 			
-			
+			model.addAttribute("kga",kga);
 			model.addAttribute("of",of);
 			model.addAttribute("at",at);
 			model.addAttribute("loginUser",loginUser);
@@ -519,7 +536,7 @@ public class MemberController {
 			
 			ArrayList list = ms.kinclassselect(kc);
 			
-			int classinsert = ms.classinsert(list);
+			//int classinsert = ms.classinsert(list);
 			
 			int classonoff = ms.classonoff(kg);
 			
@@ -527,10 +544,6 @@ public class MemberController {
 			model.addAttribute("msg" , "회원가입이 완료 되었습니다.");
 			
 		}
-		
-		
-		
-		
 		
 		
 		return "account/join5";

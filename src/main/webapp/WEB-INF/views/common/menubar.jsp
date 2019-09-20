@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/1eba500ac5.js"></script>
+
 
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 <title>메뉴바</title>
@@ -66,7 +67,7 @@
 
 			<div class="logo-header">
 
-				<a href="main.pl" class="logo"> <label id="kinName">킨더유치원</label>
+				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
 
 				</a><div>
 
