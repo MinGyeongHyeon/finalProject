@@ -122,6 +122,7 @@
 				<tr>
 					<th>주소</th>
 					<td><c:out value="${ kg[0].kinderAddress }"/></td>
+
 				</tr>
 				<tr>
 					<th>이메일</th>
@@ -136,6 +137,7 @@
 					<td style="border-left: 0px;"></td>
 				</tr>
 				<tr>
+
 					<td colspan="2" style="border-bottom:0px; text-align: center; padding-top:5px; padding-bottom: 5px;">
 						<div id="setDiv1" class="setDiv">
 							<label for="Aset" id="Alabel" style="color:#fff">30일 이용권</label>
@@ -179,12 +181,20 @@
 			</table>
 			<div id="paymentBtnArea" style="text-align: center; background:#fff;">
 				<button onclick="payment()" id="paybtn">결제하기</button>
+
+				<button onclick="test()">결제테스트용버튼</button>
+
 			</div>
 		</div>
 	
 	</div>
 	<!-- 결제script -->
 	<script>
+
+		function test(){
+			location.href="paymentSuccess.pa";
+			
+		}
 
 		function payment(){
 			
@@ -195,42 +205,46 @@
 			var seasonId = $('input[name="seasonId"]:checked').val();
 			var price = 0;
 			var name = "";
-			var price = 0;
+			var productNo = 1;
 			if(seasonId == 1){
 				price = $('input[name="price"]').val();
-				name = 30일 이용권;
+				name = '30일 이용권';
 			}else{
 				price = $('input[name="newPrice"]').val();
-				name = 180일 이용권;
+				name = '180일 이용권';
+				productNo = 2;
 			}
 			
-			
-			//setList1
-			
-			
+			price = 1000;
+//-------------------------------------------------------------------------------------------//
 			//실제 복사하여 사용시에는 모든 주석을 지운 후 사용하세요
 			BootPay.request({
-				price: '1000', //실제 결제되는 가격
+				price: price, //실제 결제되는 가격
 				application_id: "5d82efc40627a80037aecf94",
-				name: '블링블링 마스카라', //결제창에서 보여질 이름
+				name: name, //결제창에서 보여질 이름
+
 				pg: '',
 				method: '', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
 				show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
 				items: [
 					{
-						item_name: '나는 아이템', //상품명
+
+						item_name: name, //상품명
 						qty: 1, //수량
-						unique: '123', //해당 상품을 구분짓는 primary key
-						price: 1000, //상품 단가
+						unique: userId, //해당 상품을 구분짓는 primary key
+						price: price, //상품 단가
+
 						cat1: '이용권', // 대표 상품의 카테고리 상, 50글자 이내
 						//cat2: '티셔츠', // 대표 상품의 카테고리 중, 50글자 이내
 					}
 				],
 				user_info: {
-					username: '사용자 이름',
-					email: '',
-					addr: '사용자 주소',
-					phone: '010-1234-4567'
+
+					username: userName,
+					email: email,
+					addr: address,
+					phone: phone
+
 				},
 				order_id: '고유order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
 				//params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
@@ -264,6 +278,7 @@
 			    // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
 			    console.log(data);
 			}).done(function (data) {
+
 				//결제가 정상적으로 완료되면 수행됩니다
 				//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
 				console.log(data);

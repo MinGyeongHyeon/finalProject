@@ -95,7 +95,6 @@ public class ReturnHomeController {
 		ChildrenClass cc = new ChildrenClass();
 		cc.setUserNo(loginUser.getUserNo());
 		list = rhs.selectParentChildrens(cc);
-
 		m.addAttribute("list", list);
 		return "returnHome/returnHomeWrite";
 	}

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.pay.model.service.PayService;
 import com.kh.fp.pay.model.vo.Kindergarden;
+import com.kh.fp.pay.model.vo.Pay;
+
 
 @Controller
 public class PayController {
@@ -22,11 +24,17 @@ public class PayController {
 		int kinderNo = loginUser.getUserNo();
 		
 		ArrayList<Kindergarden> kg = pas.selectGardenInfo(kinderNo);
-		
-		
+
 		m.addAttribute("kg",kg);
 		return "main/payment";
 	}
 	
+	@RequestMapping(value="paymentSuccess.pa")
+	public String paymentSuccess(Pay pay, Model m) {
+		
+		
+		return "main/parentsMain";
+	}
+
 	
 }
