@@ -2,32 +2,29 @@ package com.kh.fp.dosage.model.vo;
 
 import java.sql.Date;
 
-public class DosageVO implements java.io.Serializable{
-	private int dosageNo;			//투약의뢰번호
-	private String dosageDate;		//투약일
-	private Date dateDate;
-	private String symptom;			//증상
-	private String kinds;			//약의종류
-	private int dosageMl;			//투약용량
-	private String dosageCount;		//투약횟수
-	private String dosageTime;		//투약시간
-	private String dosageKeep;		//보관방법
-	private String dosageProblem;	//특이사항
-	private String reading;			//열람여부
-	private Date reDate;			//열람일시
-	private int userNo;				//열람선생님회원번호
-	private int childrenNo;			//투약의뢰자
-	private String childrenName;	//자녀이름
+public class Dosage implements java.io.Serializable{
+	private int dosageNo;
+	private Date dosageDate;
+	private String symptom;
+	private String kinds;
+	private String dosageMl;
+	private String dosageCount;
+	private String dosageTime;
+	private String dosageKeep;
+	private String dosageProblem;
+	private String reading;
+	private Date reDate;
+	private int userNo;
+	private int childrenNo;
 
-	public DosageVO() {}
+	public Dosage() {}
 
-	public DosageVO(int dosageNo, String dosageDate, Date dateDate, String symptom, String kinds, int dosageMl,
-			String dosageCount, String dosageTime, String dosageKeep, String dosageProblem, String reading, Date reDate,
-			int userNo, int childrenNo, String childrenName) {
+	public Dosage(int dosageNo, Date dosageDate, String symptom, String kinds, String dosageMl, String dosageCount,
+			String dosageTime, String dosageKeep, String dosageProblem, String reading, Date reDate, int userNo,
+			int childrenNo) {
 		super();
 		this.dosageNo = dosageNo;
 		this.dosageDate = dosageDate;
-		this.dateDate = dateDate;
 		this.symptom = symptom;
 		this.kinds = kinds;
 		this.dosageMl = dosageMl;
@@ -39,7 +36,6 @@ public class DosageVO implements java.io.Serializable{
 		this.reDate = reDate;
 		this.userNo = userNo;
 		this.childrenNo = childrenNo;
-		this.childrenName = childrenName;
 	}
 
 	public int getDosageNo() {
@@ -50,20 +46,12 @@ public class DosageVO implements java.io.Serializable{
 		this.dosageNo = dosageNo;
 	}
 
-	public String getDosageDate() {
+	public Date getDosageDate() {
 		return dosageDate;
 	}
 
-	public void setDosageDate(String dosageDate) {
+	public void setDosageDate(Date dosageDate) {
 		this.dosageDate = dosageDate;
-	}
-
-	public Date getDateDate() {
-		return dateDate;
-	}
-
-	public void setDateDate(Date dateDate) {
-		this.dateDate = dateDate;
 	}
 
 	public String getSymptom() {
@@ -82,11 +70,11 @@ public class DosageVO implements java.io.Serializable{
 		this.kinds = kinds;
 	}
 
-	public int getDosageMl() {
+	public String getDosageMl() {
 		return dosageMl;
 	}
 
-	public void setDosageMl(int dosageMl) {
+	public void setDosageMl(String dosageMl) {
 		this.dosageMl = dosageMl;
 	}
 
@@ -154,23 +142,13 @@ public class DosageVO implements java.io.Serializable{
 		this.childrenNo = childrenNo;
 	}
 
-	public String getChildrenName() {
-		return childrenName;
-	}
-
-	public void setChildrenName(String childrenName) {
-		this.childrenName = childrenName;
-	}
-
 	@Override
 	public String toString() {
-		return "DosageVO [dosageNo=" + dosageNo + ", dosageDate=" + dosageDate + ", dateDate=" + dateDate + ", symptom="
-				+ symptom + ", kinds=" + kinds + ", dosageMl=" + dosageMl + ", dosageCount=" + dosageCount
-				+ ", dosageTime=" + dosageTime + ", dosageKeep=" + dosageKeep + ", dosageProblem=" + dosageProblem
-				+ ", reading=" + reading + ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo
-				+ ", childrenName=" + childrenName + "]";
+		return "Dosage [dosageNo=" + dosageNo + ", dosageDate=" + dosageDate + ", symptom=" + symptom + ", kinds="
+				+ kinds + ", dosageMl=" + dosageMl + ", dosageCount=" + dosageCount + ", dosageTime=" + dosageTime
+				+ ", dosageKeep=" + dosageKeep + ", dosageProblem=" + dosageProblem + ", reading=" + reading
+				+ ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo + "]";
 	}
-
 
 
 

@@ -317,7 +317,7 @@
 								<p>공지사항</p>
 						</a></li>
 						</c:if>
-						
+
 						<c:if test="${ of.album eq 'Y' }">
 						<li class="nav-item"><a href="album.ab"> <i class="far fa-images"></i>
 								<p>앨범</p>
@@ -337,14 +337,15 @@
 								<p>식단표</p>
 						</a></li>
 						</c:if>
-						
+
 						<c:if test="${ of.dosage eq 'Y' }">
-						<li class="nav-item"><a href="drugMainView.pl"> <i
-								class="fas fa-notes-medical"></i>
+						<li class="nav-item"><!-- <a href="dosageList.ds"> -->
+						<a href="drugMainView.pl">
+						<i class="fas fa-notes-medical"></i>
 								<p>투약의뢰서</p>
 						</a></li>
 						</c:if>
-			
+
 						<c:if test="${ of.homecoming eq 'Y' }">
 						<li class="nav-item"><a href="returnHomeMain.rh"> <i class="fas fa-child"></i>
 								<p>귀가동의서</p>
@@ -391,7 +392,7 @@
 										</a></li>
 									</ul>
 								</div></li>
-								
+
 						<li class="nav-item"><a href="payment.pa"> <i
 								class="far fa-comments"></i>
 								<p>결제test</p>
