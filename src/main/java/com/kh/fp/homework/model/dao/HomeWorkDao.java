@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
+import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
@@ -25,6 +26,10 @@ public interface HomeWorkDao {
 	ArrayList<HomeWorkChildren> selectChildrenName(SqlSessionTemplate sqlSession, int userNo2);
 
 	String selectClassName(SqlSessionTemplate sqlSession, int userNo2);
+
+	int insertIndiH(SqlSessionTemplate sqlSession, ArrayList<IndividualHomework> homeless);
+
+	int selectBoardNum(SqlSessionTemplate sqlSession);
 
 
 }

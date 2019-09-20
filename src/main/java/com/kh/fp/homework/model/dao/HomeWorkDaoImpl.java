@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
+import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.notice.model.vo.Notice;
@@ -89,6 +90,28 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 		String className = sqlSession.selectOne("homework.selectChildrenName",userNo2);
 		System.out.println(className);
 		return className;
+	}
+
+	@Override
+	public int insertIndiH(SqlSessionTemplate sqlSession, ArrayList<IndividualHomework> homeless) {
+		
+		
+		
+		for(int i = 0; i < homeless.size(); i++) {
+			IndividualHomework list = (IndividualHomework)homeless.get(i);
+			int insertH = sqlSession.insert("homework.insertIndiH",list);
+		}
+		
+		
+		return 0;
+	}
+
+	@Override
+	public int selectBoardNum(SqlSessionTemplate sqlSession) {
+
+		int Num = sqlSession.selectOne("homework.selectNum");
+		System.out.println(Num+"다오");
+		return Num;
 	}
 
 

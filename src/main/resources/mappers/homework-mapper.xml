@@ -83,6 +83,11 @@
 	<insert id="insertAt"> 
 	INSERT INTO ATTACHMENT VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} , #{boardNo},null,null,null,null,null,null,null )
 	 </insert>
+	 
+	<insert id="insertIndiH"> 
+	INSERT INTO BOARD_AN VALUES(SEQ_ANNOUNCEMENT_NO.NEXTVAL , #{boardContent},#{boardNum},#{childrenNo})
+	 </insert>
+	 
 
 </mapper>
 

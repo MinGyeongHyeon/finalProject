@@ -140,7 +140,7 @@ body {
 	margin: 0 auto;
 	border: 1px solid #ccc;
 	resize: none;
-	font-size: 1.2em;
+	font-size: 2em;
 	text-align: left;
 }
 
@@ -151,12 +151,13 @@ body {
 
 .btnArea button {
 	background: #fa0;
-	width: 90px;
-	height: 40px;
+	width: 150px;
+	height: 60px;
 	margin-top: 10px;
 	border: none;
 	border-radius: 5px;
 	color: #fff;
+	font-size:25px;
 }
 
 .main-panel {
@@ -172,15 +173,16 @@ body {
 }
 
 .classroom {
-	width: 35%;
-	height: 40px;
-	vertical-align: middle;
-	border-radius: 5px;
-	display: inline-block;
-	padding-top: 5px;
-	margin-top: 20px;
-	margin-right: 5%;
-	background: #f55;
+	width: 40%;
+    height: 53px;
+    vertical-align: middle;
+    border-radius: 5px;
+    display: inline-block;
+    padding-top: 10px;
+    margin-top: 20px;
+    margin-right: 5%;
+    background: #f55;
+    font-size: 20px;
 }
 
 .classroom table {
@@ -202,7 +204,7 @@ body {
 		<table>
 			<tr>
 				<td><button class="className" id="myBtn" type="button" style="background:#f55; color:white;border: 1px #f55; width:120%; height:30px">${className}</button></td>
-				<td><lable id="number">0</lable><label style="color:white">/${classNum-1} by.songT</label></td>
+				<td><lable id="number" style=" font-size:25px">0</lable><label style="color:white; font-size:25px">/${classNum-1} by.songT</label></td>
 
 			</tr>
 		</table>
@@ -235,7 +237,7 @@ body {
 					<div class="modal-footer">
 						<span class="close">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal" id="select">선택</button>
+								data-dismiss="modal" id="select" style="width:150px; height:20%;">선택</button>
 						</span>
 					</div>
 				</div>
@@ -246,32 +248,16 @@ body {
 
 		</div>
 		<hr />
-		<form action="">
+	
 
-		<div id="test">
+		<div id="ChildernIndiviual">
 		
-			<div class="modifyArea" style="text-align: center;">
-				<table style="width: 95%">
-					<tr>
-						<td><img src="${contextPath }/resources/images/woman.png"
-							alt="" /><label id="Name">원아명</label><br /> <br /></td>
-					</tr>
-					<tr>
-						<td><textarea name="modifyContents" class="modifyContents" cols="30" rows="10" placeholder="이름을 입력하세요" style="margin-left: 3%;">
-			
-						</textarea></td>
-					</tr>
-				</table>
-				<br />
-			</div>
-			
 		</div>
 		
 			<br />
 			<div class="btnArea">
-				<button>다음</button>
+				<button class="next">다음</button>
 			</div>
-		</form>
 	</div>
 
 
@@ -326,46 +312,42 @@ body {
 	
 	$('#select').click(function(){
 		
-		var $test = $('#test');
+		var $test = $('#ChildernIndiviual');
 		
 			$("input[class=checkcheck]:checked").each(function(index) { 
-				/* 
-				<div class="modifyArea" style="text-align: center;">
-				<table style="width: 95%">
-					<tr>
-						<td><label id="Name">원아명</label><br /> <br /></td>
-					</tr>
-					<tr>
-						<td><textarea name="modifyContents" class="modifyContents" cols="30" rows="10" placeholder="이름을 입력하세요" style="margin-left: 3%;">
-			
-						</textarea></td>
-					</tr>
-				</table>
-				<br />
-			</div> */
-
+				
 				array[index] = $(this).val();
 				arrayName[index] = $(this).next().val();
 				
 				num = $("input:checkbox[class=checkcheck]:checked").length
-				var $div = $('<div class="modifyArea" style="text-align: center;">');
+				var $div = $('<div class="modifyArea" style="text-align: center; border:5px solid #afb8c9">');
 				var $table = $('<table style="width: 95%">');
 				var $tr1 = $('<tr>');
 				var $td1 = $('<td>');
 				var $br = $('<br>');
+				var $br1 = $('<br>');
 				var $tr2 = $('<tr>');
 				var $td2 = $('<td>');
-				var $textarea = $('<textarea name="modifyContents" class="modifyContents" cols="30" rows="10" placeholder="이름을 입력하세요" style="margin-left: 3%;">')
-				var $label = $('<label>');
+				var $textarea = $('<textarea name="contents" class="modifyContents" cols="30" rows="10" placeholder="내용을 입력하세요" style="margin-left: 3%">')
+				var $label = $('<label style="color:black; font-size:25px">');
+				
+
 				
 				$label.text(arrayName[index]);
 				$td1.append($label);
 				$tr1.append($td1);
 				$table.append($tr1);
 				$div.append($table);
+				
+				$td2.append($textarea);
+				$tr2.append($td2);
+				$table.append($tr2);
+				$div.append($table);
+				
+				
 				$test.append($div);
-				
-				
+				$test.append($br);
+				$test.append($br1);
 			
 			});	
 			var change = $("#number").text(num);	
@@ -376,6 +358,22 @@ body {
 			
 			console.log(array)
 			console.log(arrayName)
+			
+			var content = Array();
+
+			//$("input[class=checkcheck]:checked").each(function(index) { 
+			
+			$('.next').click(function(){
+				
+				$(".modifyContents").each(function(index){
+					content[index] = $(this).val()
+			});
+
+				console.log(content);
+				console.log(array);
+				
+			 location.href="homeWorkIndividualWrite.hw?array="+array+"&content="+content;
+			});
 			
 			/* $.ajax({
 				url:"IndiviualhomeWorkWrite.hw",

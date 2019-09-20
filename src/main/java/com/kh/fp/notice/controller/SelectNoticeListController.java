@@ -46,7 +46,7 @@ public class SelectNoticeListController {
 		int selectNum;
 		
 		if(role.equals("선생님")) {
-		
+				
 			 selectWho = ns.selectWho(userNo);
 		
 		}else if(role.equals("학부모")){

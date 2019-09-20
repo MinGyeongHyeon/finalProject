@@ -305,7 +305,7 @@
 						</li>
 						 -->
 						<c:if test="${ of.announcement eq 'Y'}">
-						<li class="nav-item"><a href="Announcement.pl"> <i
+						<li class="nav-item"><a href="homeworklist.hw"> <i
 								class="fas fa-bell"></i>
 								<p>알림장</p>
 						</a></li>
