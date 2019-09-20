@@ -4,12 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Pay">
-	<!-- <resultMap type="ReturnHomeRH" id="returnHomeResultSet">
-		<id property="homeNo" column="HOME_NO"/>
-		<result property="childrenNo" column="CHILDREN_NO"/>
-		
-	</resultMap> -->
+	<resultMap type="PayPA" id="payResultSet">
+		<id property="PayNo" column="PAY_NO"/>
+		<result property="seasonId" column="SEASON_ID"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="payMoney" column="PAY_MONEY"/>
+		<result property="payOnNo" column="PAY_ON_NO"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="payType" column="PAY_TYPE"/>
+	</resultMap>
+	
+	<resultMap type="KindergardenPA" id="kindergardenResultSet">
+		<id property="kinderNo" column="KINDER_NO"/>
+		<result property="kinderName" column="KINDER_NAME"/>
+		<result property="kinderPhone" column="KINDER_PHONE"/>
+		<result property="kinderAddress" column="KINDER_ADDRESS"/>
+	</resultMap>
 	
 	
+	<select id="selectGardenInfo" parameterType="_int" resultMap="kindergardenResultSet">
+		SELECT *
+		FROM KINDERGARDEN
+		WHERE KINDER_NO = #{kinderNo}
+	</select>
 </mapper>
 
+	
