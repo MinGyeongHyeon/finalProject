@@ -2,7 +2,6 @@ package com.kh.fp.returnHome.model.dao;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -28,7 +27,10 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<ChildrenClass> selectParentChildrens(SqlSessionTemplate sqlSession, ChildrenClass cc) {
+		System.out.println(cc);
 		ArrayList<ChildrenClass> list = (ArrayList) sqlSession.selectList("ReturnHome.selectParentChildrens", cc);
+		
+		System.out.println("listlistlist : " + list);
 		return list;
 	}
 

@@ -12,7 +12,7 @@ public class Pay implements java.io.Serializable{
 	private String payType;
 	
 	public Pay() {}
-
+	
 	public Pay(int payNo, String seasonId, int userNo, String payMoney, int payOnNo, Date payDate, String payType) {
 		super();
 		PayNo = payNo;
