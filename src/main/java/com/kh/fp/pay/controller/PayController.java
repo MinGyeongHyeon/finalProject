@@ -13,6 +13,7 @@ import com.kh.fp.pay.model.service.PayService;
 import com.kh.fp.pay.model.vo.Kindergarden;
 import com.kh.fp.pay.model.vo.Pay;
 
+
 @Controller
 public class PayController {
 	@Autowired
@@ -23,7 +24,7 @@ public class PayController {
 		int kinderNo = loginUser.getUserNo();
 		
 		ArrayList<Kindergarden> kg = pas.selectGardenInfo(kinderNo);
-		
+
 		m.addAttribute("kg",kg);
 		return "main/payment";
 	}
@@ -34,5 +35,6 @@ public class PayController {
 		
 		return "main/parentsMain";
 	}
+
 	
 }
