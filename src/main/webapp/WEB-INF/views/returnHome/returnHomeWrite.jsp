@@ -348,12 +348,11 @@
 		var padpad = $("#canvas");
     	
     	padpad.mouseout(function(){
-    		/* var dataURL = canvas.toDataURL();
+    		var dataURL = canvas.toDataURL();
 			var urlInput = document.getElementById('urlInput');
 			console.log(urlInput);
     		console.log(dataURL);
-    		urlInput.value = dataURL; */
-    		console.log("ㅁㄴㅇ");
+    		urlInput.value = dataURL;
 			
     	});
     });

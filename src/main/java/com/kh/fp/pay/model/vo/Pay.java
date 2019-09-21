@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class Pay implements java.io.Serializable{
 	private int PayNo;
-	private String seasonId;
+	private int seasonId;
 	private int userNo;
-	private String payMoney;
+	private int payMoney;
 	private int payOnNo;
 	private Date payDate;
 	private String payType;
 	
 	public Pay() {}
-	
-	public Pay(int payNo, String seasonId, int userNo, String payMoney, int payOnNo, Date payDate, String payType) {
+
+	public Pay(int payNo, int seasonId, int userNo, int payMoney, int payOnNo, Date payDate, String payType) {
 		super();
 		PayNo = payNo;
 		this.seasonId = seasonId;
@@ -32,11 +32,11 @@ public class Pay implements java.io.Serializable{
 		PayNo = payNo;
 	}
 
-	public String getSeasonId() {
+	public int getSeasonId() {
 		return seasonId;
 	}
 
-	public void setSeasonId(String seasonId) {
+	public void setSeasonId(int seasonId) {
 		this.seasonId = seasonId;
 	}
 
@@ -48,11 +48,11 @@ public class Pay implements java.io.Serializable{
 		this.userNo = userNo;
 	}
 
-	public String getPayMoney() {
+	public int getPayMoney() {
 		return payMoney;
 	}
 
-	public void setPayMoney(String payMoney) {
+	public void setPayMoney(int payMoney) {
 		this.payMoney = payMoney;
 	}
 
@@ -85,7 +85,6 @@ public class Pay implements java.io.Serializable{
 		return "Pay [PayNo=" + PayNo + ", seasonId=" + seasonId + ", userNo=" + userNo + ", payMoney=" + payMoney
 				+ ", payOnNo=" + payOnNo + ", payDate=" + payDate + ", payType=" + payType + "]";
 	}
-	
 	
 }
 
