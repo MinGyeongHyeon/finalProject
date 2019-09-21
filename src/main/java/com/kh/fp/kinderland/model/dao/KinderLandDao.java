@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
+import com.kh.fp.kinderland.model.vo.Kinderclass;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -38,5 +39,7 @@ public interface KinderLandDao {
 	ArrayList kinderbanplus(SqlSessionTemplate sqlSession, int kinderNo);
 
 	ArrayList kinderclassMax(SqlSessionTemplate sqlSession, ArrayList list);
+
+	int KinderClassAdd(SqlSessionTemplate sqlSession, Kinderclass kc);
 
 }

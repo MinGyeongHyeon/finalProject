@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
+import com.kh.fp.kinderland.model.vo.Kinderclass;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -98,6 +99,21 @@ public class KinderLandDaoImpl implements KinderLandDao{
 		}
 		
 		return list2;
+	}
+
+	@Override
+	public int KinderClassAdd(SqlSessionTemplate sqlSession, Kinderclass kc) {
+		
+		int result = 0;
+		for(int i = 0; i < kc.getClassName2().length; i++) {
+			
+			kc.setClassName4(kc.getClassName2()[i]);
+			kc.setClassName5(kc.getClassName3()[i]);
+			
+			result = sqlSession.insert("KinderLand.KinderClassAdd",kc);
+		}
+
+		return result;
 	}
 
 	

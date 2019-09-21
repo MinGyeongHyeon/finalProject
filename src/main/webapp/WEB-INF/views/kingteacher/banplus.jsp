@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -61,38 +61,95 @@ padding-left: 5%;
 	<table>
 	<tr>
 	<td>
-<h1>π› √ﬂ∞°</h1>
+<h1>Î∞ò Ï∂îÍ∞Ä</h1>
 	</td>
 	
-	<c:forEach var="i" items="${list}">
+	<c:forEach var="i" items="${list2}">
 	<td class="labelban">
-	<label for="" class="labelban">${ i.className }</label>
+	<label for="" class="labelban" >${ i.className } / ${ i.count } / ${ i.classMax }  </label>
 	</td>
 	</c:forEach>
 	
 	</tr>
+	
 
 </table>
 <hr>
-<h2>π› ¿Ã∏ß</h2>
+<h2>Î∞ò Ïù¥Î¶Ñ</h2>
+<form action="classAdd.kl" method="post">
+<input type="hidden" name="kinderNo" value="${ of.kinderNo }"/>
 <div class="option">
-<input type="text" placeholder="π› ¿Ã∏ß ¿‘∑¬" class="form-control"/>
+<table id="classAddTable">
+	<tr>
+		<td>
+			<input type="text" placeholder="Î∞ò Ïù¥Î¶Ñ " class="form-control " name="className2" /><br>
+		</td>
+		<td>
+			<input type="text" placeholder="ÏµúÎåÄ Ïù∏Ïõê(Ïà´ÏûêÎ°úÏûÖÎ†•)" class="form-control number" name="className3" /><br>
+		</td>		
+	</tr>
+</table>
 <br />
 </div>
+<button onclick="plus()" class="btn btn-default" type="button">Î∞ò Ï∂îÍ∞Ä</button>
 <hr>
-<button onclick="plus()" class="btn btn-default" type="button">π› √ﬂ∞°</button>
 <br />
-<hr />
 <div id="btnArea">
-<button class="btn btn-default">¿˙¿Â</button>
+<button class="btn btn-default">Ï†ÄÏû•</button>
 </div>
+</form>
+
+<h2>Î∞ò ÏÇ≠Ï†ú</h2>
 
 </div>
 
 <script>
 function plus(){
-	$("<input type='text' placeholder='π› ¿Ã∏ß ¿‘∑¬' class='form-control'><br>'").clone(false).appendTo($('.option'));
+	
+	var $table = $('#classAddTable');
+	var $tr = $('<tr>');
+	var $td1 = $('<td>');
+	var $td2 = $('<td>');
+	var $input = $("<input type='text' placeholder='Î∞ò Ïù¥Î¶Ñ ' class='form-control' name='className2'><br>");
+	var $input2 = $('<input type="text" placeholder="ÏµúÎåÄ Ïù∏Ïõê(Ïà´ÏûêÎ°úÏûÖÎ†•)" class="form-control number" name="className3"><br>' );
+	
+	$td1.append($input);
+	$td2.append($input2);
+	$tr.append($td1);
+	$tr.append($td2);
+	$table.append($tr);
+	
+	$('.number').keyup(function(){
+		
+		var loc = $(this);
+		
+	if(/[^0123456789]/g.test($(this).val() )) {
+		
+	    loc.val("");
+	    loc.focus();
+	 }
+
+	});
+	
+	
+//	$("<input type='text' placeholder='Î∞ò Ïù¥Î¶Ñ ÏûÖÎ†•' class='form-control'name='className2'><br>'").clone(false).appendTo($('.option'));
+	
  }
+ 
+
+$('.number').keyup(function(){
+	
+	var loc = $(this);
+	
+if(/[^0123456789]/g.test($(this).val() )) {
+	
+    loc.val("");
+    loc.focus();
+ }
+
+});
+
+
 </script>
 </body>
 </html>

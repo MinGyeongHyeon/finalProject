@@ -10,6 +10,7 @@ import com.kh.fp.kinderland.model.dao.KinderLandDao;
 import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
+import com.kh.fp.kinderland.model.vo.Kinderclass;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -108,6 +109,13 @@ public class KinderLandServiceImpl implements KinderLandService{
 	public ArrayList kinderclassMax(ArrayList list) {
 
 		return kd.kinderclassMax(sqlSession,list);
+	}
+
+
+	@Override
+	public int KinderClassAdd(Kinderclass kc) {
+
+		return kd.KinderClassAdd(sqlSession,kc);
 	}
 
 }

@@ -13,13 +13,14 @@ public class KinGardenClasses implements Serializable{
 	private Date openedDate;
 	private String semester;
 	private String className;
+	private String childrenName;
 	
 	
 	public KinGardenClasses() {}
 
 
 	public KinGardenClasses(int classNo, String divistion, int kinderNo, int teacherNo, int childrenNo, Date openedDate,
-			String semester, String className) {
+			String semester, String className, String childrenName) {
 		super();
 		this.classNo = classNo;
 		this.divistion = divistion;
@@ -29,6 +30,7 @@ public class KinGardenClasses implements Serializable{
 		this.openedDate = openedDate;
 		this.semester = semester;
 		this.className = className;
+		this.childrenName = childrenName;
 	}
 
 
@@ -112,12 +114,24 @@ public class KinGardenClasses implements Serializable{
 	}
 
 
+	public String getChildrenName() {
+		return childrenName;
+	}
+
+
+	public void setChildrenName(String childrenName) {
+		this.childrenName = childrenName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "KinGardenClasses [classNo=" + classNo + ", divistion=" + divistion + ", kinderNo=" + kinderNo
 				+ ", teacherNo=" + teacherNo + ", childrenNo=" + childrenNo + ", openedDate=" + openedDate
-				+ ", semester=" + semester + ", className=" + className + "]";
+				+ ", semester=" + semester + ", className=" + className + ", childrenName=" + childrenName + "]";
 	}
+
+
 	
 	
 

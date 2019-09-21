@@ -13,6 +13,7 @@ import com.kh.fp.kinderland.model.service.KinderLandService;
 import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
+import com.kh.fp.kinderland.model.vo.Kinderclass;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -191,18 +192,24 @@ public class KinderLandController {
 		
 		ArrayList list = ks.kinderbanplus(kinderNo);
 		
-		System.out.println("list 의 값 : " + list);
-		
+		System.out.println("list 값 : " + list);
+	
 		ArrayList list2 = ks.kinderclassMax(list);
 		
-		System.out.println("list2 값 : " + list2);
+		System.out.println("받아온 list2 값 " + list2);
 		
-		
-		model.addAttribute("list",list);
 		model.addAttribute("list2",list2);
 		
 		
 		return "kingteacher/banplus";
+	}
+	
+	@RequestMapping(value="classAdd.kl")
+	public String KinderClassAdd(Model model,Kinderclass kc) {
+		
+		int result = ks.KinderClassAdd(kc);
+		
+		return "";
 	}
 	
 	
