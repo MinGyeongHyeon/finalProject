@@ -11,7 +11,7 @@
 
 
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
-<title>메뉴바</title> 
+<title>메뉴바</title>
 
 
 <!-- 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' /> -->
@@ -340,8 +340,9 @@
 						</c:if>
 
 						<c:if test="${ of.dosage eq 'Y' }">
-						<li class="nav-item"><!-- <a href="dosageList.ds"> -->
-						<a href="drugMainView.pl">
+						<li class="nav-item">
+						<a href="dosageList.ds">
+						<!-- <a href="drugMainView.pl"> -->
 						<i class="fas fa-notes-medical"></i>
 								<p>투약의뢰서</p>
 						</a></li>

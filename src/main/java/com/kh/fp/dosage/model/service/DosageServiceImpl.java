@@ -1,10 +1,15 @@
 package com.kh.fp.dosage.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fp.dosage.model.dao.DosageDao;
+import com.kh.fp.dosage.model.exception.DosageException;
+import com.kh.fp.dosage.model.vo.Dosage;
+import com.kh.fp.dosage.model.vo.PageInfo;
 
 @Service
 public class DosageServiceImpl implements DosageService{
@@ -13,17 +18,12 @@ public class DosageServiceImpl implements DosageService{
 	@Autowired
 	private DosageDao dd;
 
-/*
+	//투약의뢰서 작성
 	@Override
-	public int insertDosageRequest(Dosage d) {
+	public int insertDosageRequest(Dosage d, String signUrl) throws DosageException {
 
-		System.out.println("투약의뢰서 서비스 in!");
-
-		int insertDosageRequest = dd.insertDosageRequest(sqlSession, d);
-
-		return 0;
+		return dd.insertDosageRequest(sqlSession, d, signUrl);
 	}
-*/
 
 	//투약의뢰서 리스트 카운트
 	@Override
@@ -31,6 +31,14 @@ public class DosageServiceImpl implements DosageService{
 
 		return dd.getListCount(sqlSession, userNo);
 	}
+
+	//투약의뢰서 리스트 조회(원장)
+	@Override
+	public ArrayList<Dosage> selectDosageRequestList(PageInfo pi, int userNo) throws DosageException {
+
+		return dd.selectDosageRequestList(sqlSession, userNo, pi);
+	}
+
 
 
 

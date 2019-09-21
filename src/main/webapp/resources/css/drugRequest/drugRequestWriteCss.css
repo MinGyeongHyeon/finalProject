@@ -35,8 +35,8 @@
 }
 
 #profileImg {
-	width: 50px;
-	height: 50px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
 }
 
@@ -46,7 +46,7 @@
 }
 
 #table1 {
-	font-size: 14px;
+	font-size: 20px;
 	width: 96%;
 }
 
@@ -57,7 +57,7 @@
 }
 
 #profileArea, #area1, #area2, #area4 {
-	margin-left: 20px;
+	margin-left: 30px;
 }
 
 #addBtn {
@@ -67,9 +67,10 @@
 
 #table2 {
 	width: 96%;
-	height: 350px;
+	height: 370px;
 	border: 0.5px solid #d4d4d4;
 	margin-top: 20px;
+	font-size:20px;
 }
 
 #table2 th {
@@ -112,8 +113,14 @@ input[type=radio]:checked+label {
 }
 
 #area3 {
-	margin-left: 220px;
+	margin-left: 50%;
+    font-size: 1.5em;
 	display: inline;
+}
+
+#area4 {
+	margin-left: 65%;
+	font-size: 1.5em;
 }
 
 #signArea {
@@ -124,9 +131,6 @@ input[type=radio]:checked+label {
 	margin-right: 4%;
 }
 
-#area4 {
-	margin-left: 350px;
-}
 
 .btns {
 	width: 200px;
@@ -137,13 +141,13 @@ input[type=radio]:checked+label {
 #sendBtn {
 	background: #ff737a;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 #resetBtn {
 	background: #919191;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 #check {
@@ -152,6 +156,7 @@ input[type=radio]:checked+label {
 
 #clearBtn {
 	background: #ffffff;
+	font-size:15px;
 }
 
 #clearBtn:hover {
