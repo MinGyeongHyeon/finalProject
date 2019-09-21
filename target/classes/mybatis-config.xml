@@ -42,7 +42,8 @@
 		<typeAlias type="com.kh.fp.homework.model.vo.Pagination" alias="Pagination"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.Whoselect" alias="Whoselect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclass" alias="Kinderclass"/>
-
+		<typeAlias type="com.kh.fp.meal.model.vo.Meal" alias="Meal"/>
+	
 	</typeAliases>
 
 
@@ -57,6 +58,8 @@
 		<mapper resource="mappers/dosage-mapper.xml"/>
 		<mapper resource="mappers/note-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/admin-mapper.xml"/>
+		<mapper resource="mappers/meal-mapper.xml"/>
 	</mappers>
 
 </configuration>

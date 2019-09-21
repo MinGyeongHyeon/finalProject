@@ -52,6 +52,7 @@
 		<result property="openedDate" column="OPENED_DATE"/>
 		<result property="semester" column="SEMESTER"/>
 		<result property="className" column="CLASS_NAME"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
 	
 	
 	</resultMap>
@@ -400,10 +401,10 @@
 	</select>
 	
 	<select id="childrenKing" resultMap="KinGardenClassesResultSet">
-	
 		SELECT *
-		FROM KINDER_CLASS
-		WHERE CHILDREN_NO = #{childrenNo}
+		FROM KINDER_CLASS K
+        JOIN CHILDREN C ON(K.CHILDREN_NO = C.CHILDREN_NO)
+		WHERE K.CHILDREN_NO = #{childrenNo}
 	
 	</select>
 	
