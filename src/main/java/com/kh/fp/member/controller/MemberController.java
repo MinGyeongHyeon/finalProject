@@ -211,7 +211,7 @@ public class MemberController {
 				
 				
 			}else if(loginUser.getClassification().equals("관리자")) {
-				//return "redirect:companyList.ad";
+				return "redirect:companyList.ad";
 			}
 			
 			model.addAttribute("kga",kga);
@@ -458,7 +458,7 @@ public class MemberController {
 			
 			new File(filePath + "\\" + changeName + ext).delete();
 			
-			model.addAttribute("msg", "회원 가입 도중 애기치 못한 오류가 발생했습니다. 다시 시도해주세요!");
+			model.addAttribute("msg", "회원 가입 도중 애기(BABY)치 못한 오류가 발생했습니다. 다시 시도해주세요!");
 			
 
 			return "account/join5";

@@ -32,6 +32,7 @@ $(function(){
         }
 	});
 });
+
 </script>
 <style>
 table{
@@ -67,8 +68,22 @@ background:orange;
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
-	<div class="main-panel" id="firstContentArea">
-<input type="button" id="datepicker" value="날짜선택">
+	<div class="main-panel" alt="your image" id="firstContentArea">
+	
+<div class="pageName">
+			<table id="btntable">
+				<tr>
+					<td colspan="14">
+						<img src="${contextPath }/resources/images/schedule.png" alt="" /><label style="font-weight:bold; font-size: 20px!important;">식단표작성</label>
+					</td>
+					<td>
+						<input type="button" id="datepicker" value="날짜선택">
+					</td>
+					</tr>
+				
+			</table>
+</div>
+<hr/>
 <br><br>
 <table>
 <tr><th colspan="3"> 
@@ -78,7 +93,7 @@ background:orange;
  </th></tr>
 <tr>
 <td>오전간식<br>
-<img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
+<input type="file" id="AMsnack" name="mealContent">
 </td>
 <td>점심간식<br>
 <img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
@@ -94,5 +109,6 @@ background:orange;
 </tr>
 </table>
 </div>
+
 </body>
 </html>

@@ -23,7 +23,6 @@ public class AdminController {
 		
 		try {
 			ArrayList<Company> comlist = ad.companyList();
-			System.out.println("admincontroller");
 			mv.addAttribute("list",comlist);
 			return "admin/companyList";
 			

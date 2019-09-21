@@ -49,6 +49,9 @@ width:30%;
 #textArea{
 height:38px;
 }
+#companyList td{
+border:1px solid black;
+}
 input{
 font-size:16px;
 width:325px;
@@ -89,15 +92,16 @@ height:70%;
 	<table id="companyList" align="center">
 	<tr>
 	<th>업체명</th>
-	<th>결제일</th>
+	<!-- <th>결제일</th> -->
 	<th>누적 결제 횟수</th>
-	<th>서비스 시작일</th>
-	<th>이용 횟수</th>
+	<th>가장 최근 결제일</th>
+	<th>만료일</th>
 	</tr>
+	
 	<c:forEach var="l" items="${ list }">
 	<tr>
 	<td><c:out value="${ l.kinderName }"/></td>
-	<td><c:out value="${ l.payDateDay }"/></td>
+	<%-- <td><c:out value="${ l.payDateDay }"/></td> --%>
 	<td><c:out value="${ l.payDateCount }"/></td>
 	<td><c:out value="${ l.payDate }"/></td>
 	<td><c:out value="${ l.seasonName }"/></td>

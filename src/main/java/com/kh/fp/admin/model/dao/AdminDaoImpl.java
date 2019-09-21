@@ -13,7 +13,6 @@ public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	public ArrayList<Company> companyList(SqlSessionTemplate sqlSession) throws CompanyListException {
-		System.out.println("adminDaoimpl");
 		ArrayList<Company> comList = null;
 		comList = (ArrayList)sqlSession.selectList("Company.companyList");
 		if(comList == null) {

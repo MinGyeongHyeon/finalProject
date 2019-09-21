@@ -41,8 +41,7 @@ function goMonth(){
 
 $(document).on('change', 'select', function() {
 	if(num1==0){
-		var saveb = '<input type="submit" value="저장">';
-		$("#saveBtn").append(saveb);
+		$("#saveBtn").css('visibility','visible');
 		num1+=1;
 	};
 	if($(this).parent().parent().children("td").eq(5).html() == ""){
@@ -54,16 +53,11 @@ $(document).on('change', 'select', function() {
 		$(this).parent().parent().children("td").eq(3).children("input").css('visibility','visible');
 		$(this).parent().parent().children("td").eq(4).children("input").css('visibility','visible');
 		$(document).find("input[name=timepicker]").removeClass('hasDatepicker').datepicker();     
-
 	}
-	
 });
 
-$(document).on('change',"input[id=timepicker1]",function(){
-	console.log("뭐야");
-});
 
-$(function(){
+ $(function(){
 	$(".timepicker").timepicker({
 		timeFormat: 'h:mm p',
 	    interval: 15,
@@ -73,15 +67,70 @@ $(function(){
 	    startTime: '10:00',
 	    dynamic: false,
 	    dropdown: true,
-	    scrollbar: true
-	})
+	    scrollbar: true,
+	    updateData:true,
+	    change:function(){
+	    	var element = $(this).val();
+	    	$(this).html(element);
+	    	//console.log(element+"현재값");
+	    	$(this).val(element);
+	    	
+	    	var abc = $(this).parent().parent().children("td").eq(3).children("#timepicker1").val();
+	    	var abcd = $(this).parent().parent().children("td").eq(4).children("#timepicker2").val();
+	    	
+	    	if(abc==""||abcd==""){
+	    	console.log(abc+"타임");
+	    	}else if(abc==""||abcd!=""){
+	    		console.log(abcd+"엠타임");
+	    	}
+	    }
+	});
 });
-
-function bgo(){
-	console.log(this);
+function save(){
+	
+	var dataArrayToSend = [];
+	var dataArrayToSend1 = [];
+	$("#attendance").each(function(){
+		len = $(this).find("td").length;
+	});
+	for(var i=0;i<len;i++){
+		dataArrayToSend.push($(this).find("td").eq(i).text());
+		console.log("왜안나와");
+	}
+	dataAraryToSend1.push(dataArrayToSend);
+	console.log(dataArrayToSend1);
+$.ajax({
+	contentType:"application/json",
+	type:"POST",
+	data:JSON.stringify(dataArrayToSend1),
+	url:"attendanceMain.at",
+	success:function(data){
+		console.log("성공")
+	},
+	error:function(){
+		console.log("실패")
+	}
+});
 }
 
+/* function save(){
+	var dataParam={list:JSON.stringify($scope.lists),param1:'param1',param2:'param2'};
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		data:dataParam,
+		url:,
+		success:function(returnData){
+			
+		},error:function(e){
+			
+		}
+	});
+} */
 
+/* function bgo(){
+	console.log(this);
+} */
 </script>
 
 </head>
@@ -184,12 +233,10 @@ width:100%;
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" id="firstContentArea">
 		<div class="pageName">
-		
 			<table id="btntable">
 				<tr>
 					<td colspan="14">
 						<img src="${contextPath }/resources/images/schedule.png" alt="" /><label style="font-weight:bold; font-size: 20px!important;">출석부</label>
-						
 					</td>
 					<td><button onclick="goMonth();">월별출석부</button></td>
 					<td><input type="button" id="datepicker" value="일별출석부"></td>
@@ -200,8 +247,8 @@ width:100%;
 		</div>
 		<hr />
 		<div class="attendanceArea">
-		<form action="attendanceMain.at" method="post">
-		<div id="timecheck"><label>총원 : ${ day }명(출석 : ${day }명)</label>&nbsp;&nbsp;
+		<form action="" method="post">
+		<div id="timecheck"><label>총원 : ${ chldren }명(출석 : ${ chldren }명)</label>&nbsp;&nbsp;
 		<span id="right">V 출석 × 결석 ◎ 병결 ○ 사고 / 입소 ★ 퇴소</span></div>
 						<table id="attendance" align="center">
 							<tr>
@@ -223,7 +270,7 @@ width:100%;
 							<c:forEach var="a" items="${ list }">
 							<tr style="border:1px solid white;">
 								<td><p><c:out value="${ a.childrenNo }"/></p>
-								<input type="hidden" name="childrenNo" value="${a.childrenNo }">
+								<input type="hidden" name="childrenNo" value="${ a.childrenNo }">
 								</td>
 								<td><c:out value="${ a.childrenName }"/></td>
 								<td id="statusArea">
@@ -237,11 +284,11 @@ width:100%;
 									<option value="★">퇴소</option>
 								</select>
 								</td>
-								<td>
-								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden;" value="딸깍!">
+								<td class="time">
+								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden;" value="">
 								</td>
-								<td>
-								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden;" value="딸깍!">
+								<td class="mtime">
+								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden;" value="">
 								</td>
 								<td></td>
 								<td></td>
@@ -260,7 +307,7 @@ width:100%;
                onclick="ga('send', 'event', 'attendance', 'Click', 'dailyAttendance|print');">
                 <i class="kn2 kn-print"></i> 출력
             </a> -->
-					<div id="saveBtn"></div>
+					<button onclick='save();' id="saveBtn" style="visibility:hidden;">저장</button>
 		</form>
 		</div>
 	</div>
