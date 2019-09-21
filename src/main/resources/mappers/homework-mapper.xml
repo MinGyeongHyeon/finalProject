@@ -16,6 +16,7 @@
 		<result property="individualContent" column="ANNOUNCEMENT_CONTENT" />
 		<result property="writer" column="WRITER" />
 		<result property="className" column="CLASS_NAME" />
+		<result property="attachName" column="CHANGE_NAME" />
 	</resultMap>
 
 	<resultMap type="HomeWorkChildren" id="childrenNatt">
@@ -110,25 +111,21 @@
 	
 	
 	<select id="selectTList" resultMap="homeworkResultSet">
-	   (SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,BOARD_DATE,WRITER, K.CLASS_NAME
+	  (SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,BOARD_DATE,WRITER, K.CLASS_NAME
         FROM BOARD B
        	JOIN USERS U ON B.WRITER = U.USER_NO
         JOIN KINDER_CLASS K ON B.WRITER = K.TEACHER_NO
-        WHERE B.WRITER = #{userNo}
+        WHERE B.WRITER = 5
         AND BOARD_TYPE = '알림장'
-        AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2))
+        AND B.STATUS='N')
 	</select>
 	
 	<select id="seletOneT" resultMap="homeworkResultSet">
-	  SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,BOARD_DATE,A.ANNOUNCEMENT_NO,A.ANNOUNCEMENT_CONTENT,A.BOARD_NO,A.CHILDREN_NO
-        FROM BOARD_AN A
-        RIGHT JOIN BOARD B ON B.BOARD_NO = A.BOARD_NO
-        WHERE A.BOARD_NO IN (SELECT BOARD_NO
-                                            FROM BOARD B
-                                        	JOIN USERS U ON B.WRITER = U.USER_NO
-                                            WHERE B.WRITER = #{userNo}
-                                            AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2))
-        AND B.BOARD_NO = #{boardNum}
+	 SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,B.BOARD_DATE,A.ANNOUNCEMENT_NO,A.ANNOUNCEMENT_CONTENT,A.CHILDREN_NO,T.CHANGE_NAME,B.WRITER
+          FROM BOARD B
+          LEFT OUTER JOIN BOARD_AN A ON (B.BOARD_NO = A.BOARD_NO)
+          LEFT OUTER JOIN ATTACHMENT T ON (B.BOARD_NO = T.BOARD_NO)
+          WHERE B.BOARD_NO = #{boardNum}
 	</select>
 
 	

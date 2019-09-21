@@ -34,4 +34,8 @@ public interface HomeworkService  {
 
 	ArrayList<homework> SelectOneT(int userNo, int bid);
 
+	ArrayList<homework> SelectOneC(int userNo, int bid);
+
+	int UpdateNoticeStatus(int bid, String status);
+
 }

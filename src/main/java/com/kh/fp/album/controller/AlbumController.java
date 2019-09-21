@@ -36,6 +36,16 @@ public class AlbumController {
 		System.out.println("또잉");
 	
 	 return "album/albumList";
+	}
+	
+	
+	@RequestMapping(value = "albumWrite.ab")
+	public String albumWrite(Model model) {
+	
+		System.out.println("또잉");
+	
+	 return "album/albumWrite";
 	}		
+	
 	
 }

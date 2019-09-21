@@ -166,6 +166,33 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 			
 	}
 
+	@Override
+	public ArrayList<homework> selectOneC(SqlSessionTemplate sqlSession, int userNo, int bid) {
+
+		ArrayList<homework> list = null;
+		
+		Whoselect who = new Whoselect();
+		who.setBoardNum(bid);
+		who.setUserNo(userNo);
+		
+		System.out.println("반은"+who.getBoardNum());
+		System.out.println("유저번호는"+who.getUserNo());
+		
+		list = (ArrayList)sqlSession.selectList("homework.seletOneC",who);
+		
+		System.out.println("list---->"+list);
+		
+		return list;
+	}
+
+	@Override
+	public int updateH(SqlSessionTemplate sqlSession, String status, int bid) {
+
+		int result = sqlSession.update("Notice.updateNoticeStatus",bid);
+		
+		return result;
+	}
+
 }
 
 

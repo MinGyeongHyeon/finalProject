@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,6 +87,10 @@
 	background-color:#8981f7;
 	
 }
+
+.img{
+	width:40%;
+}
 </style>
 
 </head>
@@ -116,22 +121,49 @@
 							<br>
 								<table id="tableArea" style="margin:0 auto;">
 									<tr style="background: #f57373; border-radius: 5px">
-										<td colspan="2" class="title" style="color:white; border-radius:10px">공통 알림장</td>
+										<td colspan="2" class="title" style="color:white; border-radius:10px">공통 알림장 :&nbsp;&nbsp;&nbsp;
+										<c:out value="${HList[0].boardTitle}"/>
+										<p hidden id="delete"><c:out value="${SelectNotice.boardNum}"/></p>
+										</td>
 									</tr>
+									<c:choose>
+									<c:when test="${HList[0].attachName ne null}">
+										<tr><td>
+										<img src="${contextPath}/resources/uploadFiles/<c:out value="${HList[0].attachName}"/>.PNG" alt="" />
+										</td></tr>
+									</c:when>
+										<c:when test="${l.fileName eq null}">
+										<tr><td>			</td></tr>
+									</c:when>
+			
+									</c:choose>
+									
 									<tr>
-										<td colspan="2"></td>
+										<td colspan="2"><c:out value="${HList[0].boardContent}"/></td>
 									</tr>
 								</table>	
+								
+				<c:forEach var="l" items="${HList}">
+					<c:choose>
+						<c:when test="${l.childrenNo eq sessionScope.childrenKing.childrenNo or l.writer eq sessionScope.loginUser.userNo}"> 
 							<div style="padding-top:10%">
 								<table id="tableArea" style="margin:0 auto;">
+									<tr>
+										<td><c:out value=""/></td>
+									</tr>
 									<tr style="background: #3682f5;">
-										<td colspan="2" class="title" style="color:white; border-radius: 10px; " />개별 알림장</td>
+										<td colspan="2" class="title" style="color:white; border-radius: 10px;"/>개별 알림장</td>
 									</tr>
 									<tr>
-										<td colspan="2" style="border-top:white"></td>
+										<td colspan="2" style="border-top:white; font-color:black">
+											<c:out value="${l.individualContent}"/>
+										</td>
 									</tr>	 	
 								</table>
 							</div>
+						</c:when>
+					</c:choose>
+						</c:forEach>	
 							<br>
 					</div>
 					<br><br>
@@ -162,53 +194,26 @@
 	</div>
 	
 	<script>
-		function goMediReport(){	
-			location.href="writeMediReport.pl";
-		}
+		
 		function goDrugMainView(){
-			location.href="drugMainView.pl";
+			location.href="homeworklist.hw";
 		}
 		function print(){
 			$(this).window.print();
 		}
+		
+		$("#btn2").click(function(){
+			var bid = $("#delete").val();
+			
+			console.log(bid);
+			
+			//location.href="updateHomework.hw?bid="+bid;
+			
+		});
 	</script>
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

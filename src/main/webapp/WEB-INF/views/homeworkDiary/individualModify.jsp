@@ -69,7 +69,7 @@ img {
 .realS {
 	margin-left: 3%;
 	margin-top: 3%;
-}
+	}
 
 .textName {
 	font-size: 18px;
@@ -204,7 +204,7 @@ body {
 		<table>
 			<tr>
 				<td><button class="className" id="myBtn" type="button" style="background:#f55; color:white;border: 1px #f55; width:120%; height:30px">${className}</button></td>
-				<td><lable id="number" style=" font-size:25px">0</lable><label style="color:white; font-size:25px">/${classNum-1} by.songT</label></td>
+				<td><lable id="number" style=" font-size:25px">0</lable><label style="color:white; font-size:25px">/${classNum-1}</label></td>
 
 			</tr>
 		</table>
