@@ -199,6 +199,8 @@ public class MemberController {
 					
 					loginUser.setUserNo(result);
 					
+					System.out.println("칠드런킹 ! : " + childrenKing);
+					
 				}else {
 					
 					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");

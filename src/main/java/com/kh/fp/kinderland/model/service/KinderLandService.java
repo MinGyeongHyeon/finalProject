@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
+import com.kh.fp.kinderland.model.vo.Kinderclass;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -36,5 +37,7 @@ public interface KinderLandService {
 	ArrayList kinderbanplus(int kinderNo);
 
 	ArrayList kinderclassMax(ArrayList list);
+
+	int KinderClassAdd(Kinderclass kc);
 
 }

@@ -27,6 +27,7 @@
   		<result property="classMax" column="CLASS_MAX"/>
   		<result property="openedDate" column="OPENED_DATE"/>
   		<result property="closeDate" column="CLOSE_DATE"/>
+  		<result property="count" column="COUNTT"/>
   	
   	</resultMap>
   	
@@ -103,20 +104,32 @@
   	
   	<select id="kinderbanplus" resultMap="KinderclassResultSet">
   		
-  		SELECT *
+   		SELECT *
   		FROM KINDER_CLASSES
-  		WHERE KINDER_NO = #{kinderNo}
-  	
-  	</select>
-  	
-  	<select id="kinderclassMax" resultType="_int">
+  		WHERE KINDER_NO = #{kinderNo} 
   		
-  		SELECT COUNT(*)
-  		FROM KINDER_CLASS
-  		WHERE KINDER_NO = #{kinderNo}
-  		AND CLASS_NAME = #{className}
+
+  	</select>
+  	
+  	<select id="kinderclassMax" resultMap="KinderclassResultSet">
+  		
+  		SELECT CLASS_NAME , CLASS_MAX ,COUNTT
+		FROM KINDER_CLASSES ,
+			(SELECT COUNT(*) COUNTT
+  			 FROM KINDER_CLASS
+  			 WHERE KINDER_NO = #{kinderNo}
+  			 AND CLASS_NAME = #{className})
+		WHERE KINDER_NO = #{kinderNo}
+		AND CLASS_NAME = #{className}
   	
   	</select>
+  	
+  	<insert id="KinderClassAdd">
+  		
+  		INSERT INTO KINDER_CLASSES
+  		VALUES (#{kinderNo}, #{className4} , #{className5} , SYSDATE , NULL)
+  	
+  	</insert>
 	
 
   </mapper>
