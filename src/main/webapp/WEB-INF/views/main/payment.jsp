@@ -33,7 +33,6 @@
 	}
 	#payInfoArea{
 		width:80%;
-		background:#ccc;
 		font-size: 1.5em;
 		
 	}
@@ -110,34 +109,16 @@
 		
 	<div class="main-panel">
 	
-		<div id="pageTitleArea">
-			결제하기
+		<div id="pageTitleArea" style="margin-bottom: 5px;">
+			이용권 구매하기
 		</div>
 		<div id="payInfoArea">
 			<table>
-				<tr>
-					<th>유치원명</th>
-					<td><c:out value="${kg[0].kinderName }"/></td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td><c:out value="${ kg[0].kinderAddress }"/></td>
-
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td><input type="email" name="email" placeholder="ex)abcd123@google.com"  style="width:100%; border:none;"/></td>
-				</tr>
-				<tr>
-					<th>연락처</th>
-					<td><input type="number" name="phone" placeholder="'-'를 빼고 입력해 주세요" style="width:100%; border:none;"/></td>
-				</tr>
 				<tr>
 					<th style="border-right: 0px;">이용권 선택</th>
 					<td style="border-left: 0px;"></td>
 				</tr>
 				<tr>
-
 					<td colspan="2" style="border-bottom:0px; text-align: center; padding-top:5px; padding-bottom: 5px;">
 						<div id="setDiv1" class="setDiv">
 							<label for="Aset" id="Alabel" style="color:#fff">30일 이용권</label>
@@ -178,11 +159,31 @@
 						</div>
 					</td>
 				</tr>
+				<tr>
+					<th>유치원명</th>
+					<td><c:out value="${kg[0].kinderName }"/></td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td><c:out value="${ kg[0].kinderAddress }"/></td>
+				</tr>
+				<tr>
+					<th colspan="2" style="text-align:center; border:none;padding-top:10px;">*추가 입력사항(선택)</th>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td><input type="email" name="email" placeholder="ex)abcd123@google.com"  style="width:100%; border:none;"/></td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td><input type="number" name="phone" placeholder="'-'를 빼고 입력해 주세요" style="width:100%; border:none;"/></td>
+				</tr>
+				
 			</table>
 			<div id="paymentBtnArea" style="text-align: center; background:#fff;">
 				<button onclick="payment()" id="paybtn">결제하기</button>
 
-				<button onclick="test()">결제테스트용버튼</button>
+				<!-- <button onclick="test()">결제테스트용버튼</button> -->
 
 			</div>
 		</div>
@@ -197,8 +198,8 @@
 		}
 
 		function payment(){
-			
-			var userName='<c:out value="${kg[0].kinderName }"/>';
+			var userId = '<c:out value="${loginUser.userNo }"/>'; 
+			var userName = '<c:out value="${kg[0].kinderName }"/>';
 			var address = '<c:out value="${ kg[0].kinderAddress }"/>';
 			var email = $('input[name="email"]').val();
 			var phone = $('input[name="phone"]').val();
@@ -213,6 +214,12 @@
 				price = $('input[name="newPrice"]').val();
 				name = '180일 이용권';
 				productNo = 2;
+			}
+			if(email == null){
+				email = "";
+			}
+			if(phone == null){
+				phone = 0;
 			}
 			
 			price = 1000;
@@ -297,14 +304,12 @@
 			
 			$(".setDiv").click(function(){
 				var label = $(this.children[0].id);
-				console.log(label);
-				if(this.children[0].id == "Aset"){
+				if(this.children[0].id == "Alabel"){
 					$(this).css("background", "#59f");
 					$("#setDiv2").css("background", "#554a44");
 					setDiv1.children[1].click();
 					$("#setList1").css("display", "block");
 					$("#setList2").css("display", "none");
-					console.log(setList1);
 				}else{
 					$(this).css("background", "#59f");
 					$("#setDiv1").css("background", "#554a44");

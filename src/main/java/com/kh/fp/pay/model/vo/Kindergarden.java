@@ -1,19 +1,23 @@
 package com.kh.fp.pay.model.vo;
 
+import java.sql.Date;
+
 public class Kindergarden implements java.io.Serializable{
 	private int kinderNo;
 	private String kinderName;
 	private String kinderPhone;
 	private String kinderAddress;
+	private Date usingDate;
 	
 	public Kindergarden() {}
 
-	public Kindergarden(int kinderNo, String kinderName, String kinderPhone, String kinderAddress) {
+	public Kindergarden(int kinderNo, String kinderName, String kinderPhone, String kinderAddress, Date usingDate) {
 		super();
 		this.kinderNo = kinderNo;
 		this.kinderName = kinderName;
 		this.kinderPhone = kinderPhone;
 		this.kinderAddress = kinderAddress;
+		this.usingDate = usingDate;
 	}
 
 	public int getKinderNo() {
@@ -48,12 +52,20 @@ public class Kindergarden implements java.io.Serializable{
 		this.kinderAddress = kinderAddress;
 	}
 
+	public Date getUsingDate() {
+		return usingDate;
+	}
+
+	public void setUsingDate(Date usingDate) {
+		this.usingDate = usingDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Kindergarden [kinderNo=" + kinderNo + ", kinderName=" + kinderName + ", kinderPhone=" + kinderPhone
-				+ ", kinderAddress=" + kinderAddress + "]";
+				+ ", kinderAddress=" + kinderAddress + ", usingDate=" + usingDate + "]";
 	}
-	
+
 	
 	
 }

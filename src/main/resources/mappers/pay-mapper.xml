@@ -27,6 +27,22 @@
 		FROM KINDERGARDEN
 		WHERE KINDER_NO = #{kinderNo}
 	</select>
+	
+	<insert id="paymentSuccess" parameterType="PayPA">
+		INSERT INTO PAY
+		VALUES(SEQ_PAY_NO.NEXTVAL, #{seasonId}, #{userNo}, #{payMoney})
+	</insert>
+	
+	<insert id="insertPayOn" parameterType="PayPA">
+		INSERT INTO PAY
+		VALUES(SEQ_PAY_ON_NO.NEXTVAL, SEQ_PAY_NO.CURRVAL, SYSDATE, '결제완료')
+	</insert>
+	
+	<select id="selectGardenUsing" parameterType="KindergardenPA" resultMap="kindergardenResultSet">
+		SELECT KINDER_NO, USING_DATE
+		FROM KINDERGARDEN_USING
+		WHERE KINDER_NO = #{user_no}
+	</select>
 </mapper>
 
 	

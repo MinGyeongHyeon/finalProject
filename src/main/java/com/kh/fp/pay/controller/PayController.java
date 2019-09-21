@@ -2,6 +2,8 @@ package com.kh.fp.pay.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +26,23 @@ public class PayController {
 		int kinderNo = loginUser.getUserNo();
 		
 		ArrayList<Kindergarden> kg = pas.selectGardenInfo(kinderNo);
-
+		
 		m.addAttribute("kg",kg);
 		return "main/payment";
 	}
 	
 	@RequestMapping(value="paymentSuccess.pa")
-	public String paymentSuccess(Pay pay, Model m) {
-		
+	public String paymentSuccess(@SessionAttribute("loginUser") Member loginUser, HttpServletRequest request, Model m) {
+		Pay pay = new Pay();
+		int result = 0;
+		pay.setSeasonId(Integer.parseInt((String) request.getAttribute("seasonId")));
+		pay.setUserNo(loginUser.getUserNo());		
+		if(pay.getSeasonId() == 1) {
+			pay.setPayMoney(Integer.parseInt((String) request.getAttribute("price")));
+		}else {
+			pay.setPayMoney(Integer.parseInt((String) request.getAttribute("price")));
+		}
+		result = pas.paymentSuccess(loginUser, pay);
 		
 		return "main/parentsMain";
 	}
