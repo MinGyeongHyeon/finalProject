@@ -19,6 +19,8 @@ public class homework implements Serializable{
 	private int inboardNum;
 	private String inboardContent;
 	private String className;
+	private String attachName;
+	private int nowSession;
 	
 	
 	public homework() {}
@@ -26,7 +28,7 @@ public class homework implements Serializable{
 
 	public homework(int boardNum, String boardTitle, String boardContent, Date writeDate, String boardtype,
 			int classNum, int childrenNo, int kinderNo, int individualNo, String individualContent, int writer,
-			int inboardNum, String inboardContent, String className) {
+			int inboardNum, String inboardContent, String className, String attachName, int nowSession) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -42,6 +44,8 @@ public class homework implements Serializable{
 		this.inboardNum = inboardNum;
 		this.inboardContent = inboardContent;
 		this.className = className;
+		this.attachName = attachName;
+		this.nowSession = nowSession;
 	}
 
 
@@ -185,14 +189,36 @@ public class homework implements Serializable{
 	}
 
 
+	public String getAttachName() {
+		return attachName;
+	}
+
+
+	public void setAttachName(String attachName) {
+		this.attachName = attachName;
+	}
+
+
+	public int getNowSession() {
+		return nowSession;
+	}
+
+
+	public void setNowSession(int nowSession) {
+		this.nowSession = nowSession;
+	}
+
+
 	@Override
 	public String toString() {
 		return "homework [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", writeDate=" + writeDate + ", boardtype=" + boardtype + ", classNum=" + classNum + ", childrenNo="
 				+ childrenNo + ", kinderNo=" + kinderNo + ", individualNo=" + individualNo + ", individualContent="
 				+ individualContent + ", writer=" + writer + ", inboardNum=" + inboardNum + ", inboardContent="
-				+ inboardContent + ", className=" + className + "]";
+				+ inboardContent + ", className=" + className + ", attachName=" + attachName + ", nowSession="
+				+ nowSession + "]";
 	}
+
 
 
 	

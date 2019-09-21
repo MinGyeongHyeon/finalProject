@@ -38,6 +38,10 @@ public interface HomeWorkDao {
 
 	ArrayList<homework> selectOneT(SqlSessionTemplate sqlSession, int userNo, int bid);
 
+	ArrayList<homework> selectOneC(SqlSessionTemplate sqlSession, int userNo, int bid);
+
+	int updateH(SqlSessionTemplate sqlSession, String status, int bid);
+
 
 
 }

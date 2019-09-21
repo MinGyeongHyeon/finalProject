@@ -135,6 +135,25 @@ public class HomeworkServiceImpl implements HomeworkService{
 		return list;
 
 	}
+
+	@Override
+	public ArrayList<homework> SelectOneC(int userNo, int bid) {
+
+		ArrayList<homework> list = null;
+		
+		list = hd.selectOneC(sqlSession,userNo,bid);
+		
+		return null;
+	}
+
+	@Override
+	public int UpdateNoticeStatus(int bid, String status) {
+
+		
+		int update = hd.updateH(sqlSession,status,bid);
+		
+		return update;
+	}
 	
 	 
 

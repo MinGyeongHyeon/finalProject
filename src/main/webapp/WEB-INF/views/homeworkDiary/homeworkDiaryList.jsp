@@ -200,17 +200,25 @@
 		
 	</div>
 		<script>
-	/* 	function goAnnouncementWrite(){
+		function goAnnouncementWrite(){
 			location.href="WriteAnnounce.pl";
+		}
+		
+		function showHomeWorkDetail(){
+			location.href = "DetailHomeWork.pl";
+		}
+		
+		function goSomeoneWrite(){
+			
+			location.href = "WriteIndi.pl";
 		}
 		
 		function goWhoAreYou(){
 
 			location.href="WriteAnnounce.pl";
-		} */
-		
+		}
 		$(".card").click(function(){
-			var bid = $(this).children().children().eq(0).children().children("td").eq(0).text();
+			 var bid = $(this).children().children().eq(0).children().children("td").eq(0).text();
 			console.log(bid);
 			location.href="homeworkDetail.hw?bid="+bid;
 		});

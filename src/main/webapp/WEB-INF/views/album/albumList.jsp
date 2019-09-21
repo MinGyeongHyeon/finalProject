@@ -76,6 +76,13 @@
 		</div>
 	<jsp:include page="../common/footer.jsp"/>
 	</div>
-	
+	<script>
+	$("#contentsWrite").click(function(){
+			location.href="albumWrite.ab";
+		});
+	</script>
+		
 </body>
+
+
 </html>

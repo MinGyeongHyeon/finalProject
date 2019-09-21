@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -280,7 +282,8 @@ public class HomeWorkController {
 		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
 		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
 		
-		ArrayList<homework> nList;
+		
+		ArrayList<homework> HList;
 		int userNo = 0;
 		String userC = null;
 		int currentPage = 1;
@@ -288,24 +291,50 @@ public class HomeWorkController {
 		if(TloginUser != null) {
 			
 			userNo = TloginUser.getTeacherNo();
-			userC = "선생님";
-			System.out.println("선생님");
-			nList = hs.SelectOneT(userNo,bid);
+			System.out.println(userNo+"선생님");
+
+			HList = hs.SelectOneT(userNo,bid);
 			
 			System.out.println(bid + "zz");
 			System.out.println(userNo + "ss");
 			
+			model.addAttribute("HList",HList);
+			System.out.println("리스트는" + HList);
+			
 		}else if(CloginUser != null) {
 			
 			userNo = CloginUser.getChildrenNo();
+			System.out.println(userNo+"원아");
 			int tNo = CloginUser.getTeacherNo();
 			System.out.println(tNo+"선생님 번호");
+			
 			userC = "원아";
+			HList = hs.SelectOneT(userNo,bid);
+			
 			System.out.println("원아");
+			model.addAttribute("HList",HList);
+			System.out.println("리스트는" + HList);
+			
 		}
 		
 
 		return "homeworkDiary/homeworkDetail";
+	}
+	
+	@RequestMapping(value = "updateHomework.hw")
+	public String updateHomework(Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		
+		String status = "Y";
+	
+		int result = hs.UpdateNoticeStatus(bid,status);
+		
+		System.out.println(result);
+		
+
+		return "homeworklist.hw";
+
 	}
 
 }
