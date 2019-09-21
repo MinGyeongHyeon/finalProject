@@ -333,7 +333,7 @@
 						</c:if>
 
 						<c:if test="${of.meal eq 'Y' }">
-						<li class="nav-item"><a href="#charts"> <i
+						<li class="nav-item"><a href="mealMain.ml"> <i
 								class="fas fa-utensils"></i>
 								<p>식단표</p>
 						</a></li>

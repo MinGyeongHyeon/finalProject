@@ -19,7 +19,6 @@ public class AdminServiceImpl implements AdminService{
 	private SqlSessionTemplate sqlSession;
 	@Override
 	public ArrayList<Company> companyList() throws CompanyListException {
-		System.out.println("adminServiceimpl");
 		return ad.companyList(sqlSession);
 	}
 }

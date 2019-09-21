@@ -33,10 +33,12 @@ public class AttendanceController {
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 			String day = date.format(today);
 			((Model) mv).addAttribute("day",day);
-
 			try {
 				ArrayList<Children> dayAtt = as.dailyAttendance();
+				int child = as.dailyChildrenCount();
 				mv.addAttribute("list", dayAtt);
+				mv.addAttribute("chldren",child);
+				
 				return "attendance/attendanceMain";
 			} catch (DailyException e) {
 				mv.addAttribute("msg",e.getMessage());
@@ -86,10 +88,16 @@ public class AttendanceController {
 		return "attendance/attendanceMain";
 	}
 
-	@RequestMapping(value="attendanceMain.at")
-	public String attendanceMain(Attendance att,Model model) {
-		System.out.println(att.getChildrenNo());
-		System.out.println(att.getStatus());
-		return "";
-	}
+	
+	  @RequestMapping(value="attendanceMain.at") 
+	  public String attendanceMain(Attendance att,Model model) {
+	  System.out.println("애기번호"+att.getChildrenNo()); 
+	  System.out.println("상태"+att.getStatus()); 
+	  System.out.println("등원시간"+att.getTime());
+	  System.out.println("하원시간"+att.getmTime());
+	  return ""; 
+	  }
+	 
+	 
+	
 }

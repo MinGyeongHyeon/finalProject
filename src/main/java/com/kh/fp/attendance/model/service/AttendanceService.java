@@ -11,4 +11,6 @@ public interface AttendanceService {
 
 	ArrayList<Children> monthAttendance() throws DailyException;
 
+	int dailyChildrenCount() throws DailyException;
+
 }

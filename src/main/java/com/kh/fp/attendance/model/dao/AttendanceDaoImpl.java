@@ -31,6 +31,16 @@ public class AttendanceDaoImpl implements AttendanceDao{
 		return monthatt;
 	}
 
+	@Override
+	public int dailyChildrenCount(SqlSessionTemplate sqlSession) throws DailyException {
+		int child = 0;
+		child = sqlSession.selectOne("Attendance.dailyChildren");
+		if(child==0) {
+			throw new DailyException("원아가 없습니다.");
+		}
+		return child;
+	}
+
 
 
 }

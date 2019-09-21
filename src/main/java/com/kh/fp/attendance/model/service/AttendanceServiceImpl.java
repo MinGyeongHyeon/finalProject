@@ -34,5 +34,11 @@ public class AttendanceServiceImpl implements AttendanceService{
 	}
 
 
+	@Override
+	public int dailyChildrenCount() throws DailyException {
+		return ad.dailyChildrenCount(sqlSession);
+	}
+
+
 
 }
