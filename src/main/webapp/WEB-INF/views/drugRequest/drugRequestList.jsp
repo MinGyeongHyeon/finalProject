@@ -1,15 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>투약의뢰서</title>
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestListCss.css">
+<%-- <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestListCss.css"> --%>
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<style>
+.main-panel {
+    position: relative;
+    width: calc(100% - 240px);
+    height: 100vh;
+    min-height: 100%;
+    float: right;
+    transition: all .3s;
+}
+#sel1 {
+	width:15%;
+	display:inline;
+}
+#sel2 {
+	width:20%;
+	display:inline;
+}
+#datepicker {
+	float:right;
+	width:15%;
+	margin-right:10px;
+}
+#list1 {
+	width:400px;
+	height:420px;
+	background:white;
+}
+#list1:hover {
+	background:#fafafa;
+	cursor:pointer;
+}
+#profileImg {
+	width:80px;
+	height:80px;
+	border-radius:50%;
+}
+#profileArea {
+	 float:right;
+	 margin-right:10px;
+	 font-size:25px;
+}
+#contentArea {
+	margin-left:20px;
+	line-height:230%;
+	font-size:24px;
+}
+#className {
+	margin-left:20px;
+	color:#a1a1a1;
+}
+#btn2 {
+	border: 0.5px solid #e4e1dd;
+}
+#writeBtn {
+	margin-right:10px;
+	width:15%;
+	margin-left: auto;
+	color:white;
+	background:#ff7575;
+	font-weight:bold;
+}
+#dateA {
+	display:inline;
+}
+.dateT {
+	font-size:30px;
+}
+/* #listArea {
+	margin-top:40px;
+}
+#inputArea {
+	height:50px;
+} */
+</style>
 
 <script>
 $(function(){
@@ -25,6 +101,9 @@ $(function(){
 </head>
 <body>
  	<jsp:include page="../common/menubar.jsp"/>
+
+	<fmt:formatDate var="todayToString" pattern="yyyy/MM/dd" value="${ today }" />
+	<fmt:formatDate var="tomorrowToString" pattern="yyyy/MM/dd" value="${ tomorrow }" />
 
 	<div class="main-panel">
 			<div class="content">
@@ -58,26 +137,29 @@ $(function(){
 						<br><br><br>
 						<div id="listArea">
 
+							<c:forEach var="dList" items="${ dList }">
 							<div id="list1" onclick="showDrugDetail()">
 								<br>
 								<div id="profileArea">
-									<b>하뽀송</b>&nbsp;&nbsp;
+									<b>하뽀송</b>&nbsp;
 									<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
-								</div><br><br><br>
+								</div>
+								<br><br><br><br>
 								<div id="contentArea">
-									<h3><b>2019년 8월 30일</b></h3>
-									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span>증상</span>&nbsp;&nbsp;<span>감기</span><br>
-									<i class="far fa-clock"></i>&nbsp;&nbsp;<span>투약 시간</span>&nbsp;&nbsp;<span>점심 후</span><br>
-									<i class="far fa-user"></i>&nbsp;&nbsp;<span>의뢰자</span>&nbsp;&nbsp;<span>하민희</span><br>
+									<p class="dateT"><b><c:out value="${ dList.dosageDate }"/></b></p>
+									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span><b>증상</b></span>&nbsp;&nbsp;<span><c:out value="${ dList.symptom }"/></span><br>
+									<i class="far fa-clock"></i>&nbsp;&nbsp;<span><b>투약 시간</b></span>&nbsp;&nbsp;<span><c:out value="${ dList.dosageTime }"/></span><br>
+									<i class="fas fa-user"></i>&nbsp;&nbsp;<span><b>의뢰자</b></span>&nbsp;&nbsp;<span>하민희</span><br>
 								</div>
 								<br>
 								<p id="className">별님반</p>
 							</div>
+							</c:forEach>
 
 						</div>
 
 						<br>
-						<c:if test="${ !loginUser.classification eq '학부모' }">
+						<c:if test="${ loginUser.classification ne '학부모' }">
 						<button type="button" class="btn btn-light" id="btn2">
 							<i class="fas fa-print"></i>&nbsp; 출력 및 다운로드
 						</button>

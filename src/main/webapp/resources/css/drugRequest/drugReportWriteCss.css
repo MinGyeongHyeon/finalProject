@@ -70,7 +70,7 @@ th, td {
 	height: 60px;
 	background: #e6edfa;
 	color: #2196f3;
-	font-size: 16px;
+	font-size: 20px;
 	line-height: 20px;
 	padding: 19px;
 	font-weight: bold;
@@ -108,10 +108,13 @@ th, td {
 }
 
 #area3 {
-	margin-left: 352px;
+	margin-left: 50%;
+    font-size: 1.5em;
 	display: inline;
 }
 
 #area4 {
-	margin-left: 480px;
+	margin-left: 65%;
+	font-size: 1.5em;
 }
+

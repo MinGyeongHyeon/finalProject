@@ -21,11 +21,11 @@
 	<c:set var="today" value="<%=new Date()%>" />
 	<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000)%>" />
 
-	<fmt:formatDate var="todayToString" pattern="yyyy-MM-dd" value="${ today }" />
-	<fmt:formatDate var="tomorrowToString" pattern="yyyy-MM-dd" value="${ tomorrow }" />
+	<fmt:formatDate var="todayToString" pattern="yyyy/MM/dd" value="${ today }" />
+	<fmt:formatDate var="tomorrowToString" pattern="yyyy/MM/dd" value="${ tomorrow }" />
 
-<!-- 	<form action="insertDosageRequest.ds" method="post" enctype="multipart/form-date"> -->
-
+	<!-- action="insertDosageRequest.ds"  -->
+	<form method="post" action="insertDosageRequest.ds" onsubmit="return check()">
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
@@ -37,7 +37,8 @@
 						<div id="contentsArea">
 							<br>
 							<div id="profileArea">
-								<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i> &nbsp;&nbsp;<span><b>하뽀송</b></span>
+								<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i> &nbsp;&nbsp;
+								<span style="font-size:1.6em;"><b>ㅇㅇㅇ 의 투약의뢰서</b></span>
 							</div>
 							<hr width="98%">
 							<div id="area1">
@@ -46,11 +47,11 @@
 									<tr>
 										<th style="width: 15%;">투약일</th>
 										<td>
-											<input type="radio" id="radio1" name="dosageDate" value="today" checked>
+											<input type="radio" id="radio1" name="dosageDate" value="${ todayToString }" checked>
 											<label for="radio1">오늘 ( <fmt:formatDate type="date" value="${today}" pattern="MM월 dd일" /> )</label>
 										</td>
 										<td>
-											<input type="radio" id="radio2" name="dosageDate" value="tomorrow">
+											<input type="radio" id="radio2" name="dosageDate" value="${ tomorrowToString }">
 											<label for="radio2">내일 ( <fmt:formatDate type="date" value="${tomorrow}" pattern="MM월 dd일" /> )</label>
 										</td>
 									</tr>
@@ -62,9 +63,9 @@
 							</div>
 							<hr width="98%">
 							<div id="area2">
-								<h5>
+								<h3>
 									<b>투약 내용</b>
-								</h5>
+								</h3>
 								<div id="appendArea">
 								<table id="table2">
 									<tr>
@@ -145,7 +146,8 @@
 									</div>
 								</div>
 								<div id="area4">
-									<span><b><fmt:formatDate type="date" value="${today}" pattern="yyyy.MM.dd"/></b></span>&nbsp;<span>하민희</span>
+									<span><b><fmt:formatDate type="date" value="${today}" pattern="yyyy.MM.dd"/></b></span>
+									&nbsp;<span><c:out value="${ loginUser.userName }"/></span>
 								</div>
 							</div>
 							<div class="m-signature-pad--footer">
@@ -163,13 +165,13 @@
 							<button type="submit" class="btn btns" id="sendBtn">보내기</button>
 						</div>
 
-						<input type="hidden" id="url">
+						<input type="hidden" id="url" name="signUrl">
 
 					</div>
 				</div>
 			</div>
 		</div>
-
+	</form>
 
 	<script>
 		function goDrugMainView() {
@@ -205,23 +207,25 @@
 
 		resizeCanvas();
 
-		$(function(){
+		function check(){
+			if (sign.isEmpty()) {
+				alert("싸인을 해주세요!");
+				return false;
+			}
+			else{
+				var url = canvas.toDataURL();
 
-			$("#sendBtn").click(function(){
-				if (sign.isEmpty()) {
-					alert("싸인을 해주세요!");
-				}else {
-					var url = canvas.toDataURL();
+				$("#url").attr('value', url);
 
-					$("#url").attr('value', url);
+				var value = $("#url").val();
 
-					var value = $("#url").val();
+				console.log(value);
 
-					console.log(value);
+				location.href="insertDosageRequest.ds";
+			}
+		}
 
-					location.href="insertDosageRequest.ds";
-				}
-			});
+/* 		$(function(){
 
 			$("input[name=dosageDate]").change(function() {
 				var value = $(this).val();
@@ -236,6 +240,21 @@
 			});
 
 
+		}); */
+
+		function getUrlParams() {
+    		var params = {};
+   			window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+    		return params;
+		}
+
+		$(function() {
+
+			oParams = getUrlParams();
+
+			if(oParams.insert == 'Y'){
+				alert("투약의뢰서가 작성되었습니다.");
+			}
 		});
 
 	</script>

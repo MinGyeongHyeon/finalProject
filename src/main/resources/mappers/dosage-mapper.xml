@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Dosage">
-	<resultMap type="com.kh.fp.dosage.model.vo.Dosage" id="dosageResultSet">
+	<resultMap type="Dosage" id="dosageResultSet">
 		<id property="dosageNo" column="DOSAGE_NO"/>
 		<result property="dosageDate" column="DOSAGE_DATE"/>
 		<result property="symptom" column="SYMPTOM"/>
@@ -16,21 +16,63 @@
 		<result property="dosageProblem" column="DOSAGE_PROBLEM"/>
 		<result property="reading" column="READING"/>
 		<result property="reDate" column="RE_DATE"/>
-		<result property="userNo1" column="USER_NO"/>
+		<result property="userNo" column="USER_NO"/>
 		<result property="childrenNo" column="CHILDREN_NO"/>
-		<result property="childrenName" column="CHILDREN_NAME"/>
 	</resultMap>
 
+	<resultMap type="Attachment" id="AttachmentResultSet">
+		<id property="fileId" column="FILE_ID"/>
+		<result property="origineName" column="ORIGINE_NAME"/>
+		<result property="changeName" column="CHANGE_NAME"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="attachType" column="ATTACH_TYPE"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+		<result property="boardNo" column="BOARD_NO"/>
+		<result property="albumNo" column="ALBUM_NO"/>
+		<result property="ntboardNo" column="NTBOARD_NO"/>
+		<result property="mealNo" column="MEAL_NO"/>
+		<result property="dosageNo" column="DOSAGE_NO"/>
+		<result property="homeNo" column="HOME_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="userNo" column="USER_NO"/>
+	</resultMap>
+
+	<!-- 투약의뢰서 작성 -->
+	<!-- 투약의뢰서 내용 insert -->
 	<insert id="insertDosageRequest" parameterType="Dosage">
 		INSERT INTO DOSAGE
-		VALUES(SEQ_DOSAGE_NO.NEXTVAL, #{dateDate}, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
+		VALUES(SEQ_DOSAGE_NO.NEXTVAL, #{dosageDate}, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
 					#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo})
 	</insert>
+	<!-- 첨부파일에 싸인 url 저장 -->
+	<insert id="insertSign" parameterType="java.lang.String">
+		INSERT INTO ATTACHMENT
+		VALUES(SEQ_FILE_ID.NEXTVAL, 'dosageSign', 'dosageSign', #{signUrl}, SYSDATE
+		, '투약의뢰', NULL, NULL, NULL, NULL, NULL, SEQ_DOSAGE_NO.CURRVAL, NULL, NULL, NULL)
+	</insert>
 
-	<!-- 투약의뢰서 리스트 카운트 조회용 쿼리문 -->
+
+	<!-- 투약의뢰서 리스트 카운트 조회용 쿼리문(원장) -->
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM DOSAGE
+		FROM DOSAGE D
+		JOIN KINDER_CLASS K USING(CHILDREN_NO)
+		WHERE K.KINDER_NO = #{userNo}
+	</select>
+
+	<!-- 투약의뢰서 리스트 조회(원장) -->
+	<select id="selectDosageRequestList" parameterType="_int" resultMap="dosageResultSet">
+		SELECT *
+		FROM DOSAGE D
+		JOIN KINDER_CLASS K ON(K.CHILDREN_NO = D.CHILDREN_NO)
+		WHERE K.CLASS_NO IN(SELECT CLASS_NO
+                    		FROM KINDER_CLASS
+                    		WHERE KINDER_NO = #{userNo}
+                    		AND KINDER_NO IN (SELECT CHILDREN_NO
+                                      		  FROM KINDER_CLASS
+                                      		  WHERE KINDER_NO = #{userNo}))
+		ORDER BY D.DOSAGE_NO DESC
 	</select>
 
 </mapper>

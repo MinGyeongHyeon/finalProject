@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Dosage implements java.io.Serializable{
 	private int dosageNo;
-	private Date dosageDate;
+	private String dosageDate;
 	private String symptom;
 	private String kinds;
 	private String dosageMl;
@@ -19,7 +19,7 @@ public class Dosage implements java.io.Serializable{
 
 	public Dosage() {}
 
-	public Dosage(int dosageNo, Date dosageDate, String symptom, String kinds, String dosageMl, String dosageCount,
+	public Dosage(int dosageNo, String dosageDate, String symptom, String kinds, String dosageMl, String dosageCount,
 			String dosageTime, String dosageKeep, String dosageProblem, String reading, Date reDate, int userNo,
 			int childrenNo) {
 		super();
@@ -46,11 +46,11 @@ public class Dosage implements java.io.Serializable{
 		this.dosageNo = dosageNo;
 	}
 
-	public Date getDosageDate() {
+	public String getDosageDate() {
 		return dosageDate;
 	}
 
-	public void setDosageDate(Date dosageDate) {
+	public void setDosageDate(String dosageDate) {
 		this.dosageDate = dosageDate;
 	}
 
@@ -149,6 +149,7 @@ public class Dosage implements java.io.Serializable{
 				+ ", dosageKeep=" + dosageKeep + ", dosageProblem=" + dosageProblem + ", reading=" + reading
 				+ ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo + "]";
 	}
+
 
 
 
