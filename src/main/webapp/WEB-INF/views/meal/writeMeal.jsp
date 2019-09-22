@@ -33,15 +33,46 @@ $(function(){
 	});
 });
 
+$(function(){
+	$("#fileArea").hide();
+	$("#mealContent1").click(function(){
+		$("#thumbnailImg1").click();
+	});
+	$("#mealContent2").click(function(){
+		$("#thumbnailImg2").click();
+	});
+	$("#mealContent3").click(function(){
+		$("#thumbnailImg3").click();
+	});
+});
+function loadImg(value, num) {
+	if(value.files && value.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			switch(num){
+				case 1 : $("#contentimg1").attr("src", e.target.result); break;
+				case 2 : $("#contentimg2").attr("src", e.target.result); break;
+				case 3 : $("#contentimg3").attr("src", e.target.result); break;
+			}
+		}
+		
+		reader.readAsDataURL(value.files[0]);
+	}
+}
 </script>
 <style>
-table{
+#mealArea{
 width:100%;
 margin:0 auto;
 background:white;
 text-align:center;
 }
-table th{
+#mealArea td{
+width:33%;
+height:33%;
+}
+#mealArea th{
 padding:10px;
 background:orange;
 }
@@ -57,16 +88,16 @@ background:orange;
 	    padding-left: 3%;
 	    padding-right: 3%;
 	}
-	#choiceDate{
-	float:right;
-	background:lightblue;
-	color:white;
-	border-radius:5px;
-	
-	}
+#ta{
+width:80%;
+height:300px;
+border-top:none;
+}
 </style>
 </head>
 <body>
+<form action="writerMeal2.ml" method="post" encType="multipart/form-data">
+
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" alt="your image" id="firstContentArea">
 	
@@ -85,7 +116,7 @@ background:orange;
 </div>
 <hr/>
 <br><br>
-<table>
+<table id="mealArea">
 <tr><th colspan="3"> 
 <button>&lt;</button>
 <c:out value="${ day }"/>
@@ -93,22 +124,37 @@ background:orange;
  </th></tr>
 <tr>
 <td>오전간식<br>
-<input type="file" id="AMsnack" name="mealContent">
+<div id="mealContent1" class="picture">
+	<img src="${contextPath }/resources/images/plus.PNG" id="contentimg1" name="photo" width="80%" height="80%">
+</div>
 </td>
 <td>점심간식<br>
-<img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
+<div id="mealContent2" class="picture">
+	<img src="${contextPath }/resources/images/plus.PNG" id="contentimg2" name="photo" width="80%" height="80%">
+</div>
 </td>
 <td>오후간식<br>
-<img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
+<div id="mealContent3" class="picture">
+	<img src="${contextPath }/resources/images/plus.PNG" id="contentimg3" name="photo" width="80%" height="80%">
+</div>
 </td>
 </tr>
 <tr>
-<td>오전밥</td>
-<td>점심간식</td>
-<td>오후밥</td>
+<td><textarea id="ta" name="mealContent"></textarea></td>
+<td><textarea id="ta" name="mealContent"></textarea></td>
+<td><textarea id="ta" name="mealContent"></textarea></td>
+</tr>
+
+<tr>
+<td><input type="submit" value="저장"/></td>
 </tr>
 </table>
 </div>
-
+<div id="fileArea">
+	<input type="file" id="thumbnailImg1" multiple="multiple" name="file" onchange="loadImg(this, 1)">
+	<input type="file" id="thumbnailImg2" multiple="multiple" name="file" onchange="loadImg(this, 2)">
+	<input type="file" id="thumbnailImg3" multiple="multiple" name="file" onchange="loadImg(this, 3)">
+</div>
+</form>
 </body>
 </html>

@@ -65,6 +65,9 @@ public class Meal implements java.io.Serializable{
 		return "Meal [mealNo=" + mealNo + ", mealDate=" + mealDate + ", mealContent=" + mealContent + ", mealType="
 				+ mealType + ", kinderNo=" + kinderNo + "]";
 	}
+
 	
+
+
 	
 }
