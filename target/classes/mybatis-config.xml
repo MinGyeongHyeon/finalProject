@@ -23,14 +23,10 @@
 		<typeAlias type="com.kh.fp.attendance.model.vo.Attendance" alias="Attendance"/>
 		<typeAlias type="com.kh.fp.attendance.model.vo.Children" alias="Children"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.homework" alias="homework"/>
-		<typeAlias type="com.kh.fp.dosage.model.vo.Dosage" alias="Dosage"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinGardenClasses" alias="KinGardenClassesvo"/>
 		<typeAlias type="com.kh.fp.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.fp.notice.model.vo.NoticeWho" alias="NoticeWho"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KinderYN" alias="KinderYN"/>
-		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
-		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
-		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KinGardenClasses" alias="KinGardenClasses"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.HomeWorkChildren" alias="HomeWorkChildren"/>
 		<typeAlias type="com.kh.fp.member.model.vo.KidMember" alias="KidMember"/>
@@ -43,7 +39,17 @@
 		<typeAlias type="com.kh.fp.homework.model.vo.Whoselect" alias="Whoselect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclass" alias="Kinderclass"/>
 		<typeAlias type="com.kh.fp.meal.model.vo.Meal" alias="Meal"/>
-	
+		<typeAlias type="com.kh.fp.album.model.vo.Album" alias="Album"/>
+		<typeAlias type="com.kh.fp.dosage.model.vo.Dosage" alias="Dosage"/>
+		<typeAlias type="com.kh.fp.dosage.model.vo.DosageDetail" alias="DosageDetail"/>
+		<typeAlias type="com.kh.fp.dosage.model.vo.KinderClass" alias="kinderClassDosage"/>
+		<typeAlias type="com.kh.fp.dosage.model.vo.Children" alias="ChildrenDosage"/>
+		<typeAlias type="com.kh.fp.dosage.model.vo.DosageBogo" alias="DosageReport"/>
+		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
+		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
+		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
+		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclasses" alias="Kinderclasses"/>
+		<typeAlias type="com.kh.fp.kinderland.model.vo.KinderUserName" alias="KinderUserName"/>
 	</typeAliases>
 
 
@@ -60,6 +66,7 @@
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/meal-mapper.xml"/>
+		<mapper resource="mappers/album-mapper.xml"/>
 	</mappers>
 
 </configuration>
