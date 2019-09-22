@@ -1,6 +1,8 @@
 package com.kh.fp.kinderland.controller;
 
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,8 +193,6 @@ public class KinderLandController {
 	public String kinderbanplus(Model model , int kinderNo) {
 		
 		ArrayList list = ks.kinderbanplus(kinderNo);
-		
-		System.out.println("list 값 : " + list);
 	
 		ArrayList list2 = ks.kinderclassMax(list);
 		
@@ -209,9 +209,50 @@ public class KinderLandController {
 		
 		int result = ks.KinderClassAdd(kc);
 		
-		return "";
+		if(result > 0) {
+			kinderbanplus(model , kc.getKinderNo());
+		}
+		
+		return "kingteacher/banplus";
 	}
 	
+	@RequestMapping(value="classDelete.kl")
+	public ModelAndView KinserClassDelete(ModelAndView mv, Kinderclass kc ) {
+		
+					
+		int result = ks.KinderClassDelete(kc);
+		
+		System.out.println("result : " + result);
+		
+		mv.addObject("result", result);
+		mv.setViewName("jsonView");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="classchange.kl")
+	public String KinderclassChange(Model model , Kinderclass kc) {
+		System.out.println("kc 의 값 : " + kc);
+		
+		ArrayList list = ks.KinderclassChange(kc);
+		System.out.println("list 값 : " + list);
+		ArrayList list2 = ks.KinderclassNames(kc);
+		System.out.println("list2 값  : " + list2);
+		ArrayList list3 = ks.KinderuserName(list);
+		System.out.println("list3 값 : " + list3);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("list3" ,list3);
+		
+		
+	
+		
+		
+		
+		return "kingteacher/banwindow";
+	}
 	
 
 	

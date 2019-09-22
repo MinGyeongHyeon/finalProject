@@ -9,6 +9,7 @@ import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderclass;
+import com.kh.fp.kinderland.model.vo.Kinderclasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -114,6 +115,62 @@ public class KinderLandDaoImpl implements KinderLandDao{
 		}
 
 		return result;
+	}
+
+	@Override
+	public int KinderClassDelete(SqlSessionTemplate sqlSession, Kinderclass kc) {
+		
+		int result ;
+		
+		try {
+			
+			result = sqlSession.delete("KinderLand.KinderClassDelete",kc);
+			
+		}catch (Exception e) {
+			
+			result = 0;
+
+		}
+		
+
+		return result;
+	}
+
+	@Override
+	public ArrayList KinderclassChange(SqlSessionTemplate sqlSession, Kinderclass kc) {
+		
+
+		return (ArrayList) sqlSession.selectList("KinderLand.KinderclassChange",kc);
+	}
+
+	@Override
+	public ArrayList KinderclassNames(SqlSessionTemplate sqlSession, Kinderclass kc) {
+
+		return (ArrayList) sqlSession.selectList("KinderLand.KinderclassNames",kc);
+	}
+
+
+	@Override
+	public ArrayList KinderuserName(SqlSessionTemplate sqlSession, ArrayList list) {
+			
+			ArrayList list2 = new ArrayList();
+			
+			Kinderclasses kc = null;
+			
+			System.out.println("list 의 사이즈 : "  + list.size());
+			
+			for(int i = 0; i < list.size(); i++) {
+				kc = new Kinderclasses();
+				
+				kc = sqlSession.selectOne("KinderLand.KinderuserName",list.get(i));
+				
+				list2.add(kc);
+				
+			}
+		
+		
+
+		return list2;
 	}
 
 	

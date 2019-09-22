@@ -19,6 +19,8 @@
 		<result property="kinderName" column="KINDER_NAME"/>
 		<result property="kinderPhone" column="KINDER_PHONE"/>
 		<result property="kinderAddress" column="KINDER_ADDRESS"/>
+		<result property="usingDate" column="USING_DATE"/>
+		
 	</resultMap>
 	
 	
@@ -34,15 +36,30 @@
 	</insert>
 	
 	<insert id="insertPayOn" parameterType="PayPA">
-		INSERT INTO PAY
-		VALUES(SEQ_PAY_ON_NO.NEXTVAL, SEQ_PAY_NO.CURRVAL, SYSDATE, '결제완료')
+		INSERT INTO PAY_ON
+		VALUES(SEQ_PAY_ON_NO.NEXTVAL, SEQ_PAY_NO.CURRVAL, TO_CHAR(SYSDATE, 'YYYYMMDD'), '결제완료')
 	</insert>
 	
-	<select id="selectGardenUsing" parameterType="KindergardenPA" resultMap="kindergardenResultSet">
+	<select id="selectGardenUsing" parameterType="PayPA" resultMap="kindergardenResultSet">
 		SELECT KINDER_NO, USING_DATE
 		FROM KINDERGARDEN_USING
-		WHERE KINDER_NO = #{user_no}
+		WHERE KINDER_NO = #{userNo}
 	</select>
+	
+	<insert id="insertGardenUsing" parameterType="PayPA">
+		INSERT INTO KINDERGARDEN_USING
+		VALUES(#{userNo}, TO_CHAR(SYSDATE, 'YYYYMMDD'))
+	</insert>
+	
+	<update id="updateNewGardenUsing" parameterType="PayPA">
+			
+	</update>
+	
+	<update id="updatePlusGardenUsing" parameterType="PayPA">
+		
+	</update>
+	
+	
 </mapper>
 
 	

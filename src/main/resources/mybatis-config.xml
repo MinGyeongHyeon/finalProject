@@ -47,7 +47,8 @@
 		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
 		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
 		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
-
+		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclasses" alias="Kinderclasses"/>
+		<typeAlias type="com.kh.fp.kinderland.model.vo.KinderUserName" alias="KinderUserName"/>
 	</typeAliases>
 
 

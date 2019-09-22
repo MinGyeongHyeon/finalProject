@@ -1,5 +1,6 @@
 package com.kh.fp.kinderland.model.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
@@ -39,5 +40,16 @@ public interface KinderLandService {
 	ArrayList kinderclassMax(ArrayList list);
 
 	int KinderClassAdd(Kinderclass kc);
+
+	int KinderClassDelete(Kinderclass kc);
+
+	ArrayList KinderclassChange(Kinderclass kc);
+
+	ArrayList KinderclassNames(Kinderclass kc);
+
+	ArrayList KinderuserName(ArrayList list);
+
+
+
 
 }

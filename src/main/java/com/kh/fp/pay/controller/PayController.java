@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.kh.fp.member.model.vo.Member;
@@ -31,20 +32,23 @@ public class PayController {
 		return "main/payment";
 	}
 	
-	@RequestMapping(value="paymentSuccess.pa")
-	public String paymentSuccess(@SessionAttribute("loginUser") Member loginUser, HttpServletRequest request, Model m) {
-		Pay pay = new Pay();
+	@RequestMapping(value="paymentSuccess.pa", method=RequestMethod.POST)
+	public String paymentSuccess(@SessionAttribute("loginUser") Member loginUser, Pay pay, HttpServletRequest request, Model m) {
+		System.out.println("실행~");
 		int result = 0;
-		pay.setSeasonId(Integer.parseInt((String) request.getAttribute("seasonId")));
-		pay.setUserNo(loginUser.getUserNo());		
-		if(pay.getSeasonId() == 1) {
-			pay.setPayMoney(Integer.parseInt((String) request.getAttribute("price")));
-		}else {
-			pay.setPayMoney(Integer.parseInt((String) request.getAttribute("price")));
-		}
-		result = pas.paymentSuccess(loginUser, pay);
 		
-		return "main/parentsMain";
+		pay.setUserNo(loginUser.getUserNo());
+		if(pay.getSeasonId() == 1) {
+			pay.setPayMoney(Integer.parseInt((String)request.getParameter("price")));
+		}else {
+			pay.setPayMoney(Integer.parseInt((String)request.getParameter("newPrice")));
+		}
+		System.out.println(pay);	
+		
+		result = pas.paymentSuccess(pay);
+		
+		
+		return "main/payment";
 	}
 
 	
