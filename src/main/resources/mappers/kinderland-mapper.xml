@@ -31,6 +31,29 @@
   	
   	</resultMap>
   	
+  	<resultMap type="Kinderclasses" id="KinderclassesResultSet">
+  		
+  		<id property="classNo" column="CLASS_NO"/>
+  		<result property="kinderNo" column="KINDER_NO"/>
+  		<result property="className" column="CLASS_NAME"/>
+  		<result property="openedDate" column="OPENED_DATE"/>
+  		<result property="semester" column="SEMESTER"/>
+  		<result property="division" column="DIVISION"/>
+  		<result property="teacherNo" column="TEACHER_NO"/>
+  		<result property="childrenNo" column="CHILDREN_NO"/>
+  		<result property="userName" column="USER_NAME"/>
+  		<result property="childrenName" column="CHILDREN_NAME"/>
+  	
+  	</resultMap>
+  	
+  	<resultMap type="KinderUserName" id="KinderUserNameResultSet">
+  	
+  		<result property="userName" column="USER_NAME"/>
+  		<result property="childrenName" column="CHILDREN_NAME"/>
+  	
+  	
+  	</resultMap>
+  	
  
   	<select id="selectckinder" resultMap="kinderreslutSet">
   	
@@ -113,7 +136,7 @@
   	
   	<select id="kinderclassMax" resultMap="KinderclassResultSet">
   		
-  		SELECT CLASS_NAME , CLASS_MAX ,COUNTT
+  		SELECT CLASS_NAME , CLASS_MAX ,COUNTT ,KINDER_NO
 		FROM KINDER_CLASSES ,
 			(SELECT COUNT(*) COUNTT
   			 FROM KINDER_CLASS
@@ -130,6 +153,57 @@
   		VALUES (#{kinderNo}, #{className4} , #{className5} , SYSDATE , NULL)
   	
   	</insert>
+  	
+  	<delete id="KinderClassDelete">
+  	
+  		DELETE FROM KINDER_CLASSES
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND CLASS_NAME = #{className}
+  		
+  	</delete>
+  	
+  	<select id="KinderclassChange" resultMap="KinderclassesResultSet">
+  	
+  		SELECT *
+  		FROM KINDER_CLASS
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND CLASS_NAME = #{className}
+  	
+  	</select>
+  	
+  	<select id="KinderclassNames" resultMap="KinderclassResultSet">
+  		
+  		SELECT *
+		FROM USERS U
+		JOIN KINDER_CLASSES K ON(U.USER_NO = K.KINDER_NO)	
+		WHERE K.KINDER_NO = #{kinderNo}
+  	
+  	</select>
+  	
+  	<select id="KinderuserName" resultMap="KinderclassesResultSet">
+  		
+  		<if test="teacherNo == 0">
+  		SELECT *
+  		FROM KINDER_CLASS K
+        JOIN CHILDREN C ON(K.CHILDREN_NO = C.CHILDREN_NO)
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND CLASS_NAME = #{className}
+  		AND C.CHILDREN_NO = #{childrenNo}
+  		</if>
+  		<if test="childrenNo == 0">
+  		
+  		SELECT *
+  		FROM KINDER_CLASS K
+        JOIN USERS U ON(K.TEACHER_NO = U.USER_NO)
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND CLASS_NAME = #{className}
+  		AND K.TEACHER_NO = #{teacherNo}
+  		
+  		
+  		</if>
+  	
+  	
+  	</select>
 	
 
   </mapper>
