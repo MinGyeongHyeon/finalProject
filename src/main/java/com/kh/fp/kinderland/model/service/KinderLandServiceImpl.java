@@ -118,4 +118,34 @@ public class KinderLandServiceImpl implements KinderLandService{
 		return kd.KinderClassAdd(sqlSession,kc);
 	}
 
+
+	@Override
+	public int KinderClassDelete(Kinderclass kc) {
+
+		return kd.KinderClassDelete(sqlSession,kc);
+	}
+
+
+	@Override
+	public ArrayList KinderclassChange(Kinderclass kc) {
+
+		return kd.KinderclassChange(sqlSession,kc);
+	}
+
+
+	@Override
+	public ArrayList KinderclassNames(Kinderclass kc) {
+
+		return kd.KinderclassNames(sqlSession,kc);
+	}
+
+
+
+	@Override
+	public ArrayList KinderuserName(ArrayList list) {
+		
+		
+		return kd.KinderuserName(sqlSession,list);
+	}
+
 }

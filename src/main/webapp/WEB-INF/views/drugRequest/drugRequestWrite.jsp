@@ -38,7 +38,7 @@
 							<br>
 							<div id="profileArea">
 								<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i> &nbsp;&nbsp;
-								<span style="font-size:1.6em;"><b>ㅇㅇㅇ 의 투약의뢰서</b></span>
+								<span style="font-size:1.6em;"><b><c:out value="${ childrenKing.childrenName }"/>의 투약의뢰서</b></span>
 							</div>
 							<hr width="98%">
 							<div id="area1">

@@ -42,4 +42,12 @@ public interface KinderLandDao {
 
 	int KinderClassAdd(SqlSessionTemplate sqlSession, Kinderclass kc);
 
+	int KinderClassDelete(SqlSessionTemplate sqlSession, Kinderclass kc);
+
+	ArrayList KinderclassChange(SqlSessionTemplate sqlSession, Kinderclass kc);
+
+	ArrayList KinderclassNames(SqlSessionTemplate sqlSession, Kinderclass kc);
+
+	ArrayList KinderuserName(SqlSessionTemplate sqlSession, ArrayList list);
+
 }

@@ -4,52 +4,125 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Dosage">
+
 	<resultMap type="Dosage" id="dosageResultSet">
-		<id property="dosageNo" column="DOSAGE_NO"/>
-		<result property="dosageDate" column="DOSAGE_DATE"/>
-		<result property="symptom" column="SYMPTOM"/>
-		<result property="kinds" column="KINDS"/>
-		<result property="dosageMl" column="DOSAGE_ML"/>
-		<result property="dosageCount" column="DOSAGE_COUNT"/>
-	    <result property="dosageTime" column="DOSAGE_TIME"/>
-		<result property="dosageKeep" column="DOSAGE_KEEP"/>
-		<result property="dosageProblem" column="DOSAGE_PROBLEM"/>
-		<result property="reading" column="READING"/>
-		<result property="reDate" column="RE_DATE"/>
-		<result property="userNo" column="USER_NO"/>
-		<result property="childrenNo" column="CHILDREN_NO"/>
+		<id property="dosageNo" column="DOSAGE_NO" />
+		<result property="dosageDate" column="DOSAGE_DATE" />
+		<result property="symptom" column="SYMPTOM" />
+		<result property="kinds" column="KINDS" />
+		<result property="dosageMl" column="DOSAGE_ML" />
+		<result property="dosageCount" column="DOSAGE_COUNT" />
+		<result property="dosageTime" column="DOSAGE_TIME" />
+		<result property="dosageKeep" column="DOSAGE_KEEP" />
+		<result property="dosageProblem" column="DOSAGE_PROBLEM" />
+		<result property="reading" column="READING" />
+		<result property="reDate" column="RE_DATE" />
+		<result property="userNo" column="USER_NO" />
+		<result property="childrenNo" column="CHILDREN_NO" />
+	</resultMap>
+
+	<resultMap type="DosageDetail" id="DosageDetail">
+		<id property="dosageNo" column="DOSAGE_NO" />
+		<result property="dosageDate" column="DOSAGE_DATE" />
+		<result property="symptom" column="SYMPTOM" />
+		<result property="kinds" column="KINDS" />
+		<result property="dosageMl" column="DOSAGE_ML" />
+		<result property="dosageCount" column="DOSAGE_COUNT" />
+		<result property="dosageTime" column="DOSAGE_TIME" />
+		<result property="dosageKeep" column="DOSAGE_KEEP" />
+		<result property="dosageProblem" column="DOSAGE_PROBLEM" />
+		<result property="reading" column="READING" />
+		<result property="reDate" column="RE_DATE" />
+		<result property="userNo" column="USER_NO" />
+		<result property="userName" column="USER_NAME" />
+		<result property="childrenNo" column="CHILDREN_NO" />
+		<result property="classNo" column="CLASS_NO" />
+		<result property="kinderNo" column="KINDER_NO" />
+		<result property="className" column="CLASS_NAME" />
+		<result property="division" column="DIVISION" />
+		<result property="teacherNo" column="TEACHER_NO" />
+		<result property="childrenName" column="CHILDREN_NAME" />
+		<result property="signUrl" column="FILE_PATH" />
 	</resultMap>
 
 	<resultMap type="Attachment" id="AttachmentResultSet">
-		<id property="fileId" column="FILE_ID"/>
-		<result property="origineName" column="ORIGINE_NAME"/>
-		<result property="changeName" column="CHANGE_NAME"/>
-		<result property="filePath" column="FILE_PATH"/>
-		<result property="updateDate" column="UPDATE_DATE"/>
-		<result property="attachType" column="ATTACH_TYPE"/>
-		<result property="fileLevel" column="FILE_LEVEL"/>
-		<result property="boardNo" column="BOARD_NO"/>
-		<result property="albumNo" column="ALBUM_NO"/>
-		<result property="ntboardNo" column="NTBOARD_NO"/>
-		<result property="mealNo" column="MEAL_NO"/>
-		<result property="dosageNo" column="DOSAGE_NO"/>
-		<result property="homeNo" column="HOME_NO"/>
-		<result property="childrenNo" column="CHILDREN_NO"/>
-		<result property="userNo" column="USER_NO"/>
+		<id property="fileId" column="FILE_ID" />
+		<result property="origineName" column="ORIGINE_NAME" />
+		<result property="changeName" column="CHANGE_NAME" />
+		<result property="filePath" column="FILE_PATH" />
+		<result property="updateDate" column="UPDATE_DATE" />
+		<result property="attachType" column="ATTACH_TYPE" />
+		<result property="fileLevel" column="FILE_LEVEL" />
+		<result property="boardNo" column="BOARD_NO" />
+		<result property="albumNo" column="ALBUM_NO" />
+		<result property="ntboardNo" column="NTBOARD_NO" />
+		<result property="mealNo" column="MEAL_NO" />
+		<result property="dosageNo" column="DOSAGE_NO" />
+		<result property="homeNo" column="HOME_NO" />
+		<result property="childrenNo" column="CHILDREN_NO" />
+		<result property="userNo" column="USER_NO" />
 	</resultMap>
+
+
+	<resultMap type="ChildrenDosage" id="childrenResultSet">
+		<id property="childrenNo" column="CHILDREN_NO" />
+		<result property="childrenName" column="CHILDREN_NAME" />
+		<result property="birth" column="BIRTH" />
+		<result property="gender" column="GENDER" />
+		<result property="userNo" column="USER_NO" />
+	</resultMap>
+
+	<resultMap type="Users" id="Users">
+		<id property="userNo" column="USER_NO" />
+		<result property="userId" column="USER_ID" />
+		<result property="userPwd" column="USER_PWD" />
+		<result property="userName" column="USER_NAME" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="deleteDate" column="DELETE_DATE" />
+		<result property="deleteReason" column="DELETE_REASON" />
+		<result property="status" column="STATUS" />
+		<result property="classification" column="CLASSIFICATION" />
+	</resultMap>
+
+	<resultMap type="kinderClassDosage" id="kinderClassResultSet">
+		<id property="classNo" column="CLASS_NO" />
+		<result property="kinderNo" column="KINDER_NO" />
+		<result property="className" column="CLASS_NAME" />
+		<result property="openedDate" column="OPENED_DATE" />
+		<result property="semester" column="SEMESTER" />
+		<result property="division" column="DIVISION" />
+		<result property="teacherNo" column="TEACHER_NO" />
+		<result property="childrenNo" column="CHILDREN_NO" />
+	</resultMap>
+
+	<resultMap type="DosageReport" id="DosageReportResultSet">
+		<id property="bogoNo" column="BOGO_NO"/>
+		<result property="dosageNo" column="DOSAGE_NO"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="bogoContent" column="BOGO_CONTENT"/>
+		<result property="dogoDate" column="BOGO_DATE"/>
+	</resultMap>
+
+
 
 	<!-- 투약의뢰서 작성 -->
 	<!-- 투약의뢰서 내용 insert -->
 	<insert id="insertDosageRequest" parameterType="Dosage">
-		INSERT INTO DOSAGE
-		VALUES(SEQ_DOSAGE_NO.NEXTVAL, #{dosageDate}, #{symptom}, #{kinds}, #{dosageMl}, #{dosageCount},
-					#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo})
+		INSERT INTO
+		DOSAGE
+		VALUES(SEQ_DOSAGE_NO.NEXTVAL, #{dosageDate}, #{symptom},
+		#{kinds}, #{dosageMl}, #{dosageCount},
+		#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo})
 	</insert>
 	<!-- 첨부파일에 싸인 url 저장 -->
 	<insert id="insertSign" parameterType="java.lang.String">
 		INSERT INTO ATTACHMENT
-		VALUES(SEQ_FILE_ID.NEXTVAL, 'dosageSign', 'dosageSign', #{signUrl}, SYSDATE
-		, '투약의뢰', NULL, NULL, NULL, NULL, NULL, SEQ_DOSAGE_NO.CURRVAL, NULL, NULL, NULL)
+		VALUES(SEQ_FILE_ID.NEXTVAL, 'dosageSign', 'dosageSign', #{signUrl},
+		SYSDATE
+		, '투약의뢰', NULL, NULL, NULL, NULL, NULL, SEQ_DOSAGE_NO.CURRVAL,
+		NULL, NULL, NULL)
 	</insert>
 
 
@@ -60,20 +133,84 @@
 		JOIN KINDER_CLASS K USING(CHILDREN_NO)
 		WHERE K.KINDER_NO = #{userNo}
 	</select>
+	<!-- 투약의뢰서 리스트 카운트 조회용 쿼리문(부모님) -->
+	<select id="selectPListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM DOSAGE D
+		JOIN CHILDREN C USING(CHILDREN_NO)
+		JOIN USERS U ON(C.USER_NO = U.USER_NO)
+		WHERE U.USER_NO = #{userNo}
+	</select>
 
 	<!-- 투약의뢰서 리스트 조회(원장) -->
-	<select id="selectDosageRequestList" parameterType="_int" resultMap="dosageResultSet">
+	<select id="selectDosageRequestList" parameterType="_int" resultMap="DosageDetail">
 		SELECT *
 		FROM DOSAGE D
-		JOIN KINDER_CLASS K ON(K.CHILDREN_NO = D.CHILDREN_NO)
+		JOIN KINDER_CLASS K USING(CHILDREN_NO)
+        JOIN CHILDREN C USING(CHILDREN_NO)
+        JOIN USERS U ON(U.USER_NO = C.USER_NO)
 		WHERE K.CLASS_NO IN(SELECT CLASS_NO
-                    		FROM KINDER_CLASS
-                    		WHERE KINDER_NO = #{userNo}
-                    		AND KINDER_NO IN (SELECT CHILDREN_NO
-                                      		  FROM KINDER_CLASS
-                                      		  WHERE KINDER_NO = #{userNo}))
+							FROM KINDER_CLASS
+							WHERE KINDER_NO = #{userNo}
+		AND KINDER_NO IN (SELECT CHILDREN_NO
+						  FROM KINDER_CLASS
+						  WHERE KINDER_NO = #{userNo}))
 		ORDER BY D.DOSAGE_NO DESC
 	</select>
+
+	<!-- 투약의뢰서 상세 조회 -->
+	<select id="selectDosageOne" parameterType="DosageDetail" resultMap="DosageDetail">
+		SELECT *
+		FROM DOSAGE D
+		JOIN KINDER_CLASS K USING(CHILDREN_NO)
+		JOIN CHILDREN C USING(CHILDREN_NO)
+		JOIN USERS U ON(C.USER_NO = U.USER_NO)
+		JOIN ATTACHMENT A ON(D.DOSAGE_NO = A.DOSAGE_NO)
+		WHERE D.DOSAGE_NO = #{dosageNo}
+	</select>
+
+	<!-- 투약의뢰서 리스트 조회(학부모) -->
+	<select id="selectPDosageRequestList" parameterType="_int" resultMap="DosageDetail">
+		SELECT *
+		FROM DOSAGE D
+		JOIN KINDER_CLASS K USING(CHILDREN_NO)
+		JOIN CHILDREN C USING(CHILDREN_NO)
+		JOIN USERS U ON(C.USER_NO = U.USER_NO)
+		WHERE U.USER_NO = #{userNo}
+		ORDER BY D.DOSAGE_NO DESC
+	</select>
+
+	<!-- 투약의뢰서 리스트 카운트(선생님) -->
+	<select id="selectTListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM DOSAGE D
+		JOIN CHILDREN C ON(D.CHILDREN_NO = C.CHILDREN_NO)
+		WHERE D.CHILDREN_NO IN( SELECT CHILDREN_NO
+                        		FROM KINDER_CLASS K
+                       			WHERE (K.KINDER_NO, K.CLASS_NAME, K.OPENED_DATE) IN (SELECT K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE
+                                                                             		 FROM KINDER_CLASS K1
+                                                                             		 WHERE K1.TEACHER_NO = #{userNo})
+        AND DIVISION = '원생')
+	</select>
+
+	<!-- 투약의뢰서 리스트 조회(선생님) -->
+	<select id="selectTDosageRequestList" parameterType="_int" resultMap="DosageDetail">
+		SELECT *
+		FROM DOSAGE D
+		JOIN CHILDREN C ON(D.CHILDREN_NO = C.CHILDREN_NO)
+		WHERE D.CHILDREN_NO IN( SELECT CHILDREN_NO
+                        		FROM KINDER_CLASS K
+								WHERE (K.KINDER_NO, K.CLASS_NAME, K.OPENED_DATE) IN (SELECT K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE
+                                                                             		 FROM KINDER_CLASS K1
+                                                                            		 WHERE K1.TEACHER_NO = #{userNo})
+                        		AND DIVISION = '원생')
+		ORDER BY DOSAGE_NO DESC
+	</select>
+
+	<!-- 투약보고서 insert -->
+	<insert id="insertReport" parameterType="DosageReport">
+		INSERT INTO DOSAGE_BOGO VALUES(SEQ_BOGO_NO.NEXTVAL, #{dosageNo}, #{userNo}, #{bogoContent}, SYSDATE)
+	</insert>
 
 </mapper>
 

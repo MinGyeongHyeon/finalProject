@@ -64,7 +64,7 @@ table tr {
 		<br><br>
 			
 		<div id="buttonArea" align="center">
-			<button class="huge ui button">이전</button>
+			<button class="huge ui button"  type="button">이전</button>
 			<button class="huge ui secondary button" id="nextBtn" style="width:200px" type="button">다음</button>
 		</div>
 		
