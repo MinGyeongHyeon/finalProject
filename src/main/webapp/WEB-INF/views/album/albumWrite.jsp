@@ -24,6 +24,12 @@
 		
 	}
 	
+	
+.topArea {
+	width: 80%;
+	margin: 0 auto;
+}
+	
 	.pageName table{
 		font-weight: bold;
 		font-size: 1.5em;
@@ -202,6 +208,51 @@
 		color:white;
 	}
 	
+	/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	padding-left: 17%;
+	padding-right: 5%;
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	display: inline-block;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+img {
+	width: 120px;
+	width: 120px;
+	border-radius: 50%;
+}	
 	
 </style>
 <script>
@@ -234,7 +285,7 @@
 		</div>
 		<hr />
 
-		<form action="homeWorkWrite.hw" method="post" enctype="multipart/form-data">
+		<form action="albumWrite.ab" method="post" enctype="multipart/form-data">
 
 			<div class="homeworkDiaryForm">
 				<table>
@@ -248,20 +299,21 @@
 						<th>제목</th>
 					</tr>
 					<tr>
-						<td><input type="text" name="boardTitle" class="Title" style="width:50%;  border-radius:10px"/></td>
+						<td><input type="text" name="albumTitle" class="Title" style="width:50%;  border-radius:10px"/></td>
 					</tr>
 					
 					<tr>
 						<th>내용</th>
 					</tr>
 					<tr>
-						<td><textarea name="boardContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;  border-radius:10px"></textarea></td>
+						<td><textarea name="albumContent" id="contents" rows="7" placeholder="내용을 입력해 주세요" style="width:100%;  border-radius:10px"></textarea></td>
 					</tr>
 					
 					<tr>
 						<th>파일첨부</th>
 					</tr>
 					</table>
+					
 			</div>
 			<div class="albumPictureForm">		
 					<table>
@@ -298,6 +350,8 @@
 								<img src ="${contextPath}/resources/images/plus.PNG"  id="contentImg6" width="120" height="100">
 							</div>
 						</td>
+						
+						
 						<td>
 							<div id="contentImgArea7" class="picture">
 								<img src ="${contextPath}/resources/images/plus.PNG"  id="contentImg7" width="120" height="100">
@@ -328,16 +382,16 @@
 							</div>
 							
 					<div id="fileArea">
-					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this, 1)">
-					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this, 2)">
-					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this, 3)">
-					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this, 4)">
-					<input type="file" id="thumbnailImg5" name="thumbnailImg5" onchange="loadImg(this, 5)">
-					<input type="file" id="thumbnailImg6" name="thumbnailImg6" onchange="loadImg(this, 6)">
-					<input type="file" id="thumbnailImg7" name="thumbnailImg7" onchange="loadImg(this, 7)">
-					<input type="file" id="thumbnailImg8" name="thumbnailImg8" onchange="loadImg(this, 8)">
-					<input type="file" id="thumbnailImg9" name="thumbnailImg9" onchange="loadImg(this, 9)">
-					<input type="file" id="thumbnailImg10" name="thumbnailImg10" onchange="loadImg(this, 10)">
+					<input type="file"  multiple="multiple" id="thumbnailImg1"  name="file" onchange="loadImg(this, 1)">
+					<input type="file"  multiple="multiple" id="thumbnailImg2" name="file" onchange="loadImg(this, 2)">
+					<input type="file"  multiple="multiple" id="thumbnailImg3" name="file" onchange="loadImg(this, 3)">
+					<input type="file"  multiple="multiple" id="thumbnailImg4" name="file" onchange="loadImg(this, 4)">
+					<input type="file"  multiple="multiple" id="thumbnailImg5" name="file" onchange="loadImg(this, 5)">
+					<input type="file"  multiple="multiple" id="thumbnailImg6" name="file" onchange="loadImg(this, 6)">
+					<input type="file"  multiple="multiple" id="thumbnailImg7" name="file" onchange="loadImg(this, 7)">
+					<input type="file"  multiple="multiple" id="thumbnailImg8" name="file" onchange="loadImg(this, 8)">
+					<input type="file"  multiple="multiple" id="thumbnailImg9" name="file" onchange="loadImg(this, 9)">
+					<input type="file"  multiple="multiple" id="thumbnailImg10" name="file" onchange="loadImg(this, 10)">
 					</div>
 						</td>
 					</tr>
@@ -352,14 +406,53 @@
 							<input type="reset" value="취소"/>
 						</td>
 						<td>
-							<input type="submit" value="완료"/>
+							<input type="button" onclick="finalhh();" value="완료"/>
 						</td>
 					</tr>
 				</table>
 						<br><br><br><br><br>
 			</div>
-		</form>
-	</div>
+			<input type="hidden" id="hiddenhidden" name="hv"/>
+		</form> 
+		</div>
+	<div class="topArea">
+		<div id="myModal" class="modal">
+				<div class="modal-content">
+					<h2>${className}원아</h2>
+					<div class="realS">
+								<img src="${contextPath}/resources/images/dog.jpg" alt="" />
+								<p><input type="checkbox" name="check" class="checkcheck"  value='0'/>&nbsp;전체&nbsp;
+								<input type="hidden" name="check" class="checkcheck" value="0"/>&nbsp;</p>
+						<c:forEach var="l" items="${list}">
+							<div class="selectC" style="display: inline;">
+								<c:choose>
+									<c:when test="${l.fileName ne null}">
+										<img
+											src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>.jpg"
+											alt="" />
+									</c:when>
+									<c:when test="${l.fileName eq null}">
+										<img src="${contextPath}/resources/images/dog.jpg" alt="" />
+									</c:when>
+								</c:choose>
+								<p class="textName">
+									<input type="checkbox" name="check" class="checkcheck"  value="<c:out value="${l.childrenNo}"/>">&nbsp;
+									<input type="hidden" name="check" class="checkcheck" value="<c:out value="${l.childrenName}"/>">&nbsp;
+									<c:out value="${l.childrenName}" />	
+								</p>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="modal-footer">
+						<span class="close">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" id="select" style="width:150px; height:20%;">선택</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 	<script>
 			$(function(){
 				$("#fileArea").hide();
@@ -417,13 +510,124 @@
 					
 					reader.readAsDataURL(value.files[0]);
 				}
-			}
+			};
 			
-			$(document).on('change','img', function() {
+			$(".picture").click(function(){
+				if($(this).change()){
 				
-				console.log("zz");
+				var srcc = $(this).find("img").attr("src");
+				console.log(srcc);
+				
+				if($(this).children().eq(0).attr("src") == "/fp/resources/images/plus.PNG"){
+					
+				$(this).parent().append("<input type='button' class='className myBtn'  value='클릭'/>");
+
+				var btn = document.getElementsByClassName('className');
+				
+				$(".myBtn").click(function(){
+					event.preventDefault('submit');
+					modal.style.display = "block";
+				
+				});
+				}
+				
+				
+				}
 				
 			});
+			
+			
+			
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the button that opens the modal
+	//var btn = document.getElementById("myBtn");
+	// Get the <span> element that closes the modal
+
+
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	};
+	 
+	var array = Array();
+	var num = null;
+	var arrayName = Array();
+	
+	$('.checkcheck').change(function(){
+		if($(this).prop('checked')){
+	 		
+			$(this).next().attr("checked",true);
+			
+		}else{
+			
+			$(this).next().attr("checked",false);
+			
+		}
+		
+	});
+	
+	
+	a =0;
+	sumarr = Array();
+$('#select').click(function(){
+	var array = Array();
+	var num = null;
+	var arrayName = Array();
+		$("input[class=checkcheck]:checked").each(function(index) { 
+			
+			array [index] = $(this).val();
+			$(this).prop("checked", false);
+					
+		});
+		
+			sumarr[a] = array+"&";
+			a=a+1;
+		
+			var change = $("#number").text(num);	
+			var name = array[0]
+			
+			var changeName = $("#Name").text(name);
+			
+			
+			console.log(array)
+			console.log(arrayName)
+			console.log(sumarr)
+			
+			var content = Array();
+
+			//$("input[class=checkcheck]:checked").each(function(index) { 
+			
+			$('.next').click(function(){
+				
+				$(".modifyContents").each(function(index){
+					content[index] = $(this).val()
+			});
+
+				console.log(content);
+				console.log(array);
+				
+			 //location.href="homeWorkIndividualWrite.hw?array="+array+"&content="+content;
+			});
+			
+	});
+	function finalhh(){
+	$('#hiddenhidden').val(sumarr)
+	$('form').submit();	
+	}
+			
 	</script>
 </body>
 </html>

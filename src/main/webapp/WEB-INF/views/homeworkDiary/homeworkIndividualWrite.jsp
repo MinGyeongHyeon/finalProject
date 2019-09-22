@@ -258,7 +258,7 @@
 							<input type="reset" value="취소"/>
 						</td>
 						<td>
-							<input type="submit" value="완료"/>
+							<input type="submit" value="다음"/>
 						</td>
 					</tr>
 				</table>
