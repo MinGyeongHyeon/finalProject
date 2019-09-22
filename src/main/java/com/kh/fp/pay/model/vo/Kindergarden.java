@@ -7,11 +7,11 @@ public class Kindergarden implements java.io.Serializable{
 	private String kinderName;
 	private String kinderPhone;
 	private String kinderAddress;
-	private Date usingDate;
+	private String usingDate;
 	
 	public Kindergarden() {}
 
-	public Kindergarden(int kinderNo, String kinderName, String kinderPhone, String kinderAddress, Date usingDate) {
+	public Kindergarden(int kinderNo, String kinderName, String kinderPhone, String kinderAddress, String usingDate) {
 		super();
 		this.kinderNo = kinderNo;
 		this.kinderName = kinderName;
@@ -52,11 +52,11 @@ public class Kindergarden implements java.io.Serializable{
 		this.kinderAddress = kinderAddress;
 	}
 
-	public Date getUsingDate() {
+	public String getUsingDate() {
 		return usingDate;
 	}
 
-	public void setUsingDate(Date usingDate) {
+	public void setUsingDate(String usingDate) {
 		this.usingDate = usingDate;
 	}
 

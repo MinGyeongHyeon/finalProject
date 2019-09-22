@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.pay.model.vo.Kindergarden;
 import com.kh.fp.pay.model.vo.Pay;
 
@@ -31,10 +30,30 @@ public class PayDaoImpl implements PayDao{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Kindergarden selectGardenUsing(SqlSessionTemplate sqlSession, Member loginUser) {
-		Kindergarden k = sqlSession.selectOne("Pay.selectGardenUsing", loginUser);
+	public ArrayList<Kindergarden> selectGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
+		ArrayList<Kindergarden> k = (ArrayList) sqlSession.selectList("Pay.selectGardenUsing", pay);
 		return k;
+	}
+
+	@Override
+	public int insertGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
+		int result = sqlSession.insert("Pay.insertGardenUsing", pay);
+		
+		return result;
+	}
+
+	@Override
+	public int updateNewGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
+		int result = sqlSession.update("Pay.updateNewGardenUsing", pay);
+		return result;
+	}
+
+	@Override
+	public int updatePlusGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
+		int result = sqlSession.update("Pay.updatePlusGardenUsing", pay);
+		return result;
 	}
 
 }

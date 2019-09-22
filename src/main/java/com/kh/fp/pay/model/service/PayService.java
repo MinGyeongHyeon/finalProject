@@ -10,6 +10,6 @@ public interface PayService {
 
 	ArrayList<Kindergarden> selectGardenInfo(int kinderNo);
 
-	int paymentSuccess(Member loginUser, Pay pay);
+	int paymentSuccess(Pay pay);
 
 }

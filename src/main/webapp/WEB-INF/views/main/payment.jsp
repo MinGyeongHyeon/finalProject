@@ -108,7 +108,7 @@
 	<jsp:include page="../common/menubar.jsp"/>
 		
 	<div class="main-panel">
-	
+		<form action="paymentSuccess.pa" name="payForm" method="post" onsubmit="return false;">
 		<div id="pageTitleArea" style="margin-bottom: 5px;">
 			이용권 구매하기
 		</div>
@@ -181,20 +181,19 @@
 				
 			</table>
 			<div id="paymentBtnArea" style="text-align: center; background:#fff;">
-				<button onclick="payment()" id="paybtn">결제하기</button>
+				<input type="submit" id="paybtn" onclick="payment();" value="결제하기"/>
 
-				<!-- <button onclick="test()">결제테스트용버튼</button> -->
+				<button onclick="test()">결제테스트용버튼</button>
 
 			</div>
 		</div>
-	
+		</form>
 	</div>
 	<!-- 결제script -->
 	<script>
 
 		function test(){
-			location.href="paymentSuccess.pa";
-			
+			window.payForm.submit();
 		}
 
 		function payment(){
@@ -266,8 +265,9 @@
 				//결제 진행시 에러가 발생하면 수행됩니다.
 				console.log(data);
 			}).cancel(function (data) {
-				//결제가 취소되면 수행됩니다.
+				//결제 취소 시 수행
 				console.log(data);
+				return false;
 			}).ready(function (data) {
 				// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
 				console.log(data);
@@ -285,10 +285,11 @@
 			    // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
 			    console.log(data);
 			}).done(function (data) {
-
+				console.log("결제완료");
 				//결제가 정상적으로 완료되면 수행됩니다
 				//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
 				console.log(data);
+				window.payForm.submit();
 			});
 
 		};
