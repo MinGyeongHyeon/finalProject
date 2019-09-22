@@ -23,23 +23,29 @@
 }
 #sel1 {
 	width:15%;
+	height:70px;
 	display:inline;
 }
 #sel2 {
 	width:20%;
+	height:70px;
 	display:inline;
 }
 #datepicker {
 	float:right;
 	width:15%;
 	margin-right:10px;
+	height:70px;
+	font-size:1.8em;
 }
-#list1 {
+.card {
 	width:400px;
-	height:420px;
+	height:450px;
 	background:white;
+	float: left;
+	margin-left:25px;
 }
-#list1:hover {
+.card:hover {
 	background:#fafafa;
 	cursor:pointer;
 }
@@ -50,16 +56,17 @@
 }
 #profileArea {
 	 float:right;
-	 margin-right:10px;
+	 margin-left:50%;
 	 font-size:25px;
+	 width:80%;
 }
 #contentArea {
-	margin-left:20px;
+	margin-left:8%;
 	line-height:230%;
 	font-size:24px;
 }
 #className {
-	margin-left:20px;
+	margin-left:8%;
 	color:#a1a1a1;
 }
 #btn2 {
@@ -68,10 +75,12 @@
 #writeBtn {
 	margin-right:10px;
 	width:15%;
+	height:70px;
 	margin-left: auto;
 	color:white;
 	background:#ff7575;
 	font-weight:bold;
+	font-size:1.8em;
 }
 #dateA {
 	display:inline;
@@ -79,12 +88,12 @@
 .dateT {
 	font-size:30px;
 }
-/* #listArea {
-	margin-top:40px;
+.page-title {
+	font-size:35px !important;
 }
-#inputArea {
-	height:50px;
-} */
+#empty {
+	margin-left:25%;
+}
 </style>
 
 <script>
@@ -109,7 +118,7 @@ $(function(){
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<i class="fas fa-notes-medical" style="font-size:20px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
+						<i class="fas fa-notes-medical" style="font-size:35px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
 						<c:if test="${ loginUser.classification eq '학부모'}">
 						<button type="button" class="btn" id="writeBtn" onclick="goDrugRequestWrite()"><i class="fas fa-pen"></i>&nbsp;작성하기</button>
 						</c:if>
@@ -134,25 +143,31 @@ $(function(){
 							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">
 							</div>
 						</div>
-						<br><br><br>
+						<br><br><br><br>
 						<div id="listArea">
-
-							<c:forEach var="dList" items="${ dList }">
-							<div id="list1" onclick="showDrugDetail()">
+							<c:if test="${ empty detailList }">
+								<div id="empty">
+									<br><br><br><br><br><br><br><br><br><br><br><br>
+									<h1 style="font-size:44px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
+								</div>
+							</c:if>
+							<c:forEach var="l" items="${ detailList }">
+							<div class=card>
+								<input type="hidden" name="dosageNo" id="dosageNo" value="${ l.dosageNo }">
 								<br>
 								<div id="profileArea">
-									<b>하뽀송</b>&nbsp;
+									<b><c:out value="${ l.childrenName }"/></b>&nbsp;
 									<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
 								</div>
-								<br><br><br><br>
+								<br><br>
 								<div id="contentArea">
-									<p class="dateT"><b><c:out value="${ dList.dosageDate }"/></b></p>
-									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span><b>증상</b></span>&nbsp;&nbsp;<span><c:out value="${ dList.symptom }"/></span><br>
-									<i class="far fa-clock"></i>&nbsp;&nbsp;<span><b>투약 시간</b></span>&nbsp;&nbsp;<span><c:out value="${ dList.dosageTime }"/></span><br>
-									<i class="fas fa-user"></i>&nbsp;&nbsp;<span><b>의뢰자</b></span>&nbsp;&nbsp;<span>하민희</span><br>
+									<p class="dateT"><b><c:out value="${ l.dosageDate }"/></b></p>
+									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span><b>증상</b></span>&nbsp;&nbsp;<span><c:out value="${ l.symptom }"/></span><br>
+									<i class="far fa-clock"></i>&nbsp;&nbsp;<span><b>투약 시간</b></span>&nbsp;&nbsp;<span><c:out value="${ l.dosageTime }"/></span><br>
+									<i class="fas fa-user"></i>&nbsp;&nbsp;<span><b>의뢰자</b></span>&nbsp;&nbsp;<span><c:out value="${ l.userName }"/></span><br>
 								</div>
 								<br>
-								<p id="className">별님반</p>
+								<p id="className"><c:out value="${ l.className }"/></p>
 							</div>
 							</c:forEach>
 
@@ -164,24 +179,56 @@ $(function(){
 							<i class="fas fa-print"></i>&nbsp; 출력 및 다운로드
 						</button>
 						</c:if>
+
+
+
+
 					</div>
 				</div>
 			</div>
+
+		<!-- 페이징 -->
+					<div id="paginArea" align="center">
+						<c:if test="${ pi.currentPage <= 1 }">이전 &emsp;</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="blistBack" value="dosageList.ds">
+								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+							</c:url>
+							<a href="${ blistBack }">이전</a>
+							&emsp;
+						</c:if>
+
+						<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+							<c:if test="${ p eq pi.currentPage }">
+								<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
+							</c:if>
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="blistCheck" value="dosageList.ds">
+									<c:param name="currentPage" value="${ p }" />
+								</c:url>
+								<a href="${ blistCheck }">${ p }</a>
+							</c:if>
+						</c:forEach>
+
+
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="blistEnd" value="dosageList.ds">
+								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+							</c:url>
+							<a href="${ blistEnd }">&emsp; 다음</a>
+						</c:if>
+						<c:if test="${ pi.currentPage >= pi.maxPage }"> &emsp; 다음 </c:if>
+					</div>
+
 		</div>
 
-
 	<script>
-		function showDrugDetail(){
-			location.href="drugDetailList.pl";
-		}
 		function goDrugRequestWrite(){
 			location.href="drugRequestWrite.pl";
 		}
 
-	</script>
-
-	<script>
     	$(function(){
+
     		$('.input-group.date').datepicker({
     			calendarWeeks: false,
     			todayHighlight: true,
@@ -189,7 +236,19 @@ $(function(){
     			format: "yyyy/mm/dd",
     			language: "kr"
         	});
+
+    		$("#listArea > div").click(function(){
+    			var dosageNo = $(this).children("#dosageNo").val();
+    			console.log(dosageNo);
+    			location.href="dosageDetail.ds?dosageNo=" + dosageNo;
+    		});
+
+
+
+
     	});
+
+
     </script>
 </body>
 </html>

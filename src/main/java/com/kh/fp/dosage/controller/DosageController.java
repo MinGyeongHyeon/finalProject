@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.fp.dosage.model.exception.DosageException;
 import com.kh.fp.dosage.model.service.DosageService;
 import com.kh.fp.dosage.model.vo.Dosage;
+import com.kh.fp.dosage.model.vo.DosageBogo;
+import com.kh.fp.dosage.model.vo.DosageDetail;
 import com.kh.fp.dosage.model.vo.PageInfo;
 import com.kh.fp.dosage.model.vo.Pagination;
 import com.kh.fp.member.model.vo.KinGardenClasses;
@@ -54,7 +56,7 @@ public class DosageController {
 		try {
 			int r1 = ds.insertDosageRequest(d, signUrl);
 
-			return "redirect:drugMainView.pl?insert=Y";
+			return "redirect:dosageList.ds?insert=Y";
 
 		} catch (DosageException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -63,14 +65,17 @@ public class DosageController {
 		}
 	}
 
+	//투약의뢰서 리스트 가져오기
 	@RequestMapping(value="dosageList.ds")
 	public String dosageList(Model model, Dosage d, HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("loginUser") Member loginUser) {
 
 		int userNo = loginUser.getUserNo();
+		String classification = loginUser.getClassification();
 
 		System.out.println("dosageList 컨트롤러 호출");
 		System.out.println("userNo : " + userNo);
+		System.out.println("classification : " + classification);
 
 		int currentPage = 1;
 
@@ -78,20 +83,101 @@ public class DosageController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		ArrayList<Dosage> dList;
+		ArrayList<DosageDetail> detailList;
 
-		int listCount = ds.getListCount(userNo);
+		int listCount = 0;
 
-		System.out.println("listCount : " + listCount);
+		if(classification.equals("원장님")) {
+			listCount = ds.getListCount(userNo);
+			System.out.println("listCount : " + listCount);
+		}else if(classification.equals("학부모")) {
+			listCount = ds.getPListCount(userNo);
+			System.out.println("listCount : " + listCount);
+		}else {
+			listCount = ds.getTListCount(userNo);
+			System.out.println("listCount : " + listCount);
+		}
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
-		try {
-			dList = ds.selectDosageRequestList(pi, userNo);
-			model.addAttribute("dList", dList);
-			model.addAttribute("pi", pi);
+			try {
+				if(classification.equals("원장님")) {
+					detailList = ds.selectDosageRequestList(pi, userNo);
+					model.addAttribute("detailList", detailList);
+				}else if(classification.equals("학부모")) {
+					detailList = ds.selectPDosageRequestList(pi, userNo);
+					model.addAttribute("detailList", detailList);
+				}else {
+					detailList = ds.selectTDosageRequestList(pi, userNo);
+					model.addAttribute("detailList", detailList);
+				}
+				model.addAttribute("pi", pi);
 
-			return "drugRequest/drugRequestList";
+				return "drugRequest/drugRequestList";
+
+			} catch (DosageException e) {
+				model.addAttribute("msg", e.getMessage());
+				e.printStackTrace();
+				return "index";
+			}
+
+	}
+
+	//투약의뢰서 상세조회
+	@RequestMapping(value="dosageDetail.ds")
+	public String dosageDetail(Model model, int dosageNo) {
+		System.out.println("dosageNo :: " + dosageNo);
+		System.out.println(" 컨트롤러 호출 ");
+
+		try {
+			DosageDetail d = ds.selectDosageOne(dosageNo);
+
+			model.addAttribute("d", d);
+
+			return "drugRequest/drugRequestDetail";
+
+		} catch (DosageException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
+	}
+
+	//투약 보고서 작성 페이지 상세 조회
+	@RequestMapping(value="mediReport.ds")
+	public String mediReport(Model model, int dosageNo) {
+		System.out.println("dosageNo :: " + dosageNo);
+		System.out.println(" 컨트롤러 호출 ");
+
+		try {
+			DosageDetail d = ds.selectDosageOne(dosageNo);
+
+			model.addAttribute("d", d);
+
+			return "drugRequest/drugReportWrite";
+
+		} catch (DosageException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
+	}
+
+	//투약 보고서 insert
+	@RequestMapping(value="insertDosageBogo.ds")
+	public String writeReport(Model model, @ModelAttribute("loginUser") Member loginUser, int dosageNo, DosageBogo d) {
+
+		int userNo = loginUser.getUserNo();
+		System.out.println("userNo ------ " +userNo);
+		System.out.println("dosageNo ------ " +dosageNo);
+
+		d.setDosageNo(dosageNo);
+		d.setUserNo(userNo);
+
+		try {
+			int result = ds.writeReport(d);
+
+			return "redirect:drugRequest/drugRequestList";
 
 		} catch (DosageException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -100,35 +186,6 @@ public class DosageController {
 		}
 
 	}
-
-/*
-	//투약의뢰서 리스트 가져오기 / 리스트 카운트
-	@RequestMapping(value="dosageList.ds")
-	public String dosageList(Model model, Dosage d, HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("loginUser") Member loginUser) {
-
-		int userNo = loginUser.getUserNo();
-
-		System.out.println("dosageList 컨트롤러 호출");
-		System.out.println("userNo" + userNo);
-
-		int currentPage = 1;
-
-		if (request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
-
-		ArrayList<Dosage> dList;
-
-		int listCount = ds.getListCount(userNo);
-
-		System.out.println("listCount :::: " + listCount);
-
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-
-		return "";
-	}
-*/
 
 }
 

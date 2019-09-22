@@ -6,15 +6,15 @@ public class Pagination {
 
 		PageInfo pi = null;
 
-		int limit = 10;			//한 페이지에 보여질 게시물 수
+		int limit = 6;			//한 페이지에 보여질 게시물 수
 		int buttonCount = 10;	//한 화면에 보여질 페이징 버튼 수
 		int maxPage;			//전체 페이지에서 가장 마지막 페이지
 		int startPage;			//한 번에 표시될 페이지 버튼의 시작할 페이지
 		int endPage;			//한 번에 표시될 페이지 버튼의 마지막 페이지
 
-		maxPage = (int)((double) listCount / limit + 0.9);
+		maxPage = (int)((double) listCount / limit + 0.94);
 
-		startPage = (((int)((double) currentPage / buttonCount + 0.9)) -1) * buttonCount + 1;
+		startPage = (((int)((double) currentPage / buttonCount + 0.94)) -1) * buttonCount + 1;
 
 		endPage = startPage + buttonCount - 1;
 
