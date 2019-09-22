@@ -78,7 +78,7 @@
 	</div>
 	<script>
 	$("#contentsWrite").click(function(){
-			location.href="albumWrite.ab";
+			location.href="albumWhoIn.ab";
 		});
 	</script>
 		

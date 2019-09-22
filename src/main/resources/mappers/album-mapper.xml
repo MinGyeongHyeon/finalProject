@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Album">
+  	<resultMap type="Album" id="albumResultSet">
+  	<id property="alblumNo" column="ALBUM_NO"/>
+  	<result property="albumTitle" column="ALBUM_TITLE"/>
+  	<result property="albumContent" column="ALBUM_CONTENT"/>
+  	<result property="writeDate" column="ALBUM_DATE"/>
+  	<result property="classNo" column="CLASS_NO"/>
+  	</resultMap>
+  	
+  	<select id="selectNum" resultType="_int">
+		SELECT SEQ_ALBUM_NO.CURRVAL
+		FROM DUAL
+	</select>
+  	
+  	<insert id="insertAlbum">
+		INSERT INTO Album
+		VALUES(SEQ_ALBUM_NO.NEXTVAL,#{albumTitle},#{albumContent},#{writeDate},#{classNo},#{writer})
+	</insert>
+	
+	<insert id="insertAt">
+		INSERT INTO ATTACHMENT VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , #{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} ,null, #{boardNo},null,null,null,null,#{albumchildrenNo},null)
+	</insert>
+  
+  	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ALBUM
+		WHERE CLASS_NO IN (SELECT CLASS_NO
+		FROM KINDER_CLASS K
+		JOIN USERS U ON U.USER_NO = K.KINDER_NO
+		WHERE U.USER_NO = #{userNo})
+	</select>
+  </mapper>
+  

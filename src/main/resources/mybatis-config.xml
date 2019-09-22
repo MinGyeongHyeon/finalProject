@@ -43,6 +43,7 @@
 		<typeAlias type="com.kh.fp.homework.model.vo.Whoselect" alias="Whoselect"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclass" alias="Kinderclass"/>
 		<typeAlias type="com.kh.fp.meal.model.vo.Meal" alias="Meal"/>
+		<typeAlias type="com.kh.fp.album.model.vo.Album" alias="Album"/>
 	
 	</typeAliases>
 
@@ -60,6 +61,7 @@
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/meal-mapper.xml"/>
+		<mapper resource="mappers/album-mapper.xml"/>
 	</mappers>
 
 </configuration>
