@@ -97,6 +97,8 @@ public interface MemberService {
 
 	KinderGarden selectKinderName(int userNo);
 
+	String selectUsingDate(int userNo);
+
 
 
 }

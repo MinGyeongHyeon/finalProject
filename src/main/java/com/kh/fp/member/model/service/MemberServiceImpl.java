@@ -327,6 +327,11 @@ public class MemberServiceImpl implements MemberService{
 		return md.selectKinderName(sqlSession,userNo);
 	}
 
+	@Override
+	public String selectUsingDate(int userNo) {
+		return md.selectUsingDate(sqlSession, userNo);
+	}
+
 
 
 	

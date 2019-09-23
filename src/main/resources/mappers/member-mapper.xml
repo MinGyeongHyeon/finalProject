@@ -18,6 +18,7 @@
 		<result property="deleteReason" column="DELETE_REASON"/>
 		<result property="status" column="STATUS"/>
 		<result property="classification" column="CLASSIFICATION"/>
+		<result property="usingStatus" column="USING_DATE"/>
 	</resultMap>
 	
 	<resultMap type="KinclassSelect" id="kinResultSet">
@@ -442,6 +443,15 @@
 	
 		SELECT *
 		FROM KINDERGARDEN
+		WHERE KINDER_NO = #{userNo}
+	
+	</select>
+	
+	
+	<select id="selectUsingDate" parameterType="_int" resultType="string">
+	
+		SELECT USING_DATE
+		FROM KINDERGARDEN_USING
 		WHERE KINDER_NO = #{userNo}
 	
 	</select>

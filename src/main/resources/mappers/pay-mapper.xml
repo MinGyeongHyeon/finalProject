@@ -51,13 +51,12 @@
 		VALUES(#{userNo}, TO_CHAR(SYSDATE, 'YYYYMMDD'))
 	</insert>
 	
-	<update id="updateNewGardenUsing" parameterType="PayPA">
-			
+	<update id="updateGardenUsing" parameterType="PayPA">
+		UPDATE KINDERGARDEN_USING
+		SET USING_DATE = TO_CHAR(#{payDate}, 'YYYYMMDD')
+		WHERE KINDER_NO = #{userNo}
 	</update>
 	
-	<update id="updatePlusGardenUsing" parameterType="PayPA">
-		
-	</update>
 	
 	
 </mapper>

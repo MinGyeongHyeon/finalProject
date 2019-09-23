@@ -3,6 +3,7 @@ package com.kh.fp.pay.model.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,43 +44,56 @@ public class PayServiceImpl implements PayService{
 			//pay, on 테이블 insert 성공 시
 			ArrayList<Kindergarden> k = pad.selectGardenUsing(sqlSession, pay);
 			int  result3 = 0;
-			System.out.println("kkkk::" + k);
+			
+			int pluseDate = 0;
+			if(pay.getSeasonId() == 1) {
+				pluseDate = 30;
+			}else if(pay.getSeasonId() == 2) {
+				pluseDate = 180;
+			}
+			
+			Date d = new Date(); //오늘날짜
 			
 			if(k.isEmpty()) {
 				result3 = pad.insertGardenUsing(sqlSession, pay);
 			}else {
-				System.out.println("k:::::::::: " + k);
 				SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-				Date d = new Date();
 				
-				String usingDate = k.get(0).getUsingDate();
+				String usingDate = k.get(0).getUsingDate();// 사용가능날짜
 				
 				try {
-					Date oldDate = format.parse(usingDate);
-				
-					int num = d.compareTo(oldDate);
-					if(num > 0) {
-						result3 = pad.updateNewGardenUsing(sqlSession, pay);
+					Calendar cal = Calendar.getInstance();
+			        Date originDate = new Date();
+			        Date laterDate = new Date();
+
+			        originDate = format.parse(usingDate); //사용가능날짜
+
+			        int num = d.compareTo(originDate);
+			
+			        if(num > 0) {
+			            cal.setTime(laterDate);		//달력을 오늘날짜로 초기화
 					}else {
-						result3 = pad.updatePlusGardenUsing(sqlSession, pay);
+			            cal.setTime(originDate);		//달력을 사용가능날짜로 초기화
 					}
+			        
+			        cal.add(Calendar.DATE, pluseDate);        //plusDate 이후 날짜 구하기
+			        laterDate = cal.getTime();		//plusDate 날짜를 Date형으로 선언
+			        java.sql.Date sqlDate = new java.sql.Date(laterDate.getTime());
+			        
+			        pay.setPayDate(sqlDate);
 					
+					result3 = pad.updateGardenUsing(sqlSession, pay);
+					
+					if(result3 > 0) {
+						result = 1;
+					}
 					
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-					
-					
-				
-				
 			}
-			
-			
-			
 		}
-		
-		result = 1;
 		return result;
 	}
 

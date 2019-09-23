@@ -386,6 +386,12 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public String selectUsingDate(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("Member.selectUsingDate", userNo);
+	}
+
+
 
 
 
