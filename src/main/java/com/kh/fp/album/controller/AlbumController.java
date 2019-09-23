@@ -46,8 +46,11 @@ public class AlbumController {
 	@RequestMapping(value = "album.ab")
 	public String albumList(Model model,HttpSession session, HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser ,@SessionAttribute("of") OnOff of) {
 	
-		int userNo = loginUser.getUserNo();
+		int userNo=0;
+		
+		userNo=loginUser.getUserNo();
 		System.out.println(userNo + "입니다.");
+		ArrayList<Album> album;
 		
 		System.out.println("of 의 유치원 번호 : " + of.getKinderNo());
 		
@@ -59,7 +62,7 @@ public class AlbumController {
 	         currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	      }
 	    
-	     ArrayList<Album> album;
+	   
 	     
 	     int listCount = 0;
 	     
@@ -69,8 +72,10 @@ public class AlbumController {
 	         
 	         
 	      }else if(classification.equals("학부모")) {
-	         listCount = abs.getTListCount(userNo);
-	         System.out.println("listCount :ㅎㅎ " + listCount);
+	  		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+	  		userNo = TloginUser.getTeacherNo();
+	        listCount = abs.getTListCount(userNo);
+	        System.out.println("listCount :ㅎㅎ " + listCount);
 	      
 	      
 	      }else {
@@ -83,14 +88,18 @@ public class AlbumController {
 		
 	    if(classification.equals("원장님")) {
 	    	album = abs.selectAlbumRequestList(pi, userNo);
+	    	System.out.println(album+"zz");
+	    	model.addAttribute("album", album);
          }else if(classification.equals("학부모")) {
-        	 //album = abs.selectTAlbumRequestList(pi, userNo);
+        	 album = abs.selectTAlbumRequestList(pi, userNo);
+        	 model.addAttribute("album", album);
          }else {
-        	 //album = abs.selectCAlbumRequestList(pi, userNo);
+        	 album = abs.selectTAlbumRequestList(pi, userNo);
+        	 model.addAttribute("album", album);
          }
 
 		
-		
+		model.addAttribute("pi", pi);
 		
 		
 		

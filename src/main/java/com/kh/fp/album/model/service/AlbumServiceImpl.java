@@ -54,8 +54,10 @@ public class AlbumServiceImpl implements AlbumService {
 
 	@Override
 	public int getTListCount(int userNo) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int ListCount = abd.ListTCount(sqlSession,userNo);
+		
+		return ListCount;
 	}
 
 	@Override
@@ -64,6 +66,16 @@ public class AlbumServiceImpl implements AlbumService {
 		 ArrayList<Album> alb = null;
 		 
 		 alb = abd.selectAlbumList(sqlSession,userNo,pi);
+		
+		return alb;
+	}
+
+	@Override
+	public ArrayList<Album> selectTAlbumRequestList(PageInfo pi, int userNo) {
+
+		 ArrayList<Album> alb = null;
+		 
+		 alb = abd.selectTAlbumList(sqlSession,userNo,pi);
 		
 		return alb;
 	}

@@ -10,6 +10,7 @@
   	<result property="albumContent" column="ALBUM_CONTENT"/>
   	<result property="writeDate" column="ALBUM_DATE"/>
   	<result property="classNo" column="CLASS_NO"/>
+  	<result property="tumbnail" column="CHANGE_NAME"/>
   	</resultMap>
   	
   	<select id="selectNum" resultType="_int">
@@ -19,7 +20,7 @@
   	
   	<insert id="insertAlbum">
 		INSERT INTO Album
-		VALUES(SEQ_ALBUM_NO.NEXTVAL,#{albumTitle},#{albumContent},#{writeDate},#{classNo},#{writer})
+		VALUES(SEQ_ALBUM_NO.NEXTVAL,#{albumTitle},#{albumContent},#{writeDate},#{classNo},#{writer},'N')
 	</insert>
 	
 	<insert id="insertAt">
@@ -33,6 +34,35 @@
 		FROM KINDER_CLASS K
 		JOIN USERS U ON U.USER_NO = K.KINDER_NO
 		WHERE U.USER_NO = #{userNo})
+	</select>
+	
+	<select id="selectList" resultMap="albumResultSet">
+		SELECT A.ALBUM_NO,A.ALBUM_TITLE,A.ALBUM_DATE,A.CLASS_NO,T.CHANGE_NAME
+		FROM ALBUM A
+		JOIN ATTACHMENT T ON A.ALBUM_NO = T.ALBUM_NO
+		WHERE A.CLASS_NO IN  (SELECT CLASS_NO
+		FROM KINDER_CLASS K
+		JOIN USERS U ON U.USER_NO = K.KINDER_NO
+		WHERE U.USER_NO = 1)
+		AND T.FILE_LEVEL = 1 
+        AND A.STATUS = 'N'
+		ORDER BY 1 DESC
+	</select>
+	
+	<select id="selectTListCount" resultType="_int">
+   		SELECT COUNT(*)
+		FROM ALBUM
+		WHERE WRITER = #{userNo}
+	</select>
+
+	<select id="selectTList" resultMap="albumResultSet">
+	SELECT A.ALBUM_NO,A.ALBUM_TITLE,A.ALBUM_DATE,A.CLASS_NO,T.CHANGE_NAME
+		FROM ALBUM A
+		JOIN ATTACHMENT T ON A.ALBUM_NO = T.ALBUM_NO
+		WHERE A.WRITER = #{userNo} 
+		AND T.FILE_LEVEL = 1 
+        AND A.STATUS = 'N'
+		ORDER BY 1 DESC
 	</select>
   </mapper>
   

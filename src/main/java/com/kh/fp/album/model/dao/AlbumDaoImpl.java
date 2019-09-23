@@ -57,6 +57,8 @@ public class AlbumDaoImpl implements AlbumDao{
 		
 		return content;
 	}
+	
+	
 
 
 	@Override
@@ -72,6 +74,35 @@ public class AlbumDaoImpl implements AlbumDao{
 		
 		return alb;
 	}
+
+
+	@Override
+	public int ListTCount(SqlSessionTemplate sqlSession, int userNo) {
+		
+		int content = sqlSession.selectOne("Album.selectTListCount",userNo);
+		
+		System.out.println(content+"개");
+		
+		return content;
+	}
+
+
+	@Override
+	public ArrayList<Album> selectTAlbumList(SqlSessionTemplate sqlSession, int userNo, PageInfo pi) {
+		
+		ArrayList<Album> alb = null;
+		 System.out.println("눈물..");
+		 int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
+			
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		alb = (ArrayList)sqlSession.selectList("Album.selectTList",userNo,rowBounds);
+		System.out.println("zz"+alb);
+		return alb;
+	}
+
+
+
 	
 	
 }

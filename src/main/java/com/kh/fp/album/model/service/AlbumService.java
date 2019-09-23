@@ -18,4 +18,6 @@ public interface AlbumService {
 
 	ArrayList<Album> selectAlbumRequestList(PageInfo pi, int userNo);
 
+	ArrayList<Album> selectTAlbumRequestList(PageInfo pi, int userNo);
+
 }

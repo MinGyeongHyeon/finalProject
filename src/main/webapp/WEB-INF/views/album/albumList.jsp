@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>Home</title>
@@ -18,21 +19,78 @@
 	    padding-left: 3%;
 	    padding-right: 3%;
 	}
+	
+	.summaryDiv{
+		display: inline-block;
+		background:#fff;
+		width:30%;
+		height:250px;
+		margin-left: 1%;
+		margin-right: 1%;
+		margin-top: 3%;
+	}
+	.summaryDiv table{
+		width:100%;
+		height:100%;
+	}
+	
+	.summaryDiv img{
+		width:40px;
+		height:40px;
+		border-radius: 20px;
+	}
+	
+	.summaryDiv tr:first-child {
+		text-align: right;
+	}
+	
+	.summaryDiv tr:nth-child(2) {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	
+	.summaryDiv tr:last-child{
+		height:40px;
+		font-size: 0.8em;
+		vertical-align: bottom;
+		
+	}
+	.tqtq{
+		width:100%;
+		height:100%;
+	
+	}
+	
+	.card {
+	border: 1px solid #e4e1dd;
+	margin-bottom: 20px;
+	background-color: white;
+    width: 100%;
+	border-radius: 3px;
+	margin-right: 20px;
+	float: left;
+	position: relative;
+}
+
+.summaryDiv:hover {
+	background: #fafafa;
+	cursor: pointer;
+}
 </style>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel"  id="firstContentArea">
 		<div class="pageName">
-			<table width=100%;>
+			<table>
 				<tr>
 					<td>
-						<label style="font-weight:bold;">앨범</label>
+						<p style="font-weight:bold; font-size:30px;"><i class="far fa-images"></i>앨범</p>
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모가 안닐 경우 삭제버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
 						<c:if test="${ loginUserJob != 1 }">
-							<button id="contentsWrite">작성하기</button>
+							<button id="contentsWrite" style="margin-right:150">작성하기</button>
 						</c:if>
 					</td>
 				</tr>
@@ -45,41 +103,51 @@
 				<button onclick="albumListSearch();">검색</button>
 			</div>
 			<br />
-			<div class="albumList">
-				<%int sample = 5;
-				for(int i = 0; i < sample; i++){%>
-				<div class="smallAlbum">
-					<div id="thumbnailImg"  style="background-image: url('${ contextPath }/resources/images/woman.png');
-												  background-size:cover;">
-					</div>
-					<table style="width:90%; margin:0 auto;">
-						<tr>
-							<td colspan="2" rowspan="2">
-								<label for="" id="albumTitle">물총놀이</label><br /><p> </p>	
-							</td>
+		<c:forEach var="a" items="${album}">
+		<div class="summaryDiv" style="wdith:50%">
+			<div class="card">
+				<table class="tq">
+				<tr class="first">
+							<td class="tqtq" colspan="2"><c:out value="${a.alblumNo}" />
+							<input type="hidden" name="웅앵" value="${ a.alblumNo }"></td>
 						</tr>
 						<tr>
+						<td class="tqtq" colspan="2" style="height:100%;"><img src="${contextPath}/resources/uploadFiles/<c:out value="${a.tumbnail}"/>.png" alt="" style="width:340px; height:150px; margin:0 auto;"/></td>
+						</tr>
+						<tr>
+							<td class="titleView"  colspan="2">
+								<label for="" id="albumTitle"><c:out value="${a.albumTitle}"/></label><br /><p> </p>	
+							</td>	
 						</tr>
 						<tr>
 							<td style="text-align:left; font-size: 0.7em;">
-								<label for="" id="albumDate">2019.8.13</label>
+								<label for="" id="albumDate"><c:out value="${a.writeDate}"/></label>
 							</td>
 							<td style="text-align:right; font-size:0.7em">
 								<img src="${ contextPath }/resources/images/camera.png" alt="" width="10px"/><label for="">11</label>
 							</td>
 						</tr>
 					</table>
+					</div>
 				</div>
-				<%} %>
+		</c:forEach>
 			</div>
-			
 		</div>
 	<jsp:include page="../common/footer.jsp"/>
-	</div>
 	<script>
 	$("#contentsWrite").click(function(){
 			location.href="albumWhoIn.ab";
 		});
+	
+	function goNoticeWrite() {
+	$(".summaryDiv").click(
+			function() {
+				/* var bid = $(this).children().children().children().eq(0).children().children("td").eq(0).text(); */
+				var bid = $(this).children().children().find("td").eq(0).text();
+				console.log(bid);
+				//location.href = "NoticeOne.no?bid=" + bid;
+			});
+	}
 	</script>
 		
 </body>
