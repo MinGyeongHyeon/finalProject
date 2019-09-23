@@ -70,8 +70,9 @@ public class ReturnHomeController {
 		}else if (loginUser.getClassification().equals("학부모")) {
 			ChildrenClass cc = new ChildrenClass();
 			cc.setUserNo(loginUser.getUserNo());
+			System.out.println("CCCCC : " + cc);
 			list2 = rhs.selectParentChildrens(cc);
-			count = rhs.partentsCountList(cc);
+			count = rhs.parentsCountList(cc);
 			System.out.println("count!! " + count);
 
 			pi = Pagination.getPageInfo(currentPage, count);

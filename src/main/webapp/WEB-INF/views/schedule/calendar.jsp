@@ -171,7 +171,6 @@
                                 checked>지효</label>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- /.filter panel -->
@@ -181,9 +180,13 @@
  	<script>
 	 	var classification = "${loginUser.classification}";
 	 	var kinderNo;
+	 	var kindergardenNo;
 	 	var teacherNo;
+	 	
+	 	console.log(classification);
 	 	if(classification == '원장님'){
-	 		kinderNo = "${loginUser.userNo}";
+	 		kindergardenNo = "${loginUser.userNo}";
+	 		console.log("번호번호 : " + kindergardenNo);
 	 	}else if(classification == '선생님'){
 	 		teacherNo = "${loginUser.userNo}";
 	 	}

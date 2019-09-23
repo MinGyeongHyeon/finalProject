@@ -61,9 +61,9 @@
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모일  경우 작성하기버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
-						<c:if test="${ loginUserJob != 1 }">
+						<%-- <c:if test="${ loginUserJob != 1 }">
 							<button id="contentsWrite" onclick="writeSchedule();">일정추가</button>
-						</c:if>
+						</c:if> --%>
 					</td>
 				</tr>
 			</table>

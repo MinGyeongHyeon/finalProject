@@ -168,26 +168,27 @@ var calendar = $('#calendar').fullCalendar({
 			success: function (response) {
 				console.log("조회완료");
 				console.log(response.list);
-				var searchList = [];
-				for (var i = 0; i < response.list.length; i++) {
-					if (response.list[i].allDay == 'true' && response.list[i].start !== response.list[i].end) {
+				var events = [];
+				var eventList = response.list;
+				for (var i = 0; i < eventList.length; i++) {
+					if (eventList[i].allDay == 'true' && eventList[i].start !== eventList[i].end) {
 						// 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-						response.list[i].end = moment(response.list[i].end).add(1, 'days');
+						eventList[i].end = moment(eventList[i].end).add(1, 'days');
 					}
 					var evt = {
-							title: response.list[i].title, 
-							allDay: response.list[i].allDay,
-							start: response.list[i].start,
-							end: response.list[i].end,
-							backgroundColor: response.list[i].backgroundColor,
-							type: response.list[i].type,
-							classNo:response.list[i].classNo,
-							kinderNo:response.list[i].kinderNo,
-							scheduleContent: response.list[i].scheduleContent
+							title: eventList[i].title, 
+							allDay: eventList[i].allDay,
+							start: eventList[i].start,
+							end: eventList[i].end,
+							backgroundColor: eventList[i].backgroundColor,
+							type: eventList[i].type,
+							classNo:eventList[i].classNo,
+							kinderNo:eventList[i].kinderNo,
+							scheduleContent: eventList[i].scheduleContent
 					};
 					searchList.push(evt);
 				}
-				callback(searchList);
+				callback(events);
 				
 			},
 			error: function(response){
