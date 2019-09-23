@@ -19,6 +19,7 @@
 		<result property="reDate" column="RE_DATE" />
 		<result property="userNo" column="USER_NO" />
 		<result property="childrenNo" column="CHILDREN_NO" />
+		<result property="status" column="STATUS" />
 	</resultMap>
 
 	<resultMap type="DosageDetail" id="DosageDetail">
@@ -36,6 +37,7 @@
 		<result property="userNo" column="USER_NO" />
 		<result property="userName" column="USER_NAME" />
 		<result property="childrenNo" column="CHILDREN_NO" />
+		<result property="status" column="STATUS" />
 		<result property="classNo" column="CLASS_NO" />
 		<result property="kinderNo" column="KINDER_NO" />
 		<result property="className" column="CLASS_NAME" />
@@ -114,7 +116,7 @@
 		DOSAGE
 		VALUES(SEQ_DOSAGE_NO.NEXTVAL, #{dosageDate}, #{symptom},
 		#{kinds}, #{dosageMl}, #{dosageCount},
-		#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo})
+		#{dosageTime}, #{dosageKeep}, #{dosageProblem}, DEFAULT, NULL, NULL ,#{childrenNo}, DEFAULT)
 	</insert>
 	<!-- 첨부파일에 싸인 url 저장 -->
 	<insert id="insertSign" parameterType="java.lang.String">
@@ -132,6 +134,7 @@
 		FROM DOSAGE D
 		JOIN KINDER_CLASS K USING(CHILDREN_NO)
 		WHERE K.KINDER_NO = #{userNo}
+		AND D.STATUS = 'N'
 	</select>
 	<!-- 투약의뢰서 리스트 카운트 조회용 쿼리문(부모님) -->
 	<select id="selectPListCount" resultType="_int">
@@ -140,6 +143,7 @@
 		JOIN CHILDREN C USING(CHILDREN_NO)
 		JOIN USERS U ON(C.USER_NO = U.USER_NO)
 		WHERE U.USER_NO = #{userNo}
+		AND D.STATUS = 'N'
 	</select>
 
 	<!-- 투약의뢰서 리스트 조회(원장) -->
@@ -155,6 +159,7 @@
 		AND KINDER_NO IN (SELECT CHILDREN_NO
 						  FROM KINDER_CLASS
 						  WHERE KINDER_NO = #{userNo}))
+		AND D.STATUS = 'N'
 		ORDER BY D.DOSAGE_NO DESC
 	</select>
 
@@ -167,6 +172,7 @@
 		JOIN USERS U ON(C.USER_NO = U.USER_NO)
 		JOIN ATTACHMENT A ON(D.DOSAGE_NO = A.DOSAGE_NO)
 		WHERE D.DOSAGE_NO = #{dosageNo}
+		AND D.STATUS = 'N'
 	</select>
 
 	<!-- 투약의뢰서 리스트 조회(학부모) -->
@@ -177,6 +183,7 @@
 		JOIN CHILDREN C USING(CHILDREN_NO)
 		JOIN USERS U ON(C.USER_NO = U.USER_NO)
 		WHERE U.USER_NO = #{userNo}
+		AND D.STATUS = 'N'
 		ORDER BY D.DOSAGE_NO DESC
 	</select>
 
@@ -191,6 +198,7 @@
                                                                              		 FROM KINDER_CLASS K1
                                                                              		 WHERE K1.TEACHER_NO = #{userNo})
         AND DIVISION = '원생')
+        AND D.STATUS = 'N'
 	</select>
 
 	<!-- 투약의뢰서 리스트 조회(선생님) -->
@@ -204,6 +212,7 @@
                                                                              		 FROM KINDER_CLASS K1
                                                                             		 WHERE K1.TEACHER_NO = #{userNo})
                         		AND DIVISION = '원생')
+        AND D.STATUS = 'N'
 		ORDER BY DOSAGE_NO DESC
 	</select>
 

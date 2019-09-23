@@ -165,7 +165,8 @@ public class DosageController {
 
 	//투약 보고서 insert
 	@RequestMapping(value="insertDosageBogo.ds")
-	public String writeReport(Model model, @ModelAttribute("loginUser") Member loginUser, int dosageNo, DosageBogo d) {
+	public String writeReport(Model model, @ModelAttribute("loginUser") Member loginUser, int dosageNo, DosageBogo d,
+			HttpSession session) {
 
 		int userNo = loginUser.getUserNo();
 		System.out.println("userNo ------ " +userNo);
@@ -174,10 +175,12 @@ public class DosageController {
 		d.setDosageNo(dosageNo);
 		d.setUserNo(userNo);
 
+		System.out.println("d ::::" + d);
+
 		try {
 			int result = ds.writeReport(d);
 
-			return "redirect:drugRequest/drugRequestList";
+			return "redirect:dosageList.ds";
 
 		} catch (DosageException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -187,6 +190,16 @@ public class DosageController {
 
 	}
 
+	//투약 보고서 작성 후 상세보기
+/*	@RequestMapping(value="drugReportDetail.ds")
+	public String drugReportDetail(Model model, int dosageNo) {
+
+		System.out.println("컨트롤러 호출");
+		System.out.println("dosageNo : " + dosageNo);
+
+		return "";
+	}
+*/
 }
 
 

@@ -19,13 +19,13 @@ public class Dosage implements java.io.Serializable{
 	private Date reDate;
 	private int userNo;
 	private int childrenNo;
+	private String status;
 
 	public Dosage() {}
 
 	public Dosage(int dosageNo, String dosageDate, String symptom, String kinds, String dosageMl, String dosageCount,
 			String dosageTime, String dosageKeep, String dosageProblem, String reading, Date reDate, int userNo,
-			int childrenNo, com.kh.fp.member.model.vo.Attachment attachment, KinderClass kinderClassDosage,
-			Children childrenDosage, com.kh.fp.note.model.vo.Users users) {
+			int childrenNo, String status) {
 		super();
 		this.dosageNo = dosageNo;
 		this.dosageDate = dosageDate;
@@ -40,6 +40,7 @@ public class Dosage implements java.io.Serializable{
 		this.reDate = reDate;
 		this.userNo = userNo;
 		this.childrenNo = childrenNo;
+		this.status = status;
 	}
 
 	public int getDosageNo() {
@@ -146,14 +147,22 @@ public class Dosage implements java.io.Serializable{
 		this.childrenNo = childrenNo;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Dosage [dosageNo=" + dosageNo + ", dosageDate=" + dosageDate + ", symptom=" + symptom + ", kinds="
 				+ kinds + ", dosageMl=" + dosageMl + ", dosageCount=" + dosageCount + ", dosageTime=" + dosageTime
 				+ ", dosageKeep=" + dosageKeep + ", dosageProblem=" + dosageProblem + ", reading=" + reading
-				+ ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo;
+				+ ", reDate=" + reDate + ", userNo=" + userNo + ", childrenNo=" + childrenNo + ", status=" + status
+				+ "]";
 	}
-
 
 
 }

@@ -24,7 +24,6 @@
 	<fmt:formatDate var="todayToString" pattern="yyyy/MM/dd" value="${ today }" />
 	<fmt:formatDate var="tomorrowToString" pattern="yyyy/MM/dd" value="${ tomorrow }" />
 
-	<!-- action="insertDosageRequest.ds"  -->
 	<form method="post" action="insertDosageRequest.ds" onsubmit="return check()">
 		<div class="main-panel">
 			<div class="content">
