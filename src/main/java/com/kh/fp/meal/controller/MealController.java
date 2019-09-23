@@ -63,13 +63,13 @@ public class MealController {
 		int kinderNo = loginUser.getKinderNo(); //유치원 번호
 		String[] mealT = {"오전","점심","오후"};
 		int userNo = loginUser.getTeacherNo();
-		System.out.println(mm);
 		String[] content = mm.getMealContent().split(",");
 		Meal meal = null;
 		
-		
-		
-		
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		String day = date.format(today);
+		model.addAttribute("day",day);
 		
 		for(int i=0;i<file.length;i++) {
 			meal = new Meal();
@@ -81,34 +81,33 @@ public class MealController {
 			try {
 				int insertresult = ms.insertDailyMeal(meal);
 				if(insertresult > 0) {
-					Meal mmm = ms.getDailyMeal(meal);
+					if(!file[i].getOriginalFilename().equals("")) {
+						Attachment at = new Attachment();
+						String root = request.getSession().getServletContext().getRealPath("resources");
+						String filePath = root + "\\uploadFiles";
+						String originFileName = file[i].getOriginalFilename();
+						String ext = originFileName.substring(originFileName.lastIndexOf("."));
+						String changeName = CommonUtils.getRandomString();
+						String num = i+"";
+						
+						
+						at.setOrigineName(originFileName);
+						at.setChangeName(changeName);
+						at.setFilePath(filePath);
+						at.setAttachType("식단글");
+						at.setFileLevel(num);
+						at.setUserNo(userNo);
+						file[i].transferTo(new File(filePath + "\\"+changeName+ext));
+						int insertAttach = ms.insertAt(at);
+					}
 				} 
 			} catch (MealException e) {
 				e.printStackTrace();
 			}
 				
 			
-//			if(!file[i].getOriginalFilename().equals("")) {
-//				Attachment at = new Attachment();
-//				String root = request.getSession().getServletContext().getRealPath("resources");
-//				String filePath = root + "\\uploadFiles";
-//				String originFileName = file[i].getOriginalFilename();
-//				String ext = originFileName.substring(originFileName.lastIndexOf("."));
-//				String changeName = CommonUtils.getRandomString();
-//				String num = i+"";
-//				
-//				
-//				at.setOrigineName(originFileName);
-//				at.setChangeName(changeName);
-//				at.setFilePath(filePath);
-//				at.setAttachType("식단글");
-//				at.setFileLevel(num);
-//				at.setUserNo(userNo);
-//				file[i].transferTo(new File(filePath + "\\"+changeName+ext));
-//				//int insertAttach = ms.insertAt(at);
-//			}
 		}
 		
-		return "";
+		return "meal/meal";
 	}
 }

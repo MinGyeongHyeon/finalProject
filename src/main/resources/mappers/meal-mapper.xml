@@ -25,7 +25,7 @@
 	<select id="dailymealCount" resultType="_int">
 	SELECT COUNT(MEAL_DATE)
 	FROM MEAL_TABLE
-	WHERE MEAL_DATE = SYSDATE
+	WHERE MEAL_DATE LIKE SYSDATE
 	</select>
 
 	<insert id="insertDailyMeal">
@@ -34,12 +34,16 @@
 		SYSDATE,#{mealContent},#{mealType},#{kinderNo})
 	</insert>
 	
-	<!-- <select id="selectDailyMeal" parameterType="Meal" resultMap="dailyResultSet">
-		SELECT * 
-		FROM MEAL_TABLE
-		WHERE TO_CHAR(MEAL_DATE)=#{mealDate}
-		AND MEAL_CONTENT=#{mealContent}
-	</select> -->
+	<select id="selectNum" resultType="_int">
+		SELECT SEQ_MEAL_NO.CURRVAL
+     	FROM DUAL
+	</select>
+	
+	<insert id="insertAt">
+		INSERT INTO ATTACHMENT VALUES(SEQ_FILE_ID.NEXTVAL , #{origineName} , 
+		#{changeName} , #{filePath} , SYSDATE , #{attachType} , #{fileLevel} ,
+		null,null,null,#{mealNo},null,null,null,null)	
+	</insert>
 	
 </mapper>
 
