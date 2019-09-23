@@ -11,6 +11,7 @@ import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderclass;
+import com.kh.fp.kinderland.model.vo.Kinderclasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -146,6 +147,13 @@ public class KinderLandServiceImpl implements KinderLandService{
 		
 		
 		return kd.KinderuserName(sqlSession,list);
+	}
+
+
+	@Override
+	public int kinderchangeClass(Kinderclasses kc) {
+
+		return kd.kinderchangeClass(sqlSession,kc);
 	}
 
 }

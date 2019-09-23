@@ -39,7 +39,7 @@ font-size:18px;
 			</c:if>
 		</td>
 		<td >
-			<select name="" id="">
+			<select class="changeClass" id="">
 			<c:forEach var="c" items="${ list2 }">
 				<c:if test="${ i.className ne c.className }">
 				<option value="${ c.className }">${ c.className }</option>
@@ -49,6 +49,7 @@ font-size:18px;
 		</td>
 		<td></td>
 			<td><button class="btn btn-default classsu" >수정</button></td>
+			<td><input type="hidden" value="${ i.classNo }"/></td>
 	</tr>
 
 	</c:forEach>
@@ -61,6 +62,35 @@ font-size:18px;
 
 $('.classsu').click(function(){
 	
+	var classNo = $(this).parent().next().children().val();
+	var className = $(this).parent().parent().children().eq(1).children().val();
+	var $remove2 = $(this).parent().parent();
+	
+	
+	$.ajax({
+		
+		url:"kinderchangeClass.kl",
+		data:{classNo:classNo,className:className},
+		type:"post",
+		success:function(data){
+			
+			console.log(data.result);
+			
+			if(data.result == 0){
+				
+				alert("수정 도중 오류가 발생하였습니다. 잠시후 다시 시도해주세요");
+				
+			}else{
+			
+				$remove2.remove();
+				
+				
+			}
+			
+			
+		}
+		
+	});
 	
 	
 	
