@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fp.meal.model.exception.MealException;
 import com.kh.fp.meal.model.vo.Meal;
+import com.kh.fp.member.model.vo.Attachment;
 
 @Repository
 public class MealDaoImpl implements MealDao{
@@ -23,7 +24,6 @@ public class MealDaoImpl implements MealDao{
 		if(result <=0) {
 			throw new MealException("식단표 작성 실패!");
 		}
-		System.out.println("dao 리절트 : "+result);
 		return result;
 	}
 
@@ -35,6 +35,18 @@ public class MealDaoImpl implements MealDao{
 			throw new MealException("식단표 오류 ");
 		}
 		return result;
+	}
+
+	@Override
+	public int selectMealNum(SqlSessionTemplate sqlSession) {
+		int num = sqlSession.selectOne("Meal.selectNum");
+		return num;
+	}
+
+	@Override
+	public int insertAtt(SqlSessionTemplate sqlSession, Attachment at) {
+		int content = sqlSession.insert("Meal.insertAt",at);
+		return content;
 	}
 
 }
