@@ -189,6 +189,11 @@ $('.del').click(function(){
 	console.log(kinderNo);
 	console.log(className);
 	
+	var tufa = confirm("정말 삭제 하시겠습니까?");
+	
+	if(tufa){
+		
+	
 	$.ajax({
 		
 		url:'classDelete.kl',
@@ -215,6 +220,8 @@ $('.del').click(function(){
 		}
 		
 	});
+		
+	}
 	
 	
 });

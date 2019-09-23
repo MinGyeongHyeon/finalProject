@@ -8,6 +8,7 @@ import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderclass;
+import com.kh.fp.kinderland.model.vo.Kinderclasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -49,5 +50,7 @@ public interface KinderLandDao {
 	ArrayList KinderclassNames(SqlSessionTemplate sqlSession, Kinderclass kc);
 
 	ArrayList KinderuserName(SqlSessionTemplate sqlSession, ArrayList list);
+
+	int kinderchangeClass(SqlSessionTemplate sqlSession, Kinderclasses kc);
 
 }

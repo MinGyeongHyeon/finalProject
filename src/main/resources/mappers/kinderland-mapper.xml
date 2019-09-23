@@ -204,6 +204,14 @@
   	
   	
   	</select>
+  	
+  	<update id="kinderchangeClass">
+  		
+  		UPDATE KINDER_CLASS SET CLASS_NAME = #{className}
+  		WHERE CLASS_NO = #{classNo}
+  	
+  	
+  	</update>
 	
 
   </mapper>

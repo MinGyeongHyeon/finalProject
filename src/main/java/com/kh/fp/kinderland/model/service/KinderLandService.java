@@ -7,6 +7,7 @@ import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderclass;
+import com.kh.fp.kinderland.model.vo.Kinderclasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -48,6 +49,8 @@ public interface KinderLandService {
 	ArrayList KinderclassNames(Kinderclass kc);
 
 	ArrayList KinderuserName(ArrayList list);
+
+	int kinderchangeClass(Kinderclasses kc);
 
 
 

@@ -1,8 +1,6 @@
 package com.kh.fp.kinderland.controller;
 
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import com.kh.fp.kinderland.model.vo.ChildrenClassInsert;
 import com.kh.fp.kinderland.model.vo.ChildrenInsert;
 import com.kh.fp.kinderland.model.vo.KinGardenClasses;
 import com.kh.fp.kinderland.model.vo.Kinderclass;
+import com.kh.fp.kinderland.model.vo.Kinderclasses;
 import com.kh.fp.kinderland.model.vo.Kinderland;
 import com.kh.fp.kinderland.model.vo.SelectKinder;
 import com.kh.fp.kinderland.model.vo.TeacherInsert;
@@ -245,13 +244,21 @@ public class KinderLandController {
 		model.addAttribute("list",list);
 		model.addAttribute("list2",list2);
 		model.addAttribute("list3" ,list3);
-		
-		
-	
-		
-		
-		
+
 		return "kingteacher/banwindow";
+	}
+	
+	@RequestMapping(value="kinderchangeClass.kl")
+	public ModelAndView kinderchangeClass(ModelAndView mv ,Kinderclasses kc ) {
+		
+		System.out.println("들어온 kc 값 : " + kc);
+		
+		int result = ks.kinderchangeClass(kc);
+		
+		mv.addObject("result" , result);
+		mv.setViewName("jsonView");
+		
+		return mv;
 	}
 	
 

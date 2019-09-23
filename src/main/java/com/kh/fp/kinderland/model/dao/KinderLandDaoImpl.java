@@ -173,5 +173,11 @@ public class KinderLandDaoImpl implements KinderLandDao{
 		return list2;
 	}
 
+	@Override
+	public int kinderchangeClass(SqlSessionTemplate sqlSession, Kinderclasses kc) {
+
+		return sqlSession.update("KinderLand.kinderchangeClass",kc);
+	}
+
 	
 }
