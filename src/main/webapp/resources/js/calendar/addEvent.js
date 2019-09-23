@@ -9,7 +9,6 @@ var editType = $('#edit-type');		//공개범위
 var editColor = $('#edit-color');	//색
 var editDesc = $('#edit-desc');		//내용
 
-
 //var loginNo = 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -76,28 +75,28 @@ var newEvent = function (start, end, eventType) {
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
         console.log(eventData);
-        console.log("선생님 번호 : " + teacherNo);
-        
-        if(kinderNo > 0){
-        	var kinderNo = kinderNo;
+        if(kindergardenNo > 0){
+        	console.log("원장번호 : " + kindergardenNo);
+        	var kinderNo = kindergardenNo;
         	$.ajax({
 	            url: "insertSchedule1.sc",
 	            type:"post",
 	            data:{
-		                title: eventData.title, 
-		                allDay: eventData.allDay,
-		                start: eventData.start,
-		                end: eventData.end,
-		                backgroundColor: eventData.backgroundColor,
-		                type: eventData.type,
-		                classNo:classNo,
-		                scheduleContent: eventData.scheduleContent
+	            	title: eventData.title, 
+	                allDay: eventData.allDay,
+	                start: eventData.start,
+	                end: eventData.end,
+	                backgroundColor: eventData.backgroundColor,
+	                type: eventData.type,
+	                kinderNo:kinderNo,
+	                scheduleContent: eventData.scheduleContent
 	                },
 	            success: function (data) {
 	            	console.log(data.eventData);
+	            	console.log("성공인가??");
 	                //DB연동시 중복이벤트 방지를 위한
-	                //$('#calendar').fullCalendar('removeEvents');
-	                //$('#calendar').fullCalendar('refetchEvents');
+	                $('#calendar').fullCalendar('removeEvents');
+	                $('#calendar').fullCalendar('refetchEvents');
 	            },
 	            error: function(data){
 	            	console.log(data);

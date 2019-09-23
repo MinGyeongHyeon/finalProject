@@ -23,7 +23,7 @@ public interface ReturnHomeService {
 
 	int countListAll(KinderClass kc);
 
-	int partentsCountList(ChildrenClass cc);
+	int parentsCountList(ChildrenClass cc);
 
 	ArrayList<ReturnHome> selectReturnHomeDetail(int homeNo);
 

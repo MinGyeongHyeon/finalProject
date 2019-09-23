@@ -66,7 +66,7 @@ public class ReturnHomeServiceImpl implements ReturnHomeService{
 	}
 
 	@Override
-	public int partentsCountList(ChildrenClass cc) {
+	public int parentsCountList(ChildrenClass cc) {
 		int result = rhd.parentsCountList(sqlSession, cc);
 		return result;
 	}

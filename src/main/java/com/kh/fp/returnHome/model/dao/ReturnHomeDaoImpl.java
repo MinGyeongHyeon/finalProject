@@ -27,7 +27,6 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<ChildrenClass> selectParentChildrens(SqlSessionTemplate sqlSession, ChildrenClass cc) {
-		System.out.println(cc);
 		ArrayList<ChildrenClass> list = (ArrayList) sqlSession.selectList("ReturnHome.selectParentChildrens", cc);
 		
 		System.out.println("listlistlist : " + list);
@@ -104,7 +103,7 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 	@Override
 	public int parentsCountList(SqlSessionTemplate sqlSession, ChildrenClass cc) {
 		int result = sqlSession.selectOne("ReturnHome.parentsCountList", cc);
-		System.out.println(result);
+		System.out.println("result 웨않나오ㅜㅏ ::" + result);
 		return result;
 	}
 

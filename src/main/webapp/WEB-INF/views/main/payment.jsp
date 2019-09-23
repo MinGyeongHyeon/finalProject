@@ -183,8 +183,8 @@
 			<div id="paymentBtnArea" style="text-align: center; background:#fff;">
 				<input type="submit" id="paybtn" onclick="payment();" value="결제하기"/>
 
-				<!-- <button onclick="test()">결제테스트용버튼</button> -->
-
+				<button onclick="test()">결제테스트용버튼</button>
+				
 			</div>
 		</div>
 		</form>
@@ -192,9 +192,9 @@
 	<!-- 결제script -->
 	<script>
 
-		/* function test(){
+		function test(){
 			window.payForm.submit();
-		} */
+		}
 
 		function payment(){
 			var userId = '<c:out value="${loginUser.userNo }"/>'; 
