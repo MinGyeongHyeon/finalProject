@@ -144,4 +144,31 @@ public class DosageDaoImpl implements DosageDao{
 		return result;
 	}
 
+	//투약 보고서 작성되면 상태 업데이트 - 뷰 전환
+	@Override
+	public int updateCheck(SqlSessionTemplate sqlSession, Dosage dosage) throws DosageException {
+
+		int result2 = sqlSession.update("Dosage.updateCheck", dosage);
+
+		if(result2 == 0) {
+			throw new DosageException("투약보고서 상태 업데이트 실패!");
+		}
+
+		return result2;
+	}
+
+	//투약의뢰서 상세 조회 - 보고서 있을 때
+	@Override
+	public DosageDetail selectReportOne(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException {
+
+		DosageDetail d = (DosageDetail)sqlSession.selectOne("Dosage.selectReportOne", dosageNo);
+
+		if(d == null) {
+			throw new DosageException("투약의뢰서 상세 보기 실패");
+		}
+		return d;
+	}
+
+
+
 }

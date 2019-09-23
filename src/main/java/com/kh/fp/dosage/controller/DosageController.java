@@ -124,7 +124,7 @@ public class DosageController {
 	}
 
 	//투약의뢰서 상세조회
-	@RequestMapping(value="dosageDetail.ds")
+/*	@RequestMapping(value="dosageDetail.ds")
 	public String dosageDetail(Model model, int dosageNo) {
 		System.out.println("dosageNo :: " + dosageNo);
 		System.out.println(" 컨트롤러 호출 ");
@@ -142,7 +142,7 @@ public class DosageController {
 			return "index";
 		}
 	}
-
+*/
 	//투약 보고서 작성 페이지 상세 조회
 	@RequestMapping(value="mediReport.ds")
 	public String mediReport(Model model, int dosageNo) {
@@ -166,7 +166,7 @@ public class DosageController {
 	//투약 보고서 insert
 	@RequestMapping(value="insertDosageBogo.ds")
 	public String writeReport(Model model, @ModelAttribute("loginUser") Member loginUser, int dosageNo, DosageBogo d,
-			HttpSession session) {
+			HttpSession session, Dosage dosage) {
 
 		int userNo = loginUser.getUserNo();
 		System.out.println("userNo ------ " +userNo);
@@ -174,13 +174,20 @@ public class DosageController {
 
 		d.setDosageNo(dosageNo);
 		d.setUserNo(userNo);
+		dosage.setDosageNo(dosageNo);
+		dosage.setUserNo(userNo);
 
 		System.out.println("d ::::" + d);
 
 		try {
 			int result = ds.writeReport(d);
 
-			return "redirect:dosageList.ds";
+			if(result > 0) {
+				int result2 = ds.updateCheck(dosage);
+				return "redirect:dosageDetail.ds?dosageNo=" + dosageNo;
+			}
+
+			return "";
 
 		} catch (DosageException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -200,6 +207,36 @@ public class DosageController {
 		return "";
 	}
 */
+
+	//투약의뢰서 상세 조회
+	@RequestMapping(value="dosageDetail.ds")
+	public String dosageDetail(Model model, int dosageNo, DosageDetail d) {
+		System.out.println("dosageNo :: " + dosageNo);
+		System.out.println("DosageDetail ::: " + d);
+		System.out.println(" 컨트롤러 호출 ");
+
+		try {
+
+			d = ds.selectDosageOne(dosageNo);
+			model.addAttribute("d", d);
+
+			if(d.getReading().equals("N")) {
+				return "drugRequest/drugRequestDetail";
+			}else {
+				d = ds.selectReportOne(dosageNo);
+				model.addAttribute("d", d);
+				return "drugRequest/drugReportDetail";
+			}
+
+		} catch (DosageException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
+	}
+
+
+
 }
 
 

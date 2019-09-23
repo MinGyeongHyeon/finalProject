@@ -29,7 +29,7 @@
 			<div class="page-inner">
 				<div class="page-header">
 					<i class="fas fa-notes-medical" style="font-size: 20px;"></i>&nbsp;&nbsp;
-					<h4 class="page-title">투약보고서 작성</h4>
+					<h4 class="page-title">투약보고서</h4>
 				</div>
 				<hr>
 				<div class="page-category">
@@ -107,7 +107,7 @@
 						</div>
 						<br>
 						<div id="a1">
-							<i class="fas fa-file-medical"></i>&nbsp;<span>투약보고서 작성</span>
+							<i class="fas fa-file-medical"></i>&nbsp;<span>투약보고서</span>
 						</div>
 						<form method="get" action="insertDosageBogo.ds" onsubmit="return insertBogo()">
 						<div id="reportArea">
@@ -119,18 +119,20 @@
 							<p>
 								<b>보고사항</b>
 							</p>
-							<textarea class="form-control" rows="5" id="bogoContent" name="bogoContent"
-								placeholder="내용을 작성해주세요."></textarea>
+							<p><c:out value="${ d.bogoContent }"/></p>
 							<input type="hidden" value="${ d.dosageNo }" id="dosageNo" name="dosageNo">
 						</div>
 						<br>
-						<div id="btnArea" align="center">
-							<button type="button" class="btn btns" id="btn1"
-								onclick="showDrugDetail()">취소</button>
-							&nbsp;&nbsp;
-							<button type="submit" class="btn btns" id="btn2">보내기</button>
-						</div>
 						</form>
+						<div id="btnA2">
+								<button type="button" class="btn btn-light" id="btn2">
+									<i class="far fa-trash-alt"></i>&nbsp; 삭제
+								</button>
+								&nbsp;&nbsp;
+								<button type="button" class="btn btn-light" id="btn3" onclick="goDrugMainView()">
+									<i class="fas fa-list"></i>&nbsp; 목록
+								</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -139,10 +141,8 @@
 
 
 	<script>
-		function showDrugDetail() {
-			var dosageNo = $("#dosageNo").val();
-			console.log(dosageNo);
-			location.href = "dosageDetail.ds?dosageNo=" + dosageNo;
+		function goDrugMainView() {
+			location.href = "dosageList.ds";
 		}
 		function insertBogo(){
 			var dosageNo = $("#dosageNo").val();

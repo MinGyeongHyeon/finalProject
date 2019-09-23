@@ -25,13 +25,14 @@ public class DosageDetail implements java.io.Serializable{
 	private String childrenName;
 	private String signUrl;
 	private String status;
+	private String bogoContent;
 
 	public DosageDetail() {}
 
 	public DosageDetail(int dosageNo, String dosageDate, String symptom, String kinds, String dosageMl,
 			String dosageCount, String dosageTime, String dosageKeep, String dosageProblem, String reading,
 			String reDate, int userNo, String userName, int childrenNo, int classNo, int kinderNo, String className,
-			String division, int teacherNo, String childrenName, String signUrl, String status) {
+			String division, int teacherNo, String childrenName, String signUrl, String status, String bogoContent) {
 		super();
 		this.dosageNo = dosageNo;
 		this.dosageDate = dosageDate;
@@ -55,6 +56,7 @@ public class DosageDetail implements java.io.Serializable{
 		this.childrenName = childrenName;
 		this.signUrl = signUrl;
 		this.status = status;
+		this.bogoContent = bogoContent;
 	}
 
 	public int getDosageNo() {
@@ -233,6 +235,14 @@ public class DosageDetail implements java.io.Serializable{
 		this.status = status;
 	}
 
+	public String getBogoContent() {
+		return bogoContent;
+	}
+
+	public void setBogoContent(String bogoContent) {
+		this.bogoContent = bogoContent;
+	}
+
 	@Override
 	public String toString() {
 		return "DosageDetail [dosageNo=" + dosageNo + ", dosageDate=" + dosageDate + ", symptom=" + symptom + ", kinds="
@@ -241,8 +251,9 @@ public class DosageDetail implements java.io.Serializable{
 				+ ", reDate=" + reDate + ", userNo=" + userNo + ", userName=" + userName + ", childrenNo=" + childrenNo
 				+ ", classNo=" + classNo + ", kinderNo=" + kinderNo + ", className=" + className + ", division="
 				+ division + ", teacherNo=" + teacherNo + ", childrenName=" + childrenName + ", signUrl=" + signUrl
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", bogoContent=" + bogoContent + "]";
 	}
+
 
 
 }

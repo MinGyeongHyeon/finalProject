@@ -45,6 +45,7 @@
 		<result property="teacherNo" column="TEACHER_NO" />
 		<result property="childrenName" column="CHILDREN_NAME" />
 		<result property="signUrl" column="FILE_PATH" />
+		<result property="bogoContent" column="BOGO_CONTENT" />
 	</resultMap>
 
 	<resultMap type="Attachment" id="AttachmentResultSet">
@@ -221,5 +222,24 @@
 		INSERT INTO DOSAGE_BOGO VALUES(SEQ_BOGO_NO.NEXTVAL, #{dosageNo}, #{userNo}, #{bogoContent}, SYSDATE)
 	</insert>
 
+	<!-- 투약보고서 작성 후 읽음 여부 변경 -->
+	<update id="updateCheck">
+		UPDATE DOSAGE
+		SET READING = 'Y', RE_DATE = SYSDATE, USER_NO = #{userNo}
+		WHERE DOSAGE_NO = #{dosageNo}
+	</update>
+
+	<!-- 투약보고서 작성된 의뢰서 조회 -->
+	<select id="selectReportOne" parameterType="DosageDetail" resultMap="DosageDetail">
+		SELECT *
+		FROM DOSAGE D
+		JOIN KINDER_CLASS K USING(CHILDREN_NO)
+		JOIN CHILDREN C USING(CHILDREN_NO)
+		JOIN USERS U ON(C.USER_NO = U.USER_NO)
+		JOIN ATTACHMENT A ON(D.DOSAGE_NO = A.DOSAGE_NO)
+		JOIN DOSAGE_BOGO D2 ON(D.DOSAGE_NO = D2.DOSAGE_NO)
+		WHERE D.DOSAGE_NO = #{dosageNo}
+		AND D.STATUS = 'N'
+	</select>
 </mapper>
 
