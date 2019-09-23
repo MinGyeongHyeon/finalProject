@@ -71,6 +71,7 @@
 }
 #btn2 {
 	border: 0.5px solid #e4e1dd;
+	margin-left:50px;
 }
 #writeBtn {
 	margin-right:10px;
@@ -174,11 +175,6 @@ $(function(){
 						</div>
 
 						<br>
-						<c:if test="${ loginUser.classification ne '학부모' }">
-						<button type="button" class="btn btn-light" id="btn2">
-							<i class="fas fa-print"></i>&nbsp; 출력 및 다운로드
-						</button>
-						</c:if>
 
 
 
@@ -186,6 +182,11 @@ $(function(){
 					</div>
 				</div>
 			</div>
+						<c:if test="${ loginUser.classification ne '학부모' }">
+						<button type="button" class="btn btn-light" id="btn2">
+							<i class="fas fa-print"></i>&nbsp; 출력 및 다운로드
+						</button>
+						</c:if>
 
 		<!-- 페이징 -->
 					<div id="paginArea" align="center">

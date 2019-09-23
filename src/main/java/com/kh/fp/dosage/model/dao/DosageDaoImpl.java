@@ -135,6 +135,8 @@ public class DosageDaoImpl implements DosageDao{
 
 		int result = sqlSession.insert("Dosage.insertReport", d);
 
+		System.out.println("dao d :::" + d);
+
 		if(result == 0) {
 			throw new DosageException("투약의뢰서 리스트 조회 실패!");
 		}
