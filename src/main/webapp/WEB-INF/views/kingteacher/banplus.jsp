@@ -47,6 +47,10 @@ width:50%;
 .labelban{
 padding-left: 5%;
 }
+.sujang{
+margin-left: %;
+	
+}
 
 </style>
 </head>
@@ -92,8 +96,19 @@ padding-left: 5%;
 </form>
 <br /><br /><br />
 
-<h2>반 삭제</h2>
- <h5>*반 삭제시 남아있는 인원이 없어야합니다*</h5>
+<table style="width: 100%">
+<tr>
+	<td>
+		<h2>반 삭제</h2>
+	</td>
+</tr>
+	<tr>
+		<td>
+ 		<h5>*반 삭제시 남아있는 인원이 없어야합니다*</h5>
+	
+	</tr>
+
+</table>
  
  <table style="width:100%">
  <tr>
@@ -112,6 +127,9 @@ padding-left: 5%;
 		</td>
 		<td>
 			<label for="">${ i.classMax } 명</label>
+		</td>
+		<td>
+			<button class="btn btn-default sujang">반 인원 수정</button>
 		</td>
 		<td><button class="btn btn-default del" >삭제</button></td>
 	<td><input type="hidden" value="${ i.kinderNo }"/></td>
@@ -185,10 +203,7 @@ $('.del').click(function(){
 	
 	var kinderNo = $(this).parent().next().children().val();
 	var className = $(this).parent().next().next().children().val();
-	
-	console.log(kinderNo);
-	console.log(className);
-	
+
 	var tufa = confirm("정말 삭제 하시겠습니까?");
 	
 	if(tufa){
@@ -225,6 +240,17 @@ $('.del').click(function(){
 	
 	
 });
+
+	$('.sujang').click(function(){
+		
+		var kinderNo = $(this).parent().next().next().children().val();
+		var className = $(this).parent().next().next().next().children().val();
+		
+		window.open("classchange.kl?kinderNo="+kinderNo + "&className="+className,"PopupWin","width=600,height=600","resizable=no");
+		
+		
+		
+	});
 
 
 </script>

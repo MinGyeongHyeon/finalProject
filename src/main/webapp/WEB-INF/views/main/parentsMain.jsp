@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 <link rel="stylesheet" href="${ contextPath }/resources/css/mainCss.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 
 .main-panel {
@@ -23,6 +24,10 @@
 	    padding-right: 3%;
 	}
 
+
+body{
+font-family: 'Sunflower', sans-serif;
+}
 </style>
 </head>
 <body>

@@ -91,6 +91,7 @@ table tr {
 		$('#emailsend').click(function(){
 			
 			var email = $('#emailval').val();
+			var email2 = "회원가입";
 			
 			
 			
@@ -102,7 +103,7 @@ table tr {
 			$.ajax({
 				url:"sendemail.me",
 				type:"post",
-				data:{email:email},
+				data:{email:email,email2:email2},
 				success:function(data){
 					
 					var randomkey = data.random;

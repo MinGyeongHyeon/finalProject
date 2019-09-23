@@ -51,16 +51,13 @@
 		<table class="headerTable">
 			<tr>
 				<td valign="middle">
-					<label for="" id="gardenName" >킨더유치원</label>
+					<label for="" id="gardenName" >${ kga.kinderName } 유치원</label>
 					<label for="gardenSet" id="gardenSetLabel">원 설정</label>
-					<button id="gardenSet" onclick="" hidden></button>
 				</td>
-				<td  valign="middle" style="text-align:center;">
-					<label for="companyMainBtn" id="companyMainLabel">킨더랜드</label>
-					<button type="button" id="companyMainBtn" onclick="" hidden></button>
+				<td  valign="middle" style="text-align:center;" id="test">
+					<label for="companyMainBtn" id="companyMainLabel">키즈 랜드</label>
 				</td>
 				<td  valign="middle" style="text-align:right;">
-					<label for="logoutBtn" id="logoutLabel">한송이 선생님</label>
 					<button id="logoutBtn" onclick="logout();" hidden></button>
 				</td>
 			</tr>
@@ -72,6 +69,14 @@
 			
 			
 		}
+		
+		$('#gardenName').click(function(){
+			
+			location.href="main.pl";
+			
+			
+		});
+		
 	</script>
 	
 </body>

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
+
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/1eba500ac5.js"></script>
 
@@ -57,6 +58,9 @@
 	color: white;
 	font-weight: bold;
 }
+body{
+font-family: 'Sunflower', sans-serif;
+}
 </style>
 
 </head>
@@ -68,6 +72,7 @@
 			<div class="logo-header">
 
 				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
+				
 
 				</a><div>
 
@@ -87,14 +92,35 @@
 					</button>
 				</div>
 			</div>
-
+		
+	
 			<nav class="navbar navbar-header navbar-expand-lg">
-
+			
+			<c:if test="${ loginUser.classification eq '원장님' }">
+			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
+					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
+					<i class="fas fa-cog"></i>
+					원 설정
+					</button>
+					
+		   </form>
+			</c:if>
+			
+		    <c:if test="${ loginUser.classification eq '선생님' }">
+			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
+					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
+					<i class="fas fa-cog"></i>
+					원 설정
+					</button>
+			</form>
+			</c:if>
+			
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
-						<c:if test="${ loginUser.classification eq '원장님' }">
 
+						<c:if test="${ loginUser.classification eq '원장님' }">
+				
 
 							<li class="nav-item dropdown hidden-caret"><a
 								class="nav-link dropdown-toggle" href="#" id="messageDropdown"

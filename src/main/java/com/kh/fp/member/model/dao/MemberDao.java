@@ -105,6 +105,8 @@ public interface MemberDao {
 
 	String selectUsingDate(SqlSessionTemplate sqlSession, int userNo);
 
+	int childrenYYn(SqlSessionTemplate sqlSession, KidMember km);
+
 	
 
 

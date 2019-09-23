@@ -99,6 +99,8 @@ public interface MemberService {
 
 	String selectUsingDate(int userNo);
 
+	int childrenYYn(KidMember km);
+
 
 
 }

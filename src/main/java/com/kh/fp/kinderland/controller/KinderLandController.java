@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.kinderland.model.service.KinderLandService;
@@ -24,6 +25,7 @@ import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.member.model.vo.OnOff;
 
 @Controller
+@SessionAttributes("kga")
 public class KinderLandController {
 	
 	@Autowired
@@ -174,8 +176,13 @@ public class KinderLandController {
 		
 		int result = ks.kinderUpdate(kg);
 		
+		KinderGarden kga = null;
+		 
+		 kga = ms.selectKinderName(kg.getKinderNo());
+		
+		
 		if(result > 0) {
-			
+			model.addAttribute("kga",kga);
 			model.addAttribute("msg","성공적으로 변경 되었습니다.");
 			
 		}else {
@@ -194,8 +201,6 @@ public class KinderLandController {
 		ArrayList list = ks.kinderbanplus(kinderNo);
 	
 		ArrayList list2 = ks.kinderclassMax(list);
-		
-		System.out.println("받아온 list2 값 " + list2);
 		
 		model.addAttribute("list2",list2);
 		
@@ -220,9 +225,6 @@ public class KinderLandController {
 		
 					
 		int result = ks.KinderClassDelete(kc);
-		
-		System.out.println("result : " + result);
-		
 		mv.addObject("result", result);
 		mv.setViewName("jsonView");
 		
@@ -235,11 +237,11 @@ public class KinderLandController {
 		System.out.println("kc 의 값 : " + kc);
 		
 		ArrayList list = ks.KinderclassChange(kc);
-		System.out.println("list 값 : " + list);
+
 		ArrayList list2 = ks.KinderclassNames(kc);
-		System.out.println("list2 값  : " + list2);
+	
 		ArrayList list3 = ks.KinderuserName(list);
-		System.out.println("list3 값 : " + list3);
+
 		
 		model.addAttribute("list",list);
 		model.addAttribute("list2",list2);
@@ -251,7 +253,6 @@ public class KinderLandController {
 	@RequestMapping(value="kinderchangeClass.kl")
 	public ModelAndView kinderchangeClass(ModelAndView mv ,Kinderclasses kc ) {
 		
-		System.out.println("들어온 kc 값 : " + kc);
 		
 		int result = ks.kinderchangeClass(kc);
 		
