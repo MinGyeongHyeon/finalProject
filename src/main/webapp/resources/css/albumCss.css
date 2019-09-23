@@ -13,7 +13,6 @@
 	background: #fff;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	box-shadow: 0px 0px 5px 2px #f77;
 	padding-top: 10px;
 	padding-bottom: 0px;
 	align: center;
@@ -37,7 +36,6 @@
 	background: #fff;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	box-shadow: 0px 0px 5px 2px #f77;
 	padding-top: 10px;
 	padding-bottom: 20px;
 	margin-top: 10px;
@@ -128,7 +126,6 @@
 	background: #fff;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	box-shadow: 0px 0px 5px 2px #f77;
 	padding-top: 10px;
 	padding-bottom: 0px;
 	align: center;
@@ -142,7 +139,6 @@
 .albumContentsArea {
 	width: 100%;
 	background: #fff;
-	box-shadow: 0px 0px 5px 2px #f77;
 	padding-top: 10px;
 	padding-bottom: 0px;
 	margin-top: 10px;
@@ -166,7 +162,6 @@
 	background: #fff;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	box-shadow: 0px 0px 5px 2px #f77;
 	padding-top: 10px;
 	padding-bottom: 20px;
 	margin-top: 10px;

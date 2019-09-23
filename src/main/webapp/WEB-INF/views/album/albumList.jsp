@@ -139,15 +139,12 @@
 			location.href="albumWhoIn.ab";
 		});
 	
-	function goNoticeWrite() {
-	$(".summaryDiv").click(
+	$(".card").click(
 			function() {
-				/* var bid = $(this).children().children().children().eq(0).children().children("td").eq(0).text(); */
 				var bid = $(this).children().children().find("td").eq(0).text();
 				console.log(bid);
-				//location.href = "NoticeOne.no?bid=" + bid;
+				location.href = "selectOnt.ab?bid=" + bid;
 			});
-	}
 	</script>
 		
 </body>

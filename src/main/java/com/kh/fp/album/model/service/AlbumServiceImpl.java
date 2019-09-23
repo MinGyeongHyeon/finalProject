@@ -80,4 +80,41 @@ public class AlbumServiceImpl implements AlbumService {
 		return alb;
 	}
 
+	@Override
+	public int getCListCount(int userNo) {
+
+		int ListCount = abd.ListCCount(sqlSession,userNo);
+		
+		return ListCount;
+	}
+
+	@Override
+	public ArrayList<Album> selectCAlbumRequestList(PageInfo pi, int userNo) {
+		
+		ArrayList<Album> alb = null;
+		 
+		 alb = abd.selectCAlbumList(sqlSession,userNo,pi);
+		
+		return alb;
+	}
+
+	@Override
+	public int getTNum(int userNo) {
+
+		int tNum = abd.SelectTnum(sqlSession,userNo);
+		
+		return tNum;
+	}
+
+	@Override
+	public ArrayList<Album> selectAlbum(int bid) {
+		
+		ArrayList<Album> a = null;
+		
+		a = abd.selectAlbumDetail(sqlSession,bid);
+		
+		
+		return a;
+	}
+
 }

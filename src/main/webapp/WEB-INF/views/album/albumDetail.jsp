@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>Home</title>
@@ -14,7 +15,6 @@
 	    height: 100vh;
 	    min-height: 100%;
 	    float: right;
-	    transition: all .3s;
 	    padding-top:100px;
 	    padding-left: 3%;
 	    padding-right: 3%;
@@ -40,13 +40,13 @@
 				</tr>
 			</table>
 		</div>
-		<hr style="border:1px solid #f00;"/>
+		<hr style="border:1px solid lightgray;"/>
 		<div class="albumDetailDiv">
 			<div class="albumDetailTitle">
 				<table width=95%; style="margin:0 auto;">
 				<tr>
 					<td>
-						<label>물총놀이</label>
+						<label><c:out value="${selectAD[0].albumTitle}"/></label>
 					</td>
 					<td style="text-align:right;">
 						<input type="text" id="tagSearch"/>
@@ -61,16 +61,15 @@
 					<button id="allDown">전체 다운로드</button>
 				</div>
 				<div style="width:90%; margin:0 auto;">
-					<p>오늘은 아이들이 서로 물총놀이를 함으로써 아이들끼리 더 친해질 수 있는 기회를 가져보았습니다.</p>
+					<p><c:out value="${selectAD[0].albumContent}"/></p>
 				</div>
-				<%int sample = 5;
-				for(int i = 0; i < sample; i++){%>
+			<c:forEach var="l" items="${selectAD}">
 				<div class="smallAlbum">
 					<input type="checkbox" />
-					<div id="thumbnailImg" onclick="" style="background-image: url('${ contextPath }/resources/images/woman.png');
-												  background-size:cover;">
+					<div id="thumbnailImg" onclick="" style="background-size:cover; height:300px;">
+					<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.tumbnail}"/>.png" alt="" style="width:100%; height: 300px;"/>
 					</div>
-					<table style="width:90%; margin:0 auto;">
+					<table style="widthz:90%; margin:0 auto;">
 						<tr>
 							<td id="tagList">
 								<p style="font-size:0.6em;">#민경현, #김진수, #복권석</p>
@@ -79,9 +78,9 @@
 					</table>
 					
 				</div>
+			</c:forEach>		
 					
-					
-				<%} %>
+			
 			</div>
 			<div class="replyArea">
 				<h3 style="font-weight:bold; margin-left: 2%;">댓글</h3>

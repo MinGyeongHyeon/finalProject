@@ -47,6 +47,7 @@ public class AlbumController {
 	public String albumList(Model model,HttpSession session, HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser ,@SessionAttribute("of") OnOff of) {
 	
 		int userNo=0;
+		int Tnum = 0;
 		
 		userNo=loginUser.getUserNo();
 		System.out.println(userNo + "입니다.");
@@ -72,11 +73,11 @@ public class AlbumController {
 	         
 	         
 	      }else if(classification.equals("학부모")) {
-	  		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
-	  		userNo = TloginUser.getTeacherNo();
-	        listCount = abs.getTListCount(userNo);
-	        System.out.println("listCount :ㅎㅎ " + listCount);
-	      
+	    	KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
+	  		userNo = CloginUser.getChildrenNo();
+	  		System.out.println(userNo+"입니다");
+	  		Tnum = abs.getTNum(userNo);
+	  		listCount = abs.getTListCount(Tnum);
 	      
 	      }else {
 	         listCount = abs.getTListCount(userNo);
@@ -91,7 +92,7 @@ public class AlbumController {
 	    	System.out.println(album+"zz");
 	    	model.addAttribute("album", album);
          }else if(classification.equals("학부모")) {
-        	 album = abs.selectTAlbumRequestList(pi, userNo);
+        	 album = abs.selectTAlbumRequestList(pi, Tnum);
         	 model.addAttribute("album", album);
          }else {
         	 album = abs.selectTAlbumRequestList(pi, userNo);
@@ -216,6 +217,46 @@ public class AlbumController {
 		
 		return mv;
 	}	
+	
+	@RequestMapping(value="selectOnt.ab")
+	public String selectOne(Album a,Model model, HttpSession session,HttpServletRequest request) {
+		
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		System.out.println(bid);
+		
+		ArrayList<Album> selectAD = null;
+		
+		selectAD = abs.selectAlbum(bid);
+		
+		model.addAttribute("selectAD",selectAD);
+		
+		int cNum[] = null;
+		String NumNum[][] = new String[selectAD.size()][];
+		
+		
+		/*
+		 * for(int i = 0; i < selectAD.size(); i++) { System.out.println("이자식아"); String
+		 * num=selectAD.get(i).getChildrenNum(); String[] number = num.split(",");
+		 * NumNum[i] = new String[number[1]];
+		 * 
+		 * for(int j = 0; j < number[i].length(); j++) {
+		 * 
+		 * System.out.println(number[i]+"ss"); System.out.println(number[i+1]+"ss");
+		 * System.out.println(number[j]); NumNum[i][j] = number[j];
+		 * System.out.println(NumNum[i][j]+"zz"); }
+		 * 
+		 * 
+		 * 
+		 * //cNum[i] = Integer.parseInt(number[i]);
+		 * 
+		 * 
+		 * }
+		 */
+		return null;
+		
+		//return "album/albumDetail";
+		
+	}
 	
 	
 }

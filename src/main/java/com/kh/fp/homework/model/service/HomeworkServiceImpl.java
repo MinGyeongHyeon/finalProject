@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.dao.HomeWorkDao;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
@@ -107,7 +108,7 @@ public class HomeworkServiceImpl implements HomeworkService{
 	public int getTListCount(int userNo) {
 
 		int ListCount = hd.TListCount(sqlSession,userNo);
-		
+		System.out.println(ListCount+"개");
 		
 		return ListCount;
 	}
@@ -155,7 +156,8 @@ public class HomeworkServiceImpl implements HomeworkService{
 		
 		return update;
 	}
-	
+
+
 	 
 
 }
