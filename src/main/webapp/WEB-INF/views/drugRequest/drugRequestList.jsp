@@ -23,20 +23,20 @@
 }
 #sel1 {
 	width:15%;
-	height:70px;
+	height:50px;
 	display:inline;
 }
 #sel2 {
 	width:20%;
-	height:70px;
+	height:50px;
 	display:inline;
 }
 #datepicker {
 	float:right;
 	width:15%;
 	margin-right:10px;
-	height:70px;
-	font-size:1.8em;
+	height:50px;
+	font-size:15px;
 }
 .card {
 	width:400px;
@@ -76,24 +76,22 @@
 #writeBtn {
 	margin-right:10px;
 	width:15%;
-	height:70px;
+	height:50px;
 	margin-left: auto;
 	color:white;
 	background:#ff7575;
 	font-weight:bold;
-	font-size:1.8em;
+	font-size:15px;
 }
 #dateA {
 	display:inline;
 }
 .dateT {
-	font-size:30px;
+	font-size:20px;
 }
-.page-title {
-	font-size:35px !important;
-}
+
 #empty {
-	margin-left:25%;
+	margin-left:30%;
 }
 </style>
 
@@ -119,7 +117,7 @@ $(function(){
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<i class="fas fa-notes-medical" style="font-size:35px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
+						<i class="fas fa-notes-medical" style="font-size:20px;"></i>&nbsp;&nbsp;<h4 class="page-title">투약의뢰서</h4>
 						<c:if test="${ loginUser.classification eq '학부모'}">
 						<button type="button" class="btn" id="writeBtn" onclick="goDrugRequestWrite()"><i class="fas fa-pen"></i>&nbsp;작성하기</button>
 						</c:if>
@@ -148,8 +146,8 @@ $(function(){
 						<div id="listArea">
 							<c:if test="${ empty detailList }">
 								<div id="empty">
-									<br><br><br><br><br><br><br><br><br><br><br><br>
-									<h1 style="font-size:44px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
+									<br><br><br><br><br><br><br><br>
+									<h1 style="font-size:35px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
 								</div>
 							</c:if>
 							<c:forEach var="l" items="${ detailList }">
@@ -158,9 +156,16 @@ $(function(){
 								<br>
 								<div id="profileArea">
 									<b><c:out value="${ l.childrenName }"/></b>&nbsp;
-									<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+								<c:choose>
+									<c:when test="${ empty at.changeName }">
+										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+									</c:when>
+									<c:when test="${ not empty at.changeName }">
+										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg" class="avatar-img rounded"></i>
+									</c:when>
+								</c:choose>
 								</div>
-								<br><br>
+								<br>
 								<div id="contentArea">
 									<p class="dateT"><b><c:out value="${ l.dosageDate }"/></b></p>
 									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span><b>증상</b></span>&nbsp;&nbsp;<span><c:out value="${ l.symptom }"/></span><br>
@@ -220,6 +225,7 @@ $(function(){
 						</c:if>
 						<c:if test="${ pi.currentPage >= pi.maxPage }"> &emsp; 다음 </c:if>
 					</div>
+					<br><br>
 
 		</div>
 

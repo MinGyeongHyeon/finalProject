@@ -36,7 +36,15 @@
 						<div id="contentsArea">
 							<br>
 							<div id="profileArea">
-								<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i> &nbsp;&nbsp;
+								<c:choose>
+									<c:when test="${ empty at.changeName }">
+										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+									</c:when>
+									<c:when test="${ not empty at.changeName }">
+										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg" class="avatar-img rounded"></i>
+									</c:when>
+								</c:choose>
+								&nbsp;&nbsp;
 								<span style="font-size:1.6em;"><b><c:out value="${ childrenKing.childrenName }"/>의 투약의뢰서</b></span>
 							</div>
 							<hr width="98%">

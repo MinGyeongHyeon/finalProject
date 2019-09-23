@@ -7,13 +7,6 @@
 <title>투약의뢰서</title>
 <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestDetailCss.css">
 
-<style>
-#signImg {
-	width:70px;
-	height:70px;
-}
-</style>
-
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -93,7 +86,7 @@
 									</tr>
 								</table>
 							</div>
-							<br> <br>
+							<br>
 
 							<div id="check">
 								<div id="area3">

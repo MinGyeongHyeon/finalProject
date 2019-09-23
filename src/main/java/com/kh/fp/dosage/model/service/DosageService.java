@@ -20,6 +20,7 @@ public interface DosageService {
 
 	//투약의뢰서 상세 조회
 	DosageDetail selectDosageOne(int dosageNo) throws DosageException;
+	DosageDetail selectReportOne(int dosageNo) throws DosageException;
 
 	//투약의뢰서 리스트 카운트(학부모)
 	int getPListCount(int userNo);
@@ -33,5 +34,10 @@ public interface DosageService {
 
 	//투약 보고서 작성
 	int writeReport(DosageBogo d) throws DosageException;
+
+	//투약 보고서 작성되면 상태 업데이트 - 뷰 전환
+	int updateCheck(Dosage dosage) throws DosageException;
+
+
 
 }

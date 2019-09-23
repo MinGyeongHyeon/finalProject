@@ -83,6 +83,19 @@ public class DosageServiceImpl implements DosageService{
 		return dd.writeReport(sqlSession, d);
 	}
 
+	//투약 보고서 작성되면 상태 업데이트 - 뷰 전환
+	@Override
+	public int updateCheck(Dosage dosage) throws DosageException {
+
+		return dd.updateCheck(sqlSession, dosage);
+	}
+
+	//투약의뢰서 상세 조회 - 보고서 있을 때
+	@Override
+	public DosageDetail selectReportOne(int dosageNo) throws DosageException {
+
+		return dd.selectReportOne(sqlSession, dosageNo);
+	}
 
 
 

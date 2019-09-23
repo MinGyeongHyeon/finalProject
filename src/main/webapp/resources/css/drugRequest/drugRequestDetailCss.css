@@ -58,9 +58,8 @@ th, td {
 }
 
 #signArea {
-	width: 70px;
-	height: 70px;
-	border: solid 1px black;
+	width: 80px;
+	height: 80px;
 	float: right;
 	display: inline;
 	margin-right: 4%;
@@ -111,10 +110,14 @@ th, td {
 }
 
 #area3 {
-	margin-left: 352px;
+	margin-left: 870px;
 	display: inline;
 }
 
 #area4 {
-	margin-left: 480px;
+	margin-left: 995px;
+}
+#signImg {
+	width:80px;
+	height:80px;
 }

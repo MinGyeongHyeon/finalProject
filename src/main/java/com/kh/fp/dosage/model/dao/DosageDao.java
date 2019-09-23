@@ -39,4 +39,10 @@ public interface DosageDao {
 
 	//투약 보고서 작성
 	int writeReport(SqlSessionTemplate sqlSession, DosageBogo d) throws DosageException;
+
+	//투약 보고서 작성되면 상태 업데이트 - 뷰 전환
+	int updateCheck(SqlSessionTemplate sqlSession, Dosage dosage) throws DosageException;
+
+	//투약의뢰서 상세 조회 - 보고서 있을 때
+	DosageDetail selectReportOne(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException;
 }
