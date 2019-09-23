@@ -13,11 +13,12 @@ public class Album implements Serializable{
 	private int classNo;
 	private int writer;
 	private String tumbnail;
+	private String childrenNum;
 	
 	public Album() {}
 
 	public Album(int alblumNo, String albumTitle, String albumContent, Date writeDate, int classNo, int writer,
-			String tumbnail) {
+			String tumbnail, String childrenNum) {
 		super();
 		this.alblumNo = alblumNo;
 		this.albumTitle = albumTitle;
@@ -26,6 +27,7 @@ public class Album implements Serializable{
 		this.classNo = classNo;
 		this.writer = writer;
 		this.tumbnail = tumbnail;
+		this.childrenNum = childrenNum;
 	}
 
 	public int getAlblumNo() {
@@ -84,12 +86,20 @@ public class Album implements Serializable{
 		this.tumbnail = tumbnail;
 	}
 
+	public String getChildrenNum() {
+		return childrenNum;
+	}
+
+	public void setChildrenNum(String childrenNum) {
+		this.childrenNum = childrenNum;
+	}
+
 	@Override
 	public String toString() {
 		return "Album [alblumNo=" + alblumNo + ", albumTitle=" + albumTitle + ", albumContent=" + albumContent
 				+ ", writeDate=" + writeDate + ", classNo=" + classNo + ", writer=" + writer + ", tumbnail=" + tumbnail
-				+ "]";
+				+ ", childrenNum=" + childrenNum + "]";
 	}
-	
+
 	
 }

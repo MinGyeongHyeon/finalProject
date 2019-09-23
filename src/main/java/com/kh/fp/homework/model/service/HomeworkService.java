@@ -3,6 +3,7 @@ package com.kh.fp.homework.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
@@ -37,5 +38,6 @@ public interface HomeworkService  {
 	ArrayList<homework> SelectOneC(int userNo, int bid);
 
 	int UpdateNoticeStatus(int bid, String status);
+
 
 }

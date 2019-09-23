@@ -221,8 +221,10 @@ public class HomeWorkController {
 	
 	
 	@RequestMapping(value = "homeworklist.hw")
-	public String homeworklist(Model model,HttpSession session, HttpServletRequest request) {
+	public String homeworklist(Model model,HttpSession session, HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser) {
 
+	
+		
 		
 		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
 		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
@@ -231,19 +233,27 @@ public class HomeWorkController {
 		String userC = null;
 		int currentPage = 1;
 		
-		if(TloginUser != null) {
+		userNo=loginUser.getUserNo();
+		String classification = loginUser.getClassification();
+		
+		if(classification.equals("원장님")) {
 			
-			userNo = TloginUser.getTeacherNo();
-			userC = "선생님";
-			System.out.println("선생님");
+//			userNo = TloginUser.getTeacherNo();
+//			userC = "선생님";
+//			System.out.println("선생님");
 			
-		}else if(CloginUser != null) {
+		}else if(classification.equals("학부모")) {
 			
 			userNo = CloginUser.getChildrenNo();
 			int tNo = CloginUser.getTeacherNo();
 			System.out.println(tNo+"선생님 번호");
 			userC = "원아";
 			System.out.println("원아");
+		}else {
+			userNo = TloginUser.getTeacherNo();
+			userC = "선생님";
+			System.out.println("선생님");
+			
 		}
 		
 

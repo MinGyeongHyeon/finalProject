@@ -2,6 +2,7 @@ package com.kh.fp.album.model.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -99,6 +100,50 @@ public class AlbumDaoImpl implements AlbumDao{
 		alb = (ArrayList)sqlSession.selectList("Album.selectTList",userNo,rowBounds);
 		System.out.println("zz"+alb);
 		return alb;
+	}
+
+
+	@Override
+	public int ListCCount(SqlSessionTemplate sqlSession, int userNo) {
+		
+		int content = sqlSession.selectOne("Album.selectCListCount",userNo);
+		
+		return content;
+	}
+
+
+	@Override
+	public ArrayList<Album> selectCAlbumList(SqlSessionTemplate sqlSession, int userNo, PageInfo pi) {
+		 ArrayList<Album> alb = null;
+		 int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
+			
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		alb = (ArrayList)sqlSession.selectList("Album.selectCList",userNo,rowBounds);
+		System.out.println("zz"+alb);
+		
+		return alb;
+	}
+
+
+	@Override
+	public int SelectTnum(SqlSessionTemplate sqlSession, int userNo) {
+
+		int Tnum = sqlSession.selectOne("Album.selectTnum",userNo);
+		
+		return Tnum;
+	}
+
+
+	@Override
+	public ArrayList<Album> selectAlbumDetail(SqlSessionTemplate sqlSession, int bid) {
+
+		ArrayList<Album> a = null;
+		
+		a = (ArrayList)sqlSession.selectList("Album.selectDetail",bid);
+		System.out.println("list:::::"+a);
+		
+		return a;
 	}
 
 

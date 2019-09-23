@@ -20,4 +20,13 @@ public interface AlbumService {
 
 	ArrayList<Album> selectTAlbumRequestList(PageInfo pi, int userNo);
 
+	int getCListCount(int userNo);
+
+	ArrayList<Album> selectCAlbumRequestList(PageInfo pi, int userNo);
+
+	int getTNum(int userNo);
+
+	ArrayList<Album> selectAlbum(int bid);
+
+
 }

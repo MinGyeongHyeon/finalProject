@@ -146,6 +146,12 @@ public class PageLinkServlet {
 		return "note/noteMain";
 	}
 
+	/*
+	 * @RequestMapping(value="homeworklist.pl") public String sendNote() {
+	 * 
+	 * return "note/sendNote"; }
+	 */
+	
 	@RequestMapping(value="sendNote.pl")
 	public String sendNote() {
 

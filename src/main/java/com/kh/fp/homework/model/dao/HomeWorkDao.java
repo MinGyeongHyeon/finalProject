@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
@@ -41,6 +42,7 @@ public interface HomeWorkDao {
 	ArrayList<homework> selectOneC(SqlSessionTemplate sqlSession, int userNo, int bid);
 
 	int updateH(SqlSessionTemplate sqlSession, String status, int bid);
+
 
 
 
