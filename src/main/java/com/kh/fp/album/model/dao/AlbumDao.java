@@ -20,4 +20,8 @@ public interface AlbumDao {
 
 	ArrayList<Album> selectAlbumList(SqlSessionTemplate sqlSession, int userNo, PageInfo pi);
 
+	int ListTCount(SqlSessionTemplate sqlSession, int userNo);
+
+	ArrayList<Album> selectTAlbumList(SqlSessionTemplate sqlSession, int userNo, PageInfo pi);
+
 }

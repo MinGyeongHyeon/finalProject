@@ -278,7 +278,7 @@ img {
 			<table style="width:100%;">
 				<tr>
   					<td style="vertical-align: middle;">
-						<p style="font-weight:bold;">알림장 작성</p>
+						<p style="font-weight:bold; font-size:30px;"><i class="far fa-images"></i>앨범 작성</p>
 					</td>
 				</tr>
 			</table>
