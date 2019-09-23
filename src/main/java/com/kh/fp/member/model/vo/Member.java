@@ -16,11 +16,13 @@ public class Member implements Serializable{
 	private String deleteReason;
 	private String classification;
 	private String status;
+	private int usingStatus;
 	
 	public Member() {}
 
 	public Member(int userNo, String userId, String userPwd, String userName, String email, String phone,
-			Date enrollDate, Date deleteDate, String deleteReason, String classification, String status) {
+			Date enrollDate, Date deleteDate, String deleteReason, String classification, String status,
+			int usingStatus) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -33,6 +35,7 @@ public class Member implements Serializable{
 		this.deleteReason = deleteReason;
 		this.classification = classification;
 		this.status = status;
+		this.usingStatus = usingStatus;
 	}
 
 	public int getUserNo() {
@@ -123,17 +126,22 @@ public class Member implements Serializable{
 		this.status = status;
 	}
 
+	public int getUsingStatus() {
+		return usingStatus;
+	}
+
+	public void setUsingStatus(int usingStatus) {
+		this.usingStatus = usingStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", email=" + email + ", phone=" + phone + ", enrollDate=" + enrollDate + ", deleteDate=" + deleteDate
-				+ ", deleteReason=" + deleteReason + ", classification=" + classification + ", status=" + status + "]";
+				+ ", deleteReason=" + deleteReason + ", classification=" + classification + ", status=" + status
+				+ ", usingStatus=" + usingStatus + "]";
 	}
 
-	
-	
-	
-	
 	
 
 }

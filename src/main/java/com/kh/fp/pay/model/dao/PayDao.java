@@ -18,10 +18,8 @@ public interface PayDao {
 
 	ArrayList<Kindergarden> selectGardenUsing(SqlSessionTemplate sqlSession, Pay pay);
 
-	int insertGardenUsing(SqlSessionTemplate sqlSession, Pay pay);
+	int insertGardenUsing(SqlSessionTemplate sqlSession, Pay pay);;
 
-	int updateNewGardenUsing(SqlSessionTemplate sqlSession, Pay pay);
-
-	int updatePlusGardenUsing(SqlSessionTemplate sqlSession, Pay pay);
+	int updateGardenUsing(SqlSessionTemplate sqlSession, Pay pay);
 
 }

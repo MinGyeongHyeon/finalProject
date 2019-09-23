@@ -45,14 +45,8 @@ public class PayDaoImpl implements PayDao{
 	}
 
 	@Override
-	public int updateNewGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
-		int result = sqlSession.update("Pay.updateNewGardenUsing", pay);
-		return result;
-	}
-
-	@Override
-	public int updatePlusGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
-		int result = sqlSession.update("Pay.updatePlusGardenUsing", pay);
+	public int updateGardenUsing(SqlSessionTemplate sqlSession, Pay pay) {
+		int result = sqlSession.update("Pay.updateGardenUsing", pay);
 		return result;
 	}
 

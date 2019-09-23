@@ -14,6 +14,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.security.MessageDigest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
@@ -128,7 +130,20 @@ public class MemberController {
 			 of = ms.selectOnOff(loginUser);
 			 
 			 kga = ms.selectKinderName(loginUser.getUserNo());
-			 
+			
+			//사용기간 추가 
+			String usingDate = ms.selectUsingDate(loginUser.getUserNo());
+			if(usingDate != null) {
+				SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+				Date originDate = new Date();
+				Date today = new Date();
+				originDate = format.parse(usingDate);
+				int usingStatus = today.compareTo(originDate);
+				
+				loginUser.setUsingStatus(usingStatus);
+			}
+			
+		
 				int childrenCount = ms.childrenCount(loginUser);
 				int teacherCount = ms.teacherCount(loginUser);
 				int childrenCountN = ms.childrenCountN(loginUser);
@@ -157,6 +172,19 @@ public class MemberController {
 					kga = ms.selectKinderName(loginUser.getUserNo());
 					
 					of = ms.selectOnOff(loginUser);
+					
+					//사용기간 추가 
+					String usingDate = ms.selectUsingDate(kga.getKinderNo());
+					if(usingDate != null) {
+						SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+						Date originDate = new Date();
+						Date today = new Date();
+						originDate = format.parse(usingDate);
+						int usingStatus = today.compareTo(originDate);
+						
+						loginUser.setUsingStatus(usingStatus);
+					}
+					
 					
 					int childrenCount = ms.childrenCount(loginUser);
 					int childrenCountN = ms.childrenCountN(loginUser);
@@ -201,6 +229,18 @@ public class MemberController {
 					
 					System.out.println("칠드런킹 ! : " + childrenKing);
 					
+					//사용기간 추가 
+					String usingDate = ms.selectUsingDate(kga.getKinderNo());
+					if(usingDate != null) {
+						SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+						Date originDate = new Date();
+						Date today = new Date();
+						originDate = format.parse(usingDate);
+						int usingStatus = today.compareTo(originDate);
+						
+						loginUser.setUsingStatus(usingStatus);
+					}
+					
 				}else {
 					
 					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
@@ -234,6 +274,10 @@ public class MemberController {
 			return "account/join5";
 
 		
+		} catch (ParseException e) {
+			
+			model.addAttribute("msg", "사용기간을 불러올 수 없습니다.");
+			return "account/join5";
 		}
 		
 		

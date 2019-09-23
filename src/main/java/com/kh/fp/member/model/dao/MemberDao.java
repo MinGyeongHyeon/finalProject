@@ -103,6 +103,8 @@ public interface MemberDao {
 
 	KinderGarden selectKinderName(SqlSessionTemplate sqlSession, int userNo);
 
+	String selectUsingDate(SqlSessionTemplate sqlSession, int userNo);
+
 	
 
 
