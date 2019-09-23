@@ -456,6 +456,14 @@
 	
 	</select>
 	
+	<select id="childrenYYn">
+		
+		SELECT COUNT(*)
+		FROM CHILDREN_KIND
+		WHERE CHILDREN_NO = #{childrenNo}
+	
+	</select>
+	
 	
 
 	

@@ -332,6 +332,12 @@ public class MemberServiceImpl implements MemberService{
 		return md.selectUsingDate(sqlSession, userNo);
 	}
 
+	@Override
+	public int childrenYYn(KidMember km) {
+
+		return md.childrenYYn(sqlSession,km);
+	}
+
 
 
 	

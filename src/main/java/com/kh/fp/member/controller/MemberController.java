@@ -165,8 +165,6 @@ public class MemberController {
 					
 					KinGardenClasses teacherKing = ms.teacherKing(loginUser);
 					
-					System.out.println("kin값 : " + teacherKing);
-					
 					loginUser.setUserNo(teacherKing.getKinderNo());
 					
 					kga = ms.selectKinderName(loginUser.getUserNo());
@@ -242,6 +240,10 @@ public class MemberController {
 					}
 					
 				}else {
+					
+					int childrenYYn = ms.childrenYYn(km);
+					
+					
 					
 					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
 					
@@ -372,14 +374,19 @@ public class MemberController {
 		
 		String content = null;
 		
-		if(email2.equals("아이디찾기")) {
+		if(email2 != null) {
 			
-			content = "키즈랜드 아이디찾기 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
+			if(email2.equals("아이디찾기")) {
+				
+				content = "키즈랜드 아이디찾기 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
+				
+			}else {
+				
+				content = "키즈랜드 회원가입 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
+			}
 			
-		}else {
-			
-			content = "키즈랜드 회원가입 인증번호는 [" + random + "] 입니다. 정확히 입력해주세요";
 		}
+		
 		
 		
 		try {
@@ -586,13 +593,14 @@ public class MemberController {
 			
 			int classonoff = ms.classonoff(kg);
 			
+			System.out.println("넘어가기전 kg : " + kg);
 			
-			model.addAttribute("msg" , "회원가입이 완료 되었습니다.");
+			model.addAttribute("kg" , kg);
 			
 		}
 		
 		
-		return "account/join5";
+		return "join/joinkinder";
 	}
 
 	@RequestMapping(value="teacheron.me")
@@ -685,7 +693,7 @@ public class MemberController {
 	    
 	    System.out.println("여긴? 들어옴 ? " + random);
 	    
-	    if(action.equals("gottt")) {
+	    if(action.equals("gott")) {
 
 	        
 	        String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS 전송요청 URL
@@ -902,6 +910,52 @@ public class MemberController {
 		
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="joinkinder.me")
+	public String joinkinder(Model model , Member mb ,HttpServletRequest request , @RequestParam(name="photo", required=false) MultipartFile photo) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String filePath = root + "\\uploadFiles";
+		
+		String originFileName = photo.getOriginalFilename();
+		
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		
+		String changeName = CommonUtils.getRandomString(); 
+		
+		Attachment at = new Attachment();
+		
+		
+		try {
+			
+			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			
+			at.setOrigineName(originFileName);
+			at.setChangeName(changeName + ext);
+			at.setFilePath(filePath);
+			at.setFileLevel("1");
+			at.setAttachType("유저");
+			at.setUserNo(mb.getUserNo());
+			
+			int result = ms.insertTeacherphoto(at);
+			
+			Member teacher = ms.teacherAt(mb);
+			
+			model.addAttribute("msg" , "회원가입이 완료 되었습니다!");
+			
+			
+			
+			
+		} catch (IllegalStateException | IOException e) {
+
+			
+			e.printStackTrace();
+		}
+		
+		
+		return "account/join5";
 	}
 
  

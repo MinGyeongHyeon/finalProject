@@ -392,6 +392,13 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public int childrenYYn(SqlSessionTemplate sqlSession, KidMember km) {
+
+		return sqlSession.selectOne("Member.childrenYYn",km);
+	}
+
+
 
 
 
