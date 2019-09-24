@@ -271,7 +271,7 @@ font-family: 'Sunflower', sans-serif;
 								</li>
 								<li>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">마이 페이지</a>
+									href="MyPage.pl">마이 페이지</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
 									href="#">Account Setting</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
@@ -307,7 +307,7 @@ font-family: 'Sunflower', sans-serif;
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="#profile"> <span class="link-collapse">마이 페이지</span>
+									<li><a href="MyPage.pl"> <span class="link-collapse">마이 페이지</span>
 									</a></li>
 									<li><a href="#edit"> <span class="link-collapse">EditProfile</span>
 									</a></li>

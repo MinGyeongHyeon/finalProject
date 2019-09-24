@@ -268,6 +268,15 @@ public class PageLinkServlet {
 	public String writeDailyLog() {
 		return "businessLog/writeDailyLog";
 	}
+	
+	@RequestMapping(value="MyPage.pl")
+	public String myPage() {
+		
+		
+		return "member/MyPage";
+	}
+	
+	
 
 }
 

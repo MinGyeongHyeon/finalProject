@@ -109,6 +109,8 @@ public interface MemberDao {
 
 	int teacherYYn(SqlSessionTemplate sqlSession, Member loginUser);
 
+	int myimgchange(SqlSessionTemplate sqlSession, Attachment at);
+
 	
 
 

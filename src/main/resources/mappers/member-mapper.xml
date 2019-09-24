@@ -472,6 +472,13 @@
 	
 	
 	</select>
+	
+	<update id="myimgchange">
+		
+		UPDATE ATTACHMENT SET CHANGE_NAME = #{changeName}
+		WHERE USER_NO = #{userNo}
+	
+	</update>
 
 	
 	

@@ -344,6 +344,12 @@ public class MemberServiceImpl implements MemberService{
 		return md.teacherYYn(sqlSession,loginUser);
 	}
 
+	@Override
+	public int myimgchange(Attachment at) {
+
+		return md.myimgchange(sqlSession,at);
+	}
+
 
 
 	
