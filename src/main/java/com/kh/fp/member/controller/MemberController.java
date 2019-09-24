@@ -980,6 +980,61 @@ public class MemberController {
 		
 		return "account/join5";
 	}
+	
+	@RequestMapping(value="Myimgchange.me")
+	public String myimgchange(Attachment at ,Model model ,HttpServletRequest request, @RequestParam(name="photo", required=false) MultipartFile photo) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String filePath = root + "\\uploadFiles";
+		
+		String originFileName = photo.getOriginalFilename();
+		
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		
+		String changeName = CommonUtils.getRandomString(); 
+		
+		
+		try {
+			
+			System.out.println("들어온 지울 값 : " + at.getChangeName());
+			
+			new File(filePath + "\\" + at.getChangeName()).delete();
+			
+			at.setOrigineName(originFileName);
+			at.setChangeName(changeName + ext);
+			at.setFilePath(filePath);
+			at.setFileLevel("1");
+			at.setAttachType("유저");
+			
+			
+			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			
+			int result = ms.myimgchange(at);
+			
+			if(result > 0) {
+				model.addAttribute("at",at);
+				model.addAttribute("msg","성공적으로 변경되었습니다.");
+				
+			}
+			
+			
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "member/MyPage";
+	}
+	
+	
+	@RequestMapping(value="test.me")
+	public String test() {
+		
+		System.out.println("여기 들어왔음?");
+		
+		return "";
+	}
 
  
 	

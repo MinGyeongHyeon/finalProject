@@ -103,6 +103,8 @@ public interface MemberService {
 
 	int teacherYYn(Member loginUser);
 
+	int myimgchange(Attachment at);
+
 
 
 }

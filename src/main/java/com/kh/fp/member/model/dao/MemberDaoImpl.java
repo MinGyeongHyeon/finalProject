@@ -406,6 +406,13 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public int myimgchange(SqlSessionTemplate sqlSession, Attachment at) {
+
+		return sqlSession.update("Member.myimgchange",at);
+	}
+
+
 
 
 
