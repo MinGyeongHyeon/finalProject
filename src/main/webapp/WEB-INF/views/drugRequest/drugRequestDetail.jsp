@@ -116,7 +116,7 @@
 							</c:if>
 							<br>
 							<div id="btnA2">
-								<button type="button" class="btn btn-light" id="btn2">
+								<button type="button" class="btn btn-light" id="btn2" onclick="goDeleteOne()">
 									<i class="far fa-trash-alt"></i>&nbsp; 삭제
 								</button>
 								&nbsp;&nbsp;
@@ -146,6 +146,16 @@
 		}
 		function printPage() {
 			window.print();
+		}
+		function goDeleteOne(){
+			var dosageNo = $("#dosageNo").val();
+
+			if(confirm("투약의뢰서 삭제 시 투약보고서가 함께 삭제됩니다.\n정말 삭제하시겠습니까?") == true){
+				location.href="updateStatus.ds?dosageNo=" + dosageNo;
+			}else {
+				return;
+			}
+
 		}
 	</script>
 

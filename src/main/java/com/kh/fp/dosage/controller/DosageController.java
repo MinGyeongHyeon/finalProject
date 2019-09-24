@@ -236,6 +236,23 @@ public class DosageController {
 	}
 
 
+	//투약의뢰서 삭제
+	@RequestMapping(value="updateStatus")
+	public String updateStatus(Model model, int dosageNo) {
+
+		try {
+			int result = ds.updateStatus(dosageNo);
+
+			return "redirect:dosageList.ds?check=Y";
+
+		} catch (DosageException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
+
+	}
+
 
 }
 

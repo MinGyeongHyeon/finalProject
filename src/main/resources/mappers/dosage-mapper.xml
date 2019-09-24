@@ -46,6 +46,7 @@
 		<result property="childrenName" column="CHILDREN_NAME" />
 		<result property="signUrl" column="FILE_PATH" />
 		<result property="bogoContent" column="BOGO_CONTENT" />
+		<result property="bogoStatus" column="BOGO_STATUS" />
 	</resultMap>
 
 	<resultMap type="Attachment" id="AttachmentResultSet">
@@ -241,5 +242,12 @@
 		WHERE D.DOSAGE_NO = #{dosageNo}
 		AND D.STATUS = 'N'
 	</select>
+
+	<!-- 투약의뢰서 삭제 -->
+	<update id="updateStatus">
+		UPDATE DOSAGE
+		SET STATUS = 'Y'
+		WHERE DOSAGE_NO = #{dosageNo}
+	</update>
 </mapper>
 

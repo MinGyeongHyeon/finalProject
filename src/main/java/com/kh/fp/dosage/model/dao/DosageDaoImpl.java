@@ -169,6 +169,31 @@ public class DosageDaoImpl implements DosageDao{
 		return d;
 	}
 
+	//투약의뢰서 삭제
+	@Override
+	public int updateStatus(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException {
+
+		int result = sqlSession.update("Dosage.updateStatus", dosageNo);
+
+		if(result == 0) {
+			throw new DosageException("투약의뢰서 삭제 실패");
+		}
+
+		return result;
+	}
+
+	//투약 보고서 삭제
+/*	@Override
+	public int updateBogoStatus(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException {
+
+		int result2 = sqlSession.update("Dosage.updateBogoStatus", dosageNo);
+
+		if(result2 == 0) {
+			throw new DosageException("투약보고서 삭제 실패");
+		}
+		return result2;
+	}
+*/
 
 
 }
