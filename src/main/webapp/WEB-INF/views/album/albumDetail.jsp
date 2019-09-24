@@ -143,7 +143,25 @@ function tagSearch(){
 		 
 	 });
  }
+ function tagSearch(){
+		
+	 	var input = $("input[id = 'tagSearch']").val();
+	 	console.log(input);
+	 	 $.ajax({
+			type:"POST",
+			data:{"input":input},
+	 		url:"albumSearch.ab",
+			success:function(data){
+				
+				console.log("aaa");
+				
+			},error:function(request,status,error){
+		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
 
+		 
+	 });
+}
 </script>
 </html>
 

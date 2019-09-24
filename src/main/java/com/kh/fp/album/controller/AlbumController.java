@@ -3,8 +3,10 @@ package com.kh.fp.album.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.fp.album.model.service.AlbumService;
 import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.album.model.vo.PageInfo;
@@ -288,21 +292,23 @@ public class AlbumController {
 	}
 	
 	@RequestMapping(value = "albumSearch.ab",method = RequestMethod.POST)
-	public ModelAndView albumSearch(ModelAndView mv, HttpSession session,HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser ) {
+	public void albumSearch(ModelAndView mv,HttpServletResponse response, HttpSession session,HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser ) {
 		
 		String input = request.getParameter("input");
 		System.out.println(input + "에이작스");
 		String classification = loginUser.getClassification();
+		ArrayList<Album> selectAD = null;
+		System.out.println(classification+"너 뭐야");
 		
 		if(classification.equals("원장님")) {
 	         int num = loginUser.getUserNo();
 	      }else if(classification.equals("학부모")) {
 	    		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
 		  		int userNo = CloginUser.getChildrenNo();
+		  		System.out.println(userNo+"입니다");
 		  		
 		  		int no = abs.selectSomeThing(input,userNo);
 		  		
-		  		ArrayList<Album> selectAD = null;
 				
 				selectAD = abs.selectSelectAlbum(no);
 		  	
@@ -311,8 +317,24 @@ public class AlbumController {
 	    	  int num = loginUser.getUserNo();
 	      }
 		
-		mv.setViewName("jsonView");
-		return mv;
+		
+		HashMap<String,Object> hmap =new HashMap<String,Object>();
+		
+		hmap.put("selectAD", selectAD);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+
+		try {
+			new Gson().toJson(selectAD,response.getWriter());
+		} catch (JsonIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}	
 	
 }

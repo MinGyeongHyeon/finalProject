@@ -113,8 +113,8 @@
 	<select id="selectSome" resultType="_int">
 		SELECT CHILDREN_NO
 		FROM CHILDREN
-		WHERE CHILDREN_NAME = #{input}
-		AND CHILDREN_NO = #{userNo} 
+		WHERE CHILDREN_NAME=#{alblumNo}
+		AND CHILDREN_NO=#{albumContent} 
 	</select>
 	
 	<select id="selectSearchDetail" resultMap="albumResultSet">
