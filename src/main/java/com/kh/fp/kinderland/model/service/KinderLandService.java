@@ -52,6 +52,10 @@ public interface KinderLandService {
 
 	int kinderchangeClass(Kinderclasses kc);
 
+	int deletechildrenclass(ChildrenClassInsert ci);
+
+	int delteteacherclass(TeacherInsert ti);
+
 
 
 

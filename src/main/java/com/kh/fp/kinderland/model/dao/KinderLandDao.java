@@ -53,4 +53,8 @@ public interface KinderLandDao {
 
 	int kinderchangeClass(SqlSessionTemplate sqlSession, Kinderclasses kc);
 
+	int deletechildrenclass(SqlSessionTemplate sqlSession, ChildrenClassInsert ci);
+
+	int deleteteacherclass(SqlSessionTemplate sqlSession, TeacherInsert ti);
+
 }

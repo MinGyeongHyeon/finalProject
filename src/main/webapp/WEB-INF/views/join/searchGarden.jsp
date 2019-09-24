@@ -380,6 +380,19 @@ input,select{
 	
 	
 	</script>
+	
+	<c:if test="${ not empty msg }">
+		
+		<script>
+			
+		
+		alert('${msg}');
+		
+		</script>
+	
+	
+	
+	</c:if>
 </div>
 </body>
 </html>

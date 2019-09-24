@@ -212,6 +212,25 @@
   	
   	
   	</update>
+  	
+  	<delete id="deletechildrenclass">
+  		
+  		DELETE FROM CHILDREN_KIND
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND CHILDREN_NO = #{childrenNo}
+  		
+  	
+  	</delete>
+  	
+  	<delete id="deleteteacherclass">
+  	
+  		DELETE FROM TEACHER
+  		WHERE KINDER_NO = #{kinderNo}
+  		AND TEACHER_NO = #{teacherNo}
+  	
+  	
+  	
+  	</delete>
 	
 
   </mapper>

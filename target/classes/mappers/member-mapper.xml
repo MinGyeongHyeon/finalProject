@@ -456,13 +456,23 @@
 	
 	</select>
 	
-	<select id="childrenYYn">
+	<select id="childrenYYn" resultType="_int">
 		
 		SELECT COUNT(*)
 		FROM CHILDREN_KIND
 		WHERE CHILDREN_NO = #{childrenNo}
 	
 	</select>
+	
+	<select id="teacherYYn" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM TEACHER
+		WHERE TEACHER_NO = #{userNo}
+	
+	
+	</select>
+
 	
 	
 
