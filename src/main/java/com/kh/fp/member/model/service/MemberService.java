@@ -101,6 +101,8 @@ public interface MemberService {
 
 	int childrenYYn(KidMember km);
 
+	int teacherYYn(Member loginUser);
+
 
 
 }

@@ -173,6 +173,38 @@ color:white;
 	
 	
 	<script>
+	
+	$('.notaccept').click(function(){
+		
+		var kinderNo = $('#kinderNo').val();
+		var teacherNo = $(this).parent().next().children().val();
+		var className = $(this).parent().prev().children().val();
+		
+		
+		if(confirm("거절 하시겠습니까?")){
+			
+			$.ajax({
+				url:"deleteteacherclass.kl",
+				type:"post",
+				data:{kinderNo:kinderNo,teacherNo:teacherNo},
+				success:function(data){
+					
+					if(data.result == 1){
+						alert("거절이 완료 되었습니다.");
+							
+						location.href="teacheron.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+						
+						
+					}
+					
+				}
+				
+			});
+			
+		}
+		
+		
+	});
 		
 		$('.btnaccept').click(function(){
 	

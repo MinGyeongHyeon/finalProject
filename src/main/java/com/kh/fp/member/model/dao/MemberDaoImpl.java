@@ -399,6 +399,13 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public int teacherYYn(SqlSessionTemplate sqlSession, Member loginUser) {
+
+		return sqlSession.selectOne("Member.teacherYYn",loginUser);
+	}
+
+
 
 
 

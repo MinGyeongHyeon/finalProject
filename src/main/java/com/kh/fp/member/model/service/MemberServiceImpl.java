@@ -338,6 +338,12 @@ public class MemberServiceImpl implements MemberService{
 		return md.childrenYYn(sqlSession,km);
 	}
 
+	@Override
+	public int teacherYYn(Member loginUser) {
+
+		return md.teacherYYn(sqlSession,loginUser);
+	}
+
 
 
 	

@@ -107,6 +107,8 @@ public interface MemberDao {
 
 	int childrenYYn(SqlSessionTemplate sqlSession, KidMember km);
 
+	int teacherYYn(SqlSessionTemplate sqlSession, Member loginUser);
+
 	
 
 

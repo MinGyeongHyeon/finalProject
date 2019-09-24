@@ -196,9 +196,23 @@ public class MemberController {
 					
 				}else {
 					
-					model.addAttribute("msg" ," 승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요. ");
+					int teacherYYn = ms.teacherYYn(loginUser);
 					
-					return "account/join5";
+					if(teacherYYn > 0 ) {
+						
+						model.addAttribute("msg" ," 승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요. ");
+						
+						return "account/join5";
+						
+					}else {
+						
+
+						model.addAttribute("msg","승인이 거절 되었습니다. 유치원 에 요청을 다시해주세요.");
+						model.addAttribute("teacher" , loginUser);
+						return "join/searchGarden";
+						
+					}
+					
 					
 				}
 				
@@ -225,8 +239,6 @@ public class MemberController {
 					
 					loginUser.setUserNo(result);
 					
-					System.out.println("칠드런킹 ! : " + childrenKing);
-					
 					//사용기간 추가 
 					String usingDate = ms.selectUsingDate(kga.getKinderNo());
 					if(usingDate != null) {
@@ -243,11 +255,22 @@ public class MemberController {
 					
 					int childrenYYn = ms.childrenYYn(km);
 					
+					if(childrenYYn > 0) {
+						
+						model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
+						return "account/join5";
+						
+					}else {
+						
+						model.addAttribute("km",km);
+						model.addAttribute("msg","승인이 거절 되었습니다. 유치원 에 요청을 다시해주세요.");
+						return "join/searchGarden";
+						
+					}
 					
 					
-					model.addAttribute("msg","승인 처리가 완료되지 않았습니다. 해당 유치원에 문의 주세요.");
 					
-					return "account/join5";
+					
 					
 					
 				}

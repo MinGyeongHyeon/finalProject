@@ -156,4 +156,18 @@ public class KinderLandServiceImpl implements KinderLandService{
 		return kd.kinderchangeClass(sqlSession,kc);
 	}
 
+
+	@Override
+	public int deletechildrenclass(ChildrenClassInsert ci) {
+
+		return kd.deletechildrenclass(sqlSession,ci);
+	}
+
+
+	@Override
+	public int delteteacherclass(TeacherInsert ti) {
+
+		return kd.deleteteacherclass(sqlSession,ti);
+	}
+
 }

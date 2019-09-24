@@ -262,6 +262,28 @@ public class KinderLandController {
 		return mv;
 	}
 	
+	@RequestMapping(value="deletechildrenclass.kl")
+	public ModelAndView deletechildrenclass(ModelAndView mv , ChildrenClassInsert ci) {
+		
+		int result = ks.deletechildrenclass(ci);
+		
+		mv.addObject("result",result);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="deleteteacherclass")
+	public ModelAndView delteteacherclass(ModelAndView mv , TeacherInsert ti) {
+		
+		int result = ks.delteteacherclass(ti);
+		
+		mv.addObject("result",result);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
 
 	
 }
