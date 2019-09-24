@@ -142,6 +142,42 @@ public class AlbumDaoImpl implements AlbumDao{
 		
 		a = (ArrayList)sqlSession.selectList("Album.selectDetail",bid);
 		System.out.println("list:::::"+a);
+		return a;
+	}
+
+
+	@Override
+	public String selectName(SqlSessionTemplate sqlSession, String name) {
+
+		String cName = sqlSession.selectOne("Album.selectName",name);
+		
+		return cName;
+	}
+
+
+	@Override
+	public int selectSome(SqlSessionTemplate sqlSession, String input, int userNo) {
+
+		Album a = null;
+		//아이 번호
+		a.setAlblumNo(userNo);
+		//검색
+		a.setAlbumContent(input);
+		
+		int Some = sqlSession.selectOne("Album.selectSome",input);
+		
+		return Some;
+	}
+
+
+	@Override
+	public ArrayList<Album> selectAlbumSearch(SqlSessionTemplate sqlSession, int no) {
+
+		ArrayList<Album> a = null;
+		
+		a = (ArrayList)sqlSession.selectList("Album.selectSearchDetail",no);
+		
+		System.out.println(a);
 		
 		return a;
 	}

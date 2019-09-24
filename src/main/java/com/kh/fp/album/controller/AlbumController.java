@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -231,32 +232,99 @@ public class AlbumController {
 		model.addAttribute("selectAD",selectAD);
 		
 		int cNum[] = null;
-		String NumNum[][] = new String[selectAD.size()][];
+
+		System.out.println(selectAD.size() + "개");
+		String anumArray[] = new String[selectAD.size()];
+		int k = 0;
 		
-		
-		/*
-		 * for(int i = 0; i < selectAD.size(); i++) { System.out.println("이자식아"); String
-		 * num=selectAD.get(i).getChildrenNum(); String[] number = num.split(",");
-		 * NumNum[i] = new String[number[1]];
-		 * 
-		 * for(int j = 0; j < number[i].length(); j++) {
-		 * 
-		 * System.out.println(number[i]+"ss"); System.out.println(number[i+1]+"ss");
-		 * System.out.println(number[j]); NumNum[i][j] = number[j];
-		 * System.out.println(NumNum[i][j]+"zz"); }
-		 * 
-		 * 
-		 * 
-		 * //cNum[i] = Integer.parseInt(number[i]);
-		 * 
-		 * 
-		 * }
-		 */
-		return null;
-		
-		//return "album/albumDetail";
-		
+			String Pname = null;
+			String Cname = null;
+			
+		  for(int i = 0; i < selectAD.size(); i++) { 
+			  Pname = "";
+			  Cname = "";
+			  Album album = (Album)selectAD.get(i);
+
+			  String num = album.getChildrenNum(); 
+			  
+			  System.out.println(num+"입니다");
+			  
+			  String[] number = num.split(",");
+		  
+			  for(int j = 0; j < number.length; j++) {
+			  
+			  System.out.println(number[j]+"ss"); 
+			  
+			  
+			  if(!(number[j].equals(""))&& !(number[j].equals("999"))) {
+				  
+				  String name = number[j];
+				  
+				   Cname = abs.selectAlbum(name);
+				   Pname += "#"+Cname;
+				 
+			  }
+			  
+			  if(number[j] =="999") {
+				  
+				  Pname = "#전체";
+				  
+			  }
+			  selectAD.get(i).setChildrenName(Pname);
+			  
+			  }
+			  System.out.println(Cname+"$");
+			  
+			  
+		  }
+		  System.out.println("전체"+Pname);
+		  System.out.println("list:::"+selectAD);
+		  
+		  model.addAttribute("selectAD", selectAD);
+		  
+		  
+		return "album/albumDetail";
+		  
 	}
 	
+	@RequestMapping(value = "albumSearch.ab",method = RequestMethod.POST)
+	public ModelAndView albumSearch(ModelAndView mv, HttpSession session,HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser ) {
+		
+		String input = request.getParameter("input");
+		System.out.println(input + "에이작스");
+		String classification = loginUser.getClassification();
+		
+		if(classification.equals("원장님")) {
+	         int num = loginUser.getUserNo();
+	      }else if(classification.equals("학부모")) {
+	    		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
+		  		int userNo = CloginUser.getChildrenNo();
+		  		
+		  		int no = abs.selectSomeThing(input,userNo);
+		  		
+		  		ArrayList<Album> selectAD = null;
+				
+				selectAD = abs.selectSelectAlbum(no);
+		  	
+	      
+	      }else {
+	    	  int num = loginUser.getUserNo();
+	      }
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+

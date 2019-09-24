@@ -1,6 +1,7 @@
 package com.kh.fp.album.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.album.model.vo.PageInfo;
@@ -27,6 +28,13 @@ public interface AlbumService {
 	int getTNum(int userNo);
 
 	ArrayList<Album> selectAlbum(int bid);
+
+	String selectAlbum(String name);
+
+	int selectSomeThing(String input, int userNo);
+
+	ArrayList<Album> selectSelectAlbum(int no);
+
 
 
 }

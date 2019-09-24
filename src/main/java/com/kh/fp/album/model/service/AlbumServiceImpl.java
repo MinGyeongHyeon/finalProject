@@ -117,4 +117,32 @@ public class AlbumServiceImpl implements AlbumService {
 		return a;
 	}
 
+	@Override
+	public String selectAlbum(String name) {
+		System.out.println(name+"이자식");
+		String Cname = abd.selectName(sqlSession,name);
+		
+		return Cname;
+	}
+
+	@Override
+	public int selectSomeThing(String input, int userNo) {
+
+		int Some = abd.selectSome(sqlSession,input,userNo);
+		
+		
+		return Some;
+	}
+
+	@Override
+	public ArrayList<Album> selectSelectAlbum(int no) {
+		ArrayList<Album> a = null;
+		
+		a = abd.selectAlbumSearch(sqlSession,no);
+		
+		
+		return a;	
+		
+	}
+
 }
