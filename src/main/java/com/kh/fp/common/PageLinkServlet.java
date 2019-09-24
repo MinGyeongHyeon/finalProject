@@ -148,10 +148,10 @@ public class PageLinkServlet {
 
 	/*
 	 * @RequestMapping(value="homeworklist.pl") public String sendNote() {
-	 * 
+	 *
 	 * return "note/sendNote"; }
 	 */
-	
+
 	@RequestMapping(value="sendNote.pl")
 	public String sendNote() {
 
@@ -264,7 +264,10 @@ public class PageLinkServlet {
 		return "main/introduceService";
 	}
 
-
+	@RequestMapping(value="writeDailyLog.pl")
+	public String writeDailyLog() {
+		return "businessLog/writeDailyLog";
+	}
 
 }
 

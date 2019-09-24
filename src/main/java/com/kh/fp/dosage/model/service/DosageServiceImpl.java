@@ -97,6 +97,13 @@ public class DosageServiceImpl implements DosageService{
 		return dd.selectReportOne(sqlSession, dosageNo);
 	}
 
+	//투약의뢰서 삭제
+	@Override
+	public int updateStatus(int dosageNo) throws DosageException {
+
+		return dd.updateStatus(sqlSession, dosageNo);
+	}
+
 
 
 }

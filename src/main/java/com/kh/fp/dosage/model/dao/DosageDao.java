@@ -45,4 +45,8 @@ public interface DosageDao {
 
 	//투약의뢰서 상세 조회 - 보고서 있을 때
 	DosageDetail selectReportOne(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException;
+
+	//투약의뢰서 삭제
+	int updateStatus(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException;
+
 }

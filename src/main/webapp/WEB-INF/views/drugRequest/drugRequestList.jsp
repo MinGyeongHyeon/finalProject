@@ -41,12 +41,12 @@
 .card {
 	width:400px;
 	height:450px;
-	background:white;
+	background:#fcfcea !important;
 	float: left;
 	margin-left:25px;
 }
 .card:hover {
-	background:#fafafa;
+	background:#fafafa !important;
 	cursor:pointer;
 }
 #profileImg {
@@ -92,6 +92,9 @@
 
 #empty {
 	margin-left:30%;
+}
+.card.read{
+	background:white !important;
 }
 </style>
 
@@ -174,6 +177,7 @@ $(function(){
 								</div>
 								<br>
 								<p id="className"><c:out value="${ l.className }"/></p>
+								<input type="hidden" value="${ l.reading }" id="reading">
 							</div>
 							</c:forEach>
 
@@ -233,8 +237,18 @@ $(function(){
 		function goDrugRequestWrite(){
 			location.href="drugRequestWrite.pl";
 		}
+ 		function getUrlParams() {
+    		var params = {};
+   			window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+    		return params;
+		}
 
     	$(function(){
+    		oParams = getUrlParams();
+
+			if(oParams.check == 'Y'){
+				alert("삭제되었습니다.");
+			}
 
     		$('.input-group.date').datepicker({
     			calendarWeeks: false,
@@ -250,7 +264,9 @@ $(function(){
     			location.href="dosageDetail.ds?dosageNo=" + dosageNo;
     		});
 
-
+     		if($("#reading").val() == 'Y'){
+    			$(this).parents().addClass("class", "read");
+    		}
 
 
     	});

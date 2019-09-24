@@ -38,6 +38,11 @@ public interface DosageService {
 	//투약 보고서 작성되면 상태 업데이트 - 뷰 전환
 	int updateCheck(Dosage dosage) throws DosageException;
 
+	//투약의뢰서 삭제
+	int updateStatus(int dosageNo) throws DosageException;
+
+
+
 
 
 }

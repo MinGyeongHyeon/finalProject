@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,27 @@
 	float: right;
 	transition: all .3s;
 }
+
+#writeBtn {
+	margin-right: 10px;
+	width: 12%;
+	margin-left: auto;
+	font-size: 15px;
+	float: right;
+	display: inline;
+}
+
+#sel1 {
+	width: 15%;
+	height: 40px;
+	display: inline;
+}
+
+#sel2 {
+	width: 15%;
+	height: 40px;
+	display: inline;
+}
 </style>
 
 </head>
@@ -29,7 +50,53 @@
 					<h4 class="page-title">일지관리</h4>
 				</div>
 				<hr>
-				<div class="page-category">Starter Description</div>
+				<div class="page-category">
+					<div class="inputArea">
+						<select class="form-control" id="sel1">
+							<option>종류</option>
+							<option>일지</option>
+							<option>주간일지</option>
+						</select> &nbsp;&nbsp;&nbsp; <select class="form-control" id="sel2">
+							<option>전체반</option>
+							<option>햇님반</option>
+							<option>별님반</option>
+						</select>
+						<!--
+						<button type="button" class="btn btn-light" id="writeBtn">
+							<i class="fas fa-pen"></i>&nbsp; 작성하기
+						</button>
+						 -->
+						<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="writeBtn">
+						작성하기</button>
+    						<div class="dropdown-menu">
+      							<a class="dropdown-item" href="writeDailyLog.pl">일지 작성하기</a>
+      							<a class="dropdown-item" href="#">주간일지 작성하기</a>
+    						</div>
+
+					</div>
+
+					<br> <br>
+					<div id="tableA">
+						<table class="table table-hover" id="table1">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>종류</th>
+									<th>글 제목</th>
+									<th>작성 날짜</th>
+									<th>작성자</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+
+
 			</div>
 		</div>
 	</div>
