@@ -62,7 +62,7 @@ th, td {
 	height: 80px;
 	float: right;
 	display: inline;
-	margin-right: 4%;
+	margin-right: 5%;
 }
 
 #report {
@@ -110,12 +110,12 @@ th, td {
 }
 
 #area3 {
-	margin-left: 870px;
+	margin-left: 560px;
 	display: inline;
 }
 
 #area4 {
-	margin-left: 995px;
+	margin-left: 665px;
 }
 #signImg {
 	width:80px;
