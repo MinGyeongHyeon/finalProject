@@ -421,7 +421,7 @@ img {
 					<h2>${className}원아</h2>
 					<div class="realS">
 								<img src="${contextPath}/resources/images/dog.jpg" alt="" />
-								<p><input type="checkbox" name="check" class="checkcheck"  value='0'/>&nbsp;전체&nbsp;
+								<p><input type="checkbox" name="check" class="checkcheck"  value='999'/>&nbsp;전체&nbsp;
 								<input type="hidden" name="check" class="checkcheck" value="0"/>&nbsp;</p>
 						<c:forEach var="l" items="${list}">
 							<div class="selectC" style="display: inline;">
