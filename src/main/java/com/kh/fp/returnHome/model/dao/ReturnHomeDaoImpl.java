@@ -130,5 +130,12 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 		return result;
 	}
 
+	@Override
+	public int updateReading(SqlSessionTemplate sqlSession, int homeNo) {
+		int result = sqlSession.update("ReturnHome.updateReading", homeNo);
+		
+		return result;
+	}
+
 	
 }

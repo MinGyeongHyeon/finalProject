@@ -177,6 +177,7 @@
 								<td><c:out value="${ rhList.parentsName }"/></td>
 							</tr>
 						</table>
+						<input type="text" value="${ rhList.reading }" name="reading" hidden/>
 						<button onclick="submit" hidden></button>
 					</form>
 				</div>
@@ -228,7 +229,9 @@
 	$(document).ready(function(){
 		$(".returnHomeSummary").on("click", function(){
 			var selectform = this.children[0];
-			var selectBtn = selectform.children[2];
+			var reading = selectform.children[2].value;
+			var selectBtn = selectform.children[3];
+			console.log("reading : " + reading);
 			console.log(selectBtn);
 			selectBtn.click();
 		});
