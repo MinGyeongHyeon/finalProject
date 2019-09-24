@@ -35,4 +35,6 @@ public interface ReturnHomeDao {
 
 	ArrayList<ReturnHome> selectMasterReturnHomeList(SqlSessionTemplate sqlSession, KinderClass kc, PageInfo pi);
 
+	int updateReading(SqlSessionTemplate sqlSession, int homeNo);
+
 }

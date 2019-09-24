@@ -170,6 +170,8 @@
 		AND KINDER_NO = #{kinderNo}	
 	</select>
 	
-	
+	<update id="updateReading" parameterType="_int">
+		UPDATE RETURN_HOME SET READING = 'Y', RE_DATE = SYSDATE WHERE HOME_NO = #{homeNo};
+	</update>
 </mapper>
 

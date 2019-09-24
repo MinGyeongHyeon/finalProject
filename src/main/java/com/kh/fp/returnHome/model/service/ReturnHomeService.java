@@ -33,5 +33,7 @@ public interface ReturnHomeService {
 
 	ArrayList<ReturnHome> selectMasterReturnHomeList(KinderClass kc, PageInfo pi);
 
+	int updateReading(int homeNo);
+
 
 }

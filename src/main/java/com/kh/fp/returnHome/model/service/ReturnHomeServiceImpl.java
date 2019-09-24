@@ -95,6 +95,12 @@ public class ReturnHomeServiceImpl implements ReturnHomeService{
 		return rhList;
 	}
 
+	@Override
+	public int updateReading(int homeNo) {
+		int result = rhd.updateReading(sqlSession, homeNo);
+		return result;
+	}
+
 
 	
 }
