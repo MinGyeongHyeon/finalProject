@@ -12,7 +12,186 @@
 <!-- 싸인 패드 -->
 <script src="${ contextPath }/resources/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="${ contextPath }/resources/js/signature_pad.min.js" type="text/javascript"></script>
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestWriteCss.css">
+<%-- <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugRequestWriteCss.css"> --%>
+
+<style>
+.m-signature-pad {
+	font-size: 10px;
+	width: 200px;
+	height: 200px;
+	background-color: #fff;
+	border: 1px solid #bababa;
+}
+
+.m-signature-pad--body canvas {
+	width: 200px;
+	height: 200px;
+}
+
+@media screen and (max-height: 320px) {
+	.m-signature-pad--body {
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 32px;
+	}
+}
+
+.m-signature-pad--footer {
+	float: right;
+	margin-right: 3%;
+}
+
+.main-panel {
+	position: relative;
+	width: calc(100% - 240px);
+	height: 100vh;
+	min-height: 100%;
+	float: right;
+	transition: all .3s;
+}
+
+#profileImg {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+}
+
+#contentsArea {
+	height: 1000px;
+	background: white;
+}
+
+#table1 {
+	font-size: 16px;
+	width: 96%;
+}
+
+#btn1, #btn2 {
+	width: 100%;
+	border-radius: 0px;
+	border: 0.5px solid #c7c7c7;
+}
+
+#profileArea, #area1, #area2, #area4 {
+	margin-left: 30px;
+}
+
+#addBtn {
+	float: right;
+	margin-right: 4%;
+}
+
+#table2 {
+	width: 96%;
+	height: 370px;
+	border: 0.5px solid #d4d4d4;
+	margin-top: 20px;
+	font-size:16px;
+}
+
+#table2 th {
+	padding-left: 20px;
+	width: 20%;
+}
+
+#table2 td {
+	width: 30%;
+}
+
+#input1, #input2, #input3, #input4 {
+	width: 98%;
+}
+
+#sel1 {
+	width: 30%
+}
+
+input[type=radio] {
+	display: none;
+	margin: 10px;
+}
+
+input[type=radio]+label {
+	display: inline-block;
+	margin: -2px;
+	padding: 4px 12px;
+	background-color: white;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	border: 0.5px solid #ebebeb;
+}
+
+input[type=radio]:checked+label {
+	background-image: none;
+	background-color: #ff9191;
+	color: white;
+}
+
+#area3 {
+	margin-left: 450px;
+    font-size: 15px;
+	display: inline;
+}
+
+#area4 {
+	margin-left: 568px;
+	font-size: 16px;
+	margin-top:10px;
+}
+
+#signArea {
+	width: 200px;
+	height: 200px;
+	float: right;
+	display: inline;
+	margin-right: 4%;
+}
+
+
+.btns {
+	width: 200px;
+	height: 50px;
+	color: white;
+}
+
+#sendBtn {
+	background: #ff737a;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#resetBtn {
+	background: #919191;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#check {
+	height: 225px;
+}
+
+#clearBtn {
+	background: #ffffff;
+	font-size:15px;
+}
+
+#clearBtn:hover {
+	text-decoration: underline;
+}
+
+#saveBtn1 {
+	background: white;
+	padding: 3px 10px;
+}
+
+#saveBtn1:hover {
+	text-decoration: underline;
+}
+</style>
+
+
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
@@ -32,6 +211,7 @@
 						<i class="fas fa-notes-medical" style="font-size: 20px;"></i>&nbsp;&nbsp;
 						<h4 class="page-title">투약의뢰서 작성</h4>
 					</div>
+					<hr>
 					<div class="page-category">
 						<div id="contentsArea">
 							<br>
@@ -76,7 +256,7 @@
 								<div id="appendArea">
 								<table id="table2">
 									<tr>
-										<th>약의 종류</th>
+										<th style="width: 15%;">약의 종류</th>
 										<td colspan="2">
 											<input type="text" id="input1" class="form-control" placeholder="예) 물약, 가루약" name="kinds">
 										</td>
@@ -182,7 +362,7 @@
 
 	<script>
 		function goDrugMainView() {
-			location.href = "drugMainView.pl";
+			location.href = "dosageList.ds";
 		}
 
 		/* 싸인패드 */

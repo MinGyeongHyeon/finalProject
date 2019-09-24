@@ -23,6 +23,9 @@
 	font-size: 15px;
 	float: right;
 	display: inline;
+	background:#555 !important;
+	color:white;
+	height:40px;
 }
 
 #sel1 {

@@ -23,47 +23,50 @@
 }
 #sel1 {
 	width:15%;
-	height:50px;
+	height:40px;
 	display:inline;
 }
 #sel2 {
-	width:20%;
-	height:50px;
+	width:15%;
+	height:40px;
 	display:inline;
 }
 #datepicker {
 	float:right;
-	width:15%;
+	width:13%;
 	margin-right:10px;
-	height:50px;
+	height:40px;
 	font-size:15px;
+	background: #555;
+	color:white;
 }
 .card {
-	width:400px;
-	height:450px;
+	width:290px;
+	height:340px;
 	background:#fcfcea !important;
 	float: left;
-	margin-left:25px;
+	margin-left:23px;
 }
 .card:hover {
 	background:#fafafa !important;
 	cursor:pointer;
 }
 #profileImg {
-	width:80px;
-	height:80px;
+	width:60px;
+	height:60px;
 	border-radius:50%;
 }
 #profileArea {
 	 float:right;
 	 margin-left:50%;
 	 font-size:25px;
-	 width:80%;
+	 width:50%;
 }
 #contentArea {
 	margin-left:8%;
 	line-height:230%;
-	font-size:24px;
+	font-size:20px;
+	padding-top:6px;
 }
 #className {
 	margin-left:8%;
@@ -75,8 +78,8 @@
 }
 #writeBtn {
 	margin-right:10px;
-	width:15%;
-	height:50px;
+	width:13%;
+	height:40px;
 	margin-left: auto;
 	color:white;
 	background:#ff7575;
@@ -91,7 +94,7 @@
 }
 
 #empty {
-	margin-left:30%;
+	margin-left:40%;
 }
 .card.read{
 	background:white !important;
@@ -142,15 +145,15 @@ $(function(){
       						</select>
       						</c:if>
       						<div id="dateA">
-							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">
+							<input type="button" class="btn" id="datepicker" value="날짜 선택">
 							</div>
 						</div>
 						<br><br><br><br>
 						<div id="listArea">
 							<c:if test="${ empty detailList }">
 								<div id="empty">
-									<br><br><br><br><br><br><br><br>
-									<h1 style="font-size:35px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
+									<br><br><br><br><br><br>
+									<h1 style="font-size:20px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
 								</div>
 							</c:if>
 							<c:forEach var="l" items="${ detailList }">
@@ -168,7 +171,6 @@ $(function(){
 									</c:when>
 								</c:choose>
 								</div>
-								<br>
 								<div id="contentArea">
 									<p class="dateT"><b><c:out value="${ l.dosageDate }"/></b></p>
 									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span><b>증상</b></span>&nbsp;&nbsp;<span><c:out value="${ l.symptom }"/></span><br>

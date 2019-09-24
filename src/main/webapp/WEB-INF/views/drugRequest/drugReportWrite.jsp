@@ -7,13 +7,134 @@
 <head>
 <meta charset="UTF-8">
 <title>투약보고서</title>
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugReportWriteCss.css">
+<%-- <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugReportWriteCss.css"> --%>
 
 <style>
 #signImg {
 	width:70px;
 	height:70px;
 }
+.main-panel {
+	position: relative;
+	width: calc(100% - 240px);
+	height: 100vh;
+	min-height: 100%;
+	float: right;
+	transition: all .3s;
+}
+
+#titleArea {
+	background: #f5f5f5;
+	height: 55px;
+}
+
+#title {
+	padding: 15px;
+}
+
+#profileArea {
+	margin-left: 20px;
+}
+
+#contentsArea {
+	height: 700px;
+	background: white;
+}
+
+#profileImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+#symptomArea, #dosageArea {
+	line-height: 230%;
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+#tableArea {
+	border: 0.5px solid #d6d6d6;
+	width: 96%;
+	height: 300px;
+}
+
+tr {
+	border: 0.5px solid #d6d6d6;
+}
+
+th, td {
+	padding-left: 20px;
+}
+
+#msgArea {
+	float: right;
+	margin-right: 10%;
+	display: inline;
+}
+
+#signArea {
+	width: 70px;
+	height: 70px;
+	border: solid 1px black;
+	float: right;
+	display: inline;
+	margin-right: 4%;
+}
+
+#a1 {
+	height: 60px;
+	background: #e6edfa;
+	color: #2196f3;
+	font-size: 20px;
+	line-height: 20px;
+	padding: 19px;
+	font-weight: bold;
+}
+
+#reportArea {
+	height: 350px;
+	background: #edf5ff;
+}
+
+#reportArea p, #reportArea textarea {
+	margin-left: 20px;
+}
+
+#bogoContent {
+	width: 96%;
+	resize: none;
+}
+
+.btns {
+	width: 200px;
+	height: 50px;
+	color: white;
+}
+
+#btn1 {
+	background: #8f8f8f;
+	font-weight: bold;
+	border: 0.5px solid #7d7d7d;
+}
+
+#btn2 {
+	background: #ff7575;
+	font-weight: bold;
+}
+
+#area3 {
+	margin-left: 50%;
+    font-size: 1.5em;
+	display: inline;
+}
+
+#area4 {
+	margin-left: 65%;
+	font-size: 1.5em;
+}
+
+
 </style>
 
 </head>
