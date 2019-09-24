@@ -158,14 +158,16 @@ public class AlbumDaoImpl implements AlbumDao{
 	@Override
 	public int selectSome(SqlSessionTemplate sqlSession, String input, int userNo) {
 
-		Album a = null;
+		Album a = new Album();
+		System.out.println(userNo+"다오");
 		//아이 번호
 		a.setAlblumNo(userNo);
 		//검색
 		a.setAlbumContent(input);
-		
-		int Some = sqlSession.selectOne("Album.selectSome",input);
-		
+		System.out.println(a);
+		System.out.println("앨범넘바"+	a.getAlblumNo());
+		System.out.println("앨범내용"+a.getAlbumContent());
+		int Some = sqlSession.selectOne("Album.selectSome",a);
 		return Some;
 	}
 
