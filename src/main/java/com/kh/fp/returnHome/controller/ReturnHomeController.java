@@ -122,11 +122,10 @@ public class ReturnHomeController {
 	public String selectReturnHomeDetail(@SessionAttribute("loginUser") Member loginUser, @RequestParam(value="homeNo") int homeNo, Model m) {
 		ArrayList<ReturnHome> rhList = rhs.selectReturnHomeDetail(homeNo);
 		int result = 0;
-		System.out.println("123123123");
 		if(rhList.get(0).getReading().equals("N") && loginUser.getClassification().equals("선생님")) {
 			result = rhs.updateReading(homeNo);
-			
 		}
+		
 		System.out.println("리스트 출력" + rhList);
 		m.addAttribute("rhList", rhList.get(0));
 		return "returnHome/returnHomeDetail";

@@ -174,10 +174,11 @@
 								<td><c:out value="${ rhList.homeTime }"/></td>
 							</tr><tr>	
 								<td><img src="${ contextPath }/resources/images/family.png" alt="" />보호자</td>
-								<td><c:out value="${ rhList.parentsName }"/></td>
+								<td><c:out value="${ rhList.parentsName }"/>
+								</td>
 							</tr>
 						</table>
-						<input type="text" value="${ rhList.reading }" name="reading" hidden/>
+						<input type="text" value="${ rhList.reading }" name="reading" />
 						<button onclick="submit" hidden></button>
 					</form>
 				</div>
@@ -226,7 +227,7 @@
 	</div>
 	
 	<script>
-	$(document).ready(function(){
+	$(function(){
 		$(".returnHomeSummary").on("click", function(){
 			var selectform = this.children[0];
 			var reading = selectform.children[2].value;
@@ -235,7 +236,14 @@
 			console.log(selectBtn);
 			selectBtn.click();
 		});
+		
+		var readingYN = $(".returnHomeSummary input[name=reading][value=Y]");
+		console.log("가나다" + readingYN);
+		readingYN.parent().css('background':'#f0de99');
 	});
+		
+		
+		
 	
 	
 	</script>
