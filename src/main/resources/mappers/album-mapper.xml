@@ -114,6 +114,7 @@
 	  SELECT CHILDREN_NO
 	  FROM CHILDREN
       WHERE CHILDREN_NAME = #{albumContent}
+
 	</select>
 	
 	<select id="selectSearchDetail" resultMap="albumResultSet">

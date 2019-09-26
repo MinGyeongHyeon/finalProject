@@ -413,6 +413,36 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 
+	@Override
+	public int myinfochange(SqlSessionTemplate sqlSession, Member mb) {
+
+		return sqlSession.update("Member.myinfochange",mb);
+	}
+
+
+	@Override
+	public int myPageUserPwdcheck(SqlSessionTemplate sqlSession, Member mb) {
+
+		return sqlSession.selectOne("Member.myPageUserPwdcheck",mb);
+	}
+
+
+	@Override
+	public Member experience(SqlSessionTemplate sqlSession, String classification) {
+
+		return sqlSession.selectOne("Member.experience",classification);
+	}
+
+
+	@Override
+	public ArrayList selectNolist(SqlSessionTemplate sqlSession, KinderGarden kga) {
+
+		
+		
+		return (ArrayList) sqlSession.selectList("Member.selectNolist",kga);
+	}
+
+
 
 
 

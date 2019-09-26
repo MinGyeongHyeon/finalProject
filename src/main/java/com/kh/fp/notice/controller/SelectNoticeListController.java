@@ -45,11 +45,11 @@ public class SelectNoticeListController {
 		
 		int selectNum;
 		
-		if(role.equals("선생님")) {
+		if(role.equals("선생님") || role.equals("체험판선생님")) {
 				
 			 selectWho = ns.selectWho(userNo);
 		
-		}else if(role.equals("학부모")){
+		}else if(role.equals("학부모") || role.equals("체험판학부모")){
 
 			selectNum = ns.selectChildrenNum(userNo);
 			
@@ -59,6 +59,8 @@ public class SelectNoticeListController {
 			
 			selectWho = ns.selectWhoMaster(userNo);
 		}
+		
+		System.out.println("selectWho" + selectWho);
 		
 		NoticeWho baby = (NoticeWho)selectWho.get(0);
 		System.out.println(baby);

@@ -35,7 +35,7 @@ font-family: 'Sunflower', sans-serif;
 	<jsp:include page="../common/menubar.jsp"/>
 	
 	
-	<c:if test="${ loginUser.classification eq '선생님'}">
+	<c:if test="${ loginUser.classification eq '선생님' or loginUser.classification eq '체험판선생님'}">
 	
 	<div class="main-panel">
 			<table style="margin:0 suto; width:100%;">
@@ -87,6 +87,7 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
+							<c:forEach var="i" items="${ list }">
 								<div class="notice">
 									<table>
 										<tr>
@@ -102,36 +103,8 @@ font-family: 'Sunflower', sans-serif;
 										</tr>
 									</table>
 								</div>
-								<div class="notice" style="margin-left: 3%; margin-right: 3%;">
-									<table>
-										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
-										</tr><tr>
-											<td> 3rd 공지사항</td>
-										</tr><tr>
-											<td>공지사항 내용입니다.</td>
-										</tr><tr>
-											<td> </td>
-										</tr><tr>	
-											<td>2019.08.16</td>
-										</tr>
-									</table>
-								</div>
-								<div class="notice">
-									<table>
-										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
-										</tr><tr>
-											<td> 3rd 공지사항</td>
-										</tr><tr>
-											<td>공지사항 내용입니다.</td>
-										</tr><tr>
-											<td> </td>
-										</tr><tr>	
-											<td>2019.08.16</td>
-										</tr>
-									</table>
-								</div>
+								</c:forEach>
+							
 							</div>
 						</div>
 					</td>
@@ -151,7 +124,7 @@ font-family: 'Sunflower', sans-serif;
 
 </c:if>
 
-<c:if test="${ loginUser.classification eq '원장님'}">
+<c:if test="${ loginUser.classification eq '원장님' or loginUser.classification eq '체험판원장님'}">
 
 
 	
@@ -294,6 +267,103 @@ font-family: 'Sunflower', sans-serif;
 
 
 </c:if>
+
+<c:if test="${ loginUser.classification eq '학부모' or loginUser.classification eq '체험판학부모'}">
+	
+	<div class="main-panel">
+			<table style="margin:0 suto; width:100%;">
+				<tr class="firstTr">
+				
+					<td colspan="3">
+					
+					</td>
+				</tr>
+				<tr>
+					<!-- 최근 공지사항 -->
+					<td colspan="6" style="text-align: center;">
+						<div style="margin:0 auto; width:100%;">
+						<br />
+							<table style="width:100%;">
+								<tr>
+									<td style="font-weight: bold;">최근 공지사항</td>
+									<td style="text-align:right;">
+										<label for="" >더보기 ></label>
+									</td>
+								</tr>
+							</table>
+							<br />
+							<div class="noticeArea"> 
+								<div class="notice">
+									<table>
+										<tr>
+											<td>꽈뚜룹 선생님<p></p></td>
+										</tr><tr>
+											<td style=""> 3rd 공지사항</td>
+										</tr><tr>
+											<td>공지사항 내용입니다.</td>
+										</tr><tr>
+											<td> </td>
+										</tr><tr>	
+											<td>2019.08.16</td>
+										</tr>
+									</table>
+								</div>
+								<div class="notice" style="margin-left: 3%; margin-right: 3%;">
+									<table>
+										<tr>
+											<td>꽈뚜룹 선생님<p></p></td>
+										</tr><tr>
+											<td> 3rd 공지사항</td>
+										</tr><tr>
+											<td>공지사항 내용입니다.</td>
+										</tr><tr>
+											<td> </td>
+										</tr><tr>	
+											<td>2019.08.16</td>
+										</tr>
+									</table>
+								</div>
+								<div class="notice">
+									<table>
+										<tr>
+											<td>꽈뚜룹 선생님<p></p></td>
+										</tr><tr>
+											<td> 3rd 공지사항</td>
+										</tr><tr>
+											<td>공지사항 내용입니다.</td>
+										</tr><tr>
+											<td> </td>
+										</tr><tr>	
+											<td>2019.08.16</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				
+			</table>
+		</div>
+
+
+</c:if>
+
+
+
+<script>
+$(function(){
+	
+	if('${msg}' != ""){
+		
+		alert("${msg}");
+		
+	}
+	
+	
+})
+
+</script>
 
 	
 	<jsp:include page="../common/footer.jsp"/>

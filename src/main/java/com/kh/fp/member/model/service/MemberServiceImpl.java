@@ -350,6 +350,30 @@ public class MemberServiceImpl implements MemberService{
 		return md.myimgchange(sqlSession,at);
 	}
 
+	@Override
+	public int myinfochange(Member mb) {
+		
+		return md.myinfochange(sqlSession,mb);
+	}
+
+	@Override
+	public int myPageUserPwdcheck(Member mb) {
+
+		return md.myPageUserPwdcheck(sqlSession,mb);
+	}
+
+	@Override
+	public Member experience(String classification) {
+
+		return md.experience(sqlSession,classification);
+	}
+
+	@Override
+	public ArrayList selectNolist(KinderGarden kga) {
+
+		return md.selectNolist(sqlSession,kga);
+	}
+
 
 
 	

@@ -105,6 +105,14 @@ public interface MemberService {
 
 	int myimgchange(Attachment at);
 
+	int myinfochange(Member mb);
+
+	int myPageUserPwdcheck(Member mb);
+
+	Member experience(String classification);
+
+	ArrayList selectNolist(KinderGarden kga);
+
 
 
 }

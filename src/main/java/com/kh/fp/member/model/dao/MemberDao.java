@@ -111,6 +111,14 @@ public interface MemberDao {
 
 	int myimgchange(SqlSessionTemplate sqlSession, Attachment at);
 
+	int myinfochange(SqlSessionTemplate sqlSession, Member mb);
+
+	int myPageUserPwdcheck(SqlSessionTemplate sqlSession, Member mb);
+
+	Member experience(SqlSessionTemplate sqlSession, String classification);
+
+	ArrayList selectNolist(SqlSessionTemplate sqlSession, KinderGarden kga);
+
 	
 
 

@@ -91,7 +91,7 @@ margin-left: %;
 <button onclick="plus()" class="btn btn-default" type="button">반 추가</button>
 <hr>
 <div id="btnArea">
-<button class="btn btn-default">저장</button>
+<button class="btn btn-default classAdd" type="button">저장</button>
 </div>
 </form>
 <br /><br /><br />
@@ -199,7 +199,14 @@ if(/[^0123456789]/g.test($(this).val() )) {
 
 });
 
+
 $('.del').click(function(){
+	
+	var classification = '${loginUser.classification}'
+	
+	console.log(classification);
+	
+if(classification != '체험판원장님'){
 	
 	var kinderNo = $(this).parent().next().children().val();
 	var className = $(this).parent().next().next().children().val();
@@ -238,17 +245,56 @@ $('.del').click(function(){
 		
 	}
 	
+}else{
+	
+	alert("체험판 입니다. 삭제가 불가능합니다.");
+	
+}
+	
 	
 });
+	
+
 
 	$('.sujang').click(function(){
 		
+		var classification = '${loginUser.classification}'
+		
+		if(classification == '원장님' || classification == '선생님'){
+			
 		var kinderNo = $(this).parent().next().next().children().val();
 		var className = $(this).parent().next().next().next().children().val();
 		
 		window.open("classchange.kl?kinderNo="+kinderNo + "&className="+className,"PopupWin","width=600,height=600","resizable=no");
 		
+		}else{
+			
+			alert("체험판입니다. 수정이 불가능합니다.");
+			
+		}
 		
+		
+		
+		
+	});
+	
+	$('.classAdd').click(function(){
+		
+		var classification = '${loginUser.classification}'
+		
+		if(classification == '원장님'){
+			
+			$(this).attr('type','submit');
+			
+		}else if(classification == '선생님'){
+			
+			alert("원장님 만 반을 추가할수있습니다.");
+			
+		}else{
+			
+			alert("체험판 입니다. 추가 할수없습니다.");
+			
+		}
 		
 	});
 
