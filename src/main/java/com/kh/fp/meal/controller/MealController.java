@@ -3,6 +3,7 @@ package com.kh.fp.meal.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,11 +35,20 @@ public class MealController {
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);
+		SimpleDateFormat date1 = new SimpleDateFormat("yy/MM/dd");
+		String dayday = date1.format(today);
 		mv.addAttribute("day",day);
 		int meal = ms.dailymealCount();
 		if(meal==0) {
 			return "meal/meal2";
 		}else {
+			try {
+				System.out.println(dayday);
+				ArrayList<Attachment> hmap = ms.selectPic(dayday);
+				mv.addAttribute("ham",hmap);
+			} catch (MealException e) {
+				e.printStackTrace();
+			}
 			return "meal/meal";
 			
 		}
@@ -108,6 +118,6 @@ public class MealController {
 			
 		}
 		
-		return "meal/meal";
+		return "redirect:mealMain.ml";
 	}
 }

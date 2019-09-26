@@ -20,6 +20,8 @@ public class Attachment {
 	private int childrenNo;
 	private int userNo;
 	private String albumchildrenNo;
+	private String mealContetn;
+	private String mealType;
 	
 	public Attachment() {}
 
@@ -43,6 +45,47 @@ public class Attachment {
 		this.childrenNo = childrenNo;
 		this.userNo = userNo;
 		this.albumchildrenNo = albumchildrenNo;
+	}
+
+	public Attachment(int fileId, String origineName, String changeName, String filePath, Date updateDate,
+			String attachType, String fileLevel, int boardNo, int albumNo, int ntboardNo, int mealNo, int dosageNo,
+			int homeNo, int childrenNo, int userNo, String albumchildrenNo, String mealContetn, String mealType) {
+		super();
+		this.fileId = fileId;
+		this.origineName = origineName;
+		this.changeName = changeName;
+		this.filePath = filePath;
+		this.updateDate = updateDate;
+		this.attachType = attachType;
+		this.fileLevel = fileLevel;
+		this.boardNo = boardNo;
+		this.albumNo = albumNo;
+		this.ntboardNo = ntboardNo;
+		this.mealNo = mealNo;
+		this.dosageNo = dosageNo;
+		this.homeNo = homeNo;
+		this.childrenNo = childrenNo;
+		this.userNo = userNo;
+		this.albumchildrenNo = albumchildrenNo;
+		this.mealContetn = mealContetn;
+		this.mealType = mealType;
+	}
+
+	
+	public String getMealContetn() {
+		return mealContetn;
+	}
+
+	public void setMealContetn(String mealContetn) {
+		this.mealContetn = mealContetn;
+	}
+
+	public String getMealType() {
+		return mealType;
+	}
+
+	public void setMealType(String mealType) {
+		this.mealType = mealType;
 	}
 
 	public int getFileId() {

@@ -1,5 +1,7 @@
 package com.kh.fp.meal.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,13 @@ public class MealServiceImpl implements MealService{
 		at.setMealNo(mealNo);
 		int insertAt = md.insertAtt(sqlSession,at);
 		return insertAt;
+	}
+
+	@Override
+	public ArrayList<Attachment> selectPic(String day) throws MealException {
+		ArrayList<Attachment> piclist = null;
+		piclist = md.selectPic(sqlSession,day);
+		return piclist;
 	}
 
 	
