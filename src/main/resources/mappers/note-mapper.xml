@@ -59,6 +59,17 @@
 		</association>
 	</resultMap>
 
+	<resultMap type="NoteBox" id="NoteBox">
+		<id property="noteNo" column="NOTE_NO" />
+		<result property="noteTitle" column="NOTE_TITLE" />
+		<result property="noteContent" column="NOTE_CONTENT" />
+		<result property="noteDate" column="NOTE_DATE" />
+		<result property="receiveNo" column="RECEIVE_NO" />
+		<result property="sendNo" column="SEND_NO" />
+		<result property="status" column="STATUS" />
+		<result property="checked" column="CHECKED" />
+	</resultMap>
+
 <!-- ****************************************************************************** -->
 
 
@@ -70,10 +81,9 @@
 	</select>
 
 		<!-- 쪽지보내기 -->
-	<insert id="insertNote" parameterType="Note">
+	<insert id="insertNote" parameterType="NoteBox">
 		INSERT INTO NOTEBOX
-		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{kinderNo}, #{userNo},
-		DEFAULT, DEFAULT)
+		VALUES(SEQ_NOTE_NO.NEXTVAL, #{noteTitle}, #{noteContent}, SYSDATE, #{receiveNo}, #{sendNo}, DEFAULT, DEFAULT)
 	</insert>
 
 <!-- ****************************************************************************** -->

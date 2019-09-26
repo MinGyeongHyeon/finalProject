@@ -61,6 +61,9 @@
 body{
 font-family: 'Sunflower', sans-serif;
 }
+#note:hover {
+	cursor: pointer;
+}
 </style>
 
 </head>
@@ -72,7 +75,7 @@ font-family: 'Sunflower', sans-serif;
 			<div class="logo-header">
 
 				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
-				
+
 
 				</a><div>
 
@@ -92,20 +95,20 @@ font-family: 'Sunflower', sans-serif;
 					</button>
 				</div>
 			</div>
-		
-	
+
+
 			<nav class="navbar navbar-header navbar-expand-lg">
-			
+
 			<c:if test="${ loginUser.classification eq '원장님' }">
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
 					<i class="fas fa-cog"></i>
 					원 설정
 					</button>
-					
+
 		   </form>
 			</c:if>
-			
+
 		    <c:if test="${ loginUser.classification eq '선생님' }">
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
@@ -114,13 +117,13 @@ font-family: 'Sunflower', sans-serif;
 					</button>
 			</form>
 			</c:if>
-			
+
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
 
 						<c:if test="${ loginUser.classification eq '원장님' }">
-				
+
 
 							<li class="nav-item dropdown hidden-caret"><a
 								class="nav-link dropdown-toggle" href="#" id="messageDropdown"
@@ -392,8 +395,7 @@ font-family: 'Sunflower', sans-serif;
 								<p>승하차</p>
 						</li>
 
-						<li class="nav-item"><a href="businessLogMain.pl"> <i
-								class="far fa-clipboard"></i>
+						<li class="nav-item"><a href="journalMain.jn"> <i class="far fa-clipboard"></i>
 								<p>일지관리</p>
 						</a></li>
 
@@ -415,9 +417,7 @@ font-family: 'Sunflower', sans-serif;
 										<li><a href="sentNoteList.nt"> <span class="sub-item">보낸
 													쪽지함</span>
 										</a></li>
-										<li><a href="userList.nt"> <span class="sub-item">쪽지
-													보내기</span>
-										</a></li>
+										<li><a href="userList.nt"> <span class="sub-item">쪽지 보내기</span></a></li>
 									</ul>
 								</div></li>
 
@@ -433,6 +433,8 @@ font-family: 'Sunflower', sans-serif;
 			</div>
 		</div>
 	</c:if>
+
+
 	<!-- End Sidebar -->
 	<!--
 		<div class="main-panel">

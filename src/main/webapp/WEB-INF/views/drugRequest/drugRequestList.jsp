@@ -23,20 +23,22 @@
 }
 #sel1 {
 	width:15%;
-	height:40px;
+	height:50px;
 	display:inline;
+	font-size:18px;
 }
 #sel2 {
 	width:15%;
-	height:40px;
+	height:50px;
 	display:inline;
+	font-size:18px;
 }
 #datepicker {
 	float:right;
 	width:13%;
 	margin-right:10px;
-	height:40px;
-	font-size:15px;
+	height:50px;
+	font-size:18px;
 	background: #555;
 	color:white;
 }
@@ -47,7 +49,14 @@
 	float: left;
 	margin-left:23px;
 }
-.card:hover {
+.cardY {
+	width:290px;
+	height:340px;
+	background:white !important;
+	float: left;
+	margin-left:23px;
+}
+.card:hover, .cardY:hover {
 	background:#fafafa !important;
 	cursor:pointer;
 }
@@ -75,16 +84,16 @@
 #btn2 {
 	border: 0.5px solid #e4e1dd;
 	margin-left:50px;
+	height:50px;
 }
 #writeBtn {
 	margin-right:10px;
 	width:13%;
-	height:40px;
+	height:50px;
 	margin-left: auto;
 	color:white;
 	background:#ff7575;
-	font-weight:bold;
-	font-size:15px;
+	font-size:18px;
 }
 #dateA {
 	display:inline;
@@ -96,9 +105,7 @@
 #empty {
 	margin-left:40%;
 }
-.card.read{
-	background:white !important;
-}
+
 </style>
 
 <script>
@@ -157,6 +164,34 @@ $(function(){
 								</div>
 							</c:if>
 							<c:forEach var="l" items="${ detailList }">
+							<c:choose>
+							<c:when test="${ l.reading eq 'Y' }">
+								<div class=cardY>
+								<input type="hidden" name="dosageNo" id="dosageNo" value="${ l.dosageNo }">
+								<br>
+								<div id="profileArea">
+									<b><c:out value="${ l.childrenName }"/></b>&nbsp;
+								<c:choose>
+									<c:when test="${ empty at.changeName }">
+										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+									</c:when>
+									<c:when test="${ not empty at.changeName }">
+										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg" class="avatar-img rounded"></i>
+									</c:when>
+								</c:choose>
+								</div>
+								<div id="contentArea">
+									<p class="dateT"><b><c:out value="${ l.dosageDate }"/></b></p>
+									<i class="fas fa-briefcase-medical"></i>&nbsp;&nbsp;<span><b>증상</b></span>&nbsp;&nbsp;<span><c:out value="${ l.symptom }"/></span><br>
+									<i class="far fa-clock"></i>&nbsp;&nbsp;<span><b>투약 시간</b></span>&nbsp;&nbsp;<span><c:out value="${ l.dosageTime }"/></span><br>
+									<i class="fas fa-user"></i>&nbsp;&nbsp;<span><b>의뢰자</b></span>&nbsp;&nbsp;<span><c:out value="${ l.userName }"/></span><br>
+								</div>
+								<br>
+								<p id="className"><c:out value="${ l.className }"/></p>
+								<input type="hidden" value="${ l.reading }" id="reading">
+								</div>
+							</c:when>
+							<c:otherwise>
 							<div class=card>
 								<input type="hidden" name="dosageNo" id="dosageNo" value="${ l.dosageNo }">
 								<br>
@@ -181,6 +216,8 @@ $(function(){
 								<p id="className"><c:out value="${ l.className }"/></p>
 								<input type="hidden" value="${ l.reading }" id="reading">
 							</div>
+							</c:otherwise>
+							</c:choose>
 							</c:forEach>
 
 						</div>

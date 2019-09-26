@@ -58,15 +58,20 @@
 }
 
 #contentsArea {
-	height: 1000px;
+	height: 1100px;
 	background: white;
 }
 
 #table1 {
 	font-size: 16px;
 	width: 96%;
+	height:130px;
+	font-size:1.5em;
 }
-
+input {
+	height:50px;
+	font-size:20px;
+}
 #btn1, #btn2 {
 	width: 100%;
 	border-radius: 0px;
@@ -84,10 +89,10 @@
 
 #table2 {
 	width: 96%;
-	height: 370px;
+	height: 400px;
 	border: 0.5px solid #d4d4d4;
 	margin-top: 20px;
-	font-size:16px;
+	font-size:1.5em;
 }
 
 #table2 th {
@@ -104,7 +109,9 @@
 }
 
 #sel1 {
-	width: 30%
+	width: 30%;
+	height:50px;
+	font-size:15px;
 }
 
 input[type=radio] {
@@ -118,9 +125,10 @@ input[type=radio]+label {
 	padding: 4px 12px;
 	background-color: white;
 	width: 100%;
-	height: 40px;
+	height: 50px;
 	text-align: center;
 	border: 0.5px solid #ebebeb;
+	font-size:18px;
 }
 
 input[type=radio]:checked+label {
@@ -128,17 +136,19 @@ input[type=radio]:checked+label {
 	background-color: #ff9191;
 	color: white;
 }
-
+#area2 p {
+	font-size:20px;
+}
 #area3 {
-	margin-left: 450px;
-    font-size: 15px;
+	margin-left: 670px;
+    font-size: 20px;
 	display: inline;
 }
 
 #area4 {
-	margin-left: 568px;
-	font-size: 16px;
-	margin-top:10px;
+	margin-left: 835px;
+	font-size: 20px;
+	margin-top:15px;
 }
 
 #signArea {
@@ -159,13 +169,15 @@ input[type=radio]:checked+label {
 #sendBtn {
 	background: #ff737a;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 20px;
+	height:50px;
 }
 
 #resetBtn {
 	background: #919191;
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 20px;
+	height:50px;
 }
 
 #check {
@@ -188,6 +200,9 @@ input[type=radio]:checked+label {
 
 #saveBtn1:hover {
 	text-decoration: underline;
+}
+::placeholder {
+  font-size: 1.2em;
 }
 </style>
 
@@ -250,24 +265,19 @@ input[type=radio]:checked+label {
 							</div>
 							<hr width="98%">
 							<div id="area2">
-								<h3>
-									<b>투약 내용</b>
-								</h3>
+								<p><b>투약 내용</b></p>
 								<div id="appendArea">
 								<table id="table2">
 									<tr>
-										<th style="width: 15%;">약의 종류</th>
+										<th width="10%">약의 종류</th>
 										<td colspan="2">
 											<input type="text" id="input1" class="form-control" placeholder="예) 물약, 가루약" name="kinds">
 										</td>
 									</tr>
 									<tr>
 										<th>투약 용량</th>
-										<td style="padding-right: 15px;">
+										<td style="padding-right: 15px;" colspan="2">
 											<input type="text" class="form-control" placeholder="1회분 입력" name="dosageMl">
-										</td>
-										<td>
-											<input type="checkbox"> cc/ml
 										</td>
 									</tr>
 									<tr>
@@ -318,10 +328,10 @@ input[type=radio]:checked+label {
 							</div>
 							<hr width="98%">
 							<div id="check">
-								<div style="float: right; margin-right: 4%;">
+								<div style="float: right; margin-right: 4%; font-size:20px;">
 									<span><b>서명</b></span>
 								</div>
-								<br>
+								<br><br>
 								<div id="area3">
 									<span>금일 자녀의 투약을 선생님께 의뢰합니다.</span>
 								</div>
@@ -337,6 +347,7 @@ input[type=radio]:checked+label {
 									&nbsp;<span><c:out value="${ loginUser.userName }"/></span>
 								</div>
 							</div>
+							<br>
 							<div class="m-signature-pad--footer">
 								<button type="button" class="button clear btn btn-xs" data-action="clear" id="clearBtn">
 									<i class="fas fa-redo-alt"></i>&nbsp;다시쓰기

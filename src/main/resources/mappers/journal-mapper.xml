@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Journal">
+
+	<resultMap type="Journal" id="Journal">
+		<id property="journalNo" column="JOURNAL_NO"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="journalDate" column="JOURNAL_DATE"/>
+		<result property="topic" column="TOPIC"/>
+		<result property="topicMin" column="TOPIC_MIN"/>
+		<result property="time" column="TIME"/>
+		<result property="activity" column="ACTIVITY"/>
+		<result property="totalComment" column="TOTAL_COMMENT"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+
+	<!-- 일지 작성하기 -->
+	<insert id="insertJournal" parameterType="Journal">
+		INSERT INTO JOURNAL VALUES(SEQ_JOURNAL_NO.NEXTVAL, #{userNo}, SYSDATE, #{topic}, #{topicMin}, #{time}, #{activity}, #{totalComment}, #{remarks}, DEFAULT)
+	</insert>
+
+</mapper>

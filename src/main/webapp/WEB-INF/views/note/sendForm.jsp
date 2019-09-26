@@ -6,21 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>받은 쪽지</title>
+<title>쪽지보내기</title>
 <%-- <link rel="stylesheet" href="${ contextPath }/resources/css/note/sentNoteDetailCss.css"> --%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/1eba500ac5.js"></script>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <style>
 #table1 {
@@ -28,7 +24,7 @@
 	line-height: 160%;
 }
 
-#contents {
+#content {
 	background: white;
 	resize: none;
 	width: 380px;
@@ -80,51 +76,46 @@
 	background: none;
 	border: 1px solid #f0f0f0;
 }
+#title {
+	width:378px;
+}
 </style>
 
 </head>
 <body>
 	<form>
+		<input type="hidden" id="receiveNo" name="receiveNo" value="">
 		<div id="textArea">
 			<div id="logo">
 				<b>KIDSLAND</b>
 			</div>
 			<br>
 			<hr>
-			<div id="tableA1">
+<!-- 			<div id="tableA1">
 				<table id="table1">
 					<tr>
-						<th width="55%">받는 사람</th>
-						<td>${ n.users.userName }</td>
-					</tr>
-					<tr>
-						<th>보낸 날짜</th>
-						<td>${ n.noteDate }</td>
+						<th width="50%">받는 사람</th>
+						<td id="kinderN">ddd</td>
 					</tr>
 				</table>
 				<hr>
-			</div>
+			</div> -->
 			<div id="noteArea">
 				<div id="tableA2">
 					<table id="title2">
 						<tr>
-							<th width="42%">제목 :</th>
-							<td>${ n.noteTitle }</td>
+							<th width="11%">제목 :</th>
+							<td><input type="text" name="title" id="title" required></td>
 						</tr>
 					</table>
 				</div>
 				<br>
 				<div id="contentA">
-					<textarea rows="5" id="contents" disabled>${ n.noteContent }</textarea>
+					<textarea rows="5" id="content" name="content" placeholder="내용을 입력해주세요." required></textarea>
 				</div>
 				<hr>
-				<div id="pageBtns">
-					<button class="pageBtn" id="beforeBtn">< 이전</button>
-					<button class="pageBtn" id="nextBtn">다음 ></button>
-				</div>
-				<br>
 				<div id="btnA">
-					<button type="button" class="btn btn-light btns" id="deleteBtn">삭제</button>
+					<button type="submit" class="btn btn-light btns" id="sendBtn" onclick="send()">전송</button>
 				</div>
 				<input type="hidden" name="noteNo" id="noteNo" value="${ n.noteNo }">
 				<input type="hidden" name="userNo" id="userNo" value="${ loginUser.userNo }">
@@ -133,23 +124,38 @@
 	</form>
 
 	<script>
+	function getUrlParams() {
+    	var params = {};
+   		window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) { params[key] = value; });
+    	return params;
+	}
+
+		function send(){
+ 			oParams = getUrlParams();
+			var receiveNo = oParams.receiveNo;
+
+			var title = $("#title").val();
+			var content = $("#content").val();
+
+ 			$("#noteTitle",opener.document).val(title);
+			$("#noteContent",opener.document).val(content);
+			$("#receiveNo",opener.document).val(receiveNo);
+
+			opener.parent.insertNote();
+			self.close();
+
+		}
+
 		$(function() {
+			var kinderName = $("#kinderName", opener.document).val();
+			var kinUserName = $("#userName", opener.document).val();
+			console.log(kinderName);
 
-			$("#deleteBtn").click(function() {
-				var noteNo = $("#noteNo").val();
-				console.log(noteNo);
+			$("#kinderN").text(kinderName + "(" + kinUserName + ")");
 
- 				if (confirm("정말 삭제하시겠습니까?") == true) {
-					$("#noteNo", parent.opener.document).val(noteNo);
-					var url = "deleteSentNoteOne.nt?noteNo=" + noteNo;
-					opener.window.location = url;
-					close();
-
-				} else {
-					return;
-				}
-
-			});
+			if(kinderName == null){
+				$("#kinderN").text("관리자");
+			}
 
 		});
 	</script>
