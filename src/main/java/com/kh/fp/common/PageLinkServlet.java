@@ -71,6 +71,13 @@ public class PageLinkServlet {
 
 		return "account/join4";
 	}
+	@RequestMapping(value="experience.pl")
+	public String experience(Model model) {
+		
+		model.addAttribute("exp","체험판");
+		
+		return "account/join4";
+	}
 
 
 	@RequestMapping(value="writeSchedule.pl")
@@ -87,9 +94,10 @@ public class PageLinkServlet {
 	}
 
 	@RequestMapping(value="main.pl")
-	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model) {
+	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model ) {
 
-		if(loginUser.getClassification().equals("원장님")) {
+		
+		if(loginUser.getClassification().equals("원장님") || loginUser.getClassification().equals("체험판원장님")) {
 
 			int childrenCount = ms.childrenCount(loginUser);
 			int teacherCount = ms.teacherCount(loginUser);
@@ -101,7 +109,7 @@ public class PageLinkServlet {
 			model.addAttribute("childrenCountN", childrenCountN);
 			model.addAttribute("teacherCountN",teacherCountN);
 
-		}else if(loginUser.getClassification().equals("선생님")) {
+		}else if(loginUser.getClassification().equals("선생님") || loginUser.getClassification().equals("체험판선생님")) {
 
 				int childrenCount = ms.childrenCount(loginUser);
 				int childrenCountN = ms.childrenCountN(loginUser);

@@ -82,7 +82,7 @@ font-family: 'Sunflower', sans-serif;
       <input type="button" class="nav-link btn btn-default" onclick="introduceservice();" value="서비스소개"/>
     </li>
 	<li class="nav-item">
-      <input type="button" class="nav-link btn btn-default"  value="시작하기" onclick="start();"/>
+      <input type="button" class="nav-link btn btn-default"  value="체험하기" onclick="start();"/>
     </li>
 	<li class="nav-item">
       <input type="button" class="nav-link btn btn-default" onclick="login();" value="로그인"/>  
@@ -97,6 +97,8 @@ font-family: 'Sunflower', sans-serif;
 				location.href='introduceService.pl';
 			}
 			function start() {
+				
+				location.href="experience.pl";
 				
 			}
 			function login() {

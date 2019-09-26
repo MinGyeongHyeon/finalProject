@@ -115,6 +115,20 @@
 		
 	</resultMap>
 	
+	<resultMap type="Notice" id="NoticeResultSet">
+		
+		<id property="boardNum" column="BOARD_NO"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardDate" column="BOARD_DATE"/>
+		<result property="boardtype" column="BOARD_TYPE"/>
+		<result property="classNum" column="CLASS_NO"/>
+		<result property="kinderNum" column="KINDER_NO"/>
+		<result property="writer" column="WRITER"/>
+		
+	
+	</resultMap>
+	
 	<!-- 회원 가입용 쿼리문 -->
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO USERS
@@ -479,6 +493,50 @@
 		WHERE USER_NO = #{userNo}
 	
 	</update>
+	
+	<update id="myinfochange">
+	 
+	 <if test=" userPwd != ''">
+		UPDATE USERS SET USER_PWD = #{userPwd}, USER_NAME = #{userName}
+		WHERE USER_NO = #{userNo}
+	</if>
+	
+	<if test="userPwd == ''">
+		UPDATE USERS SET USER_NAME = #{userName}
+		WHERE USER_NO = #{userNo}
+	</if>
+	
+	</update>
+	
+	<select id="myPageUserPwdcheck" resultType="_int">
+		
+		SELECT COUNT(*)
+		FROM USERS
+		WHERE USER_ID = #{userId}
+		AND USER_PWD = #{userPwd}
+	
+	
+	</select>
+	
+	<select id="experience" resultMap="memberResultSet">
+		
+		SELECT *
+		FROM USERS
+		WHERE CLASSIFICATION = #{classification} 
+	
+	</select>
+	
+	<select id="selectNolist" resultMap="NoticeResultSet">
+	
+	SELECT ROWNUM, BOARD_NO ,BOARD_TITLE,BOARD_CONTENT,BOARD_DATE,BOARD_TYPE,CLASS_NO,CHILDREN_NO,KINDER_NO,STATUS,WRITER
+	FROM BOARD
+	WHERE KINDER_NO = 1
+	AND BOARD_TYPE = '공지사항'
+	AND ROWNUM BETWEEN 1 AND 3
+	ORDER BY BOARD_NO DESC
+	
+	
+	</select>
 
 	
 	

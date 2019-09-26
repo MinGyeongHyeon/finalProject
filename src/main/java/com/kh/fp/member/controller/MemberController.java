@@ -37,6 +37,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -267,27 +268,29 @@ public class MemberController {
 						return "join/searchGarden";
 						
 					}
-					
-					
-					
-					
-					
-					
+
 				}
 				
 				
 				
 			}else if(loginUser.getClassification().equals("관리자")) {
+				
 				return "redirect:companyList.ad";
+				
 			}
+			
+			
+			ArrayList list = ms.selectNolist(kga);
+			
+			System.out.println("list 값 : " + list);
+
 			
 			model.addAttribute("kga",kga);
 			model.addAttribute("of",of);
 			model.addAttribute("at",at);
 			model.addAttribute("loginUser",loginUser);
-		
-			
-			
+			model.addAttribute("list",list);
+						
 			return "main/parentsMain";
 			
 		
@@ -994,12 +997,16 @@ public class MemberController {
 		
 		String changeName = CommonUtils.getRandomString(); 
 		
+		String[] delete = null;
+		
+		delete = at.getChangeName().split("/");
+		
+
 		
 		try {
-			
-			System.out.println("들어온 지울 값 : " + at.getChangeName());
-			
-			new File(filePath + "\\" + at.getChangeName()).delete();
+		
+			new File(filePath + "\\" + delete[4]).delete();
+
 			
 			at.setOrigineName(originFileName);
 			at.setChangeName(changeName + ext);
@@ -1028,20 +1035,150 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value="test.me")
-	public String test() {
+	@RequestMapping(value="Myinfochange.me")
+	public String Myinfochange(Member mb , Model model , @SessionAttribute("loginUser") Member loginUser) {
 		
-		System.out.println("여기 들어왔음?");
+		mb.setEmail(loginUser.getEmail());
+		mb.setUserId(loginUser.getUserId());
+		mb.setPhone(loginUser.getPhone());
+		mb.setEnrollDate(loginUser.getEnrollDate());
+		mb.setDeleteDate(loginUser.getDeleteDate());
+		mb.setClassification(loginUser.getClassification());
+		mb.setStatus(loginUser.getStatus());
+		mb.setUsingStatus(loginUser.getUsingStatus());
 		
-		return "";
+		if(mb.getUserPwd() != "") {
+			String encPassword = passwordEncoder.encode(mb.getUserPwd());
+			mb.setUserPwd(encPassword);
+			
+		}
+		
+		int result = ms.myinfochange(mb);
+		
+		if(result > 0) {
+			
+			model.addAttribute("msg" , "성공적으로 변경 되었습니다.");
+			model.addAttribute("loginUser",mb);
+			
+		}
+
+		
+		return "member/MyPage";
+	}
+	
+	@RequestMapping(value="myPageUserPwdcheck.me")
+	public String myPageUserPwdcheck(Member mb , Model model , @SessionAttribute("loginUser") Member loginUser) {
+		
+		boolean userpwd = passwordEncoder.matches(mb.getUserPwd(), loginUser.getUserPwd());
+		
+		if(userpwd) {
+			
+			return "member/MyPage";
+			
+		}else {
+			
+			model.addAttribute("msg", "비밀번호가 틀립니다.");
+			
+			return "main/parentsMain";
+			
+		}
+	
+
+	}
+	
+	@RequestMapping(value="experience.me")
+	public String experience(Model model ,String classification) {
+
+		Member loginUser = null;
+		OnOff of = null;
+		KinderGarden kga = null;
+		
+		if(classification.equals("학부모")) {
+			
+			classification = "체험판학부모";
+			loginUser = ms.experience(classification);
+			
+			KidMember km = ms.childrenMember(loginUser);
+			
+			int childrenYn = ms.childrenYn(km);
+			
+			int result = loginUser.getUserNo();
+			
+			KinGardenClasses childrenKing = ms.childrenKing(km);
+
+			model.addAttribute("childrenKing" , childrenKing);
+			
+			loginUser.setUserNo(childrenKing.getKinderNo());
+			
+			kga = ms.selectKinderName(loginUser.getUserNo());
+
+			of = ms.selectOnOff(loginUser);
+			
+			loginUser.setUserNo(result);
+			
+		}else if(classification.equals("원장님")) {
+			
+			classification = "체험판원장님";
+			loginUser = ms.experience(classification);
+			of = ms.selectOnOff(loginUser);
+			 kga = ms.selectKinderName(loginUser.getUserNo());
+			 
+			 int childrenCount = ms.childrenCount(loginUser);
+				int teacherCount = ms.teacherCount(loginUser);
+				int childrenCountN = ms.childrenCountN(loginUser);
+				int teacherCountN = ms.teacherCountN(loginUser);
+				
+				model.addAttribute("childrenCount", childrenCount);
+				model.addAttribute("teacherCount",teacherCount);
+				model.addAttribute("childrenCountN", childrenCountN);
+				model.addAttribute("teacherCountN",teacherCountN);
+				
+			
+		}else {
+			
+			classification = "체험판선생님";
+			
+			loginUser = ms.experience(classification);
+			
+			int result = loginUser.getUserNo();
+			
+			KinGardenClasses teacherKing = ms.teacherKing(loginUser);
+			
+			loginUser.setUserNo(teacherKing.getKinderNo());
+			
+			kga = ms.selectKinderName(loginUser.getUserNo());
+			
+			of = ms.selectOnOff(loginUser);
+			
+			int childrenCount = ms.childrenCount(loginUser);
+			int childrenCountN = ms.childrenCountN(loginUser);
+			
+			
+			model.addAttribute("teacherKing" , teacherKing);
+			model.addAttribute("childrenCount", childrenCount);
+			model.addAttribute("childrenCountN", childrenCountN);
+			
+			loginUser.setUserNo(result);
+			
+		}
+		
+		Attachment at = ms.childrenAt(loginUser);
+		
+		System.out.println("loinUser 값 : " + loginUser);
+		
+		System.out.println("at 의 값 : " + at);
+		
+		model.addAttribute("loginUser" , loginUser);
+		model.addAttribute("at",at);
+		model.addAttribute("of",of);
+		model.addAttribute("kga",kga);
+		
+		
+		
+		return "main/parentsMain";
 	}
 
  
-	
-	
-	
-
-	
 	
 
 }

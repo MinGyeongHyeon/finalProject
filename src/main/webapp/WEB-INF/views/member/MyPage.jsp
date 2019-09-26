@@ -36,6 +36,7 @@
 				<div align="center">
 					<h2 style="font-size:30px;">프로필 설정</h2>
 				</div>
+				
 	<table align="center" style="width:100%">
 		
 		<tr algin="left ">		
@@ -45,7 +46,7 @@
 		<tr>
 			
 			<td align="center">
-			<div class="container" style="width:30%;" >
+			<div class="container imgclass" style="width:30%;" >
 			
   			<img class="avatar-img rounded-circle"  style="width:150px; height: 150px;" id="titleImg" style="border:1px solid; align:center" src="${ contextPath }/resources/uploadFiles/${at.changeName}"/>
   			<input type="hidden" value="${ contextPath }/resources/uploadFiles/${at.changeName}"  name="changeName"/>
@@ -76,7 +77,8 @@
 
 <h2 align="center"><b>개인 정보 설정</b></h2>
 
-<form action="">
+<form action="Myinfochange.me" method="post">
+<input type="hidden" name="userNo" value="${ loginUser.userNo }"/>
 	<table align="center">
 		<tr>
 			<td>
@@ -85,7 +87,7 @@
 		</tr>
 		<tr>
 			<td>
-			<label for="">비밀번호 재설정</label><input type="password" name="userPwd" class="form-control"/>
+			<label for="">비밀번호 재설정</label><input type="password" name="userPwd" id="userPwd2" class="form-control"/>
 			</td>
 		</tr>
 		<tr>
@@ -96,6 +98,7 @@
 		</tr>
 		<tr>
 		<tr><td><br /></td></tr>
+		<tr>
 			<td align="center">
 				<button class="btn btn-default" type="button" id="check2">저장</button>
 			</td>
@@ -111,19 +114,22 @@
 </div>
 <script>
 
+if('${msg}' != ""){
+	
+	alert("${msg}");
+	
+}
+
 	$('#check2').click(function(){
 		
 		var Pwdlength = $('input[name="userPwd"]').val().length;
-		var pwd2length = $('input[name="userPwd2"]').val().length;
-	
-		console.log(Pwdlength);
-		console.log(pwd2length);
-		
+		var pwd2length = $('#userPwd2').val().length;
+
 		if($('input[name="userPwd2"]').css('border-color') == 'rgb(255, 29, 105)') {
 			
 		alert("비밀번호 확인이 맞지 않습니다.");
 			
-		}else{
+		}else{ 
 			
 			if(Pwdlength == 0 && pwd2length == 0){
 				
@@ -131,7 +137,12 @@
 				
 			}else{
 				
-				alert("비밀번호 확인이 맞지 않습니다12121");
+				if($('input[name="userPwd2"]').css('border-color') == 'rgb(255, 29, 105)'){
+					
+					alert("비밀번호 확인이 맞지 않습니다.");
+					
+				}
+				
 				
 			}
 			
@@ -146,7 +157,9 @@ $('input[name="userPwd2"]').keyup(function(){
 	
 	console.log(test);
 	
-	var userPwd = $('input[name="userPwd"]').val();
+	var userPwd = $('#userPwd2').val();
+	
+	console.log(userPwd);
 	
 	if($(this).val() != userPwd){
 		
@@ -181,6 +194,7 @@ $('#check').click(function(){
 	if($(this).attr('type') == 'button'){
 		
 		alert("프로필을 변경해주세요");
+		
 	}
 	
 	
@@ -192,7 +206,7 @@ $(function(){
 	
 	$('#imghide').hide();
 	
-	$('.container').click(function(){
+	$('.imgclass').click(function(){
 		$('#selectFile').click();
 		
 	});

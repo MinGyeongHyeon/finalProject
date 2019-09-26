@@ -37,10 +37,10 @@ font-family: 'Sunflower', sans-serif;
 					</td>
 					<tr>
 					<td>
-					<c:if test="${ loginUser.classification eq '원장님' }">
+					<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '체험판원장님'}">
 						<form action="teacheron.me?currentPage=1&currentPage2=1" method="post">
 						<button class="btn btn-info" style="width:100%">교사 관리</button><br />
-						<c:if test="${ loginUser.classification eq '원장님' }">
+						<c:if test="${ loginUser.classification eq '원장님' || loginUser.classification eq '체험판원장님'}">
 						<input type="hidden" value="${ loginUser.userNo }" name="userNo"/>
 						</c:if>
 						</form>
@@ -52,10 +52,10 @@ font-family: 'Sunflower', sans-serif;
 					<td>
 						<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 						<button class="btn btn-info" style="width:100%">원생 관리</button><br />
-						<c:if test="${ loginUser.classification eq '선생님'}">
+						<c:if test="${ loginUser.classification eq '선생님' || loginUser.classification eq '체험판선생님'}">
 						<input type="hidden" value="${ teacherKing.kinderNo }" name="userNo"/>
 						</c:if>
-						<c:if test="${ loginUser.classification eq '원장님' }">
+						<c:if test="${ loginUser.classification eq '원장님' || loginUser.classification eq '체험판원장님' }">
 						<input type="hidden" value="${ loginUser.userNo }" name="userNo"/>
 						</c:if>
 						</form>
