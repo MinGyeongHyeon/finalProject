@@ -265,6 +265,7 @@ public class PageLinkServlet {
 		return "member/MyPage";
 	}
 
+
 	@RequestMapping(value="sendForm.pl")
 	public String sendForm() {
 		return "note/sendForm";
@@ -281,6 +282,14 @@ public class PageLinkServlet {
 	public String writeJournal() {
 		return "journal/writeJournal";
 	}
+
+	@RequestMapping(value="bus.pl")
+	public String bus() {
+		
+		
+		return "bus/bus";
+	}
+	
 
 }
 

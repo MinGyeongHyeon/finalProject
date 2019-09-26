@@ -111,17 +111,17 @@
 	</select>
 	
 	<select id="selectSome" resultType="_int">
-		SELECT CHILDREN_NO
-		FROM CHILDREN
-		WHERE CHILDREN_NAME=#{alblumNo}
-		AND CHILDREN_NO=#{albumContent} 
+	  SELECT CHILDREN_NO
+	  FROM CHILDREN
+      WHERE CHILDREN_NAME = #{albumContent}
 	</select>
 	
 	<select id="selectSearchDetail" resultMap="albumResultSet">
 		SELECT A.ALBUM_NO,A.ALBUM_TITLE,A.ALBUM_CONTENT,A.ALBUM_DATE,A.CLASS_NO,T.CHANGE_NAME,T.CHILDREN_NO
 		FROM ALBUM A
 		JOIN ATTACHMENT T ON A.ALBUM_NO = T.ALBUM_NO
-		WHERE T.CHILDREN_NO  LIKE '%'||#{no}||'%'
+		WHERE T.CHILDREN_NO  LIKE '%'||#{alblumNo}||'%'
+		 AND T.ALBUM_NO = #{writer}
 		ORDER BY 1 DESC
 	</select>
   </mapper>

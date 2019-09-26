@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.exception.HomeWorkException;
+import com.kh.fp.homework.model.vo.HomeWorkApply;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.PageInfo;
@@ -130,6 +131,7 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 
 	@Override
 	public ArrayList<homework> selectTH(SqlSessionTemplate sqlSession, int userNo, PageInfo pi) {
+		
 		ArrayList<homework> list = null;
 		
 		int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
@@ -192,6 +194,33 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 		int result = sqlSession.update("Notice.updateNoticeStatus",bid);
 		
 		return result;
+	}
+
+	@Override
+	public int insertApply(SqlSessionTemplate sqlSession,int bid, String content, String userName) {
+
+		homework h = new homework();
+		
+		h.setBoardNum(bid);
+		h.setBoardTitle(content);
+		h.setClassName(userName);
+		System.out.println(userName);
+		System.out.println("insert:::::::::::;"+h);
+		
+		
+		int apply = sqlSession.insert("homework.insertApply",h);
+		
+		return apply;
+	}
+
+	@Override
+	public ArrayList<HomeWorkApply> SearchApply(SqlSessionTemplate sqlSession, int bid) {
+		
+		ArrayList<HomeWorkApply> h = null;
+		
+		h = (ArrayList)sqlSession.selectList("homework.searchApply",bid);
+		
+		return h;
 	}
 
 

@@ -13,6 +13,28 @@
 		<result property="status" column="STATUS"/>
 	</resultMap> -->
 	
+	<resultMap type="Attachment" id="selectPicListResultSet">
+	
+		<id property="fileId" column="FILE_ID"/>
+		<result property="origineName" column="ORIGINE_NAME"/>
+		<result property="changeName" column="CHANGE_NAME"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="attachType" column="ATTACH_TYPE"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+		<result property="boardNo" column="BOARD_NO"/>
+		<result property="albumNo" column="ALBUM_NO"/>
+		<result property="ntboardNo" column="NTBOARD_NO"/>
+		<result property="mealNo" column="MEAL_NO"/>
+		<result property="dosageNo" column="DOSAGE_NO"/>
+		<result property="homeNo" column="HOME_NO"/>
+		<result property="childrenNo" column="CHILDREN_NO"/>
+		<result property="userNo" column="USER_NO"/>
+		<result property="mealContetn" column="MEAL_CONTENT"/>
+		<result property="mealType" column="MEAL_TYPE"/>
+
+	</resultMap>
+	
 	<resultMap type="Meal" id="dailyResultSet">
 		<id property="mealNo" column="MEAL_NO"/>
 		<result property="mealDate" column="MEAL_DATE"/>
@@ -45,6 +67,15 @@
 		null,null,null,#{mealNo},null,null,null,null)	
 	</insert>
 	
+	<select id="selectList" parameterType="Attachment" resultMap="selectPicListResultSet">
+		SELECT FILE_ID, ORIGINE_NAME, CHANGE_NAME, FILE_PATH, UPDATE_DATE,
+		ATTACH_TYPE, FILE_LEVEL, MEAL_CONTENT, MEAL_TYPE
+		FROM ATTACHMENT A
+		JOIN MEAL_TABLE M ON(A.MEAL_NO = M.MEAL_NO)
+		WHERE UPDATE_DATE LIKE #{day}
+		AND A.ATTACH_TYPE LIKE '식단글'
+		ORDER BY FILE_LEVEL
+	</select>
 </mapper>
 
 

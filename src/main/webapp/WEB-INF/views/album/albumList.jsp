@@ -112,7 +112,7 @@
 							<input type="hidden" name="웅앵" value="${ a.alblumNo }"></td>
 						</tr>
 						<tr>
-						<td class="tqtq" colspan="2" style="height:100%;"><img src="${contextPath}/resources/uploadFiles/<c:out value="${a.tumbnail}"/>.png" alt="" style="width:340px; height:150px; margin:0 auto;"/></td>
+						<td class="tqtq" colspan="2" style="height:100%;"><img src="${contextPath}/resources/uploadFiles/<c:out value="${a.tumbnail}"/>" alt="" style="width:340px; height:150px; margin:0 auto;"/></td>
 						</tr>
 						<tr>
 							<td class="titleView"  colspan="2">
