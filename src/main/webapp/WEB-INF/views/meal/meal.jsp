@@ -77,22 +77,32 @@ background:orange;
  <button>&gt;</button>
  </th></tr>
 <tr>
-<td>오전간식<br>
-<img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
+<c:forEach var="l" items="${ham}">
+<td>
+<c:out value="${l.mealType}"/>
 </td>
-<td>점심간식<br>
-<img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
-</td>
-<td>오후간식<br>
-<img src="${ contextPath }/resources/images/kindergartenicon.png" width="80px" align="center">
-</td>
+</c:forEach>
 </tr>
 <tr>
-<td>오전밥</td>
-<td>점심간식</td>
-<td>오후밥</td>
+<c:forEach var="l" items="${ham}">
+<td>
+<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.changeName}"/>.jpg" alt="" style="width:50%; height: 30%;"/>
+</td>
+</c:forEach>
+</tr>
+
+<tr>
+<c:forEach var="l" items="${ham}">
+<td>
+<c:out value="${l.mealContetn}"/>
+</td>
+</c:forEach>
+</tr>
+
+<tr>
 </tr>
 </table>
+
 </div>
 </body>
 </html>

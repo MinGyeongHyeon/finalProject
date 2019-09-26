@@ -1,5 +1,7 @@
 package com.kh.fp.meal.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.fp.meal.model.exception.MealException;
 import com.kh.fp.meal.model.vo.Meal;
 import com.kh.fp.member.model.vo.Attachment;
@@ -13,5 +15,7 @@ public interface MealService {
 	Meal getDailyMeal(Meal meal) throws MealException;
 
 	int insertAt(Attachment at);
+
+	ArrayList<Attachment> selectPic(String day) throws MealException;
 
 }

@@ -57,7 +57,7 @@ $(document).on('change', 'select', function() {
 });
 
 
- $(function(){
+ /* $(function(){
 	$(".timepicker").timepicker({
 		timeFormat: 'h:mm p',
 	    interval: 15,
@@ -85,7 +85,7 @@ $(document).on('change', 'select', function() {
 	    	}
 	    }
 	});
-});
+}); */
 function save(){
 	
 	var dataArrayToSend = [];
@@ -311,7 +311,36 @@ width:100%;
 		</form>
 		</div>
 	</div>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js">
+	$(function(){
+		$(".timepicker").timepicker({
+			timeFormat: 'h:mm p',
+		    interval: 15,
+		    minTime: '10',
+		    maxTime: '6:00pm',
+		    defaultTime: '9',
+		    startTime: '10:00',
+		    dynamic: false,
+		    dropdown: true,
+		    scrollbar: true,
+		    updateData:true,
+		    change:function(){
+		    	var element = $(this).val();
+		    	$(this).html(element);
+		    	//console.log(element+"현재값");
+		    	$(this).val(element);
+		    	
+		    	var abc = $(this).parent().parent().children("td").eq(3).children("#timepicker1").val();
+		    	var abcd = $(this).parent().parent().children("td").eq(4).children("#timepicker2").val();
+		    	
+		    	if(abc==""||abcd==""){
+		    	console.log(abc+"타임");
+		    	}else if(abc==""||abcd!=""){
+		    		console.log(abcd+"엠타임");
+		    	}
+		    }
+		});
+	});</script>
 </body>
 </html>
 
