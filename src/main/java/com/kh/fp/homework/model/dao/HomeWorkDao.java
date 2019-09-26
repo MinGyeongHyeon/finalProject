@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.exception.HomeWorkException;
+import com.kh.fp.homework.model.vo.HomeWorkApply;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.PageInfo;
@@ -42,6 +43,10 @@ public interface HomeWorkDao {
 	ArrayList<homework> selectOneC(SqlSessionTemplate sqlSession, int userNo, int bid);
 
 	int updateH(SqlSessionTemplate sqlSession, String status, int bid);
+
+	int insertApply(SqlSessionTemplate sqlSession, int bid, String content, String userName);
+
+	ArrayList<HomeWorkApply> SearchApply(SqlSessionTemplate sqlSession, int bid);
 
 
 

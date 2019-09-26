@@ -50,6 +50,7 @@
 		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclasses" alias="Kinderclasses"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinderUserName" alias="KinderUserName"/>
+		<typeAlias type="com.kh.fp.homework.model.vo.HomeWorkApply" alias="HomeWorkApply"/>
 	</typeAliases>
 
 

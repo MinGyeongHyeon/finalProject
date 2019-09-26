@@ -270,6 +270,20 @@
 		<url-pattern>*.ab</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>bus</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/album-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>bus</servlet-name>
+		<url-pattern>*.bs</url-pattern>
+	</servlet-mapping>
+	
 	
 	
 	<servlet>

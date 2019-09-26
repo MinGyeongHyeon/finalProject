@@ -387,10 +387,10 @@ font-family: 'Sunflower', sans-serif;
 						</a></li>
 						</c:if>
 
-						<li class="nav-item"><a href="#submenu"> <i
+						<li class="nav-item"><a href="bus.pl"> <i
 								class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
-						</li>
+						</a></li>
 
 						<li class="nav-item"><a href="businessLogMain.pl"> <i
 								class="far fa-clipboard"></i>

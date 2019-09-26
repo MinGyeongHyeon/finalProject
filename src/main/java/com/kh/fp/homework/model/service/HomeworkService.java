@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.exception.HomeWorkException;
+import com.kh.fp.homework.model.vo.HomeWorkApply;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.PageInfo;
@@ -38,6 +39,10 @@ public interface HomeworkService  {
 	ArrayList<homework> SelectOneC(int userNo, int bid);
 
 	int UpdateNoticeStatus(int bid, String status);
+
+	int insertApply(int bid, String content, String userName);
+
+	ArrayList<HomeWorkApply> SearchApply(int bid);
 
 
 }

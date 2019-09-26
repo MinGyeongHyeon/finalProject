@@ -275,6 +275,12 @@ public class PageLinkServlet {
 		
 		return "member/MyPage";
 	}
+	@RequestMapping(value="bus.pl")
+	public String bus() {
+		
+		
+		return "bus/bus";
+	}
 	
 	
 

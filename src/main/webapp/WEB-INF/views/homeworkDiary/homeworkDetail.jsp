@@ -95,8 +95,7 @@
 
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp" />
-
+ <jsp:include page="../common/menubar.jsp" /> 
 	<div class="main-panel">
 		<div class="content">
 			<div class="page-inner">
@@ -109,7 +108,8 @@
 					<div id="mainArea">
 						<div id="titleArea">
 							<h2 id="title">
-								<b>2019-09-03 알림장</b>
+								<b>2019-09-03 알림장</b> 
+								<b hidden id="delete">${HList[0].boardNum}</b>
 							</h2>
 						</div>
 						<div id="contentsArea">
@@ -123,7 +123,6 @@
 									<tr style="background: #f57373; border-radius: 5px">
 										<td colspan="2" class="title" style="color:white; border-radius:10px">공통 알림장 :&nbsp;&nbsp;&nbsp;
 										<c:out value="${HList[0].boardTitle}"/>
-										<p hidden id="delete"><c:out value="${SelectNotice.boardNum}"/></p>
 										</td>
 									</tr>
 									<c:choose>
@@ -181,10 +180,34 @@
 							</button>
 						</div>
 							<br><br><br>
-						<h4 class="page-title"><i class="fas fa-comments" 	style="font-size: 30px;"></i>댓글</h4	>
+						<div id="replyA">
+		<table id="replySelectTable" class="commentTables"  >
+			<tr>
+				<th colspan="7" style = "width:800px">댓글 리스트</th>
+			</tr>
+		</table>
+
+		<br>
+
+		<br>
+
+		<!-- <table id="replySelectTable" class="commentTables" align="center">
+			<tbody>
+			<tr>
+			<td colspan="2" class="tWriter"><span></span></td>
+				<td colspan="3" class="tContent"></td>
+				<td class="tDate"></td>
+			</tr>
+			</tbody>
+			<tfoot>
+
+			</tfoot>
+		</table>
+ -->		</div>	
+
 						<div class="commentArea"> 
-							<input type="text" class="writeComment">
-							<button class="registerComment">등록하기</button>
+							<input type="text" class="writeComment" id="replyContent"/>
+							<button class="registerComment" onclick="report();">등록하기</button>
 							
 						</div>	
 					</div>
@@ -193,6 +216,7 @@
 		</div>
 	</div>
 	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		
 		function goDrugMainView(){
@@ -202,14 +226,72 @@
 			$(this).window.print();
 		}
 		
-		$("#btn2").click(function(){
+		/* $("#btn2").click(function(){
 			var bid = $("#delete").val();
 			
 			console.log(bid);
 			
 			//location.href="updateHomework.hw?bid="+bid;
 			
+		}); */
+		
+		function report(){
+			 var content = $("#replyContent").val();
+			 var bid = $("#delete").text();
+			 
+			  	console.log(bid);
+				console.log("zz");
+			   
+			   $.ajax({
+			      url : "homeworkApply.hw",
+			      type : "get",
+			      data:{"content":content,"bid":bid},
+			      success : function(data){
+			    	  location.reload();
+			      
+			      },error:function(request,status,error){
+			    	  console.log("zz");
+				        //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
+			   });  
+		}			
+		
+		 $(function(){
+			 var bid = $("#delete").text();
+			$(document).ready(function(){
+				$.ajax({
+					url:"homeworkApplyStart.hw",
+					data:{bid:bid},
+					type:"post",
+					success:function(data){
+						console.log(data.length);
+						var $replySelectTable = $(".commentTables");
+						$replySelectTable.html("");
+							for(var key in data){
+								var $tr = $("<tr>");
+								var $tr2  = $("<tr>");
+								var $hr = $("<hr>");
+								var $writer = $("<td>").text("작성자 : ").css({'width':'60px','font-weight':'bold'});
+			 					var $writeTd = $("<td colspan='2'>").text(data[key].commtentName).css("width", "100px");
+								var $contentTd = $("<td colspan='2'>").text(data[key].commentContent).css("width","400px");
+								//var $dateTd = $("<td>").text(data[key].commentDate).css({'width':'200px','color':'lightgray','font-size':'10xpx'});
+
+							$tr2.append($writer);
+							$tr2.append($writeTd);
+							$tr2.append($contentTd);
+
+							$replySelectTable.append($hr);
+							$replySelectTable.append($tr2);
+						}
+					},
+					error:function(){
+					}
+
+				});
+			});
+
 		});
+ 
 	</script>
 	
 </body>

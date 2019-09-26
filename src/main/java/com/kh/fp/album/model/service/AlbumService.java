@@ -33,7 +33,7 @@ public interface AlbumService {
 
 	int selectSomeThing(String input, int userNo);
 
-	ArrayList<Album> selectSelectAlbum(int no);
+	ArrayList<Album> selectSelectAlbum(int no,int bid);
 
 
 
