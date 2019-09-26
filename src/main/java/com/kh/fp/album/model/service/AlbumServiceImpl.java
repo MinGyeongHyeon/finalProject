@@ -135,10 +135,10 @@ public class AlbumServiceImpl implements AlbumService {
 	}
 
 	@Override
-	public ArrayList<Album> selectSelectAlbum(int no) {
+	public ArrayList<Album> selectSelectAlbum(int no,int bid) {
 		ArrayList<Album> a = null;
 		
-		a = abd.selectAlbumSearch(sqlSession,no);
+		a = abd.selectAlbumSearch(sqlSession,no,bid);
 		
 		
 		return a;	

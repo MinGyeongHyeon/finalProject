@@ -74,7 +74,6 @@ public class AlbumController {
 	     
 	    if(classification.equals("원장님")) {
 	         listCount = abs.getListCount(userNo);
-	         System.out.println("listCount : " + listCount);
 	         
 	         
 	      }else if(classification.equals("학부모")) {
@@ -86,7 +85,6 @@ public class AlbumController {
 	      
 	      }else {
 	         listCount = abs.getTListCount(userNo);
-	         System.out.println("listCount :ㅋㅋ " + listCount);
 	      }
 
 	    PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -94,7 +92,6 @@ public class AlbumController {
 		
 	    if(classification.equals("원장님")) {
 	    	album = abs.selectAlbumRequestList(pi, userNo);
-	    	System.out.println(album+"zz");
 	    	model.addAttribute("album", album);
          }else if(classification.equals("학부모")) {
         	 album = abs.selectTAlbumRequestList(pi, Tnum);
@@ -157,11 +154,12 @@ public class AlbumController {
 			  
 			  String originFileName = file[i].getOriginalFilename(); 
 			  String ext =originFileName.substring(originFileName.lastIndexOf(".")); 
+			  
 			  String changeName = CommonUtils.getRandomString();
 			  
 			  try {
 					at.setOrigineName(originFileName);
-					at.setChangeName(changeName);
+					at.setChangeName(changeName+ext);
 					at.setFilePath(filePath);
 					if(i == 0) {
 					at.setFileLevel("1");
@@ -194,7 +192,7 @@ public class AlbumController {
 		}
 		
 		
-		return "album/albumList";
+		return "album.ab";
 	}	
 	
 	@RequestMapping(value = "albumWhoIn.ab")
@@ -295,10 +293,10 @@ public class AlbumController {
 	public void albumSearch(ModelAndView mv,HttpServletResponse response, HttpSession session,HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser ) {
 		
 		String input = request.getParameter("input");
-		System.out.println(input + "에이작스");
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		
 		String classification = loginUser.getClassification();
-		ArrayList<Album> selectAD = null;
-		System.out.println(classification+"너 뭐야");
+		ArrayList<Album> data = null;
 		
 		if(classification.equals("원장님")) {
 	         int num = loginUser.getUserNo();
@@ -308,9 +306,9 @@ public class AlbumController {
 		  		System.out.println(userNo+"입니다");
 		  		
 		  		int no = abs.selectSomeThing(input,userNo);
-		  		
 				
-				selectAD = abs.selectSelectAlbum(no);
+				data = abs.selectSelectAlbum(no,bid);
+				System.out.println("data::::::"+data);
 		  	
 	      
 	      }else {
@@ -320,12 +318,12 @@ public class AlbumController {
 		
 		HashMap<String,Object> hmap =new HashMap<String,Object>();
 		
-		hmap.put("selectAD", selectAD);
+		hmap.put("data", data);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 
 		try {
-			new Gson().toJson(selectAD,response.getWriter());
+			new Gson().toJson(data,response.getWriter());
 		} catch (JsonIOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

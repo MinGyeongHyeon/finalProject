@@ -173,11 +173,16 @@ public class AlbumDaoImpl implements AlbumDao{
 
 
 	@Override
-	public ArrayList<Album> selectAlbumSearch(SqlSessionTemplate sqlSession, int no) {
+	public ArrayList<Album> selectAlbumSearch(SqlSessionTemplate sqlSession, int no,int bid) {
 
 		ArrayList<Album> a = null;
+
+		Album album = new Album();
 		
-		a = (ArrayList)sqlSession.selectList("Album.selectSearchDetail",no);
+		album.setAlblumNo(no);
+		album.setWriter(bid);
+		
+		a = (ArrayList)sqlSession.selectList("Album.selectSearchDetail",album);
 		
 		System.out.println(a);
 		

@@ -3,6 +3,7 @@ package com.kh.fp.homework.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +17,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.fp.common.CommonUtils;
 import com.kh.fp.homework.model.exception.HomeWorkException;
 import com.kh.fp.homework.model.service.HomeworkService;
+import com.kh.fp.homework.model.vo.HomeWorkApply;
 import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.PageInfo;
 import com.kh.fp.homework.model.vo.Pagination;
@@ -182,7 +187,7 @@ public class HomeWorkController {
 	
 	@RequestMapping(value = "homeWorkIndividualWrite.hw")
 	public String homeWorkIndividualWrite(Model model,HttpSession session, HttpServletRequest request) {
-
+			System.out.println("여기는 컨트롤러");
 		KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
 		
 		
@@ -190,11 +195,7 @@ public class HomeWorkController {
 		String NameArray = request.getParameter("content");
 		
 		String[] childrenNum = Numarray.split(",");
-		System.out.println(childrenNum[0]);
-		System.out.println(childrenNum[1]);
 		String [] childrenName = NameArray.split(",");
-		System.out.println(childrenName[0]);
-		System.out.println(childrenName[1]);
 		
 		ArrayList<IndividualHomework> homeless = new ArrayList<>();
 		IndividualHomework abc = null;
@@ -344,6 +345,89 @@ public class HomeWorkController {
 		
 
 		return "homeworklist.hw";
+
+	}
+	
+	@RequestMapping(value = "homeworkApply.hw")
+	public ModelAndView homeworkApply(ModelAndView mv,int bid,HttpSession session,@ModelAttribute("loginUser") Member loginUser,HttpServletRequest request, HttpServletResponse response) {
+		
+		String userName = null;
+
+		String content = request.getParameter("content");
+		System.out.println(content);
+		
+		int userNo = 0;
+		userNo=loginUser.getUserNo();
+		
+		String classification = loginUser.getClassification();
+		
+		
+		KinGardenClasses TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
+		
+		if(classification.equals("원장님")) {
+	         userName = "원장님";
+	         int result = hs.insertApply(bid,content,userName);
+
+	         
+	      }else if(classification.equals("학부모")) {
+	    	 CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
+	    	 userName = CloginUser.getChildrenName()+"부모님";
+	    	
+	    	 int result = hs.insertApply(bid,content,userName);
+	    	
+	    	
+	      
+	      }else {
+	    	  TloginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+	    	  userName = TloginUser.getClassName()+"선생님";
+	    	  
+	    	  int result = hs.insertApply(bid,content,userName);
+	    	  
+	    	  
+	    	  System.out.println(userName);
+	    	  
+	      }
+		
+		
+		
+		
+		mv.setViewName("jsonView");
+		
+		return mv;
+
+	}
+	
+	
+	@RequestMapping(value = "homeworkApplyStart.hw",method = RequestMethod.POST)
+	public void homeworkApplyStart(ModelAndView mv,HttpSession session,@ModelAttribute("loginUser") Member loginUser ,int bid,HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println(bid+"에이작스");
+		int userNo = 0;
+		
+		
+	    	
+	    ArrayList<HomeWorkApply> data = new ArrayList<>();
+	   
+	    data =  hs.SearchApply(bid);
+	    System.out.println("ajax:::::::"+data);	  
+	    
+	    HashMap<String,Object> hmap =new HashMap<String,Object>();
+	    
+	    hmap.put("data", data);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		
+		try {
+			new Gson().toJson(data,response.getWriter());
+		} catch (JsonIOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

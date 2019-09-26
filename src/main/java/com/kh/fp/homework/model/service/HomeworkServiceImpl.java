@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fp.album.model.vo.Album;
 import com.kh.fp.homework.model.dao.HomeWorkDao;
 import com.kh.fp.homework.model.exception.HomeWorkException;
+import com.kh.fp.homework.model.vo.HomeWorkApply;
 import com.kh.fp.homework.model.vo.HomeWorkChildren;
 import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
@@ -155,6 +156,24 @@ public class HomeworkServiceImpl implements HomeworkService{
 		int update = hd.updateH(sqlSession,status,bid);
 		
 		return update;
+	}
+
+	@Override
+	public int insertApply(int bid, String content, String userName) {
+		
+		int insertApply = hd.insertApply(sqlSession,bid,content,userName);		
+		
+		return insertApply;
+	}
+
+	@Override
+	public ArrayList<HomeWorkApply> SearchApply(int bid) {
+
+		ArrayList<HomeWorkApply> h = new ArrayList<>();
+		
+		h = hd.SearchApply(sqlSession,bid);
+		
+		return h;
 	}
 
 

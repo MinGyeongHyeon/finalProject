@@ -36,6 +36,6 @@ public interface AlbumDao {
 
 	int selectSome(SqlSessionTemplate sqlSession, String input, int userNo);
 
-	ArrayList<Album> selectAlbumSearch(SqlSessionTemplate sqlSession, int no);
+	ArrayList<Album> selectAlbumSearch(SqlSessionTemplate sqlSession, int no,int bid);
 
 }
