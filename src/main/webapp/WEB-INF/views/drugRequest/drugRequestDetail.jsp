@@ -19,7 +19,7 @@
 
 #titleArea {
 	background: #f5f5f5;
-	height: 55px;
+	height: 75px;
 }
 
 #title {
@@ -31,20 +31,21 @@
 }
 
 #contentsArea {
-	height: 700px;
+	height: 750px;
 	background: white;
+	font-size:15px;
 }
 
 #profileImg {
-	width: 50px;
-	height: 50px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
 }
 
 #symptomArea, #dosageArea {
 	line-height: 230%;
-	font-size: 14px;
-	margin-left: 20px;
+	font-size: 18px;
+	margin-left: 25px;
 }
 
 #tableArea {
@@ -77,29 +78,36 @@ th, td {
 
 #report {
 	width: 100%;
-	height: 60px;
-	background: #2196f3;
-	color: white;
+	height: 70px;
+	background: #e0dada;
+	color: #524c4c;
 	font-weight: bold;
-	font-size: 1.5em;
+	font-size: 1.7em;
 	text-align: center;
 	padding-top: 15px;
 }
 
 #report:hover {
 	cursor: pointer;
-	background: #2183f3;
+	background: #d9d2d2;
 }
 
 #btn1 {
 	background: #666666;
 	color: white;
 	width: 100px;
+	height:50px;
+	display: inline;
+	font-size:16px;
 }
 
 #btn2, #btn3 {
 	color: #595959;
 	border: 0.5px solid #e4e1dd;
+	width:100px;
+	height:50px;
+	font-size:15px;
+	display: inline;
 }
 
 #btnA1 {
@@ -108,6 +116,7 @@ th, td {
 
 #btnA2 {
 	float: right;
+	display: inline;
 }
 
 @media only print {
@@ -118,14 +127,16 @@ th, td {
 		display: none;
 	}
 }
-
 #area3 {
-	margin-left: 560px;
+	margin-left: 745px;
+    font-size: 20px;
 	display: inline;
 }
 
 #area4 {
-	margin-left: 665px;
+	margin-left: 905px;
+	font-size: 20px;
+	margin-top:15px;
 }
 #signImg {
 	width:80px;
@@ -149,9 +160,9 @@ th, td {
 				<div class="page-category">
 					<div id="mainArea">
 						<div id="titleArea">
-							<h2 id="title">
+							<h1 id="title">
 								<b><c:out value="${ d.childrenName }"/>의 투약의뢰서</b>
-							</h2>
+							</h1>
 						</div>
 						<div id="contentsArea">
 							<br>
@@ -241,7 +252,9 @@ th, td {
 								</button>
 							</div>
 							</c:if>
+							<c:if test="${ loginUser.classification eq '학부모' }">
 							<br>
+							</c:if>
 							<div id="btnA2">
 								<button type="button" class="btn btn-light" id="btn2" onclick="goDeleteOne()">
 									<i class="far fa-trash-alt"></i>&nbsp; 삭제

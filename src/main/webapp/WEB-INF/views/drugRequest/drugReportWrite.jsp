@@ -10,10 +10,6 @@
 <%-- <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugReportWriteCss.css"> --%>
 
 <style>
-#signImg {
-	width:70px;
-	height:70px;
-}
 .main-panel {
 	position: relative;
 	width: calc(100% - 240px);
@@ -25,7 +21,7 @@
 
 #titleArea {
 	background: #f5f5f5;
-	height: 55px;
+	height: 75px;
 }
 
 #title {
@@ -37,20 +33,21 @@
 }
 
 #contentsArea {
-	height: 700px;
+	height: 800px;
 	background: white;
+	font-size:15px;
 }
 
 #profileImg {
-	width: 50px;
-	height: 50px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
 }
 
 #symptomArea, #dosageArea {
 	line-height: 230%;
-	font-size: 14px;
-	margin-left: 20px;
+	font-size: 18px;
+	margin-left: 25px;
 }
 
 #tableArea {
@@ -74,18 +71,20 @@ th, td {
 }
 
 #signArea {
-	width: 70px;
-	height: 70px;
-	border: solid 1px black;
+	width: 80px;
+	height: 80px;
 	float: right;
 	display: inline;
-	margin-right: 4%;
+	margin-right: 5%;
 }
-
+#signImg {
+	width:80px;
+	height:80px;
+}
 #a1 {
-	height: 60px;
-	background: #e6edfa;
-	color: #2196f3;
+	height: 65px;
+	background: #d9d2d2;
+	color: #524c4c;
 	font-size: 20px;
 	line-height: 20px;
 	padding: 19px;
@@ -93,12 +92,16 @@ th, td {
 }
 
 #reportArea {
-	height: 350px;
-	background: #edf5ff;
+	height: 370px;
+	background: #fcfcfc;
+}
+
+#reportArea p {
+	font-size:16px
 }
 
 #reportArea p, #reportArea textarea {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 #bogoContent {
@@ -113,27 +116,34 @@ th, td {
 }
 
 #btn1 {
-	background: #8f8f8f;
+	background: #919191;
 	font-weight: bold;
+	font-size: 20px;
+	height:50px;
 	border: 0.5px solid #7d7d7d;
 }
 
 #btn2 {
-	background: #ff7575;
+	background: #ff737a;
 	font-weight: bold;
+	font-size: 20px;
+	height:50px;
 }
 
 #area3 {
-	margin-left: 50%;
-    font-size: 1.5em;
+	margin-left: 745px;
+    font-size: 20px;
 	display: inline;
 }
 
 #area4 {
-	margin-left: 65%;
-	font-size: 1.5em;
+	margin-left: 905px;
+	font-size: 20px;
+	margin-top:15px;
 }
-
+::placeholder {
+  font-size: 1.2em;
+}
 
 </style>
 
@@ -156,9 +166,9 @@ th, td {
 				<div class="page-category">
 					<div id="mainArea">
 						<div id="titleArea">
-							<h2 id="title">
+							<h1 id="title">
 								<b><c:out value="${ d.childrenName }"/>의 투약의뢰서</b>
-							</h2>
+							</h1>
 						</div>
 						<div id="contentsArea">
 							<br>
@@ -228,7 +238,7 @@ th, td {
 						</div>
 						<br>
 						<div id="a1">
-							<i class="fas fa-file-medical"></i>&nbsp;<span>투약보고서 작성</span>
+							<i class="fas fa-file-medical"></i>&nbsp;&nbsp;<span>투약보고서 작성</span>
 						</div>
 						<form method="get" action="insertDosageBogo.ds" onsubmit="return insertBogo()">
 						<div id="reportArea">

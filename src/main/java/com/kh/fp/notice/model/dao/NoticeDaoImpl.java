@@ -1,14 +1,10 @@
 package com.kh.fp.notice.model.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.tools.ant.Project;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.exception.NoticeException;
@@ -95,7 +91,7 @@ public class NoticeDaoImpl implements NoticeDao{
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
 		System.out.println(noticeWho);
-		list = (ArrayList) sqlSession.selectList("Notice.selectList",noticeWho);
+		list = (ArrayList) sqlSession.selectList("Notice.selectList",noticeWho,rowBounds);
 		
 		
 		return list;
@@ -110,8 +106,11 @@ public class NoticeDaoImpl implements NoticeDao{
 		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
+		Notice n = null;
+		
+		
 		System.out.println(noticeWho);
-		list = (ArrayList) sqlSession.selectList("Notice.selectChildrenList",noticeWho);
+		list = (ArrayList) sqlSession.selectList("Notice.selectChildrenList",noticeWho,rowBounds);
 		
 		System.out.println("다오"+list);
 		

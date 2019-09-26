@@ -24,6 +24,12 @@
 		<result property="fileName" column="CHANGE_NAME" />
 		<result property="childrenNo" column="CHILDREN_NO" />
 	</resultMap>
+	
+	<resultMap type="HomeWorkApply" id="HomeWorkApply">
+		<id property="commentNo" column="COMMENT_NO" />
+		<result property="commentContent" column="COMMENT_CONTENT" />
+		<result property="commtentName" column="WRITER" />
+	</resultMap>
 
 	<insert id="insertHomeWork" parameterType="homework">
 		INSERT INTO BOARD
@@ -128,18 +134,16 @@
           WHERE B.BOARD_NO = #{boardNum}
 	</select>
 
+	<insert id="insertApply">
+		INSERT INTO BOARD_COMMENT 
+		VALUES (SEQ_COMMENT_NO.nextval,#{boardTitle},'게시판',#{boardNum},NULL,#{className})
+	</insert>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<select id="searchApply" resultMap="HomeWorkApply">
+	SELECT COMMENT_NO,COMMENT_CONTENT,WRITER
+	FROM BOARD_COMMENT
+	WHERE BOARD_NO = #{bid}
+	</select>
 	
 	
 	

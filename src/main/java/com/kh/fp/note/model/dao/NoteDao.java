@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.NoteBox;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
@@ -28,9 +29,6 @@ public interface NoteDao {
 	//보낸 쪽지함 상세보기에서 삭제하기
 	int deleteSentNoteOne(SqlSessionTemplate sqlSession, int noteNo) throws NoteException;
 
-	//쪽지 보내기
-	int insertNote(SqlSessionTemplate sqlSession, int kinderNo) throws NoteException;
-
 	//받은 쪽지함 리스트 카운트 가져오기
 	int getRecieveListCount(SqlSessionTemplate sqlSession, int userNo);
 
@@ -46,6 +44,9 @@ public interface NoteDao {
 
 	//쪽지 확인 여부 체크
 	int checkedYN(SqlSessionTemplate sqlSession, int noteNo) throws NoteException;
+
+	//쪽지 보내기
+	int sendNote(SqlSessionTemplate sqlSession, NoteBox nb) throws NoteException;
 
 
 

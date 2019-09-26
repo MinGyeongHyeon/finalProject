@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.service.NoteService;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.NoteBox;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.Pagination;
 import com.kh.fp.note.model.vo.noteKindergarden;
@@ -39,7 +41,7 @@ public class NoteController {
 		try {
 			ArrayList<noteKindergarden> kArr = ns.selectUserList();
 			mv.addObject("kArr", kArr);
-			mv.setViewName("note/sendNote");
+			mv.setViewName("note/sendNote2");
 			return mv;
 		} catch (NoteException e) {
 			mv.addObject("msg", e.getMessage());
@@ -62,23 +64,6 @@ public class NoteController {
 		return mv;
 	}
 
-	// 쪽지 보내기
-	@RequestMapping(value = "insertNote.nt")
-	public String insertNote(Model model, Note n, int kinderNo) {
-
-		System.out.println("쪽지보내기 호출됨");
-		try {
-			int result = ns.insertNote(kinderNo);
-
-			return "note/sentNoteBox";
-
-		} catch (NoteException e) {
-			model.addAttribute("msg", e.getMessage());
-			e.printStackTrace();
-			return "index";
-		}
-
-	}
 
 	// 보낸 쪽지함 페이징 처리
 	@RequestMapping(value = "sentNoteList.nt")
@@ -216,7 +201,7 @@ public class NoteController {
 		} catch (NoteException e) {
 			model.addAttribute("msg", e.getMessage());
 			e.printStackTrace();
-			return "index.jsp";
+			return "index";
 		}
 	}
 
@@ -239,7 +224,7 @@ public class NoteController {
 		} catch (NoteException e) {
 			model.addAttribute("msg", e.getMessage());
 			e.printStackTrace();
-			return "index.jsp";
+			return "index";
 		}
 	}
 
@@ -254,7 +239,7 @@ public class NoteController {
 		} catch (NoteException e) {
 			model.addAttribute("msg", e.getMessage());
 			e.printStackTrace();
-			return "index.jsp";
+			return "index";
 		}
 	}
 
@@ -265,6 +250,38 @@ public class NoteController {
 	 *
 	 * return ""; }
 	 */
+
+
+	//쪽지 보내기
+	@RequestMapping(value="sendNote.nt")
+	public String sendNote(Model model, int receiveNo, @ModelAttribute("loginUser") Member loginUser
+			, NoteBox nb,  @RequestParam(value="noteTitle") String noteTitle, @RequestParam(value="noteContent") String noteContent) {
+
+		System.out.println("호출됨!!!!!!!!!@@@@@@@");
+
+		int sendNo = loginUser.getUserNo();
+		System.out.println("sendNo :::" + sendNo);
+		System.out.println("receiveNo :::" + receiveNo);
+
+		System.out.println(noteTitle);
+		System.out.println(noteContent);
+
+		nb.setSendNo(sendNo);
+		nb.setReceiveNo(receiveNo);
+
+		try {
+			int result = ns.sendNote(nb);
+
+			//return "redirect:note/sentNoteBox?writeCheck=Y";
+			return "redirect:sentNoteList.nt?writeCheck=Y";
+
+		} catch (NoteException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
+
+	}
 
 
 

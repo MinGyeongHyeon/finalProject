@@ -19,8 +19,21 @@
 	    padding-left: 3%;
 	    padding-right: 3%;
 	}
+	
+	.SearchAlbum{
+	background: #fff;
+	width: 25%;
+	height: 25%;
+	display: inline-block;
+	margin-top: 1%;
+	margin-right: 2%;
+	margin-bottom: 3%;
+	margin-left: 2%;
+	
+	}
 </style>
 <body>
+<jsp:include page="../common/menubar.jsp" /> 
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<%-- <jsp:include page="../common/menubar.jsp"/>
 	 --%>
@@ -46,28 +59,32 @@
 				<table width=95%; style="margin:0 auto;">
 				<tr>
 					<td>
-						<label><c:out value="${selectAD[0].albumTitle}"/></label>
+						<p class="hiddenNo" hidden><c:out value='${selectAD[0].alblumNo}'/></p>
+						<b hidden id="delete">${selectAD[0].alblumNo}</b>
 					</td>
+					<c:if test="${loginUser.classification eq '학부모'}">
 					<td style="text-align:right;">
 						<input type="text" id="tagSearch"/>
 						<button id="inputSearch" onclick="tagSearch();">검색</button>
 					</td>
+					</c:if>
 				</tr>
 				</table>
 			</div>
+		<form id="test">
 			<div class="albumContentsArea">
 				<div class="downloadArea">
-					<button id="selectDown">선택 다운로드</button>
-					<button id="allDown">전체 다운로드</button>
+					<button id="selectDown" onclick="download(this.form);return false">선택 다운로드</button>
+					<button id="allDown" onclick="downloadAll(this.form);return false">전체 다운로드</button>
 				</div>
 				<div style="width:90%; margin:0 auto;">
-					<p><c:out value="${selectAD[0].albumContent}"/></p>
+					<p style="font-size:2.5em;"><c:out value="${selectAD[0].albumContent}"/></p>
 				</div>
-			<c:forEach var="l" items="${selectAD}">
+			<c:forEach var="l" items="${selectAD}" varStatus="i">
 				<div class="smallAlbum">
-					<input type="checkbox" class="checkcheck" value="<c:out value="${l.tumbnail}"/>"/>
+					<input type="checkbox" class="checkcheck" id = "file${i.index}" name="pp" value="<c:out value="${l.tumbnail}"/>"/>
 					<div id="thumbnailImg" onclick="" style="background-size:cover; height:300px;">
-					<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.tumbnail}"/>.png" alt="" style="width:100%; height: 300px;"/>
+					<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.tumbnail}"/>" alt="" style="width:100%; height: 300px;"/>
 					</div>
 					<table style="widthz:90%; margin:0 auto;">
 						<tr>
@@ -82,6 +99,7 @@
 					
 			
 			</div>
+	</form>	
 			<div class="replyArea">
 				<h3 style="font-weight:bold; margin-left: 2%;">댓글</h3>
 				<table width="95%" style="margin:0 auto;">
@@ -99,7 +117,6 @@
 				</table>
 			</div>
 		</div>
-		
 	</div>
 	
 	<div class="dummyDiv" style="height:120px"></div>
@@ -108,6 +125,7 @@
 	
 	
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 var array = Array();
 
@@ -125,7 +143,7 @@ var array = Array();
 });
  */
 function tagSearch(){
-	
+		console.log("zz");
 	 	var input = $("input[id = 'tagSearch']").val();
 	 	console.log(input);
 	 	 $.ajax({
@@ -142,18 +160,38 @@ function tagSearch(){
 
 		 
 	 });
- }
+ };
  function tagSearch(){
 		
 	 	var input = $("input[id = 'tagSearch']").val();
+	 	var bid = $("#delete").text();
 	 	console.log(input);
+	 	console.log(bid);
 	 	 $.ajax({
-			type:"POST",
-			data:{"input":input},
+			type:"post",
+			data:{"input":input,"bid":bid},
 	 		url:"albumSearch.ab",
 			success:function(data){
+				console.log(data);
+			
+				var strDOM = "";
+				var $contextdiv = $(".albumContentsArea");
+				$contextdiv.html("");
+
+				for(var key in data){
+					var $div = $("<div class='SearchAlbum'>");
+					var $check = $("<input type='checkbox' class='checkcheck'>");
+					var $ddiv = $("<div id='thumbnailImg' style='background-size:cover; height:300px;'>");
+	 				var $img = $("<img src=${ contextPath }/resources/uploadFiles/"+data[key].tumbnail+">").css({'width':'100%','height':'100%'});
+					//var $dateTd = $("<td>").text(data[key].commentDate).css({'width':'200px','color':'lightgray','font-size':'10xpx'});
+					
+				$contextdiv.append($div);
+				$div.append($check);
+				$div.append($img);
+
 				
-				console.log("aaa");
+			}
+				
 				
 			},error:function(request,status,error){
 		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -162,30 +200,67 @@ function tagSearch(){
 		 
 	 });
 }
+ 
+ var contextPath = '${contextPath}/resources/uploadFiles/';   
+ var suffix = 0;   
+ 
+ function downloadAll(oFrm) {	
+	 $('.checkcheck').attr("checked",true);
+	 var ofile = oFrm.elements["file"+(suffix++)];
+	 var oFrm = oFrm;
+	 console.log("실행");
+	if(ofile){
+		if(ofile.checked){
+			var a = $("<a>")
+		    .attr("href", contextPath+ofile.value)
+		    .attr("download", "아이사진")
+		    .appendTo("body");
+
+				a[0].click();
+		
+				a.remove();
+		
+			setTimeout(function(){
+				download(oFrm)
+			},1000);
+			
+		}else{
+			download(oFrm);
+			
+		}
+	}
+
+ };
+ 
+ 
+ function download(oFrm) {	
+	 var ofile = oFrm.elements["file"+(suffix++)];
+	 var oFrm = oFrm;
+	 console.log("실행");
+	if(ofile){
+		if(ofile.checked){
+			var a = $("<a>")
+		    .attr("href", contextPath+ofile.value)
+		    .attr("download", "아이사진")
+		    .appendTo("body");
+
+				a[0].click();
+		
+				a.remove();
+		
+			setTimeout(function(){
+				download(oFrm)
+			},1000);
+			
+		}else{
+			download(oFrm);
+			
+		}
+	}
+
+ };
+ 
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

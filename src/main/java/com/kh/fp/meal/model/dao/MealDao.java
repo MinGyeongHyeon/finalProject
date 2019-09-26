@@ -1,5 +1,7 @@
 package com.kh.fp.meal.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fp.meal.model.exception.MealException;
@@ -17,5 +19,7 @@ public interface MealDao {
 	int selectMealNum(SqlSessionTemplate sqlSession);
 
 	int insertAtt(SqlSessionTemplate sqlSession, Attachment at);
+
+	ArrayList<Attachment> selectPic(SqlSessionTemplate sqlSession, String day) throws MealException;
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.attendance.model.exception.DailyException;
 import com.kh.fp.attendance.model.service.AttendanceService;
@@ -47,6 +48,13 @@ public class AttendanceController {
 
 
 		}
+	 
+	 @RequestMapping(value="ajaxattendance.at")
+	 public ModelAndView changeAtt(ModelAndView mv,Children att) {
+		 System.out.println("와우~!");
+		 mv.setViewName("jsonView");
+			return mv;
+	 }
 
 	@RequestMapping(value="month.at")//월별출석부
 	public String monthAtt(Model model,Children att) {

@@ -1,5 +1,7 @@
 package com.kh.fp.meal.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -47,6 +49,15 @@ public class MealDaoImpl implements MealDao{
 	public int insertAtt(SqlSessionTemplate sqlSession, Attachment at) {
 		int content = sqlSession.insert("Meal.insertAt",at);
 		return content;
+	}
+
+	@Override
+	public ArrayList<Attachment> selectPic(SqlSessionTemplate sqlSession, String day) throws MealException {
+		ArrayList<Attachment> list = (ArrayList)sqlSession.selectList("Meal.selectList", day);
+		if(list == null) {
+			throw new MealException("식단표 사진 불러오기 실패!");
+		}
+		return list;
 	}
 
 }
