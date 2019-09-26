@@ -10,7 +10,6 @@
 
 <style>
 
-
 .main-panel {
 	    position: relative;
 	    width: calc(100% - 240px);
