@@ -7,12 +7,154 @@
 <head>
 <meta charset="UTF-8">
 <title>투약보고서</title>
-<link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugReportWriteCss.css">
-
+<%-- <link rel="stylesheet" href="${ contextPath }/resources/css/drugRequest/drugReportWriteCss.css">
+ --%>
 <style>
+.main-panel {
+	position: relative;
+	width: calc(100% - 240px);
+	height: 100vh;
+	min-height: 100%;
+	float: right;
+	transition: all .3s;
+}
+
+#titleArea {
+	background: #f5f5f5;
+	height: 75px;
+}
+
+#title {
+	padding: 15px;
+}
+
+#profileArea {
+	margin-left: 20px;
+}
+
+#contentsArea {
+	height: 800px;
+	background: white;
+	font-size:15px;
+}
+
+#profileImg {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+}
+
+#symptomArea, #dosageArea {
+	line-height: 230%;
+	font-size: 18px;
+	margin-left: 25px;
+}
+
+#tableArea {
+	border: 0.5px solid #d6d6d6;
+	width: 96%;
+	height: 300px;
+}
+
+tr {
+	border: 0.5px solid #d6d6d6;
+}
+
+th, td {
+	padding-left: 20px;
+}
+
+#msgArea {
+	float: right;
+	margin-right: 10%;
+	display: inline;
+}
+
+#signArea {
+	width: 80px;
+	height: 80px;
+	float: right;
+	display: inline;
+	margin-right: 5%;
+}
 #signImg {
-	width:70px;
-	height:70px;
+	width:80px;
+	height:80px;
+}
+#a1 {
+	height: 65px;
+	background: #d9d2d2;
+	color: #524c4c;
+	font-size: 20px;
+	line-height: 20px;
+	padding: 19px;
+	font-weight: bold;
+}
+
+#reportArea {
+	height: 370px;
+	background: #fcfcfc;
+}
+
+#reportArea p {
+	font-size:16px
+}
+
+#reportArea p, #reportArea textarea {
+	margin-left: 25px;
+}
+
+#bogoContent {
+	width: 96%;
+	resize: none;
+}
+
+.btns {
+	width: 200px;
+	height: 50px;
+	color: white;
+}
+
+#btn1 {
+	background: #919191;
+	font-weight: bold;
+	font-size: 20px;
+	height:50px;
+	border: 0.5px solid #7d7d7d;
+}
+
+#btn2 {
+	background: #ff737a;
+	font-weight: bold;
+	font-size: 20px;
+	height:50px;
+}
+
+#area3 {
+	margin-left: 745px;
+    font-size: 20px;
+	display: inline;
+}
+
+#area4 {
+	margin-left: 905px;
+	font-size: 20px;
+	margin-top:15px;
+}
+::placeholder {
+  font-size: 1.2em;
+}
+#btnA2 {
+	float: right;
+	display: inline;
+}
+#btn2, #btn3 {
+	color: #595959;
+	border: 0.5px solid #e4e1dd;
+	width:100px;
+	height:50px;
+	font-size:15px;
+	display: inline;
 }
 </style>
 
@@ -35,9 +177,9 @@
 				<div class="page-category">
 					<div id="mainArea">
 						<div id="titleArea">
-							<h2 id="title">
+							<h1 id="title">
 								<b><c:out value="${ d.childrenName }"/>의 투약의뢰서</b>
-							</h2>
+							</h1>
 						</div>
 						<div id="contentsArea">
 							<br>
@@ -133,6 +275,7 @@
 									<i class="fas fa-list"></i>&nbsp; 목록
 								</button>
 						</div>
+						<br><br>
 					</div>
 				</div>
 			</div>

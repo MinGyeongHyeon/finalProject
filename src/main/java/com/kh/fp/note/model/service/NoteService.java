@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.NoteBox;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
 public interface NoteService {
 	//쪽지보내기 유치원 리스트 불러오기
 	ArrayList<noteKindergarden> selectUserList() throws NoteException;
+
+	//쪽지 보내기
+	int sendNote(NoteBox nb) throws NoteException;
 
 
 	//==========================================================================================
@@ -28,9 +32,6 @@ public interface NoteService {
 
 	//보낸 쪽지함 상세보기에서 삭제하기
 	int deleteSentNoteOne(int noteNo) throws NoteException;
-
-	//쪽지 보내기
-	int insertNote(int kinderNo)  throws NoteException;
 
 
 	//==========================================================================================
@@ -51,6 +52,8 @@ public interface NoteService {
 
 	//쪽지 확인 여부 설정
 	int checkedYN(int noteNo) throws NoteException;
+
+
 
 
 

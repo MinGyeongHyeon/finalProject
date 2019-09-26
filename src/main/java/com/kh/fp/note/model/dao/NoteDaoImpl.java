@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.NoteBox;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
@@ -129,20 +130,6 @@ public class NoteDaoImpl implements NoteDao{
 		return result;
 	}
 
-	//쪽지보내기
-	@Override
-	public int insertNote(SqlSessionTemplate sqlSession, int kinderNo) throws NoteException {
-
-		int result = sqlSession.insert("Note.insertNote", kinderNo);
-
-		System.out.println(result);
-
-		if(result == 0) {
-			throw new NoteException("쪽지 보내기 실패!");
-		}
-
-		return result;
-	}
 
 	//받은 쪽지함 리스트 카운트 가져오기
 	@Override
@@ -226,6 +213,18 @@ public class NoteDaoImpl implements NoteDao{
 		int result = sqlSession.update("Note.checkedYN", noteNo);
 
 		System.out.println(result);
+
+		if(result == 0) {
+			throw new NoteException("쪽지 확인여부 변경 실패!");
+		}
+		return result;
+	}
+
+	//쪽지보내기
+	@Override
+	public int sendNote(SqlSessionTemplate sqlSession, NoteBox nb) throws NoteException {
+
+		int result = sqlSession.insert("Note.insertNote", nb);
 
 		if(result == 0) {
 			throw new NoteException("쪽지 확인여부 변경 실패!");

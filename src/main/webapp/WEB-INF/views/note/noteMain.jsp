@@ -5,7 +5,76 @@
 <head>
 <meta charset="UTF-8">
 <title>받은 쪽지함</title>
-<link rel="stylesheet" href="${ contextPath }/resources/css/note/sentNoteBoxCss.css">
+<%-- <link rel="stylesheet" href="${ contextPath }/resources/css/note/sentNoteBoxCss.css"> --%>
+
+<style>
+.main-panel {
+	position: relative;
+	width: calc(100% - 240px);
+	height: 100vh;
+	min-height: 100%;
+	float: right;
+	transition: all .3s;
+}
+
+#table1 {
+	text-align: center;
+}
+#table1 th{
+	font-size:16px;
+}
+#table1 td{
+	font-size:15px;
+}
+
+#btnArea {
+	float: right;
+	margin-right: 4%;
+}
+
+#btn1 {
+	background: #ff7575;
+	font-weight: bold;
+	color: white;
+}
+
+#sel1 {
+	width:13%;
+	display: inline;
+	height:50px;
+	font-size:15px;
+}
+
+#datepicker {
+	float: right;
+	width: 13%;
+	margin-right: 10px;
+	height:50px;
+	font-size:15px;
+	background:#555;
+	color:#fafafa;
+}
+
+#dateA {
+	display: inline;
+}
+tbody tr:hover {
+	cursor:pointer;
+}
+#listTitle:hover {
+	text-decoration:underline;
+}
+#listTitle {
+	width:40%;
+}
+#checkA {
+	width:10%;
+}
+#nidA {
+	width:10%;
+}
+</style>
+
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -28,7 +97,7 @@
 						</select>
 
 						<div id="dateA">
-							<input type="button" class="btn btn-default" id="datepicker" value="날짜 선택">
+							<input type="button" class="btn" id="datepicker" value="날짜 선택">
 						</div>
 					</div>
 				</div>
@@ -115,6 +184,10 @@
 		</div>
 	</div>
 
+
+
+
+
 	<script>
 		function getUrlParams() {
     		var params = {};
@@ -143,7 +216,12 @@
 
 				console.log(noteNo);
 
-				location.href="selectRecieveNoteOne.nt?noteNo=" + noteNo;
+				var location = "selectRecieveNoteOne.nt?noteNo=" + noteNo;
+
+				obj = window.open(location,"testWin","left=570, top=80, width=500, height=550, toolbar=no, scrollbars=no, status=no, resizable=no");
+
+
+				//location.href="selectRecieveNoteOne.nt?noteNo=" + noteNo;
 			});
 
 

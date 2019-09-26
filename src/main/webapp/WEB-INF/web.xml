@@ -94,7 +94,7 @@
 		<servlet-name>attendance</servlet-name>
 		<url-pattern>*.at</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>meal</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -109,7 +109,7 @@
 		<servlet-name>meal</servlet-name>
 		<url-pattern>*.ml</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>Company</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -124,8 +124,8 @@
 		<servlet-name>Company</servlet-name>
 		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>homework</servlet-name>
 		<url-pattern>*.hw</url-pattern>
@@ -145,7 +145,7 @@
 		<servlet-name>schedule</servlet-name>
 		<url-pattern>*.sc</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>returnHome</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -210,6 +210,21 @@
 
 
 	<servlet>
+		<servlet-name>journal</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/journal-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>journal</servlet-name>
+		<url-pattern>*.jn</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>individualhomework</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -224,7 +239,7 @@
 		<servlet-name>individualhomework</servlet-name>
 		<url-pattern>*.ih</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>SelectNoticeList</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -240,11 +255,12 @@
 		<servlet-name>SelectNoticeList</servlet-name>
 		<url-pattern>*.sn</url-pattern>
 	</servlet-mapping>
-	
-	
-		<servlet>
+
+
+	<servlet>
 		<servlet-name>notice</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/notice-servlet.xml</param-value>
@@ -255,10 +271,11 @@
 		<servlet-name>notice</servlet-name>
 		<url-pattern>*.nw</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>album</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/album-servlet.xml</param-value>
@@ -269,6 +286,7 @@
 		<servlet-name>album</servlet-name>
 		<url-pattern>*.ab</url-pattern>
 	</servlet-mapping>
+
 	
 	<servlet>
 		<servlet-name>bus</servlet-name>
@@ -284,14 +302,15 @@
 		<url-pattern>*.bs</url-pattern>
 	</servlet-mapping>
 	
-	
-	
+
 	<servlet>
 		<servlet-name>noticeWhoAreYou</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/noticeWhoAreYou-servlet.xml</param-value>
+			<param-value>/WEB-INF/config/noticeWhoAreYou-servlet.xml
+			</param-value>
 		</init-param>
 	</servlet>
 

@@ -10,6 +10,7 @@ import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.note.model.dao.NoteDao;
 import com.kh.fp.note.model.exception.NoteException;
 import com.kh.fp.note.model.vo.Note;
+import com.kh.fp.note.model.vo.NoteBox;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.note.model.vo.noteKindergarden;
 
@@ -68,13 +69,6 @@ public class NoteServiceImpl implements NoteService{
 		return nd.deleteSentNoteOne(sqlSession, noteNo);
 	}
 
-
-	//쪽지 보내기
-	@Override
-	public int insertNote(int kinderNo) throws NoteException {
-		return nd.insertNote(sqlSession, kinderNo);
-	}
-
 	//받은 쪽지함 리스트 카운트 가져오기
 	@Override
 	public int getRecieveListCount(int userNo) {
@@ -117,6 +111,13 @@ public class NoteServiceImpl implements NoteService{
 	public int checkedYN(int noteNo) throws NoteException {
 
 		return nd.checkedYN(sqlSession, noteNo);
+	}
+
+	//쪽지보내기
+	@Override
+	public int sendNote(NoteBox nb) throws NoteException {
+
+		return nd.sendNote(sqlSession, nb);
 	}
 
 

@@ -134,12 +134,6 @@ public class PageLinkServlet {
 	}
 
 
-	@RequestMapping(value="businessLogMain.pl")
-	public String businessLogMain() {
-
-		return "businessLog/businessLogList";
-	}
-
 	@RequestMapping(value="noteMain.pl")
 	public String noteMain() {
 
@@ -264,24 +258,37 @@ public class PageLinkServlet {
 		return "main/introduceService";
 	}
 
-	@RequestMapping(value="writeDailyLog.pl")
-	public String writeDailyLog() {
-		return "businessLog/writeDailyLog";
-	}
-	
 	@RequestMapping(value="MyPage.pl")
 	public String myPage() {
-		
-		
+
+
 		return "member/MyPage";
 	}
+
+
+	@RequestMapping(value="sendForm.pl")
+	public String sendForm() {
+		return "note/sendForm";
+	}
+
+
+	@RequestMapping(value="journalMain.pl")
+	public String journalMain() {
+
+		return "journal/journalList";
+	}
+
+	@RequestMapping(value="writeJournal.pl")
+	public String writeJournal() {
+		return "journal/writeJournal";
+	}
+
 	@RequestMapping(value="bus.pl")
 	public String bus() {
 		
 		
 		return "bus/bus";
 	}
-	
 	
 
 }

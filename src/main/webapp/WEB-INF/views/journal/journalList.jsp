@@ -20,25 +20,27 @@
 	margin-right: 10px;
 	width: 12%;
 	margin-left: auto;
-	font-size: 15px;
+	font-size: 16px;
 	float: right;
 	display: inline;
 	background:#555 !important;
 	color:white;
-	height:40px;
+	height:50px;
 }
 
-#sel1 {
+#sel1, #sel2 {
 	width: 15%;
-	height: 40px;
+	height: 50px;
 	display: inline;
+	font-size:16px;
+}
+#table1 {
+	text-align: center;
+}
+#table1 th {
+	font-size:16px;
 }
 
-#sel2 {
-	width: 15%;
-	height: 40px;
-	display: inline;
-}
 </style>
 
 </head>
@@ -72,7 +74,7 @@
 						<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" id="writeBtn">
 						작성하기</button>
     						<div class="dropdown-menu">
-      							<a class="dropdown-item" href="writeDailyLog.pl">일지 작성하기</a>
+      							<a class="dropdown-item" href="writeJournal.pl">일지 작성하기</a>
       							<a class="dropdown-item" href="#">주간일지 작성하기</a>
     						</div>
 

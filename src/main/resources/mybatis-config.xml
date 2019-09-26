@@ -48,6 +48,8 @@
 		<typeAlias type="com.kh.fp.note.model.vo.noteKindergarden" alias="noteKindergarden"/>
 		<typeAlias type="com.kh.fp.note.model.vo.Users" alias="Users"/>
 		<typeAlias type="com.kh.fp.note.model.vo.Note" alias="Note"/>
+		<typeAlias type="com.kh.fp.note.model.vo.NoteBox" alias="NoteBox"/>
+		<typeAlias type="com.kh.fp.journal.model.vo.Journal" alias="Journal"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclasses" alias="Kinderclasses"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinderUserName" alias="KinderUserName"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.HomeWorkApply" alias="HomeWorkApply"/>
@@ -68,6 +70,7 @@
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/meal-mapper.xml"/>
 		<mapper resource="mappers/album-mapper.xml"/>
+		<mapper resource="mappers/journal-mapper.xml"/>
 	</mappers>
 
 </configuration>
