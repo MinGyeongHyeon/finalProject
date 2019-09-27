@@ -16,6 +16,7 @@ import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.note.model.vo.PageInfo;
+import com.kh.fp.notice.model.vo.NoticeWho;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
 
 @Service
@@ -175,6 +176,36 @@ public class HomeworkServiceImpl implements HomeworkService{
 		
 		return h;
 	}
+
+	@Override
+	public int getCListCount(NoticeWho noticeWho) {
+		
+		int ListCount = hd.CListCount(sqlSession,noticeWho);
+		System.out.println("너 뭐야"+noticeWho);
+		
+		return ListCount;
+	}
+
+	@Override
+	public ArrayList<NoticeWho> selectTeacher(int userNo) {
+
+		ArrayList<NoticeWho> tnum = hd.selectTNum(sqlSession,userNo);
+		
+		
+		return tnum;
+	}
+
+	@Override
+	public ArrayList<homework> selectChomework(com.kh.fp.homework.model.vo.PageInfo pi, NoticeWho noticeWho) {
+
+		ArrayList<homework> list = hd.selectChomework(sqlSession,pi,noticeWho);
+		
+		
+		
+		return list;
+	}
+
+
 
 
 	 

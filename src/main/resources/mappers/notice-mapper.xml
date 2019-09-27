@@ -16,6 +16,7 @@
 		<result property="kinderNum" column="KINDER_NO" />
 		<result property="writer" column="WRITER" />
 		<result property="className" column="CLASS_NAME" />
+		<result property="picture" column="CHANGE_NAME" />
 	</resultMap>
 
 	<resultMap type="NoticeWho" id="noticeWho">
@@ -103,14 +104,30 @@
       </select>
 	
 
-	<select id="selectListCount" resultType="_int">
+	<select id="selectListKingCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM BOARD B
 		WHERE STATUS='N'
 		AND KINDER_NO = #{kinderNum}
 		AND BOARD_TYPE = '공지사항'
-		AND CLASS_NO IS NULL 
-		OR CLASS_NO = #{classNum}
+	</select>
+	
+	<select id="selectKList" resultMap="noticeResultSet">
+		SELECT B.BOARD_NO,B.BOARD_TITLE,BOARD_CONTENT,BOARD_DATE,WRITER,K.CLASS_NAME,A.CHANGE_NAME
+		FROM BOARD B
+        JOIN KINDER_CLASS K ON K.TEACHER_NO = B.WRITER
+        LEFT OUTER JOIN ATTACHMENT A ON A.USER_NO = B.WRITER
+		WHERE STATUS='N'
+		AND B.KINDER_NO = #{kinderNum}
+		AND B.BOARD_TYPE = '공지사항'
+        ORDER BY B.BOARD_NO DESC
+	</select>
+	
+	
+	<select id="selectCname" resultType="java.lang.String">
+		SELECT CLASS_NAME
+		FROM KINDER_CLASS
+		WHERE TEACHER_NO = #{t}
 	</select>
 	
 	<select id="selectList" resultMap="noticeResultSet">
@@ -126,10 +143,24 @@
 		ORDER BY B.BOARD_NO DESC
 	</select>
 	
-	<select id="selectChildrenList" resultMap="noticeResultSet">
-	SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_DATE,K.CLASS_NAME,B.BOARD_CONTENT
+	<select id="selectPListCount" resultType="_int">
+		SELECT  COUNT(*)
 		FROM BOARD B
 		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO = #{kinderNum}
+		AND K.TEACHER_NO = #{teacherNum}
+		AND B.BOARD_TYPE = '공지사항'
+		AND B.CLASS_NO IS NULL 
+		OR B.CLASS_NO = #{classNum}
+		ORDER BY B.BOARD_NO DESC
+	</select>
+	
+	<select id="selectChildrenList" resultMap="noticeResultSet">
+	SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_DATE,K.CLASS_NAME,B.BOARD_CONTENT,A.CHANGE_NAME
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+        LEFT OUTER JOIN ATTACHMENT A ON A.USER_NO = B.WRITER
 		WHERE B.STATUS='N'
 		AND B.KINDER_NO = #{kinderNum}
 		AND K.TEACHER_NO = #{teacherNum}

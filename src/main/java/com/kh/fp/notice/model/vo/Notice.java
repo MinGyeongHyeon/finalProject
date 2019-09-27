@@ -14,14 +14,14 @@ public class Notice implements Serializable{
 	private int kinderNum;
 	private int writer;
 	private String className;
-	private String userName;
-	
+	private String picture;
 	
 	public Notice() {}
 
 
 	public Notice(int boardNum, String boardTitle, String boardContent, Date boardDate, String boardtype, int classNum,
-			int kinderNum, int writer, String className, String userName) {
+
+			int kinderNum, int writer, String className, String picture) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -32,7 +32,8 @@ public class Notice implements Serializable{
 		this.kinderNum = kinderNum;
 		this.writer = writer;
 		this.className = className;
-		this.userName = userName;
+
+		this.picture = picture;
 	}
 
 
@@ -126,13 +127,14 @@ public class Notice implements Serializable{
 	}
 
 
-	public String getUserName() {
-		return userName;
+	public String getPicture() {
+		return picture;
 	}
 
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setPicture(String picture) {
+		this.picture = picture;
+
 	}
 
 
@@ -140,17 +142,10 @@ public class Notice implements Serializable{
 	public String toString() {
 		return "Notice [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardDate=" + boardDate + ", boardtype=" + boardtype + ", classNum=" + classNum + ", kinderNum="
-				+ kinderNum + ", writer=" + writer + ", className=" + className + ", userName=" + userName + "]";
+				+ kinderNum + ", writer=" + writer + ", className=" + className + ", picture=" + picture + "]";
 	}
 
 
-	
-	
-
-
-	
-
-	
 	
 
 }
