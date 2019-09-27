@@ -179,38 +179,40 @@ color:white;
 			
 			var classification = '${ loginUser.classification }'
 			
-			if(classification != '체험판선생님'){
+			if(classification == '체험판선생님' || classification == '체험판원장님'){
 				
-			var kinderNo = $('#kinderNo').val();
-			var childrenNo = $(this).parent().next().children().val();
-			
-			console.log(kinderNo);
-			console.log(childrenNo);
-			
-			if(confirm("거절 하시겠습니까?")){
-				
-				$.ajax({
-					url:"deletechildrenclass.kl",
-					type:"post",
-					data:{kinderNo:kinderNo,childrenNo:childrenNo},
-					success:function(data){
-						
-						if(data.result == 1){
-							alert("거절이 완료 되었습니다.");
-								
-							location.href="childrenMe.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
-							
-						}
-						
-					}
-					
-				});
-				
-			}
+				alert("체험판 에선 불가능한 기능입니다.");
 			
 			}else{
 				
-				alert("체험판 에선 불가능한 기능입니다.");
+		
+				
+				var kinderNo = $('#kinderNo').val();
+				var childrenNo = $(this).parent().next().children().val();
+				
+				console.log(kinderNo);
+				console.log(childrenNo);
+				
+				if(confirm("거절 하시겠습니까?")){
+					
+					$.ajax({
+						url:"deletechildrenclass.kl",
+						type:"post",
+						data:{kinderNo:kinderNo,childrenNo:childrenNo},
+						success:function(data){
+							
+							if(data.result == 1){
+								alert("거절이 완료 되었습니다.");
+									
+								location.href="childrenMe.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+								
+							}
+							
+						}
+						
+					});
+					
+				}
 				
 			}
 			
@@ -222,37 +224,39 @@ color:white;
 			
 			var classification = '${ loginUser.classification }'
 			
-				if(classification != '체험판선생님'){
-					
-		var kinderNo = $('#kinderNo').val();
-		var childrenNo = $(this).parent().next().children().val();
-		var className = $(this).parent().prev().children().val();
-		
-		
-		if(confirm("승인 하시겠습니까?")){
-			
-		$.ajax({
-			url:"insertchildrenclass.kl",
-			type:"post",
-			data:{kinderNo:kinderNo,childrenNo:childrenNo,className:className},
-			success:function(data){
-				
-				if(data.result == 1){
-					alert("승인이 완료 되었습니다.");
-						
-					location.href="childrenMe.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
-					
-				}
-				
-			}
-			
-			
-		});
-		
-		}
+				if(classification == '체험판선생님' || classification == '체험판원장님'){
+					alert("체험판 에선 불가능한 기능입니다.");
+	
 				}else{
 					
-					alert("체험판 에선 불가능한 기능입니다.");
+				
+					
+					var kinderNo = $('#kinderNo').val();
+					var childrenNo = $(this).parent().next().children().val();
+					var className = $(this).parent().prev().children().val();
+					
+					
+					if(confirm("승인 하시겠습니까?")){
+						
+					$.ajax({
+						url:"insertchildrenclass.kl",
+						type:"post",
+						data:{kinderNo:kinderNo,childrenNo:childrenNo,className:className},
+						success:function(data){
+							
+							if(data.result == 1){
+								alert("승인이 완료 되었습니다.");
+									
+								location.href="childrenMe.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+								
+							}
+							
+						}
+						
+						
+					});
+					
+					}
 				}
 	
 			

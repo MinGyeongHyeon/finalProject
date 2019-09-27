@@ -6,6 +6,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 
 #content{
@@ -27,7 +29,7 @@ margin-left:5%;
 h1{
 margin-left:5%;
 }
-#saveBtn{
+#saveBtnmenu{
 margin-left:38%;
 width:25%;
 height:7%;
@@ -166,15 +168,39 @@ margin-left:5%;
 	</div>
 	
 	<br><br>
-	<button type="submit" class="btn btn-info" id="saveBtn">저장</button><br><br><br>
+	<button type="button" class="btn btn-info" id="saveBtnmenu">저장</button><br><br><br>
 	
 	</form>
 	
 	</div>
 	
+	<script>
+$('#saveBtnmenu').click(function(){
+		
+		console.log("qwdqwd");
+		
+		var classification = '${ loginUser.classification }';
+		
+		if(classification == '체험판원장님' || classification == '체험판선생님'){
+			
+			alert("체험판 입니다 수정이 불가능합니다.");
+			
+		}else{
+			
+			$(this).attr('type','submit');
+			
+		}
+		
+	});
+	
+	
+	</script>
+	
 	<c:if test="${ not empty msg }">
 	
 	<script>
+	
+	
 	$(function(){
 	
 		

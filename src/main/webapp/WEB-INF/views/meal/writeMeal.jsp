@@ -96,9 +96,9 @@ border-top:none;
 </style>
 </head>
 <body>
+	<jsp:include page="../common/menubar.jsp"/>
 <form action="writerMeal2.ml" method="post" encType="multipart/form-data">
 
-	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" alt="your image" id="firstContentArea">
 	
 <div class="pageName">

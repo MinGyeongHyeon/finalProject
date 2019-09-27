@@ -520,11 +520,11 @@ font-family: 'Sunflower', sans-serif;
 
 <div class="container hiddenmodal">
 
-  <button type="button" class="btn btn-info btn-lg buttonmodal" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+  <button type="button" class="btn btn-info btn-lg buttonmodal" data-toggle="modal" data-target="#myModalt">Open Large Modal</button>
 
   <!-- Modal -->
 <form action="myPageUserPwdcheck.me" method="post" id="form">
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModalt" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
