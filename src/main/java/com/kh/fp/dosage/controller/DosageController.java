@@ -89,13 +89,10 @@ public class DosageController {
 
 		if(classification.equals("원장님")) {
 			listCount = ds.getListCount(userNo);
-			System.out.println("listCount : " + listCount);
 		}else if(classification.equals("학부모")) {
 			listCount = ds.getPListCount(userNo);
-			System.out.println("listCount : " + listCount);
 		}else {
 			listCount = ds.getTListCount(userNo);
-			System.out.println("listCount : " + listCount);
 		}
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -103,14 +100,12 @@ public class DosageController {
 			try {
 				if(classification.equals("원장님")) {
 					detailList = ds.selectDosageRequestList(pi, userNo);
-					model.addAttribute("detailList", detailList);
 				}else if(classification.equals("학부모")) {
 					detailList = ds.selectPDosageRequestList(pi, userNo);
-					model.addAttribute("detailList", detailList);
 				}else {
 					detailList = ds.selectTDosageRequestList(pi, userNo);
-					model.addAttribute("detailList", detailList);
 				}
+				model.addAttribute("detailList", detailList);
 				model.addAttribute("pi", pi);
 
 				return "drugRequest/drugRequestList";

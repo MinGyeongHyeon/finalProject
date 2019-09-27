@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +48,8 @@
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 
+	<fmt:formatDate value="${ l.journalDate }" pattern="yyyy년 MM월 dd일"/>
+
 	<div class="main-panel">
 		<div class="content">
 			<div class="page-inner">
@@ -93,13 +96,55 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach var="l" items="${ jList }">
 
+									<tr>
+										<td><c:out value="${ l.journalNo }"/></td>
+										<td>일지</td>
+										<td><fmt:formatDate value="${ l.journalDate }" pattern="yyyy년 MM월 dd일"/> 일지</td>
+										<td><c:out value="${ l.journalDate }"/></td>
+										<td><c:out value="${ l.userName }"/></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 
 				</div>
 
+
+									<!-- 페이징 -->
+					<div id="paginArea" align="center">
+						<c:if test="${ pi.currentPage <= 1 }">이전 &emsp;</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="blistBack" value="journalMain.jn">
+								<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
+							</c:url>
+							<a href="${ blistBack }">이전</a>
+							&emsp;
+						</c:if>
+
+						<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+							<c:if test="${ p eq pi.currentPage }">
+								<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
+							</c:if>
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="blistCheck" value="journalMain.jn">
+									<c:param name="currentPage" value="${ p }" />
+								</c:url>
+								<a href="${ blistCheck }">${ p }</a>
+							</c:if>
+						</c:forEach>
+
+
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="blistEnd" value="journalMain.jn">
+								<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+							</c:url>
+							<a href="${ blistEnd }">&emsp; 다음</a>
+						</c:if>
+						<c:if test="${ pi.currentPage >= pi.maxPage }"> &emsp; 다음 </c:if>
+					</div>
 
 
 			</div>

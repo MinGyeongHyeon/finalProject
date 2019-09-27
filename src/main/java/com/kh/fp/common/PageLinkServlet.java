@@ -75,9 +75,9 @@ public class PageLinkServlet {
 	}
 	@RequestMapping(value="experience.pl")
 	public String experience(Model model) {
-		
+
 		model.addAttribute("exp","체험판");
-		
+
 		return "account/join4";
 	}
 
@@ -96,8 +96,9 @@ public class PageLinkServlet {
 	}
 
 	@RequestMapping(value="main.pl")
+
 	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model,@SessionAttribute(value="kga") KinderGarden kga) {
-		
+
 
 		if(loginUser.getClassification().equals("원장님") || loginUser.getClassification().equals("체험판원장님")) {
 
@@ -304,11 +305,11 @@ public class PageLinkServlet {
 
 	@RequestMapping(value="bus.pl")
 	public String bus() {
-		
-		
+
+
 		return "bus/bus";
 	}
-	
+
 
 }
 

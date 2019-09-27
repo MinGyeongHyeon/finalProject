@@ -72,7 +72,7 @@ font-family: 'Sunflower', sans-serif;
 			<div class="logo-header">
 
 				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
-				
+
 
 				</a><div>
 
@@ -92,11 +92,12 @@ font-family: 'Sunflower', sans-serif;
 					</button>
 				</div>
 			</div>
-		
-	
+
+
 			<nav class="navbar navbar-header navbar-expand-lg">
-			
-			<c:if test="${ loginUser.classification eq '원장님' }">
+
+			<c:if test="${ loginUser.classification eq '원장님'or loginUser.classification eq '체험판원장님'}">
+
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
 					<i class="fas fa-cog"></i>
@@ -108,7 +109,7 @@ font-family: 'Sunflower', sans-serif;
 		   </form>
 			</c:if>
 			
-		    <c:if test="${ loginUser.classification eq '선생님' }">
+		    <c:if test="${ loginUser.classification eq '선생님'or loginUser.classification eq '체험판선생님'  }">
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
 					<i class="fas fa-cog"></i>
@@ -117,13 +118,13 @@ font-family: 'Sunflower', sans-serif;
 					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
 			</form>
 			</c:if>
-			
+
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
 
-						<c:if test="${ loginUser.classification eq '원장님' }">
-				
+
+						<c:if test="${ loginUser.classification eq '원장님' or '체험판원장님'}">
 
 							<li class="nav-item dropdown hidden-caret"><a
 								class="nav-link dropdown-toggle" href="#" id="messageDropdown"
@@ -395,10 +396,12 @@ font-family: 'Sunflower', sans-serif;
 								<p>승하차</p>
 						</a></li>
 
-						<li class="nav-item"><a href="businessLogMain.pl"> <i
+						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '선생님'}">
+						<li class="nav-item"><a href="journalMain.jn"> <i
 								class="far fa-clipboard"></i>
 								<p>일지관리</p>
 						</a></li>
+						</c:if>
 
 						<li class="nav-item"><a href="#submenu"> <i
 								class="far fa-comments"></i>
@@ -450,6 +453,7 @@ font-family: 'Sunflower', sans-serif;
 		</div>
  -->
 	<!-- 	</div> -->
+
 	<!--   Core JS Files   -->
 	<script src="${ contextPath }/resources/assets/js/core/jquery.3.2.1.js"></script>
 	<script src="${ contextPath }/resources/assets/js/core/popper.min.js"></script>
@@ -512,6 +516,50 @@ font-family: 'Sunflower', sans-serif;
 
 	<!-- Azzara JS -->
 	<%-- <script src="${ contextPath }/resources/assets/js/ready.min.js"></script> --%>
+
+
+<div class="container hiddenmodal">
+
+  <button type="button" class="btn btn-info btn-lg buttonmodal" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+
+  <!-- Modal -->
+<form action="myPageUserPwdcheck.me" method="post" id="form">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">본인 확인</h4>
+        </div>
+        <div class="modal-body">
+          	<label for="">본인 확인을 위해 비밀번호를 재입력 해주세요.</label><br />
+          	<input type="password" class="form-control " name="userPwd" id="userPwd"/>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" id="submitBtn" data-dismiss="modal" value="확인"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<script>
+$("#submitBtn").click(function(){
+	$("#form").submit();
+});
+$('.myPagemodar').click(function(){
+
+	$('#userPwd').val("");
+	$('.buttonmodal').click();
+
+
+});
+
+
+
+</script>
 
 </body>
 </html>

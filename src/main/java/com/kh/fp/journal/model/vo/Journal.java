@@ -13,11 +13,15 @@ public class Journal implements java.io.Serializable{
 	private String totalComment;
 	private String remarks;
 	private String status;
+	private int kinderNo;
+	private String userName;
+	private int loginUserNo;
 
 	public Journal() {}
 
 	public Journal(int journalNo, int userNo, Date journalDate, String topic, String topicMin, String time,
-			String activity, String totalComment, String remarks, String status) {
+			String activity, String totalComment, String remarks, String status, int kinderNo, String userName,
+			int loginUserNo) {
 		super();
 		this.journalNo = journalNo;
 		this.userNo = userNo;
@@ -29,6 +33,9 @@ public class Journal implements java.io.Serializable{
 		this.totalComment = totalComment;
 		this.remarks = remarks;
 		this.status = status;
+		this.kinderNo = kinderNo;
+		this.userName = userName;
+		this.loginUserNo = loginUserNo;
 	}
 
 	public int getJournalNo() {
@@ -111,11 +118,36 @@ public class Journal implements java.io.Serializable{
 		this.status = status;
 	}
 
+	public int getKinderNo() {
+		return kinderNo;
+	}
+
+	public void setKinderNo(int kinderNo) {
+		this.kinderNo = kinderNo;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getLoginUserNo() {
+		return loginUserNo;
+	}
+
+	public void setLoginUserNo(int loginUserNo) {
+		this.loginUserNo = loginUserNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Journal [journalNo=" + journalNo + ", userNo=" + userNo + ", journalDate=" + journalDate + ", topic="
 				+ topic + ", topicMin=" + topicMin + ", time=" + time + ", activity=" + activity + ", totalComment="
-				+ totalComment + ", remarks=" + remarks + ", status=" + status + "]";
+				+ totalComment + ", remarks=" + remarks + ", status=" + status + ", kinderNo=" + kinderNo
+				+ ", userName=" + userName + ", loginUserNo=" + loginUserNo + "]";
 	}
 
 
