@@ -54,6 +54,9 @@
 																					FROM KINDER_CLASS K2
 																					WHERE K2.TEACHER_NO = #{teacherNo})
 							AND DIVISION = '원생')
+		<if test='childrenNo!=0'>
+		AND CHILDREN_NO = #{childrenNo}
+		</if>
 	</select>
 	
 	<select id="parentsCountList" parameterType="ChildrenClassRH" resultType="_int">
@@ -95,7 +98,10 @@
 								WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
 																						FROM KINDER_CLASS K2
 																						WHERE K2.TEACHER_NO = #{teacherNo})
-								AND DIVISION = '원생')			
+								AND DIVISION = '원생')
+		<if test='childrenNo!=0'>
+		AND RH.CHILDREN_NO = #{childrenNo}
+		</if>			
 	</select>
 	
 	<select id="selctReturnHomeList" parameterType="KinderClassRH" resultMap="returnHomeResultSet">
@@ -110,7 +116,10 @@
 																						FROM KINDER_CLASS K2
 																						WHERE K2.TEACHER_NO = #{teacherNo})
 								AND DIVISION = '원생')
-		ORDER BY HOME_NO DESC					
+		<if test='childrenNo!=0'>
+		AND RH.CHILDREN_NO = #{childrenNo}
+		</if>					
+		ORDER BY HOME_NO DESC
 	</select>
 	
 	<select id="selectParentsReturnHomeList" parameterType="ChildrenClassRH" resultMap="returnHomeResultSet">
@@ -140,6 +149,9 @@
 		JOIN CHILDREN CH ON (KC.CHILDREN_NO = CH.CHILDREN_NO)
 		WHERE KINDER_NO = #{kinderNo}
 		AND KC.CHILDREN_NO IS NOT NULL
+		<if test='childrenNo!=0'>
+		AND KC.CHILDREN_NO = #{childrenNo}
+		</if>
 	</select>
 	
 	<select id="countList" parameterType="KinderClassRH" resultType="_int">
@@ -153,6 +165,9 @@
 		                        WHERE KINDER_NO = #{kinderNo}
 		                        AND CHILDREN_NO IS NOT NULL)
 		AND KINDER_NO = #{kinderNo}	
+		<if test='childrenNo!=0'>
+		AND KC.CHILDREN_NO = #{childrenNo}
+		</if>
 	</select>
 	
 	
@@ -168,6 +183,9 @@
 		                        WHERE KINDER_NO = #{kinderNo}
 		                        AND CHILDREN_NO IS NOT NULL)
 		AND KINDER_NO = #{kinderNo}	
+		<if test='childrenNo!=0'>
+		AND RH.CHILDREN_NO = #{childrenNo}
+		</if>
 	</select>
 	
 	<update id="updateReading" parameterType="_int">
