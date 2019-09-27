@@ -59,6 +59,18 @@
 		</if>
 	</select>
 	
+	<select id="searchChildrenName" parameterType="KinderClassRH" resultMap="childrenResultSet">
+		SELECT CHILDREN_NO, CHILDREN_NAME, BIRTH, GENDER, USER_NO
+		FROM CHILDREN
+		WHERE CHILDREN_NO IN (SELECT CHILDREN_NO
+							FROM KINDER_CLASS K1
+							WHERE (K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE) IN (SELECT K2.KINDER_NO, K2.CLASS_NAME, K2.OPENED_DATE
+																					FROM KINDER_CLASS K2
+																					WHERE K2.TEACHER_NO = #{teacherNo})
+							AND DIVISION = '원생')
+	
+	</select>
+	
 	<select id="parentsCountList" parameterType="ChildrenClassRH" resultType="_int">
 		SELECT COUNT(*)
 		FROM RETURN_HOME RH
@@ -152,6 +164,14 @@
 		<if test='childrenNo!=0'>
 		AND KC.CHILDREN_NO = #{childrenNo}
 		</if>
+	</select>
+	
+	<select id="searchKinderChildrenName" parameterType="KinderClassRH" resultMap="childrenResultSet">
+		SELECT KC.CHILDREN_NO, CH.CHILDREN_NAME, CH.BIRTH, CH.GENDER, CH.USER_NO
+		FROM KINDER_CLASS KC
+		JOIN CHILDREN CH ON (KC.CHILDREN_NO = CH.CHILDREN_NO)
+		WHERE KINDER_NO = #{kinderNo}
+		AND KC.CHILDREN_NO IS NOT NULL
 	</select>
 	
 	<select id="countList" parameterType="KinderClassRH" resultType="_int">

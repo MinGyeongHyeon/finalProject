@@ -137,5 +137,21 @@ public class ReturnHomeDaoImpl implements ReturnHomeDao{
 		return result;
 	}
 
+	@Override
+	public ArrayList<Children> searchChildrenName(SqlSessionTemplate sqlSession, KinderClass kc) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Children> searchChildrenName = (ArrayList) sqlSession.selectList("ReturnHome.searchChildrenName", kc);
+		
+		return searchChildrenName;
+	}
+
+	@Override
+	public ArrayList<Children> searchKinderChildrenName(SqlSessionTemplate sqlSession, KinderClass kc) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Children> searchKinderChildrenName = (ArrayList) sqlSession.selectList("ReturnHome.searchKinderChildrenName", kc);
+		
+		return searchKinderChildrenName;
+	}
+
 	
 }

@@ -199,7 +199,7 @@ var calendar = $('#calendar').fullCalendar({
 					
 				}
 					
-				callback(events[0]);
+				callback(events);
 				
 			},
 			error: function(response){

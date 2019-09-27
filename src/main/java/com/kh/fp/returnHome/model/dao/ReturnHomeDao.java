@@ -37,4 +37,8 @@ public interface ReturnHomeDao {
 
 	int updateReading(SqlSessionTemplate sqlSession, int homeNo);
 
+	ArrayList<Children> searchChildrenName(SqlSessionTemplate sqlSession, KinderClass kc);
+
+	ArrayList<Children> searchKinderChildrenName(SqlSessionTemplate sqlSession, KinderClass kc);
+
 }
