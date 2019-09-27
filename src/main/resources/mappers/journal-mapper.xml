@@ -16,11 +16,41 @@
 		<result property="totalComment" column="TOTAL_COMMENT"/>
 		<result property="remarks" column="REMARKS"/>
 		<result property="status" column="STATUS"/>
+		<result property="kinderNo" column="KINDER_NO"/>
+		<result property="userName" column="USER_NAME"/>
 	</resultMap>
 
 	<!-- 일지 작성하기 -->
 	<insert id="insertJournal" parameterType="Journal">
 		INSERT INTO JOURNAL VALUES(SEQ_JOURNAL_NO.NEXTVAL, #{userNo}, SYSDATE, #{topic}, #{topicMin}, #{time}, #{activity}, #{totalComment}, #{remarks}, DEFAULT)
 	</insert>
+
+	<!-- 리스트카운트 가져오기(원장) -->
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM JOURNAL J
+		JOIN KINDER_CLASS K ON(J.USER_NO = K.TEACHER_NO)
+		WHERE K.KINDER_NO = #{userNo}
+		AND J.STATUS = 'N'
+	</select>
+	<!-- 리스트카운트 가져오기(선생님) -->
+	<select id="selectTListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM JOURNAL J
+		JOIN KINDER_CLASS K ON(J.USER_NO = K.TEACHER_NO)
+		WHERE K.KINDER_NO = #{kinderNo}
+		AND J.USER_NO = #{loginUserNo}
+		AND J.STATUS = 'N'
+	</select>
+
+	<!-- 일지 리스트 조회 -->
+	<select id="selectJournalList" parameterType="_int" resultMap="Journal">
+		SELECT *
+		FROM JOURNAL J
+		JOIN KINDER_CLASS K ON(J.USER_NO = K.TEACHER_NO)
+		JOIN USERS U ON(U.USER_NO = K.TEACHER_NO)
+		WHERE K.KINDER_NO = #{userNo}
+		AND J.STATUS = 'N'
+	</select>
 
 </mapper>

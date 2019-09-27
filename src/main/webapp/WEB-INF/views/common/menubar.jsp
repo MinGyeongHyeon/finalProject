@@ -74,7 +74,7 @@ font-family: 'Sunflower', sans-serif;
 			<div class="logo-header">
 
 				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
-				
+
 
 				</a><div>
 
@@ -94,21 +94,21 @@ font-family: 'Sunflower', sans-serif;
 					</button>
 				</div>
 			</div>
-		
-	
+
+
 			<nav class="navbar navbar-header navbar-expand-lg">
-			
+
 			<c:if test="${ loginUser.classification eq '원장님'or loginUser.classification eq '체험판원장님'}">
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
 					<i class="fas fa-cog"></i>
 					원 설정
-					</button> 
+					</button>
 					<input type="hidden" name="userNo" value="${ loginUser.userNo }"/>
-					
+
 		   </form>
 			</c:if>
-			
+
 		    <c:if test="${ loginUser.classification eq '선생님'or loginUser.classification eq '체험판선생님' }">
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
@@ -117,13 +117,13 @@ font-family: 'Sunflower', sans-serif;
 					</button>
 			</form>
 			</c:if>
-			
+
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
 
 						<c:if test="${ loginUser.classification eq '원장님' or '체험판원장님'}">
-				
+
 
 							<li class="nav-item dropdown hidden-caret"><a
 								class="nav-link dropdown-toggle" href="#" id="messageDropdown"
@@ -395,10 +395,12 @@ font-family: 'Sunflower', sans-serif;
 								<p>승하차</p>
 						</li>
 
-						<li class="nav-item"><a href="businessLogMain.pl"> <i
+						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '선생님'}">
+						<li class="nav-item"><a href="journalMain.jn"> <i
 								class="far fa-clipboard"></i>
 								<p>일지관리</p>
 						</a></li>
+						</c:if>
 
 						<li class="nav-item"><a href="#submenu"> <i
 								class="far fa-comments"></i>
@@ -450,8 +452,8 @@ font-family: 'Sunflower', sans-serif;
 		</div>
  -->
 	<!-- 	</div> -->
-	
-	
+
+
 	<!--   Core JS Files   -->
 	<script src="${ contextPath }/resources/assets/js/core/jquery.3.2.1.js"></script>
 	<script src="${ contextPath }/resources/assets/js/core/popper.min.js"></script>
@@ -548,11 +550,11 @@ $("#submitBtn").click(function(){
 	$("#form").submit();
 });
 $('.myPagemodar').click(function(){
-	
+
 	$('#userPwd').val("");
 	$('.buttonmodal').click();
 
-	
+
 });
 
 
