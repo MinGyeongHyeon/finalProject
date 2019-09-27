@@ -16,6 +16,7 @@ import com.kh.fp.homework.model.vo.Whoselect;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.notice.model.vo.Notice;
+import com.kh.fp.notice.model.vo.NoticeWho;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
 
 @Repository
@@ -223,8 +224,36 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 		return h;
 	}
 
+	@Override
+	public int CListCount(SqlSessionTemplate sqlSession,NoticeWho noticeWho) {
+
+		System.out.println(noticeWho+"gkgk");
+		int BNum = sqlSession.selectOne("homework.selectClistC",noticeWho);
+		
+		return BNum;
+	}
+
+	@Override
+	public ArrayList<NoticeWho> selectTNum(SqlSessionTemplate sqlSession, int userNo) {
+
+		
+		ArrayList<NoticeWho> list = (ArrayList)sqlSession.selectList("homework.searchTNum",userNo);
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<homework> selectChomework(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho) {
+
+		 ArrayList<homework> list = (ArrayList)sqlSession.selectList("homework.searchCList",noticeWho);
+		
+		return list;
+	}
+
 
 }
+
+
 
 
 

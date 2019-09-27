@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${ contextPath }/resources/css/includeCss.css">
 </head>
 <style>
@@ -34,6 +33,7 @@
 		display: inline-block;
 		background:#fff;
 		height:200px;
+		border:1px solid black;
 	}
 	.returnHomeSummary img{
 		width:20px;
@@ -140,14 +140,17 @@
 			<table style="width:100%">
 				<tr>
 					<td>
-						<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
-							<select name="kidsNameList" id="kidsNameList">
-									<option value="000">전체 원아 보기</option>
-								<c:forEach var="childrenList" items="${list}" varStatus="listStatus">
-									<option value="00${listStatus.count }"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
-								</c:forEach>
-							</select>
-						</c:if>
+						<form action="returnHomeMain.rh">
+							<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
+								<select name="kidsNameList" id="kidsNameList">
+										<option value="0">전체 원아 보기</option>
+									<c:forEach var="childrenList" items="${list}" varStatus="listStatus">
+										<option value="${childrenList.childrenNo}"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
+									</c:forEach>
+								</select>
+								<input type="submit" value="검색"/>
+							</c:if>
+						</form>
 					</td>
 					<td style="text-align:right;">
 						<input type="date" />
@@ -156,7 +159,7 @@
 			</table>
 		</div>
 		<br />
-		<div class="returnHomeList">
+		<div id="returnHomeList" class="returnHomeList">
 			<c:forEach var="rhList" items="${ rhList }" varStatus="rhStatus">
 				<div class="returnHomeSummary" >
 					<form action="selectReturnHomeDetail.rh">
@@ -178,7 +181,7 @@
 								</td>
 							</tr>
 						</table>
-						<input type="text" value="${ rhList.reading }" name="reading" />
+						<input type="text" value="${ rhList.reading }" name="reading" hidden />
 						<button onclick="submit" hidden></button>
 					</form>
 				</div>
@@ -226,8 +229,14 @@
 		
 	</div>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
+	
+	
 	$(function(){
+		var readingYN = $(".returnHomeSummary input[name=reading][value=Y]");
+		readingYN.parent().parent().css({'background':'#f0de99', 'border':'2px solid #753'});
+		
 		$(".returnHomeSummary").on("click", function(){
 			var selectform = this.children[0];
 			var reading = selectform.children[2].value;
@@ -236,14 +245,9 @@
 			console.log(selectBtn);
 			selectBtn.click();
 		});
-		
-		var readingYN = $(".returnHomeSummary input[name=reading][value=Y]");
-		console.log("가나다" + readingYN);
-		readingYN.parent().css('background':'#f0de99');
 	});
-		
-		
-		
+	
+	
 	
 	
 	</script>

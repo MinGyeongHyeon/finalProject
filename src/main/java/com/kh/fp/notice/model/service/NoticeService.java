@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.tools.ant.Project;
 import org.springframework.ui.Model;
 
+import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.exception.NoticeException;
 import com.kh.fp.notice.model.vo.Notice;
@@ -16,7 +17,7 @@ public interface NoticeService {
 
 	ArrayList selectWho(int userNo);
 
-	int getListCount(NoticeWho noticeWho);
+	int getListCount(int userNo);
 
 	ArrayList<Notice> selectProjectList(PageInfo pi, NoticeWho noticeWho);
 
@@ -32,7 +33,14 @@ public interface NoticeService {
 
 	ArrayList<Notice> selectProjectChildrenList(PageInfo pi, NoticeWho noticeWho);
 
-	ArrayList selectTeacher(int userNo);
+	ArrayList<NoticeWho> selectTeacher(int userNo);
+
+	ArrayList<Notice> selectKingList(PageInfo pi, int userNo);
+
+	int getListCount(NoticeWho noticeWho);
+
+	ArrayList<Notice> selectPList(PageInfo pi, NoticeWho noticeWho);
+
 
 
 }

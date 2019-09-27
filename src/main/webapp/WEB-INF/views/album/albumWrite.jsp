@@ -446,7 +446,7 @@ img {
 					<div class="modal-footer">
 						<span class="close">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal" id="select" style="width:150px; height:20%;">선택</button>
+								data-dismiss="modal" id="selectModal" style="width:150px; height:20%;">선택</button>
 						</span>
 					</div>
 				</div>
@@ -582,7 +582,7 @@ img {
 	
 	a =0;
 	sumarr = Array();
-$('#select').click(function(){
+$('#selectModal').click(function(){
 	var array = Array();
 	var num = null;
 	var arrayName = Array();

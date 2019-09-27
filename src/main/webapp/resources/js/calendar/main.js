@@ -160,16 +160,15 @@ var calendar = $('#calendar').fullCalendar({
 	 * ************** */
 	events: function (start, end, timezone, callback) {
 		$.ajax({
+			type: "get",
 			url: "searchSchedule.sc",
-			type: "post",
 			data: {
-				
 				// 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
 			},
 			success: function (response) {
 				console.log("조회완료");
 				console.log(response.list);
-				var fixedDate = [];
+				var events = [];
 				var eventList = response.list;
 				for (var i = 0; i < response.list.length; i++) {
 					if (response.list[i].allDay == 'true' && response.list[i].start !== response.list[i].end) {
@@ -177,10 +176,11 @@ var calendar = $('#calendar').fullCalendar({
 						response.list[i].end = moment(response.list[i].end).add(1, 'days');
 					}
 					var evt = {
+							id: i+1,
 							title: response.list[i].title, 
 							allDay: response.list[i].allDay,
-							start: response.list[i].start,
-							end: response.list[i].end,
+							start: response.list[i].startDate,
+							end: response.list[i].endDate,
 							backgroundColor: response.list[i].backgroundColor,
 							type: response.list[i].type,
 							classNo:response.list[i].classNo,
@@ -188,17 +188,22 @@ var calendar = $('#calendar').fullCalendar({
 							scheduleContent: response.list[i].scheduleContent
 					};
 					//{id: i+1, title: titleStr, start: obj.start, end: obj.end, color:'#'+obj.color, allDay: true}
-					//fixedDate.push(evt);
-					fixedDate.push({id: i+1, title: response.list[i].title, allDay: response.list[i].allDay, start: response.list[i].start,
+					
+					events.push(evt);
+					
+					/*events.push({id: i+1, title: response.list[i].title, allDay: response.list[i].allDay, start: response.list[i].start,
 							end: response.list[i].end, backgroundColor: response.list[i].backgroundColor, type: response.list[i].type,
-							classNo:response.list[i].classNo, kinderNo:response.list[i].kinderNo, scheduleContent: response.list[i].scheduleContent});
+							classNo:response.list[i].classNo, kinderNo:response.list[i].kinderNo, scheduleContent: response.list[i].scheduleContent});*/
+					
+					console.log("evt :" + evt.title);
 					
 				}
-				console.log("fixedDate :::" + fixedDate);
-				callback(fixedDate);
+					
+				callback(events[0]);
 				
 			},
 			error: function(response){
+				console.log(response.list);
 				console.log("실패");
 			}
 		});

@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -218,9 +217,7 @@ body {
 							<div class="selectC" style="display: inline;">
 								<c:choose>
 									<c:when test="${l.fileName ne null}">
-										<img
-											src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>.jpg"
-											alt="" />
+										<img src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>.jpg" alt="" />
 									</c:when>
 									<c:when test="${l.fileName eq null}">
 										<img src="${contextPath}/resources/images/dog.jpg" alt="" />
@@ -237,7 +234,7 @@ body {
 					<div class="modal-footer">
 						<span class="close">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal" id="select" style="width:150px; height:20%;">선택</button>
+								data-dismiss="modal" id="selectModal" style="width:150px; height:20%;">선택</button>
 						</span>
 					</div>
 				</div>
@@ -263,7 +260,7 @@ body {
 
 </body>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	// Get the modal
 	var modal = document.getElementById("myModal");
@@ -310,8 +307,8 @@ body {
 		
 	});
 	
-	$('#select').click(function(){
-		
+	$('#selectModal').click(function(){
+		console.log("zz");
 		var $test = $('#ChildernIndiviual');
 		
 			$("input[class=checkcheck]:checked").each(function(index) { 

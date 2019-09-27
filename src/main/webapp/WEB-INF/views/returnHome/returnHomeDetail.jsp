@@ -175,7 +175,7 @@
 				<c:if test="${ rhList.reading eq 'N' }">
 					<div class="message">미확인</div>
 	            </c:if>
-	            <c:if test="${ rhLis.reading eq 'Y' }">
+	            <c:if test="${ rhList.reading eq 'Y' }">
 					<div class="message">확인</div>
 	            </c:if>
 			</c:if>

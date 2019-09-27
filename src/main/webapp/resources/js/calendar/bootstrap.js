@@ -544,7 +544,7 @@ if (typeof jQuery === 'undefined') {
 
 /* jshint latedef: false */
 
-+function ($) {
+/*+function ($) {
   'use strict';
 
   // COLLAPSE PUBLIC CLASS DEFINITION
@@ -745,7 +745,7 @@ if (typeof jQuery === 'undefined') {
     Plugin.call($target, option)
   })
 
-}(jQuery);
+}(jQuery);*/
 
 /* ========================================================================
  * Bootstrap: dropdown.js v3.3.7
@@ -2128,7 +2128,7 @@ if (typeof jQuery === 'undefined') {
       && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
 
     function next() {
-      $active
+      /*$active
         .removeClass('active')
         .find('> .dropdown-menu > .active')
           .removeClass('active')
@@ -2139,7 +2139,7 @@ if (typeof jQuery === 'undefined') {
       element
         .addClass('active')
         .find('[data-toggle="tab"]')
-          .attr('aria-expanded', true)
+          .attr('aria-expanded', true)*/
 
       if (transition) {
         element[0].offsetWidth // reflow for transition

@@ -2,6 +2,7 @@
 package com.kh.fp.common;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kh.fp.member.model.service.MemberService;
 import com.kh.fp.member.model.vo.KinGardenClasses;
+import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
 import com.kh.fp.member.model.vo.OnOff;
 
@@ -94,11 +96,14 @@ public class PageLinkServlet {
 	}
 
 	@RequestMapping(value="main.pl")
-	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model ) {
+
+	public String mainView(@SessionAttribute(value="loginUser") Member loginUser , Model model,@SessionAttribute(value="kga") KinderGarden kga) {
 
 
 		if(loginUser.getClassification().equals("원장님") || loginUser.getClassification().equals("체험판원장님")) {
 
+			kga = ms.selectKinderName(loginUser.getUserNo());
+			
 			int childrenCount = ms.childrenCount(loginUser);
 			int teacherCount = ms.teacherCount(loginUser);
 			int childrenCountN = ms.childrenCountN(loginUser);
@@ -113,11 +118,18 @@ public class PageLinkServlet {
 
 				int childrenCount = ms.childrenCount(loginUser);
 				int childrenCountN = ms.childrenCountN(loginUser);
-
+		
 				model.addAttribute("childrenCount", childrenCount);
 				model.addAttribute("childrenCountN", childrenCountN);
+		
 
 		}
+		
+		ArrayList list = ms.selectNolist(kga);
+		
+		System.out.println("list 값 : " + list);
+		
+		model.addAttribute("list",list);
 
 
 		return "main/parentsMain";

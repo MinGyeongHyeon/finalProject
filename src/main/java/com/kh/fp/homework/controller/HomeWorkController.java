@@ -36,6 +36,8 @@ import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
 import com.kh.fp.member.model.vo.KinGardenClasses;
 import com.kh.fp.member.model.vo.Member;
+import com.kh.fp.notice.model.service.NoticeService;
+import com.kh.fp.notice.model.vo.NoticeWho;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -43,7 +45,8 @@ public class HomeWorkController {
 
 	@Autowired
 	private HomeworkService hs;
-
+	
+	
 	@RequestMapping(value = "homeWorkWrite.hw")
 	public String homeWorkWrite(homework h,HttpSession session, Model model, HttpServletRequest request,
 			@RequestParam(name = "photo", required = false) MultipartFile photo) {
@@ -222,7 +225,7 @@ public class HomeWorkController {
 	
 	
 	@RequestMapping(value = "homeworklist.hw")
-	public String homeworklist(Model model,HttpSession session, HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser) {
+	public String homeworklist(Model model,HttpSession session,NoticeWho noticeWho, HttpServletRequest request,@ModelAttribute("loginUser") Member loginUser) {
 
 	
 		
@@ -233,6 +236,8 @@ public class HomeWorkController {
 		int userNo = 0;
 		String userC = null;
 		int currentPage = 1;
+		int listCount = 0;
+		ArrayList<NoticeWho> Teacher = null;
 		
 		userNo=loginUser.getUserNo();
 		String classification = loginUser.getClassification();
@@ -246,14 +251,28 @@ public class HomeWorkController {
 		}else if(classification.equals("학부모")) {
 			
 			userNo = CloginUser.getChildrenNo();
-			int tNo = CloginUser.getTeacherNo();
-			System.out.println(tNo+"선생님 번호");
-			userC = "원아";
-			System.out.println("원아");
+			int KNo = CloginUser.getKinderNo();
+			System.out.println(KNo+"아이 번호");
+			
+			Teacher = hs.selectTeacher(userNo);
+			System.out.println(Teacher+"머ㅜ야");
+			
+			
+			NoticeWho teacher = (NoticeWho)Teacher.get(0);
+			int teacherClassNum = teacher.getClassNum();
+			int teacherNum = teacher.getTeacherNum();
+			
+			noticeWho.setClassNum(teacherClassNum);
+			noticeWho.setKinderNum(KNo);
+			noticeWho.setTeacherNum(teacherNum);
+			System.out.println(noticeWho+"쉬벌ㄹ");
+			
+			listCount = hs.getCListCount(noticeWho);
 		}else {
 			userNo = TloginUser.getTeacherNo();
 			userC = "선생님";
 			System.out.println("선생님");
+			listCount = hs.getTListCount(userNo);
 			
 		}
 		
@@ -264,19 +283,54 @@ public class HomeWorkController {
 		
 		
 		ArrayList<homework> nList;
-			
-		int listCount = hs.getTListCount(userNo);
 		
-		if(listCount != 0) {
+		if(classification.equals("원장님")) {
 			
-		System.out.println(listCount + "개");
+			if(listCount != 0) {
+				
+				System.out.println(listCount + "개");
+					
+				PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+				
+				nList = hs.selectThomework(pi, userNo);
+					
+				model.addAttribute("nList", nList);
+				model.addAttribute("pi", pi);
+					
+				}
+		}else if(classification.equals("학부모")) {
 			
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			if(listCount != 0) {
 			
-		nList = hs.selectThomework(pi, userNo);
+			System.out.println(listCount + "개");
+				
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			System.out.println("zzzzz"+noticeWho);
+			nList = hs.selectChomework(pi, noticeWho);
+			
+			model.addAttribute("nList", nList);
+			model.addAttribute("pi", pi);
+				
 		
-		model.addAttribute("nList", nList);
-		model.addAttribute("pi", pi);
+		
+			}
+		}else {
+			
+				if(listCount != 0) {
+					
+					System.out.println(listCount + "개");
+						
+					PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+						
+					nList = hs.selectThomework(pi, userNo);
+					
+					model.addAttribute("nList", nList);
+					model.addAttribute("pi", pi);
+						
+					}
+			
+			
 			
 		}
 		
@@ -284,7 +338,8 @@ public class HomeWorkController {
 
 	}
 	
-	
+
+		
 	@RequestMapping(value = "homeworkDetail.hw")
 	public String homeworkDetail(Model model,HttpSession session, HttpServletRequest request) {
 		

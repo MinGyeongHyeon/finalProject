@@ -14,13 +14,14 @@ public class Notice implements Serializable{
 	private int kinderNum;
 	private int writer;
 	private String className;
-	
+	private String picture;
 	
 	public Notice() {}
 
 
 	public Notice(int boardNum, String boardTitle, String boardContent, Date boardDate, String boardtype, int classNum,
-			int kinderNum, int writer, String className) {
+
+			int kinderNum, int writer, String className, String picture) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -31,6 +32,8 @@ public class Notice implements Serializable{
 		this.kinderNum = kinderNum;
 		this.writer = writer;
 		this.className = className;
+
+		this.picture = picture;
 	}
 
 
@@ -124,18 +127,25 @@ public class Notice implements Serializable{
 	}
 
 
+	public String getPicture() {
+		return picture;
+	}
+
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+
+	}
+
+
 	@Override
 	public String toString() {
 		return "Notice [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardDate=" + boardDate + ", boardtype=" + boardtype + ", classNum=" + classNum + ", kinderNum="
-				+ kinderNum + ", writer=" + writer + ", className=" + className + "]";
+				+ kinderNum + ", writer=" + writer + ", className=" + className + ", picture=" + picture + "]";
 	}
-	
 
 
-	
-
-	
 	
 
 }

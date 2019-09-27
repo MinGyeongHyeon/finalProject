@@ -31,6 +31,12 @@
 		<result property="commtentName" column="WRITER" />
 	</resultMap>
 
+	<resultMap type="NoticeWho" id="noticeWhoAreYou">
+		<id property="classNum" column="CLASS_NO" />
+		<result property="kinderNum" column="KINDER_NO" />
+		<result property="teacherNum" column="TEACHER_NO" />
+	</resultMap>
+
 	<insert id="insertHomeWork" parameterType="homework">
 		INSERT INTO BOARD
 		VALUES(SEQ_BOARD_NO.NEXTVAL,
@@ -105,6 +111,21 @@
         AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2)
 	</select>
 	
+	
+	<select id="CListCount" resultType="_int">
+	SELECT  COUNT(*)
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO = #{kinderNum}
+		AND K.TEACHER_NO = #{teacherNum}
+		AND B.BOARD_TYPE = '알림장'
+		AND B.CLASS_NO IS NULL 
+		OR B.CLASS_NO = #{classNum}
+		ORDER BY B.BOARD_NO DESC
+	</select>
+	
+	
 	<select id="selectTAlistC" resultType="_int">
 		SELECT COUNT(*)
         FROM BOARD_AN A
@@ -113,6 +134,30 @@
                              JOIN USERS U ON B.WRITER = U.USER_NO
                              WHERE U.USER_NO = #{userNo}
                              AND SUBSTR(BOARD_DATE,1,2) = SUBSTR(SYSDATE,1,2))
+	</select>
+	
+	<select id="selectClistC" resultType="_int">
+		SELECT  COUNT(*)
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO =  #{kinderNum}
+		AND K.TEACHER_NO = #{teacherNum}
+		AND B.BOARD_TYPE = '알림장'
+        AND (B.KINDER_NO = #{kinderNum} AND B.CLASS_NO IS NULL OR B.CLASS_NO = #{classNum})
+	</select>
+	
+	<select id="searchCList" resultMap="homeworkResultSet">
+		SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,B.BOARD_DATE,K.CLASS_NAME,A.CHANGE_NAME
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+        LEFT OUTER JOIN ATTACHMENT A ON(A.USER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO =  #{kinderNum}
+		AND K.TEACHER_NO = #{teacherNum}
+		AND B.BOARD_TYPE = '알림장'
+        AND (B.KINDER_NO = #{kinderNum} AND B.CLASS_NO IS NULL OR B.CLASS_NO = #{classNum)
+        ORDER BY B.BOARD_NO DESC
 	</select>
 	
 	
@@ -145,6 +190,15 @@
 	WHERE BOARD_NO = #{bid}
 	</select>
 	
+	<select id="searchTNum" resultMap="noticeWhoAreYou">
+		SELECT C.CLASS_NO,C.TEACHER_NO
+	    FROM KINDER_CLASS C
+	    WHERE (KINDER_NO,CLASS_NAME,OPENED_DATE) IN
+	    (SELECT K.KINDER_NO, K.CLASS_NAME,K.OPENED_DATE
+	    FROM KINDER_CLASS K
+	    WHERE  K.CHILDREN_NO = #{userNo}
+	    AND C.DIVISION = '선생님')
+	</select>
 	
 	
 	

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/d3js/5.12.0/d3.min.js"></script>
 
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/1eba500ac5.js"></script>
@@ -99,22 +97,25 @@ font-family: 'Sunflower', sans-serif;
 			<nav class="navbar navbar-header navbar-expand-lg">
 
 			<c:if test="${ loginUser.classification eq '원장님'or loginUser.classification eq '체험판원장님'}">
+
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
 					<i class="fas fa-cog"></i>
 					원 설정
 					</button>
-					<input type="hidden" name="userNo" value="${ loginUser.userNo }"/>
+					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
 
+					
 		   </form>
 			</c:if>
-
-		    <c:if test="${ loginUser.classification eq '선생님'or loginUser.classification eq '체험판선생님' }">
+			
+		    <c:if test="${ loginUser.classification eq '선생님'or loginUser.classification eq '체험판선생님'  }">
 			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
 					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
 					<i class="fas fa-cog"></i>
 					원 설정
 					</button>
+					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
 			</form>
 			</c:if>
 
@@ -122,8 +123,8 @@ font-family: 'Sunflower', sans-serif;
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
 
-						<c:if test="${ loginUser.classification eq '원장님' or '체험판원장님'}">
 
+						<c:if test="${ loginUser.classification eq '원장님' or '체험판원장님'}">
 
 							<li class="nav-item dropdown hidden-caret"><a
 								class="nav-link dropdown-toggle" href="#" id="messageDropdown"
@@ -273,8 +274,8 @@ font-family: 'Sunflower', sans-serif;
 									</div>
 								</li>
 								<li>
-									<div class="dropdown-divider"></div> <a class="dropdown-item myPagemodar"
-									href="#">마이 페이지</a>
+									<div class="dropdown-divider"></div> <a class="dropdown-item"
+									href="MyPage.pl">마이 페이지</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
 									href="#">Account Setting</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
@@ -310,7 +311,7 @@ font-family: 'Sunflower', sans-serif;
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="#"> <span class="link-collapse myPagemodar">마이 페이지</span>
+									<li><a href="MyPage.pl"> <span class="link-collapse">마이 페이지</span>
 									</a></li>
 									<li><a href="#edit"> <span class="link-collapse">EditProfile</span>
 									</a></li>
@@ -390,10 +391,10 @@ font-family: 'Sunflower', sans-serif;
 						</a></li>
 						</c:if>
 
-						<li class="nav-item"><a href="#submenu"> <i
+						<li class="nav-item"><a href="bus.pl"> <i
 								class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
-						</li>
+						</a></li>
 
 						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '선생님'}">
 						<li class="nav-item"><a href="journalMain.jn"> <i
@@ -452,7 +453,6 @@ font-family: 'Sunflower', sans-serif;
 		</div>
  -->
 	<!-- 	</div> -->
-
 
 	<!--   Core JS Files   -->
 	<script src="${ contextPath }/resources/assets/js/core/jquery.3.2.1.js"></script>
@@ -562,5 +562,4 @@ $('.myPagemodar').click(function(){
 </script>
 
 </body>
-
 </html>
