@@ -177,6 +177,10 @@ color:white;
 	
 		$('.notaccept').click(function(){
 			
+			var classification = '${ loginUser.classification }'
+			
+			if(classification != '체험판선생님'){
+				
 			var kinderNo = $('#kinderNo').val();
 			var childrenNo = $(this).parent().next().children().val();
 			
@@ -204,11 +208,22 @@ color:white;
 				
 			}
 			
+			}else{
+				
+				alert("체험판 에선 불가능한 기능입니다.");
+				
+			}
+			
+			
 			
 		});
 		
 		$('.btnaccept').click(function(){
-	
+			
+			var classification = '${ loginUser.classification }'
+			
+				if(classification != '체험판선생님'){
+					
 		var kinderNo = $('#kinderNo').val();
 		var childrenNo = $(this).parent().next().children().val();
 		var className = $(this).parent().prev().children().val();
@@ -235,6 +250,11 @@ color:white;
 		});
 		
 		}
+				}else{
+					
+					alert("체험판 에선 불가능한 기능입니다.");
+				}
+	
 			
 			
 			

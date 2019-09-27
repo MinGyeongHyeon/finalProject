@@ -104,7 +104,7 @@ font-family: 'Sunflower', sans-serif;
 					<i class="fas fa-cog"></i>
 					원 설정
 					</button> 
-					<input type="hidden" name="userNo" value="${ loginUser.userNo }"/>
+					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
 					
 		   </form>
 			</c:if>
@@ -115,6 +115,7 @@ font-family: 'Sunflower', sans-serif;
 					<i class="fas fa-cog"></i>
 					원 설정
 					</button>
+					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
 			</form>
 			</c:if>
 			

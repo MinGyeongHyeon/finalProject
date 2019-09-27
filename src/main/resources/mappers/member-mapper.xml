@@ -125,6 +125,7 @@
 		<result property="classNum" column="CLASS_NO"/>
 		<result property="kinderNum" column="KINDER_NO"/>
 		<result property="writer" column="WRITER"/>
+		<result property="userName" column="USER_NAME"/>
 		
 	
 	</resultMap>
@@ -528,9 +529,10 @@
 	
 	<select id="selectNolist" resultMap="NoticeResultSet">
 	
-	SELECT ROWNUM, BOARD_NO ,BOARD_TITLE,BOARD_CONTENT,BOARD_DATE,BOARD_TYPE,CLASS_NO,CHILDREN_NO,KINDER_NO,STATUS,WRITER
-	FROM BOARD
-	WHERE KINDER_NO = 1
+	SELECT ROWNUM, B.BOARD_NO ,B.BOARD_TITLE,B.BOARD_CONTENT,B.BOARD_DATE,B.BOARD_TYPE,B.CLASS_NO,B.CHILDREN_NO,B.KINDER_NO,B.STATUS,B.WRITER, U.USER_NAME
+	FROM BOARD B
+	JOIN USERS U ON(B.WRITER = U.USER_NO)
+	WHERE KINDER_NO = #{kinderNo}
 	AND BOARD_TYPE = '공지사항'
 	AND ROWNUM BETWEEN 1 AND 3
 	ORDER BY BOARD_NO DESC

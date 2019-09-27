@@ -437,7 +437,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public ArrayList selectNolist(SqlSessionTemplate sqlSession, KinderGarden kga) {
 
-		
+		System.out.println("들어온 kga 값 : " + kga);
 		
 		return (ArrayList) sqlSession.selectList("Member.selectNolist",kga);
 	}

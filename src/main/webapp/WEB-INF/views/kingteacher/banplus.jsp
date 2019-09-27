@@ -206,7 +206,7 @@ $('.del').click(function(){
 	
 	console.log(classification);
 	
-if(classification != '체험판원장님'){
+if(classification == '원장님' || classification == '선생님'){
 	
 	var kinderNo = $(this).parent().next().children().val();
 	var className = $(this).parent().next().next().children().val();
