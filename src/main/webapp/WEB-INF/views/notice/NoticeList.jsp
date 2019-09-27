@@ -139,13 +139,25 @@
 					<div class="card">
 						<table class="tq">
 							<tr class="first">
-								<td class="tqtq"><c:out value="${l.boardNum}" /></td>
+								<td class="tqtq" style="margin-top:5%" hidden><c:out value="${l.boardNum}" /></td>
 							</tr>
+								<c:choose>
+								<c:when test="${l.picture ne null}">
 							<tr>
 								<td><c:out value="${l.className}" />교사</td>
-								<td width="30px;"><img
-									src="${ contextPath }/resources/images/woman.png" alt="" /></td>
+								<td width="30px;">
+								<img src="${contextPath}/uploadFiles/images/<c:out value="${l.picture}"/>" alt="" />	
+								</td>
 							</tr>
+								</c:when>
+								<c:when test="${l.picture eq null}">
+									<tr>
+									<td><c:out value="${l.className}" />교사</td>
+									<td width="30px;">
+									<img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
+									</tr>
+								</c:when>
+								</c:choose>
 							<tr>
 								<td class="titleView"><c:out value="${l.boardTitle}" /></td>
 							</tr>

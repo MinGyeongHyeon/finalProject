@@ -11,6 +11,7 @@ import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.PageInfo;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
+import com.kh.fp.notice.model.vo.NoticeWho;
 
 public interface HomeworkService  {
 
@@ -43,6 +44,14 @@ public interface HomeworkService  {
 	int insertApply(int bid, String content, String userName);
 
 	ArrayList<HomeWorkApply> SearchApply(int bid);
+
+	int getCListCount(NoticeWho noticeWho);
+
+	ArrayList<NoticeWho> selectTeacher(int userNo);
+
+	ArrayList<homework> selectChomework(PageInfo pi, NoticeWho noticeWho);
+
+
 
 
 }

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.exception.NoticeException;
 import com.kh.fp.notice.model.vo.Notice;
@@ -19,7 +20,7 @@ public interface NoticeDao {
 
 	ArrayList selectWho(SqlSessionTemplate sqlSession, int userNo);
 
-	int getListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho);
+	int getListCount(SqlSessionTemplate sqlSession, int userNo);
 
 	ArrayList<Notice> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
@@ -37,7 +38,16 @@ public interface NoticeDao {
 
 	ArrayList<Notice> selectBoardChildrenList(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
-	ArrayList SelectTeacher(int userNo, SqlSessionTemplate sqlSession);
+	ArrayList<NoticeWho> SelectTeacher(int userNo, SqlSessionTemplate sqlSession);
+
+	ArrayList<Notice> selectKingList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo);
+
+	int SelectCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho);
+
+	ArrayList<Notice> selectPList(SqlSessionTemplate sqlSession, NoticeWho noticeWho, PageInfo pi);
+
+
+
 
 
 }

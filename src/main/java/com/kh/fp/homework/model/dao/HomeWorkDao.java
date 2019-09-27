@@ -12,6 +12,7 @@ import com.kh.fp.homework.model.vo.IndividualHomework;
 import com.kh.fp.homework.model.vo.PageInfo;
 import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.member.model.vo.Attachment;
+import com.kh.fp.notice.model.vo.NoticeWho;
 import com.kh.fp.returnHome.model.vo.ChildrenClass;
 
 public interface HomeWorkDao {
@@ -47,6 +48,12 @@ public interface HomeWorkDao {
 	int insertApply(SqlSessionTemplate sqlSession, int bid, String content, String userName);
 
 	ArrayList<HomeWorkApply> SearchApply(SqlSessionTemplate sqlSession, int bid);
+
+	int CListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho);
+
+	ArrayList<NoticeWho> selectTNum(SqlSessionTemplate sqlSession, int userNo);
+
+	ArrayList<homework> selectChomework(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
 
 
