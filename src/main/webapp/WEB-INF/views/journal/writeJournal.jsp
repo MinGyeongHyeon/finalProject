@@ -162,7 +162,7 @@
 					</table>
 					<br><br>
 					<div id="btnArea" align="center">
-							<button type="reset" class="btn btns" id="btn1" onclick="">취소</button>
+							<button type="reset" class="btn btns" id="btn1" onclick="goList()">취소</button>
 							&nbsp;&nbsp;
 							<button type="submit" class="btn btns" id="btn2">작성완료</button>
 					</div>
@@ -175,8 +175,9 @@
 
 
 <script>
-/* 	function goWrite(){
 /*
+	function goWrite(){
+
 		var time;
 		var activity;
 		var timeArr = Array();
@@ -200,9 +201,15 @@
 
  		$("#time").val(time);
 		$("#activity").val(activity);
- */
+
 		location.href = "writeJournal.jn?time=" + encodeURI(time) + "&activity=" + encodeURI(activity);
-	} */
+	}
+ */
+
+ function goList(){
+	 location.href="journalMain.jn";
+ }
+
 </script>
 
 

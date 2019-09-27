@@ -24,6 +24,10 @@
 	    padding-right: 3%;
 	}
 
+.notice:hover {
+	background: #fafafa;
+	cursor: pointer;
+}
 
 body{
 font-family: 'Sunflower', sans-serif;
@@ -89,17 +93,18 @@ font-family: 'Sunflower', sans-serif;
 							<div class="noticeArea"> 
 							<c:forEach var="i" items="${ list }">
 								<div class="notice">
+								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
 										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
+											<td>${ i.userName }<p></p></td>
 										</tr><tr>
-											<td style=""> 3rd 공지사항</td>
+											<td style=""> 제목  : ${i.boardTitle.substring(0,3) }.... </td>
 										</tr><tr>
-											<td>공지사항 내용입니다.</td>
+											<td>내용 : ${i.boardContent.substring(0,6)}.......</td>
 										</tr><tr>
 											<td> </td>
 										</tr><tr>	
-											<td>2019.08.16</td>
+											<td>${ i.boardDate }</td>
 										</tr>
 									</table>
 								</div>
@@ -190,7 +195,6 @@ font-family: 'Sunflower', sans-serif;
 					</td>
 				</tr>
 				<tr>
-					<!-- 최근 공지사항 -->
 					<td colspan="6" style="text-align: center;">
 						<div style="margin:0 auto; width:100%;">
 						<br />
@@ -204,51 +208,25 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
+							<c:forEach var="i" items="${ list }">
 								<div class="notice">
+								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
 										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
+											<td>${ i.userName }<p></p></td>
 										</tr><tr>
-											<td style=""> 3rd 공지사항</td>
+											<td style=""> 제목  : ${i.boardTitle.substring(0,3) }.... </td>
 										</tr><tr>
-											<td>공지사항 내용입니다.</td>
+											<td>내용 : ${i.boardContent.substring(0,6)}.......</td>
 										</tr><tr>
 											<td> </td>
 										</tr><tr>	
-											<td>2019.08.16</td>
+											<td>${ i.boardDate }</td>
 										</tr>
 									</table>
 								</div>
-								<div class="notice" style="margin-left: 3%; margin-right: 3%;">
-									<table>
-										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
-										</tr><tr>
-											<td> 3rd 공지사항</td>
-										</tr><tr>
-											<td>공지사항 내용입니다.</td>
-										</tr><tr>
-											<td> </td>
-										</tr><tr>	
-											<td>2019.08.16</td>
-										</tr>
-									</table>
-								</div>
-								<div class="notice">
-									<table>
-										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
-										</tr><tr>
-											<td> 3rd 공지사항</td>
-										</tr><tr>
-											<td>공지사항 내용입니다.</td>
-										</tr><tr>
-											<td> </td>
-										</tr><tr>	
-											<td>2019.08.16</td>
-										</tr>
-									</table>
-								</div>
+								</c:forEach>
+							
 							</div>
 						</div>
 					</td>
@@ -279,8 +257,7 @@ font-family: 'Sunflower', sans-serif;
 					</td>
 				</tr>
 				<tr>
-					<!-- 최근 공지사항 -->
-					<td colspan="6" style="text-align: center;">
+						<td colspan="6" style="text-align: center;">
 						<div style="margin:0 auto; width:100%;">
 						<br />
 							<table style="width:100%;">
@@ -293,51 +270,25 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
+							<c:forEach var="i" items="${ list }">
 								<div class="notice">
+								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
 										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
+											<td>${ i.userName }<p></p></td>
 										</tr><tr>
-											<td style=""> 3rd 공지사항</td>
+											<td style=""> 제목  : ${i.boardTitle.substring(0,3) }.... </td>
 										</tr><tr>
-											<td>공지사항 내용입니다.</td>
+											<td>내용 : ${i.boardContent.substring(0,6)}.......</td>
 										</tr><tr>
 											<td> </td>
 										</tr><tr>	
-											<td>2019.08.16</td>
+											<td>${ i.boardDate }</td>
 										</tr>
 									</table>
 								</div>
-								<div class="notice" style="margin-left: 3%; margin-right: 3%;">
-									<table>
-										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
-										</tr><tr>
-											<td> 3rd 공지사항</td>
-										</tr><tr>
-											<td>공지사항 내용입니다.</td>
-										</tr><tr>
-											<td> </td>
-										</tr><tr>	
-											<td>2019.08.16</td>
-										</tr>
-									</table>
-								</div>
-								<div class="notice">
-									<table>
-										<tr>
-											<td>꽈뚜룹 선생님<p></p></td>
-										</tr><tr>
-											<td> 3rd 공지사항</td>
-										</tr><tr>
-											<td>공지사항 내용입니다.</td>
-										</tr><tr>
-											<td> </td>
-										</tr><tr>	
-											<td>2019.08.16</td>
-										</tr>
-									</table>
-								</div>
+								</c:forEach>
+							
 							</div>
 						</div>
 					</td>
@@ -352,6 +303,16 @@ font-family: 'Sunflower', sans-serif;
 
 
 <script>
+
+$('.notice').click(function(){
+	
+	var boardNo = $(this).children().eq(0).val();
+	
+	location.href="NoticeOne.no?bid="+boardNo;
+	
+});
+
+
 $(function(){
 	
 	if('${msg}' != ""){

@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kh.fp.journal.model.exception.JournalException;
 import com.kh.fp.journal.model.service.JournalService;
 import com.kh.fp.journal.model.vo.Journal;
+import com.kh.fp.journal.model.vo.PageInfo;
+import com.kh.fp.journal.model.vo.Pagination;
+import com.kh.fp.member.model.vo.KinGardenClasses;
+import com.kh.fp.member.model.vo.KinderGarden;
 import com.kh.fp.member.model.vo.Member;
 
 @Controller
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser", "teacherKing"})
 public class JournalController {
 
     @Autowired
@@ -55,11 +59,21 @@ public class JournalController {
     //일지 리스트 불러오기
     @RequestMapping(value="journalMain.jn")
     public String journalMain(Model model,  HttpServletRequest request, HttpServletResponse response
-    		,@ModelAttribute("loginUser") Member loginUser, Journal j) {
+    		,@ModelAttribute("loginUser") Member loginUser, Journal j, HttpSession session){
+
     	int userNo = loginUser.getUserNo();
+    	String classification = loginUser.getClassification();
+
+		/*
+		 * KinGardenClasses kc = (KinGardenClasses)session.getAttribute("teacherKing");
+		 * int kinderNo = kc.getKinderNo();
+		 */
 
     	System.out.println("호출됨");
     	System.out.println("userNo" + userNo);
+    	//System.out.println("kinderNo : " + kinderNo);
+
+    	//j.setKinderNo(kinderNo);
 
     	int currentPage = 1;
 
@@ -71,9 +85,37 @@ public class JournalController {
 
     	int listCount = 0;
 
-    	listCount = js.getListCount(userNo);
+    	if(classification.equals("원장님")) {
+    		listCount = js.getListCount(userNo);
+    	}else {
+    		KinGardenClasses kc = (KinGardenClasses)session.getAttribute("teacherKing");
+    		int kinderNo = kc.getKinderNo();
+    		j.setKinderNo(kinderNo);
+    		System.out.println(kinderNo);
+    		j.setLoginUserNo(userNo);
+    		System.out.println(j);
+    		listCount = js.getTListCount(j);
+    	}
+    	System.out.println("listCount :::: " + listCount);
 
-    	return "";
+    	PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+    		try {
+    			if(classification.equals("원장님")) {
+    				jList = js.selectJournalList(pi, userNo);
+    				model.addAttribute("jList", jList);
+    			}
+
+    			model.addAttribute("pi", pi);
+
+    			return "journal/journalList";
+
+    		} catch (JournalException e) {
+				model.addAttribute("msg", e.getMessage());
+				e.printStackTrace();
+				return "index";
+			}
+
     }
 
 }

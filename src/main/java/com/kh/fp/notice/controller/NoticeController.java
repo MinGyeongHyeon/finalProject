@@ -46,7 +46,7 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 		
-		return "notice/NoticeList";
+		return "NoticeList.sn";
 	}
 	
 	@RequestMapping(value="NoticeOne.no")

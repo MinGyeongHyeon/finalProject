@@ -69,8 +69,10 @@ font-family: 'Sunflower', sans-serif;
 				<tr>
 					<td>
 						<form action="kinderchange.kl">
+						<c:if test="${ loginUser.classification eq '원장님' || loginUser.classification eq '체험판원장님'}">
 						<button class="btn btn-info" style="width:100%">원 기본설정</button><br />
 						<input type="hidden" value="${ of.kinderNo }" name="kinderNo"/>
+						</c:if>
 						</form>
 							<p></p>
 					</td>
@@ -78,8 +80,10 @@ font-family: 'Sunflower', sans-serif;
 				<tr>
 					<td>
 						<form action="kindermenu.kl">
+						<c:if test="${ loginUser.classification eq '원장님' || loginUser.classification eq '체험판원장님'}">
 						<button class="btn btn-info" style="width:100%">메뉴 관리</button><br />
 						<input type="hidden" value="${ of.kinderNo }" name="kinderNo" />
+						</c:if>
 						</form>
 						<p></p>
 					</td>

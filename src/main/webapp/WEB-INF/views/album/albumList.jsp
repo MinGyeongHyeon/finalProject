@@ -89,7 +89,7 @@
 					</td>
 					<td id="writeDelete" style="text-align:right;">
 						<!-- 로그인한 사람이 학부모가 안닐 경우 삭제버튼 활성화(숫자, 변수명 임의로 지정 기능구현 시 변경) -->
-						<c:if test="${ loginUserJob != 1 }">
+						<c:if test="${loginUser.classification eq '선생님'}">
 							<button id="contentsWrite" style="margin-right:150">작성하기</button>
 						</c:if>
 					</td>

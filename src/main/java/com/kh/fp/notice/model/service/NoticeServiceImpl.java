@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.dao.NoticeDao;
 import com.kh.fp.notice.model.exception.NoticeException;
@@ -69,9 +70,9 @@ public class NoticeServiceImpl implements NoticeService {
 
 
 	@Override
-	public int getListCount(NoticeWho noticeWho) {
+	public int getListCount(int userNo) {
 		
-		return nd.getListCount(sqlSession,noticeWho);
+		return nd.getListCount(sqlSession,userNo);
 	}
 
 	
@@ -117,12 +118,38 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public ArrayList selectTeacher(int userNo) {
+	public ArrayList<NoticeWho> selectTeacher(int userNo) {
 		
-		ArrayList result = nd.SelectTeacher(userNo,sqlSession);
+		ArrayList<NoticeWho> result = nd.SelectTeacher(userNo,sqlSession);
 		
 		
 		return result;
+	}
+
+	@Override
+	public ArrayList<Notice> selectKingList(PageInfo pi, int userNo) {
+
+		
+		ArrayList<Notice> selectKingList = nd.selectKingList(sqlSession,pi,userNo);
+		
+		
+		return selectKingList;
+	}
+
+	@Override
+	public int getListCount(NoticeWho noticeWho) {
+
+		int result = nd.SelectCount(sqlSession,noticeWho);
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<Notice> selectPList(PageInfo pi, NoticeWho noticeWho) {
+		
+		ArrayList<Notice> list = nd.selectPList(sqlSession,noticeWho,pi);
+		
+		return list;
 	}
 
 

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fp.homework.model.vo.homework;
 import com.kh.fp.note.model.vo.PageInfo;
 import com.kh.fp.notice.model.exception.NoticeException;
 import com.kh.fp.notice.model.vo.Notice;
@@ -78,9 +79,9 @@ public class NoticeDaoImpl implements NoticeDao{
 
 	@Override
 	@SuppressWarnings({"unchecked","rawtypes"})
-	public int getListCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho) {
+	public int getListCount(SqlSessionTemplate sqlSession, int userNo) {
 		
-		return sqlSession.selectOne("Notice.selectListCount",noticeWho);
+		return sqlSession.selectOne("Notice.selectListKingCount",userNo);
 	}
 
 	@Override
@@ -156,7 +157,41 @@ public class NoticeDaoImpl implements NoticeDao{
 	@Override
 	public ArrayList SelectTeacher(int userNo, SqlSessionTemplate sqlSession) {
  		
-		ArrayList list = (ArrayList) sqlSession.selectList("Notice.selectTeacher",userNo);
+		ArrayList<NoticeWho> list = (ArrayList) sqlSession.selectList("Notice.selectTeacher",userNo);
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<Notice> selectKingList(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) {
+
+		int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		ArrayList<Notice> list = (ArrayList)sqlSession.selectList("Notice.selectKList",userNo,rowBounds);
+		System.out.println("원장님 공지사항 리스트 :::::"+list);
+		
+		return list;
+	}
+
+	@Override
+	public int SelectCount(SqlSessionTemplate sqlSession, NoticeWho noticeWho) {
+
+		int result = sqlSession.selectOne("Notice.selectPListCount",noticeWho);
+		
+		return result;
+	}
+
+	@Override
+	public ArrayList<Notice> selectPList(SqlSessionTemplate sqlSession, NoticeWho noticeWho,PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		ArrayList<Notice> list = (ArrayList)sqlSession.selectList("Notice.selectChildrenList",noticeWho,rowBounds);
+		System.out.println("학부모 공지사항 리스트 :::::"+list);
 		
 		return list;
 	}

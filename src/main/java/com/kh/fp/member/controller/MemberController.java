@@ -282,9 +282,6 @@ public class MemberController {
 			
 			ArrayList list = ms.selectNolist(kga);
 			
-			System.out.println("list 값 : " + list);
-
-			
 			model.addAttribute("kga",kga);
 			model.addAttribute("of",of);
 			model.addAttribute("at",at);
@@ -1163,10 +1160,7 @@ public class MemberController {
 		}
 		
 		Attachment at = ms.childrenAt(loginUser);
-		
-		System.out.println("loinUser 값 : " + loginUser);
-		
-		System.out.println("at 의 값 : " + at);
+
 		
 		model.addAttribute("loginUser" , loginUser);
 		model.addAttribute("at",at);

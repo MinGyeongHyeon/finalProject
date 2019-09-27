@@ -161,12 +161,12 @@
 				<div class="kinderInfo">
 					<table>
 						<tr>
-							<td><img src="${ contextPath }/resources/images/baby.png" alt="" />원아선택</td>
+							<td><img src="${ contextPath }/resources/images/baby.png" alt="" />원아명</td>
 						</tr>
 						<tr>
 							<td>
 								<c:forEach var="childrenList" items="${list}" varStatus="status">
-									<input type="checkbox" name="selectChild" value="${childrenList.childrenNo }" id="selectChild"/><label for="selectChild" style="color:#000; font-size: 1.4em;"><c:out value="${childrenList.childrenName}" escapeXml="false"/></label>
+									<input type="checkbox" name="selectChild" value="${childrenList.childrenNo }" id="selectChild" checked="true"/><label for="selectChild" style="color:#000; font-size: 1.4em;"><c:out value="${childrenList.childrenName}" escapeXml="false"/></label>
 								</c:forEach>
 							</td>
 						</tr>

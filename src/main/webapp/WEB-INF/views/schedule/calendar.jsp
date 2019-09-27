@@ -11,6 +11,7 @@
 <title>FullCalendar Example</title>
     <link rel=" shortcut icon" href="image/favicon.ico">
     <link rel="stylesheet" href='${contextPath }/resources/css/calendar/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href='${contextPath }/resources/css/calendar/bootstrap.min.css' />
     <link rel="stylesheet" href="${contextPath }/resources/css/calendar/calendarBoot.css">
     <link rel="stylesheet" href="${contextPath }/resources/css/calendar/fullcalendar.min.css" />
     <link rel="stylesheet" href="${contextPath }/resources/css/calendar/main.css">
@@ -41,6 +42,7 @@
                 style="display:block;position:static;margin-bottom:5px;">
                 <li><a tabindex="-1" href="#">일정 등록하기</a></li>
                 <li class="divider"></li>
+                
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
         </div>
@@ -138,7 +140,7 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal /-->
 
-        <div class="panel panel-default">
+        <!-- <div class="panel panel-default">
 
             <div class="panel-heading">
                 <h3 class="panel-title">필터</h3>
@@ -173,10 +175,23 @@
                 </div>
             </div>
         </div>
-        <!-- /.filter panel -->
-    </div>
+        /.filter panel
+    </div> -->
     <!-- /.container -->
 
+    <script src="${contextPath }/resources/js/calendar/jquery-3.3.1.js"></script><!-- 9600line 주석 -->
+    <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script><!--  -->
+    <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/fullcalendar.js"></script>
+    <script src="${contextPath }/resources/js/calendar/ko.js"></script>
+    <script src="${contextPath }/resources/js/calendar/select2.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/bootstrap.js"></script>
+    <script src="${contextPath }/resources/js/calendar/bootstrap-datetimepicker.min.js"></script>
+    <script src="${contextPath }/resources/js/calendar/main2.js"></script>
+    <script src="${contextPath }/resources/js/calendar/addEvent.js"></script> 
+    <script src="${contextPath }/resources/js/calendar/editEvent.js"></script>
+    <script src="${contextPath }/resources/js/calendar/etcSetting.js"></script>
+   
  	<script>
 	 	var classification = "${loginUser.classification}";
 	 	var kinderNo;
@@ -190,21 +205,9 @@
 	 	}else if(classification == '선생님'){
 	 		teacherNo = "${loginUser.userNo}";
 	 	}
-	 	
  	</script>
-    <%-- <script src="${contextPath }/resources/js/calendar/jquery-3.3.1.js"></script><!-- 9600line 주석 --> --%>
-    <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script>
-    <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
-    <script src="${contextPath }/resources/js/calendar/fullcalendar.js"></script>
-    <script src="${contextPath }/resources/js/calendar/ko.js"></script>
-    <script src="${contextPath }/resources/js/calendar/select2.min.js"></script>
-    <script src="${contextPath }/resources/js/calendar/bootstrap.js"></script>
-    <script src="${contextPath }/resources/js/calendar/bootstrap-datetimepicker.min.js"></script>
-    <script src="${contextPath }/resources/js/calendar/main.js"></script>
-    <script src="${contextPath }/resources/js/calendar/addEvent.js"></script> 
-    <script src="${contextPath }/resources/js/calendar/editEvent.js"></script>
-    <script src="${contextPath }/resources/js/calendar/etcSetting.js"></script>
-    
+    </div>
+	 	
 </body>
 
 </html>
