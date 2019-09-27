@@ -144,7 +144,7 @@
 							<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
 								<select name="kidsNameList" id="kidsNameList">
 										<option value="0">전체 원아 보기</option>
-									<c:forEach var="childrenList" items="${list}" varStatus="listStatus">
+									<c:forEach var="childrenList" items="${childrenNameList}" varStatus="listStatus">
 										<option value="${childrenList.childrenNo}"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
 									</c:forEach>
 								</select>
@@ -153,7 +153,6 @@
 						</form>
 					</td>
 					<td style="text-align:right;">
-						<input type="date" />
 					</td>
 				</tr>		
 			</table>

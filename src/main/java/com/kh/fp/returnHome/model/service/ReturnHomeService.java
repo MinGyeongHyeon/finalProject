@@ -35,5 +35,9 @@ public interface ReturnHomeService {
 
 	int updateReading(int homeNo);
 
+	ArrayList<Children> searchChildrenName(KinderClass kc);
+
+	ArrayList<Children> searchKinderChildrenName(KinderClass kc);
+
 
 }

@@ -179,7 +179,7 @@
     </div> -->
     <!-- /.container -->
 
-    <script src="${contextPath }/resources/js/calendar/jquery-3.3.1.js"></script><!-- 9600line 주석 -->
+    <script src="${contextPath }/resources/js/calendar/jquery-3.3.1_1.js"></script><!-- 9600line 주석 -->
     <script src="${contextPath }/resources/js/calendar/calenderBoot2.js"></script><!--  -->
     <script src="${contextPath }/resources/js/calendar/moment.min.js"></script>
     <script src="${contextPath }/resources/js/calendar/fullcalendar.js"></script>

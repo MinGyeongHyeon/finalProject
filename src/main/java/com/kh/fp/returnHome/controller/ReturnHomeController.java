@@ -33,6 +33,7 @@ public class ReturnHomeController {
 	public String returnHomeMain(@SessionAttribute("loginUser") Member loginUser,@RequestParam(value="kidsNameList", required=false) String kidsNameList,
 							Model m, HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<Children> list1 = null;
+		ArrayList<Children> childrenNameList = null;
 		ArrayList<ChildrenClass> list2 = null;
 		ArrayList<ReturnHome> rhList = null;
 		int count = 0;
@@ -51,14 +52,16 @@ public class ReturnHomeController {
 				System.out.println("childrenNo :: " + kc.getChildrenNo());
 			}
 			list1 = rhs.selectKinderChildrenName(kc);
+			childrenNameList = rhs.searchKinderChildrenName(kc);
 			count = rhs.countList(kc);
 			
 
 			pi = Pagination.getPageInfo(currentPage, count);
 			rhList = rhs.selectMasterReturnHomeList(kc, pi);
 			
-			
+
 			m.addAttribute("list", list1);
+			m.addAttribute("childrenNameList", childrenNameList);
 		}else if (loginUser.getClassification().equals("선생님")) {
 			KinderClass kc = new KinderClass();
 			kc.setTeacherNo(loginUser.getUserNo());
@@ -68,6 +71,7 @@ public class ReturnHomeController {
 				System.out.println("childrenNo :: " + kc.getChildrenNo());
 			}
 			list1 = rhs.selectChildrenName(kc);
+			childrenNameList = rhs.searchChildrenName(kc);
 			count = rhs.countListAll(kc);
 			
 
@@ -77,6 +81,7 @@ public class ReturnHomeController {
 			//rhList = rhs.selectReturnHomeList(kc);
 			
 			m.addAttribute("list", list1);
+			m.addAttribute("childrenNameList", childrenNameList);
 		}else if (loginUser.getClassification().equals("학부모")) {
 			ChildrenClass cc = new ChildrenClass();
 			cc.setUserNo(loginUser.getUserNo());

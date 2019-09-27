@@ -101,6 +101,18 @@ public class ReturnHomeServiceImpl implements ReturnHomeService{
 		return result;
 	}
 
+	@Override
+	public ArrayList<Children> searchChildrenName(KinderClass kc) {
+		ArrayList<Children> searchChildrenName = rhd.searchChildrenName(sqlSession, kc);
+		return searchChildrenName;
+	}
+
+	@Override
+	public ArrayList<Children> searchKinderChildrenName(KinderClass kc) {
+		ArrayList<Children> searchKinderChildrenName = rhd.searchKinderChildrenName(sqlSession, kc);
+		return searchKinderChildrenName;
+	}
+
 
 	
 }
