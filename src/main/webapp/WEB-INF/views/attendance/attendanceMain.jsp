@@ -272,7 +272,20 @@ width:100%;
 								</select>
 								</td>
 								<td class="time">
-								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden;" value="">
+<!-- 								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden;" value=""> -->
+								<!-- <select class="noganzitimepicker">
+									<option value="9PM"></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+									<option value=""></option>
+								</select> -->
+								<input type="number"/>
 								</td>
 								<td class="mtime">
 								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden;" value="">
