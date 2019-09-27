@@ -198,6 +198,7 @@ body {
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
+	
 	<div class="main-panel">
 		<div class="classroom">
 		<table>
@@ -361,6 +362,8 @@ body {
 			//$("input[class=checkcheck]:checked").each(function(index) { 
 			
 			$('.next').click(function(){
+				
+				console.log("qwdwq");
 				
 				$(".modifyContents").each(function(index){
 					content[index] = $(this).val()

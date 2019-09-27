@@ -483,5 +483,50 @@
 	<!-- Azzara JS -->
 	<%-- <script src="${ contextPath }/resources/assets/js/ready.min.js"></script> --%>
 
+
+
+<div class="container hiddenmodal">
+
+  <button type="button" class="btn btn-info btn-lg buttonmodal" data-toggle="modal" data-target="#myModalt">Open Large Modal</button>
+
+  <!-- Modal -->
+<form action="myPageUserPwdcheck.me" method="post" id="form">
+  <div class="modal fade" id="myModalt" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">본인 확인</h4>
+        </div>
+        <div class="modal-body">
+          	<label for="">본인 확인을 위해 비밀번호를 재입력 해주세요.</label><br />
+          	<input type="password" class="form-control " name="userPwd" id="userPwd"/>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" id="submitBtn" data-dismiss="modal" value="확인"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<script>
+$("#submitBtn").click(function(){
+	$("#form").submit();
+});
+$('.myPagemodar').click(function(){
+
+	$('#userPwd').val("");
+	$('.buttonmodal').click();
+
+
+});
+
+
+
+</script>
+
 </body>
 </html>

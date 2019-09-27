@@ -32,7 +32,7 @@ margin-left:20%;
 margin-top:5%;
 }
 
-#saveBtn{
+#saveBtnkinder{
 margin-left:38%;
 width:25%;
 height:7%;
@@ -114,12 +114,30 @@ width:15%;
 	<input name="address3" type="text" class="form-control" placeholder="상세주소">
 	</div>
 	<br><br>
-	<button id="saveBtn" class="btn btn btn-default">저장</button><br><br><br>
+	<button id="saveBtnkinder" class="btn btn-default" type="button">저장</button><br><br><br>
 	</div>
 	
 	</form>
 	
 	<script>
+	
+	$('#saveBtnkinder').click(function(){
+		
+		var classification = '${ loginUser.classification }';
+		
+		if(classification == '체험판원장님' || classification == '체험판선생님'){
+			
+			alert("체험판에선 불가능한 기능입니다.");
+			
+			
+		}else{
+			
+			$(this).attr('type','submit');
+			
+		}
+		
+		
+	});
 	
 	  $('#sido').change(function(){
 			 

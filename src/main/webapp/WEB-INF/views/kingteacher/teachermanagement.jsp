@@ -176,64 +176,88 @@ color:white;
 	
 	$('.notaccept').click(function(){
 		
-		var kinderNo = $('#kinderNo').val();
-		var teacherNo = $(this).parent().next().children().val();
-		var className = $(this).parent().prev().children().val();
+		var classification = '${ loginUser.classification }'
 		
-		
-		if(confirm("거절 하시겠습니까?")){
+		if(classification == '체험판선생님' || classification == '체험판원장님'){
 			
-			$.ajax({
-				url:"deleteteacherclass.kl",
-				type:"post",
-				data:{kinderNo:kinderNo,teacherNo:teacherNo},
-				success:function(data){
-					
-					if(data.result == 1){
-						alert("거절이 완료 되었습니다.");
-							
-						location.href="teacheron.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+			alert("체험판에선 불가능 한 기능입니다.");
+			
+		}else{
+			var kinderNo = $('#kinderNo').val();
+			var teacherNo = $(this).parent().next().children().val();
+			var className = $(this).parent().prev().children().val();
+			
+			
+			if(confirm("거절 하시겠습니까?")){
+				
+				$.ajax({
+					url:"deleteteacherclass.kl",
+					type:"post",
+					data:{kinderNo:kinderNo,teacherNo:teacherNo},
+					success:function(data){
 						
+						if(data.result == 1){
+							alert("거절이 완료 되었습니다.");
+								
+							location.href="teacheron.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+							
+							
+						}
 						
 					}
 					
-				}
+				});
 				
-			});
+			}
 			
 		}
+		
+	
 		
 		
 	});
 		
 		$('.btnaccept').click(function(){
-	
-		var kinderNo = $('#kinderNo').val();
-		var teacherNo = $(this).parent().next().children().val();
-		var className = $(this).parent().prev().children().val();
-
-		
-		if(confirm("승인 하시겠습니까?")){
 			
-		$.ajax({
-			url:"insertteacherclass.kl",
-			type:"post",
-			data:{kinderNo:kinderNo,teacherNo:teacherNo,className:className},
-			success:function(data){
+			var classification = '${ loginUser.classification }'
+			
+			if(classification == '체험판선생님' || classification == '체험판원장님'){
 				
-				if(data.result == 1){
-					alert("승인이 완료 되었습니다.");
-						
-					location.href="teacheron.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+				alert("체험판에선 불가능한 기능입니다.");
+				
+				
+			}else{
+				
+				var kinderNo = $('#kinderNo').val();
+				var teacherNo = $(this).parent().next().children().val();
+				var className = $(this).parent().prev().children().val();
+
+				
+				if(confirm("승인 하시겠습니까?")){
 					
+				$.ajax({
+					url:"insertteacherclass.kl",
+					type:"post",
+					data:{kinderNo:kinderNo,teacherNo:teacherNo,className:className},
+					success:function(data){
+						
+						if(data.result == 1){
+							alert("승인이 완료 되었습니다.");
+								
+							location.href="teacheron.me?currentPage=1&currentPage2=1&userNo="+ kinderNo;
+							
+						}
+						
+					}
+					
+					
+				});
+				
 				}
 				
 			}
-			
-			
-		});
-		
-		}
+	
+
 			
 			
 			

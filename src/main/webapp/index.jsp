@@ -11,11 +11,11 @@
 <body>
 	<h1 align="center">인덱스페이지</h1>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+	
+<%-- <jsp:forward page="WEB-INF/views/main/test.jsp"/> --%>
 
+ <jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/>
 
-   <jsp:forward page="WEB-INF/views/main/introduceCompany.jsp"/>  
-
- <%--   <jsp:forward page="WEB-INF/views/join/jointeacher.jsp"/>  --%>
 
 
 
