@@ -18,5 +18,10 @@ public interface JournalService {
 
 	//일지 리스트 불러오기(원장)
 	ArrayList<Journal> selectJournalList(PageInfo pi, int userNo) throws JournalException;
+	//일지 리스트 불러오기(선생님)
+	ArrayList<Journal> selectTJournalList(PageInfo pi, Journal j) throws JournalException;
+
+	//일지 상세조회
+	Journal selectJournalOne(int journalNo) throws JournalException;
 
 }

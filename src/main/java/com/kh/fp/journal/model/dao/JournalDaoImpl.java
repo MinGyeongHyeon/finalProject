@@ -59,4 +59,36 @@ public class JournalDaoImpl implements JournalDao{
 		return list;
 	}
 
+	//일지 리스트(선생님)
+	@Override
+	public ArrayList<Journal> getTJournalList(SqlSessionTemplate sqlSession, Journal j, PageInfo pi) throws JournalException {
+
+		ArrayList<Journal> list = null;
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		list = (ArrayList)sqlSession.selectList("Journal.selectTJournalList", j, rowBounds);
+
+		if(list == null) {
+			throw new JournalException("일지 리스트 조회 실패!");
+		}
+
+		return list;
+	}
+
+	//일지 상세조회
+	@Override
+	public Journal selectJournalOne(SqlSessionTemplate sqlSession, int journalNo) throws JournalException {
+
+		Journal j = (Journal)sqlSession.selectOne("Journal.selectJournalOne", journalNo);
+
+		if(j == null) {
+			throw new JournalException("일지 상세조회 실패");
+		}
+
+		return j;
+	}
+
 }
