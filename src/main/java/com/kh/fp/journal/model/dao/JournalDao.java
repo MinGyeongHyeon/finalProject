@@ -20,5 +20,10 @@ public interface JournalDao {
 
 	//일지 리스트(원장)
 	ArrayList<Journal> getJournalList(SqlSessionTemplate sqlSession, int userNo, PageInfo pi) throws JournalException;
+	//일지 리스트(선생님)
+	ArrayList<Journal> getTJournalList(SqlSessionTemplate sqlSession, Journal j, PageInfo pi) throws JournalException;
+
+	//일지 상세조회
+	Journal selectJournalOne(SqlSessionTemplate sqlSession, int journalNo) throws JournalException;
 
 }
