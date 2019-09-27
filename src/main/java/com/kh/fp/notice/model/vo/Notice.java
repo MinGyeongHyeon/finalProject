@@ -16,11 +16,11 @@ public class Notice implements Serializable{
 	private String className;
 	private String picture;
 	
-	
 	public Notice() {}
 
 
 	public Notice(int boardNum, String boardTitle, String boardContent, Date boardDate, String boardtype, int classNum,
+
 			int kinderNum, int writer, String className, String picture) {
 		super();
 		this.boardNum = boardNum;
@@ -32,6 +32,7 @@ public class Notice implements Serializable{
 		this.kinderNum = kinderNum;
 		this.writer = writer;
 		this.className = className;
+
 		this.picture = picture;
 	}
 
@@ -133,6 +134,7 @@ public class Notice implements Serializable{
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+
 	}
 
 

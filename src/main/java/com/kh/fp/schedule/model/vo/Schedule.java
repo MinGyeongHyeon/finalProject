@@ -1,11 +1,15 @@
 package com.kh.fp.schedule.model.vo;
 
+import java.util.Date;
+
 public class Schedule implements java.io.Serializable{
 	private int scheduleNo;
 	private String title;
 	private String allDay;
 	private String start;
 	private String end;
+	private Date startDate;
+	private Date endDate;
 	private String backgroundColor;
 	private String type;
 	private int classNo;
@@ -14,14 +18,16 @@ public class Schedule implements java.io.Serializable{
 	
 	public Schedule() {}
 
-	public Schedule(int scheduleNo, String title, String allDay, String start, String end, String backgroundColor,
-			String type, int classNo, int kinderNo, String scheduleContent) {
+	public Schedule(int scheduleNo, String title, String allDay, String start, String end, Date startDate, Date endDate,
+			String backgroundColor, String type, int classNo, int kinderNo, String scheduleContent) {
 		super();
 		this.scheduleNo = scheduleNo;
 		this.title = title;
 		this.allDay = allDay;
 		this.start = start;
 		this.end = end;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.backgroundColor = backgroundColor;
 		this.type = type;
 		this.classNo = classNo;
@@ -69,6 +75,22 @@ public class Schedule implements java.io.Serializable{
 		this.end = end;
 	}
 
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
 	public String getBackgroundColor() {
 		return backgroundColor;
 	}
@@ -112,11 +134,11 @@ public class Schedule implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Schedule [scheduleNo=" + scheduleNo + ", title=" + title + ", allDay=" + allDay + ", start=" + start
-				+ ", end=" + end + ", backgroundColor=" + backgroundColor + ", type=" + type + ", classNo=" + classNo
-				+ ", kinderNo=" + kinderNo + ", scheduleContent=" + scheduleContent + "]";
+				+ ", end=" + end + ", startDate=" + startDate + ", endDate=" + endDate + ", backgroundColor="
+				+ backgroundColor + ", type=" + type + ", classNo=" + classNo + ", kinderNo=" + kinderNo
+				+ ", scheduleContent=" + scheduleContent + "]";
 	}
 
-	
 	
 	
 }
