@@ -12,9 +12,9 @@ import com.kh.fp.attendance.model.vo.Children;
 public class AttendanceDaoImpl implements AttendanceDao{
 
 	@Override
-	public ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession) throws DailyException {
+	public ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession,int teacherNo) throws DailyException {
 		ArrayList<Children> dailyatt = null;
-		dailyatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt");
+		dailyatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt",teacherNo);
 		if(dailyatt == null) {
 			throw new DailyException("정보조회실패!");
 		}
@@ -22,9 +22,9 @@ public class AttendanceDaoImpl implements AttendanceDao{
 	}
 
 	@Override
-	public ArrayList<Children> monthAttendance(SqlSessionTemplate sqlSession) throws DailyException {
+	public ArrayList<Children> monthAttendance(SqlSessionTemplate sqlSession,int teacherNo) throws DailyException {
 		ArrayList<Children> monthatt = null;
-		monthatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt");
+		monthatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt",teacherNo);
 		if(monthatt == null) {
 			throw new DailyException("정보조회실패");
 		}
@@ -32,9 +32,9 @@ public class AttendanceDaoImpl implements AttendanceDao{
 	}
 
 	@Override
-	public int dailyChildrenCount(SqlSessionTemplate sqlSession) throws DailyException {
+	public int dailyChildrenCount(SqlSessionTemplate sqlSession,int teacherNo) throws DailyException {
 		int child = 0;
-		child = sqlSession.selectOne("Attendance.dailyChildren");
+		child = sqlSession.selectOne("Attendance.dailyChildren",teacherNo);
 		if(child==0) {
 			throw new DailyException("원아가 없습니다.");
 		}

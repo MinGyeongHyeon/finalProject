@@ -19,7 +19,7 @@ $(function(){
         colseText:'닫기',
         minDate:"-1M",
         maxDAte:"+0D",
-        dateFormat:"yy-mm-dd",
+        dateFormat:"yy/mm/dd",
         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
@@ -27,8 +27,9 @@ $(function(){
         onSelect:function(){
         	day = $("#datepicker").val();
         	var date = $("#today").html(day);
-        	//location.href = "changeAttendance.at";
+        	console.log(day);
         	var date = $("#today").html();
+        	location.href = "mealMain.ml?changeday="+day;
         }
 	});
 });
@@ -72,9 +73,7 @@ background:orange;
 <br><br>
 <table>
 <tr><th colspan="3"> 
-<button>&lt;</button>
 <c:out value="${ day }"/>
- <button>&gt;</button>
  </th></tr>
 <tr>
 <c:forEach var="l" items="${ham}">

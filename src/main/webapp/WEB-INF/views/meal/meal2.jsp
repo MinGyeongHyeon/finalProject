@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +90,12 @@ background:orange;
 <tr>
 <td><h1>아직 식단표가 작성되지 않았습니다.</h1></td>
 </tr>
-<tr><td><button onclick="writeMeal();">작성하기</button></td></tr>
+<tr><td>
+<c:if test="${ loginUser.usingStatus ne 1 }">
+<button onclick="writeMeal();">작성하기</button>
+
+</c:if>
+</td></tr>
 </table>
 </div>
 </body>
