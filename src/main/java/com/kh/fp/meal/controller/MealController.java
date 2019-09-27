@@ -31,21 +31,28 @@ public class MealController {
 	private MealService ms;
 	
 	@RequestMapping(value="mealMain.ml")
-	public String mealMainView(Model mv,Meal ml) {
+	public String mealMainView(Model mv,Meal ml,HttpServletRequest request) {
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);
 		SimpleDateFormat date1 = new SimpleDateFormat("yy/MM/dd");
 		String dayday = date1.format(today);
-		mv.addAttribute("day",day);
+		String changeday = request.getParameter("changeday");
 		int meal = ms.dailymealCount();
 		if(meal==0) {
 			return "meal/meal2";
 		}else {
 			try {
-				System.out.println(dayday);
+				if(changeday!=null) {
+					String abc = changeday.substring(2);
+					ArrayList<Attachment> hmap = ms.selectPic(abc);
+					mv.addAttribute("ham",hmap);
+					mv.addAttribute("day", changeday);
+				}else {
 				ArrayList<Attachment> hmap = ms.selectPic(dayday);
+				mv.addAttribute("day",day);
 				mv.addAttribute("ham",hmap);
+				}
 			} catch (MealException e) {
 				e.printStackTrace();
 			}
@@ -75,7 +82,7 @@ public class MealController {
 		int userNo = loginUser.getTeacherNo();
 		String[] content = mm.getMealContent().split(",");
 		Meal meal = null;
-		
+		System.out.println("식단표 작성 콘트롤라~!");
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);

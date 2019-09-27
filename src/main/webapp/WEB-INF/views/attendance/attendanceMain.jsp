@@ -57,7 +57,7 @@ $(document).on('change', 'select', function() {
 });
 
 
- /* $(function(){
+ $(function(){
 	$(".timepicker").timepicker({
 		timeFormat: 'h:mm p',
 	    interval: 15,
@@ -85,10 +85,10 @@ $(document).on('change', 'select', function() {
 	    	}
 	    }
 	});
-}); */
+});
 function save(){
 	
-	var dataArrayToSend = [];
+	/* var dataArrayToSend = [];
 	var dataArrayToSend1 = [];
 	$("#attendance").each(function(){
 		len = $(this).find("td").length;
@@ -98,36 +98,23 @@ function save(){
 		console.log("왜안나와");
 	}
 	dataAraryToSend1.push(dataArrayToSend);
-	console.log(dataArrayToSend1);
+	console.log(dataArrayToSend1); */
+	abc = "abc";
+	console.log(abc);
+	$.support.cors = true;	
 $.ajax({
-	contentType:"application/json",
 	type:"POST",
-	data:JSON.stringify(dataArrayToSend1),
-	url:"attendanceMain.at",
+	data:{"Abc":abc},
+	url:"${contextPath}/ajaxattendance.at",
 	success:function(data){
-		console.log("성공")
+		console.log("에이젝스 작동 성공");
 	},
-	error:function(){
-		console.log("실패")
+	error:function(request,status,error){
+		console.log("에이젝스 작동 실패");
+		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
 	}
 });
 }
-
-/* function save(){
-	var dataParam={list:JSON.stringify($scope.lists),param1:'param1',param2:'param2'};
-	$.ajax({
-		type:'post',
-		dataType:'json',
-		data:dataParam,
-		url:,
-		success:function(returnData){
-			
-		},error:function(e){
-			
-		}
-	});
-} */
-
 /* function bgo(){
 	console.log(this);
 } */
@@ -311,36 +298,7 @@ width:100%;
 		</form>
 		</div>
 	</div>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js">
-	$(function(){
-		$(".timepicker").timepicker({
-			timeFormat: 'h:mm p',
-		    interval: 15,
-		    minTime: '10',
-		    maxTime: '6:00pm',
-		    defaultTime: '9',
-		    startTime: '10:00',
-		    dynamic: false,
-		    dropdown: true,
-		    scrollbar: true,
-		    updateData:true,
-		    change:function(){
-		    	var element = $(this).val();
-		    	$(this).html(element);
-		    	//console.log(element+"현재값");
-		    	$(this).val(element);
-		    	
-		    	var abc = $(this).parent().parent().children("td").eq(3).children("#timepicker1").val();
-		    	var abcd = $(this).parent().parent().children("td").eq(4).children("#timepicker2").val();
-		    	
-		    	if(abc==""||abcd==""){
-		    	console.log(abc+"타임");
-		    	}else if(abc==""||abcd!=""){
-		    		console.log(abcd+"엠타임");
-		    	}
-		    }
-		});
-	});</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </body>
 </html>
 

@@ -27,8 +27,8 @@ $(function(){
         onSelect:function(){
         	day = $("#datepicker").val();
         	var date = $("#today").html(day);
-        	//location.href = "changeAttendance.at";
         	var date = $("#today").html();
+        	location.href = "mealMain.ml?changeday="+day;
         }
 	});
 });

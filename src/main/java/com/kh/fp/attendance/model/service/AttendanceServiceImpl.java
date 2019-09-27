@@ -22,22 +22,24 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 
 	@Override
-	public ArrayList<Children> dailyAttendance() throws DailyException {
-		return ad.dailyAttendance(sqlSession);
-
+	public ArrayList<Children> dailyAttendance(int teacherNo) throws DailyException {
+		return ad.dailyAttendance(sqlSession,teacherNo);
 	}
 
 
 	@Override
-	public ArrayList<Children> monthAttendance() throws DailyException {
-		return ad.monthAttendance(sqlSession);
+	public ArrayList<Children> monthAttendance(int teacherNo) throws DailyException {
+		return ad.monthAttendance(sqlSession,teacherNo);
 	}
 
 
 	@Override
-	public int dailyChildrenCount() throws DailyException {
-		return ad.dailyChildrenCount(sqlSession);
+	public int dailyChildrenCount(int teacherNo) throws DailyException {
+		return ad.dailyChildrenCount(sqlSession,teacherNo);
 	}
+
+
+	
 
 
 
