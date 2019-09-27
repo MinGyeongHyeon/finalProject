@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.common.Pagination;
 import com.kh.fp.member.model.vo.Member;
@@ -29,7 +30,8 @@ public class ReturnHomeController {
 	private ReturnHomeService rhs;
 
 	@RequestMapping(value = "returnHomeMain.rh")
-	public String returnHomeMain(@SessionAttribute("loginUser") Member loginUser, Model m, HttpServletRequest request, HttpServletResponse response) {
+	public String returnHomeMain(@SessionAttribute("loginUser") Member loginUser,@RequestParam(value="kidsNameList", required=false) String kidsNameList,
+							Model m, HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<Children> list1 = null;
 		ArrayList<ChildrenClass> list2 = null;
 		ArrayList<ReturnHome> rhList = null;
@@ -40,11 +42,14 @@ public class ReturnHomeController {
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-
 		
 		if (loginUser.getClassification().equals("원장님")) {
 			KinderClass kc = new KinderClass();
 			kc.setKinderNo(loginUser.getUserNo());
+			if(kidsNameList != null) {
+				kc.setChildrenNo(Integer.parseInt(kidsNameList));
+				System.out.println("childrenNo :: " + kc.getChildrenNo());
+			}
 			list1 = rhs.selectKinderChildrenName(kc);
 			count = rhs.countList(kc);
 			
@@ -57,6 +62,11 @@ public class ReturnHomeController {
 		}else if (loginUser.getClassification().equals("선생님")) {
 			KinderClass kc = new KinderClass();
 			kc.setTeacherNo(loginUser.getUserNo());
+			System.out.println("childrenNo1 :: " + kc.getChildrenNo());
+			if(kidsNameList != null) {
+				kc.setChildrenNo(Integer.parseInt(kidsNameList));
+				System.out.println("childrenNo :: " + kc.getChildrenNo());
+			}
 			list1 = rhs.selectChildrenName(kc);
 			count = rhs.countListAll(kc);
 			
@@ -130,6 +140,17 @@ public class ReturnHomeController {
 		m.addAttribute("rhList", rhList.get(0));
 		return "returnHome/returnHomeDetail";
 	}
+	
+	@RequestMapping(value="searchKids.rh")
+	public ModelAndView searchKids(int kidsNameList, String classification, int userNo, int currentPage,  ModelAndView mv) {
+		System.out.println("kidsNameList : " + kidsNameList);
+		
+		
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
 }
 
 

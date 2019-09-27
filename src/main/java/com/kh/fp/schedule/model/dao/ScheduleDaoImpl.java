@@ -22,12 +22,8 @@ public class ScheduleDaoImpl implements ScheduleDao{
 
 	@Override
 	public int insertSchedule1(SqlSessionTemplate sqlSession, Schedule sc) {
-		
 		int result = 0;
-			
-		
-		
-			result = sqlSession.insert("Schedule.insertSchedule1", sc);
+		result = sqlSession.insert("Schedule.insertSchedule1", sc);
 		
 		return result;
 	}
@@ -35,13 +31,11 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	
 	@Override
 	public int insertSchedule2(SqlSessionTemplate sqlSession, Schedule sc) {
-		
 		int result = 0;
 		
 		System.out.println("DAO"+ sc);
 		
-		
-			result = sqlSession.insert("Schedule.insertSchedule2", sc);
+		result = sqlSession.insert("Schedule.insertSchedule2", sc);
 		
 		return result;
 	}
