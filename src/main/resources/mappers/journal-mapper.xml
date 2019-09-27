@@ -18,6 +18,8 @@
 		<result property="status" column="STATUS"/>
 		<result property="kinderNo" column="KINDER_NO"/>
 		<result property="userName" column="USER_NAME"/>
+		<result property="className" column="CLASS_NAME"/>
+		<result property="kinderName" column="KINDER_NAME"/>
 	</resultMap>
 
 	<!-- 일지 작성하기 -->
@@ -51,6 +53,29 @@
 		JOIN USERS U ON(U.USER_NO = K.TEACHER_NO)
 		WHERE K.KINDER_NO = #{userNo}
 		AND J.STATUS = 'N'
+		ORDER BY J.JOURNAL_NO DESC
 	</select>
+	<!-- 일지 리스트 조회(선생님) -->
+	<select id="selectTJournalList" parameterType="_int" resultMap="Journal">
+		SELECT *
+		FROM JOURNAL J
+		JOIN KINDER_CLASS K ON(J.USER_NO = K.TEACHER_NO)
+		JOIN USERS U ON(U.USER_NO = K.TEACHER_NO)
+		WHERE K.KINDER_NO = #{kinderNo}
+		AND J.USER_NO = #{loginUserNo}
+		AND J.STATUS = 'N'
+		ORDER BY J.JOURNAL_NO DESC
+	</select>
+
+
+	<!-- 일지 상세조회 -->
+	<select id="selectJournalOne" parameterType="_int" resultMap="Journal">
+		SELECT *
+		FROM JOURNAL J
+		JOIN KINDER_CLASS K ON(J.USER_NO = K.TEACHER_NO)
+		JOIN USERS U ON(U.USER_NO = K.TEACHER_NO)
+		WHERE J.JOURNAL_NO = #{journalNo}
+	</select>
+
 
 </mapper>

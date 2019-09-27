@@ -103,9 +103,17 @@ public class JournalController {
     		try {
     			if(classification.equals("원장님")) {
     				jList = js.selectJournalList(pi, userNo);
-    				model.addAttribute("jList", jList);
+    			}else {
+    				KinGardenClasses kc = (KinGardenClasses)session.getAttribute("teacherKing");
+    	    		int kinderNo = kc.getKinderNo();
+    	    		j.setKinderNo(kinderNo);
+    	    		System.out.println(kinderNo);
+    	    		j.setLoginUserNo(userNo);
+    	    		System.out.println(j);
+    				jList = js.selectTJournalList(pi, j);
     			}
 
+    			model.addAttribute("jList", jList);
     			model.addAttribute("pi", pi);
 
     			return "journal/journalList";
@@ -115,6 +123,29 @@ public class JournalController {
 				e.printStackTrace();
 				return "index";
 			}
+
+    }
+
+
+    //일지 상세조회
+    @RequestMapping(value="selectJournalOne.jn")
+    public String selectJournalOne(Model model, int journalNo) {
+
+    	System.out.println("상세보기 호출");
+    	System.out.println(journalNo);
+
+    	try {
+			Journal j = js.selectJournalOne(journalNo);
+
+			model.addAttribute("j", j);
+
+			return "journal/journalDetail";
+
+		} catch (JournalException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
 
     }
 

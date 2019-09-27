@@ -191,13 +191,20 @@ border:1px solid white;
 					<td colspan="${ month }" rowspan="${ hmc }" class="td-2-3">
 						<div class="wapper">
 							<table id="table--inner">
-								<c:forEach var="i" begin="1" end="${ month }">
+								<tr><c:forEach var="i" begin="1" end="${ month }">
 								   <th class="monttday"><c:out value="${i}" /></th>
-								<c:forEach var="i" begin="1" end="${hmc }">
+							<%-- 	<c:forEach var="i" begin="1" end="${hmc }">
 								<tr>
 								</tr>
 								<td>dj</td>
+								</c:forEach> --%>
+								
 								</c:forEach>
+								</tr>
+								<c:forEach var="i" begin="1" end="${ hmc }-1">
+								<tr>
+								<td>내용</td>
+								</tr>
 								</c:forEach>
 							</table>
 						</div>

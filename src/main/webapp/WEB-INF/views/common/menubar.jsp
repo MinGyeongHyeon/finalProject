@@ -6,14 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/1eba500ac5.js"></script>
 
 
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
 <title>메뉴바</title>
-
 
 <!-- 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' /> -->
 <link rel="icon" href="${ contextPath }/resources/assets/img/icon.ico"
@@ -58,9 +56,6 @@
 	color: white;
 	font-weight: bold;
 }
-body{
-font-family: 'Sunflower', sans-serif;
-}
 </style>
 
 </head>
@@ -72,7 +67,6 @@ font-family: 'Sunflower', sans-serif;
 			<div class="logo-header">
 
 				<a href="main.pl" class="logo"> <label id="kinName">${ kga.kinderName } 유치원</label>
-
 
 				</a><div>
 
@@ -93,38 +87,13 @@ font-family: 'Sunflower', sans-serif;
 				</div>
 			</div>
 
-
 			<nav class="navbar navbar-header navbar-expand-lg">
-
-			<c:if test="${ loginUser.classification eq '원장님'or loginUser.classification eq '체험판원장님'}">
-
-			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
-					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
-					<i class="fas fa-cog"></i>
-					원 설정
-					</button>
-					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
-
-					
-		   </form>
-			</c:if>
-			
-		    <c:if test="${ loginUser.classification eq '선생님'or loginUser.classification eq '체험판선생님'  }">
-			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
-					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
-					<i class="fas fa-cog"></i>
-					원 설정
-					</button>
-					<input type="hidden" name="userNo" value="${ kga.kinderNo }"/>
-			</form>
-			</c:if>
 
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
+						<c:if test="${ loginUser.classification eq '원장님' }">
 
-
-						<c:if test="${ loginUser.classification eq '원장님' or '체험판원장님'}">
 
 							<li class="nav-item dropdown hidden-caret"><a
 								class="nav-link dropdown-toggle" href="#" id="messageDropdown"
@@ -275,7 +244,7 @@ font-family: 'Sunflower', sans-serif;
 								</li>
 								<li>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="MyPage.pl">마이 페이지</a>
+									href="#">마이 페이지</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
 									href="#">Account Setting</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
@@ -311,7 +280,7 @@ font-family: 'Sunflower', sans-serif;
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="MyPage.pl"> <span class="link-collapse">마이 페이지</span>
+									<li><a href="#profile"> <span class="link-collapse">마이 페이지</span>
 									</a></li>
 									<li><a href="#edit"> <span class="link-collapse">EditProfile</span>
 									</a></li>
@@ -391,17 +360,15 @@ font-family: 'Sunflower', sans-serif;
 						</a></li>
 						</c:if>
 
-						<li class="nav-item"><a href="bus.pl"> <i
+						<li class="nav-item"><a href="#submenu"> <i
 								class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
-						</a></li>
+						</li>
 
-						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '선생님'}">
-						<li class="nav-item"><a href="journalMain.jn"> <i
+						<li class="nav-item"><a href="businessLogMain.pl"> <i
 								class="far fa-clipboard"></i>
 								<p>일지관리</p>
 						</a></li>
-						</c:if>
 
 						<li class="nav-item"><a href="#submenu"> <i
 								class="far fa-comments"></i>
@@ -453,7 +420,6 @@ font-family: 'Sunflower', sans-serif;
 		</div>
  -->
 	<!-- 	</div> -->
-
 	<!--   Core JS Files   -->
 	<script src="${ contextPath }/resources/assets/js/core/jquery.3.2.1.js"></script>
 	<script src="${ contextPath }/resources/assets/js/core/popper.min.js"></script>
@@ -516,6 +482,7 @@ font-family: 'Sunflower', sans-serif;
 
 	<!-- Azzara JS -->
 	<%-- <script src="${ contextPath }/resources/assets/js/ready.min.js"></script> --%>
+
 
 
 <div class="container hiddenmodal">

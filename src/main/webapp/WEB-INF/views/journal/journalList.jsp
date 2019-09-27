@@ -41,7 +41,12 @@
 #table1 th {
 	font-size:16px;
 }
-
+tbody tr:hover {
+	cursor:pointer;
+}
+#listTitle:hover {
+	text-decoration:underline;
+}
 </style>
 
 </head>
@@ -88,22 +93,22 @@
 						<table class="table table-hover" id="table1">
 							<thead>
 								<tr>
-									<th>No.</th>
 									<th>종류</th>
 									<th>글 제목</th>
 									<th>작성 날짜</th>
+									<th>반</th>
 									<th>작성자</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="l" items="${ jList }">
-
 									<tr>
-										<td><c:out value="${ l.journalNo }"/></td>
-										<td>일지</td>
-										<td><fmt:formatDate value="${ l.journalDate }" pattern="yyyy년 MM월 dd일"/> 일지</td>
-										<td><c:out value="${ l.journalDate }"/></td>
-										<td><c:out value="${ l.userName }"/></td>
+										<input type="hidden" value="${ l.journalNo }" id="journalNo">
+										<td class="in">일지</td>
+										<td class="in" id="listTitle"><fmt:formatDate value="${ l.journalDate }" pattern="yyyy년 MM월 dd일"/> 일지</td>
+										<td class="in"><c:out value="${ l.journalDate }"/></td>
+										<td class="in"><c:out value="${ l.className }"/></td>
+										<td class="in"><c:out value="${ l.userName }"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -150,6 +155,21 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		$(function(){
+
+			$(".in").click(function(){
+				var journalNo = $(this).parents().children("input").val();
+
+				console.log(journalNo);
+
+				location.href="selectJournalOne.jn?journalNo=" + journalNo;
+
+			});
+
+		});
+	</script>
 
 </body>
 </html>

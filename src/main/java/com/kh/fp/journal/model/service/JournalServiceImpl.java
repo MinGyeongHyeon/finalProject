@@ -45,5 +45,18 @@ public class JournalServiceImpl implements JournalService{
 
 		return jd.getJournalList(sqlSession, userNo, pi);
 	}
+	//일지 리스트(선생님)
+	@Override
+	public ArrayList<Journal> selectTJournalList(PageInfo pi, Journal j) throws JournalException {
+
+		return jd.getTJournalList(sqlSession, j, pi);
+	}
+
+	//일지 상세조회
+	@Override
+	public Journal selectJournalOne(int journalNo) throws JournalException {
+
+		return jd.selectJournalOne(sqlSession, journalNo);
+	}
 
 }

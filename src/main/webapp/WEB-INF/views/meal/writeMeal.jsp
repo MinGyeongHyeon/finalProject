@@ -146,9 +146,10 @@ border-top:none;
 </tr>
 
 <tr>
-<td><input type="submit" value="저장"/></td>
-</tr>
+<td colspan="3" style="padding:10px;"><input type="submit" value="저장" style="width:80%; height:100%; background:lightgray; padding:10px; border-radius:5px;"/></td>
+</tr><br><br>
 </table>
+<br><br>
 </div>
 <div id="fileArea">
 	<input type="file" id="thumbnailImg1" multiple="multiple" name="file" onchange="loadImg(this, 1)">
