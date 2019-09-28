@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fp.attendance.model.dao.AttendanceDao;
 import com.kh.fp.attendance.model.exception.DailyException;
+import com.kh.fp.attendance.model.vo.Attendance;
 import com.kh.fp.attendance.model.vo.Children;
 
 @Service
@@ -36,6 +37,12 @@ public class AttendanceServiceImpl implements AttendanceService{
 	@Override
 	public int dailyChildrenCount(int teacherNo) throws DailyException {
 		return ad.dailyChildrenCount(sqlSession,teacherNo);
+	}
+
+
+	@Override
+	public int insertDailyAtt(Attendance atten) throws DailyException {
+		return ad.insertDailyAtt(sqlSession,atten);
 	}
 
 

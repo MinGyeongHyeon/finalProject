@@ -29,7 +29,8 @@ $(function(){
         onSelect:function(){
         	day = $("#datepicker").val();
         	var date = $("#today").html(day);
-        	location.href = "changeAttendance.at";
+        	console.log(day);
+        	location.href = "attendance.at?day1="+day;
         	var date = $("#today").html();
         }
 	});
@@ -74,47 +75,21 @@ $(document).on('change', 'select', function() {
 	    	$(this).html(element);
 	    	//console.log(element+"현재값");
 	    	$(this).val(element);
-	    	
-	    	var abc = $(this).parent().parent().children("td").eq(3).children("#timepicker1").val();
+	    	var childrenNo = $(this).parent().parent().children("td").eq(0).text();
+	   var abc = $(this).parent().parent().children("td").eq(3).children("#timepicker1").val();
 	    	var abcd = $(this).parent().parent().children("td").eq(4).children("#timepicker2").val();
-	    	
-	    	if(abc==""||abcd==""){
-	    	console.log(abc+"타임");
-	    	}else if(abc==""||abcd!=""){
-	    		console.log(abcd+"엠타임");
-	    	}
+	    	var aaa = $(this).parent().parent().children("td").find(".chiNo").val();
+	    	$(this).parent().parent().children("td").eq(3).children(".time").val(abc);
+	    	$(this).parent().parent().children("td").eq(4).children(".mTime").val(abcd);
+	    	$(this).parent().parent().children("td").eq(0).children(".childrenNo1").val(aaa);
 	    }
 	});
 });
-function save(){
-	
-	/* var dataArrayToSend = [];
-	var dataArrayToSend1 = [];
-	$("#attendance").each(function(){
-		len = $(this).find("td").length;
-	});
-	for(var i=0;i<len;i++){
-		dataArrayToSend.push($(this).find("td").eq(i).text());
-		console.log("왜안나와");
-	}
-	dataAraryToSend1.push(dataArrayToSend);
-	console.log(dataArrayToSend1); */
-	abc = "abc";
-	console.log(abc);
-	$.support.cors = true;	
-$.ajax({
-	type:"POST",
-	data:{"Abc":abc},
-	url:"${contextPath}/ajaxattendance.at",
-	success:function(data){
-		console.log("에이젝스 작동 성공");
-	},
-	error:function(request,status,error){
-		console.log("에이젝스 작동 실패");
-		alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-	}
-});
-}
+
+/*  function save(){
+	 $(form).submit();
+ } */
+
 /* function bgo(){
 	console.log(this);
 } */
@@ -234,14 +209,16 @@ width:100%;
 		</div>
 		<hr />
 		<div class="attendanceArea">
-		<form action="" method="post">
+		<form action="changeAttendance.at" method="post">
 		<div id="timecheck"><label>총원 : ${ chldren }명(출석 : ${ chldren }명)</label>&nbsp;&nbsp;
 		<span id="right">V 출석 × 결석 ◎ 병결 ○ 사고 / 입소 ★ 퇴소</span></div>
 						<table id="attendance" align="center">
 							<tr>
 							<td colspan="3">
 							<button onclick="preBtn();">&lt;</button></td>
-							<td colspan="2"><h3 id="today" name="time">${ day }</h3></td>
+							<td colspan="2"><h3 id="today" >${ day }</h3>
+							<input type="text" value="${day }" name="day" class="day" style="display:none;">
+							</td>
 							<td colspan="2"><button onclick="afterBtn();">&gt;</button></td>
 							</tr>
 							<tr>
@@ -256,10 +233,11 @@ width:100%;
 							<tbody>
 							<c:forEach var="a" items="${ list }">
 							<tr style="border:1px solid white;">
-								<td><p><c:out value="${ a.childrenNo }"/></p>
-								<input type="hidden" name="childrenNo" value="${ a.childrenNo }">
+								<td><input type="text" class="chiNo" style="display:none;" value="${ a.childrenNo }"><c:out value="${ a.childrenNo }"/>
+								<input type="text" name="childrenNo1" class="childrenNo1" value="" style="display:none;">
 								</td>
-								<td><c:out value="${ a.childrenName }"/></td>
+								<td><c:out value="${ a.childrenName }"/>
+								</td>
 								<td id="statusArea">
 								<select class="status" name="status">
 									<option value="">선택</option>
@@ -271,24 +249,13 @@ width:100%;
 									<option value="★">퇴소</option>
 								</select>
 								</td>
-								<td class="time">
-<!-- 								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden;" value=""> -->
-								<!-- <select class="noganzitimepicker">
-									<option value="9PM"></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-									<option value=""></option>
-								</select> -->
-								<input type="number"/>
+								<td>
+  								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden; background:none; color:white; border:none;" value="시간을 선택하세요.">
+								<input type="text" name="time" class="time" value="" style="display:none;">
 								</td>
-								<td class="mtime">
-								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden;" value="">
+								<td>
+								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden; background:none; color:white; border:none;" value="시간을 선택하세요.">
+								<input type="text" name="mTime"  class="mTime" value=""  style="display:none;">
 								</td>
 								<td></td>
 								<td></td>

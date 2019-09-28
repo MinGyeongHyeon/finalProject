@@ -46,7 +46,9 @@ $(function(){
 function afterBtn(){
 	
 } */
-
+function gotest(){
+	location.href="test.at";
+}
 </script>
 
 </head>
@@ -102,8 +104,8 @@ function afterBtn(){
 .attendanceArea {
 	margin: 0 auto;
 	align: center;
-	background: #555;
-	color: #fff;
+	background: #CCCCCC;
+	color: black;
 	text-align: center;
 }
 
@@ -120,10 +122,14 @@ function afterBtn(){
 .wapper {
 	overflow: scroll;
 	height:600px;
+	width:900px;
+	align:center;
+	margin:0 auto;
 }
 
 #nonescroll {
 	overflow: none;
+	overflow-y:hidden;
 }
 
 #attendance {
@@ -148,8 +154,12 @@ function afterBtn(){
 	margin-top: 2%;
 }
 .monttday{
-width:3%;
+width:150%;
 border:1px solid white;
+}
+#table--inner{
+width:100%;
+table-layout:fixed;
 }
 </style>
 <body>
@@ -166,12 +176,13 @@ border:1px solid white;
 					</td>
 					<td><button onclick="goMonth();">월별출석부</button></td>
 					<td><input type="button" id="datepicker" value="일별출석부"></td>
-					<td><button id="setbtn">설정</button></td>
+					<td><button id="setbtn" onclick="gotest();">설정</button></td>
 				</tr>
 
 			</table>
 		</div>
 		<hr />
+		
 		<div class="attendanceArea">
 			<div id="timecheck">
 				<input type="checkbox"><label>등하원 시간 표시</label>&nbsp;&nbsp;
@@ -188,40 +199,48 @@ border:1px solid white;
 				<tr>
 					<td>이름</td>
 					<td>&lt; &nbsp; &gt;</td>
-					<td colspan="${ month }" rowspan="${ hmc }" class="td-2-3">
+					<td colspan="${ month1 }" rowspan="${ tt }" class="td-2-3">
 						<div class="wapper">
-							<table id="table--inner">
-								<tr><c:forEach var="i" begin="1" end="${ month }">
-								   <th class="monttday"><c:out value="${i}" /></th>
-							<%-- 	<c:forEach var="i" begin="1" end="${hmc }">
-								<tr>
-								</tr>
-								<td>dj</td>
-								</c:forEach> --%>
+							<table id="table--inner" style="width:100%;">
+								<c:forEach var="i" begin="1" end="${ month }">
+								   <th class="monttday" rowspan="1" colspan="2" style="width:60px;" class="${ i }">
+								   <c:out value="${i}" />
+								   </th>
+							
+								</c:forEach>
 								
-								</c:forEach>
-								</tr>
-								<c:forEach var="i" begin="1" end="${ hmc }-1">
-								<tr>
-								<td>내용</td>
-								</tr>
-								</c:forEach>
+								
+								<c:forEach var="a" begin="1" end="${ hmc }">
+                     <tr>
+                     <c:forEach var="i" begin="1" end="${ month }">
+                     <td rowspan="1" colspan="2" style="padding-top:39px; padding-bottom:39px; width:60px;" class="${ i }">
+                     08:30AM
+                     </td>               
+                     </c:forEach>
+                     </tr>
+                     </c:forEach>
+								
 							</table>
 						</div>
 						<script>
 						$(function(){
 							$(".wapper").find("td").mouseenter(function(){
-								$(this).parents("td").css({"background":"orangered","cursor":"pointer"});
+								a = $(this).attr('class')+"";
+								abc = "[class="+a+"]";
+								$(abc).css({"background":"#CCCCCC","cursor":"pointer"});
 							}).mouseout(function(){
-								$(this).parents("td").css({"background":"#555"});
+								$(abc).css({"background":"#555"});
 							}).click(function(){
-								location.href="";
+								var day = $("#today").text();
+								var plus = day+"$"+a;
+								console.log(plus);
+								location.href="attendance.at?day="+plus;
 							});
 						});
 						</script>
 					</td>
 					
-					
+
 					
 					
 					<td>출석</td>
@@ -229,27 +248,22 @@ border:1px solid white;
 				</tr>
 				<c:forEach var="a" items="${ list }">
 					<tr>
-						<td rowspan="3"><c:out value="${ a.childrenName }" /></td>
-						<td>출결상태</td>
-						<td rowspan="3">등원 시간</td>
-						<td rowspan="3">결석일수</td>
+						<td rowspan="3" style="width:80px;"><c:out value="${ a.childrenName }" /></td>
+						<td style="padding-top:20px; padding-bottom:20px;">출결<br>상태</td>
+						<td rowspan="3" style="width:50px;">1</td>
+						<td rowspan="3" style="width:50px;">2</td>
 					</tr>
 					<tr>
-						<td>등원 시간</td>
+						<td style="width:50px; padding-top:20px; padding-bottom:20px;">등원<br>시간</td>
 					</tr>
 					<tr>
-						<td>하원 시간</td>
+						<td style="width:50px;padding-top:20px; padding-bottom:20px;">하원<br>시간</td>
 					</tr>
 				</c:forEach>
 				</tbody>
-				<!-- <tr>
-					<td>전월말 재적수</td>
-					<td>입소아동</td>
-					<td>퇴소아동</td>
-					<td>월말 재적수</td>
-					<td>교육일수</td>
-				</tr> -->
+				
 			</table>
+			<br><br><br>
 			<button class="subBtn">다운로드</button>
 			<button class="subBtn">출력</button>
 		</div>

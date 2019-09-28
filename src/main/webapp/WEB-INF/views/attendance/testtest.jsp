@@ -32,7 +32,7 @@ table td {
 
 .wapper {
   overflow: scroll;
-  height: 607px;
+  height: 679px;
 }
 #nonescroll{
 overflow:none;
@@ -71,7 +71,7 @@ height:100%;
       <img id="scroll-left" src="https://mk.kakaocdn.net/dn/kidsnote/static/img/attendances/left-scroll.png">
       <img id="scroll-right" src="https://mk.kakaocdn.net/dn/kidsnote/static/img/attendances/right-scroll.png">
       </td>
-      <td colspan="${ month }" rowspan="${ hmc }" class="td-2-3">
+      <td colspan="30" rowspan="7" class="td-2-3">
         <div class="wapper">
           <table class="table--inner">
             	<!-- 날짜 일일이 가져오기 -->
@@ -83,69 +83,132 @@ height:100%;
             	<tr>
             	<td><c:out value="${ month }"/></td>
             	<td>2</td>
-            	<td>3</td>
+            	<td>3</td><td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>2-1</td>
             	<td>2-2</td>
-            	<td>2-3</td>
+            	<td>2-3</td><td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>3-1</td>
             	<td>3-2</td>
-            	<td>3-3</td>
+            	<td>3-3</td><td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>4-1</td>
             	<td>4-2</td>
             	<td>4-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>5-1</td>
             	<td>5-2</td>
             	<td>5-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>6-1</td>
             	<td>6-2</td>
             	<td>6-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>7-1</td>
             	<td>7-2</td>
             	<td>7-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>8-1</td>
             	<td>8-2</td>
             	<td>8-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>9-1</td>
             	<td>9-2</td>
             	<td>9-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>10-1</td>
             	<td>10-2</td>
             	<td>10-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>11-1</td>
             	<td>11-2</td>
             	<td>11-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>12-1</td>
             	<td>12-2</td>
             	<td>12-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
             	<td>13-1</td>
             	<td>13-2</td>
             	<td>13-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	</tr>
             	<tr>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
+            	</tr>
+            	<tr>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
+            	</tr>
+            	<tr>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
+            	</tr>
+            	<tr>
+            	<td>14-1</td>
+            	<td>14-2</td>
+            	<td>14-3</td>
             	<td>14-1</td>
             	<td>14-2</td>
             	<td>14-3</td>

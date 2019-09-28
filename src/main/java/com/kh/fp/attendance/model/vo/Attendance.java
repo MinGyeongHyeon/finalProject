@@ -4,15 +4,29 @@ import java.sql.Date;
 
 public class Attendance implements java.io.Serializable{
 	private int childrenNo;
+	private String childrenNo1;
 	private int attendanceNo;
 	private String attendancceYN;
-	private Date time;
-	private Date mTime;
+	private String time;
+	private String mTime;
 	private String status;
 	
 	public Attendance() {}
 
-	public Attendance(int childrenNo, int attendanceNo, String attendancceYN, Date time, Date mTime, String status) {
+	public Attendance(int childrenNo, String childrenNo1, int attendanceNo, String attendancceYN, String time,
+			String mTime, String status) {
+		super();
+		this.childrenNo = childrenNo;
+		this.childrenNo1 = childrenNo1;
+		this.attendanceNo = attendanceNo;
+		this.attendancceYN = attendancceYN;
+		this.time = time;
+		this.mTime = mTime;
+		this.status = status;
+	}
+
+	public Attendance(int childrenNo, int attendanceNo, String attendancceYN, String time, String mTime,
+			String status) {
 		super();
 		this.childrenNo = childrenNo;
 		this.attendanceNo = attendanceNo;
@@ -28,6 +42,14 @@ public class Attendance implements java.io.Serializable{
 
 	public void setChildrenNo(int childrenNo) {
 		this.childrenNo = childrenNo;
+	}
+
+	public String getChildrenNo1() {
+		return childrenNo1;
+	}
+
+	public void setChildrenNo1(String childrenNo1) {
+		this.childrenNo1 = childrenNo1;
 	}
 
 	public int getAttendanceNo() {
@@ -46,19 +68,19 @@ public class Attendance implements java.io.Serializable{
 		this.attendancceYN = attendancceYN;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
-	public Date getmTime() {
+	public String getmTime() {
 		return mTime;
 	}
 
-	public void setmTime(Date mTime) {
+	public void setmTime(String mTime) {
 		this.mTime = mTime;
 	}
 
@@ -72,9 +94,12 @@ public class Attendance implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "Attendance [childrenNo=" + childrenNo + ", attendanceNo=" + attendanceNo + ", attendancceYN="
-				+ attendancceYN + ", time=" + time + ", mTime=" + mTime + ", status=" + status + "]";
+		return "Attendance [childrenNo=" + childrenNo + ", childrenNo1=" + childrenNo1 + ", attendanceNo="
+				+ attendanceNo + ", attendancceYN=" + attendancceYN + ", time=" + time + ", mTime=" + mTime
+				+ ", status=" + status + "]";
 	}
+
 	
+
 	
 }
