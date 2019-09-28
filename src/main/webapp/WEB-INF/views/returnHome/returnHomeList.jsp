@@ -26,13 +26,14 @@
 	}
 	
 	.returnHomeSummary{
-		width:30%;
+		width:28%;
 		margin-top:10px;
 		margin-bottom:20px;
 		margin-right:2%;
+		margin-left:2%;
 		display: inline-block;
 		background:#fff;
-		height:200px;
+		height:300px;
 		border:1px solid black;
 	}
 	.returnHomeSummary img{
@@ -40,32 +41,46 @@
 		height:20px;
 	}
 	.returnHomeSummary table{
-		width:90%;
+		width:100%;
 		margin:0 auto;
 		font-size: 0.8em;
+	}
+	.contentsTable tr td:first-child{
+		color: #000;
+		font-size: 20px;
+		font-weight: bold;
+		padding-left: 5%;
+	}
+	.contentsTable tr td:nth-child(2){
+		color: #000;
+		font-size: 20px;
+		
+		font-weight: bold;
 	}
 	
 	.returnHomeSummary:nth-child(3n-2){
 		margin-left: 2%;
 	}
 	.returnHomeSummary table tr:first-child {
-		text-align: right;
+		text-align: center;
+		
 	}
 	.returnHomeSummary table tr:nth-child(2) {
 		font-weight: bold;
 		font-size: 1.3em;
+		height: 60px;
 	}
 	.returnHomeSummary table tr:nth-child(3) {
-		height:30px;
+		height:40px;
 		vertical-align: bottom;
 		
 	}
 	.returnHomeSummary table tr:nth-child(4) {
-		height:30px;
+		height:40px;
 		vertical-align: bottom;
 	}
 	.returnHomeSummary table tr:nth-child(5) {
-		height:30px;
+		height:40px;
 		vertical-align: bottom;
 	}
 	.returnHomeSummary table tr:last-child{
@@ -111,7 +126,6 @@
 		padding-top:5px;
 		padding-bottom: 5px;
 	}
-	
 </style>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
@@ -163,9 +177,9 @@
 				<div class="returnHomeSummary" >
 					<form action="selectReturnHomeDetail.rh">
 						<input type="hidden" name="homeNo" value="<c:out value='${ rhList.homeNo }'/>"/>
-						<table>
+						<table class="contentsTable">
 							<tr>
-								<td colspan="2"><c:out value="${ rhList.childrenName }"/><p></p></td>
+								<td colspan="2"><p style="font-size: 25px; font-weight: bold;"><c:out value="${ rhList.childrenName }"/>원아의 귀가동의서</p></td>
 							</tr><tr>
 								<td colspan="2"><c:out value="${ rhList.writeDate }"/></td>
 							</tr><tr>
@@ -189,24 +203,24 @@
 		
 		<div id="paginArea" align="center">
 			<c:if test="${ pi.currentPage <= 1 }">
-				[이전] &nbsp;
+				<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">이전</b>&nbsp;
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
 				<c:url var="blistBack" value="/returnHomeMain.rh">
 					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 				</c:url>
-				<a href="${ blistBack }">[이전]</a> &nbsp;
+				<a href="${ blistBack }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">이전</a> &nbsp;
 			</c:if>
 			
 			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 				<c:if test="${ p eq pi.currentPage }">
-					<font color="red" size="4"><b>[${ p }]</b></font>
+					<font color="red" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px; width:20px;"><b>${ p }</b></font>
 				</c:if>
 				<c:if test="${ p ne pi.currentPage }">
 					<c:url var="blistCheck" value="returnHomeMain.rh">
 						<c:param name="currentPage" value="${ p }"/>
 					</c:url>
-					<a href="${ blistCheck }">${ p }</a>
+					<a href="${ blistCheck }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">${ p }</a>
 				</c:if>
 			</c:forEach>
 			
@@ -214,17 +228,14 @@
 				<c:url var="blistEnd" value="returnHomeMain.rh">
 					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 				</c:url>
-				<a href="${ blistEnd }">&nbsp; [다음]</a>
+				&nbsp; <a href="${ blistEnd }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">다음</a>
 			</c:if>
 			<c:if test="${ pi.currentPage >= pi.maxPage }">
-				&nbsp; [다음]
+				&nbsp;<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">다음</b>
 			</c:if>
 		</div>
 		
 		
-		<div class="printBtnArea">
-			<button>출력 및 다운로드</button>
-		</div>
 		
 	</div>
 	
