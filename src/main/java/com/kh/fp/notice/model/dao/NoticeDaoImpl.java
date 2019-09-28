@@ -189,8 +189,8 @@ public class NoticeDaoImpl implements NoticeDao{
 		int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		
-		ArrayList<Notice> list = (ArrayList)sqlSession.selectList("Notice.selectChildrenList",noticeWho,rowBounds);
+		System.out.println("zzzzzzzzzzzzzzzzzz"+noticeWho);
+		ArrayList<Notice> list = (ArrayList)sqlSession.selectList("Notice.selectNoticeChildrenList",noticeWho,rowBounds);
 		System.out.println("학부모 공지사항 리스트 :::::"+list);
 		
 		return list;

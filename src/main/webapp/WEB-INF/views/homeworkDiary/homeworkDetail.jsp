@@ -247,12 +247,10 @@
 			      type : "get",
 			      data:{"content":content,"bid":bid},
 			      success : function(data){
-			    	  location.reload();
-			      
+			    	  history.go(0);
 			      },error:function(request,status,error){
-			    	  console.log("zz");
-				        //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			       }
+			    	  history.go(0); 
+			      }
 			   });  
 		}			
 		
@@ -268,6 +266,7 @@
 						var $replySelectTable = $(".commentTables");
 						$replySelectTable.html("");
 							for(var key in data){
+								var $div = $("<div class='commentArea'>");
 								var $tr = $("<tr>");
 								var $tr2  = $("<tr>");
 								var $hr = $("<hr>");
@@ -279,6 +278,7 @@
 							$tr2.append($writer);
 							$tr2.append($writeTd);
 							$tr2.append($contentTd);
+
 
 							$replySelectTable.append($hr);
 							$replySelectTable.append($tr2);

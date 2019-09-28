@@ -51,6 +51,10 @@ public interface HomeworkService  {
 
 	ArrayList<homework> selectChomework(PageInfo pi, NoticeWho noticeWho);
 
+	int getKListCount(int userNo);
+
+	ArrayList<homework> selectKhomework(PageInfo pi, int userNo);
+
 
 
 

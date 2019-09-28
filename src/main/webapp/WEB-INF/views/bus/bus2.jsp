@@ -29,7 +29,7 @@ $(function(){
         	var date = $("#today").html(day);
         	console.log(day);
         	var date = $("#today").html();
-        	location.href = "busList.bs?changeday="+day;
+        	location.href = "mealMain.ml?changeday="+day;
         }
 	});
 });
@@ -73,31 +73,12 @@ background:lightgray;
 	<div class="main-panel">
 	<div style="width:100%; height:10%;"><i class="fas fa-bus-alt" style="font-size:50px"></i><b style="font-size:25px">&nbsp;승하차</b></div>
    		<form action="bus.bs" method="post" enctype="multipart/form-data">
-       <c:if test="${loginUser.classification eq '선생님'}">
+        <c:if test="${loginUser.classification eq '선생님'}">
         <input type="file" name="file"/>
         <input type="submit" value="업로드"/> 
-       </c:if> 
+        </c:if>
 	   <div class="busContents">
-	   <br><br>
-	   <input type="button" id="datepicker" value="날짜선택">
-		  <table>
-			<tr class="date"><th colspan="4"><c:out value="${ day }"/></th>
-			</tr>
-			<tr>
-			<th colspan="2" style="border:1px solid black;">이름</th>
-			<th colspan="2" style="border:1px solid black;">승차시간</th>
-			</tr>
-			<c:forEach var="l" items="${list}">
-			<tr>
-			<th colspan="2"><c:out value="${l.childrenNo}"/></th>
-			<th colspan="2"><c:out value="${l.geton}"/></th>
-			</tr>
-			</c:forEach>
-			
-			
-					  
-		  
-		  </table>
+		
 	  	</div>
     	</form>
     </div>

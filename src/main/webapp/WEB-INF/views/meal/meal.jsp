@@ -89,7 +89,6 @@ background:orange;
 </td>
 </c:forEach>
 </tr>
-
 <tr>
 <c:forEach var="l" items="${ham}">
 <td>

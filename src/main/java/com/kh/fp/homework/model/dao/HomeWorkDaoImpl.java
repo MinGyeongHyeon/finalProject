@@ -244,8 +244,29 @@ public class HomeWorkDaoImpl implements HomeWorkDao {
 
 	@Override
 	public ArrayList<homework> selectChomework(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho) {
-
 		 ArrayList<homework> list = (ArrayList)sqlSession.selectList("homework.searchCList",noticeWho);
+		
+		return list;
+	}
+
+	@Override
+	public int KListCount(SqlSessionTemplate sqlSession, int userNo) {
+
+		int BNum = sqlSession.selectOne("homework.selectKCount",userNo);
+		
+		return BNum;
+	}
+
+	@Override
+	public ArrayList<homework> selectKhomework(SqlSessionTemplate sqlSession, PageInfo pi, int userNo) {
+
+		
+		int offset = (pi.getCurrentPage() -1 ) * pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+
+		
+		 ArrayList<homework> list = (ArrayList)sqlSession.selectList("homework.searchKList",userNo,rowBounds);
 		
 		return list;
 	}

@@ -107,10 +107,12 @@
 						<img src="${ contextPath }/resources/images/homework.png" alt="" />
 						<label style="font-weight:bold;">알림장</label>
 					</td>
+					<c:if test="${loginUser.classification eq '선생님'}">
 					<td style="text-align:right">
 						<button class="btn btn-warning" onclick="goSomeoneWrite()">여러명 보내기</button>
 						<button class="btn btn-warning" onclick="goAnnouncementWrite()">작성하기</button>
 					</td>
+					</c:if>
 				</tr>
 			</table>
 		</div>

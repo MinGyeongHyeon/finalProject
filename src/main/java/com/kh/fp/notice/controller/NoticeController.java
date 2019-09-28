@@ -55,8 +55,8 @@ public class NoticeController {
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		
 		try {
+			System.out.println(bid + "입니다.");
 			Notice SelectNotice = ns.selectNotice(bid);
-			System.out.println(SelectNotice + "입니다.");
 			model.addAttribute("SelectNotice",SelectNotice);
 
 		} catch (NoticeException e) {

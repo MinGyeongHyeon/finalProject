@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>알림장</title>
 <style>
@@ -113,7 +112,7 @@
 							<h2 id="title">
 								<c:out value="${SelectNotice.boardTitle}"/>
 							</h2>
-							<p hidden><c:out value="${SelectNotice.boardNum}"/></p>
+							<b hidden id="delete">${SelectNotice.boardNum}</b>
 						</div>
 						<div>
 							<h5 style="text-align:right"><c:out value="${SelectNotice.boardDate}"/></h5>
@@ -169,7 +168,7 @@
 			</div>
 		</div>
 	</div>
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		function print(){
 			$(this).window.print();
@@ -181,6 +180,65 @@
 			location.href="delectNotice.no?bid="+bid;
 			
 		});
+		function report(){
+			 var content = $("#replyContent").val();
+			 var bid = $("#delete").text();
+			 
+			  	console.log(bid);
+				console.log("zz");
+			   
+			   $.ajax({
+			      url : "homeworkApply.hw",
+			      type : "get",
+			      data:{"content":content,"bid":bid},
+			      success : function(data){
+			    	  history.go(0);
+			      },error:function(request,status,error){
+			    	  history.go(0); 
+			      }
+			   });  
+		}			
+		
+		 $(function(){
+			 var bid = $("#delete").text();
+			 console.log(bid);
+			$(document).ready(function(){
+				$.ajax({
+					url:"homeworkApplyStart.hw",
+					data:{bid:bid},
+					type:"post",
+					success:function(data){
+						console.log(data.length);
+						var $replySelectTable = $(".commentTables");
+						$replySelectTable.html("");
+							for(var key in data){
+								var $div = $("<div class='commentArea'>");
+								var $tr = $("<tr>");
+								var $tr2  = $("<tr>");
+								var $hr = $("<hr>");
+								var $writer = $("<td>").text("작성자 : ").css({'width':'60px','font-weight':'bold'});
+			 					var $writeTd = $("<td colspan='2'>").text(data[key].commtentName).css("width", "100px");
+								var $contentTd = $("<td colspan='2'>").text(data[key].commentContent).css("width","400px");
+								//var $dateTd = $("<td>").text(data[key].commentDate).css({'width':'200px','color':'lightgray','font-size':'10xpx'});
+
+							$tr2.append($writer);
+							$tr2.append($writeTd);
+							$tr2.append($contentTd);
+
+
+							$replySelectTable.append($hr);
+							$replySelectTable.append($tr2);
+						}
+					},
+					error:function(){
+					}
+
+				});
+			});
+
+		});
+
+		
 	</script>
 	
 </body>
