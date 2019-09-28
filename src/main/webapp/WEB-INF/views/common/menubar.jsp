@@ -365,10 +365,12 @@
 								<p>승하차</p>
 						</li>
 
-						<li class="nav-item"><a href="businessLogMain.pl"> <i
+						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '선생님'}">
+						<li class="nav-item"><a href="journalMain.jn"> <i
 								class="far fa-clipboard"></i>
 								<p>일지관리</p>
 						</a></li>
+						</c:if>
 
 						<li class="nav-item"><a href="#submenu"> <i
 								class="far fa-comments"></i>

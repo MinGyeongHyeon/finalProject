@@ -46,7 +46,7 @@ public class JournalController {
         try {
 			int result = js.writeJournal(j);
 
-			return "journal/journalList";
+			return "redirect:journal/journalList";
 
 		} catch (JournalException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -149,4 +149,21 @@ public class JournalController {
 
     }
 
+
+    //일지 삭제하기
+    @RequestMapping(value="updateStatus.jn")
+    public String updateStatus(Model model, int journalNo) {
+    	System.out.println("journalNo" + journalNo);
+
+    	try {
+			int result = js.updateStatus(journalNo);
+
+			return "redirect:journalMain.jn?check=Y";
+		} catch (JournalException e) {
+			model.addAttribute("msg", e.getMessage());
+			e.printStackTrace();
+			return "index";
+		}
+
+    }
 }

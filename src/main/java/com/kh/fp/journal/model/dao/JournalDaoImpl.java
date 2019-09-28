@@ -91,4 +91,17 @@ public class JournalDaoImpl implements JournalDao{
 		return j;
 	}
 
+	//일지 삭제하기
+	@Override
+	public int updateStatus(SqlSessionTemplate sqlSession, int journalNo) throws JournalException {
+
+		int result = sqlSession.update("Journal.updateStatus", journalNo);
+
+		if(result == 0) {
+			throw new JournalException("일지 상세조회 실패");
+		}
+
+		return result;
+	}
+
 }

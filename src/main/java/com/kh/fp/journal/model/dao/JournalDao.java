@@ -26,4 +26,7 @@ public interface JournalDao {
 	//일지 상세조회
 	Journal selectJournalOne(SqlSessionTemplate sqlSession, int journalNo) throws JournalException;
 
+	//일지 삭제하기
+	int updateStatus(SqlSessionTemplate sqlSession, int journalNo) throws JournalException;
+
 }

@@ -141,13 +141,13 @@ input[type=radio]:checked+label {
 }
 #area3 {
 	margin-left: 670px;
-    font-size: 20px;
+    font-size: 18px;
 	display: inline;
 }
 
 #area4 {
 	margin-left: 835px;
-	font-size: 20px;
+	font-size: 18px;
 	margin-top:15px;
 }
 
@@ -203,6 +203,9 @@ input[type=radio]:checked+label {
 }
 ::placeholder {
   font-size: 1.2em;
+}
+#Bsign {
+	font-size:15px;
 }
 </style>
 
@@ -329,7 +332,7 @@ input[type=radio]:checked+label {
 							<hr width="98%">
 							<div id="check">
 								<div style="float: right; margin-right: 4%; font-size:20px;">
-									<span><b>서명</b></span>
+									<span><b id="Bsign">서명</b></span>
 								</div>
 								<br><br>
 								<div id="area3">

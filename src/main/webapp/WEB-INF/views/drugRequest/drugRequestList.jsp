@@ -44,14 +44,14 @@
 }
 .card {
 	width:290px;
-	height:340px;
+	height:350px;
 	background:#fcfcea !important;
 	float: left;
 	margin-left:23px;
 }
 .cardY {
 	width:290px;
-	height:340px;
+	height:350px;
 	background:white !important;
 	float: left;
 	margin-left:23px;
@@ -105,7 +105,9 @@
 #empty {
 	margin-left:40%;
 }
-
+#bName {
+	font-size:20px;
+}
 </style>
 
 <script>
@@ -170,7 +172,7 @@ $(function(){
 								<input type="hidden" name="dosageNo" id="dosageNo" value="${ l.dosageNo }">
 								<br>
 								<div id="profileArea">
-									<b><c:out value="${ l.childrenName }"/></b>&nbsp;
+									<b id="bName"><c:out value="${ l.childrenName }"/></b>&nbsp;
 								<c:choose>
 									<c:when test="${ empty at.changeName }">
 										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
@@ -196,7 +198,7 @@ $(function(){
 								<input type="hidden" name="dosageNo" id="dosageNo" value="${ l.dosageNo }">
 								<br>
 								<div id="profileArea">
-									<b><c:out value="${ l.childrenName }"/></b>&nbsp;
+									<b id="bName"><c:out value="${ l.childrenName }"/></b>&nbsp;
 								<c:choose>
 									<c:when test="${ empty at.changeName }">
 										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>

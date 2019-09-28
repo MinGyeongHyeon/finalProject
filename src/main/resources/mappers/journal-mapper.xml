@@ -77,5 +77,11 @@
 		WHERE J.JOURNAL_NO = #{journalNo}
 	</select>
 
+	<!-- 일지 삭제하기 -->
+	<update id="updateStatus">
+		UPDATE JOURNAL
+		SET STATUS = 'Y'
+		WHERE JOURNAL_NO = #{journalNo}
+	</update>
 
 </mapper>
