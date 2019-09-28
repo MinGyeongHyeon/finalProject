@@ -59,4 +59,11 @@ public class JournalServiceImpl implements JournalService{
 		return jd.selectJournalOne(sqlSession, journalNo);
 	}
 
+	//일지 삭제하기
+	@Override
+	public int updateStatus(int journalNo) throws JournalException {
+
+		return jd.updateStatus(sqlSession, journalNo);
+	}
+
 }

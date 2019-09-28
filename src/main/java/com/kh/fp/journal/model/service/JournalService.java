@@ -24,4 +24,7 @@ public interface JournalService {
 	//일지 상세조회
 	Journal selectJournalOne(int journalNo) throws JournalException;
 
+	//일지 삭제하기
+	int updateStatus(int journalNo) throws JournalException;
+
 }
