@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.returnHomeContents{
+		background:#fff;
+		margin:0 auto;
+	}
+	.returnHomeContents hr{
+		width:95%;
+	}
+	
+	.kinderInfo table{
+		margin-left: 3%;
+	}
+	
+	.kinderInfo img{
+		width:60px;
+		height:60px; 
+	}
+	
+	.kinderInfo tr:first-child {
+	 font-weight: bold;
+	
+	}
+	.returnHomeDetail{
+		width:100%;
+	}
+	.returnHomeDetail table{
+		width:95%;
+		margin:0 auto;	
+	}
+	.returnHomeDetail td, .returnHomeDetail tr{
+		background:#fff;
+		height:55px;
+	}
+	
+	.returnHomeDetail th{
+		width:30%;
+	}
+	
+	.signArea{
+		margin-right:10px;
+		background:#aaa;
+		
+	}
+	.message{
+		width:100%;
+		height:40px;
+		color:#fff;
+		background:#58f;
+		border:none;
+		border-radius: 5px;
+		text-align:center;
+		font-weight:bold;
+		vertical-align: middle;
+		padding-top:10px;
+	}

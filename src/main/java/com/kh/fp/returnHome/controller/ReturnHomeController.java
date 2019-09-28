@@ -143,7 +143,7 @@ public class ReturnHomeController {
 		
 		System.out.println("리스트 출력" + rhList);
 		m.addAttribute("rhList", rhList.get(0));
-		return "returnHome/returnHomeDetail";
+		return "returnHome/returnHomeDetail2";
 	}
 	
 	@RequestMapping(value="searchKids.rh")
