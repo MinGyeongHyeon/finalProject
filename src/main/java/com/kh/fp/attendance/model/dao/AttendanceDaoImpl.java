@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fp.attendance.model.exception.DailyException;
+import com.kh.fp.attendance.model.vo.Attendance;
 import com.kh.fp.attendance.model.vo.Children;
 
 @Repository
@@ -39,6 +40,16 @@ public class AttendanceDaoImpl implements AttendanceDao{
 			throw new DailyException("원아가 없습니다.");
 		}
 		return child;
+	}
+
+	@Override
+	public int insertDailyAtt(SqlSessionTemplate sqlSession, Attendance atten) throws DailyException {
+		int result = 0;
+		result = sqlSession.insert("Attendance.insertDailyAtt", atten);
+		if(result <=0) {
+			throw new DailyException("출석부 입력 실패");
+		}
+		return result;
 	}
 
 

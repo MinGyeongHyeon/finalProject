@@ -3,6 +3,7 @@ package com.kh.fp.attendance.model.service;
 import java.util.ArrayList;
 
 import com.kh.fp.attendance.model.exception.DailyException;
+import com.kh.fp.attendance.model.vo.Attendance;
 import com.kh.fp.attendance.model.vo.Children;
 
 public interface AttendanceService {
@@ -12,5 +13,7 @@ public interface AttendanceService {
 	ArrayList<Children> monthAttendance(int teacherNo) throws DailyException;
 
 	int dailyChildrenCount(int teacherNo) throws DailyException;
+
+	int insertDailyAtt(Attendance atten) throws DailyException;
 
 }

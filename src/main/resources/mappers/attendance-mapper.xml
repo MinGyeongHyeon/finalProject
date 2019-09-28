@@ -56,6 +56,11 @@
       )
 	</select>
 	
+	<insert id="insertDailyAtt">
+	INSERT INTO ATTENDANCE
+	VALUES(SEQ_ATTENDANCE_NO.NEXTVAL,#{childrenNo},#{attendanceYN},#{time}
+	,#{mTime},#{status})
+	</insert>
 	
 </mapper>
 
