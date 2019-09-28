@@ -205,6 +205,24 @@ public class HomeworkServiceImpl implements HomeworkService{
 		return list;
 	}
 
+	@Override
+	public int getKListCount(int userNo) {
+
+		int ListCount = hd.KListCount(sqlSession,userNo);
+		
+		
+		return ListCount;
+	}
+
+	@Override
+	public ArrayList<homework> selectKhomework(com.kh.fp.homework.model.vo.PageInfo pi, int userNo) {
+
+		
+		ArrayList<homework> list = hd.selectKhomework(sqlSession,pi,userNo);
+		
+		return list;
+	}
+
 
 
 

@@ -360,7 +360,7 @@
 						</a></li>
 						</c:if>
 
-						<li class="nav-item"><a href="#submenu"> <i
+						<li class="nav-item"><a href="busList.bs"> <i
 								class="fas fa-shuttle-van"></i>
 								<p>승하차</p>
 						</li>

@@ -138,8 +138,7 @@
 		AND B.KINDER_NO = #{kinderNum}
 		AND K.TEACHER_NO = #{userNum}
 		AND B.BOARD_TYPE = '공지사항'
-		AND B.CLASS_NO IS NULL 
-		OR B.CLASS_NO = #{classNum}
+		AND (B.CLASS_NO IS NULL OR B.CLASS_NO = #{classNum})
 		ORDER BY B.BOARD_NO DESC
 	</select>
 	
@@ -156,7 +155,7 @@
 		ORDER BY B.BOARD_NO DESC
 	</select>
 	
-	<select id="selectChildrenList" resultMap="noticeResultSet">
+	<select id="selectNoticeChildrenList" resultMap="noticeResultSet">
 	SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_DATE,K.CLASS_NAME,B.BOARD_CONTENT,A.CHANGE_NAME
 		FROM BOARD B
 		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
@@ -165,8 +164,7 @@
 		AND B.KINDER_NO = #{kinderNum}
 		AND K.TEACHER_NO = #{teacherNum}
 		AND B.BOARD_TYPE = '공지사항'
-		AND B.CLASS_NO IS NULL 
-		OR B.CLASS_NO = #{classNum}
+		AND (B.CLASS_NO IS NULL OR B.CLASS_NO = #{classNum})
 		ORDER BY B.BOARD_NO DESC
 	</select>
 	

@@ -226,21 +226,7 @@
 				location.href = "NoticeWhoAreYou.no";
 			};
 
-			/* function showDetailNotice(){
-				location.href = "DetailNotice.pl";
-			} */
-
-			//$(function(){
-			/* $("#summaryDiv").find("td").mouseenter(function(){
-				$(this).parents("tr").css({"background":"orangered", "cursor":"pointer"});
-			}).mouseout(function(){
-				$(this).parents("tr").css({"background":"white"});
-			}).click(function(){
-				var bid = $(this).children("tr").find("first").text(); */
-			//console.log(this);
-			//});
-			//location.href="selectOne.bo?bid=" + bid;
-			//};
+		
 			$(".card").click(
 					function() {
 						var bid = $(this).children().children().eq(0)

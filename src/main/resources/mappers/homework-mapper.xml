@@ -156,7 +156,7 @@
 		AND B.KINDER_NO =  #{kinderNum}
 		AND K.TEACHER_NO = #{teacherNum}
 		AND B.BOARD_TYPE = '알림장'
-        AND (B.KINDER_NO = #{kinderNum} AND B.CLASS_NO IS NULL OR B.CLASS_NO = #{classNum)
+        AND (B.KINDER_NO = #{kinderNum} AND B.CLASS_NO IS NULL OR B.CLASS_NO = #{classNum})
         ORDER BY B.BOARD_NO DESC
 	</select>
 	
@@ -166,9 +166,10 @@
         FROM BOARD B
        	JOIN USERS U ON B.WRITER = U.USER_NO
         JOIN KINDER_CLASS K ON B.WRITER = K.TEACHER_NO
-        WHERE B.WRITER = 5
+        WHERE B.WRITER = #{userNo}
         AND BOARD_TYPE = '알림장'
         AND B.STATUS='N')
+        ORDER BY B.BOARD_NO DESC
 	</select>
 	
 	<select id="seletOneT" resultMap="homeworkResultSet">
@@ -200,8 +201,25 @@
 	    AND C.DIVISION = '선생님')
 	</select>
 	
+	<select id="selectKCount" resultType="_int">
+		SELECT  COUNT(*)
+		FROM BOARD B
+		JOIN KINDER_CLASS K ON(K.TEACHER_NO = B.WRITER)
+		WHERE B.STATUS='N'
+		AND B.KINDER_NO =  #{kinderNum}
+		AND B.BOARD_TYPE = '알림장'
+	</select>
 	
-	
+	<select id="searchKList" resultMap="homeworkResultSet">
+	 (SELECT B.BOARD_NO,B.BOARD_TITLE,B.BOARD_CONTENT,BOARD_DATE,WRITER, K.CLASS_NAME
+        FROM BOARD B
+       	JOIN USERS U ON B.WRITER = U.USER_NO
+        JOIN KINDER_CLASS K ON B.WRITER = K.TEACHER_NO
+        WHERE B.KINDER_NO = #{kinderNum}
+        AND BOARD_TYPE = '알림장'
+        AND B.STATUS='N')
+        ORDER BY B.BOARD_NO DESC
+	</select>
 	
 	
 

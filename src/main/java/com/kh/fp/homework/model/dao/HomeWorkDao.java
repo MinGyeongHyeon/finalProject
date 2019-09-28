@@ -55,6 +55,10 @@ public interface HomeWorkDao {
 
 	ArrayList<homework> selectChomework(SqlSessionTemplate sqlSession, PageInfo pi, NoticeWho noticeWho);
 
+	int KListCount(SqlSessionTemplate sqlSession, int userNo);
+
+	ArrayList<homework> selectKhomework(SqlSessionTemplate sqlSession, PageInfo pi, int userNo);
+
 
 
 

@@ -51,10 +51,12 @@ public class HomeWorkController {
 		KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
 		
 		int userNo = loginUser.getTeacherNo();
+		int classNo = loginUser.getClassNo();
+		int KinderNo = loginUser.getKinderNo();
 		System.out.println("로그인유저"+loginUser);
 		h.setBoardtype("알림장");
-		h.setKinderNo(1);
-		h.setClassNum(2);
+		h.setKinderNo(KinderNo);
+		h.setClassNum(classNo);
 		h.setIndividualContent("없음");
 		h.setWriter(userNo);
 
@@ -115,11 +117,13 @@ public class HomeWorkController {
 		KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
 		
 		int userNo = loginUser.getTeacherNo();
+		int classNo = loginUser.getClassNo();
+		int KinderNo = loginUser.getKinderNo();
 		System.out.println(userNo + "개인");
 		
 		h.setBoardtype("알림장");
-		h.setKinderNo(1);
-		h.setClassNum(2);
+		h.setKinderNo(KinderNo);
+		h.setClassNum(classNo);
 		h.setIndividualContent("없음");
 		h.setWriter(userNo);
 
@@ -241,9 +245,9 @@ public class HomeWorkController {
 		
 		if(classification.equals("원장님")) {
 			
-//			userNo = TloginUser.getTeacherNo();
-//			userC = "선생님";
-//			System.out.println("선생님");
+			userNo = loginUser.getUserNo();
+			listCount = hs.getKListCount(userNo);
+			
 			
 		}else if(classification.equals("학부모")) {
 			
@@ -265,6 +269,7 @@ public class HomeWorkController {
 			System.out.println(noticeWho+"쉬벌ㄹ");
 			
 			listCount = hs.getCListCount(noticeWho);
+			System.out.println("학생"+listCount);
 		}else {
 			userNo = TloginUser.getTeacherNo();
 			userC = "선생님";
@@ -289,14 +294,14 @@ public class HomeWorkController {
 					
 				PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 				
-				nList = hs.selectThomework(pi, userNo);
+				nList = hs.selectKhomework(pi, userNo);
 					
 				model.addAttribute("nList", nList);
 				model.addAttribute("pi", pi);
 					
 				}
 		}else if(classification.equals("학부모")) {
-			
+			System.out.println("여기는 학부모");
 			if(listCount != 0) {
 			
 			System.out.println(listCount + "개");

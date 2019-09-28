@@ -53,6 +53,7 @@
 		<typeAlias type="com.kh.fp.kinderland.model.vo.Kinderclasses" alias="Kinderclasses"/>
 		<typeAlias type="com.kh.fp.kinderland.model.vo.KinderUserName" alias="KinderUserName"/>
 		<typeAlias type="com.kh.fp.homework.model.vo.HomeWorkApply" alias="HomeWorkApply"/>
+		<typeAlias type="com.kh.fp.bus.model.vo.bus" alias="Bus"/>
 	</typeAliases>
 
 
@@ -71,6 +72,7 @@
 		<mapper resource="mappers/meal-mapper.xml"/>
 		<mapper resource="mappers/album-mapper.xml"/>
 		<mapper resource="mappers/journal-mapper.xml"/>
+		<mapper resource="mappers/bus-mapper.xml"/>
 	</mappers>
 
 </configuration>

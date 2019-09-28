@@ -192,7 +192,7 @@ public class AlbumController {
 		}
 		
 		
-		return "album.ab";
+		return "redirect:album.ab";
 	}	
 	
 	@RequestMapping(value = "albumWhoIn.ab")
