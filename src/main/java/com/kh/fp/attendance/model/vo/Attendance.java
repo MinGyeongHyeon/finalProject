@@ -1,39 +1,28 @@
 package com.kh.fp.attendance.model.vo;
 
-import java.sql.Date;
-
 public class Attendance implements java.io.Serializable{
 	private int childrenNo;
 	private String childrenNo1;
 	private int attendanceNo;
-	private String attendancceYN;
+	private String attendanceYN;
 	private String time;
 	private String mTime;
 	private String status;
+	private String date;
 	
 	public Attendance() {}
 
-	public Attendance(int childrenNo, String childrenNo1, int attendanceNo, String attendancceYN, String time,
-			String mTime, String status) {
+	public Attendance(int childrenNo, String childrenNo1, int attendanceNo, String attendanceYN, String time,
+			String mTime, String status, String date) {
 		super();
 		this.childrenNo = childrenNo;
 		this.childrenNo1 = childrenNo1;
 		this.attendanceNo = attendanceNo;
-		this.attendancceYN = attendancceYN;
+		this.attendanceYN = attendanceYN;
 		this.time = time;
 		this.mTime = mTime;
 		this.status = status;
-	}
-
-	public Attendance(int childrenNo, int attendanceNo, String attendancceYN, String time, String mTime,
-			String status) {
-		super();
-		this.childrenNo = childrenNo;
-		this.attendanceNo = attendanceNo;
-		this.attendancceYN = attendancceYN;
-		this.time = time;
-		this.mTime = mTime;
-		this.status = status;
+		this.date = date;
 	}
 
 	public int getChildrenNo() {
@@ -60,12 +49,12 @@ public class Attendance implements java.io.Serializable{
 		this.attendanceNo = attendanceNo;
 	}
 
-	public String getAttendancceYN() {
-		return attendancceYN;
+	public String getAttendanceYN() {
+		return attendanceYN;
 	}
 
-	public void setAttendancceYN(String attendancceYN) {
-		this.attendancceYN = attendancceYN;
+	public void setAttendanceYN(String attendanceYN) {
+		this.attendanceYN = attendanceYN;
 	}
 
 	public String getTime() {
@@ -92,13 +81,21 @@ public class Attendance implements java.io.Serializable{
 		this.status = status;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
 		return "Attendance [childrenNo=" + childrenNo + ", childrenNo1=" + childrenNo1 + ", attendanceNo="
-				+ attendanceNo + ", attendancceYN=" + attendancceYN + ", time=" + time + ", mTime=" + mTime
-				+ ", status=" + status + "]";
+				+ attendanceNo + ", attendancceYN=" + attendanceYN + ", time=" + time + ", mTime=" + mTime
+				+ ", status=" + status + ", date=" + date + "]";
 	}
-
+	
 	
 
 	

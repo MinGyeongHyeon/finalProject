@@ -13,9 +13,12 @@ import com.kh.fp.attendance.model.vo.Children;
 public class AttendanceDaoImpl implements AttendanceDao{
 
 	@Override
-	public ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession,int teacherNo) throws DailyException {
+	public ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession,int teacherNo,String day) throws DailyException {
 		ArrayList<Children> dailyatt = null;
-		dailyatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt",teacherNo);
+		Children c = new Children();
+		c.setUserNo(teacherNo);
+		c.setAttDate(day);
+		dailyatt = (ArrayList)sqlSession.selectList("Attendance.dailyatt",c);
 		if(dailyatt == null) {
 			throw new DailyException("정보조회실패!");
 		}
@@ -49,6 +52,20 @@ public class AttendanceDaoImpl implements AttendanceDao{
 		if(result <=0) {
 			throw new DailyException("출석부 입력 실패");
 		}
+		return result;
+	}
+
+	@Override
+	public int countDailyAtt(SqlSessionTemplate sqlSession, Attendance atten) {
+		int result = 0;
+		result = sqlSession.selectOne("Attendance.countDailyAtt",atten);
+		return result;
+	}
+
+	@Override
+	public int updateDailyAtt(SqlSessionTemplate sqlSession, Attendance atten) {
+		int result = 0;
+		result = sqlSession.update("Attendance.updateDailyAtt", atten);
 		return result;
 	}
 

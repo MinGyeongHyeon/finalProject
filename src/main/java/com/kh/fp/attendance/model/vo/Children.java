@@ -6,6 +6,10 @@ public class Children implements java.io.Serializable{
 	private String Birth;
 	private String gender;
 	private int userNo;
+	private String time;
+	private String mTime;
+	private String status;
+	private String attDate;
 	
 	public Children() {}
 
@@ -16,6 +20,20 @@ public class Children implements java.io.Serializable{
 		Birth = birth;
 		this.gender = gender;
 		this.userNo = userNo;
+	}
+
+	public Children(int childrenNo, String childrenName, String birth, String gender, int userNo, String time,
+			String mTime, String status, String attDate) {
+		super();
+		this.childrenNo = childrenNo;
+		this.childrenName = childrenName;
+		Birth = birth;
+		this.gender = gender;
+		this.userNo = userNo;
+		this.time = time;
+		this.mTime = mTime;
+		this.status = status;
+		this.attDate = attDate;
 	}
 
 	public int getChildrenNo() {
@@ -58,11 +76,48 @@ public class Children implements java.io.Serializable{
 		this.userNo = userNo;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getmTime() {
+		return mTime;
+	}
+
+	public void setmTime(String mTime) {
+		this.mTime = mTime;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getAttDate() {
+		return attDate;
+	}
+
+	public void setAttDate(String attDate) {
+		this.attDate = attDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Children [childrenNo=" + childrenNo + ", childrenName=" + childrenName + ", Birth=" + Birth
-				+ ", gender=" + gender + ", userNo=" + userNo + "]";
+				+ ", gender=" + gender + ", userNo=" + userNo + ", time=" + time + ", mTime=" + mTime + ", status="
+				+ status + ", attDate=" + attDate + "]";
 	}
+
+	
+
+	
 	
 	
 }

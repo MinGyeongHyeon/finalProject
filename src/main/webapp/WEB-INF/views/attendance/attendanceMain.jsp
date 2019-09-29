@@ -56,7 +56,12 @@ $(document).on('change', 'select', function() {
 		$(document).find("input[name=timepicker]").removeClass('hasDatepicker').datepicker();     
 	}
 });
-
+/* $(function(){
+	var html = $(".status").html();
+	if(html!='선택'){
+		$(".mTime").css('visibility','visible');
+	}
+}) */
 
  $(function(){
 	$(".timepicker").timepicker({
@@ -240,7 +245,14 @@ width:100%;
 								</td>
 								<td id="statusArea">
 								<select class="status" name="status">
-									<option value="">선택</option>
+									<option value="">
+									<c:if test="${ !empty a.status }">
+									<c:out value="${ a.status }"/>
+									</c:if>
+									<c:if test="${ empty a.status }">
+									선택
+									</c:if>
+									</option>
 									<option value="V">출결</option>
 									<option value="×">결석</option>
 									<option value="◎">병결</option>
@@ -248,14 +260,21 @@ width:100%;
 									<option value="/">입소</option>
 									<option value="★">퇴소</option>
 								</select>
+								
 								</td>
 								<td>
   								<input type="button" id='timepicker1' name='time' class='timepicker' style="visibility:hidden; background:none; color:white; border:none;" value="시간을 선택하세요.">
 								<input type="text" name="time" class="time" value="" style="display:none;">
+								<div id="timevalue">
+								<c:out value="${ a.time }"/>
+								</div>
 								</td>
 								<td>
 								<input type="button" id='timepicker2' name='mtime' class='timepicker' style="visibility:hidden; background:none; color:white; border:none;" value="시간을 선택하세요.">
 								<input type="text" name="mTime"  class="mTime" value=""  style="display:none;">
+								<div id="mtimevalue">
+								<c:out value="${ a.mTime }"/>
+								</div>
 								</td>
 								<td></td>
 								<td></td>

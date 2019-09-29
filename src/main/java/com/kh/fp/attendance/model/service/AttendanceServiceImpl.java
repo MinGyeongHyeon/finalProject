@@ -23,8 +23,8 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 
 	@Override
-	public ArrayList<Children> dailyAttendance(int teacherNo) throws DailyException {
-		return ad.dailyAttendance(sqlSession,teacherNo);
+	public ArrayList<Children> dailyAttendance(int teacherNo,String day) throws DailyException {
+		return ad.dailyAttendance(sqlSession,teacherNo,day);
 	}
 
 
@@ -43,6 +43,18 @@ public class AttendanceServiceImpl implements AttendanceService{
 	@Override
 	public int insertDailyAtt(Attendance atten) throws DailyException {
 		return ad.insertDailyAtt(sqlSession,atten);
+	}
+
+
+	@Override
+	public int countDailyAtt(Attendance atten) {
+		return ad.countDailyAtt(sqlSession,atten);
+	}
+
+
+	@Override
+	public int updateDailyAtt(Attendance atten) {
+		return ad.updateDailyAtt(sqlSession,atten);
 	}
 
 
