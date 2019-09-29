@@ -182,6 +182,22 @@ public class DosageDaoImpl implements DosageDao{
 		return result;
 	}
 
+	//다운로드 리스트(원장)
+	@Override
+	public ArrayList<DosageDetail> printAndDown(SqlSessionTemplate sqlSession, int userNo) throws DosageException {
+
+		ArrayList<DosageDetail> detailList = null;
+
+		detailList = (ArrayList)sqlSession.selectList("Dosage.printAndDown", userNo);
+
+		if(detailList == null) {
+			throw new DosageException("투약의뢰서 리스트 조회 실패!");
+		}
+
+		return detailList;
+
+	}
+
 	//투약 보고서 삭제
 /*	@Override
 	public int updateBogoStatus(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException {

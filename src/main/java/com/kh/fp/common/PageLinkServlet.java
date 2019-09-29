@@ -103,7 +103,7 @@ public class PageLinkServlet {
 		if(loginUser.getClassification().equals("원장님") || loginUser.getClassification().equals("체험판원장님")) {
 
 			kga = ms.selectKinderName(loginUser.getUserNo());
-			
+
 			int childrenCount = ms.childrenCount(loginUser);
 			int teacherCount = ms.teacherCount(loginUser);
 			int childrenCountN = ms.childrenCountN(loginUser);
@@ -118,17 +118,17 @@ public class PageLinkServlet {
 
 				int childrenCount = ms.childrenCount(loginUser);
 				int childrenCountN = ms.childrenCountN(loginUser);
-		
+
 				model.addAttribute("childrenCount", childrenCount);
 				model.addAttribute("childrenCountN", childrenCountN);
-		
+
 
 		}
-		
+
 		ArrayList list = ms.selectNolist(kga);
-		
+
 		System.out.println("list 값 : " + list);
-		
+
 		model.addAttribute("list",list);
 
 
@@ -308,6 +308,12 @@ public class PageLinkServlet {
 
 
 		return "bus/bus";
+	}
+
+
+	@RequestMapping(value="pAndD.pl")
+	public String pAndD() {
+		return "drugRequest/printAndDownload";
 	}
 
 
