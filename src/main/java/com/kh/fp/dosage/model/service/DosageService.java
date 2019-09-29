@@ -41,6 +41,9 @@ public interface DosageService {
 	//투약의뢰서 삭제
 	int updateStatus(int dosageNo) throws DosageException;
 
+	//다운로드 리스트
+	ArrayList<DosageDetail> printAndDown(int userNo) throws DosageException;
+
 
 
 

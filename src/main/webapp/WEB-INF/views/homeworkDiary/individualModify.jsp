@@ -309,7 +309,7 @@ body {
 	});
 	
 	$('#selectModal').click(function(){
-		console.log("zz");
+	 	modal.style.display = 'none'; 
 		var $test = $('#ChildernIndiviual');
 		
 			$("input[class=checkcheck]:checked").each(function(index) { 

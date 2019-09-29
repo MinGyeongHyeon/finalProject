@@ -249,6 +249,54 @@ public class DosageController {
 	}
 
 
+	//투약의뢰서 다운로드 출력
+	@RequestMapping(value="printAndDown.ds")
+	public String printAndDown(Model model, DosageDetail d, @ModelAttribute("loginUser") Member loginUser) {
+
+		int userNo = loginUser.getUserNo();
+		String classification = loginUser.getClassification();
+
+		ArrayList<DosageDetail> dList;
+
+			try {
+				if(classification.equals("원장님")) {
+					dList = ds.printAndDown(userNo);
+
+					model.addAttribute("dList", dList);
+
+					return "drugRequest/printAndDownload";
+				}
+			} catch (DosageException e) {
+				model.addAttribute("msg", e.getMessage());
+				e.printStackTrace();
+				return "index";
+			}
+
+		return "";
+	}
+
+	//투약의뢰서 엑셀 리스트
+	@RequestMapping(value="excelTable.ds")
+	public String excelTable(Model model,  DosageDetail d, @ModelAttribute("loginUser") Member loginUser) {
+
+		int userNo = loginUser.getUserNo();
+		String classification = loginUser.getClassification();
+
+		ArrayList<DosageDetail> dList;
+
+			try {
+					dList = ds.printAndDown(userNo);
+
+					model.addAttribute("dList", dList);
+
+					return "drugRequest/excelTable";
+			} catch (DosageException e) {
+				model.addAttribute("msg", e.getMessage());
+				e.printStackTrace();
+				return "index";
+			}
+
+	}
 }
 
 

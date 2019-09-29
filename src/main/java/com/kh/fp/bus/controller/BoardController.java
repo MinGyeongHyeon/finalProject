@@ -169,7 +169,7 @@ public class BoardController {
 		System.out.println("날짜는:::::::"+changeday);
 		//그날 쓴 승하차 있는지 개수 세기
 		int bus = bs.selectCount();
-		
+		System.out.println("개수"+bus);
 		if(bus==0) {
 			return "bus/bus2";
 		}else {
@@ -179,13 +179,15 @@ public class BoardController {
 				if(changeday!=null) {
 					int Cnum = CloginUser.getChildrenNo();
 					String abc = changeday.substring(2);
+					System.out.println("날짜는"+abc);
 					ArrayList<bus> hmap = bs.selectCList(abc,Cnum);
-					mv.addAttribute("ham",hmap);
+					mv.addAttribute("list",hmap);
 					mv.addAttribute("day", changeday);
 				}else {
-					int Cnum = TloginUser.getClassNo();
+					int Cnum = CloginUser.getChildrenNo();
+					System.out.println("날짜는날짜는"+day);
 					ArrayList<bus> list = bs.selectNoneCList(day,Cnum);
-					System.out.println(list);
+					System.out.println("컨트롤넘어가"+list);
 					mv.addAttribute("day",day);
 					mv.addAttribute("list",list);
 					
@@ -197,11 +199,13 @@ public class BoardController {
 			if(changeday!=null) {
 				int Cnum = TloginUser.getClassNo();
 				String abc = changeday.substring(2);
+				System.out.println("선택 안한 날짜는"+abc);
 				ArrayList<bus> hmap = bs.selectList(abc,Cnum);
-				mv.addAttribute("ham",hmap);
+				mv.addAttribute("list",hmap);
 				mv.addAttribute("day", changeday);
 			}else {
 				int Cnum = TloginUser.getClassNo();
+				System.out.println("선택 한 날짜는날짜는"+day);
 				ArrayList<bus> list = bs.selectNoneList(day,Cnum);
 				System.out.println(list);
 				mv.addAttribute("day",day);

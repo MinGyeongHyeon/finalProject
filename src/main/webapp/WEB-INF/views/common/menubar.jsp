@@ -243,7 +243,7 @@
 									</div>
 								</li>
 								<li>
-									<div class="dropdown-divider"></div> <a class="dropdown-item"
+									<div class="dropdown-divider"></div> <a class="dropdown-item myPagemodar"
 									href="#">마이 페이지</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
 									href="#">Account Setting</a>
@@ -280,7 +280,7 @@
 
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
-									<li><a href="#profile"> <span class="link-collapse">마이 페이지</span>
+									<li><a href="#profile"> <span class="link-collapse myPagemodar">마이 페이지</span>
 									</a></li>
 									<li><a href="#edit"> <span class="link-collapse">EditProfile</span>
 									</a></li>
@@ -398,7 +398,7 @@
 
 						<li class="nav-item"><a href="payment.pa"> <i
 								class="far fa-comments"></i>
-								<p>결제test</p>
+								<p>결제</p>
 						</a></li>
 						</c:if>
 

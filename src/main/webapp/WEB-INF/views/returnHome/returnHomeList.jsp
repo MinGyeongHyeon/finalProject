@@ -68,7 +68,6 @@
 	.returnHomeSummary table tr:nth-child(2) {
 		font-weight: bold;
 		font-size: 1.3em;
-		height: 60px;
 	}
 	.returnHomeSummary table tr:nth-child(3) {
 		height:40px;
@@ -173,13 +172,21 @@
 		</div>
 		<br />
 		<div id="returnHomeList" class="returnHomeList">
+			<c:if test="${ empty rhList }">
+				<div style="padding-top:100px; vertical-align: middle; margin: 0 auto;">
+					
+					<h1 style="margin:0 auto; font-weight:bold; font-size:30px; text-align: center;">작성된 귀가동의서가 없습니다.</h1>
+				</div>
+			</c:if>
 			<c:forEach var="rhList" items="${ rhList }" varStatus="rhStatus">
 				<div class="returnHomeSummary" >
 					<form action="selectReturnHomeDetail.rh">
 						<input type="hidden" name="homeNo" value="<c:out value='${ rhList.homeNo }'/>"/>
 						<table class="contentsTable">
 							<tr>
-								<td colspan="2"><p style="font-size: 25px; font-weight: bold;"><c:out value="${ rhList.childrenName }"/>원아의 귀가동의서</p></td>
+								<td colspan="2" style="background:#aad; padding-right: 5%; vertical-align: middle;">
+									
+								<p style="font-size: 25px; font-weight: 1700;"><c:out value="${ rhList.childrenName }"/>의 귀가동의서</p></td>
 							</tr><tr>
 								<td colspan="2"><c:out value="${ rhList.writeDate }"/></td>
 							</tr><tr>
@@ -200,7 +207,8 @@
 				</div>
 			</c:forEach>
 		</div>
-		
+		<c:if test="${not empty rhList }">
+				
 		<div id="paginArea" align="center">
 			<c:if test="${ pi.currentPage <= 1 }">
 				<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">이전</b>&nbsp;
@@ -229,11 +237,12 @@
 					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 				</c:url>
 				&nbsp; <a href="${ blistEnd }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">다음</a>
-			</c:if>
-			<c:if test="${ pi.currentPage >= pi.maxPage }">
-				&nbsp;<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">다음</b>
-			</c:if>
-		</div>
+				</c:if>
+				<c:if test="${ pi.currentPage >= pi.maxPage }">
+					&nbsp;<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">다음</b>
+				</c:if>
+			</div>
+		</c:if>
 		
 		
 		

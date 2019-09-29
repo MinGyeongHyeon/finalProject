@@ -104,6 +104,13 @@ public class DosageServiceImpl implements DosageService{
 		return dd.updateStatus(sqlSession, dosageNo);
 	}
 
+	//다운로드 리스트(원장)
+	@Override
+	public ArrayList<DosageDetail> printAndDown(int userNo) throws DosageException {
+
+		return dd.printAndDown(sqlSession, userNo);
+	}
+
 
 
 }

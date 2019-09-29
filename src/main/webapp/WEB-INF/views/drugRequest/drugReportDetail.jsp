@@ -184,8 +184,15 @@ th, td {
 						<div id="contentsArea">
 							<br>
 							<div id="profileArea">
-								<i><img src="${ contextPath }/resources/images/woman.png"
-									id="profileImg"></i> &nbsp;&nbsp;<b><c:out value="${ d.childrenName }"/></b>
+								<c:choose>
+									<c:when test="${ empty at.changeName }">
+										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
+									</c:when>
+									<c:when test="${ not empty at.changeName }">
+										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg" class="avatar-img rounded"></i>
+									</c:when>
+								</c:choose>
+								&nbsp;&nbsp;<b><c:out value="${ d.childrenName }"/></b>
 							</div>
 							<br>
 							<p style="font-size: 1.15em; margin-left: 20px;">금일 자녀의 투약을

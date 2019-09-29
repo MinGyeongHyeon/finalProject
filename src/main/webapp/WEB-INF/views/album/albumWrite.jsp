@@ -583,6 +583,7 @@ img {
 	a =0;
 	sumarr = Array();
 $('#selectModal').click(function(){
+ 	modal.style.display = 'none'; 
 	var array = Array();
 	var num = null;
 	var arrayName = Array();
