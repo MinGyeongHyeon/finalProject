@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title>프린트 하기.</title>
+<title>귀가동의서 상세</title>
 
 <!-- 프린트를 위해 따로 나눠준 자바스크립트 파일 -->
 <style>
@@ -45,6 +45,7 @@
 	}
 	.returnHomeDetail{
 		width:100%;
+		background:#fff;
 	}
 	.returnHomeDetail table{
 		width:95%;
@@ -111,7 +112,8 @@
 			<table width=100%;>
 				<tr>
 					<td>
-						<label style="font-weight:bold;"><c:out value="${rhList.childrenName}" />원아의 귀가동의서</label>
+					<img src="${contextPath }/resources/images/house.png" alt="" />
+						<label style="font-size: 25px; font-weight:bold; color:#000;"><c:out value="${rhList.childrenName}" />원아의 귀가동의서</label>
 					</td>
 				</tr>
 			</table>
@@ -120,12 +122,9 @@
 		<div class="returnHomeContents">
 			<div class="kinderInfo">
 				<table>
-					<tr>
-						<td rowspan="2"><img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
+					<tr style="font-size: 25px; font-weight: bold;">
+						<td>원아명  : </td>
 						<td><c:out value="${rhList.childrenName}" /></td>
-					</tr>
-					<tr>
-						<td><p></p></td>
 					</tr>
 				</table>
 			</div>
@@ -135,7 +134,7 @@
 	
 	<!-- 프린트 하기위한 영역 -->
 		<div class="returnHomeDetail">
-				<table>
+				<table style="font-size: 20px; font-weight: bold; ">
 					<tr>
 						<th>귀가요청일</th>
 						<td><c:out value="${rhList.homeDate}" /></td>
@@ -149,11 +148,11 @@
 						<td><c:out value="${rhList.homeWay}" /></td>
 					</tr>
 					<tr>
-						<th>보호자</th>
+						<th>보호자(연락처)</th>
 						<td><c:out value="${rhList.parentsName}" /> (<c:out value="${rhList.parentsPhone}" />)</td>
 					</tr>
 					<tr>
-						<th>비상연락망</th>
+						<th>비상연락망(연락처)</th>
 						<td><c:out value="${rhList.emergencyName}" /> (<c:out value="${rhList.emergencyPhone}" />)</td>
 					</tr>
 				</table>
@@ -191,14 +190,10 @@
 			</c:if>
 			<table>
 				<tr>
-					<td style="text-align:left;"><button>출력</button></td>
-					<td style="text-align:right;"><button>목록</button></td>
+					<td style="text-align:left;"><button onclick="printTest()">출력</button></td>
+					<td style="text-align:right;"><button onclick="location.href='returnHomeMain.rh'">목록</button></td>
 				</tr>
 			</table>
-			<form>
-			<input type="button" value="프린트" onclick="printTest()" />
-			<!-- 프린트 버튼 -->
-			</form>
 		</div>
 	</div>
 	<script>

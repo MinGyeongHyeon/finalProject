@@ -241,8 +241,9 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="parentsName" id="family1" placeholder="보호자 성함" style="width:80px;"/> &nbsp;
-								<input type="text" name="parentsPhone" id="phone1" placeholder='"-"를 제외하고 입력'/>
+								<label for="" style="color:#000;">이름 : </label>&nbsp;<input type="text" name="parentsName" id="family1" placeholder="보호자 성함" style="width:80px;"/> &nbsp;
+								&nbsp;&nbsp;
+								<label for="" style="color:#000;">연락처 : </label>&nbsp;<input type="text" name="parentsPhone" id="phone1" placeholder='"-"를 제외하고 입력'/>
 							</td>
 						</tr>
 						<tr>
@@ -250,8 +251,9 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="emergencyName" id="famaily2" placeholder="보호자 성함" style="width:80px;"/> &nbsp;
-								<input type="text" name="emergencyPhone" id="phone2" placeholder='"-"를 제외하고 입력'/>
+								<label for="" style="color:#000;">이름 : </label>&nbsp;<input type="text" name="emergencyName" id="famaily2" placeholder="보호자 성함" style="width:80px;"/> &nbsp;
+								&nbsp;&nbsp;
+								<label for="" style="color:#000;">연락처 : </label>&nbsp;<input type="text" name="emergencyPhone" id="phone2" placeholder='"-"를 제외하고 입력'/>
 							</td>
 							
 						</tr>
