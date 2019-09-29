@@ -162,7 +162,7 @@
 								<td class="titleView"><c:out value="${l.boardTitle}" /></td>
 							</tr>
 							<tr>
-								<td><c:out value="${l.boardContent}" /></td>
+								<td><c:out value="${l.boardContent.substring(0,3) }.... " /></td>
 							</tr>
 							<tr>
 								<td><c:out value="${l.boardDate}" /></td>

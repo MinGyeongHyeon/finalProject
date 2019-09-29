@@ -41,8 +41,8 @@ public class BoardDaoImpl implements BoardDao{
 		w.setClassNum(cnum);
 		System.out.println(w);
 		ArrayList<bus> list = (ArrayList) sqlSession.selectList("Bus.selectListN",w);
-		System.out.println(list);
-	
+		System.out.println("동적쿼리"+list);
+		
 		return list;
 	}
 
@@ -56,7 +56,7 @@ public class BoardDaoImpl implements BoardDao{
 		System.out.println(w);
 		
 		ArrayList<bus> list = (ArrayList) sqlSession.selectList("Bus.selectListN",w);
-		
+		System.out.println("닌 뭐야 다오"+list);
 		return list;
 	}
 
@@ -69,7 +69,7 @@ public class BoardDaoImpl implements BoardDao{
 		w.setClassNum(cnum);
 		System.out.println(w);
 		ArrayList<bus> list = (ArrayList) sqlSession.selectList("Bus.selectCListN",w);
-		System.out.println(list);
+		System.out.println("너 뭐야 다오"+list);
 		
 		return list;
 	}
@@ -77,12 +77,12 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public ArrayList<bus> selectCList(SqlSessionTemplate sqlSession, String abc, int cnum) {
 		NoticeWho w = new NoticeWho();
-		System.out.println("날짜는"+abc);
+		System.out.println("날짜는"+abc);//?..
 		w.setClassName(abc);
 		w.setClassNum(cnum);
 		System.out.println(w);
 		ArrayList<bus> list = (ArrayList) sqlSession.selectList("Bus.selectCListN",w);
-		System.out.println(list);
+		System.out.println("다오"+list);
 		
 		
 		return list;
