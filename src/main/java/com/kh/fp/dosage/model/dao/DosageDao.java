@@ -49,4 +49,7 @@ public interface DosageDao {
 	//투약의뢰서 삭제
 	int updateStatus(SqlSessionTemplate sqlSession, int dosageNo) throws DosageException;
 
+	//다운로드 리스트(원장)
+	ArrayList<DosageDetail> printAndDown(SqlSessionTemplate sqlSession, int userNo) throws DosageException;
+
 }

@@ -233,7 +233,7 @@ $(function(){
 				</div>
 			</div>
 						<c:if test="${ loginUser.classification ne '학부모' }">
-						<button type="button" class="btn btn-light" id="btn2">
+						<button type="button" class="btn btn-light" id="btn2" onclick="printAndDown()">
 							<i class="fas fa-print"></i>&nbsp; 출력 및 다운로드
 						</button>
 						</c:if>
@@ -311,6 +311,10 @@ $(function(){
 
 
     	});
+
+    	function printAndDown(){
+    		window.open("printAndDown.ds");
+    	}
 
 
     </script>
