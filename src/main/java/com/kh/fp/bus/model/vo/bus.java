@@ -15,6 +15,19 @@ public class bus {
 	
 	public bus() {}
 
+	
+	public bus(int busNo, int childrenNo, String busYN, String geton, String busDate, int classNum, int kinderNum) {
+		super();
+		this.busNo = busNo;
+		this.childrenNo = childrenNo;
+		this.busYN = busYN;
+		this.geton = geton;
+		this.busDate = busDate;
+		this.classNum = classNum;
+		this.kinderNum = kinderNum;
+	}
+
+
 	public bus(int busNo, int childrenNo, String busYN, String geton, String getoff, String busDate, int classNum,
 			int kinderNum, String childrenName) {
 		super();

@@ -1,5 +1,6 @@
 package com.kh.fp.attendance.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,8 +41,11 @@ public class AttendanceController {
 		 
 		 KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
 		 int teacherNo = loginUser.getTeacherNo();
-		 String today2 = request.getParameter("day");
-		 String today4 = request.getParameter("day1");
+		 String today2 = request.getParameter("day");//일별 출석부 데이트피커
+		 String today4 = request.getParameter("day1");//월별 출석부 데이트피커
+		 System.out.println("today2"+today2);
+		 System.out.println("today4"+today4);
+		 
 		 
 			Date today = new Date();
 			SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,13 +68,20 @@ public class AttendanceController {
 				mv.addAttribute("day",day);
 				
 			}
-			
+			ArrayList<Children> dayAtt = null;
 			try {
-				ArrayList<Children> dayAtt = as.dailyAttendance(teacherNo);
+				if(today2==null&&today4==null) {
+					System.out.println("day"+day);
+					dayAtt = as.dailyAttendance(teacherNo,day);
+				}else if(today2!=null) {
+					dayAtt = as.dailyAttendance(teacherNo,today2);
+				}else {
+					dayAtt = as.dailyAttendance(teacherNo,today4);
+				}
 				int child = as.dailyChildrenCount(teacherNo);
 				mv.addAttribute("list", dayAtt);
 				mv.addAttribute("chldren",child);
-				
+				System.out.println(dayAtt);
 				return "attendance/attendanceMain";
 			} catch (DailyException e) {
 				mv.addAttribute("msg",e.getMessage());
@@ -136,20 +147,37 @@ public class AttendanceController {
 			Children child,HttpSession session,HttpServletRequest request) {
 		/* 특정 날짜 출석부 */
 		String day = request.getParameter("day");
-		System.out.println(day);
 		System.out.println(att);
 		Attendance atten = null;
 		String[] childrenNo1 = att.getChildrenNo1().split(",");
 		String[] time = att.getTime().split(",");
 		String[] mTime = att.getmTime().split(",");
-		String[] status = att.getStatus().split(",");
+		String[] status = att.getStatus().split(",",-1);
+		
+		
+		if(att.getStatus().length()==status.length) {
 		for(int i=0; i<att.getStatus().length(); i++) {
-			atten = new Attendance();
-			atten.setChildrenNo(Integer.parseInt(childrenNo1[i]));
-			atten.setTime(time[i]+day);
-			atten.setmTime(mTime[i]+day);
-			atten.setStatus(status[i]);
 			if(!status[i].equals("")) {
+			atten = new Attendance();
+			int a = Integer.parseInt(childrenNo1[i].toString());
+			atten.setChildrenNo(a);
+			if(time[i].equals("시간을 선택하세요.")||mTime[i].equals("시간을 선택하세요.")) {
+				atten.setTime("없음");
+				atten.setmTime("없음");
+			}else {
+			atten.setTime(time[i]);
+			atten.setmTime(mTime[i]);
+			}
+			atten.setStatus(status[i]);
+			if(day!=null) {
+				atten.setDate(day);
+			}else {
+				Date today = new Date();
+				SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+				String day1 = date.format(today);
+				atten.setDate(day1);
+			}
+			
 				switch(status[i]) {
 				case "V" : atten.setStatus("출석");break;
 				case "×" : atten.setStatus("결석");break;
@@ -159,22 +187,31 @@ public class AttendanceController {
 				case "★" : atten.setStatus("퇴소");break;
 				}
 				if(status[i].equals("V")||status[i].equals("/")||status[i].equals("★")) {
-					atten.setAttendancceYN("출석");
+					atten.setAttendanceYN("출석");
 					
 				}else {
-					atten.setAttendancceYN("결석");
+					atten.setAttendanceYN("결석");
 					
 				}
 				try {
-					int insertAtt = as.insertDailyAtt(atten);
+					int countatt = as.countDailyAtt(atten);
+					if(countatt<=0) {
+						int insertAtt = as.insertDailyAtt(atten);
+					}else {
+						int updateAtt = as.updateDailyAtt(atten);
+					}
+					System.out.println("입력되는곳"+atten);
 				} catch (DailyException e) {
 					e.printStackTrace();
 				}
 				
+			}else {
+				continue;
 			}
 		}
+		}
 		
-		return "";
+		return "redirect:attendance.at";
 	}
 
 	

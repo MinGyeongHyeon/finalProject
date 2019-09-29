@@ -11,10 +11,9 @@
   	<result property="busYN" column="BUS_YN"/>
   	<result property="geton" column="GET_ON"/>
   	<result property="busDate" column="BUS_DATE"/>
-  	<result property="classNum" column="CLASS_NO"/>
   	<result property="kinderNum" column="KINDER_NO"/>
+    <result property="classNum" column="CLASS_NO"/>
   	<result property="childrenName" column="CHILDREN_NAME"/>
-  
   </resultMap>
   
   

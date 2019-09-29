@@ -4,27 +4,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Attendance">
-	<!-- <resultMap type="Attendance" id="attendanceResultSet">
-		<id property="attendanceNo" column="ATTENDANCE_NO"/> 
-		<result property="childrenNo" column="CHILDREN_NO"/>
-		<result property="attendancceYN" column="ATTENDANCE_YN"/>
-		<result property="time" column="TIME"/>
-		<result property="mTime" column="M_TIME"/>
-		<result property="status" column="STATUS"/>
+<!-- 	<resultMap type="Children" id="childResultSet">
+		<id property="childrenNo" column="CHILDREN_NO"/>
+		<result property="childrenName" column="CHILDREN_NAME"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="userNo" column="USER_NO"/>
 	</resultMap> -->
-	
 	<resultMap type="Children" id="childResultSet">
 		<id property="childrenNo" column="CHILDREN_NO"/>
 		<result property="childrenName" column="CHILDREN_NAME"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="gender" column="GENDER"/>
 		<result property="userNo" column="USER_NO"/>
+		<result property="time" column="TIME"/>
+		<result property="mTime" column="M_TIME"/>
+		<result property="status" column="STATUS"/>
 	</resultMap>
 	
 
 	<!-- 데일리출석부 -->
 	<select id="dailyatt" parameterType="Children" resultMap="childResultSet">
-	  SELECT C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO
+	 SELECT A.TIME,A.M_TIME,A.STATUS,C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO,A.ATT_DATE
+      FROM CHILDREN C
+      JOIN USERS U ON U.USER_NO = C.USER_NO
+      full outer join attendance A
+    on c.children_no = A.children_no
+      WHERE C.CHILDREN_NO IN (SELECT C.CHILDREN_NO
+      FROM KINDER_CLASS C
+      WHERE (KINDER_NO,CLASS_NAME,OPENED_DATE) IN
+      ( SELECT K.KINDER_NO,K.CLASS_NAME,K.OPENED_DATE
+      FROM KINDER_CLASS K
+      JOIN USERS U ON K.TEACHER_NO = U.USER_NO
+      WHERE K.TEACHER_NO = #{userNo}
+      AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2))
+      AND C.DIVISION = '원생')
+      AND (A.ATT_DATE IN(TO_DATE(#{attDate},'YY/MM/DD'))
+      or a.att_date is null)
+	  <!-- SELECT C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO
       FROM CHILDREN C
       JOIN USERS U ON U.USER_NO = C.USER_NO
       WHERE C.CHILDREN_NO IN (SELECT C.CHILDREN_NO
@@ -35,7 +52,8 @@
       JOIN USERS U ON K.TEACHER_NO = U.USER_NO
       WHERE K.TEACHER_NO = #{teacherNo}
       AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2))
-      AND C.DIVISION = '원생')
+      AND C.DIVISION = '원생') -->
+      
 	</select>
 
 	<select id="dailyChildren" resultType="_int">
@@ -59,8 +77,25 @@
 	<insert id="insertDailyAtt">
 	INSERT INTO ATTENDANCE
 	VALUES(SEQ_ATTENDANCE_NO.NEXTVAL,#{childrenNo},#{attendanceYN},#{time}
-	,#{mTime},#{status})
+	,#{mTime},#{status},TO_DATE(#{date},'YY/MM/DD'))
 	</insert>
+	
+	<select id="countDailyAtt" resultType="_int">
+	SELECT COUNT(*)
+	FROM ATTENDANCE
+	WHERE ATT_DATE = TO_DATE(#{date},'YY/MM/DD')
+	AND CHILDREN_NO = #{childrenNo}
+	</select>
+	
+	<update id="updateDailyAtt">
+	UPDATE ATTENDANCE
+    SET CHILDREN_NO=#{childrenNo}
+        , ATTENDANCE_YN  = #{attendanceYN}
+        ,TIME = #{time}
+        ,M_TIME = #{mTime}
+        ,STATUS = #{status}
+        ,ATT_DATE = TO_DATE(#{date},'YY/MM/DD')
+	</update>
 	
 </mapper>
 

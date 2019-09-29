@@ -62,9 +62,8 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public ArrayList<bus> selectCListN(SqlSessionTemplate sqlSession, String day, int cnum) {
-
+		ArrayList<bus> list = null;
 		NoticeWho w = new NoticeWho();
-		System.out.println("날짜는"+day);
 		w.setClassName(day);
 		w.setClassNum(cnum);
 		System.out.println(w);
