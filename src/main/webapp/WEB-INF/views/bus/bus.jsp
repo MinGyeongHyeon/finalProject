@@ -89,7 +89,7 @@ background:lightgray;
 			</tr>
 			<c:forEach var="l" items="${list}">
 			<tr>
-			<th colspan="2"><c:out value="${l.childrenNo}"/></th>
+			<th colspan="2"><c:out value="${l.childrenName}"/></th>
 			<th colspan="2"><c:out value="${l.geton}"/></th>
 			</tr>
 			</c:forEach>

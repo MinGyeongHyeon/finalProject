@@ -11,11 +11,12 @@ public class bus {
 	private String busDate;
 	private int classNum;
 	private int kinderNum;
+	private String childrenName;
 	
 	public bus() {}
 
 	public bus(int busNo, int childrenNo, String busYN, String geton, String getoff, String busDate, int classNum,
-			int kinderNum) {
+			int kinderNum, String childrenName) {
 		super();
 		this.busNo = busNo;
 		this.childrenNo = childrenNo;
@@ -25,6 +26,7 @@ public class bus {
 		this.busDate = busDate;
 		this.classNum = classNum;
 		this.kinderNum = kinderNum;
+		this.childrenName = childrenName;
 	}
 
 	public int getBusNo() {
@@ -91,12 +93,22 @@ public class bus {
 		this.kinderNum = kinderNum;
 	}
 
+	public String getChildrenName() {
+		return childrenName;
+	}
+
+	public void setChildrenName(String childrenName) {
+		this.childrenName = childrenName;
+	}
+
 	@Override
 	public String toString() {
 		return "bus [busNo=" + busNo + ", childrenNo=" + childrenNo + ", busYN=" + busYN + ", geton=" + geton
 				+ ", getoff=" + getoff + ", busDate=" + busDate + ", classNum=" + classNum + ", kinderNum=" + kinderNum
-				+ "]";
+				+ ", childrenName=" + childrenName + "]";
 	}
+
+	
 	
 	
 	

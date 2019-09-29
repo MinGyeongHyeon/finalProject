@@ -13,6 +13,7 @@
   	<result property="busDate" column="BUS_DATE"/>
   	<result property="classNum" column="CLASS_NO"/>
   	<result property="kinderNum" column="KINDER_NO"/>
+  	<result property="childrenName" column="CHILDREN_NAME"/>
   
   </resultMap>
   
@@ -29,18 +30,21 @@
 	</select>
   	
   	<select id="selectListN" resultMap="Bus">
-		SELECT BUS_NO,CHILDREN_NO,BUS_YN,GET_ON,BUS_DATE,KINDER_NO,CLASS_NO
-		FROM BUS
+		 SELECT  B.BUS_NO,B.CHILDREN_NO,B.BUS_YN,B.GET_ON,B.BUS_DATE,B.KINDER_NO,B.CLASS_NO,C.CHILDREN_NAME
+		FROM BUS B
+        JOIN KINDER_CLASS K ON K.CHILDREN_NO = B.CHILDREN_NO
+        JOIN CHILDREN C ON C.CHILDREN_NO = B.CHILDREN_NO
 		WHERE BUS_DATE LIKE #{className}
-    	AND CLASS_NO = #{classNum}
 	</select>
 	
 	<select id="selectCListN" resultMap="Bus">
-		SELECT BUS_NO,CHILDREN_NO,BUS_YN,GET_ON,BUS_DATE,KINDER_NO,CLASS_NO
-		FROM BUS
-		WHERE BUS_DATE LIKE #{className}
-    	AND CHILDREN_NO = #{classNum}
-    	AND KINDER_NO = 1
+    	SELECT B.BUS_NO,B.CHILDREN_NO,B.BUS_YN,B.GET_ON,B.BUS_DATE,B.KINDER_NO,B.CLASS_NO,C.CHILDREN_NAME
+		FROM BUS B
+        JOIN KINDER_CLASS K ON K.CHILDREN_NO = B.CHILDREN_NO
+        JOIN CHILDREN C ON C.CHILDREN_NO = B.CHILDREN_NO
+		WHERE B.BUS_DATE LIKE  = #{className}
+    	AND B.CHILDREN_NO = #{classNum}
+    	AND B.KINDER_NO = 1
 	</select>
   
   
