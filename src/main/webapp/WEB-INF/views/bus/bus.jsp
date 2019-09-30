@@ -75,11 +75,11 @@ background:lightgray;
    		<form action="bus.bs" method="post" enctype="multipart/form-data">
        <c:if test="${loginUser.classification eq '선생님'}">
         <input type="file" name="file"/>
-        <input type="submit" value="업로드"/> 
+        <input type="submit" class="btn btn-warning" value="업로드"/> 
        </c:if> 
 	   <div class="busContents">
 	   <br><br>
-	   <input type="button" id="datepicker" value="날짜선택">
+	   <input type="button" id="datepicker"  class = "btn btn-warning" value="날짜선택">
 		  <table>
 			<tr class="date"><th colspan="4"><c:out value="${ day }"/></th>
 			</tr>

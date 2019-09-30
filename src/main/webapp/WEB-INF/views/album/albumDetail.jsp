@@ -42,7 +42,6 @@
 			<table width=100%;>
 				<tr>
 					<td>
-						<label style="font-weight:bold;">앨범</label>
 					</td>
 				</tr>
 			</table>
@@ -50,6 +49,7 @@
 		<hr style="border:1px solid lightgray;"/>
 		<div class="albumDetailDiv">
 			<div class="albumDetailTitle">
+			<label style="font-weight:bold; color:black;font-size: 23;"><i class="fas fa-images" style="size:15px"></i>&nbsp;앨범</label>
 				<table width=95%; style="margin:0 auto;">
 				<tr>
 					<td>

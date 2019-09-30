@@ -118,24 +118,7 @@
 		</div>
 		<hr />
 		<div class="searchArea">
-			<select name="Classroom" class="searchclassroom">
-				<option value="00">전체반 보기</option>
-				<option value="01">별님반</option>
-				<option value="02">햇님반</option>
-				<option value="03">킨더반</option>
-				<option value="04">천진반</option>
-			</select>
-			&nbsp;
-			<select name="kinderName" class="searchKinderName">
-				<option value="00">전체 원아 보기</option>
-				<option value="01">김영지</option>
-				<option value="02">민경현</option>
-				<option value="03">박찬민</option>
-				<option value="04">하민희</option>
-				<option value="05">한송이</option>
-			</select>
-			&nbsp;
-			<input type="date" name="searchDate" class="searchDate"/>
+	
 		</div>
 		<div class="homeworkDiarySummary">
 			<!-- <div class="summaryDiv"> -->
@@ -198,8 +181,6 @@
 						</c:if>
 						<c:if test="${ pi.currentPage >= pi.maxPage }"> &emsp; 다음 </c:if>
 					</div>
-		<button class="btn btn-light"><i class="fas fa-print"></i>&nbsp;&nbsp;출력 및 다운로드</button>
-		
 	</div>
 		<script>
 		function goAnnouncementWrite(){
