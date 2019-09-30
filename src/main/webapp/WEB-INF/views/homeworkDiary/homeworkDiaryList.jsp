@@ -130,9 +130,9 @@
 							<td class="tqtq"><c:out value="${l.boardNum}" /></td>
 						</tr>
 						<tr>
-							<td><c:out value="${l.className}"/>교사</td>
-							<td width="30px;">
-							<img src="${ contextPath }/resources/images/woman.png" alt="" /></td>
+							<td width="85%"><c:out value="${l.className}"/>교사</td>
+							<td width="30px;" style="margin-right:30px">
+							<img src="${ contextPath }/resources/images/teacher.jpg" alt="" /></td>
 						</tr>
 						<tr>
 							<td class="titleView"><c:out value="${l.boardTitle}"/></td>

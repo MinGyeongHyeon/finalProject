@@ -1,12 +1,10 @@
 package com.kh.fp.attendance.controller;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fp.attendance.model.exception.DailyException;
 import com.kh.fp.attendance.model.service.AttendanceService;
 import com.kh.fp.attendance.model.vo.Attendance;
 import com.kh.fp.attendance.model.vo.Children;
 import com.kh.fp.member.model.vo.KinGardenClasses;
+import com.kh.fp.member.model.vo.Member;
 
 
 @Controller
 @SessionAttributes("loginUser")
-
 public class AttendanceController {
 
 	@Autowired
@@ -39,7 +34,17 @@ public class AttendanceController {
 		public String attendanceView(Model mv,Children att,HttpSession session,HttpServletRequest request){
 		/* 오늘 날짜 출석부 */
 		 
-		 KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		 KinGardenClasses loginUser = null;
+		 if(session.getAttribute("teacherKing") != null) {
+			 loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		 }else if(session.getAttribute("loginUser") != null) {
+			 Member member = (Member)session.getAttribute("loginUser");
+			 System.out.println("Member 값 : " + member);
+			 loginUser = new KinGardenClasses();
+			 loginUser.setTeacherNo(member.getUserNo());
+		 }
+		 
+		 System.out.println("loginUser 값 : " + loginUser);
 		 int teacherNo = loginUser.getTeacherNo();
 		 String today2 = request.getParameter("day");//일별 출석부 데이트피커
 		 String today4 = request.getParameter("day1");//월별 출석부 데이트피커

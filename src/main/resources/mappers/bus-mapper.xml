@@ -17,7 +17,7 @@
   </resultMap>
   
   
-  	<insert id="insertBus">
+  	<insert id="insertBus"> SELECT B.BUS_NO,B.CHILDREN_NO,B.BUS_YN,B.GET_ON,B.BUS_DATE,B.KINDER_NO,B.CLASS_NO,C.CHILDREN_NAME
 		INSERT INTO BUS
 		VALUES(SEQ_BUS_NO.NEXTVAL,#{childrenNo},#{busYN},#{geton},NULL,SYSDATE,1,8)		
 	</insert>
@@ -41,7 +41,7 @@
 		FROM BUS B
         JOIN KINDER_CLASS K ON K.CHILDREN_NO = B.CHILDREN_NO
         JOIN CHILDREN C ON C.CHILDREN_NO = B.CHILDREN_NO
-		WHERE B.BUS_DATE LIKE  = #{className}
+		WHERE B.BUS_DATE LIKE  #{className}
     	AND B.CHILDREN_NO = #{classNum}
     	AND B.KINDER_NO = 1
 	</select>

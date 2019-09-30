@@ -449,9 +449,7 @@ img {
 							<div class="selectC" style="display: inline;" onclick="selectCheck();">
 								<c:choose>
 									<c:when test="${l.fileName ne null}">
-										<img
-											src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>.jpg"
-											alt="" />
+										<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.fileName}"/>" alt="" style="height: 120px"/>
 									</c:when>
 									<c:when test="${l.fileName eq null}">
 										<img src="${contextPath}/resources/images/dog.jpg" alt="" />

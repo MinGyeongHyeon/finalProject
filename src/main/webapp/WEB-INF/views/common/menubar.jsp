@@ -112,128 +112,7 @@
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
-						<c:if test="${ loginUser.classification eq '원장님' or loginUser.classification eq '체험판원장님' }">
-
-
-							<li class="nav-item dropdown hidden-caret"><a
-								class="nav-link dropdown-toggle" href="#" id="messageDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"> <i class="fa fa-envelope"></i>
-							</a>
-								<ul class="dropdown-menu messages-notif-box animated fadeIn"
-									aria-labelledby="messageDropdown">
-									<li>
-										<div
-											class="dropdown-title d-flex justify-content-between align-items-center">
-											새로운 쪽지 <a href="#" class="small">Mark all as read</a>
-										</div>
-									</li>
-									<li>
-										<div class="message-notif-scroll scrollbar-outer">
-											<div class="notif-center">
-												<a href="#">
-													<div class="notif-img">
-														<img
-															src="${ contextPath }/resources/assets/img/jm_denis.jpg"
-															alt="Img Profile">
-													</div>
-													<div class="notif-content">
-														<span class="subject">Jimmy Denis</span> <span
-															class="block"> How are you ? </span> <span class="time">5
-															minutes ago</span>
-													</div>
-												</a> <a href="#">
-													<div class="notif-img">
-														<img
-															src="${ contextPath }/resources/assets/img/chadengle.jpg"
-															alt="Img Profile">
-													</div>
-													<div class="notif-content">
-														<span class="subject">Chad</span> <span class="block">
-															Ok, Thanks ! </span> <span class="time">12 minutes ago</span>
-													</div>
-												</a> <a href="#">
-													<div class="notif-img">
-														<img src="${ contextPath }/resources/assets/img/mlane.jpg"
-															alt="Img Profile">
-													</div>
-													<div class="notif-content">
-														<span class="subject">Jhon Doe</span> <span class="block">
-															Ready for the meeting today... </span> <span class="time">12
-															minutes ago</span>
-													</div>
-												</a> <a href="#">
-													<div class="notif-img">
-														<img src="${ contextPath }/resources/assets/img/talha.jpg"
-															alt="Img Profile">
-													</div>
-													<div class="notif-content">
-														<span class="subject">Talha</span> <span class="block">
-															Hi, Apa Kabar ? </span> <span class="time">17 minutes ago</span>
-													</div>
-												</a>
-											</div>
-										</div>
-									</li>
-									<li><a class="see-all" href="noteMain.pl">쪽지함 이동<i
-											class="fa fa-angle-right"></i>
-									</a></li>
-								</ul></li>
-						</c:if>
-						<li class="nav-item dropdown hidden-caret"><a
-							class="nav-link dropdown-toggle" href="#" id="notifDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fa fa-bell"></i> <span
-								class="notification">4</span>
-						</a>
-							<ul class="dropdown-menu notif-box animated fadeIn"
-								aria-labelledby="notifDropdown">
-								<li>
-									<div class="dropdown-title">You have 4 new notification</div>
-								</li>
-								<li>
-									<div class="notif-center">
-										<a href="#">
-											<div class="notif-icon notif-primary">
-												<i class="fa fa-user-plus"></i>
-											</div>
-											<div class="notif-content">
-												<span class="block"> New user registered </span> <span
-													class="time">5 minutes ago</span>
-											</div>
-										</a> <a href="#">
-											<div class="notif-icon notif-success">
-												<i class="fa fa-comment"></i>
-											</div>
-											<div class="notif-content">
-												<span class="block"> Rahmad commented on Admin </span> <span
-													class="time">12 minutes ago</span>
-											</div>
-										</a> <a href="#">
-											<div class="notif-img">
-												<img
-													src="${ contextPath }/resources/assets/img/profile2.jpg"
-													alt="Img Profile">
-											</div>
-											<div class="notif-content">
-												<span class="block"> Reza send messages to you </span> <span
-													class="time">12 minutes ago</span>
-											</div>
-										</a> <a href="#">
-											<div class="notif-icon notif-danger">
-												<i class="fa fa-heart"></i>
-											</div>
-											<div class="notif-content">
-												<span class="block"> Farrah liked Admin </span> <span
-													class="time">17 minutes ago</span>
-											</div>
-										</a>
-									</div>
-								</li>
-								<li><a class="see-all" href="javascript:void(0);">See
-										all notifications<i class="fa fa-angle-right"></i>
-								</a></li>
-							</ul></li>
+					
 						<li class="nav-item dropdown hidden-caret"><a
 							class="dropdown-toggle profile-pic" data-toggle="dropdown"
 							href="#" aria-expanded="false">
@@ -370,12 +249,14 @@
 								<p>귀가동의서</p>
 						</a></li>
 						</c:if>
-
+						
+						<c:if test="${ loginUser.classification ne '학부모' or loginUser.classification ne '체험판학부모'}">
 						<c:if test="${ of.attendance eq 'Y' }">
 						<li class="nav-item"><a href="attendance.at"> <i
 								class="far fa-calendar-check"></i>
 								<p>출석부</p>
 						</a></li>
+						</c:if>
 						</c:if>
 
 						<li class="nav-item"><a href="busList.bs"> <i
