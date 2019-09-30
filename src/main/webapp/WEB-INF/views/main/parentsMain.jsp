@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fu" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,9 +99,19 @@ font-family: 'Sunflower', sans-serif;
 										<tr>
 											<td>${ i.userName }<p></p></td>
 										</tr><tr>
-											<td style=""> 제목  : ${i.boardTitle.substring(0,3) }.... </td>
+										<c:if test="${ fu:length(i.boardTitle) > 5 }">
+											<td style=""> 제목  : ${i.boardTitle.substring(0,5) }.... </td>
+											</c:if>
+											<c:if test="${fu:length(i.boardTitle) < 5 }">
+											<td>제목 : ${i.boardTitle }</td>
+											</c:if>
 										</tr><tr>
-											<td>내용 : ${i.boardContent.substring(0,6)}.......</td>
+											<c:if test="${fu:length(i.boardContent) > 8 }">
+											<td>내용 : ${i.boardContent.substring(0,8)}.......</td>
+											</c:if>
+											<c:if test="${ fu:length(i.boardContent) < 8 }">
+											<td>내용 : ${i.boardContent }</td>
+											</c:if>
 										</tr><tr>
 											<td> </td>
 										</tr><tr>	

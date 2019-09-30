@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.kh.fp.notice.model.vo.Notice"%>
+    <%@ taglib prefix="fu" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,7 +163,12 @@
 								<td class="titleView"><c:out value="${l.boardTitle}" /></td>
 							</tr>
 							<tr>
-								<td><c:out value="${l.boardContent.substring(0,3) }.... " /></td>
+							<c:if test="${fu:length(l.boardContent)  > 10 }">
+								<td><c:out value="${l.boardContent.substring(0,10) }.... " /></td>
+								</c:if>
+								<c:if test="${fu:length(l.boardContent) < 10 }">
+								<td><c:out value="${l.boardContent }"></c:out></td>
+								</c:if>
 							</tr>
 							<tr>
 								<td><c:out value="${l.boardDate}" /></td>

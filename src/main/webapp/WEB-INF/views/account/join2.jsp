@@ -56,12 +56,12 @@ table tr {
 			</tr>
 			<tr>
 				<td>*휴대전화번호</td>
-				<td><input type="tel" class="form-control" name="phone" placeholder="휴대전화번호" id="rphone"></td>
+				<td><input type="tel" class="form-control number" name="phone" placeholder="휴대전화번호" id="rphone"></td>
 				<td><button class="ui grey basic button" id="phonesend" type="button">인증번호 발송</button></td>
 			</tr>
 			<tr hidden id="CerNumtr">
 				<td>*인증번호</td>
-				<td colspan="2"><input type="text" class="form-control" id="CerNum" placeholder="휴대전화 인증번호를 입력해주세요"></td>
+				<td colspan="2"><input type="text" class="form-control number" id="CerNum" placeholder="휴대전화 인증번호를 입력해주세요"></td>
 			</tr>
 			<tr>
 				<td align="center">* 추가 입력 사항 * </td>
@@ -88,6 +88,20 @@ table tr {
 	<br><br><br>
 	
 	<script>
+	
+	
+	$('.number').keyup(function(){
+		
+		var loc = $(this);
+		
+	if(/[^0123456789]/g.test($(this).val() )) {
+		
+	    loc.val("");
+	    loc.focus();
+	 }
+
+	});
+	
 		$('#emailsend').click(function(){
 			
 			var email = $('#emailval').val();
