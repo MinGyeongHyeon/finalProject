@@ -71,7 +71,7 @@ background:orange;
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
-	<div class="main-panel" id="firstContentArea">
+<div class="main-panel" id="firstContentArea">
 <input type="button" id="datepicker" value="날짜선택">
 <input type="button" id="gomonth" onclick="gomonth();" value="월별식단표">
 <br><br>

@@ -75,7 +75,7 @@ background:orange;
 			<table id="btntable">
 				<tr>
 					<td colspan="14">
-						<img src="${contextPath }/resources/images/schedule.png" alt="" /><label style="font-weight:bold; font-size: 20px!important;">식단표</label>
+						<label style="font-weight:bold; font-size: 20px!important;"><i class="fas fa-utensils" style="size:15px;"></i>&nbsp;식단표&nbsp;</label>
 					</td>
 					<td>
 						<input type="button" id="datepicker" value="날짜선택">
