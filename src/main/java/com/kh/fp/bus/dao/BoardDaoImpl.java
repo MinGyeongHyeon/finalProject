@@ -67,10 +67,10 @@ public class BoardDaoImpl implements BoardDao{
 		w.setClassName(day);
 		w.setClassNum(cnum);
 		System.out.println(w);
-		ArrayList<bus> list = (ArrayList) sqlSession.selectList("Bus.selectCListN",w);
+		ArrayList<bus> listbus = (ArrayList) sqlSession.selectList("Bus.selectCListN",w);
 		System.out.println("너 뭐야 다오"+list);
 		
-		return list;
+		return listbus;
 	}
 
 	@Override

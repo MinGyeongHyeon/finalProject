@@ -65,7 +65,6 @@ public class ReturnHomeController {
 		}else if (loginUser.getClassification().equals("선생님")) {
 			KinderClass kc = new KinderClass();
 			kc.setTeacherNo(loginUser.getUserNo());
-			System.out.println("childrenNo1 :: " + kc.getChildrenNo());
 			if(kidsNameList != null) {
 				kc.setChildrenNo(Integer.parseInt(kidsNameList));
 				System.out.println("childrenNo :: " + kc.getChildrenNo());

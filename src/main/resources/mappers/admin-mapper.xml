@@ -15,7 +15,7 @@
 	
 	<resultMap type="Company" id="companyResultSet">
 		<id property="payDate" column="PAY_DATE"/>
-		<id property="payDateday" column="PAY_DATE_DAY"/>
+		<id property="payDateDay" column="PAY_DATE_DAY"/>
 		<id property="payDateCount" column="CT"/>
 		<result property="kinderName" column="KINDER_NAME"/>
 		<result property="seasonName" column="SEASON_NAME"/>
@@ -23,7 +23,7 @@
 	
 	<resultMap type="Company" id="searchResultSet">
 		<id property="payDate" column="PAY_DATE"/>
-		<id property="payDateday" column="PAY_DATE_DAY"/>
+		<id property="payDateDay" column="PAY_DATE_DAY"/>
 		<id property="payDateCount" column="CT"/>
 		<result property="kinderName" column="KINDER_NAME"/>
 		<result property="seasonName" column="SEASON_NAME"/>

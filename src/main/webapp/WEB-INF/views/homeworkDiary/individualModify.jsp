@@ -218,7 +218,7 @@ body {
 							<div class="selectC" style="display: inline;">
 								<c:choose>
 									<c:when test="${l.fileName ne null}">
-										<img src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>" alt="" />
+										<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.fileName}"/>" style="height: 120px;"/>
 									</c:when>
 									<c:when test="${l.fileName eq null}">
 										<img src="${contextPath}/resources/images/dog.jpg" alt="" />

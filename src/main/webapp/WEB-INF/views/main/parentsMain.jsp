@@ -43,7 +43,7 @@ font-family: 'Sunflower', sans-serif;
 	<c:if test="${ loginUser.classification eq '선생님' or loginUser.classification eq '체험판선생님'}">
 	
 	<div class="main-panel">
-			<table style="margin:0 suto; width:100%;">
+			<table style="margin:0 suto; width:100%;" >
 				<tr class="firstTr">
 				
 					<td colspan="3">
@@ -93,7 +93,7 @@ font-family: 'Sunflower', sans-serif;
 							<br />
 							<div class="noticeArea"> 
 							<c:forEach var="i" items="${ list }">
-								<div class="notice">
+								<div class="notice" style="height:189px;">
 								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
 										<tr>
@@ -125,15 +125,7 @@ font-family: 'Sunflower', sans-serif;
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="6" style="text-align: center;">
-						<div class="underBtnArea">
-							<div>공지사항</div>
-							<div style="margin-left:3%; margin-right: 3%;">자주 묻는 질문</div>
-							<div>관리자 문의</div>
-						</div>
-					</td>
-				</tr>
+	
 			</table>
 		</div>
 
@@ -219,16 +211,26 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
-						<%-- 	<c:forEach var="i" items="${ list }">
-								<div class="notice">
+						 	<c:forEach var="i" items="${ list }">
+								<div class="notice" style="height:189px;">
 								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
 										<tr>
 											<td>${ i.userName }<p></p></td>
 										</tr><tr>
+											<c:if test="${ fu:length(i.boardTitle) > 3 }">
 											<td style=""> 제목  : ${i.boardTitle.substring(0,3) }.... </td>
+											</c:if>
+											<c:if test="${ fu:length(i.boardTitle) < 3 }">
+											<td>제목 : ${i.boardTitle }</td>
+											</c:if>
 										</tr><tr>
+										<c:if test="${ fu:length(i.boardContent) > 7 }">
 											<td>내용 : ${i.boardContent.substring(0,6)}.......</td>
+											</c:if>
+											<c:if test="${ fu:length(i.boardContent)  < 7 }">
+											<td>내용 : ${i.boardContent }</td>
+											</c:if>
 										</tr><tr>
 											<td> </td>
 										</tr><tr>	
@@ -237,20 +239,12 @@ font-family: 'Sunflower', sans-serif;
 									</table>
 								</div>
 								</c:forEach>
-							 --%>
+							 
 							</div>
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="6" style="text-align: center;">
-						<div class="underBtnArea">
-							<div>공지사항</div>
-							<div style="margin-left:3%; margin-right: 3%;">자주 묻는 질문</div>
-							<div>관리자 문의</div>
-						</div>
-					</td>
-				</tr>
+	
 			</table>
 		</div>
 
@@ -281,16 +275,27 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
-						<%-- 	<c:forEach var="i" items="${ list }">
-								<div class="notice">
+						 	<c:forEach var="i" items="${ list }">
+								<div class="notice" style="height:189px;">
 								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
 										<tr>
 											<td>${ i.userName }<p></p></td>
 										</tr><tr>
-											<td style=""> 제목  : ${i.boardTitle.substring(0,3) }.... </td>
+										<c:if test="${ fu:length(i.boardTitle) > 5 }">
+											<td style=""> 제목  : ${i.boardTitle.substring(0,5) }.... </td>
+											</c:if>
+											<c:if test="${ fu:length(i.boardTitle) < 5 }">
+											<td>제목 : ${ i.boardTitle }</td>
+											</c:if>
+											
 										</tr><tr>
+										<c:if test="${ fu:length(i.boardContent) > 6 }">
 											<td>내용 : ${i.boardContent.substring(0,6)}.......</td>
+											</c:if>
+											<c:if test="${ fu:length(i.boardContent) < 6 }">
+											<td>내용 :${u.boardContent }</td>
+											</c:if>
 										</tr><tr>
 											<td> </td>
 										</tr><tr>	
@@ -298,7 +303,7 @@ font-family: 'Sunflower', sans-serif;
 										</tr>
 									</table>
 								</div>
-								</c:forEach> --%>
+								</c:forEach> 
 							
 							</div>
 						</div>

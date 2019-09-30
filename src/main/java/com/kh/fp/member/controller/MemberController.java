@@ -716,7 +716,7 @@ public class MemberController {
 	    
 	    System.out.println("여긴? 들어옴 ? " + random);
 	    
-	    if(action.equals("gott")) {
+	    if(action.equals("go")) {
 
 	        
 	        String sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS 전송요청 URL

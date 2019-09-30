@@ -101,7 +101,7 @@ color:white;
 		</c:forEach>
 		</select>
 	</td>
-	<td><button class="btn btnaccept" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn">거절</button></td>
+	<td><button class="btn btn-default btnaccept" id="accept">승인</button>&nbsp;&nbsp;<button class="notaccept btn btn-default">거절</button></td>
 	<td><input type="hidden" class="childrenNo" value="${ i.childrenNo }"/></td>
 	</tr>
 		</c:forEach>
