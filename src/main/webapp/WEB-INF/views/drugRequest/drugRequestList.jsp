@@ -153,9 +153,6 @@ $(function(){
 						        <option>한송이</option>
       						</select>
       						</c:if>
-      						<div id="dateA">
-							<input type="button" class="btn" id="datepicker" value="날짜 선택">
-							</div>
 						</div>
 						<br><br><br><br>
 						<div id="listArea">
