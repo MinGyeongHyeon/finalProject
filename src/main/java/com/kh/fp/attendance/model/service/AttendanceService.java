@@ -8,7 +8,7 @@ import com.kh.fp.attendance.model.vo.Children;
 
 public interface AttendanceService {
 
-	ArrayList<Children> dailyAttendance(int teacherNo, String today4) throws DailyException;
+	ArrayList<Children> dailyAttendance(int teacherNo) throws DailyException;
 
 	ArrayList<Children> monthAttendance(int teacherNo) throws DailyException;
 

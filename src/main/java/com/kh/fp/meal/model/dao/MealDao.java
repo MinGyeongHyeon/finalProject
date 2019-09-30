@@ -10,7 +10,7 @@ import com.kh.fp.member.model.vo.Attachment;
 
 public interface MealDao {
 
-	int dailymealCount(SqlSessionTemplate sqlSession, String day);
+	int dailymealCount(SqlSessionTemplate sqlSession);
 
 	int insertDailyMeal(SqlSessionTemplate sqlSession, Meal meal) throws MealException;
 

@@ -52,7 +52,7 @@
 	<select id="dailymealCount" resultType="_int">
 	SELECT COUNT(MEAL_DATE)
 	FROM MEAL_TABLE
-	WHERE MEAL_DATE LIKE #{day}
+	WHERE MEAL_DATE LIKE SYSDATE
 	</select>
 
 	<insert id="insertDailyMeal">
