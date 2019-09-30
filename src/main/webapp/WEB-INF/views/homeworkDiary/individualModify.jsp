@@ -204,7 +204,7 @@ body {
 		<table>
 			<tr>
 				<td><button class="className" id="myBtn" type="button" style="background:#f55; color:white;border: 1px #f55; width:120%; height:30px">${className}</button></td>
-				<td><lable id="number" style=" font-size:25px">0</lable><label style="color:white; font-size:25px">/${classNum-1}</label></td>
+				<td><lable id="number" style=" font-size:25px">0</lable><label style="color:white; font-size:25px">/${classNum}</label></td>
 
 			</tr>
 		</table>
@@ -218,7 +218,7 @@ body {
 							<div class="selectC" style="display: inline;">
 								<c:choose>
 									<c:when test="${l.fileName ne null}">
-										<img src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>.jpg" alt="" />
+										<img src="${contextPath}/uploadFiles/images/<c:out value="${fileName}"/>" alt="" />
 									</c:when>
 									<c:when test="${l.fileName eq null}">
 										<img src="${contextPath}/resources/images/dog.jpg" alt="" />

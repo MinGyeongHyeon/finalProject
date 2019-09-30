@@ -128,7 +128,7 @@ public class AlbumDaoImpl implements AlbumDao{
 
 	@Override
 	public int SelectTnum(SqlSessionTemplate sqlSession, int userNo) {
-
+		System.out.println(userNo+"qjsghqjsgh");
 		int Tnum = sqlSession.selectOne("Album.selectTnum",userNo);
 		
 		return Tnum;

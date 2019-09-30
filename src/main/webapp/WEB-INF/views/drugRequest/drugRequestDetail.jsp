@@ -129,13 +129,13 @@ th, td {
 }
 #area3 {
 	margin-left: 745px;
-    font-size: 20px;
+    font-size: 18px;
 	display: inline;
 }
 
 #area4 {
 	margin-left: 905px;
-	font-size: 20px;
+	font-size: 18px;
 	margin-top:15px;
 }
 #signImg {

@@ -108,7 +108,7 @@ color:white;
 	</table>
 	</div>	
 	
-	<div class="container" align="center" style="width:10%;">
+	<div class="container" align="center" style="width:50%;">
   <ul class="pagination" >
  
     

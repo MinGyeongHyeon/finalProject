@@ -89,6 +89,7 @@ public class DosageController {
 
 		if(classification.equals("원장님")) {
 			listCount = ds.getListCount(userNo);
+			System.out.println("listCount ::: " + listCount);
 		}else if(classification.equals("학부모")) {
 			listCount = ds.getPListCount(userNo);
 		}else {
