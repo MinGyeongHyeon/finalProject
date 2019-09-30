@@ -16,13 +16,19 @@
 	    min-height: 100%;
 	    float: right;
 	    transition: all .3s;
-	    padding-top:100px;
+	    padding-top:60px;
 	    padding-left: 3%;
 	    padding-right: 3%;
 	}
 	
 	.returnHomeList{
 		margin: 0 auto;
+	}
+	.returnHomeSearchArea{
+		margin-left: 2%;
+	}
+	.returnHomeSearchArea button{
+		
 	}
 	
 	.returnHomeSummary{
@@ -150,25 +156,17 @@
 		<hr />
 		
 		<div class="returnHomeSearchArea">
-			<table style="width:100%">
-				<tr>
-					<td>
-						<form action="returnHomeMain.rh">
-							<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
-								<select name="kidsNameList" id="kidsNameList">
-										<option value="0">전체 원아 보기</option>
-									<c:forEach var="childrenList" items="${childrenNameList}" varStatus="listStatus">
-										<option value="${childrenList.childrenNo}"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
-									</c:forEach>
-								</select>
-								<input type="submit" value="검색"/>
-							</c:if>
-						</form>
-					</td>
-					<td style="text-align:right;">
-					</td>
-				</tr>		
-			</table>
+			<form action="returnHomeMain.rh">
+				<c:if test="${ loginUser.classification eq '원장님' ||  loginUser.classification eq '선생님' }">
+					<select name="kidsNameList" id="kidsNameList" style="margin-top:5px; height:40px; font-weight: bold; border-radius: 10px;">
+							<option value="0">전체 원아 보기</option>
+						<c:forEach var="childrenList" items="${childrenNameList}" varStatus="listStatus">
+							<option value="${childrenList.childrenNo}"><c:out value="${childrenList.childrenName}" escapeXml="false"/></option>
+						</c:forEach>
+					</select>
+					<button style="width:40px; height:40px; background:#fff 0; border:1px solid #339; border-radius: 20px;"><img src='${ contextPath }/resources/images/search.png' /></button>
+				</c:if>
+			</form>
 		</div>
 		<br />
 		<div id="returnHomeList" class="returnHomeList">

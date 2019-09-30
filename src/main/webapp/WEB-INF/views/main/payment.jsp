@@ -65,7 +65,7 @@
 	}
 	
 	.SetList{
-		width:30%;
+		width:300px;
 		margin:0 auto;
 		border:none;
 		margin-bottom: 5px;
@@ -113,7 +113,7 @@
 			이용권 구매하기
 		</div>
 		<div id="payInfoArea">
-			<table>
+			<table style="color:#000;">
 				<tr>
 					<th style="border-right: 0px;">이용권 선택</th>
 					<td style="border-left: 0px;"></td>
@@ -132,30 +132,32 @@
 				</tr>
 				<tr>
 					<td colspan="2" style=" border-top: 0px;">
-						<div id="setList1" class="SetList" style="text-align: center;" >
-							<table style="border:1px solid #fa5;">
-								<tr>
-									<th style="background:#fb5; height:45px; border:0px; vertical-align: top">30일 이용권</th>
-								</tr>
-								<tr>
-									<td rowspan="2" style="height:100px; border:0px"><input type="number" name="price" value="12000" style="border:0px" readonly/>원</td>
-								</tr>
-							</table>
-							<input type="hidden" value="1"/>
-						</div>
-						<div id="setList2" class="SetList" style="text-align: center; display:none">
-							<table style="border:1px solid #fa5;">
-								<tr>
-									<th style="background:#fb5; height:40px; border:0px">180일 이용권</th>
-								</tr>
-								<tr>
-									<td style="height:50px; border:0px"><input type="number" name="orgPrice" value="72000" style="border:0px; text-decoration:line-through" readonly/>원</td>
-								</tr>
-								<tr>
-									<td style="height:50px; border:0px"><input type="number" name="newPrice" value="61200" style="border:0px;" readonly/>원</td>
-								</tr>
-							</table>
-							<input type="hidden" value="2"/>
+						<div>
+							<div id="setList1" class="SetList" style="text-align: center;" >
+								<table style="border:1px solid #fa5;">
+									<tr>
+										<th style="background:#fb5; height:45px; border:0px; vertical-align: top">30일 이용권</th>
+									</tr>
+									<tr>
+										<td rowspan="2" style="height:100px; border:0px"><input type="number" name="price" value="12000" style="border:0px; width:55px;" readonly/>원</td>
+									</tr>
+								</table>
+								<input type="hidden" value="1"/>
+							</div>
+							<div id="setList2" class="SetList" style="text-align: center;display:none;" >
+								<table style="border:1px solid #fa5;">
+									<tr>
+										<th style="background:#fb5; height:40px; border:0px">180일 이용권</th>
+									</tr>
+									<tr>
+										<td style="height:50px; border:0px"><input type="number" name="orgPrice" value="72000" style="border:0px; width:55px; text-decoration:line-through" readonly/>원</td>
+									</tr>
+									<tr>
+										<td style="height:50px; border:0px"><input type="number" name="newPrice" value="61200" style="border:0px; width:55px;" readonly/>원</td>
+									</tr>
+								</table>
+								<input type="hidden" value="2"/>
+							</div>
 						</div>
 					</td>
 				</tr>

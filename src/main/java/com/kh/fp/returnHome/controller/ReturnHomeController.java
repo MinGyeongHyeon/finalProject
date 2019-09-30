@@ -137,7 +137,7 @@ public class ReturnHomeController {
 	public String selectReturnHomeDetail(@SessionAttribute("loginUser") Member loginUser, @RequestParam(value="homeNo") int homeNo, Model m) {
 		ArrayList<ReturnHome> rhList = rhs.selectReturnHomeDetail(homeNo);
 		int result = 0;
-		if(rhList.get(0).getReading().equals("N") && loginUser.getClassification().equals("선생님")) {
+		if(rhList.get(0).getReading().equals("N") && (loginUser.getClassification().equals("선생님")||loginUser.getClassification().equals("원장님"))) {
 			result = rhs.updateReading(homeNo);
 		}
 		

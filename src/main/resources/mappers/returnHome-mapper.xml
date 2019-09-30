@@ -206,6 +206,7 @@
 		<if test='childrenNo!=0'>
 		AND RH.CHILDREN_NO = #{childrenNo}
 		</if>
+		ORDER BY HOME_NO DESC
 	</select>
 	
 	<update id="updateReading" parameterType="_int">
