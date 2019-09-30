@@ -8,7 +8,7 @@ import com.kh.fp.member.model.vo.Attachment;
 
 public interface MealService {
 
-	int dailymealCount(String day);
+	int dailymealCount();
 
 	int insertDailyMeal(Meal meal) throws MealException;
 

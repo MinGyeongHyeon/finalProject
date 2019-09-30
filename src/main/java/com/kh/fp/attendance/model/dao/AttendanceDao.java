@@ -11,7 +11,7 @@ import com.kh.fp.attendance.model.vo.Children;
 public interface AttendanceDao {
 
 
-	ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession, int teacherNo, String day) throws DailyException;
+	ArrayList<Children> dailyAttendance(SqlSessionTemplate sqlSession, int teacherNo) throws DailyException;
 
 	ArrayList<Children> monthAttendance(SqlSessionTemplate sqlSession,int teacherNo) throws DailyException;
 

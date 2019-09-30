@@ -31,27 +31,15 @@ public class MealController {
 	private MealService ms;
 	
 	@RequestMapping(value="mealMain.ml")
-	public String mealMainView(Model mv,Meal ml,HttpServletRequest request,HttpSession session) {
-		KinGardenClasses loginUser = (KinGardenClasses) session.getAttribute("teacherKing");
+	public String mealMainView(Model mv,Meal ml,HttpServletRequest request) {
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);
 		SimpleDateFormat date1 = new SimpleDateFormat("yy/MM/dd");
 		String dayday = date1.format(today);
 		String changeday = request.getParameter("changeday");
-		int meal = 0;
-		if(changeday!=null) {
-		meal = ms.dailymealCount(changeday.substring(2));
-		}else {
-			meal = ms.dailymealCount(day);
-		}
+		int meal = ms.dailymealCount();
 		if(meal==0) {
-			if(changeday!=null) {
-				String abc = changeday.substring(2);
-				mv.addAttribute("day",changeday);
-			}else {
-				mv.addAttribute("day",day);
-			}
 			return "meal/meal2";
 		}else {
 			try {
@@ -60,12 +48,10 @@ public class MealController {
 					ArrayList<Attachment> hmap = ms.selectPic(abc);
 					mv.addAttribute("ham",hmap);
 					mv.addAttribute("day", changeday);
-					mv.addAttribute("loginUser",loginUser);
 				}else {
 				ArrayList<Attachment> hmap = ms.selectPic(dayday);
 				mv.addAttribute("day",day);
 				mv.addAttribute("ham",hmap);
-				mv.addAttribute("loginUser",loginUser);
 				}
 			} catch (MealException e) {
 				e.printStackTrace();
@@ -76,6 +62,8 @@ public class MealController {
 		
 		
 	}
+	
+	
 	
 	@RequestMapping(value="writeMeal.ml")
 	public String writeMeal(Model mv) {
@@ -111,7 +99,6 @@ public class MealController {
 		int userNo = loginUser.getTeacherNo();
 		String[] content = mm.getMealContent().split(",");
 		Meal meal = null;
-		System.out.println("식단표 작성 콘트롤라~!");
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);

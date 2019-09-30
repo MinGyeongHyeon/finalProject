@@ -13,9 +13,9 @@ import com.kh.fp.member.model.vo.Attachment;
 public class MealDaoImpl implements MealDao{
 
 	@Override
-	public int dailymealCount(SqlSessionTemplate sqlSession,String day) {
+	public int dailymealCount(SqlSessionTemplate sqlSession) {
 		int mealcount = 0;
-		mealcount = sqlSession.selectOne("Meal.dailymealCount",day);
+		mealcount = sqlSession.selectOne("Meal.dailymealCount");
 		return mealcount;
 	}
 

@@ -20,8 +20,8 @@ public class MealServiceImpl implements MealService{
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int dailymealCount(String day) {
-		return md.dailymealCount(sqlSession,day);
+	public int dailymealCount() {
+		return md.dailymealCount(sqlSession);
 	}
 
 	@Override
