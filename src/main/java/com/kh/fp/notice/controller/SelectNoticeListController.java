@@ -150,6 +150,8 @@ public class SelectNoticeListController {
 			
 			Teacher = ns.selectTeacher(userNo);
 			
+			if(Teacher != null) {
+				
 			NoticeWho teacher = (NoticeWho)Teacher.get(0);
 			int teacherClassNum = teacher.getClassNum();
 			int teacherNum = teacher.getTeacherNum();
@@ -170,6 +172,11 @@ public class SelectNoticeListController {
 			noticeWho.setTeacherNum(teacherNum);
 			
 			listCount = ns.getListCount(noticeWho);
+			
+			}else {
+				
+				return "notice/NoticeList";
+			}
 			
 		}else {
 			

@@ -219,7 +219,7 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
-							<c:forEach var="i" items="${ list }">
+						<%-- 	<c:forEach var="i" items="${ list }">
 								<div class="notice">
 								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
@@ -237,7 +237,7 @@ font-family: 'Sunflower', sans-serif;
 									</table>
 								</div>
 								</c:forEach>
-							
+							 --%>
 							</div>
 						</div>
 					</td>
@@ -281,7 +281,7 @@ font-family: 'Sunflower', sans-serif;
 							</table>
 							<br />
 							<div class="noticeArea"> 
-							<c:forEach var="i" items="${ list }">
+						<%-- 	<c:forEach var="i" items="${ list }">
 								<div class="notice">
 								<input type="hidden" value="${ i.boardNum }" name="boardNo"/>
 									<table>
@@ -298,7 +298,7 @@ font-family: 'Sunflower', sans-serif;
 										</tr>
 									</table>
 								</div>
-								</c:forEach>
+								</c:forEach> --%>
 							
 							</div>
 						</div>
