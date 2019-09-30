@@ -398,7 +398,6 @@ img {
 					<tr>
 						<td>
 							<div class="fileList" style="width:100%;">
-								<label for="selectFile">파일선택</label>
 							</div>
 							
 					<div id="fileArea">
