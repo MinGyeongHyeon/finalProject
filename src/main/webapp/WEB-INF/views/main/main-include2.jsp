@@ -69,7 +69,7 @@ font-family: 'Sunflower', sans-serif;
 			value="${ pageContext.servletContext.contextPath }"
 			scope="application" />
 
-		
+
 <nav class="navbar navbar-expand-sm" style="background: #fff; color:black!important; border-bottom: 1px solid blue; border-radius:5px">
 
   <a class="navbar-brand" >KIDS LAND</a>
@@ -79,32 +79,32 @@ font-family: 'Sunflower', sans-serif;
       <input type="button" class="nav-link btn btn-default"  onclick="introduce();" value="회사소개"/>
     </li>
     <li class="nav-item">
-      <input type="button" class="nav-link btn btn-default" onclick="introduceservice();" value="총계"/>
+      <input type="button" class="nav-link btn btn-default" onclick="goNoteBox();" value="쪽지함"/>
     </li>
 	<li class="nav-item">
       <input type="button" class="nav-link btn btn-default"  value="제휴업체" onclick="start();"/>
     </li>
 	<li class="nav-item">
-      <input type="button" class="nav-link btn btn-default" onclick="login();" value="로그아웃"/>  
-    </li>   
+      <input type="button" class="nav-link btn btn-default" onclick="login();" value="로그아웃"/>
+    </li>
   </ul>
 </nav>
 			<script>
 			function introduce() {
-				
+
 			}
-			function introduceservice() {
-				
+			function goNoteBox() {
+				location.href="recieveNoteList.nt";
 			}
 			function start() {
 				location.href='#';
 			}
 			function login() {
-			
+
 				location.href='loginPage.pl';
 			}
 		</script>
-		
+
 	</form>
 </body>
 </html>

@@ -139,6 +139,7 @@ $(function(){
 					</div>
 					<hr>
 					<div class="page-category">
+					<!--
 						<div class="inputArea">
 							<c:if test="${ loginUser.classification ne '학부모' }">
 							<select class="form-control" id="sel1">
@@ -154,11 +155,13 @@ $(function(){
       						</select>
       						</c:if>
 						</div>
-						<br><br><br><br>
+					 -->
+					 <br><br>
 						<div id="listArea">
 							<c:if test="${ empty detailList }">
+						<br><br><br><br>
 								<div id="empty">
-									<br><br><br><br><br><br>
+									<br><br><br><br>
 									<h1 style="font-size:20px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
 								</div>
 							</c:if>
