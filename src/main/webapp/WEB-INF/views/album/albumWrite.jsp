@@ -446,7 +446,7 @@ img {
 								<input type="hidden" name="check" class="checkcheck" value="0"/>&nbsp;</p>
 							</div>	
 						<c:forEach var="l" items="${list}">
-							<div class="selectC" style="display: inline;">
+							<div class="selectC" style="display: inline;" onclick="selectCheck();">
 								<c:choose>
 									<c:when test="${l.fileName ne null}">
 										<img
@@ -476,6 +476,9 @@ img {
 		</div>
 	
 	<script>
+	
+	
+	
 			$(function(){
 				$("#fileArea").hide();
 				
@@ -650,6 +653,8 @@ $('#selectModal').click(function(){
 	$('#hiddenhidden').val(sumarr)
 	$('form').submit();	
 	}
+	
+	
 			
 	</script>
 </body>

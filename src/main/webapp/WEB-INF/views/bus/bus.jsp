@@ -68,13 +68,25 @@ background:lightgray;
 		}
 </style>
 </head>
+<script>
+	$(function(){
+		$("#inputid").on('change', function(){
+			var text = $(this).val();
+			$(".fileName").val(text);
+		});
+	});
+	
+</script>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel">
 	<div style="width:100%; height:10%;"><i class="fas fa-bus-alt" style="font-size:50px"></i><b style="font-size:25px">&nbsp;승하차</b></div>
    		<form action="bus.bs" method="post" enctype="multipart/form-data">
        <c:if test="${loginUser.classification eq '선생님'}">
-        <input type="file" name="file"/>
+		<label for="inputid" class="btn btn-warning" id="selectFile">파일선택</label>
+		<input type="text" name="fileName" class=" fileName">
+
+       <input type="file" name="file" id ="inputid" hidden/>
         <input type="submit" class="btn btn-warning" value="업로드"/> 
        </c:if> 
 	   <div class="busContents">

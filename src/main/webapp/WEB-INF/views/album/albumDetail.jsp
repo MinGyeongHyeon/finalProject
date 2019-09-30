@@ -32,6 +32,16 @@
 	
 	}
 </style>
+<script>
+	$(function(){
+		$("#selectFile").on('change', function(){
+			var text = $(this).val();
+			$(".fileName").val(text);
+		});
+	});
+	
+</script>
+
 <body>
 <jsp:include page="../common/menubar.jsp" /> 
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
@@ -46,11 +56,11 @@
 				</tr>
 			</table>
 		</div>
+			<label style="font-weight:bold; color:black;font-size: 23;"><i class="fas fa-images" style="size:15px"></i>&nbsp;앨범</label>
 		<hr style="border:1px solid lightgray;"/>
 		<div class="albumDetailDiv">
 			<div class="albumDetailTitle">
-			<label style="font-weight:bold; color:black;font-size: 23;"><i class="fas fa-images" style="size:15px"></i>&nbsp;앨범</label>
-				<table width=95%; style="margin:0 auto;">
+				<table width=100%; style="margin:0 auto;">
 				<tr>
 					<td>
 						<p class="hiddenNo" hidden><c:out value='${selectAD[0].alblumNo}'/></p>
