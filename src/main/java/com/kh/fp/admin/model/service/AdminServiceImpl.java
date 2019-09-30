@@ -21,4 +21,8 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<Company> companyList() throws CompanyListException {
 		return ad.companyList(sqlSession);
 	}
+	@Override
+	public ArrayList<Company> searchList(String content) throws CompanyListException {
+		return ad.admsearchList(sqlSession,content);
+	}
 }

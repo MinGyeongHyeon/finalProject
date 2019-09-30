@@ -43,11 +43,16 @@
 		<result property="kinderNo" column="KINDER_NO"/>
 	</resultMap>
 	
+	<resultMap type="Meal" id="selectmonthMealResultSet">
+		<result property="mealContent" column="MEAL_CONTENT"/>
+		<result property="mealDate" column="MEAL_DATE"/>
+	</resultMap>
+	
 	<!-- 식단표 갯수 조회 -->
 	<select id="dailymealCount" resultType="_int">
 	SELECT COUNT(MEAL_DATE)
 	FROM MEAL_TABLE
-	WHERE MEAL_DATE LIKE SYSDATE
+	WHERE MEAL_DATE LIKE #{day}
 	</select>
 
 	<insert id="insertDailyMeal">
@@ -75,6 +80,13 @@
 		WHERE UPDATE_DATE LIKE #{day}
 		AND A.ATTACH_TYPE LIKE '식단글'
 		ORDER BY FILE_LEVEL
+	</select>
+	
+	<select id="monthMealList" parameterType="Meal" resultMap="selectmonthMealResultSet">
+	SELECT MEAL_CONTENT,MEAL_DATE
+      FROM MEAL_TABLE
+      WHERE SUBSTR(MEAL_DATE,4,2) LIKE #{day}
+      ORDER BY MEAL_NO
 	</select>
 </mapper>
 

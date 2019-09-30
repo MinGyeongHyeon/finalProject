@@ -21,6 +21,14 @@
 		<result property="seasonName" column="SEASON_NAME"/>
 	</resultMap>
 	
+	<resultMap type="Company" id="searchResultSet">
+		<id property="payDate" column="PAY_DATE"/>
+		<id property="payDateday" column="PAY_DATE_DAY"/>
+		<id property="payDateCount" column="CT"/>
+		<result property="kinderName" column="KINDER_NAME"/>
+		<result property="seasonName" column="SEASON_NAME"/>
+	</resultMap>
+	
 
 	<!-- 데일리출석부 -->
 	<select id="companyList" resultMap="companyResultSet">
@@ -33,7 +41,16 @@
 		JOIN SEASON_TI S ON(P.SEASON_ID = S.SEASON_ID))
 	</select>
 
-
+	<select id="searchList" resultMap="searchResultSet">
+	SELECT PAY_DATE,PAY_DATE_DAY,CT,KINDER_NAME,SEASON_NAME
+		FROM (SELECT KINDER_NAME,SUBSTR(PAY_DATE,-2,2) as PAY_DATE_DAY,(SELECT COUNT(*) AS CT FROM PAY_ON PO JOIN PAY P ON(PO.PAY_NO = P.PAY_NO)) AS CT,PAY_DATE,SEASON_NAME
+		FROM KINDERGARDEN K
+		JOIN USERS U ON(K.KINDER_NO = U.USER_NO)
+		JOIN PAY P ON(U.USER_NO = P.USER_NO)
+		JOIN PAY_ON PO ON(P.PAY_NO = PO.PAY_NO)
+		JOIN SEASON_TI S ON(P.SEASON_ID = S.SEASON_ID))
+		WHERE KINDER_NAME = #{content}
+	</select>
 	
 	
 </mapper>

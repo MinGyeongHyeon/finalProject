@@ -60,6 +60,9 @@ function loadImg(value, num) {
 		reader.readAsDataURL(value.files[0]);
 	}
 }
+function gomonth(){
+	location.href="monthMeal.ml";
+}
 </script>
 <style>
 #mealArea{
@@ -109,6 +112,8 @@ border-top:none;
 					</td>
 					<td>
 						<input type="button" id="datepicker" value="날짜선택">
+						<input type="button" id="gomonth" onclick="gomonth();" value="월별식단표">
+						
 					</td>
 					</tr>
 				

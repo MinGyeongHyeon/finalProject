@@ -21,4 +21,14 @@ public class AdminDaoImpl implements AdminDao{
 		return comList;
 	}
 
+	@Override
+	public ArrayList<Company> admsearchList(SqlSessionTemplate sqlSession, String content) throws CompanyListException {
+		ArrayList<Company> list = null;
+		list = (ArrayList)sqlSession.selectList("Company.searchList",content);
+		if(list == null) {
+			throw new CompanyListException("검색조회실패");
+		}
+		return list;
+	}
+
 }

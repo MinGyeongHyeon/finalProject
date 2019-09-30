@@ -20,8 +20,8 @@ public class MealServiceImpl implements MealService{
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int dailymealCount() {
-		return md.dailymealCount(sqlSession);
+	public int dailymealCount(String day) {
+		return md.dailymealCount(sqlSession,day);
 	}
 
 	@Override
@@ -48,6 +48,13 @@ public class MealServiceImpl implements MealService{
 		ArrayList<Attachment> piclist = null;
 		piclist = md.selectPic(sqlSession,day);
 		return piclist;
+	}
+
+	@Override
+	public ArrayList<Meal> monthMealList(String day) throws MealException {
+		ArrayList<Meal> mlist = null;
+		mlist = md.monthMealList(sqlSession,day);
+		return mlist;
 	}
 
 	

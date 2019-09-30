@@ -10,7 +10,7 @@ import com.kh.fp.member.model.vo.Attachment;
 
 public interface MealDao {
 
-	int dailymealCount(SqlSessionTemplate sqlSession);
+	int dailymealCount(SqlSessionTemplate sqlSession, String day);
 
 	int insertDailyMeal(SqlSessionTemplate sqlSession, Meal meal) throws MealException;
 
@@ -21,5 +21,7 @@ public interface MealDao {
 	int insertAtt(SqlSessionTemplate sqlSession, Attachment at);
 
 	ArrayList<Attachment> selectPic(SqlSessionTemplate sqlSession, String day) throws MealException;
+
+	ArrayList<Meal> monthMealList(SqlSessionTemplate sqlSession, String day) throws MealException;
 
 }

@@ -31,15 +31,27 @@ public class MealController {
 	private MealService ms;
 	
 	@RequestMapping(value="mealMain.ml")
-	public String mealMainView(Model mv,Meal ml,HttpServletRequest request) {
+	public String mealMainView(Model mv,Meal ml,HttpServletRequest request,HttpSession session) {
+		KinGardenClasses loginUser = (KinGardenClasses) session.getAttribute("teacherKing");
 		Date today = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String day = date.format(today);
 		SimpleDateFormat date1 = new SimpleDateFormat("yy/MM/dd");
 		String dayday = date1.format(today);
 		String changeday = request.getParameter("changeday");
-		int meal = ms.dailymealCount();
+		int meal = 0;
+		if(changeday!=null) {
+		meal = ms.dailymealCount(changeday.substring(2));
+		}else {
+			meal = ms.dailymealCount(day);
+		}
 		if(meal==0) {
+			if(changeday!=null) {
+				String abc = changeday.substring(2);
+				mv.addAttribute("day",changeday);
+			}else {
+				mv.addAttribute("day",day);
+			}
 			return "meal/meal2";
 		}else {
 			try {
@@ -48,10 +60,12 @@ public class MealController {
 					ArrayList<Attachment> hmap = ms.selectPic(abc);
 					mv.addAttribute("ham",hmap);
 					mv.addAttribute("day", changeday);
+					mv.addAttribute("loginUser",loginUser);
 				}else {
 				ArrayList<Attachment> hmap = ms.selectPic(dayday);
 				mv.addAttribute("day",day);
 				mv.addAttribute("ham",hmap);
+				mv.addAttribute("loginUser",loginUser);
 				}
 			} catch (MealException e) {
 				e.printStackTrace();
@@ -72,6 +86,21 @@ public class MealController {
 		return "meal/writeMeal";
 	}
 	
+	@RequestMapping(value="monthMeal.ml")
+	public String monthMeal(Model mv,Meal m) {
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("MM");
+		String day = date.format(today);
+		mv.addAttribute("day",day);
+		try {
+			ArrayList<Meal> mlist = ms.monthMealList(day);
+			System.out.println(mlist);
+			mv.addAttribute("list",mlist);
+		} catch (MealException e) {
+			e.printStackTrace();
+		}
+		return "meal/monthMeal";
+	}
 	
 	@RequestMapping(value="writerMeal2.ml")
 	public String multipleFileUpload(@RequestParam(name = "file") MultipartFile[] file, 

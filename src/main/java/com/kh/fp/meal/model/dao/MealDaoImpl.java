@@ -13,9 +13,9 @@ import com.kh.fp.member.model.vo.Attachment;
 public class MealDaoImpl implements MealDao{
 
 	@Override
-	public int dailymealCount(SqlSessionTemplate sqlSession) {
+	public int dailymealCount(SqlSessionTemplate sqlSession,String day) {
 		int mealcount = 0;
-		mealcount = sqlSession.selectOne("Meal.dailymealCount");
+		mealcount = sqlSession.selectOne("Meal.dailymealCount",day);
 		return mealcount;
 	}
 
@@ -56,6 +56,15 @@ public class MealDaoImpl implements MealDao{
 		ArrayList<Attachment> list = (ArrayList)sqlSession.selectList("Meal.selectList", day);
 		if(list == null) {
 			throw new MealException("식단표 사진 불러오기 실패!");
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<Meal> monthMealList(SqlSessionTemplate sqlSession, String day) throws MealException {
+		ArrayList<Meal> list = (ArrayList)sqlSession.selectList("Meal.monthMealList",day);
+		if(list == null) {
+			throw new MealException("월별식단표 조회 실패");
 		}
 		return list;
 	}
