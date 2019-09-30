@@ -256,6 +256,12 @@ public class HomeWorkController {
 			System.out.println(KNo+"아이 번호");
 			
 			Teacher = hs.selectTeacher(userNo);
+			
+			if(Teacher == null) {
+				
+			return "homeworkDiary/homeworkDiaryList2";
+				
+			}
 			System.out.println(Teacher+"머ㅜ야");
 			
 			

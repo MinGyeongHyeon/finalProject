@@ -18,7 +18,6 @@
 	    padding-top:100px;
 	    padding-left: 3%;
 	    padding-right: 3%;
-	    padding-buttom: 10%;
 	}
 	
 	.summaryDiv{
@@ -104,30 +103,13 @@
 		<c:forEach var="a" items="${album}">
 		<div class="summaryDiv" style="wdith:50%">
 			<div class="card">
-				<table class="tq">
-				<tr class="first">
-							<td class="tqtq" colspan="2"><c:out value="${a.alblumNo}" />
-							<input type="hidden" name="웅앵" value="${ a.alblumNo }"></td>
-						</tr>
-						<tr>
-						<td class="tqtq" colspan="2" style="height:100%;"><img src="${contextPath}/resources/uploadFiles/<c:out value="${a.tumbnail}"/>" alt="" style="width:340px; height:150px; margin:0 auto;"/></td>
-						</tr>
-						<tr>
-							<td class="titleView"  colspan="2">
-								<label for="" id="albumTitle"><c:out value="${a.albumTitle}"/></label><br /><p> </p>	
-							</td>	
-						</tr>
-						<tr>
-							<td style="text-align:left; font-size: 0.7em;">
-								<label for="" id="albumDate"><c:out value="${a.writeDate}"/></label>
-							</td>
-						</tr>
-					</table>
+				
 					</div>
 				</div>
 		</c:forEach>
 			</div>
 		</div>
+	<jsp:include page="../common/footer.jsp"/>
 	<script>
 	$("#contentsWrite").click(function(){
 			location.href="albumWhoIn.ab";

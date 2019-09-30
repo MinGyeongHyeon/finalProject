@@ -175,7 +175,7 @@ public class SelectNoticeListController {
 			
 			}else {
 				
-				return "notice/NoticeList";
+				return "notice/NoticeList2";
 			}
 			
 		}else {
