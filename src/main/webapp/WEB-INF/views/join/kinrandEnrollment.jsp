@@ -74,7 +74,7 @@ function plus(){
 <h3>원 전화번호 
 <img src="${ contextPath }/resources/images/phone.png" width="50px" align="center">
 </h3>
-<input type="text" placeholder="원 번호를 입력해 주세요." name="phone"><br>
+<input type="text" placeholder="원 번호를 입력해 주세요." name="phone" class="number"><br>
 <h3>원장님 이름
 <img src="${ contextPath }/resources/images/card.png" width="50px" align="center">
 </h3>
@@ -118,6 +118,17 @@ function plus(){
 <br><br><br><br><br><br><br><br><br><br><br>
 
 <script>
+$('.number').keyup(function(){
+	
+	var loc = $(this);
+	
+if(/[^0123456789]/g.test($(this).val() )) {
+	
+    loc.val("");
+    loc.focus();
+ }
+
+});
 
 
 	    $('#sido').change(function(){
