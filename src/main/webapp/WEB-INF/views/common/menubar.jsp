@@ -325,7 +325,7 @@
 						</c:if>
 
 						<c:if test="${ of.schedule eq 'Y' }">
-						<li class="nav-item"><a href="scheduleMain.sc"> <i
+						<li class="nav-item"><a onclick="scheduleMsg();" style="cursor: pointer;"><!-- <a href="scheduleMain.sc"> --> <i
 								class="far fa-calendar-alt"></i>
 								<p>일정표</p>
 						</a></li>
@@ -396,9 +396,8 @@
 									</ul>
 								</div></li>
 
-						<li class="nav-item"><a href="payment.pa"> <i
-								class="far fa-comments"></i>
-								<p>결제</p>
+						<li class="nav-item"><a href="payment.pa"> <img src="${contextPath }/resources/images/payment.png" alt="" />
+								<p style="padding-left: 15px;">결제</p>
 						</a></li>
 						</c:if>
 
@@ -522,9 +521,11 @@ $('.myPagemodar').click(function(){
 
 	$('#userPwd').val("");
 	$('.buttonmodal').click();
-
-
 });
+
+function scheduleMsg(){
+	alert('아직 개발중인 기능입니다.');
+}
 
 
 

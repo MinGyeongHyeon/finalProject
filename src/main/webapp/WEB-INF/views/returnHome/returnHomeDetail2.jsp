@@ -50,8 +50,12 @@
 	.returnHomeDetail table{
 		width:95%;
 		margin:0 auto;
-		background:#f55;
 	}
+	.returnHomeDetail tr{
+		border-bottom: 1px solid #999;
+		
+	}
+	
 	.returnHomeDetail td, .returnHomeDetail tr{
 		background:#fff;
 		height:55px;
