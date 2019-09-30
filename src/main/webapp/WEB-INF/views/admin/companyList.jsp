@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
+<script>
+function search(){
+	var content = $("#textArea").html();
+	href.location="adminsearch.ad?content="+content;;
+}
+</script>
 <style>
 #content{
 text-align:center;
@@ -85,8 +91,8 @@ height:70%;
 		</div><br>
 	<h3>제휴업체 목록</h3>
 	<div id="searchArea">
-		<input type="text" placeholder="검색어를 입력하세요" id="textArea">
-		<button id="searchBtn">검색</button>
+		<input type="text" placeholder="검색하실 유치원 명을 입력하세요" id="textArea">
+		<button id="searchBtn" onclick="search();">검색</button>
 	</div><br><br><br><br>
 	<div id="companytable">
 	<table id="companyList" align="center">

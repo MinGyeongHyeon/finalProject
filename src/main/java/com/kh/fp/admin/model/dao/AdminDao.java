@@ -11,4 +11,6 @@ public interface AdminDao {
 
 	ArrayList<Company> companyList(SqlSessionTemplate sqlSession) throws CompanyListException;
 
+	ArrayList<Company> admsearchList(SqlSessionTemplate sqlSession, String content) throws CompanyListException;
+
 }

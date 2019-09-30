@@ -25,7 +25,7 @@
 
 	<!-- 데일리출석부 -->
 	<select id="dailyatt" parameterType="Children" resultMap="childResultSet">
-	 SELECT A.TIME,A.M_TIME,A.STATUS,C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO,A.ATT_DATE
+	 <!-- SELECT A.TIME,A.M_TIME,A.STATUS,C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO,A.ATT_DATE
       FROM CHILDREN C
       JOIN USERS U ON U.USER_NO = C.USER_NO
       full outer join attendance A
@@ -40,8 +40,8 @@
       AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2))
       AND C.DIVISION = '원생')
       AND (A.ATT_DATE IN(TO_DATE(#{attDate},'YY/MM/DD'))
-      or a.att_date is null)
-	  <!-- SELECT C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO
+      or a.att_date is null) -->
+	  SELECT C.CHILDREN_NAME,C.CHILDREN_NO,C.BIRTH,C.GENDER,C.USER_NO
       FROM CHILDREN C
       JOIN USERS U ON U.USER_NO = C.USER_NO
       WHERE C.CHILDREN_NO IN (SELECT C.CHILDREN_NO
@@ -52,7 +52,7 @@
       JOIN USERS U ON K.TEACHER_NO = U.USER_NO
       WHERE K.TEACHER_NO = #{teacherNo}
       AND SUBSTR(OPENED_DATE,1,2) = SUBSTR(SYSDATE,1,2))
-      AND C.DIVISION = '원생') -->
+      AND C.DIVISION = '원생')
       
 	</select>
 

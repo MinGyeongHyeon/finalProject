@@ -27,13 +27,17 @@ $(function(){
         onSelect:function(){
         	day = $("#datepicker").val();
         	var date = $("#today").html(day);
-        	//location.href = "changeAttendance.at";
+        	console.log(day);
         	var date = $("#today").html();
+        	location.href = "mealMain.ml?changeday="+day;
         }
 	});
 });
 function writeMeal(){
 	location.href="writeMeal.ml";
+}
+function gomonth(){
+	location.href="monthMeal.ml";
 }
 </script>
 <style>
@@ -75,6 +79,8 @@ background:orange;
 					</td>
 					<td>
 						<input type="button" id="datepicker" value="날짜선택">
+						<input type="button" id="gomonth" onclick="gomonth();" value="월별식단표">
+						
 					</td>
 					</tr>
 				
@@ -84,14 +90,14 @@ background:orange;
 <table id="mealArea">
 <tr><th colspan="3">
 <button>이전</button>
- 2019년 8월
+ <c:out value="${ day }"/>
  <button>다음</button>
  </th></tr>
 <tr>
 <td><h1>아직 식단표가 작성되지 않았습니다.</h1></td>
 </tr>
 <tr><td>
-<c:if test="${ loginUser.usingStatus ne 1 }">
+<c:if test="${loginUser.classification eq '선생님'}">
 <button onclick="writeMeal();">작성하기</button>
 
 </c:if>

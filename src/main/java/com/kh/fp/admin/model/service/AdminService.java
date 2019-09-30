@@ -9,4 +9,6 @@ public interface AdminService {
 
 	ArrayList<Company> companyList() throws CompanyListException;
 
+	ArrayList<Company> searchList(String content) throws CompanyListException;
+
 }

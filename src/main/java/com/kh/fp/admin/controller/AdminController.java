@@ -2,6 +2,8 @@ package com.kh.fp.admin.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,20 @@ public class AdminController {
 		}
 		
 		
+	}
+	
+	@RequestMapping(value="adminsearch.ad")
+	public String search(Model mv,Company com,HttpServletRequest request) {
+		String content = request.getParameter("content");
+		System.out.println(content);
+		try {
+			ArrayList<Company> comlist = ad.searchList(content);
+			mv.addAttribute("list",comlist);
+			return "admin/companyList";
+		} catch (CompanyListException e) {
+			mv.addAttribute("msg",e.getMessage());
+			return "common/errorPage";
+		}
 	}
 	
 	
