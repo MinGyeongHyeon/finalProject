@@ -46,7 +46,7 @@ public class JournalController {
         try {
 			int result = js.writeJournal(j);
 
-			return "redirect:journal/journalList";
+			return "redirect:journalMain.jn";
 
 		} catch (JournalException e) {
 			model.addAttribute("msg", e.getMessage());
