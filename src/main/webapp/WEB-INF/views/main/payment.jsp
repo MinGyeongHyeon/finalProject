@@ -15,7 +15,7 @@
 	.main-panel {
 		    position: relative;
 		    width: calc(100% - 240px);
-		    height: 100vh;
+		    height: 100vh-57px;
 		    min-height: 100%;
 		    float: right;
 		    transition: all .3s;
@@ -57,17 +57,14 @@
 		background:#59f;
 		padding:10px;
 		width:30%;
-		
+		/* border-radius: 5px; */
 	}
 	
-	.setDiv{
-		border-radius: 5px;
-	}
 	
 	.SetList{
 		width:300px;
 		margin:0 auto;
-		border:none;
+		border:2px solid #fd8;
 		margin-bottom: 5px;
 	}
 	.SetList th{
@@ -139,7 +136,10 @@
 										<th style="background:#fb5; height:45px; border:0px; vertical-align: top">30일 이용권</th>
 									</tr>
 									<tr>
-										<td rowspan="2" style="height:100px; border:0px"><input type="number" name="price" value="12000" style="border:0px; width:55px;" readonly/>원</td>
+										<td rowspan="2" style="height:100px; border:0px; font-weight: bold;">
+											<label for="" style="color:#000; font-size: 30px; border:0px; font-weight: bold;">12000원</label>
+											<input type="number" name="price" value="12000" style="font-weight: bold; border:0px; width:180px;" readonly hidden/>
+										</td>
 									</tr>
 								</table>
 								<input type="hidden" value="1"/>
@@ -150,10 +150,16 @@
 										<th style="background:#fb5; height:40px; border:0px">180일 이용권</th>
 									</tr>
 									<tr>
-										<td style="height:50px; border:0px"><input type="number" name="orgPrice" value="72000" style="border:0px; width:55px; text-decoration:line-through" readonly/>원</td>
+										<td style="height:50px; border:0px; font-weight: bold;">
+											<label for="" style="color:#000; font-size: 30px; border:0px; font-weight: bold; text-decoration:line-through">72000원</label>
+											<input type="number" name="orgPrice" value="72000" style="border:0px; font-weight: bold; width:72px; text-decoration:line-through" readonly hidden/>
+										</td>
 									</tr>
 									<tr>
-										<td style="height:50px; border:0px"><input type="number" name="newPrice" value="61200" style="border:0px; width:55px;" readonly/>원</td>
+										<td style="height:50px; border:0px; font-weight: bold;">
+											<label for="" style="color:#000; font-size: 30px; border:0px; font-weight: bold;">61200원</label>
+											<input type="number" name="newPrice" value="61200" style="border:0px; font-weight: bold; width: 72px;" readonly hidden/>
+										</td>
 									</tr>
 								</table>
 								<input type="hidden" value="2"/>
@@ -185,7 +191,7 @@
 			<div id="paymentBtnArea" style="text-align: center; background:#fff;">
 				<input type="submit" id="paybtn" onclick="payment();" value="결제하기"/>
 
-				<button onclick="test()">결제테스트용버튼</button>
+				<!-- <button onclick="test()">결제테스트용버튼</button> -->
 				
 			</div>
 		</div>
@@ -223,7 +229,7 @@
 				phone = 0;
 			}
 			
-			price = 1000;
+			
 //-------------------------------------------------------------------------------------------//
 			//실제 복사하여 사용시에는 모든 주석을 지운 후 사용하세요
 			BootPay.request({
