@@ -28,13 +28,14 @@ public class HomeworkHowManyPeople {
 	@RequestMapping(value="howmanypeopleinClass.ih")
 	public ModelAndView homeWork(ModelAndView mv,HttpSession session,HttpServletRequest request) {
 		KinGardenClasses loginUser = (KinGardenClasses)session.getAttribute("teacherKing");
+		KinGardenClasses CloginUser = (KinGardenClasses)session.getAttribute("childrenKing");
 		
 		int userNo2 = loginUser.getTeacherNo();
 		
 		System.out.println(userNo2+"번");
 		
 		int classNum = hs.selectClassNum(userNo2);
-		System.out.println(classNum +"s2w");
+		System.out.println("반번호"+classNum);
 		
 		String className = hs.selectClassName(userNo2);
 		System.out.println(classNum + "z2z");

@@ -65,6 +65,11 @@
 	height:60px;
 	border-radius:50%;
 }
+#profileImg1 {
+	width:60px;
+	height:60px;
+	border-radius:50%;
+}
 #profileArea {
 	 float:right;
 	 margin-left:50%;
@@ -74,7 +79,7 @@
 #contentArea {
 	margin-left:8%;
 	line-height:230%;
-	font-size:20px;
+	font-size:18px;
 	padding-top:6px;
 }
 #className {
@@ -175,7 +180,7 @@ $(function(){
 										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
 									</c:when>
 									<c:when test="${ not empty at.changeName }">
-										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg" class="avatar-img rounded"></i>
+										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg1" class="avatar-img rounded"></i>
 									</c:when>
 								</c:choose>
 								</div>

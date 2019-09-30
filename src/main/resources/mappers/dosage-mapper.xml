@@ -155,12 +155,7 @@
 		JOIN KINDER_CLASS K USING(CHILDREN_NO)
         JOIN CHILDREN C USING(CHILDREN_NO)
         JOIN USERS U ON(U.USER_NO = C.USER_NO)
-		WHERE K.CLASS_NO IN(SELECT CLASS_NO
-							FROM KINDER_CLASS
-							WHERE KINDER_NO = #{userNo}
-		AND KINDER_NO IN (SELECT CHILDREN_NO
-						  FROM KINDER_CLASS
-						  WHERE KINDER_NO = #{userNo}))
+        where KINDER_NO = #{userNo}
 		AND D.STATUS = 'N'
 		ORDER BY D.DOSAGE_NO DESC
 	</select>
@@ -210,7 +205,7 @@
 		JOIN CHILDREN C ON(D.CHILDREN_NO = C.CHILDREN_NO)
 		WHERE D.CHILDREN_NO IN( SELECT CHILDREN_NO
                         		FROM KINDER_CLASS K
-								WHERE (K.KINDER_NO, K.CLASS_NAME, K.OPENED_DATE) IN (SELECT K1.KINDER_NO, K1.CLASS_NAME, K1.OPENED_DATE
+								WHERE (K.KINDER_NO, K.CLASS_NAME, TO_CHAR(K.OPENED_DATE,'YY/MM/DD')) IN (SELECT K1.KINDER_NO, K1.CLASS_NAME, TO_CHAR(K1.OPENED_DATE,'YY/MM/DD')
                                                                              		 FROM KINDER_CLASS K1
                                                                             		 WHERE K1.TEACHER_NO = #{userNo})
                         		AND DIVISION = '원생')

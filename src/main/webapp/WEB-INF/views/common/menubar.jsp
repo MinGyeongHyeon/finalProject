@@ -88,11 +88,31 @@
 			</div>
 
 			<nav class="navbar navbar-header navbar-expand-lg">
+			
+			<c:if test="${ loginUser.classification eq '원장님'or loginUser.classification eq '체험판원장님'}">
+			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
+					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
+					<i class="fas fa-cog"></i>
+					원 설정
+					</button> 
+					<input type="hidden" name="userNo" value="${ loginUser.userNo }"/>
+					
+		   </form>
+			</c:if>
+			
+		    <c:if test="${ loginUser.classification eq '선생님'or loginUser.classification eq '체험판선생님' }">
+			<form action="childrenMe.me?currentPage=1&currentPage2=1" method="post">
+					<button class="navbar navbar-header navbar-expand-lg btn btn-default">
+					<i class="fas fa-cog"></i>
+					원 설정
+					</button>
+			</form>
+			</c:if>
 
 				<div class="container-fluid">
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 
-						<c:if test="${ loginUser.classification eq '원장님' }">
+						<c:if test="${ loginUser.classification eq '원장님' or loginUser.classification eq '체험판원장님' }">
 
 
 							<li class="nav-item dropdown hidden-caret"><a
@@ -234,7 +254,7 @@
 											<c:if test="${ empty loginUser.email }">
 												<p class="text-muted">메일이 등록 안된 회원 </p>
 											</c:if>
-											<c:if test="${ empty loginUser.email }">
+											<c:if test="${ !empty loginUser.email }">
 											<p class="text-muted">${ loginUser.email }</p>
 											</c:if>
 											<a href="profile.html"
@@ -245,8 +265,6 @@
 								<li>
 									<div class="dropdown-divider"></div> <a class="dropdown-item myPagemodar"
 									href="#">마이 페이지</a>
-									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">Account Setting</a>
 									<div class="dropdown-divider"></div> <a class="dropdown-item"
 									href="logout.me">로그 아웃</a>
 								</li>
