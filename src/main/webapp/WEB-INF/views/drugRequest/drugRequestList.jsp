@@ -65,11 +65,6 @@
 	height:60px;
 	border-radius:50%;
 }
-#profileImg1 {
-	width:60px;
-	height:60px;
-	border-radius:50%;
-}
 #profileArea {
 	 float:right;
 	 margin-left:50%;
@@ -79,7 +74,7 @@
 #contentArea {
 	margin-left:8%;
 	line-height:230%;
-	font-size:18px;
+	font-size:20px;
 	padding-top:6px;
 }
 #className {
@@ -144,29 +139,11 @@ $(function(){
 					</div>
 					<hr>
 					<div class="page-category">
-					<!--
-						<div class="inputArea">
-							<c:if test="${ loginUser.classification ne '학부모' }">
-							<select class="form-control" id="sel1">
-						        <option>전체반</option>
-						        <option>별님반</option>
-						        <option>티비반</option>
-      						</select>
-      						&nbsp;&nbsp;&nbsp;
-      						<select class="form-control" id="sel2">
-						        <option>전체 원아보기</option>
-						        <option>김영지</option>
-						        <option>한송이</option>
-      						</select>
-      						</c:if>
-						</div>
-					 -->
-					 <br><br>
+						<br><br>
 						<div id="listArea">
 							<c:if test="${ empty detailList }">
-						<br><br><br><br>
 								<div id="empty">
-									<br><br><br><br>
+									<br><br><br><br><br><br>
 									<h1 style="font-size:20px;"><b>작성된 투약의뢰서가 없습니다.</b></h1>
 								</div>
 							</c:if>
@@ -178,14 +155,7 @@ $(function(){
 								<br>
 								<div id="profileArea">
 									<b id="bName"><c:out value="${ l.childrenName }"/></b>&nbsp;
-								<c:choose>
-									<c:when test="${ empty at.changeName }">
-										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
-									</c:when>
-									<c:when test="${ not empty at.changeName }">
-										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg1" class="avatar-img rounded"></i>
-									</c:when>
-								</c:choose>
+										<i><img src="${ contextPath }/resources/images/p.jpg" id="profileImg"></i>
 								</div>
 								<div id="contentArea">
 									<p class="dateT"><b><c:out value="${ l.dosageDate }"/></b></p>
@@ -204,14 +174,7 @@ $(function(){
 								<br>
 								<div id="profileArea">
 									<b id="bName"><c:out value="${ l.childrenName }"/></b>&nbsp;
-								<c:choose>
-									<c:when test="${ empty at.changeName }">
-										<i><img src="${ contextPath }/resources/images/woman.png" id="profileImg"></i>
-									</c:when>
-									<c:when test="${ not empty at.changeName }">
-										<i><img src="${ contextPath }/resources/uploadFiles/${at.changeName}" id="profileImg" class="avatar-img rounded"></i>
-									</c:when>
-								</c:choose>
+										<i><img src="${ contextPath }/resources/images/p.jpg" id="profileImg"></i>
 								</div>
 								<div id="contentArea">
 									<p class="dateT"><b><c:out value="${ l.dosageDate }"/></b></p>
@@ -325,38 +288,4 @@ $(function(){
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
