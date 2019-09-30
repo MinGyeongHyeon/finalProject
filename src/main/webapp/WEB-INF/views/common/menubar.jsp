@@ -377,7 +377,7 @@
 								<p>채팅</p>
 						</a></li>
 
-						<c:if test="${ loginUser.classification == '원장님' || loginUser.classification == '관리자'}">
+						<c:if test="${ loginUser.classification == '원장님'}">
 							<li class="nav-item"><a data-toggle="collapse"
 								href="#submenu"> <i class="far fa-envelope"></i>
 									<p>쪽지함</p> <span class="caret"></span>

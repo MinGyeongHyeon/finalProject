@@ -188,13 +188,12 @@ public class NoteController {
 
 			if(userNo == 0) {
 				rList = ns.selectRecieveNoteList(pi, userNo);
-				model.addAttribute("rList", rList);
-				model.addAttribute("pi", pi);
 			}else {
 				rList = ns.selectTeacherRecieveNoteList(pi, userNo);
-				model.addAttribute("rList", rList);
-				model.addAttribute("pi", pi);
 			}
+
+			model.addAttribute("rList", rList);
+			model.addAttribute("pi", pi);
 
 			return "note/noteMain";
 
