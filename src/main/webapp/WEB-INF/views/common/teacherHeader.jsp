@@ -47,7 +47,7 @@
 	
 </style>
 <body>
-	<div class="headerArea">
+	<div class="headerArea" style="width:1600px; height:49px;">
 		<table class="headerTable">
 			<tr>
 				<td valign="middle">

@@ -18,6 +18,7 @@
 	    padding-top:100px;
 	    padding-left: 3%;
 	    padding-right: 3%;
+	    padding-buttom: 10%;
 	}
 	
 	.summaryDiv{
@@ -127,7 +128,6 @@
 		</c:forEach>
 			</div>
 		</div>
-	<jsp:include page="../common/footer.jsp"/>
 	<script>
 	$("#contentsWrite").click(function(){
 			location.href="albumWhoIn.ab";

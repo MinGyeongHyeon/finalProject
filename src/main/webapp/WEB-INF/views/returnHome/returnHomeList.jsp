@@ -33,14 +33,15 @@
 	
 	.returnHomeSummary{
 		width:28%;
-		margin-top:10px;
+		margin-top:40px;
 		margin-bottom:20px;
 		margin-right:2%;
 		margin-left:2%;
 		display: inline-block;
 		background:#fff;
-		height:300px;
+		height:250px;
 		border:1px solid black;
+		
 	}
 	.returnHomeSummary img{
 		width:20px;
@@ -131,6 +132,16 @@
 		padding-top:5px;
 		padding-bottom: 5px;
 	}
+	
+	#paginationTable td{
+		width:30px;
+		border:1px solid #66f;
+		text-align: center;
+	}
+	#paginationTable td:first-child, #paginationTable td:last-child{
+		width:60px;
+	}
+	
 </style>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
@@ -207,43 +218,53 @@
 		</div>
 		<c:if test="${not empty rhList }">
 				
-		<div id="paginArea" align="center">
-			<c:if test="${ pi.currentPage <= 1 }">
-				<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">이전</b>&nbsp;
-			</c:if>
-			<c:if test="${ pi.currentPage > 1 }">
-				<c:url var="blistBack" value="/returnHomeMain.rh">
-					<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-				</c:url>
-				<a href="${ blistBack }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">이전</a> &nbsp;
-			</c:if>
-			
-			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				<c:if test="${ p eq pi.currentPage }">
-					<font color="red" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px; width:20px;"><b>${ p }</b></font>
+		<div id="paginArea" align="center" style="margin-bottom: 50px;">
+			<table id="paginationTable"><tr>
+				<c:if test="${ pi.currentPage <= 1 }">
+					<td>
+						<b style="font-size: 18px;">이전</b>&nbsp;
+					</td>
 				</c:if>
-				<c:if test="${ p ne pi.currentPage }">
-					<c:url var="blistCheck" value="returnHomeMain.rh">
-						<c:param name="currentPage" value="${ p }"/>
-					</c:url>
-					<a href="${ blistCheck }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">${ p }</a>
+				<c:if test="${ pi.currentPage > 1 }">
+					<td>
+						<c:url var="blistBack" value="/returnHomeMain.rh">
+							<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+						</c:url>
+						<a href="${ blistBack }" style="font-size: 18px; ">이전</a> &nbsp;
+					</td>
 				</c:if>
-			</c:forEach>
-			
-			<c:if test="${ pi.currentPage < pi.maxPage }">
-				<c:url var="blistEnd" value="returnHomeMain.rh">
-					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-				</c:url>
-				&nbsp; <a href="${ blistEnd }" style="font-size: 18px; border:1px solid #0078ff; border-radius: 5px;">다음</a>
+				
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<td>
+							<font color="red" style="font-size: 18px; width:20px;"><b>${ p }</b></font>
+						</td>
+					</c:if>
+					<c:if test="${ p ne pi.currentPage }">
+						<td>
+							<c:url var="blistCheck" value="returnHomeMain.rh">
+								<c:param name="currentPage" value="${ p }"/>
+							</c:url>
+							<a href="${ blistCheck }" style="font-size: 18px; ">${ p }</a>
+						</td>
+					</c:if>
+				</c:forEach>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<td>
+						<c:url var="blistEnd" value="returnHomeMain.rh">
+							<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+						</c:url>
+						&nbsp; <a href="${ blistEnd }" style="font-size: 18px; ">다음</a>
+					</td>
 				</c:if>
 				<c:if test="${ pi.currentPage >= pi.maxPage }">
-					&nbsp;<b style="font-size: 18px; border:1px solid #aaa; border-radius: 5px;">다음</b>
+					<td>
+						&nbsp;<b style="font-size: 18px;">다음</b>
+					</td>
 				</c:if>
-			</div>
-		</c:if>
-		
-		
-		
+				</div>
+			</c:if>
+		</tr></table>
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

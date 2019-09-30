@@ -81,7 +81,16 @@ public class AlbumController {
 	  		userNo = CloginUser.getChildrenNo();
 	  		System.out.println(userNo+"입니다");
 	  		Tnum = abs.getTNum(userNo);
+	  		
+	  		if(Tnum == 0) {
+	  			
+	  			 return "album/albumList2";
+	  		}
+	  		
+	  		
 	  		listCount = abs.getTListCount(Tnum);
+	  		
+	  			
 	      
 	      }else {
 	         listCount = abs.getTListCount(userNo);

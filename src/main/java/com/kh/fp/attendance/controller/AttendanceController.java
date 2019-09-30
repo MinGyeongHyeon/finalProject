@@ -25,7 +25,6 @@ import com.kh.fp.member.model.vo.Member;
 
 @Controller
 @SessionAttributes("loginUser")
-
 public class AttendanceController {
 
 	@Autowired
