@@ -214,7 +214,7 @@ table-layout:fixed;
                      <tr>
                      <c:forEach var="i" begin="1" end="${ month }">
                      <td rowspan="1" colspan="2" style="padding-top:39px; padding-bottom:39px; width:60px;" class="${ i }">
-                     08:30AM
+                     0
                      </td>               
                      </c:forEach>
                      </tr>
