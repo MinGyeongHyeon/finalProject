@@ -194,7 +194,7 @@
 </script>
 
 </head>
-<body>
+<body>	
 
 	<jsp:include page="../common/menubar.jsp"/>
 	<div class="main-panel" id="firstContentArea">

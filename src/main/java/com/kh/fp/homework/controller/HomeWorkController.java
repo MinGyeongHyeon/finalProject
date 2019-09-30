@@ -83,7 +83,7 @@ public class HomeWorkController {
 
 			try {
 				at.setOrigineName(originFileName);
-				at.setChangeName(changeName);
+				at.setChangeName(changeName+ext);
 				at.setFilePath(filePath);
 				at.setFileLevel("1");
 				at.setAttachType("알림장");
@@ -107,7 +107,7 @@ public class HomeWorkController {
 
 		}
 
-		return "homeworkDiary/homeworkDiaryList";
+		return "redirect:/homeworklist.hw";
 
 	}
 	
@@ -153,7 +153,7 @@ public class HomeWorkController {
 
 			try {
 				at.setOrigineName(originFileName);
-				at.setChangeName(changeName);
+				at.setChangeName(changeName+ext);
 				at.setFilePath(filePath);
 				at.setFileLevel("1");
 				at.setAttachType("알림장");
@@ -220,7 +220,7 @@ public class HomeWorkController {
 		int insertIndiHomeWork = hs.insertIndiHomework(homeless);
 		
 		System.out.println(homeless+"어레이리스트의 홈리스노숙자");
-		return "homeworkDiary/homeworkDiaryList";
+		return "redirect:/homeworklist.hw";
 
 	}
 	

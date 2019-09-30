@@ -220,7 +220,6 @@
 						<td>
 							<div class="fileList" style="width:100%;">
 								<label for="selectFile">파일선택</label>
-								<input type="text" name="fileName" class="fileName">
 								<input type="file" value="추가" name="attachfile"id="selectFile" class="selectFile" multiple/>
 							</div>
 						</td>

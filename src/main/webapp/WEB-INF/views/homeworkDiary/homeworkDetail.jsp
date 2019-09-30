@@ -18,7 +18,7 @@
 
 #titleArea {
 	background: #f5f5f5;
-	height: 55px;
+	height: 50px;
 	
 }
 
@@ -59,11 +59,13 @@
 
  td {
 	text-align:center;
+	 font-size: 17px;
 }
 
 .title{
-	height:10%;
+	height:7%;
 	width:10%;
+	font-size: 20px;
 
 }
 
@@ -114,10 +116,6 @@
 						</div>
 						<div id="contentsArea">
 							<br>
-							<div id="profileArea">
-								<i><img src="${ contextPath }/resources/images/woman.png"
-									id="profileImg"></i> &nbsp;&nbsp;<b>원아 이름</b>
-							</div>
 							<br>
 								<table id="tableArea" style="margin:0 auto;">
 									<tr style="background: #f57373; border-radius: 5px">
@@ -128,7 +126,7 @@
 									<c:choose>
 									<c:when test="${HList[0].attachName ne null}">
 										<tr><td>
-										<img src="${contextPath}/resources/uploadFiles/<c:out value="${HList[0].attachName}"/>.PNG" alt="" />
+										<img src="${contextPath}/resources/uploadFiles/<c:out value="${HList[0].attachName}"/>" alt="" />
 										</td></tr>
 									</c:when>
 										<c:when test="${l.fileName eq null}">
@@ -147,9 +145,6 @@
 						<c:when test="${l.childrenNo eq sessionScope.childrenKing.childrenNo or l.writer eq sessionScope.loginUser.userNo}"> 
 							<div style="padding-top:10%">
 								<table id="tableArea" style="margin:0 auto;">
-									<tr>
-										<td><c:out value=""/></td>
-									</tr>
 									<tr style="background: #3682f5;">
 										<td colspan="2" class="title" style="color:white; border-radius: 10px;"/>개별 알림장</td>
 									</tr>
@@ -166,11 +161,6 @@
 							<br>
 					</div>
 					<br><br>
-						<div id="btnA1">
-							<button type="button" class="btn" id="btn1" onclick="print()">
-								<i class="fas fa-print"></i>&nbsp; 출력
-							</button>
-						</div>
 						<div id="btnA2">
 							<button type="button" class="btn btn-light" id="btn2">
 								<i class="far fa-trash-alt"></i>&nbsp; 삭제
@@ -191,19 +181,8 @@
 
 		<br>
 
-		<!-- <table id="replySelectTable" class="commentTables" align="center">
-			<tbody>
-			<tr>
-			<td colspan="2" class="tWriter"><span></span></td>
-				<td colspan="3" class="tContent"></td>
-				<td class="tDate"></td>
-			</tr>
-			</tbody>
-			<tfoot>
-
-			</tfoot>
-		</table>
- -->		</div>	
+	
+	</div>	
 
 						<div class="commentArea"> 
 							<input type="text" class="writeComment" id="replyContent"/>
@@ -270,8 +249,8 @@
 								var $tr = $("<tr>");
 								var $tr2  = $("<tr>");
 								var $hr = $("<hr>");
-								var $writer = $("<td>").text("작성자 : ").css({'width':'60px','font-weight':'bold'});
-			 					var $writeTd = $("<td colspan='2'>").text(data[key].commtentName).css("width", "100px");
+								var $writer = $("<td>").text("작성자 : ").css({'width':'70px','font-weight':'bold'});
+			 					var $writeTd = $("<td colspan='2'>").text(data[key].commtentName).css("width", "120px");
 								var $contentTd = $("<td colspan='2'>").text(data[key].commentContent).css("width","400px");
 								//var $dateTd = $("<td>").text(data[key].commentDate).css({'width':'200px','color':'lightgray','font-size':'10xpx'});
 

@@ -147,7 +147,8 @@ public class BoardController {
 		model.addAttribute("list",list);
 			
 
-		return "bus/bus";
+		/* return "bus/bus"; */
+		return "redirect:/busList.bs";
 	}
 	
 	@RequestMapping(value="busList.bs")

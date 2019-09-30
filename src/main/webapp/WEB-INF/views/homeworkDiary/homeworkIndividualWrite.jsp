@@ -202,7 +202,7 @@
 			<table style="width:100%;">
 				<tr>
   					<td style="vertical-align: middle;">
-						<p style="font-weight:bold;">알림장 작성</p>
+						<p style="font-weight:bold; font-size:20px"><i class="fas fa-book" style="size:30px"></i>&nbsp; 알림장 작성</p>
 					</td>
 				</tr>
 			</table>
@@ -210,7 +210,6 @@
 		<hr />
 
 		<form action="homeWorkIndiWrite.hw" method="post" enctype="multipart/form-data">
-		<input type="text" id="userNo2" value="${ teacherKing.teacherNo }">
 			<div class="homeworkDiaryForm">
 				<table>
 					<tr>

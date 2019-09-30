@@ -253,7 +253,27 @@ img {
 	width: 120px;
 	border-radius: 50%;
 }	
-	
+
+.selectC {
+	width: 15%;
+	height: 15%;
+	display: inline-block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.selectA{
+	width: 15%;
+	height: 15%;
+	display: inline-block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+
+
+}
 </style>
 <script>
 	$(function(){
@@ -420,9 +440,11 @@ img {
 				<div class="modal-content">
 					<h2>${className}원아</h2>
 					<div class="realS">
+						<div class="selectA" style="display: inline;">
 								<img src="${contextPath}/resources/images/dog.jpg" alt="" />
 								<p><input type="checkbox" name="check" class="checkcheck"  value='999'/>&nbsp;전체&nbsp;
 								<input type="hidden" name="check" class="checkcheck" value="0"/>&nbsp;</p>
+							</div>	
 						<c:forEach var="l" items="${list}">
 							<div class="selectC" style="display: inline;">
 								<c:choose>

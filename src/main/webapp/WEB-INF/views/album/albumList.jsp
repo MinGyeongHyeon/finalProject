@@ -98,9 +98,6 @@
 		</div>	
 		<hr />
 		<div class="albumListDiv">
-			<div class="dateSearchArea">
-				<input type="date" /> ~ <input type="date" /> &nbsp;
-				<button onclick="albumListSearch();">검색</button>
 			</div>
 			<br />
 		<c:forEach var="a" items="${album}">
@@ -122,9 +119,6 @@
 						<tr>
 							<td style="text-align:left; font-size: 0.7em;">
 								<label for="" id="albumDate"><c:out value="${a.writeDate}"/></label>
-							</td>
-							<td style="text-align:right; font-size:0.7em">
-								<img src="${ contextPath }/resources/images/camera.png" alt="" width="10px"/><label for="">11</label>
 							</td>
 						</tr>
 					</table>
