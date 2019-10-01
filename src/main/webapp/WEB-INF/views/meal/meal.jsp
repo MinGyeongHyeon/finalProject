@@ -95,7 +95,7 @@ button {
 <tr>
 <c:forEach var="l" items="${ham}">
 <td>
-<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.changeName}"/>.jpg" alt="" style="width:50%; height: 30%;"/>
+<img src="${contextPath}/resources/uploadFiles/<c:out value="${l.changeName}"/>" alt="" style="width:50%; height: 30%;"/>
 </td>
 </c:forEach>
 </tr>

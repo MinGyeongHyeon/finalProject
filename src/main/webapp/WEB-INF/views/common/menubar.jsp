@@ -250,14 +250,14 @@
 						</a></li>
 						</c:if>
 						
-						<c:if test="${ loginUser.classification ne '학부모' or loginUser.classification ne '체험판학부모'}">
-						<c:if test="${ of.attendance eq 'Y' }">
+	
+						<c:if test="${ of.attendance eq 'Y' and  loginUser.classification != '학부모' }">
 						<li class="nav-item"><a href="attendance.at"> <i
 								class="far fa-calendar-check"></i>
 								<p>출석부</p>
 						</a></li>
 						</c:if>
-						</c:if>
+					
 
 						<li class="nav-item"><a href="busList.bs"> <i
 								class="fas fa-shuttle-van"></i>

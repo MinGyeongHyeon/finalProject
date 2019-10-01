@@ -74,7 +74,7 @@
 #contentArea {
 	margin-left:8%;
 	line-height:230%;
-	font-size:20px;
+	font-size:18px;
 	padding-top:6px;
 }
 #className {

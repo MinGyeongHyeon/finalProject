@@ -125,7 +125,7 @@ public class MealController {
 						
 						
 						at.setOrigineName(originFileName);
-						at.setChangeName(changeName);
+						at.setChangeName(changeName + ext);
 						at.setFilePath(filePath);
 						at.setAttachType("식단글");
 						at.setFileLevel(num);

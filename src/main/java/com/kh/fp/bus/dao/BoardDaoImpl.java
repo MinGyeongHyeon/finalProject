@@ -18,6 +18,7 @@ public class BoardDaoImpl implements BoardDao{
 		int BusOn = 0;
 		
 		for(int i = 0; i <list.size(); i++) {
+			System.out.println("do"+list);
 			BusOn = sqlSession.insert("Bus.insertBus",list.get(i));
 		}
 		return BusOn;

@@ -17,7 +17,7 @@
   </resultMap>
   
   
-  	<insert id="insertBus"> SELECT B.BUS_NO,B.CHILDREN_NO,B.BUS_YN,B.GET_ON,B.BUS_DATE,B.KINDER_NO,B.CLASS_NO,C.CHILDREN_NAME
+  	<insert id="insertBus">
 		INSERT INTO BUS
 		VALUES(SEQ_BUS_NO.NEXTVAL,#{childrenNo},#{busYN},#{geton},NULL,SYSDATE,1,8)		
 	</insert>
